@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mozi Interactive Map | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --primary: #4a3728;
+            --primary-light: #6b5344;
+            --accent: #8b4513;
+            --mission: #c54b3c;
+            --mohist: #5a4a3a;
+            --mentioned: #5a5a8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(61, 40, 23, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+        }
+
+        .nav a.portal-link {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .nav a.portal-link:hover {
+            background: var(--gold-light);
+        }
+
+        .nav a.study-link {
+            border: 1px solid var(--accent);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav a.study-link:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #3d2817 0%, #5a3d2b 100%);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-title .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.6rem;
+            color: var(--gold-light);
+        }
+
+        .header-title h1 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .header-title p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            height: calc(100vh - 140px);
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #fff;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .sidebar-section {
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-section-header {
+            padding: 0.75rem 1rem;
+            background: var(--paper);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-section-header h3 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-light);
+            font-weight: 600;
+        }
+
+        .sidebar-section-header .toggle {
+            color: var(--ink-faint);
+            font-size: 0.7rem;
+            background: #fff;
+            padding: 0.15rem 0.4rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .location-list {
+            list-style: none;
+        }
+
+        .location-item {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .location-item:hover {
+            background: rgba(74, 55, 40, 0.04);
+        }
+
+        .location-item.active {
+            background: rgba(74, 55, 40, 0.08);
+            border-left: 3px solid var(--primary);
+        }
+
+        .location-item.mission {
+            border-left: 3px solid var(--mission);
+        }
+
+        .location-item.mission.active {
+            border-left: 3px solid var(--mission);
+            background: rgba(197, 75, 60, 0.08);
+        }
+
+        .location-item .name {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .location-item .chinese-name {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.25rem;
+            color: var(--ink);
+        }
+
+        .location-item .english-name {
+            font-size: 0.85rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .location-item .pinyin {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: var(--ink-faint);
+            margin-bottom: 0.3rem;
+        }
+
+        .location-item .description {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+
+        .location-item .chapter-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-family: monospace;
+            padding: 0.1rem 0.35rem;
+            border-radius: 2px;
+            margin-top: 0.4rem;
+            margin-right: 0.2rem;
+            background: var(--paper-dark);
+            color: var(--ink-light);
+            border: 1px solid #ddd;
+        }
+
+        .location-item .mission-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+            margin-top: 0.4rem;
+            margin-right: 0.2rem;
+            background: var(--mission);
+            color: #fff;
+        }
+
+        .location-item .origin-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+            margin-top: 0.4rem;
+            margin-right: 0.2rem;
+            background: var(--mohist);
+            color: #fff;
+        }
+
+        /* Map Container */
+        .map-container {
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            background: #f5f3ef;
+        }
+
+        /* Map Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .map-legend h4 {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-light);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .legend-group {
+            margin-bottom: 0.75rem;
+        }
+
+        .legend-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .legend-group-title {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--ink-faint);
+            margin-bottom: 0.35rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.7rem;
+            color: var(--ink);
+        }
+
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-dot.mission {
+            background: var(--mission);
+        }
+
+        .legend-dot.origin {
+            background: var(--mohist);
+        }
+
+        .legend-dot.mentioned {
+            background: var(--mentioned);
+        }
+
+        .legend-line {
+            width: 20px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .legend-line.journey {
+            background: var(--mission);
+            background: repeating-linear-gradient(90deg,
+                    var(--mission) 0px,
+                    var(--mission) 4px,
+                    transparent 4px,
+                    transparent 8px);
+        }
+
+        .legend-swatch {
+            width: 16px;
+            height: 10px;
+            border-radius: 2px;
+            opacity: 0.5;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-swatch.chu {
+            background: #ff8c00;
+        }
+
+        .legend-swatch.song {
+            background: #cd853f;
+        }
+
+        .legend-swatch.lu {
+            background: #4169e1;
+        }
+
+        .legend-swatch.qi {
+            background: #228b22;
+        }
+
+        /* Popup Styles */
+        .leaflet-popup-content-wrapper {
+            background: #fff;
+            color: var(--ink);
+            border-radius: 4px;
+            padding: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .leaflet-popup-content {
+            margin: 0;
+            min-width: 260px;
+        }
+
+        .leaflet-popup-tip {
+            background: #fff;
+        }
+
+        .popup-content {
+            padding: 1rem;
+        }
+
+        .popup-content .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .popup-content .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+        }
+
+        .popup-content .names {
+            flex: 1;
+        }
+
+        .popup-content .english {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .popup-content .pinyin {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: var(--ink-faint);
+        }
+
+        .popup-content .popup-body {
+            font-size: 0.8rem;
+            line-height: 1.55;
+            color: var(--ink-light);
+        }
+
+        .popup-content .popup-body p {
+            margin-bottom: 0.6rem;
+        }
+
+        .popup-content .popup-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .popup-content .modern-location {
+            background: var(--paper);
+            padding: 0.4rem 0.6rem;
+            border-radius: 3px;
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--primary);
+        }
+
+        .popup-content .modern-location strong {
+            color: var(--ink);
+        }
+
+        .popup-content .chapter-tags {
+            margin-top: 0.6rem;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .popup-content .chapter-tag {
+            font-size: 0.65rem;
+            font-family: monospace;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            background: var(--paper-dark);
+            color: var(--ink-light);
+            border: 1px solid #ddd;
+        }
+
+        .popup-content .mission-badge {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            background: var(--mission);
+            color: #fff;
+        }
+
+        .popup-content .origin-badge {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            background: var(--mohist);
+            color: #fff;
+        }
+
+        .popup-content .story-box {
+            background: rgba(197, 75, 60, 0.08);
+            padding: 0.6rem 0.8rem;
+            border-radius: 3px;
+            margin-top: 0.6rem;
+            font-size: 0.8rem;
+            border-left: 3px solid var(--mission);
+        }
+
+        .popup-content .story-box strong {
+            color: var(--mission);
+        }
+
+        /* Kingdom Labels on Map */
+        .kingdom-label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.10);
+            text-shadow: none;
+            white-space: nowrap;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: linear-gradient(135deg, #3d2817 0%, #5a3d2b 100%);
+            padding: 2rem 1.5rem;
+            color: #fff;
+        }
+
+        .story-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-container h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .story-container .subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-container .subtitle .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--gold-light);
+            margin-right: 0.5rem;
+        }
+
+        .story-content {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .story-content p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+        }
+
+        .story-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-content .quote {
+            font-style: italic;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        /* Table Section */
+        .table-section {
+            background: #fff;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .table-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .table-container h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-faint);
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .table-container .subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+        }
+
+        .locations-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .locations-table th {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--primary);
+            color: #fff;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .locations-table td {
+            padding: 0.65rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
+            color: var(--ink);
+            vertical-align: top;
+        }
+
+        .locations-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .locations-table tr:hover td {
+            background: rgba(74, 55, 40, 0.02);
+        }
+
+        .locations-table tr.mission td {
+            background: rgba(197, 75, 60, 0.03);
+        }
+
+        .locations-table tr.mission:hover td {
+            background: rgba(197, 75, 60, 0.06);
+        }
+
+        .locations-table .chinese-cell {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .locations-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        footer .course {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+        }
+
+        /* Travel route styling */
+        .travel-route {
+            stroke-dasharray: 8, 6;
+            animation: dash 30s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                gap: 0.3rem;
+            }
+
+            .nav a {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">Course Portal</a>
+            <a href="mozi.html" class="study-link">Study Guide</a>
+            <a href="#map">Map</a>
+            <a href="#story">The Mission</a>
+            <a href="#table">Reference Table</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-left">
+            <div class="header-title">
+                <span class="chinese">墨子地圖</span>
+                <h1>Geographic Locations in the Mozi</h1>
+                <p>Warring States Period (c. 470-391 BCE)</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <!-- The Mission -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>The Mission to Chu</h3>
+                    <span class="toggle">3</span>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item mission" data-lat="34.44" data-lng="115.65" data-id="song-capital">
+                        <div class="name">
+                            <span class="chinese-name">宋</span>
+                            <span class="english-name">Song</span>
+                        </div>
+                        <div class="pinyin">Song - Capital: Shangqiu 商丘</div>
+                        <div class="description">State Mozi saved from Chu's planned invasion. Hearing of the attack, he
+                            walked 10 days and nights to reach Chu.</div>
+                        <span class="mission-badge">Defended</span>
+                        <span class="chapter-tag">Against Offensive War</span>
+                    </li>
+                    <li class="location-item mission" data-lat="30.35" data-lng="112.24" data-id="chu-capital">
+                        <div class="name">
+                            <span class="chinese-name">楚</span>
+                            <span class="english-name">Chu (Ying)</span>
+                        </div>
+                        <div class="pinyin">Chu - Capital: Ying 郢</div>
+                        <div class="description">Mozi traveled here to debate Gongshu Ban (公輸般) and the King of Chu,
+                            preventing the attack on Song.</div>
+                        <span class="mission-badge">Diplomatic Mission</span>
+                        <span class="chapter-tag">Gongshu</span>
+                    </li>
+                    <li class="location-item mission" data-lat="32.5" data-lng="114.0" data-id="journey">
+                        <div class="name">
+                            <span class="chinese-name">十日十夜</span>
+                            <span class="english-name">The Journey</span>
+                        </div>
+                        <div class="pinyin">Shí rì shí yè - Ten days, ten nights</div>
+                        <div class="description">Mozi walked continuously for 10 days and nights, his feet worn raw, to
+                            reach Chu in time to prevent war.</div>
+                        <span class="mission-badge">~600 km journey</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Mozi's Origins -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Possible Origins</h3>
+                    <span class="toggle">2</span>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-lat="35.59" data-lng="116.99" data-id="lu">
+                        <div class="name">
+                            <span class="chinese-name">魯</span>
+                            <span class="english-name">Lu</span>
+                        </div>
+                        <div class="pinyin">Lu - Capital: Qufu 曲阜</div>
+                        <div class="description">Some sources say Mozi was from Lu, homeland of Confucius. May explain
+                            his early Confucian training.</div>
+                        <span class="origin-badge">Possible birthplace</span>
+                    </li>
+                    <li class="location-item" data-lat="34.44" data-lng="115.65" data-id="song-origin">
+                        <div class="name">
+                            <span class="chinese-name">宋</span>
+                            <span class="english-name">Song</span>
+                        </div>
+                        <div class="pinyin">Song</div>
+                        <div class="description">Other sources place Mozi's origin in Song. His desperate mission to
+                            save Song suggests personal connection.</div>
+                        <span class="origin-badge">Possible birthplace</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- States Mentioned -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>States in the Text</h3>
+                    <span class="toggle">5</span>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-lat="36.88" data-lng="118.36" data-id="qi">
+                        <div class="name">
+                            <span class="chinese-name">齊</span>
+                            <span class="english-name">Qi</span>
+                        </div>
+                        <div class="pinyin">Qi - Capital: Linzi 臨淄</div>
+                        <div class="description">Major Warring States power. Later Mohist logical/scientific thought
+                            flourished in Qi's Jixia Academy.</div>
+                        <span class="chapter-tag">Various</span>
+                    </li>
+                    <li class="location-item" data-lat="34.33" data-lng="108.71" data-id="qin">
+                        <div class="name">
+                            <span class="chinese-name">秦</span>
+                            <span class="english-name">Qin</span>
+                        </div>
+                        <div class="pinyin">Qin - Capital: Xianyang 咸陽</div>
+                        <div class="description">Western power whose aggressive expansion Mozi would have condemned.
+                            Would unify China in 221 BCE.</div>
+                        <span class="chapter-tag">Mentioned</span>
+                    </li>
+                    <li class="location-item" data-lat="34.78" data-lng="114.31" data-id="wei">
+                        <div class="name">
+                            <span class="chinese-name">魏</span>
+                            <span class="english-name">Wei</span>
+                        </div>
+                        <div class="pinyin">Wei - Capital: Daliang 大梁</div>
+                        <div class="description">Central state, frequent target of Qin aggression. Mohists known for
+                            defending cities in this region.</div>
+                        <span class="chapter-tag">Various</span>
+                    </li>
+                    <li class="location-item" data-lat="37.87" data-lng="114.48" data-id="zhao">
+                        <div class="name">
+                            <span class="chinese-name">趙</span>
+                            <span class="english-name">Zhao</span>
+                        </div>
+                        <div class="pinyin">Zhao - Capital: Handan 邯鄲</div>
+                        <div class="description">Northern state, one of the three successor states to Jin. Mohists
+                            active in defensive warfare here.</div>
+                        <span class="chapter-tag">Mentioned</span>
+                    </li>
+                    <li class="location-item" data-lat="34.75" data-lng="113.62" data-id="zheng">
+                        <div class="name">
+                            <span class="chinese-name">鄭</span>
+                            <span class="english-name">Zheng</span>
+                        </div>
+                        <div class="pinyin">Zheng</div>
+                        <div class="description">Small state often caught between larger powers. Example of states
+                            Mohists sought to protect.</div>
+                        <span class="chapter-tag">Mentioned</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Key Figures -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Historical Figures</h3>
+                    <span class="toggle">2</span>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-lat="30.35" data-lng="112.24" data-id="gongshu">
+                        <div class="name">
+                            <span class="chinese-name">公輸般</span>
+                            <span class="english-name">Gongshu Ban</span>
+                        </div>
+                        <div class="pinyin">Gongshu Ban (Lu Ban)</div>
+                        <div class="description">Master craftsman who built siege ladders for Chu. Mozi defeated him in
+                            a simulated siege, proving Song's defenses.</div>
+                        <span class="chapter-tag">Gongshu ch.</span>
+                    </li>
+                    <li class="location-item" data-lat="35.59" data-lng="116.99" data-id="confucius">
+                        <div class="name">
+                            <span class="chinese-name">孔子</span>
+                            <span class="english-name">Kongzi</span>
+                        </div>
+                        <div class="pinyin">Confucius</div>
+                        <div class="description">Mozi may have studied Confucianism before rejecting it. His philosophy
+                            is partly a critique of Confucian ideas.</div>
+                        <span class="chapter-tag">Against Confucians</span>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-legend">
+                <h4>Legend</h4>
+                <div class="legend-group">
+                    <div class="legend-group-title">Markers</div>
+                    <div class="legend-item">
+                        <span class="legend-dot mission"></span>
+                        Mission to Chu
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot origin"></span>
+                        Possible Origin
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot mentioned"></span>
+                        Mentioned in Text
+                    </div>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-group-title">Routes</div>
+                    <div class="legend-item">
+                        <span class="legend-line journey"></span>
+                        Mozi's Journey
+                    </div>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-group-title">Ancient Kingdoms</div>
+                    <div class="legend-item">
+                        <span class="legend-swatch chu"></span>
+                        Chu 楚
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch song"></span>
+                        Song 宋
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch lu"></span>
+                        Lu 魯
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch qi"></span>
+                        Qi 齊
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Story Section -->
+    <section class="story-section" id="story">
+        <div class="story-container">
+            <h2>The Famous Mission</h2>
+            <p class="subtitle"><span class="chinese">止楚攻宋</span> Stopping Chu's Attack on Song</p>
+
+            <div class="story-content">
+                <p>The most famous episode in the <em>Mozi</em> is found in the "Gongshu" (公輸) chapter. The master
+                    craftsman Gongshu Ban had built cloud-ladders (siege equipment) for the state of Chu to attack Song.
+                    When Mozi heard this, he immediately set out from Qi, walking for <strong>ten days and ten
+                        nights</strong> until his feet were blistered and raw. He tore off pieces of his robe to bandage
+                    them and kept walking.</p>
+
+                <div class="quote">
+                    "Master Gongshu, there is a man in the north who has insulted me. I wish to have you kill him for
+                    me."<br><br>
+                    Gongshu Ban was displeased. "My righteousness does not permit me to kill people."<br><br>
+                    Mozi rose and bowed twice. "Let me explain. I heard in the north that you were making cloud-ladders
+                    to attack Song. What crime has Song committed? You are willing to attack a state that has committed
+                    no crime. This cannot be called benevolent. You know enough to argue against killing one man, but
+                    not to argue against killing many. This cannot be called wise."
+                </div>
+
+                <p>Gongshu Ban was convinced but said the King of Chu had already decided. Mozi asked to see the king.
+                    Before the king, Mozi simulated a siege: using his belt as a city wall, he and Gongshu Ban took
+                    turns attacking and defending. Mozi repelled every attack. When Gongshu Ban exhausted his
+                    strategies, Mozi still had defensive tactics remaining.</p>
+
+                <p>Gongshu Ban said, "I know how I could defeat you, but I won't say." Mozi replied, "I know what you're
+                    thinking, but I won't say either." The king asked what they meant. Mozi said: "Gongshu Ban thinks if
+                    he kills me, Song will be defenseless. But my disciple Qin Guli and 300 followers are already on
+                    Song's walls with my defensive equipment, waiting. Even if you kill me, you cannot defeat them."</p>
+
+                <p>The King of Chu abandoned the attack. On his way home through Song, it rained, and Mozi sought
+                    shelter at the city gate. The gatekeeper, not recognizing him, turned him away. <strong>The man who
+                        had just saved the entire state was refused entry.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Location Table -->
+    <section class="table-section" id="table">
+        <div class="table-container">
+            <h2>Complete Location Reference</h2>
+            <p class="subtitle">Geographic places in the Mozi</p>
+
+            <table class="locations-table">
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Chinese</th>
+                        <th>Pinyin</th>
+                        <th>Role in Text</th>
+                        <th>Modern Location</th>
+                        <th>Key Chapters</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="mission">
+                        <td><strong>Song</strong></td>
+                        <td class="chinese-cell">宋</td>
+                        <td class="pinyin-cell">Song</td>
+                        <td>State saved from Chu</td>
+                        <td>Shangqiu, Henan</td>
+                        <td>Gongshu, Non-Attack</td>
+                    </tr>
+                    <tr class="mission">
+                        <td><strong>Chu</strong></td>
+                        <td class="chinese-cell">楚</td>
+                        <td class="pinyin-cell">Chu</td>
+                        <td>Diplomatic mission</td>
+                        <td>Jingzhou, Hubei</td>
+                        <td>Gongshu, Non-Attack</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lu</strong></td>
+                        <td class="chinese-cell">魯</td>
+                        <td class="pinyin-cell">Lu</td>
+                        <td>Possible birthplace</td>
+                        <td>Qufu, Shandong</td>
+                        <td>Various</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qi</strong></td>
+                        <td class="chinese-cell">齊</td>
+                        <td class="pinyin-cell">Qi</td>
+                        <td>Later Mohist center</td>
+                        <td>Zibo, Shandong</td>
+                        <td>Various</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qin</strong></td>
+                        <td class="chinese-cell">秦</td>
+                        <td class="pinyin-cell">Qin</td>
+                        <td>Mentioned (aggressor)</td>
+                        <td>Xi'an, Shaanxi</td>
+                        <td>Various</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wei</strong></td>
+                        <td class="chinese-cell">魏</td>
+                        <td class="pinyin-cell">Wei</td>
+                        <td>Mohist defense sites</td>
+                        <td>Kaifeng, Henan</td>
+                        <td>Various</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zhao</strong></td>
+                        <td class="chinese-cell">趙</td>
+                        <td class="pinyin-cell">Zhao</td>
+                        <td>Mohist defense sites</td>
+                        <td>Handan, Hebei</td>
+                        <td>Various</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="course">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <p>Winter 2026</p>
+    </footer>
+
+    <script>
+        // Location data
+        const locations = [
+            // Mission locations
+            {
+                id: 'song-capital',
+                name: 'Song',
+                chinese: '宋',
+                pinyin: 'Song',
+                lat: 34.44,
+                lng: 115.65,
+                type: 'mission',
+                modern: 'Shangqiu, Henan',
+                chapters: ['Gongshu', 'Non-Attack'],
+                description: 'The state Mozi saved from Chu\'s planned invasion. When he heard that Gongshu Ban was building siege ladders for Chu to attack Song, Mozi walked for ten days and nights to stop it.',
+                story: 'On his return journey, Mozi sought shelter from rain at Song\'s city gate—but the gatekeeper, not recognizing him, turned away the man who had just saved the entire state.'
+            },
+            {
+                id: 'chu-capital',
+                name: 'Chu (Ying)',
+                chinese: '楚',
+                pinyin: 'Chu',
+                lat: 30.35,
+                lng: 112.24,
+                type: 'mission',
+                modern: 'Jingzhou, Hubei (ancient Ying)',
+                chapters: ['Gongshu', 'Non-Attack'],
+                description: 'The powerful southern kingdom that planned to attack Song. Mozi traveled here to debate Gongshu Ban and convince the King of Chu to abandon the invasion.',
+                story: 'Mozi simulated a siege battle with Gongshu Ban before the king, defeating every attack strategy. He revealed that his disciples were already defending Song, making the attack futile.'
+            },
+            // Origins
+            {
+                id: 'lu',
+                name: 'Lu',
+                chinese: '魯',
+                pinyin: 'Lu',
+                lat: 35.59,
+                lng: 116.99,
+                type: 'origin',
+                modern: 'Qufu, Shandong',
+                chapters: ['Various', 'Against Confucians'],
+                description: 'Homeland of Confucius and one possible birthplace of Mozi. Some sources suggest Mozi originally studied Confucianism here before developing his critique.'
+            },
+            // States mentioned
+            {
+                id: 'qi',
+                name: 'Qi',
+                chinese: '齊',
+                pinyin: 'Qi',
+                lat: 36.88,
+                lng: 118.36,
+                type: 'mentioned',
+                modern: 'Zibo (Linzi), Shandong',
+                chapters: ['Various'],
+                description: 'Major eastern power. The Jixia Academy in Qi\'s capital later became a center where Mohist logical and scientific thought developed alongside other schools.'
+            },
+            {
+                id: 'qin',
+                name: 'Qin',
+                chinese: '秦',
+                pinyin: 'Qin',
+                lat: 34.33,
+                lng: 108.71,
+                type: 'mentioned',
+                modern: 'Xi\'an (Xianyang), Shaanxi',
+                chapters: ['Non-Attack'],
+                description: 'The aggressive western power whose military expansion exemplified the offensive warfare Mozi condemned. Would eventually unify China through conquest in 221 BCE.'
+            },
+            {
+                id: 'wei',
+                name: 'Wei',
+                chinese: '魏',
+                pinyin: 'Wei',
+                lat: 34.78,
+                lng: 114.31,
+                type: 'mentioned',
+                modern: 'Kaifeng, Henan',
+                chapters: ['Various'],
+                description: 'Central state frequently threatened by larger powers. Mohist followers were known for defending cities in this region against aggressors.'
+            },
+            {
+                id: 'zhao',
+                name: 'Zhao',
+                chinese: '趙',
+                pinyin: 'Zhao',
+                lat: 37.87,
+                lng: 114.48,
+                type: 'mentioned',
+                modern: 'Handan, Hebei',
+                chapters: ['Various'],
+                description: 'Northern state, successor to Jin. Mohist defensive specialists operated in this region, developing sophisticated siege defense technology.'
+            },
+            {
+                id: 'zheng',
+                name: 'Zheng',
+                chinese: '鄭',
+                pinyin: 'Zheng',
+                lat: 34.75,
+                lng: 113.62,
+                type: 'mentioned',
+                modern: 'Xinzheng, Henan',
+                chapters: ['Mentioned'],
+                description: 'A small state often caught between larger powers—exactly the kind of state Mohists sought to protect through their doctrine of non-aggression and defensive warfare.'
+            }
+        ];
+
+        // Ancient Kingdom Territories
+        const kingdoms = {
+            chu: {
+                name: 'Chu 楚',
+                color: '#ff8c00',
+                coords: [
+                    [34, 109], [34.5, 113], [33, 116], [31, 117],
+                    [28, 115], [27, 112], [28, 109], [31, 107], [34, 109]
+                ]
+            },
+            song: {
+                name: 'Song 宋',
+                color: '#cd853f',
+                coords: [
+                    [35.5, 114.5], [36, 116], [35.5, 117], [34.5, 116.5],
+                    [34, 115], [34.5, 114], [35.5, 114.5]
+                ]
+            },
+            lu: {
+                name: 'Lu 魯',
+                color: '#4169e1',
+                coords: [
+                    [36.2, 116], [36.5, 117.5], [35.8, 118], [35, 117.5],
+                    [35, 116.5], [35.5, 116], [36.2, 116]
+                ]
+            },
+            qi: {
+                name: 'Qi 齊',
+                color: '#228b22',
+                coords: [
+                    [38.5, 115.5], [38.5, 120], [37, 121], [35, 119.5],
+                    [35, 117], [36, 115.5], [38.5, 115.5]
+                ]
+            },
+            qin: {
+                name: 'Qin 秦',
+                color: '#1a1a1a',
+                coords: [
+                    [37, 104], [38, 108], [36, 110.5], [34, 111],
+                    [32.5, 109], [32, 106], [34, 103], [37, 104]
+                ]
+            },
+            wei: {
+                name: 'Wei 魏',
+                color: '#9932cc',
+                coords: [
+                    [36, 112], [36.5, 115], [35.5, 116], [34, 115.5],
+                    [33.5, 114], [34, 112.5], [35.5, 111.5], [36, 112]
+                ]
+            },
+            zhao: {
+                name: 'Zhao 趙',
+                color: '#4682b4',
+                coords: [
+                    [39, 112], [39.5, 115], [38.5, 116], [37, 115],
+                    [36.5, 113], [37, 111], [38.5, 111], [39, 112]
+                ]
+            }
+        };
+
+        // Initialize map
+        const map = L.map('map', {
+            zoomControl: true
+        }).setView([34, 114], 6);
+
+        // Light theme tile layer
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Add kingdom territories as polygons
+        Object.keys(kingdoms).forEach(key => {
+            const kingdom = kingdoms[key];
+            const polygon = L.polygon(kingdom.coords, {
+                color: kingdom.color,
+                weight: 2,
+                opacity: 0.6,
+                fillColor: kingdom.color,
+                fillOpacity: 0.12,
+                dashArray: '5, 5'
+            }).addTo(map);
+
+            const center = polygon.getBounds().getCenter();
+            const label = L.divIcon({
+                className: 'kingdom-label',
+                html: kingdom.name,
+                iconSize: [80, 24],
+                iconAnchor: [40, 12]
+            });
+            L.marker(center, { icon: label, interactive: false }).addTo(map);
+        });
+
+        // Add Mozi's journey route
+        const journeyRoute = L.polyline([
+            [35.59, 116.99],  // Lu (possible start)
+            [34.44, 115.65],  // Song
+            [33.5, 114.5],    // waypoint
+            [32.5, 113.5],    // waypoint
+            [30.35, 112.24]   // Chu (Ying)
+        ], {
+            color: '#c54b3c',
+            weight: 4,
+            opacity: 0.7,
+            dashArray: '12, 8',
+            className: 'travel-route'
+        }).addTo(map);
+
+        // Add return journey (dashed lighter)
+        const returnRoute = L.polyline([
+            [30.35, 112.24],  // Chu
+            [32.5, 113.5],    // waypoint
+            [34.44, 115.65]   // Song (turned away at gate)
+        ], {
+            color: '#c54b3c',
+            weight: 3,
+            opacity: 0.4,
+            dashArray: '6, 6',
+            className: 'travel-route'
+        }).addTo(map);
+
+        // Custom icon factory
+        function createIcon(type, chinese) {
+            const colors = {
+                mission: '#c54b3c',
+                origin: '#5a4a3a',
+                mentioned: '#5a5a8a'
+            };
+            const size = type === 'mission' ? 34 : 28;
+
+            return L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: 50%;
+                background: ${colors[type]};
+                color: #fff;
+                font-family: 'Noto Sans SC', sans-serif;
+                font-size: ${type === 'mission' ? '14px' : '12px'};
+                font-weight: bold;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+                border: 2px solid #fff;
+            ">${chinese}</div>`,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2],
+                popupAnchor: [0, -size / 2]
+            });
+        }
+
+        // Create popup content
+        function createPopupContent(loc) {
+            const chapterTags = loc.chapters.map(c =>
+                `<span class="chapter-tag">${c}</span>`
+            ).join('');
+
+            const badge = loc.type === 'mission'
+                ? '<span class="mission-badge">Mission Location</span>'
+                : loc.type === 'origin'
+                    ? '<span class="origin-badge">Possible Origin</span>'
+                    : '';
+
+            const storySection = loc.story
+                ? `<div class="story-box"><strong>Story:</strong> ${loc.story}</div>`
+                : '';
+
+            return `
+            <div class="popup-content">
+                <div class="popup-header">
+                    <span class="chinese">${loc.chinese}</span>
+                    <div class="names">
+                        <div class="english">${loc.name}</div>
+                        <div class="pinyin">${loc.pinyin}</div>
+                    </div>
+                </div>
+                <div class="popup-body">
+                    <p>${loc.description}</p>
+                    ${storySection}
+                    <div class="modern-location">
+                        <strong>Modern:</strong> ${loc.modern}
+                    </div>
+                    <div class="chapter-tags">
+                        ${badge}
+                        ${chapterTags}
+                    </div>
+                </div>
+            </div>
+        `;
+        }
+
+        // Add markers
+        const markers = {};
+        locations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng], {
+                icon: createIcon(loc.type, loc.chinese),
+                zIndexOffset: loc.type === 'mission' ? 1000 : 500
+            }).addTo(map);
+
+            marker.bindPopup(createPopupContent(loc), {
+                maxWidth: 300,
+                className: 'custom-popup'
+            });
+
+            markers[loc.id] = marker;
+        });
+
+        // Sidebar click handlers
+        document.querySelectorAll('.location-item').forEach(item => {
+            item.addEventListener('click', function () {
+                const lat = parseFloat(this.dataset.lat);
+                const lng = parseFloat(this.dataset.lng);
+                const id = this.dataset.id;
+
+                document.querySelectorAll('.location-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+
+                map.setView([lat, lng], 7, { animate: true });
+
+                if (markers[id]) {
+                    markers[id].openPopup();
+                }
+            });
+        });
+
+        // Fit bounds to show key locations
+        const missionBounds = L.latLngBounds([
+            [30.35, 112.24],  // Chu
+            [35.59, 116.99],  // Lu
+            [36.88, 118.36]   // Qi
+        ]);
+        map.fitBounds(missionBounds, { padding: [50, 50] });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Analects: Books 1-7 Study Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+        :root {
+            --primary: #8B0000;
+            --secondary: #2C3E50;
+            --accent: #D4AF37;
+            --light: #F8F6F0;
+            --text: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: white;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                font-size: 10pt;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chinese-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            letter-spacing: 0.3em;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .course-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 .chinese {
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin: 15px 0 10px 0;
+            font-weight: 600;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background: var(--light);
+        }
+
+        tr:hover {
+            background: #EEE;
+        }
+
+        .chinese-cell {
+            font-size: 1.1rem;
+            text-align: center;
+            width: 50px;
+        }
+
+        /* Quote boxes */
+        .quote-box {
+            background: linear-gradient(135deg, var(--light) 0%, #fff 100%);
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            top: -5px;
+            left: 10px;
+            opacity: 0.5;
+        }
+
+        .quote-text {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--secondary);
+            padding-left: 20px;
+        }
+
+        .quote-ref {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Keyword grid */
+        .keyword-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .keyword-card {
+            background: var(--light);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .keyword-card.essential {
+            border-left: 4px solid var(--primary);
+        }
+
+        .keyword-card.important {
+            border-left: 4px solid var(--accent);
+        }
+
+        .keyword-chinese {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .keyword-pinyin {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--secondary);
+        }
+
+        .keyword-meaning {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        /* Modern connections */
+        .modern-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .modern-box h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modern-box .passage-ref {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .modern-box blockquote {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            color: var(--secondary);
+            padding: 10px 15px;
+            background: var(--light);
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .modern-connection {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .modern-connection strong {
+            color: var(--primary);
+        }
+
+        /* Two column layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media print {
+            .two-col {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Character profiles */
+        .character-profile {
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            background: var(--light);
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .character-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .character-info h4 {
+            color: var(--secondary);
+            margin-bottom: 3px;
+        }
+
+        .character-info p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Discussion questions */
+        .discussion-list {
+            list-style: none;
+            counter-reset: discussion;
+        }
+
+        .discussion-list li {
+            counter-increment: discussion;
+            padding: 12px 15px 12px 50px;
+            background: var(--light);
+            margin: 10px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .discussion-list li::before {
+            content: counter(discussion);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Tier labels */
+        .tier-label {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .tier-1 {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tier-2 {
+            background: var(--accent);
+            color: white;
+        }
+
+        .tier-3 {
+            background: #888;
+            color: white;
+        }
+
+        /* Hit List Styles */
+        .hit-list-intro {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .hit-list-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .villain-card {
+            background: linear-gradient(145deg, #2C3E50 0%, #1a252f 100%);
+            border-radius: 8px;
+            padding: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .villain-card::before {
+            content: '✕';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 8rem;
+            color: rgba(139, 0, 0, 0.15);
+            font-weight: bold;
+        }
+
+        .villain-card h4 {
+            color: #e74c3c;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .villain-card .offense {
+            font-size: 0.85rem;
+            color: #bbb;
+            margin-bottom: 8px;
+        }
+
+        .villain-card .evidence {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #ddd;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 4px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .villain-card .passage-num {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .severity {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .severity.high {
+            background: #e74c3c;
+        }
+
+        .severity.medium {
+            background: #f39c12;
+        }
+
+        .severity.low {
+            background: #3498db;
+        }
+
+        /* Kongzi on Himself Styles */
+        .self-reflection-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .self-card {
+            background: linear-gradient(145deg, #1a4d2e 0%, #0d2818 100%);
+            border-radius: 8px;
+            padding: 15px;
+            color: white;
+            position: relative;
+        }
+
+        .self-card.humble {
+            background: linear-gradient(145deg, #2C3E50 0%, #1a252f 100%);
+        }
+
+        .self-card.worried {
+            background: linear-gradient(145deg, #5D4037 0%, #3E2723 100%);
+        }
+
+        .self-card.proud {
+            background: linear-gradient(145deg, #1a4d2e 0%, #0d2818 100%);
+        }
+
+        .self-card h4 {
+            color: #D4AF37;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .self-card .self-quote {
+            font-family: 'Crimson Pro', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #eee;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 12px;
+            border-radius: 4px;
+            border-left: 3px solid #D4AF37;
+            margin-bottom: 8px;
+        }
+
+        .self-card .interpretation {
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+
+        .self-card .passage-num {
+            display: inline-block;
+            background: #D4AF37;
+            color: #1a1a1a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .category-label {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .category-label.humble {
+            background: #3498db;
+            color: white;
+        }
+
+        .category-label.worried {
+            background: #e67e22;
+            color: white;
+        }
+
+        .category-label.proud {
+            background: #27ae60;
+            color: white;
+        }
+
+        /* ctext links */
+        a.ctext {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
+            transition: all 0.2s;
+        }
+
+        a.ctext:hover {
+            color: var(--primary);
+            border-bottom-style: solid;
+        }
+
+        .quote-ref a.ctext,
+        .passage-num a.ctext,
+        .passage-ref a.ctext {
+            color: inherit;
+        }
+
+        .villain-card .passage-num a.ctext {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .self-card .passage-num a.ctext {
+            color: #1a1a1a;
+            border-bottom-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .modern-box .passage-ref a.ctext {
+            color: white;
+        }
+
+        td a.ctext {
+            color: var(--primary);
+            font-weight: 700;
+            background: rgba(139, 0, 0, 0.05);
+            padding: 2px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        td a.ctext:hover {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(139, 0, 0, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            margin: -0.5in -0.5in 1.5rem -0.5in;
+            width: calc(100% + 1in);
+        }
+
+        .nav-inner {
+            max-width: 8.5in;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .nav a.portal-link {
+            background: var(--accent);
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .nav a.portal-link:hover {
+            background: #e5c158;
+        }
+
+        @media print {
+            .nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="chinese-title">論語</div>
+        <h1>The Analects of Kongzi</h1>
+        <div class="subtitle">Books 1–7 Study Guide</div>
+        <div class="course-info">EAST 370 · Winter 2026</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">Course Portal</a>
+            <a href="#characters">Characters</a>
+            <a href="#keywords">Key Terms</a>
+            <a href="#passages">Famous Passages</a>
+            <a href="#modern">Modern Connections</a>
+            <a href="#self">Kongzi on Himself</a>
+            <a href="#hitlist">Hit List</a>
+            <a href="#discussion">Discussion</a>
+        </div>
+    </nav>
+
+    <!-- CAST OF CHARACTERS -->
+    <section id="characters">
+        <h2><span class="chinese">人物</span> Cast of Characters</h2>
+
+        <h3>The Master</h3>
+        <div class="character-profile">
+            <div class="character-icon">孔</div>
+            <div class="character-info">
+                <h4>Kongzi 孔子 (Confucius)</h4>
+                <p>551–479 BCE. Teacher, ritual specialist, failed politician, cultural transmitter. Believed the Zhou
+                    dynasty's Golden Age could be restored through ritual practice and moral cultivation.</p>
+            </div>
+        </div>
+
+        <h3>Key Disciples</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Character</th>
+                    <th>Key Appearances</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Yan Hui 顏回</strong></td>
+                    <td>Favorite disciple. Brilliant, poor, joyful, died young. The ideal student.</td>
+                    <td><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank" rel="noopener"
+                            rel="noopener">2.9</a>, <a class="ctext" href="https://ctext.org/analects/gong-ye-chang"
+                            target="_blank" rel="noopener" rel="noopener">5.9</a>, <a class="ctext"
+                            href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener"
+                            rel="noopener">6.3</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye"
+                            target="_blank" rel="noopener" rel="noopener">6.7</a>, <a class="ctext"
+                            href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener"
+                            rel="noopener">6.11</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Zigong 子貢</strong></td>
+                    <td>Clever but rigid. A "ritual vessel." Needs to loosen up.</td>
+                    <td><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank" rel="noopener"
+                            rel="noopener">1.10</a>, <a class="ctext" href="https://ctext.org/analects/xue-er"
+                            target="_blank" rel="noopener" rel="noopener">1.15</a>, <a class="ctext"
+                            href="https://ctext.org/analects/gong-ye-chang" target="_blank" rel="noopener"
+                            rel="noopener">5.4</a>, <a class="ctext" href="https://ctext.org/analects/gong-ye-chang"
+                            target="_blank" rel="noopener" rel="noopener">5.12</a>, <a class="ctext"
+                            href="https://ctext.org/analects/gong-ye-chang" target="_blank" rel="noopener"
+                            rel="noopener">5.13</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Zilu 子路</strong></td>
+                    <td>Bold, reckless, impetuous. Needs restraint.</td>
+                    <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank" rel="noopener"
+                            rel="noopener">5.8</a>, <a class="ctext" href="https://ctext.org/analects/gong-ye-chang"
+                            target="_blank" rel="noopener" rel="noopener">5.26</a>, <a class="ctext"
+                            href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener"
+                            rel="noopener">6.28</a>, <a class="ctext" href="https://ctext.org/analects/shu-er"
+                            target="_blank" rel="noopener" rel="noopener">7.35</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Zengzi 曾子</strong></td>
+                    <td>Thoughtful interpreter. Explains the "one thread."</td>
+                    <td><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank" rel="noopener"
+                            rel="noopener">1.9</a>, <a class="ctext" href="https://ctext.org/analects/li-ren"
+                            target="_blank" rel="noopener" rel="noopener">4.15</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Zaiyu 宰予</strong></td>
+                    <td>The lazy one. Sleeps during the day. "Rotten wood."</td>
+                    <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank" rel="noopener"
+                            rel="noopener">5.10</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Ranyou 冉有</strong></td>
+                    <td>Overly cautious. Makes excuses instead of trying.</td>
+                    <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank" rel="noopener"
+                            rel="noopener">5.8</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye"
+                            target="_blank" rel="noopener" rel="noopener">6.12</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Zixia 子夏</strong></td>
+                    <td>Good at interpreting the <em>Odes</em>.</td>
+                    <td><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank" rel="noopener"
+                            rel="noopener">3.8</a>,
+                        <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener"
+                            rel="noopener">6.13</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Other Figures</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Duke of Zhou 周公</strong></td>
+                    <td>Kongzi's hero; appears in his dreams (<a class="ctext" href="https://ctext.org/analects/shu-er"
+                            target="_blank" rel="noopener" rel="noopener">7.5</a>). Model regent of the Zhou dynasty.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Head of Ji Clan 季氏</strong></td>
+                    <td>Target of criticism for ritual violations—uses 8 rows of dancers (<a class="ctext"
+                            href="https://ctext.org/analects/ba-yi" target="_blank" rel="noopener"
+                            rel="noopener">3.1</a>).</td>
+                </tr>
+                <tr>
+                    <td><strong>Nanzi 南子</strong></td>
+                    <td>Notorious wife of Lord Ling of Wei. Kongzi meets her; Zilu disapproves (<a class="ctext"
+                            href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener"
+                            rel="noopener">6.28</a>).</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- KEYWORDS -->
+    <section id="keywords">
+        <h2><span class="chinese">關鍵詞</span> Key Terms</h2>
+
+        <h3>Tier 1: Essential Vocabulary</h3>
+        <div class="keyword-grid">
+            <div class="keyword-card essential">
+                <span class="tier-label tier-1">Essential</span>
+                <div class="keyword-chinese">仁</div>
+                <div class="keyword-pinyin">Rén</div>
+                <div class="keyword-meaning">Humaneness, benevolence, consummate virtue</div>
+            </div>
+            <div class="keyword-card essential">
+                <span class="tier-label tier-1">Essential</span>
+                <div class="keyword-chinese">禮</div>
+                <div class="keyword-pinyin">Lǐ</div>
+                <div class="keyword-meaning">Rites, ritual propriety, etiquette</div>
+            </div>
+            <div class="keyword-card essential">
+                <span class="tier-label tier-1">Essential</span>
+                <div class="keyword-chinese">君子</div>
+                <div class="keyword-pinyin">Jūnzǐ</div>
+                <div class="keyword-meaning">Gentleman, exemplary person</div>
+            </div>
+            <div class="keyword-card essential">
+                <span class="tier-label tier-1">Essential</span>
+                <div class="keyword-chinese">道</div>
+                <div class="keyword-pinyin">Dào</div>
+                <div class="keyword-meaning">The Way</div>
+            </div>
+            <div class="keyword-card essential">
+                <span class="tier-label tier-1">Essential</span>
+                <div class="keyword-chinese">德</div>
+                <div class="keyword-pinyin">Dé</div>
+                <div class="keyword-meaning">Virtue, moral power</div>
+            </div>
+            <div class="keyword-card essential">
+                <span class="tier-label tier-1">Essential</span>
+                <div class="keyword-chinese">天</div>
+                <div class="keyword-pinyin">Tiān</div>
+                <div class="keyword-meaning">Heaven</div>
+            </div>
+        </div>
+
+        <h3>Tier 2: Important Supporting Terms</h3>
+        <div class="keyword-grid">
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">學</div>
+                <div class="keyword-pinyin">Xué</div>
+                <div class="keyword-meaning">Learning, study</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">思</div>
+                <div class="keyword-pinyin">Sī</div>
+                <div class="keyword-meaning">Thinking, reflection</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">文</div>
+                <div class="keyword-pinyin">Wén</div>
+                <div class="keyword-meaning">Culture, refinement</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">質</div>
+                <div class="keyword-pinyin">Zhì</div>
+                <div class="keyword-meaning">Native substance</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">忠</div>
+                <div class="keyword-pinyin">Zhōng</div>
+                <div class="keyword-meaning">Loyalty, dutifulness</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">恕</div>
+                <div class="keyword-pinyin">Shù</div>
+                <div class="keyword-meaning">Sympathetic understanding</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">孝</div>
+                <div class="keyword-pinyin">Xiào</div>
+                <div class="keyword-meaning">Filial piety</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">義</div>
+                <div class="keyword-pinyin">Yì</div>
+                <div class="keyword-meaning">Rightness, appropriateness</div>
+            </div>
+            <div class="keyword-card important">
+                <span class="tier-label tier-2">Important</span>
+                <div class="keyword-chinese">命</div>
+                <div class="keyword-pinyin">Mìng</div>
+                <div class="keyword-meaning">Mandate, fate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAMOUS PASSAGES -->
+    <section id="passages">
+        <h2><span class="chinese">名句</span> Most Famous Passages</h2>
+
+        <div class="quote-box">
+            <div class="quote-text">To study, and then in a timely fashion to practice what you have learned—is this not
+                satisfying? To have companions arrive from afar—is this not a joy? To remain unrecognized by others and
+                yet remain free of resentment—is this not the mark of the gentleman?</div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank"
+                    rel="noopener" rel="noopener">1.1</a> —
+                The Opening</div>
+        </div>
+
+        <div class="quote-box">
+            <div class="quote-text">At age fifteen I set my heart upon learning; at thirty I took my stand; at forty I
+                became free of doubts; at fifty I understood the Heavenly Mandate; at sixty my ear was attuned; and at
+                seventy I could follow my heart's desire without overstepping the bounds of propriety.</div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"
+                    rel="noopener" rel="noopener">2.4</a>
+                — Kongzi's Spiritual Autobiography</div>
+        </div>
+
+        <div class="quote-box">
+            <div class="quote-text">To learn without thinking will lead to confusion. To think without learning,
+                however, will lead to fruitless exhaustion.</div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"
+                    rel="noopener" rel="noopener">2.15</a>
+                — Learning and Thinking</div>
+        </div>
+
+        <div class="quote-box">
+            <div class="quote-text">Having in the morning learned the Way, one could die that evening without regret.
+            </div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank"
+                    rel="noopener" rel="noopener">4.8</a> —
+                Ultimate Commitment</div>
+        </div>
+
+        <div class="quote-box">
+            <div class="quote-text">All of what the Master teaches amounts to nothing more than <em>zhong</em>,
+                'loyalty,' tempered by <em>shu</em>, 'sympathetic understanding.'</div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank"
+                    rel="noopener" rel="noopener">4.15</a> —
+                The "One Thread" (Zengzi's interpretation)</div>
+        </div>
+
+        <div class="quote-box">
+            <div class="quote-text">One who knows it is not the equal of one who loves it, and one who loves it is not
+                the equal of one who takes joy in it.</div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"
+                    rel="noopener" rel="noopener">6.20</a> —
+                Knowing → Loving → Joy</div>
+        </div>
+
+        <div class="quote-box">
+            <div class="quote-text">I transmit rather than innovate. I trust in and have a love for antiquity.</div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                    rel="noopener" rel="noopener">7.1</a> —
+                The Transmitter</div>
+        </div>
+
+        <div class="quote-box">
+            <div class="quote-text">When walking with two other people, I will always find a teacher among them. Those
+                who are good I seek to emulate, and those who are bad provide me with reminders of what needs to be
+                changed in myself.</div>
+            <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                    rel="noopener" rel="noopener">7.22</a> —
+                Learning from Everyone</div>
+        </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- MODERN CONNECTIONS -->
+    <section id="modern">
+        <h2><span class="chinese">今昔</span> Connections to Modern Life</h2>
+
+        <div class="modern-box">
+            <h4><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank" rel="noopener"
+                    rel="noopener"><span class="passage-ref">2.15</span></a> On Education</h4>
+            <blockquote>"To learn without thinking will lead to confusion. To think without learning will lead to
+                fruitless exhaustion."</blockquote>
+            <p class="modern-connection"><strong>Modern parallel:</strong> The debate over rote memorization vs.
+                critical thinking in schools. Also relevant to AI/ChatGPT debates—students using AI without
+                understanding vs. trying to figure everything out alone. Neither extreme works.</p>
+        </div>
+
+        <div class="modern-box">
+            <h4><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener"
+                    rel="noopener"><span class="passage-ref">6.12</span></a> On Excuses vs. Real Limits</h4>
+            <blockquote>Ranyou: "My strength is insufficient."<br>Kongzi: "Those for whom it is genuinely a problem of
+                insufficient strength end up collapsing somewhere along the Way. As for you, you deliberately draw the
+                line."</blockquote>
+            <p class="modern-connection"><strong>Modern parallel:</strong> Self-limiting beliefs, imposter syndrome,
+                "I'm just not a math person." Kongzi distinguishes between genuine inability and giving up before you've
+                really tried. Growth mindset before the term existed.</p>
+        </div>
+
+        <div class="modern-box">
+            <h4><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener"
+                    rel="noopener"><span class="passage-ref">6.20</span></a> On Intrinsic Motivation</h4>
+            <blockquote>"One who knows it is not the equal of one who loves it, and one who loves it is not the equal of
+                one who takes joy in it."</blockquote>
+            <p class="modern-connection"><strong>Modern parallel:</strong> Intrinsic vs. extrinsic motivation. Why some
+                people excel—they find joy in the work itself. Athletes who "love the game," musicians who practice for
+                fun, entrepreneurs who forget to eat.</p>
+        </div>
+
+        <div class="modern-box">
+            <h4><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank" rel="noopener"><span
+                        class="passage-ref">2.3</span></a> On Leadership & Justice</h4>
+            <blockquote>"If you try to lead the common people with governmental regulations and keep them in line with
+                punishments, the laws will simply be evaded and the people will have no sense of shame. If you guide
+                them with Virtue... the people will have a sense of shame and will moreover reform themselves."
+            </blockquote>
+            <p class="modern-connection"><strong>Modern parallel:</strong> Criminal justice reform debates—punitive vs.
+                restorative approaches. Also: corporate culture (compliance vs. values-based leadership), parenting
+                styles (authoritarian vs. authoritative).</p>
+        </div>
+
+        <div class="modern-box">
+            <h4><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank" rel="noopener"><span
+                        class="passage-ref">3.12</span></a> On Being Present</h4>
+            <blockquote>"If I am not fully present at the sacrifice, it is as if I did not sacrifice at all."
+            </blockquote>
+            <p class="modern-connection"><strong>Modern parallel:</strong> Mindfulness culture. Going through the
+                motions at work or in relationships vs. genuine engagement. "Phoning it in." The difference between
+                attending a meeting and being at a meeting.</p>
+        </div>
+
+        <div class="modern-box">
+            <h4><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank" rel="noopener"><span
+                        class="passage-ref">4.17</span></a> On Role Models</h4>
+            <blockquote>"When you see someone who is worthy, concentrate upon becoming their equal; when you see someone
+                who is unworthy, use this as an opportunity to look within yourself."</blockquote>
+            <p class="modern-connection"><strong>Modern parallel:</strong> Who we follow on social media, celebrity
+                culture, choosing mentors. Also: learning from bad examples—toxic bosses, failed leaders—by
+                self-reflection rather than just criticism.</p>
+        </div>
+
+        <div class="modern-box">
+            <h4><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank" rel="noopener"><span
+                        class="passage-ref">1.3</span></a> On Authenticity</h4>
+            <blockquote>"A glib tongue and an ingratiating manner are rarely signs of <em>ren</em>."</blockquote>
+            <p class="modern-connection"><strong>Modern parallel:</strong> Distrust of influencer culture, slick
+                politicians, and salespeople. Why we're suspicious of the overly polished. "Authenticity" as a brand vs.
+                actual authenticity.</p>
+        </div>
+    </section>
+
+    <div class="page-break"></div>
+
+    <!-- KONGZI ON HIMSELF -->
+    <section id="self">
+        <h2><span class="chinese">自述</span> Kongzi on Himself</h2>
+
+        <p style="color: #666; font-style: italic; margin-bottom: 20px;">What does the Master reveal about his own
+            character, anxieties, and self-assessment?</p>
+
+        <div class="self-reflection-grid">
+            <div class="self-card humble">
+                <span class="category-label humble">Humble</span>
+                <h4>"I Transmit, Not Innovate"</h4>
+                <div class="self-quote">"I transmit rather than innovate. I trust in and have a love for antiquity."
+                </div>
+                <p class="interpretation">He sees himself as a curator of ancient wisdom, not a revolutionary. His
+                    genius is preservation, not invention.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                        rel="noopener">7.1</a></span>
+            </div>
+
+            <div class="self-card humble">
+                <span class="category-label humble">Humble</span>
+                <h4>"Not Born Knowing"</h4>
+                <div class="self-quote">"I am not one who was born with knowledge. I simply love antiquity and
+                    diligently seek it there."</div>
+                <p class="interpretation">Against the idea of natural genius. His wisdom comes from hard work and love
+                    of learning, not innate brilliance.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                        rel="noopener">7.20</a></span>
+            </div>
+
+            <div class="self-card worried">
+                <span class="category-label worried">Worried</span>
+                <h4>His Four Anxieties</h4>
+                <div class="self-quote">"The thought that I have left my Virtue uncultivated, that I have not explored
+                    what I have learned, that upon hearing what is right I am unable to move toward it, and that I am
+                    unable to reform when I have done wrong—these are the things that trouble me."</div>
+                <p class="interpretation">His anxieties reveal his values: virtue, deep understanding, moral action,
+                    self-correction.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                        rel="noopener">7.3</a></span>
+            </div>
+
+            <div class="self-card worried">
+                <span class="category-label worried">Worried</span>
+                <h4>No Longer Dreams of Zhou</h4>
+                <div class="self-quote">"How seriously I have declined! It has been so long since I dreamt of the Duke
+                    of Zhou."</div>
+                <p class="interpretation">The Duke of Zhou was his hero. Losing these dreams signals his sense of age,
+                    decline, or lost connection to the ideal.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                        rel="noopener">7.5</a></span>
+            </div>
+
+            <div class="self-card proud">
+                <span class="category-label proud">Strengths</span>
+                <h4>Never Tired of Learning or Teaching</h4>
+                <div class="self-quote">"How would I dare to consider myself a sage or a person of ren? What can be said
+                    of me is merely that I never tire of learning nor grow weary of teaching others."</div>
+                <p class="interpretation">A humble brag? He denies ultimate attainment but claims inexhaustible energy
+                    for the path itself.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                        rel="noopener">7.34</a></span>
+            </div>
+
+            <div class="self-card proud">
+                <span class="category-label proud">Strengths</span>
+                <h4>Silent Learning, Tireless Teaching</h4>
+                <div class="self-quote">"Remaining silent and comprehending, learning without ever becoming sated,
+                    teaching others and never growing weary—these sorts of things come to me without any effort at all."
+                </div>
+                <p class="interpretation">Learning and teaching aren't labor for him—they're effortless joy. This is <a
+                        class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener">6.20</a>
+                    embodied.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank"
+                        rel="noopener">7.2</a></span>
+            </div>
+
+            <div class="self-card humble">
+                <span class="category-label humble">Humble</span>
+                <h4>His Spiritual Autobiography</h4>
+                <div class="self-quote">"At fifteen I set my heart on learning; at thirty I took my stand; at forty I
+                    was free of doubts; at fifty I understood Heaven's Mandate; at sixty my ear was attuned; at seventy
+                    I could follow my heart's desire without overstepping propriety."</div>
+                <p class="interpretation">Mastery took a lifetime. He wasn't born perfect—he became so through decades
+                    of cultivation.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"
+                        rel="noopener">2.4</a></span>
+            </div>
+
+            <div class="self-card worried">
+                <span class="category-label worried">Worried</span>
+                <h4>The Way Is Not Practiced</h4>
+                <div class="self-quote">"I understand why the Way is not practiced: the wise overshoot it while the
+                    foolish fall short. I understand why the Way is not understood: the worthy overshoot it while the
+                    unworthy fall short."</div>
+                <p class="interpretation">His frustration at being caught between extremes—the clever who overcomplicate
+                    and the simple who can't grasp it.</p>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"
+                        rel="noopener">6.21</a></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONGZI'S HIT LIST -->
+    <section id="hitlist">
+        <h2><span class="chinese">黑名單</span> Kongzi's Hit List</h2>
+
+        <div class="hit-list-intro">
+            "The Master had strong opinions. Here are the types of people who drew his sharpest criticism—and why."
+        </div>
+
+        <div class="hit-list-grid">
+            <div class="villain-card">
+                <span class="severity high">Severe</span>
+                <h4>The Glib Talker</h4>
+                <p class="offense">Smooth words, slick presentation, no substance underneath.</p>
+                <div class="evidence">"A glib tongue and an ingratiating manner are rarely signs of ren."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank"
+                        rel="noopener">1.3</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity high">Severe</span>
+                <h4>The Ritual Violator</h4>
+                <p class="offense">Uses royal ritual for personal display. Status-grabbing through sacred forms.</p>
+                <div class="evidence">"The head of the Ji Clan had eight rows of dancers performing in his courtyard. If
+                    he is capable of this, what is he not capable of?"</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank"
+                        rel="noopener">3.1</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity high">Severe</span>
+                <h4>The Lazy Student (Zaiyu)</h4>
+                <p class="offense">Sleeps during the day. Makes excuses. Wastes his potential.</p>
+                <div class="evidence">"Rotten wood cannot be carved; a wall of dried dung cannot be troweled... As for
+                    Zaiyu, I used to listen to what people said and trusted that they would act accordingly. Now I
+                    listen to what people say but then watch what they do."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/gong-ye-chang"
+                        target="_blank" rel="noopener">5.10</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity high">Severe</span>
+                <h4>The Petty Person (Xiaoren)</h4>
+                <p class="offense">Focused on profit over rightness. Thinks only of personal gain.</p>
+                <div class="evidence">"The gentleman understands rightness, whereas the petty person understands
+                    profit."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank"
+                        rel="noopener">4.16</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity medium">Warning</span>
+                <h4>The Excuse-Maker (Ranyou)</h4>
+                <p class="offense">Claims inability, but really just doesn't try. Draws the line before starting.</p>
+                <div class="evidence">"Those for whom it is genuinely a problem of insufficient strength end up
+                    collapsing somewhere along the Way. As for you, you deliberately draw the line."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"
+                        rel="noopener">6.12</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity medium">Warning</span>
+                <h4>The Empty Ritualist</h4>
+                <p class="offense">Goes through the motions without inner feeling. Ritual without ren.</p>
+                <div class="evidence">"A person who is not ren—what has he to do with rites? A person who is not
+                    ren—what has he to do with music?"</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank"
+                        rel="noopener">3.3</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity medium">Warning</span>
+                <h4>The All-Talk Type</h4>
+                <p class="offense">Big promises, no follow-through. Words outpace actions.</p>
+                <div class="evidence">"The gentleman is ashamed to have his words outpace his actions."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank"
+                        rel="noopener">4.22</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity medium">Warning</span>
+                <h4>The Petty Ru (Narrow Technician)</h4>
+                <p class="offense">Treats learning as a narrow specialty, not holistic cultivation.</p>
+                <div class="evidence">"Be a gentleman ru, not a petty ru."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"
+                        rel="noopener">6.13</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity low">Concern</span>
+                <h4>The Unexamined Life</h4>
+                <p class="offense">Never reflects on their own faults. Only criticizes others.</p>
+                <div class="evidence">"I have yet to meet someone who is able to perceive his own faults and then take
+                    himself to task inwardly."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/gong-ye-chang"
+                        target="_blank" rel="noopener">5.27</a></span>
+            </div>
+
+            <div class="villain-card">
+                <span class="severity low">Concern</span>
+                <h4>The Pure Thinker / Pure Memorizer</h4>
+                <p class="offense">Either thinks without learning (exhaustion) or learns without thinking (confusion).
+                </p>
+                <div class="evidence">"To learn without thinking leads to confusion. To think without learning leads to
+                    fruitless exhaustion."</div>
+                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"
+                        rel="noopener">2.15</a></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISCUSSION QUESTIONS -->
+    <section id="discussion">
+        <h2><span class="chinese">討論</span> Discussion Questions</h2>
+
+        <ol class="discussion-list">
+            <li><strong>The Zigong Problem:</strong> Zigong articulates the "negative Golden Rule" (<a class="ctext"
+                    href="https://ctext.org/analects/gong-ye-chang" target="_blank" rel="noopener">5.12</a>: don't do to
+                others what
+                you wouldn't want done to you), but Kongzi says achieving this is "beyond him." Why is <em>knowing</em>
+                the right thing different from being able to <em>do</em> it?</li>
+
+            <li><strong>Yan Hui vs. Zaiyu:</strong> What makes Yan Hui the ideal student (<a class="ctext"
+                    href="https://ctext.org/analects/wei-zheng" target="_blank" rel="noopener">2.9</a>, <a class="ctext"
+                    href="https://ctext.org/analects/yong-ye" target="_blank" rel="noopener">6.11</a>) and Zaiyu "rotten
+                wood that
+                cannot be carved" (<a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank"
+                    rel="noopener">5.10</a>)? Is Kongzi fair to Zaiyu? What would he think of students today?</li>
+
+            <li><strong>Ritual Today:</strong> What modern practices function like Confucian <em>li</em>? Consider:
+                graduation ceremonies, handshakes, table manners, dress codes, professional etiquette. What's the point
+                of these "empty" formalities?</li>
+
+            <li><strong>Substance vs. Refinement (<a class="ctext" href="https://ctext.org/analects/yong-ye"
+                        target="_blank" rel="noopener">6.18</a>):</strong> Kongzi says too much "native substance" makes
+                you a "crude
+                rustic," but too much "cultural refinement" makes you a "foppish pedant." What's the modern equivalent
+                of this balance? Can you be too polished? Too "authentic"?</li>
+
+            <li><strong>Age 70:</strong> Kongzi says at 70 he could "follow his heart's desire without overstepping the
+                bounds of propriety" (<a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"
+                    rel="noopener">2.4</a>). Is this freedom or just total conformity? What would this state look like
+                today?</li>
+        </ol>
+    </section>
+
+    <footer>
+        <p style="margin-bottom: 8px;"><a href="../index.html" style="color: var(--accent); text-decoration: none;">←
+                Course Portal</a></p>
+        <p><strong style="color: var(--primary);">EAST 370</strong> · Chinese Traditional Literature and Thought ·
+            Winter 2026</p>
+        <p style="margin-top: 5px;">Text: Ivanhoe translation · Passage numbers link to <a
+                href="https://ctext.org/analects" target="_blank" rel="noopener"
+                style="color: var(--primary);">ctext.org</a></p>
+    </footer>
+
+</body>
+
+</html>

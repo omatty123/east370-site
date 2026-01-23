@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Songs of Chu | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --vermillion: #c73e3a;
+            --vermillion-light: #e8d4d3;
+            --teal: #2d5a5a;
+            --water: #4a90a4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Hero Section - Vermillion for Chu Ci */
+        .hero {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 50%, #4a1a1a 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 550px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            text-align: center;
+        }
+
+        .hero-meta-item span {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-meta-item strong {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .nav a.portal-link {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .nav a.portal-link:hover {
+            background: var(--gold-light);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Section Headers */
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--ink);
+        }
+
+        h4 {
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin: 1.25rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: var(--paper-dark);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--vermillion);
+        }
+
+        .summary-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1rem;
+            border: 1px solid var(--paper-dark);
+        }
+
+        .feature-card .label {
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-card .value {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        thead {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        th {
+            font-weight: 500;
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--paper-dark);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        tr:hover td {
+            background: rgba(199, 62, 58, 0.04);
+            transition: background 0.2s ease;
+        }
+
+        .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.05em;
+        }
+
+        .pinyin {
+            color: var(--ink-light);
+            font-style: italic;
+        }
+
+        /* Characteristics List */
+        .char-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .char-list li {
+            padding: 0.5rem 0 0.5rem 1.25rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .char-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 6px;
+            height: 6px;
+            background: var(--vermillion);
+            border-radius: 50%;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--paper-dark);
+            margin: 0 0 2rem;
+            padding: 0 0 1.5rem;
+        }
+
+        .map-header {
+            padding: 1.5rem 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .map-header h2 {
+            border-bottom: none;
+            margin-bottom: 0.3rem;
+        }
+
+        .map-header p {
+            text-align: center;
+            color: var(--ink-light);
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 0.85rem;
+        }
+
+        .map-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            height: 450px;
+            border-top: 1px solid var(--paper-dark);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .map-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .map-sidebar {
+                max-height: 250px;
+            }
+
+            #map {
+                height: 350px !important;
+            }
+        }
+
+        /* Map Sidebar */
+        .map-sidebar {
+            background: var(--paper);
+            overflow-y: auto;
+            border-right: 1px solid var(--paper-dark);
+        }
+
+        .sidebar-section {
+            border-bottom: 1px solid var(--paper-dark);
+        }
+
+        .sidebar-section-header {
+            padding: 0.6rem 1rem;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .sidebar-section-header h4 {
+            margin: 0;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-light);
+            font-weight: 600;
+        }
+
+        .sidebar-section-header .count {
+            font-size: 0.6rem;
+            background: var(--paper-dark);
+            padding: 0.1rem 0.4rem;
+            border-radius: 10px;
+            color: var(--ink-faint);
+        }
+
+        .location-list {
+            list-style: none;
+        }
+
+        .location-item {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .location-item:hover {
+            background: rgba(199, 62, 58, 0.04);
+        }
+
+        .location-item.active {
+            background: rgba(199, 62, 58, 0.08);
+            border-left: 3px solid var(--vermillion);
+        }
+
+        .location-item.water {
+            border-left: 3px solid var(--water);
+        }
+
+        .location-item.water.active {
+            background: rgba(74, 144, 164, 0.08);
+        }
+
+        .location-item .name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .location-item .chinese-name {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--ink);
+        }
+
+        .location-item .english-name {
+            font-size: 0.8rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .location-item .pinyin-name {
+            font-size: 0.7rem;
+            font-style: italic;
+            color: var(--ink-faint);
+            margin-bottom: 0.25rem;
+        }
+
+        .location-item .description {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        .location-item .poem-tag {
+            display: inline-block;
+            font-size: 0.55rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 2px;
+            margin-top: 0.35rem;
+            margin-right: 0.2rem;
+            background: var(--paper-dark);
+            color: var(--ink-light);
+            border: 1px solid #ddd;
+        }
+
+        /* The Map */
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #f5f3ef;
+        }
+
+        /* Map Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.7rem;
+        }
+
+        .map-legend h5 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.25rem;
+            color: var(--ink-light);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-swatch {
+            width: 14px;
+            height: 8px;
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        /* Leaflet Popup */
+        .leaflet-popup-content-wrapper {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .leaflet-popup-content {
+            margin: 0;
+            min-width: 220px;
+            max-width: 260px;
+        }
+
+        .popup-content {
+            padding: 1rem;
+        }
+
+        .popup-content .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .popup-content .popup-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.4rem;
+            color: var(--vermillion);
+        }
+
+        .popup-content .popup-chinese.water {
+            color: var(--water);
+        }
+
+        .popup-content .popup-english {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .popup-content .popup-pinyin {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: var(--ink-faint);
+        }
+
+        .popup-content .popup-body {
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: var(--ink-light);
+        }
+
+        .popup-content .popup-modern {
+            background: var(--paper);
+            padding: 0.35rem 0.5rem;
+            border-radius: 3px;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            border-left: 2px solid var(--vermillion);
+        }
+
+        /* Kingdom label on map */
+        .kingdom-label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.08);
+        }
+
+        /* Biographies */
+        .biography {
+            background: white;
+            border: 1px solid var(--paper-dark);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .bio-title h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 0 0 0.2rem 0;
+        }
+
+        .bio-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--vermillion);
+        }
+
+        .bio-chinese .pinyin {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            margin-left: 0.4rem;
+        }
+
+        .bio-dates {
+            font-size: 1rem;
+            color: var(--ink-faint);
+        }
+
+        .bio-epithet {
+            font-style: italic;
+            color: var(--ink-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--paper-dark);
+        }
+
+        .bio-content p {
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .bio-quote {
+            background: var(--paper);
+            border-left: 3px solid var(--vermillion);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .bio-quote p {
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .bio-quote cite {
+            font-size: 0.7rem;
+            font-style: normal;
+            color: var(--ink-faint);
+        }
+
+        .bio-legacy {
+            background: var(--paper);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .bio-legacy h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--ink);
+            margin: 0 0 0.75rem 0;
+        }
+
+        .bio-legacy ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .bio-legacy li {
+            padding: 0.3rem 0 0.3rem 1rem;
+            position: relative;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+        }
+
+        .bio-legacy li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 5px;
+            height: 5px;
+            background: var(--vermillion);
+            border-radius: 50%;
+        }
+
+        /* Print Resources */
+        .print-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .print-item {
+            background: white;
+            padding: 1rem;
+            border: 1px solid var(--paper-dark);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.4rem;
+            align-items: baseline;
+        }
+
+        .print-item .author {
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .print-item .title {
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .print-item .details {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+        }
+
+        .print-item .year {
+            font-size: 1.25rem;
+            color: var(--ink-faint);
+        }
+
+        /* Resource Links */
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--paper-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-list a {
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .resource-list a:hover {
+            color: var(--vermillion);
+        }
+
+        .resource-list .url {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        footer .course {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 3rem 1rem 2rem;
+            }
+
+            .hero-chinese {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .nav a {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.5rem;
+            }
+
+            .bio-header {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+
+            .print-item {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-chinese">楚辭</div>
+            <h1>Songs of Chu</h1>
+            <p class="hero-subtitle">The second foundational anthology of Chinese poetry, born from the shamanistic
+                traditions of the southern Chu kingdom.</p>
+
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span>Period</span>
+                    <strong>4th-3rd c. BCE</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Origin</span>
+                    <strong>Kingdom of Chu</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Primary Author</span>
+                    <strong>屈原</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Era</span>
+                    <strong>Warring States</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">Course Portal</a>
+            <a href="#overview">Overview</a>
+            <a href="#map">Map</a>
+            <a href="#biographies">Biographies</a>
+            <a href="#contents">Contents</a>
+            <a href="#resources">Resources</a>
+            <a href="#translations">Translations</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="overview">
+            <h2>Executive Summary</h2>
+
+            <p>The <em>Chu Ci</em> (楚辭, "Songs of Chu") stands as one of the two foundational anthologies of Chinese
+                poetry, second only to the <em>Shijing</em> (Book of Songs). This guide accompanies David Hawkes'
+                translation, the preeminent Western scholarly rendering of these ancient verses.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="label">Period</div>
+                    <div class="value">4th-3rd c. BCE</div>
+                </div>
+                <div class="feature-card">
+                    <div class="label">Origin</div>
+                    <div class="value">Kingdom of Chu</div>
+                </div>
+                <div class="feature-card">
+                    <div class="label">Primary Author</div>
+                    <div class="value">Qu Yuan 屈原</div>
+                </div>
+                <div class="feature-card">
+                    <div class="label">Era</div>
+                    <div class="value">Warring States</div>
+                </div>
+            </div>
+
+            <h3>Historical Context</h3>
+            <p>The Kingdom of Chu (楚) was centered in the Yangtze River valley in southern China, encompassing modern
+                Hubei, Hunan, and parts of surrounding provinces. The <em>Chu Ci</em> represents a distinct southern
+                Chinese literary tradition infused with shamanistic religious practices, contrasting sharply with the
+                northern Zhou culture reflected in the <em>Shijing</em>.</p>
+
+            <h3>The Primary Author</h3>
+            <div class="summary-box">
+                <p><strong>Qu Yuan</strong> (屈原, c. 340-278 BCE) is celebrated as China's first named poet. A minister
+                    of Chu whose unwavering loyalty to his king led to exile, he ultimately drowned himself in the Miluo
+                    River in protest and despair after learning that Qin forces had captured the capital. His death is
+                    commemorated annually at the <strong>Dragon Boat Festival</strong> (端午節 Duanwu Jie).</p>
+            </div>
+
+            <h3>Literary Characteristics</h3>
+            <ul class="char-list">
+                <li>Rich botanical and floral imagery - orchids, angelica, cassia, lotus - symbolizing moral virtue and
+                    purity</li>
+                <li>Shamanistic spirit-journeys and encounters with divine beings</li>
+                <li>Allegory of the loyal minister and inconstant ruler cast as unrequited love</li>
+                <li>Longer, more elaborate verse forms than the <em>Shijing</em>, with the characteristic exclamatory
+                    particle 兮 (<em>xi</em>)</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Map Section -->
+    <section class="map-section" id="map">
+        <div class="map-header">
+            <h2>The Kingdom of Chu</h2>
+            <p>The rivers and lakes of the Yangtze valley - sacred to Chu's shamanistic traditions - form the geographic
+                and spiritual landscape of the <em>Chu Ci</em>.</p>
+        </div>
+
+        <div class="map-container">
+            <aside class="map-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-header">
+                        <h4>Key Locations</h4>
+                        <span class="count">3</span>
+                    </div>
+                    <ul class="location-list">
+                        <li class="location-item" data-id="ying">
+                            <div class="name">
+                                <span class="chinese-name">郢</span>
+                                <span class="english-name">Ying</span>
+                            </div>
+                            <div class="pinyin-name">Ying</div>
+                            <div class="description">Capital of Chu for over 400 years. Its fall to Qin in 278 BCE
+                                prompted Qu Yuan's suicide.</div>
+                            <span class="poem-tag">Lament for Ying</span>
+                        </li>
+                        <li class="location-item" data-id="miluo">
+                            <div class="name">
+                                <span class="chinese-name">汨羅</span>
+                                <span class="english-name">Miluo River</span>
+                            </div>
+                            <div class="pinyin-name">Miluo Jiang</div>
+                            <div class="description">Site of Qu Yuan's ritual suicide. Origin of Dragon Boat Festival.
+                            </div>
+                            <span class="poem-tag">Li Sao (envoi)</span>
+                        </li>
+                        <li class="location-item" data-id="kunlun">
+                            <div class="name">
+                                <span class="chinese-name">崑崙</span>
+                                <span class="english-name">Kunlun</span>
+                            </div>
+                            <div class="pinyin-name">Kunlun Shan</div>
+                            <div class="description">Mythical western paradise, dwelling of immortals.</div>
+                            <span class="poem-tag">Li Sao</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-section-header">
+                        <h4>Sacred Waters</h4>
+                        <span class="count">4</span>
+                    </div>
+                    <ul class="location-list">
+                        <li class="location-item water" data-id="dongting">
+                            <div class="name">
+                                <span class="chinese-name">洞庭湖</span>
+                                <span class="english-name">Dongting Lake</span>
+                            </div>
+                            <div class="pinyin-name">Dongting Hu</div>
+                            <div class="description">Great lake sacred to Chu. Setting of the Xiang goddess poems.</div>
+                            <span class="poem-tag">Xiang Jun</span>
+                            <span class="poem-tag">Xiang Furen</span>
+                        </li>
+                        <li class="location-item water" data-id="xiang">
+                            <div class="name">
+                                <span class="chinese-name">湘江</span>
+                                <span class="english-name">Xiang River</span>
+                            </div>
+                            <div class="pinyin-name">Xiang Jiang</div>
+                            <div class="description">Chief river of Chu. The goddesses of the Xiang were worshipped as
+                                spirits of Shun's grieving consorts.</div>
+                            <span class="poem-tag">Xiang Jun</span>
+                        </li>
+                        <li class="location-item water" data-id="yuan">
+                            <div class="name">
+                                <span class="chinese-name">沅江</span>
+                                <span class="english-name">Yuan River</span>
+                            </div>
+                            <div class="pinyin-name">Yuan Jiang</div>
+                            <div class="description">Western tributary of Dongting. Mentioned alongside the Xiang.</div>
+                            <span class="poem-tag">Li Sao</span>
+                        </li>
+                        <li class="location-item water" data-id="yangtze">
+                            <div class="name">
+                                <span class="chinese-name">長江</span>
+                                <span class="english-name">Yangtze River</span>
+                            </div>
+                            <div class="pinyin-name">Chang Jiang</div>
+                            <div class="description">The great river forming the northern boundary of Chu's heartland.
+                            </div>
+                            <span class="poem-tag">Throughout</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <div style="position: relative; flex: 1;">
+                <div id="leaflet-map" style="width: 100%; height: 100%;"></div>
+                <div class="map-legend">
+                    <h5>Legend</h5>
+                    <div class="legend-item">
+                        <span class="legend-swatch" style="background: #c73e3a;"></span>
+                        Kingdom of Chu
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch" style="background: #888;"></span>
+                        Other States
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: #c73e3a;"></span>
+                        Capital / Key Site
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: #4a90a4;"></span>
+                        Sacred Water
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="biographies">
+            <h2>Biographies</h2>
+
+            <article class="biography">
+                <div class="bio-header">
+                    <div class="bio-title">
+                        <h3>Qu Yuan</h3>
+                        <div class="bio-chinese">屈原 <span class="pinyin">Qu Yuan</span></div>
+                    </div>
+                    <div class="bio-dates">c. 340-278 BCE</div>
+                </div>
+
+                <div class="bio-epithet">China's First Named Poet - Patriot of Chu - Father of Chinese Romanticism</div>
+
+                <div class="bio-content">
+                    <p><strong>Qu Yuan</strong> was born into the royal house of Chu at Zigui (modern Yichang, Hubei
+                        Province). His noble lineage granted him access to the highest echelons of Chu's court, where he
+                        rose to serve as <em>Left Minister</em> (左徒 zuotu) under King Huai.</p>
+
+                    <p>In this role, Qu Yuan wielded considerable influence over both domestic governance and foreign
+                        affairs. He championed three interconnected policies: the appointment of capable ministers based
+                        on merit rather than birth, the clarification and reform of Chu's laws, and - most
+                        consequentially - an alliance with the eastern state of Qi to counterbalance the rising threat
+                        of Qin in the west.</p>
+
+                    <div class="bio-quote">
+                        <p>"Long did I sigh and wipe away my tears, / To see my people bowed by griefs and fears."</p>
+                        <cite>- Li Sao (tr. Yang Hsien-yi)</cite>
+                    </div>
+
+                    <p>Qu Yuan's downfall came through court intrigue. The Qin strategist Zhang Yi, seeking to isolate
+                        Chu diplomatically, bribed the corrupt minister Jin Shang and the king's favorite concubine
+                        Zheng Xiu. They slandered Qu Yuan before King Huai, accusing him of arrogance and disloyalty.
+                        The king, swayed by these whispers, exiled his most capable counselor.</p>
+
+                    <p>In 278 BCE, the Qin general Bai Qi captured Ying, the Chu capital. Upon hearing this news, Qu
+                        Yuan composed his final poem, the <em>Lament for Ying</em>, then walked into the Miluo River
+                        clasping a stone, ending his life in ritual suicide.</p>
+                </div>
+
+                <div class="bio-legacy">
+                    <h4>Legacy</h4>
+                    <ul>
+                        <li>Established the <em>Sao</em> (騷) poetic tradition, distinct from the northern
+                            <em>Shijing</em> style
+                        </li>
+                        <li>First Chinese poet known by name and individual biography</li>
+                        <li>China's Tianwen (天問 "Heavenly Questions") space program is named after his cosmological poem
+                        </li>
+                        <li>Dragon Boat Festival commemorates his death annually</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="biography">
+                <div class="bio-header">
+                    <div class="bio-title">
+                        <h3>King Huai of Chu</h3>
+                        <div class="bio-chinese">楚懷王 <span class="pinyin">Chu Huai Wang</span></div>
+                    </div>
+                    <div class="bio-dates">r. 328-299 BCE</div>
+                </div>
+
+                <div class="bio-epithet">Personal name: Xiong Huai 熊槐 - Son of King Wei - Patron and Exiler of Qu Yuan
+                </div>
+
+                <div class="bio-content">
+                    <p><strong>King Huai</strong> succeeded his father King Wei in 328 BCE, inheriting a Chu state that
+                        had become one of the most powerful of the Seven Warring States. His reign would witness both
+                        the zenith of Chu's territorial extent and the beginning of its catastrophic decline.</p>
+
+                    <p>The pivotal disaster came in 313 BCE. The Qin strategist <strong>Zhang Yi</strong> arrived at the
+                        Chu court with a promise: if Chu would break its alliance with Qi, Qin would cede 600
+                        <em>li</em> of territory. King Huai, seduced by this offer, dismissed Qu Yuan's warnings and
+                        severed ties with Qi. When he sent envoys to claim the promised land, Zhang Yi claimed he had
+                        offered only 6 <em>li</em> - a deliberate humiliation.
+                    </p>
+
+                    <p>In 299 BCE, King Huai accepted an invitation to negotiate with King Zhao of Qin. It was a trap.
+                        The Chu king was seized and held hostage, dying in Qin captivity in 296 BCE.</p>
+                </div>
+
+                <div class="bio-legacy">
+                    <h4>Historical Assessment</h4>
+                    <ul>
+                        <li>His reign is viewed as the turning point in Chu's decline</li>
+                        <li>Became a cautionary figure: the ruler who ignores loyal advisors</li>
+                        <li>His relationship with Qu Yuan exemplifies the classical trope of the faithful minister and
+                            inconstant lord</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <section id="contents">
+            <h2>Contents & Pinyin Reference</h2>
+
+            <h4>Poems in this Collection</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>English Title</th>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Songs of Chu</td>
+                            <td class="chinese">楚辭</td>
+                            <td class="pinyin">Chu Ci</td>
+                            <td>The anthology</td>
+                        </tr>
+                        <tr>
+                            <td>Encountering Sorrow</td>
+                            <td class="chinese">離騷</td>
+                            <td class="pinyin">Li Sao</td>
+                            <td>Major poem, 373 lines</td>
+                        </tr>
+                        <tr>
+                            <td>The Nine Songs</td>
+                            <td class="chinese">九歌</td>
+                            <td class="pinyin">Jiu Ge</td>
+                            <td>Suite of 11 ritual songs</td>
+                        </tr>
+                        <tr>
+                            <td>Princess of the Hsiang</td>
+                            <td class="chinese">湘君</td>
+                            <td class="pinyin">Xiang Jun</td>
+                            <td>Nine Songs #4</td>
+                        </tr>
+                        <tr>
+                            <td>Lady of the Hsiang</td>
+                            <td class="chinese">湘夫人</td>
+                            <td class="pinyin">Xiang Furen</td>
+                            <td>Nine Songs #5</td>
+                        </tr>
+                        <tr>
+                            <td>The Summons of the Soul</td>
+                            <td class="chinese">招魂</td>
+                            <td class="pinyin">Zhao Hun</td>
+                            <td>Mentioned in introduction</td>
+                        </tr>
+                        <tr>
+                            <td>The Lament for Ying</td>
+                            <td class="chinese">哀郢</td>
+                            <td class="pinyin">Ai Ying</td>
+                            <td>Qu Yuan's final poem</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2>Online Resources</h2>
+
+            <h3>General Resources</h3>
+            <ul class="resource-list">
+                <li>
+                    <a href="https://cti.lib.virginia.edu/cll/chinese_literature/chuci/chucitoc.htm" target="_blank"
+                        rel="noopener">Chu
+                        Ci Full Text (Hawkes Translation)</a>
+                    <span class="url">U. Virginia</span>
+                </li>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Chu_Ci" target="_blank" rel="noopener">Chu Ci Overview</a>
+                    <span class="url">Wikipedia</span>
+                </li>
+                <li>
+                    <a href="https://ctext.org/datawiki.pl?if=en&res=178618" target="_blank" rel="noopener">Original
+                        Chinese Text</a>
+                    <span class="url">ctext.org</span>
+                </li>
+            </ul>
+
+            <h3>Encountering Sorrow (離騷)</h3>
+            <ul class="resource-list">
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Li_Sao" target="_blank" rel="noopener">Li Sao Overview</a>
+                    <span class="url">Wikipedia</span>
+                </li>
+                <li>
+                    <a href="https://eastasiastudent.net/china/classical/qu-yuan-li-sao-extract/" target="_blank"
+                        rel="noopener">Annotated Extract with Chinese</a>
+                    <span class="url">East Asia Student</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="translations">
+            <h2>Scholarly Translations</h2>
+
+            <div class="print-list">
+                <div class="print-item">
+                    <div>
+                        <div class="author">David Hawkes</div>
+                        <div class="title">The Songs of the South</div>
+                        <div class="details">Penguin Classics - Definitive English translation</div>
+                    </div>
+                    <div class="year">1985</div>
+                </div>
+                <div class="print-item">
+                    <div>
+                        <div class="author">Gopal Sukhu</div>
+                        <div class="title">The Songs of Chu</div>
+                        <div class="details">Columbia University Press - Modern scholarly edition</div>
+                    </div>
+                    <div class="year">2017</div>
+                </div>
+                <div class="print-item">
+                    <div>
+                        <div class="author">Nicholas Morrow Williams</div>
+                        <div class="title">Elegies of Chu</div>
+                        <div class="details">Oxford University Press - Latest critical edition</div>
+                    </div>
+                    <div class="year">2022</div>
+                </div>
+                <div class="print-item">
+                    <div>
+                        <div class="author">Arthur Waley</div>
+                        <div class="title">The Nine Songs: A Study of Shamanism in Ancient China</div>
+                        <div class="details">Allen & Unwin - Foundational shamanism study</div>
+                    </div>
+                    <div class="year">1955</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="course">EAST 370 - Chinese Traditional Literature and Thought</div>
+        <p>Winter 2026</p>
+    </footer>
+
+    <script>
+        const locations = [
+            {
+                id: 'ying',
+                name: 'Ying',
+                chinese: '郢',
+                pinyin: 'Ying',
+                lat: 30.35,
+                lng: 112.24,
+                type: 'capital',
+                modern: 'Jingzhou, Hubei Province',
+                poems: ['Lament for Ying', 'Li Sao'],
+                description: 'Capital of Chu for over 400 years. Its capture by Qin in 278 BCE prompted Qu Yuan\'s suicide.'
+            },
+            {
+                id: 'miluo',
+                name: 'Miluo River',
+                chinese: '汨羅江',
+                pinyin: 'Miluo Jiang',
+                lat: 28.81,
+                lng: 113.09,
+                type: 'sacred',
+                modern: 'Miluo City, Hunan Province',
+                poems: ['Li Sao (envoi)'],
+                description: 'Site of Qu Yuan\'s ritual suicide in 278 BCE. The annual Dragon Boat Festival commemorates the villagers\' search for his body.'
+            },
+            {
+                id: 'kunlun',
+                name: 'Kunlun Mountains',
+                chinese: '崑崙山',
+                pinyin: 'Kunlun Shan',
+                lat: 36.0,
+                lng: 84.0,
+                type: 'mythical',
+                modern: 'Mythical / Western China',
+                poems: ['Li Sao'],
+                description: 'Mythical western paradise, dwelling of the Queen Mother of the West and home of immortals.'
+            },
+            {
+                id: 'dongting',
+                name: 'Dongting Lake',
+                chinese: '洞庭湖',
+                pinyin: 'Dongting Hu',
+                lat: 29.4,
+                lng: 112.4,
+                type: 'water',
+                modern: 'Northern Hunan Province',
+                poems: ['Xiang Jun', 'Xiang Furen'],
+                description: 'China\'s second-largest freshwater lake, sacred heart of Chu\'s water-cult traditions.'
+            },
+            {
+                id: 'xiang',
+                name: 'Xiang River',
+                chinese: '湘江',
+                pinyin: 'Xiang Jiang',
+                lat: 28.2,
+                lng: 112.97,
+                type: 'water',
+                modern: 'Hunan Province',
+                poems: ['Xiang Jun', 'Xiang Furen', 'Li Sao'],
+                description: 'Chief river of Chu, flowing 844 km from south to north into Dongting Lake.'
+            },
+            {
+                id: 'yuan',
+                name: 'Yuan River',
+                chinese: '沅江',
+                pinyin: 'Yuan Jiang',
+                lat: 28.5,
+                lng: 111.5,
+                type: 'water',
+                modern: 'Western Hunan Province',
+                poems: ['Li Sao'],
+                description: 'Major western tributary of Dongting Lake.'
+            },
+            {
+                id: 'yangtze',
+                name: 'Yangtze River',
+                chinese: '長江',
+                pinyin: 'Chang Jiang',
+                lat: 30.5,
+                lng: 114.0,
+                type: 'water',
+                modern: 'Central China',
+                poems: ['Throughout'],
+                description: 'The great river forming the northern boundary of Chu\'s heartland.'
+            },
+            {
+                id: 'qin',
+                name: 'Qin',
+                chinese: '秦',
+                pinyin: 'Qin',
+                lat: 34.27,
+                lng: 108.95,
+                type: 'state',
+                modern: 'Xi\'an, Shaanxi',
+                poems: [],
+                description: 'Western state that conquered Chu\'s capital in 278 BCE.'
+            }
+        ];
+
+        const kingdoms = {
+            chu: {
+                name: '楚 CHU',
+                color: '#c73e3a',
+                coords: [
+                    [34, 110], [34.5, 113], [33.5, 116], [32, 118], [30, 119],
+                    [28, 117], [26, 114], [26, 111], [27, 108], [29, 106],
+                    [31, 107], [33, 108], [34, 110]
+                ]
+            },
+            qin: {
+                name: '秦 QIN',
+                color: '#555',
+                coords: [
+                    [37, 104], [38, 108], [36.5, 111], [34.5, 111],
+                    [33, 109], [32, 106], [33.5, 103], [37, 104]
+                ]
+            },
+            qi: {
+                name: '齊 QI',
+                color: '#555',
+                coords: [
+                    [38.5, 115.5], [38.5, 120], [37, 121], [35, 119.5],
+                    [35, 117], [36, 115.5], [38.5, 115.5]
+                ]
+            }
+        };
+
+        const map = L.map('leaflet-map', {
+            zoomControl: true,
+            scrollWheelZoom: true
+        }).setView([30, 112], 5);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 12,
+            minZoom: 4
+        }).addTo(map);
+
+        Object.keys(kingdoms).forEach(key => {
+            const kingdom = kingdoms[key];
+            const isChu = key === 'chu';
+
+            const polygon = L.polygon(kingdom.coords, {
+                color: kingdom.color,
+                weight: isChu ? 2 : 1.5,
+                opacity: isChu ? 0.8 : 0.5,
+                fillColor: kingdom.color,
+                fillOpacity: isChu ? 0.12 : 0.06,
+                dashArray: isChu ? null : '4, 4'
+            }).addTo(map);
+
+            const center = polygon.getBounds().getCenter();
+            const label = L.divIcon({
+                className: 'kingdom-label',
+                html: kingdom.name,
+                iconSize: [80, 24],
+                iconAnchor: [40, 12]
+            });
+            L.marker(center, { icon: label, interactive: false }).addTo(map);
+        });
+
+        function createIcon(type, chinese) {
+            const colors = {
+                capital: '#c73e3a',
+                sacred: '#1a1a1a',
+                water: '#4a90a4',
+                mythical: '#8b6914',
+                state: '#666'
+            };
+            const size = (type === 'capital' || type === 'sacred') ? 28 : 24;
+            const bgColor = colors[type] || '#666';
+
+            return L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: 50%;
+                background: ${bgColor};
+                color: #fff;
+                font-family: 'Noto Sans SC', sans-serif;
+                font-size: ${size > 26 ? '12px' : '10px'};
+                font-weight: bold;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+                border: 2px solid #fff;
+            ">${chinese}</div>`,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2],
+                popupAnchor: [0, -size / 2]
+            });
+        }
+
+        function createPopupContent(loc) {
+            const poemTags = loc.poems.map(p => `<span class="poem-tag">${p}</span>`).join('');
+            const waterClass = loc.type === 'water' ? ' water' : '';
+
+            return `
+            <div class="popup-content">
+                <div class="popup-header">
+                    <span class="popup-chinese${waterClass}">${loc.chinese}</span>
+                    <div class="popup-names">
+                        <div class="popup-english">${loc.name}</div>
+                        <div class="popup-pinyin">${loc.pinyin}</div>
+                    </div>
+                </div>
+                <div class="popup-body">
+                    <p>${loc.description}</p>
+                    <div class="popup-modern${waterClass}">
+                        <strong>Modern:</strong> ${loc.modern}
+                    </div>
+                    ${loc.poems.length > 0 ? `<div style="margin-top: 0.5rem;">${poemTags}</div>` : ''}
+                </div>
+            </div>
+        `;
+        }
+
+        const markers = {};
+        locations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng], {
+                icon: createIcon(loc.type, loc.chinese),
+                zIndexOffset: loc.type === 'capital' ? 1000 : (loc.type === 'sacred' ? 900 : 500)
+            }).addTo(map);
+
+            marker.bindPopup(createPopupContent(loc), {
+                maxWidth: 280,
+                className: 'custom-popup'
+            });
+
+            markers[loc.id] = marker;
+        });
+
+        document.querySelectorAll('.location-item').forEach(item => {
+            item.addEventListener('click', function () {
+                const id = this.dataset.id;
+                document.querySelectorAll('.location-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+
+                if (markers[id]) {
+                    const loc = locations.find(l => l.id === id);
+                    map.setView([loc.lat, loc.lng], loc.type === 'mythical' ? 5 : 7, { animate: true });
+                    setTimeout(() => markers[id].openPopup(), 300);
+                }
+            });
+        });
+
+        map.fitBounds([
+            [25, 106],
+            [36, 120]
+        ], { padding: [20, 20] });
+    </script>
+
+</body>
+
+</html>

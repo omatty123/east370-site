@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhuangzi Study Guide | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --primary: #1a4a2a;
+            --primary-light: #2d6b3f;
+            --accent: #3d7a4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0d2818 0%, #1a4a2a 50%, #0d2818 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 60c-11 0-20-9-20-20s9-20 20-20 20 9 20 20-9 20-20 20zm0-35c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15z' fill='%23ffffff' fill-opacity='0.02'/%3E%3C/svg%3E");
+            opacity: 0.8;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 4rem;
+            color: var(--gold-light);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-meta strong {
+            color: var(--gold-light);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(13, 40, 24, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .nav a.portal-link {
+            background: var(--gold);
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .nav a.portal-link:hover {
+            background: var(--gold-light);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 0.3rem;
+        }
+
+        .section-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .section-header .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--ink);
+        }
+
+        /* Opening Section */
+        .opening-section {
+            background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
+            padding: 2.5rem 1.5rem;
+        }
+
+        .butterfly-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 4px;
+            padding: 2.5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .butterfly-box::after {
+            content: '蝴蝶';
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+        .butterfly-box .story-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .butterfly-box .question {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-top: 1.5rem;
+        }
+
+        .butterfly-box .reference {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1rem;
+        }
+
+        /* Intro Card */
+        .intro-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--primary);
+            transition: border-left-width 0.2s ease;
+        }
+
+        .intro-card:hover {
+            border-left-width: 8px;
+        }
+
+        .intro-card p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Key Terms Grid */
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .term-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            border-left-width: 5px;
+        }
+
+        .term-card.essential {
+            border-left-color: var(--primary);
+            background: linear-gradient(135deg, #fff 0%, #f5faf6 100%);
+        }
+
+        .term-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .term-pinyin {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .term-meaning {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+
+        /* Structure Section */
+        .structure-section {
+            background: var(--paper-dark);
+            padding: 2.5rem 1.5rem;
+        }
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .structure-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .structure-card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .structure-card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .structure-card-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            display: block;
+        }
+
+        .structure-card-header h3 {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .structure-card-header .chapters {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .structure-card-body {
+            padding: 1.25rem;
+        }
+
+        .structure-card-body p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+
+        /* Stories Section */
+        .stories-section {
+            padding: 2rem 1.5rem;
+        }
+
+        .story-card {
+            background: #fff;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .story-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .story-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+        }
+
+        .story-header h3 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .story-header .ref {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.75rem;
+            margin-left: auto;
+        }
+
+        .story-body {
+            padding: 1.5rem;
+        }
+
+        .story-body p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .story-quote {
+            background: var(--paper-dark);
+            padding: 1.25rem 1.5rem;
+            border-left: 3px solid var(--gold);
+            margin: 1rem 0;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--ink);
+        }
+
+        .story-lesson {
+            background: linear-gradient(135deg, #f5faf6 0%, #fff 100%);
+            padding: 1rem 1.25rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .story-lesson strong {
+            color: var(--primary);
+        }
+
+        /* Themes Section */
+        .themes-section {
+            background: var(--paper-dark);
+            padding: 2.5rem 1.5rem;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .theme-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .theme-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border-top: 3px solid var(--primary);
+        }
+
+        .theme-card h4 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-card h4 .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .theme-card p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+
+        /* Discussion Questions */
+        .discussion-section {
+            padding: 2rem 1.5rem;
+        }
+
+        .discussion-list {
+            list-style: none;
+            counter-reset: discussion;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .discussion-list li {
+            counter-increment: discussion;
+            padding: 1rem 1.25rem 1rem 3.5rem;
+            background: #fff;
+            margin-bottom: 0.75rem;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .discussion-list li::before {
+            content: counter(discussion);
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .discussion-list li strong {
+            color: var(--primary);
+        }
+
+        /* Resources */
+        .resources-section {
+            background: var(--paper-dark);
+            padding: 2rem 1.5rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: #fff;
+            padding: 1.25rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .resource-card h4 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-card a {
+            display: block;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 0.35rem 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s ease;
+        }
+
+        .resource-card a:last-child {
+            border-bottom: none;
+        }
+
+        .resource-card a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        footer .course-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.3rem;
+        }
+
+        footer .course-name {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.75rem;
+        }
+
+        footer .term {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1rem 2.5rem;
+            }
+
+            .hero-chinese {
+                font-size: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .nav-inner {
+                gap: 0.3rem;
+            }
+
+            .nav a {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-chinese">莊子</div>
+            <h1>The Zhuangzi</h1>
+            <div class="hero-meta">
+                <span><strong>Author:</strong> Zhuang Zhou (莊周)</span>
+                <span><strong>Period:</strong> ~369–286 BCE</span>
+                <span><strong>Reading:</strong> Ivanhoe pp. 223–265</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">Course Portal</a>
+            <a href="#overview">Overview</a>
+            <a href="#terms">Key Terms</a>
+            <a href="#structure">Structure</a>
+            <a href="#stories">Famous Stories</a>
+            <a href="#themes">Themes</a>
+            <a href="#discussion">Discussion</a>
+        </div>
+    </nav>
+
+    <!-- Opening Section -->
+    <section class="opening-section" id="overview">
+        <div class="butterfly-box">
+            <div class="story-text">
+                Once Zhuang Zhou dreamed he was a butterfly, flitting and fluttering about, happy with himself and doing
+                as he pleased. He didn't know he was Zhuang Zhou. Suddenly he woke up, and there he was, solid and
+                unmistakable Zhuang Zhou.
+            </div>
+            <div class="story-text">
+                But he didn't know if he was Zhuang Zhou who had dreamt he was a butterfly, or a butterfly dreaming he
+                was Zhuang Zhou.
+            </div>
+            <div class="question">Between Zhuang Zhou and a butterfly, there must be some distinction! This is called
+                the "transformation of things."</div>
+            <div class="reference">— Chapter 2, "On the Equality of Things"</div>
+        </div>
+
+        <div class="intro-card">
+            <p>The <strong>Zhuangzi</strong> is the most playful, paradoxical, and literary of the ancient Chinese
+                philosophical texts. Where Confucius is earnest and Mozi systematic, Zhuangzi is witty, ironic, and
+                deliberately confusing. His philosophy emerges through stories, parables, and dialogues—often featuring
+                talking animals, skillful craftsmen, and a Confucius who keeps getting things wrong.</p>
+
+            <p><strong>Zhuang Zhou</strong> (莊周) lived in the late 4th century BCE, contemporary with Mencius. Almost
+                nothing is known about his life. The text that bears his name is probably a compilation by his
+                followers, with only the "Inner Chapters" (1–7) possibly from Zhuangzi himself.</p>
+
+            <p>Unlike the Daodejing's cryptic poems, the Zhuangzi offers extended narratives that undermine our
+                certainties about identity, knowledge, value, and death. Reading it is less like studying philosophy and
+                more like having your assumptions systematically dismantled by a very amusing trickster.</p>
+        </div>
+    </section>
+
+    <!-- Key Terms Section -->
+    <section class="container" id="terms">
+        <div class="section-header">
+            <h2>Key Vocabulary</h2>
+            <div class="subtitle"><span class="chinese">關鍵詞</span> Essential Terms</div>
+        </div>
+
+        <div class="terms-grid">
+            <div class="term-card essential">
+                <div class="term-chinese">道</div>
+                <div class="term-pinyin">Dào</div>
+                <div class="term-meaning">The Way. For Zhuangzi, less a cosmic principle than the natural course each
+                    thing follows. Every creature has its own dao—its own way of being.</div>
+            </div>
+
+            <div class="term-card essential">
+                <div class="term-chinese">化</div>
+                <div class="term-pinyin">Huà</div>
+                <div class="term-meaning">Transformation / Change. Everything is constantly becoming something else. The
+                    butterfly dream illustrates this: identities are fluid, not fixed.</div>
+            </div>
+
+            <div class="term-card essential">
+                <div class="term-chinese">是非</div>
+                <div class="term-pinyin">Shì-Fēi</div>
+                <div class="term-meaning">"This/not-that" or "right/wrong." The fundamental act of judgment that creates
+                    distinctions—and all the problems that follow from them.</div>
+            </div>
+
+            <div class="term-card essential">
+                <div class="term-chinese">德</div>
+                <div class="term-pinyin">Dé</div>
+                <div class="term-meaning">Virtuosity / Excellence. Not moral virtue but skilled mastery—the butcher's
+                    knife work, the swimmer's ease. Acquired through practice until it becomes unconscious.</div>
+            </div>
+
+            <div class="term-card">
+                <div class="term-chinese">自然</div>
+                <div class="term-pinyin">Zìrán</div>
+                <div class="term-meaning">"Self-so" / Naturalness. Acting according to one's nature without forcing. The
+                    fish doesn't try to swim—it just swims.</div>
+            </div>
+
+            <div class="term-card">
+                <div class="term-chinese">明</div>
+                <div class="term-pinyin">Míng</div>
+                <div class="term-meaning">Illumination / Clarity. The insight that comes from seeing multiple
+                    perspectives without clinging to any single one.</div>
+            </div>
+
+            <div class="term-card">
+                <div class="term-chinese">心齋</div>
+                <div class="term-pinyin">Xīn Zhāi</div>
+                <div class="term-meaning">"Fasting of the heart-mind." Emptying the mind of preconceptions, desires, and
+                    fixed ideas. Becoming receptive like an empty vessel.</div>
+            </div>
+
+            <div class="term-card">
+                <div class="term-chinese">遊</div>
+                <div class="term-pinyin">Yóu</div>
+                <div class="term-meaning">Wandering / Roaming. Carefree, purposeless movement. The ideal mode of being:
+                    not going anywhere in particular, just enjoying the journey.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section class="structure-section" id="structure">
+        <div class="section-header">
+            <h2>Text Structure</h2>
+            <div class="subtitle"><span class="chinese">結構</span> 33 Chapters</div>
+        </div>
+
+        <div class="structure-grid">
+            <div class="structure-card">
+                <div class="structure-card-header">
+                    <span class="chinese">內篇</span>
+                    <h3>Inner Chapters</h3>
+                    <div class="chapters">Chapters 1–7</div>
+                </div>
+                <div class="structure-card-body">
+                    <p>Possibly from Zhuangzi himself. The most philosophically rich and literarily accomplished.
+                        Includes the butterfly dream, Cook Ding, and the great Peng bird.</p>
+                </div>
+            </div>
+
+            <div class="structure-card">
+                <div class="structure-card-header">
+                    <span class="chinese">外篇</span>
+                    <h3>Outer Chapters</h3>
+                    <div class="chapters">Chapters 8–22</div>
+                </div>
+                <div class="structure-card-body">
+                    <p>Likely from Zhuangzi's students. Develops and sometimes systematizes the Inner Chapters' ideas.
+                        More didactic, less playful.</p>
+                </div>
+            </div>
+
+            <div class="structure-card">
+                <div class="structure-card-header">
+                    <span class="chinese">雜篇</span>
+                    <h3>Miscellaneous</h3>
+                    <div class="chapters">Chapters 23–33</div>
+                </div>
+                <div class="structure-card-body">
+                    <p>Various influences—primitivists, egoists, syncretists. Less coherent but includes important
+                        material on other schools of thought.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Famous Stories Section -->
+    <section class="stories-section" id="stories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Famous Stories</h2>
+                <div class="subtitle"><span class="chinese">寓言</span> Parables</div>
+            </div>
+
+            <!-- Cook Ding -->
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="chinese">庖丁</div>
+                    <h3>Cook Ding Cuts Up an Ox</h3>
+                    <div class="ref">Chapter 3</div>
+                </div>
+                <div class="story-body">
+                    <p>Lord Wenhui watches his cook carve an ox with supernatural grace. The blade glides through joints
+                        and hollows as if dancing. The cook has used the same knife for nineteen years without
+                        sharpening it—"a good cook changes his knife once a year because he cuts; a mediocre cook
+                        changes his knife once a month because he hacks."</p>
+
+                    <div class="story-quote">
+                        "What I love is the Way, which goes beyond skill. When I first began cutting up oxen, all I
+                        could see was the ox. After three years, I no longer saw the whole ox. Now I meet it with my
+                        spirit and don't look with my eyes."
+                    </div>
+
+                    <div class="story-lesson">
+                        <strong>Lesson:</strong> Perfect skill transcends conscious technique. The cook acts without
+                        deliberation, responding to the situation with his whole being. This is <em>de</em>
+                        (virtuosity)—not moral virtue but embodied mastery. "Nourishing life" means living with this
+                        kind of effortless attunement.
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Great Peng -->
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="chinese">大鵬</div>
+                    <h3>The Great Peng Bird</h3>
+                    <div class="ref">Chapter 1</div>
+                </div>
+                <div class="story-body">
+                    <p>In the northern darkness lives a fish called Kun, thousands of miles long. It transforms into a
+                        bird called Peng, also thousands of miles across. When this bird rises into the sky, its wings
+                        are like clouds hanging from the heavens. It rides the whirlwind to the southern darkness.</p>
+
+                    <p>A cicada and a dove laugh at it: "When we spring up, we fly as far as the elm tree, and sometimes
+                        we don't even make it! What's the point of rising ninety thousand miles?"</p>
+
+                    <div class="story-lesson">
+                        <strong>Lesson:</strong> Different beings have different capacities and perspectives. The small
+                        creatures can't comprehend the Peng's journey—but this doesn't make them wrong, just limited.
+                        And maybe the Peng can't understand the joy of flitting among branches. Perspective is relative.
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Useless Tree -->
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="chinese">無用之樹</div>
+                    <h3>The Useless Tree</h3>
+                    <div class="ref">Chapter 4</div>
+                </div>
+                <div class="story-body">
+                    <p>Carpenter Shi sees a giant oak tree at a village shrine—so big that thousands of oxen could
+                        shelter under it. His apprentice marvels, but Shi dismisses it: "That tree is worthless! Make a
+                        boat from it and it will sink. Make a coffin and it will rot quickly. It's useless timber."</p>
+
+                    <p>That night, the tree speaks to him in a dream: "What are you comparing me to—useful trees? Fruit
+                        trees get stripped and abused. Useful timber gets cut down young. Their usefulness is their
+                        misfortune! I've spent my whole life trying to be useless. If I'd been useful, I'd never have
+                        grown so large."</p>
+
+                    <div class="story-lesson">
+                        <strong>Lesson:</strong> "Usefulness" is a judgment imposed by humans. From the tree's
+                        perspective, being "useless" is the path to flourishing. Zhuangzi repeatedly questions our value
+                        judgments: what we call bad might be good, what we call good might be harmful.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fish Happiness -->
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="chinese">魚樂</div>
+                    <h3>The Happiness of Fish</h3>
+                    <div class="ref">Chapter 17</div>
+                </div>
+                <div class="story-body">
+                    <p>Zhuangzi and his friend Hui Shi are walking along the dam of the Hao River.</p>
+
+                    <p><strong>Zhuangzi:</strong> "See how the minnows dart about! That is the happiness of fish."</p>
+                    <p><strong>Hui Shi:</strong> "You're not a fish—how do you know what makes fish happy?"</p>
+                    <p><strong>Zhuangzi:</strong> "You're not me—how do you know I don't know what makes fish happy?"
+                    </p>
+                    <p><strong>Hui Shi:</strong> "I'm not you, so I certainly don't know what you know. But you're
+                        certainly not a fish, so you can't know what makes fish happy. QED."</p>
+                    <p><strong>Zhuangzi:</strong> "Let's go back to the beginning. You asked how I know what makes fish
+                        happy—so you already knew I knew it when you asked. I knew it by standing here on the Hao."</p>
+
+                    <div class="story-lesson">
+                        <strong>Lesson:</strong> This playful exchange parodies logical argument. Hui Shi uses rigorous
+                        deduction; Zhuangzi slips out of the trap with a verbal trick. The serious point: can we ever
+                        really know another being's experience? And does that kind of logical knowing matter compared to
+                        immediate, intuitive connection?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes Section -->
+    <section class="themes-section" id="themes">
+        <div class="section-header">
+            <h2>Major Themes</h2>
+            <div class="subtitle"><span class="chinese">主題</span> Central Ideas</div>
+        </div>
+
+        <div class="theme-grid">
+            <div class="theme-card">
+                <h4><span class="chinese">相對</span> Perspectival Relativism</h4>
+                <p>Every judgment of "this" vs. "that" depends on a perspective. From where I stand, I'm "this" and
+                    you're "that"—but from where you stand, it's reversed. There's no view from nowhere. The sage sees
+                    all perspectives without privileging any single one.</p>
+            </div>
+
+            <div class="theme-card">
+                <h4><span class="chinese">技</span> Skill and Flow</h4>
+                <p>The cook, the swimmer, the wheelwright—all demonstrate mastery that transcends conscious thought.
+                    Perfect skill operates without deliberation. This is the Daoist ideal: acting so naturally that you
+                    don't even notice you're acting.</p>
+            </div>
+
+            <div class="theme-card">
+                <h4><span class="chinese">死</span> Death as Transformation</h4>
+                <p>When Zhuangzi's wife dies, he sits drumming on a pot and singing. Life and death are just phases in
+                    endless transformation. Why mourn the shift from one state to another? "How do I know that hating
+                    death is not like a man who left home as a youth and has forgotten the way back?"</p>
+            </div>
+
+            <div class="theme-card">
+                <h4><span class="chinese">遊</span> Carefree Wandering</h4>
+                <p>The ideal life is like aimless wandering—no fixed goals, no striving toward achievement. The Peng
+                    bird doesn't fly south to accomplish something; flying south is just what it does. This purposeless
+                    purposefulness is true freedom.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="discussion-section" id="discussion">
+        <div class="section-header">
+            <h2>Discussion Questions</h2>
+            <div class="subtitle"><span class="chinese">討論</span> For Class</div>
+        </div>
+
+        <ol class="discussion-list">
+            <li><strong>The Butterfly Dream:</strong> Is this just a puzzle about dreams, or does it say something
+                deeper about personal identity? What would it mean to take seriously the idea that you might be
+                "dreaming" right now?</li>
+
+            <li><strong>Cook Ding's Skill:</strong> Can you think of activities where you've experienced something like
+                the cook's effortless mastery? What does it feel like when skill becomes unconscious? How is this
+                different from just being on autopilot?</li>
+
+            <li><strong>The Useless Tree:</strong> Is Zhuangzi's praise of "uselessness" serious or ironic? After all,
+                the tree is useful to him as an example! Can you think of ways that being "useless" in conventional
+                terms might actually be valuable?</li>
+
+            <li><strong>Death:</strong> Zhuangzi's response to his wife's death strikes most readers as cold. Is he
+                being heartless, or has he achieved a kind of wisdom we lack? Can you imagine genuinely not mourning?
+            </li>
+
+            <li><strong>Fish Happiness:</strong> Who wins the argument? Does it matter? What's Zhuangzi suggesting about
+                the limits of logical reasoning?</li>
+
+            <li><strong>Relativism:</strong> If all perspectives are equal, does that mean anything goes? Is Zhuangzi a
+                relativist about morality? How might he respond to someone doing something clearly harmful?</li>
+        </ol>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources-section">
+        <div class="section-header">
+            <h2>Resources</h2>
+            <div class="subtitle">Further Reading</div>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h4>Primary Texts</h4>
+                <a href="https://ctext.org/zhuangzi" target="_blank" rel="noopener">Zhuangzi at ctext.org</a>
+                <a href="https://ctext.org/zhuangzi/enjoyment-in-untroubled-ease" target="_blank" rel="noopener">Chapter
+                    1: Free
+                    Wandering</a>
+                <a href="https://ctext.org/zhuangzi/adjustment-of-controversies" target="_blank" rel="noopener">Chapter
+                    2: Equality of
+                    Things</a>
+            </div>
+
+            <div class="resource-card">
+                <h4>Encyclopedias</h4>
+                <a href="https://plato.stanford.edu/entries/zhuangzi/" target="_blank" rel="noopener">SEP: Zhuangzi</a>
+                <a href="https://iep.utm.edu/zhuangzi/" target="_blank" rel="noopener">IEP: Zhuangzi</a>
+            </div>
+
+            <div class="resource-card">
+                <h4>Course Materials</h4>
+                <a href="laozi.html">Laozi Study Guide</a>
+                <a href="kongzi.html">Kongzi Study Guide</a>
+                <a href="../index.html">Course Portal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="margin-bottom: 8px;"><a href="../index.html">← Course Portal</a></p>
+        <div class="course-title">中國文學與思想</div>
+        <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="term">Winter 2026</div>
+    </footer>
+
+</body>
+
+</html>

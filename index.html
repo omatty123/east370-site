@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAST 370 | Chinese Traditional Literature and Thought</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --vermillion: #c73e3a;
+            --teal: #2d5a5a;
+            --jade: #1a4a2a;
+            --brown: #3d2817;
+            --legalist: #4a1a1a;
+            --purple: #3a1a4a;
+            --amber: #4a3a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-course {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2.2rem;
+            color: var(--gold-light);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-term {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.6rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.35rem 0.7rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        /* Syllabus Section */
+        .syllabus-section {
+            background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
+            padding: 1.5rem 1.5rem;
+        }
+
+        .syllabus-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 1.25rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--gold);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .syllabus-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .syllabus-text p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--ink-light);
+        }
+
+        .syllabus-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .syllabus-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            padding: 0.5rem 0.9rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+
+        .syllabus-link.primary {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .syllabus-link.primary:hover {
+            background: var(--gold-light);
+        }
+
+        .syllabus-link.secondary {
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .syllabus-link.secondary:hover {
+            background: #333;
+        }
+
+        .syllabus-link svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 2rem 1.5rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-header h2 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--ink);
+        }
+
+        /* Vertical Left-Justified Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 140px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 110px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                    var(--paper) 0%,
+                    var(--gold) 10%,
+                    var(--gold) 90%,
+                    var(--paper) 100%);
+            opacity: 0.6;
+        }
+
+        /* Era Group */
+        .era-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .era-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .era-header::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
+            background: var(--paper);
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .era-year {
+            position: absolute;
+            left: -130px;
+            width: 85px;
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .era-year span {
+            font-size: 0.6rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            margin-left: 0.2rem;
+        }
+
+        .era-name {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            font-weight: 500;
+        }
+
+        .era-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--ink-light);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin-left: 0;
+        }
+
+        /* Reading Cards */
+        .reading-card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .reading-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .reading-card .card-top {
+            transition: opacity 0.3s ease;
+        }
+
+        .reading-card:hover .card-top {
+            opacity: 0.95;
+        }
+
+        .reading-card.placeholder {
+            opacity: 0.6;
+        }
+
+        .reading-card.placeholder:hover {
+            transform: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            cursor: default;
+        }
+
+        .card-top {
+            padding: 0.9rem 0.75rem 0.5rem;
+            text-align: center;
+        }
+
+        /* Color coding by tradition */
+        .reading-card.confucian .card-top {
+            background: linear-gradient(135deg, #1a3a3a 0%, #2d4a4a 100%);
+        }
+
+        .reading-card.daoist .card-top {
+            background: linear-gradient(135deg, #1a4a2a 0%, #2d5a3a 100%);
+        }
+
+        .reading-card.mohist .card-top {
+            background: linear-gradient(135deg, #3d2817 0%, #5a3d24 100%);
+        }
+
+        .reading-card.legalist .card-top {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+        }
+
+        .reading-card.historical .card-top {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .reading-card.literary .card-top {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+        }
+
+        .reading-card.poetry .card-top {
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+        }
+
+        .reading-card.buddhist .card-top {
+            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
+        }
+
+        .reading-card.prose .card-top {
+            background: linear-gradient(135deg, #2a3a4a 0%, #3a4a5a 100%);
+        }
+
+        .reading-card.fiction .card-top {
+            background: linear-gradient(135deg, #3a2a3a 0%, #4a3a4a 100%);
+        }
+
+        .card-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-title {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0.02em;
+        }
+
+        .card-bottom {
+            padding: 0.5rem 0.75rem;
+            text-align: center;
+        }
+
+        .card-link {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink);
+            padding: 0.3rem 0.5rem;
+            border-radius: 2px;
+            background: var(--paper-dark);
+            transition: all 0.2s ease;
+        }
+
+        .reading-card:hover .card-link {
+            background: var(--gold);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .card-link {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-placeholder {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+            padding: 0.3rem 0.5rem;
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background: var(--paper-dark);
+            padding: 1.5rem 1.5rem;
+        }
+
+        .resources-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .resources-header h2 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.75rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: #fff;
+            padding: 0.85rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .resource-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            margin-bottom: 0.4rem;
+        }
+
+        .resource-card a {
+            display: block;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 0.25rem 0;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s ease;
+        }
+
+        .resource-card a:last-child {
+            border-bottom: none;
+        }
+
+        .resource-card a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        footer .course-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .course-name {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .term {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-chinese {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1rem;
+            }
+
+            .syllabus-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline {
+                padding-left: 80px;
+            }
+
+            .timeline::before {
+                left: 55px;
+            }
+
+            .era-header::before {
+                left: -25px;
+            }
+
+            .era-year {
+                left: -75px;
+                width: 50px;
+                font-size: 0.7rem;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline {
+                padding-left: 60px;
+            }
+
+            .timeline::before {
+                left: 35px;
+            }
+
+            .era-header::before {
+                left: -25px;
+            }
+
+            .era-year {
+                left: -55px;
+                width: 35px;
+                font-size: 0.6rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-course">EAST 370</div>
+            <div class="hero-chinese">中國文學與思想</div>
+            <h1>Chinese Traditional Literature and Thought</h1>
+            <div class="hero-term">Winter 2026</div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#syllabus">Syllabus</a>
+            <a href="#timeline">Timeline</a>
+            <a href="#resources">Resources</a>
+        </div>
+    </nav>
+
+    <!-- Syllabus Section -->
+    <section class="syllabus-section" id="syllabus">
+        <div class="syllabus-card">
+            <div class="syllabus-text">
+                <p>A survey of major works of Chinese literature and philosophy from the Zhou dynasty through the Yuan
+                    dynasty, examining foundational texts in Confucian thought, Daoist philosophy, historical writing,
+                    Buddhist traditions, and poetic expression.</p>
+            </div>
+            <div class="syllabus-links">
+                <a href="https://docs.google.com/document/d/1pe6TGFP7j74LkN62yXIgCsXP8-mQsPtPg4SqCZvGILo/edit?tab=t.0"
+                    target="_blank" rel="noopener" class="syllabus-link primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    Syllabus
+                </a>
+                <a href="https://lawrence.instructure.com/courses/12070" target="_blank" rel="noopener"
+                    class="syllabus-link secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <line x1="3" y1="9" x2="21" y2="9" />
+                    </svg>
+                    Canvas
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="timeline-header">
+            <h2>Course Readings</h2>
+            <div class="subtitle">Texts in Historical Context</div>
+        </div>
+
+        <div class="timeline">
+
+            <!-- Spring and Autumn Period -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">770<span>BCE</span></span>
+                    <span class="era-name">Spring & Autumn</span>
+                    <span class="era-chinese">春秋</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Book of Songs -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">詩經</div>
+                            <div class="card-title">Book of Songs</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Kongzi -->
+                    <a href="lessons/kongzi.html" class="reading-card confucian">
+                        <div class="card-top">
+                            <div class="card-chinese">論語</div>
+                            <div class="card-title">Kongzi (Analects)</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
+
+                    <!-- Historical Writings -->
+                    <a href="lessons/histories.html" class="reading-card historical">
+                        <div class="card-top">
+                            <div class="card-chinese">史</div>
+                            <div class="card-title">Historical Writings</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Deep Dive</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Warring States Period -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">475<span>BCE</span></span>
+                    <span class="era-name">Warring States</span>
+                    <span class="era-chinese">戰國</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Mozi -->
+                    <a href="lessons/mozi.html" class="reading-card mohist">
+                        <div class="card-top">
+                            <div class="card-chinese">墨子</div>
+                            <div class="card-title">Mozi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
+
+                    <!-- Mengzi -->
+                    <a href="lessons/mengzi.html" class="reading-card confucian">
+                        <div class="card-top">
+                            <div class="card-chinese">孟子</div>
+                            <div class="card-title">Mengzi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
+
+                    <!-- Songs of Chu -->
+                    <a href="lessons/songs-of-chu.html" class="reading-card literary">
+                        <div class="card-top">
+                            <div class="card-chinese">楚辭</div>
+                            <div class="card-title">Songs of Chu</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Research Guide</span>
+                        </div>
+                    </a>
+
+                    <!-- Laozi -->
+                    <a href="lessons/laozi.html" class="reading-card daoist">
+                        <div class="card-top">
+                            <div class="card-chinese">老子</div>
+                            <div class="card-title">Laozi (Daodejing)</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
+
+                    <!-- Zhuangzi -->
+                    <a href="lessons/zhuangzi.html" class="reading-card daoist">
+                        <div class="card-top">
+                            <div class="card-chinese">莊子</div>
+                            <div class="card-title">Zhuangzi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
+
+                    <!-- Xunzi -->
+                    <div class="reading-card confucian placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">荀子</div>
+                            <div class="card-title">Xunzi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Han Feizi -->
+                    <div class="reading-card legalist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">韓非子</div>
+                            <div class="card-title">Han Feizi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Qin Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">221<span>BCE</span></span>
+                    <span class="era-name">Qin</span>
+                    <span class="era-chinese">秦</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Faults of Qin -->
+                    <div class="reading-card prose placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">過秦</div>
+                            <div class="card-title">Faults of Qin</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Han Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">206<span>BCE</span></span>
+                    <span class="era-name">Han</span>
+                    <span class="era-chinese">漢</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Sima Qian -->
+                    <div class="reading-card historical placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">史記</div>
+                            <div class="card-title">Sima Qian</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Han Fu -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">賦</div>
+                            <div class="card-title">Han Rhyme Prose</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Period of Division -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">220<span>CE</span></span>
+                    <span class="era-name">Six Dynasties</span>
+                    <span class="era-chinese">六朝</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Recluse Poetry -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">隱逸</div>
+                            <div class="card-title">Recluse Poetry</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Huiyuan -->
+                    <div class="reading-card buddhist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">慧遠</div>
+                            <div class="card-title">Huiyuan</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tang Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">618<span>CE</span></span>
+                    <span class="era-name">Tang</span>
+                    <span class="era-chinese">唐</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Tang Poetry -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">唐詩</div>
+                            <div class="card-title">Tang Poetry</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Tang Prose -->
+                    <div class="reading-card prose placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">古文</div>
+                            <div class="card-title">Tang Prose</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Tang Stories -->
+                    <div class="reading-card fiction placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">傳奇</div>
+                            <div class="card-title">Tang Stories</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Huayan -->
+                    <div class="reading-card buddhist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">華嚴</div>
+                            <div class="card-title">Huayan Buddhism</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Song Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">960<span>CE</span></span>
+                    <span class="era-name">Song</span>
+                    <span class="era-chinese">宋</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Ci Poetry -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">詞</div>
+                            <div class="card-title">Ci Poetry</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Song Prose -->
+                    <div class="reading-card prose placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">散文</div>
+                            <div class="card-title">Song Prose</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Neo-Confucianism -->
+                    <div class="reading-card confucian placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">理學</div>
+                            <div class="card-title">Neo-Confucianism</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Chan Buddhism -->
+                    <div class="reading-card buddhist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">禪</div>
+                            <div class="card-title">Chan Buddhism</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yuan Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">1271<span>CE</span></span>
+                    <span class="era-name">Yuan</span>
+                    <span class="era-chinese">元</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Yuan Drama -->
+                    <div class="reading-card fiction placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">雜劇</div>
+                            <div class="card-title">Yuan Drama</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Water Margin -->
+                    <div class="reading-card fiction placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">水滸</div>
+                            <div class="card-title">Water Margin</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section" id="resources">
+        <div class="resources-header">
+            <h2>Resources</h2>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h4>Primary Texts</h4>
+                <a href="https://ctext.org/" target="_blank" rel="noopener">Chinese Text Project</a>
+                <a href="https://plato.stanford.edu/entries/mencius/" target="_blank" rel="noopener">SEP: Mencius</a>
+            </div>
+
+            <div class="resource-card">
+                <h4>Dictionaries</h4>
+                <a href="https://www.mdbg.net/" target="_blank" rel="noopener">MDBG Dictionary</a>
+                <a href="https://www.zdic.net/" target="_blank" rel="noopener">Zdic (Chinese)</a>
+            </div>
+
+            <div class="resource-card">
+                <h4>Historical Maps</h4>
+                <a href="https://chgis.fas.harvard.edu/" target="_blank" rel="noopener">China Historical GIS</a>
+                <a href="https://worldmap.harvard.edu/chinamap/" target="_blank" rel="noopener">Harvard WorldMap</a>
+            </div>
+
+            <div class="resource-card">
+                <h4>Course Admin</h4>
+                <a href="https://lawrence.instructure.com/courses/12070" target="_blank" rel="noopener">Canvas</a>
+                <a href="https://docs.google.com/document/d/1pe6TGFP7j74LkN62yXIgCsXP8-mQsPtPg4SqCZvGILo/edit?tab=t.0"
+                    target="_blank" rel="noopener">Syllabus</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="course-title">中國文學與思想</div>
+            <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
+            <div class="term">Winter 2026</div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

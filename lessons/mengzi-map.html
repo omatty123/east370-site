@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mengzi Interactive Map | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --vermillion: #c73e3a;
+            --teal: #2d5a5a;
+            --teal-light: #3d7a7a;
+            --visited: #2d6a4f;
+            --mentioned: #5a5a8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+        }
+
+        .nav a.portal-link {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .nav a.portal-link:hover {
+            background: var(--gold-light);
+        }
+
+        .nav a.study-link {
+            border: 1px solid var(--teal);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav a.study-link:hover {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a3a3a 0%, #2d4a4a 100%);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-title .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.6rem;
+            color: var(--gold-light);
+        }
+
+        .header-title h1 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .header-title p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            height: calc(100vh - 140px);
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #fff;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .sidebar-section {
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-section-header {
+            padding: 0.75rem 1rem;
+            background: var(--paper);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-section-header h3 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-light);
+            font-weight: 600;
+        }
+
+        .sidebar-section-header .toggle {
+            color: var(--ink-faint);
+            font-size: 0.7rem;
+            background: #fff;
+            padding: 0.15rem 0.4rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .location-list {
+            list-style: none;
+        }
+
+        .location-item {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .location-item:hover {
+            background: rgba(45, 90, 90, 0.04);
+        }
+
+        .location-item.active {
+            background: rgba(45, 90, 90, 0.08);
+            border-left: 3px solid var(--teal);
+        }
+
+        .location-item.visited {
+            border-left: 3px solid var(--visited);
+        }
+
+        .location-item.visited.active {
+            border-left: 3px solid var(--visited);
+            background: rgba(45, 106, 79, 0.08);
+        }
+
+        .location-item .name {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .location-item .chinese-name {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.25rem;
+            color: var(--ink);
+        }
+
+        .location-item .english-name {
+            font-size: 0.85rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .location-item .pinyin {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: var(--ink-faint);
+            margin-bottom: 0.3rem;
+        }
+
+        .location-item .description {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+
+        .location-item .passage-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-family: monospace;
+            padding: 0.1rem 0.35rem;
+            border-radius: 2px;
+            margin-top: 0.4rem;
+            margin-right: 0.2rem;
+            background: var(--paper-dark);
+            color: var(--ink-light);
+            border: 1px solid #ddd;
+        }
+
+        .location-item .visited-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+            margin-top: 0.4rem;
+            margin-right: 0.2rem;
+            background: var(--visited);
+            color: #fff;
+        }
+
+        /* Map Container */
+        .map-container {
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            background: #f5f3ef;
+        }
+
+        /* Map Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .map-legend h4 {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-light);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .legend-group {
+            margin-bottom: 0.75rem;
+        }
+
+        .legend-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .legend-group-title {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--ink-faint);
+            margin-bottom: 0.35rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.7rem;
+            color: var(--ink);
+        }
+
+        .legend-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-dot.visited {
+            background: var(--visited);
+        }
+
+        .legend-dot.capital {
+            background: var(--gold);
+        }
+
+        .legend-dot.mentioned {
+            background: var(--mentioned);
+        }
+
+        .legend-swatch {
+            width: 16px;
+            height: 10px;
+            border-radius: 2px;
+            opacity: 0.5;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-swatch.qi {
+            background: #228b22;
+        }
+
+        .legend-swatch.liang {
+            background: #9932cc;
+        }
+
+        .legend-swatch.chu {
+            background: #ff8c00;
+        }
+
+        .legend-swatch.qin {
+            background: #1a1a1a;
+        }
+
+        .legend-swatch.lu {
+            background: #4169e1;
+        }
+
+        /* Popup Styles */
+        .leaflet-popup-content-wrapper {
+            background: #fff;
+            color: var(--ink);
+            border-radius: 4px;
+            padding: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .leaflet-popup-content {
+            margin: 0;
+            min-width: 260px;
+        }
+
+        .leaflet-popup-tip {
+            background: #fff;
+        }
+
+        .popup-content {
+            padding: 1rem;
+        }
+
+        .popup-content .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .popup-content .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.6rem;
+            color: var(--teal);
+        }
+
+        .popup-content .names {
+            flex: 1;
+        }
+
+        .popup-content .english {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .popup-content .pinyin {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: var(--ink-faint);
+        }
+
+        .popup-content .popup-body {
+            font-size: 0.8rem;
+            line-height: 1.55;
+            color: var(--ink-light);
+        }
+
+        .popup-content .popup-body p {
+            margin-bottom: 0.6rem;
+        }
+
+        .popup-content .popup-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .popup-content .modern-location {
+            background: var(--paper);
+            padding: 0.4rem 0.6rem;
+            border-radius: 3px;
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--teal);
+        }
+
+        .popup-content .modern-location strong {
+            color: var(--ink);
+        }
+
+        .popup-content .passage-tags {
+            margin-top: 0.6rem;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .popup-content .passage-tag {
+            font-size: 0.65rem;
+            font-family: monospace;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            background: var(--paper-dark);
+            color: var(--ink-light);
+            border: 1px solid #ddd;
+        }
+
+        .popup-content .visited-badge {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            background: var(--visited);
+            color: #fff;
+        }
+
+        .popup-content .sovereign {
+            background: rgba(45, 90, 90, 0.08);
+            padding: 0.4rem 0.6rem;
+            border-radius: 3px;
+            margin-top: 0.6rem;
+            font-size: 0.8rem;
+            border-left: 3px solid var(--teal);
+        }
+
+        .popup-content .sovereign strong {
+            color: var(--teal);
+        }
+
+        /* Kingdom Labels on Map */
+        .kingdom-label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.10);
+            text-shadow: none;
+            white-space: nowrap;
+        }
+
+        /* Table Section */
+        .table-section {
+            background: #fff;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .table-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .table-container h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-faint);
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .table-container .subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+        }
+
+        .locations-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .locations-table th {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--ink);
+            color: #fff;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .locations-table td {
+            padding: 0.65rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
+            color: var(--ink);
+            vertical-align: top;
+        }
+
+        .locations-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .locations-table tr:hover td {
+            background: rgba(45, 90, 90, 0.02);
+        }
+
+        .locations-table tr.visited td {
+            background: rgba(45, 106, 79, 0.03);
+        }
+
+        .locations-table tr.visited:hover td {
+            background: rgba(45, 106, 79, 0.06);
+        }
+
+        .locations-table .chinese-cell {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .locations-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        footer .course {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+        }
+
+        /* Travel route styling */
+        .travel-route {
+            stroke-dasharray: 8, 6;
+            animation: dash 30s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                gap: 0.3rem;
+            }
+
+            .nav a {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">Course Portal</a>
+            <a href="mengzi.html" class="study-link">Study Guide</a>
+            <a href="#map">Map</a>
+            <a href="#table">Reference Table</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-left">
+            <div class="header-title">
+                <span class="chinese">孟子地圖</span>
+                <h1>Geographic Locations in the Mengzi</h1>
+                <p>Warring States Period (c. 372-289 BCE)</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <!-- States Mengzi Visited -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>States Mengzi Visited</h3>
+                    <span class="toggle">4</span>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item visited" data-lat="36.88" data-lng="118.36" data-id="qi">
+                        <div class="name">
+                            <span class="chinese-name">齊</span>
+                            <span class="english-name">Qi</span>
+                        </div>
+                        <div class="pinyin">Qi - Capital: Linzi 臨淄</div>
+                        <div class="description">Most extensive dialogues. King Xuan's ox/bell story; discussions of
+                            true kingship and regicide.</div>
+                        <span class="visited-badge">Visited</span>
+                        <span class="passage-tag">1A7</span>
+                        <span class="passage-tag">1B5-8</span>
+                        <span class="passage-tag">2B13</span>
+                    </li>
+                    <li class="location-item visited" data-lat="34.78" data-lng="114.31" data-id="liang">
+                        <div class="name">
+                            <span class="chinese-name">梁</span>
+                            <span class="english-name">Liang (Wei)</span>
+                        </div>
+                        <div class="pinyin">Liang - Capital: Daliang 大梁</div>
+                        <div class="description">Opening dialogues with King Hui. Famous debate on profit vs.
+                            benevolence.</div>
+                        <span class="visited-badge">Visited</span>
+                        <span class="passage-tag">1A1</span>
+                        <span class="passage-tag">1A3</span>
+                    </li>
+                    <li class="location-item visited" data-lat="35.07" data-lng="117.15" data-id="teng">
+                        <div class="name">
+                            <span class="chinese-name">滕</span>
+                            <span class="english-name">Teng</span>
+                        </div>
+                        <div class="pinyin">Teng</div>
+                        <div class="description">Small state praised for benevolent government. Setting for debates with
+                            Xu Xing and Yi Zhi.</div>
+                        <span class="visited-badge">Visited</span>
+                        <span class="passage-tag">3A3-5</span>
+                    </li>
+                    <li class="location-item visited" data-lat="35.60" data-lng="117.02" data-id="zou">
+                        <div class="name">
+                            <span class="chinese-name">鄒</span>
+                            <span class="english-name">Zou</span>
+                        </div>
+                        <div class="pinyin">Zou</div>
+                        <div class="description">Mengzi's birthplace. Used as example of a small state that cannot match
+                            larger powers militarily.</div>
+                        <span class="visited-badge">Birthplace</span>
+                        <span class="passage-tag">1A7</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- States Mentioned -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Other States Mentioned</h3>
+                    <span class="toggle">6</span>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-lat="30.35" data-lng="112.24" data-id="chu">
+                        <div class="name">
+                            <span class="chinese-name">楚</span>
+                            <span class="english-name">Chu</span>
+                        </div>
+                        <div class="pinyin">Chu - Capital: Ying 郢</div>
+                        <div class="description">Vast southern kingdom. Used as example of overwhelming military power.
+                        </div>
+                        <span class="passage-tag">1A7</span>
+                        <span class="passage-tag">3A4</span>
+                    </li>
+                    <li class="location-item" data-lat="34.44" data-lng="115.65" data-id="song">
+                        <div class="name">
+                            <span class="chinese-name">宋</span>
+                            <span class="english-name">Song</span>
+                        </div>
+                        <div class="pinyin">Song</div>
+                        <div class="description">Famous parable of the farmer who pulled his seedlings to help them
+                            grow.</div>
+                        <span class="passage-tag">2A2</span>
+                    </li>
+                    <li class="location-item" data-lat="34.33" data-lng="108.71" data-id="qin">
+                        <div class="name">
+                            <span class="chinese-name">秦</span>
+                            <span class="english-name">Qin</span>
+                        </div>
+                        <div class="pinyin">Qin - Capital: Xianyang 咸陽</div>
+                        <div class="description">Western power known for military strength. Would unify China in 221
+                            BCE.</div>
+                        <span class="passage-tag">5A9</span>
+                        <span class="passage-tag">6A4</span>
+                    </li>
+                    <li class="location-item" data-lat="35.59" data-lng="116.99" data-id="lu">
+                        <div class="name">
+                            <span class="chinese-name">魯</span>
+                            <span class="english-name">Lu</span>
+                        </div>
+                        <div class="pinyin">Lu - Capital: Qufu 曲阜</div>
+                        <div class="description">Homeland of Confucius. Revered for preserving ancient Zhou culture and
+                            ritual.</div>
+                        <span class="passage-tag">Throughout</span>
+                    </li>
+                    <li class="location-item" data-lat="34.16" data-lng="113.75" data-id="zheng">
+                        <div class="name">
+                            <span class="chinese-name">鄭</span>
+                            <span class="english-name">Zheng</span>
+                        </div>
+                        <div class="pinyin">Zheng</div>
+                        <div class="description">Setting for story of Zichan carrying people across rivers.</div>
+                        <span class="passage-tag">4B2</span>
+                        <span class="passage-tag">7B37</span>
+                    </li>
+                    <li class="location-item" data-lat="33.75" data-lng="114.89" data-id="chen">
+                        <div class="name">
+                            <span class="chinese-name">陳</span>
+                            <span class="english-name">Chen</span>
+                        </div>
+                        <div class="pinyin">Chen</div>
+                        <div class="description">Where Confucius lamented "Perhaps I should return home."</div>
+                        <span class="passage-tag">7B37</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Historical Landmarks -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Historical Landmarks</h3>
+                    <span class="toggle">2</span>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-lat="36.18" data-lng="117.12" data-id="taishan">
+                        <div class="name">
+                            <span class="chinese-name">泰山</span>
+                            <span class="english-name">Mount Tai</span>
+                        </div>
+                        <div class="pinyin">Tai Shan</div>
+                        <div class="description">"Pick up Mount Tai and leap over the North Sea" - example of true
+                            impossibility.</div>
+                        <span class="passage-tag">1A7</span>
+                    </li>
+                    <li class="location-item" data-lat="35.75" data-lng="114.35" data-id="niushan">
+                        <div class="name">
+                            <span class="chinese-name">牛山</span>
+                            <span class="english-name">Ox Mountain</span>
+                        </div>
+                        <div class="pinyin">Niu Shan</div>
+                        <div class="description">Famous parable about human nature. Trees stripped bare by axes and
+                            grazing.</div>
+                        <span class="passage-tag">6A8</span>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-legend">
+                <h4>Legend</h4>
+                <div class="legend-group">
+                    <div class="legend-group-title">Markers</div>
+                    <div class="legend-item">
+                        <span class="legend-dot visited"></span>
+                        Mengzi Visited
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot capital"></span>
+                        State Capital
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot mentioned"></span>
+                        Mentioned in Text
+                    </div>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-group-title">Ancient Kingdoms</div>
+                    <div class="legend-item">
+                        <span class="legend-swatch qi"></span>
+                        Qi 齊
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch liang"></span>
+                        Liang/Wei 梁
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch chu"></span>
+                        Chu 楚
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch qin"></span>
+                        Qin 秦
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch lu"></span>
+                        Lu 魯
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Location Table -->
+    <section class="table-section" id="table">
+        <div class="table-container">
+            <h2>Complete Location Reference</h2>
+            <p class="subtitle">All geographic places mentioned in the Mengzi</p>
+
+            <table class="locations-table">
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Chinese</th>
+                        <th>Pinyin</th>
+                        <th>Sovereign in Text</th>
+                        <th>Modern Location</th>
+                        <th>Key Passages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="visited">
+                        <td><strong>Qi</strong></td>
+                        <td class="chinese-cell">齊</td>
+                        <td class="pinyin-cell">Qi</td>
+                        <td>King Xuan 宣王</td>
+                        <td>Zibo, Shandong</td>
+                        <td>1A7, 1B5-8, 2B13, 3B10, 7A39</td>
+                    </tr>
+                    <tr class="visited">
+                        <td><strong>Liang (Wei)</strong></td>
+                        <td class="chinese-cell">梁（魏）</td>
+                        <td class="pinyin-cell">Liang</td>
+                        <td>King Hui 惠王</td>
+                        <td>Kaifeng, Henan</td>
+                        <td>1A1, 1A3</td>
+                    </tr>
+                    <tr class="visited">
+                        <td><strong>Teng</strong></td>
+                        <td class="chinese-cell">滕</td>
+                        <td class="pinyin-cell">Teng</td>
+                        <td>Duke Wen 文公</td>
+                        <td>Tengzhou, Shandong</td>
+                        <td>3A3, 3A4, 3A5</td>
+                    </tr>
+                    <tr class="visited">
+                        <td><strong>Zou</strong></td>
+                        <td class="chinese-cell">鄒</td>
+                        <td class="pinyin-cell">Zou</td>
+                        <td>-</td>
+                        <td>Zoucheng, Shandong</td>
+                        <td>1A7 (birthplace)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chu</strong></td>
+                        <td class="chinese-cell">楚</td>
+                        <td class="pinyin-cell">Chu</td>
+                        <td>-</td>
+                        <td>Jingzhou, Hubei</td>
+                        <td>1A7, 3A4, 6A4</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Song</strong></td>
+                        <td class="chinese-cell">宋</td>
+                        <td class="pinyin-cell">Song</td>
+                        <td>-</td>
+                        <td>Shangqiu, Henan</td>
+                        <td>2A2 (seedling parable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qin</strong></td>
+                        <td class="chinese-cell">秦</td>
+                        <td class="pinyin-cell">Qin</td>
+                        <td>Duke Mu 穆公</td>
+                        <td>Xi'an, Shaanxi</td>
+                        <td>5A9, 6A4</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lu</strong></td>
+                        <td class="chinese-cell">魯</td>
+                        <td class="pinyin-cell">Lu</td>
+                        <td>-</td>
+                        <td>Qufu, Shandong</td>
+                        <td>Throughout (Confucius)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="course">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <p>Winter 2026</p>
+    </footer>
+
+    <script>
+        // Location data
+        const locations = [
+            // States Mengzi Visited
+            {
+                id: 'qi',
+                name: 'Qi',
+                chinese: '齊',
+                pinyin: 'Qi',
+                lat: 36.88,
+                lng: 118.36,
+                type: 'visited',
+                modern: 'Zibo (Linzi District), Shandong',
+                passages: ['1A7', '1B5', '1B6', '1B8', '2B13', '7A39'],
+                sovereign: 'King Xuan 齊宣王',
+                description: 'The state where Mengzi had his most extensive dialogues. King Xuan appears frequently - including the famous story of his compassion for an ox being led to slaughter (1A7).'
+            },
+            {
+                id: 'liang',
+                name: 'Liang (Wei)',
+                chinese: '梁',
+                pinyin: 'Liang',
+                lat: 34.78,
+                lng: 114.31,
+                type: 'visited',
+                modern: 'Kaifeng, Henan',
+                passages: ['1A1', '1A3'],
+                sovereign: 'King Hui 梁惠王',
+                description: 'The book opens with Mengzi\'s audience with King Hui of Liang. When the king asks how to "profit" his state, Mengzi redirects him to benevolence and righteousness.'
+            },
+            {
+                id: 'teng',
+                name: 'Teng',
+                chinese: '滕',
+                pinyin: 'Teng',
+                lat: 35.07,
+                lng: 117.15,
+                type: 'visited',
+                modern: 'Tengzhou, Shandong',
+                passages: ['3A3', '3A4', '3A5'],
+                sovereign: 'Duke Wen 滕文公',
+                description: 'A small state whose Duke Wen is praised for practicing benevolent government. Setting for Mengzi\'s debates with the agrarian philosopher Xu Xing.'
+            },
+            {
+                id: 'zou',
+                name: 'Zou',
+                chinese: '鄒',
+                pinyin: 'Zou',
+                lat: 35.60,
+                lng: 117.02,
+                type: 'visited',
+                modern: 'Zoucheng, Shandong',
+                passages: ['1A7'],
+                sovereign: null,
+                description: 'Mengzi\'s birthplace, a small state near Lu (Confucius\'s homeland). Used as an example of a small state that cannot compete militarily with larger powers.'
+            },
+            // States Mentioned
+            {
+                id: 'chu',
+                name: 'Chu',
+                chinese: '楚',
+                pinyin: 'Chu',
+                lat: 30.35,
+                lng: 112.24,
+                type: 'mentioned',
+                modern: 'Jingzhou, Hubei',
+                passages: ['1A7', '3A4', '6A4'],
+                sovereign: null,
+                description: 'A vast southern kingdom, the largest state of the era. Used as an example of overwhelming military power that smaller states cannot match through force.'
+            },
+            {
+                id: 'song',
+                name: 'Song',
+                chinese: '宋',
+                pinyin: 'Song',
+                lat: 34.44,
+                lng: 115.65,
+                type: 'mentioned',
+                modern: 'Shangqiu, Henan',
+                passages: ['2A2'],
+                sovereign: null,
+                description: 'Mengzi tells the famous parable of the Song farmer who pulled on his seedlings to help them grow faster, only to kill them - a warning against forcing moral development.'
+            },
+            {
+                id: 'qin',
+                name: 'Qin',
+                chinese: '秦',
+                pinyin: 'Qin',
+                lat: 34.33,
+                lng: 108.71,
+                type: 'mentioned',
+                modern: 'Xi\'an (Xianyang), Shaanxi',
+                passages: ['5A9', '6A4'],
+                sovereign: 'Duke Mu 秦穆公 (historical)',
+                description: 'The western power that would eventually conquer all other states and unify China in 221 BCE.'
+            },
+            {
+                id: 'lu',
+                name: 'Lu',
+                chinese: '魯',
+                pinyin: 'Lu',
+                lat: 35.59,
+                lng: 116.99,
+                type: 'mentioned',
+                modern: 'Qufu, Shandong',
+                passages: ['Throughout'],
+                sovereign: null,
+                description: 'The home state of Confucius (Kongzi), located near Mengzi\'s birthplace of Zou. Revered as preserving ancient Zhou culture and ritual.'
+            },
+            {
+                id: 'zheng',
+                name: 'Zheng',
+                chinese: '鄭',
+                pinyin: 'Zheng',
+                lat: 34.16,
+                lng: 113.75,
+                type: 'mentioned',
+                modern: 'Xinzheng, Henan',
+                passages: ['4B2', '7B37'],
+                sovereign: null,
+                description: 'Setting for the story of Zichan carrying people across rivers - Mengzi criticizes this as kind but not wise governance.'
+            },
+            {
+                id: 'chen',
+                name: 'Chen',
+                chinese: '陳',
+                pinyin: 'Chen',
+                lat: 33.75,
+                lng: 114.89,
+                type: 'mentioned',
+                modern: 'Huaiyang, Henan',
+                passages: ['7B37'],
+                sovereign: null,
+                description: 'Where Confucius famously lamented, "Perhaps I should return home. The scholars of my school are wild and hasty."'
+            },
+            // Landmarks
+            {
+                id: 'taishan',
+                name: 'Mount Tai',
+                chinese: '泰山',
+                pinyin: 'Tai Shan',
+                lat: 36.18,
+                lng: 117.12,
+                type: 'landmark',
+                modern: 'Tai\'an, Shandong',
+                passages: ['1A7'],
+                sovereign: null,
+                description: '"Pick up Mount Tai and leap over the North Sea" - Mengzi\'s example of true impossibility, contrasted with merely refusing to do something easy.'
+            },
+            {
+                id: 'niushan',
+                name: 'Ox Mountain',
+                chinese: '牛山',
+                pinyin: 'Niu Shan',
+                lat: 35.75,
+                lng: 114.35,
+                type: 'landmark',
+                modern: 'Near Linzi, Shandong',
+                passages: ['6A8'],
+                sovereign: null,
+                description: 'Mengzi\'s famous parable about human nature. The trees of Ox Mountain were once beautiful, but hatchets and grazing stripped them bare.'
+            }
+        ];
+
+        // Ancient Kingdom Territories
+        const kingdoms = {
+            qi: {
+                name: 'Qi 齊',
+                color: '#228b22',
+                coords: [
+                    [38.5, 115.5], [38.5, 120], [37, 121], [35, 119.5],
+                    [35, 117], [36, 115.5], [38.5, 115.5]
+                ]
+            },
+            liang: {
+                name: 'Wei/Liang 梁',
+                color: '#9932cc',
+                coords: [
+                    [36, 112], [36.5, 115], [35.5, 116], [34, 115.5],
+                    [33.5, 114], [34, 112.5], [35.5, 111.5], [36, 112]
+                ]
+            },
+            chu: {
+                name: 'Chu 楚',
+                color: '#ff8c00',
+                coords: [
+                    [34, 109], [34.5, 113], [33, 116], [31, 117],
+                    [28, 115], [27, 112], [28, 109], [31, 107], [34, 109]
+                ]
+            },
+            qin: {
+                name: 'Qin 秦',
+                color: '#1a1a1a',
+                coords: [
+                    [37, 104], [38, 108], [36, 110.5], [34, 111],
+                    [32.5, 109], [32, 106], [34, 103], [37, 104]
+                ]
+            },
+            lu: {
+                name: 'Lu 魯',
+                color: '#4169e1',
+                coords: [
+                    [36.2, 116], [36.5, 117.5], [35.8, 118], [35, 117.5],
+                    [35, 116.5], [35.5, 116], [36.2, 116]
+                ]
+            },
+            song: {
+                name: 'Song 宋',
+                color: '#cd853f',
+                coords: [
+                    [35, 114.5], [35.5, 116], [35, 117], [34, 116.5],
+                    [33.5, 115], [34, 114], [35, 114.5]
+                ]
+            },
+            zou: {
+                name: 'Zou 鄒',
+                color: '#2d6a4f',
+                coords: [
+                    [35.8, 116.5], [36, 117.2], [35.5, 117.5], [35.2, 117],
+                    [35.4, 116.5], [35.8, 116.5]
+                ]
+            }
+        };
+
+        // Initialize map
+        const map = L.map('map', {
+            zoomControl: true
+        }).setView([35, 115], 6);
+
+        // Light theme tile layer
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Add kingdom territories as polygons
+        Object.keys(kingdoms).forEach(key => {
+            const kingdom = kingdoms[key];
+            const polygon = L.polygon(kingdom.coords, {
+                color: kingdom.color,
+                weight: 2,
+                opacity: 0.6,
+                fillColor: kingdom.color,
+                fillOpacity: 0.12,
+                dashArray: '5, 5'
+            }).addTo(map);
+
+            const center = polygon.getBounds().getCenter();
+            const label = L.divIcon({
+                className: 'kingdom-label',
+                html: kingdom.name,
+                iconSize: [80, 24],
+                iconAnchor: [40, 12]
+            });
+            L.marker(center, { icon: label, interactive: false }).addTo(map);
+        });
+
+        // Add travel route
+        const travelRoute = L.polyline([
+            [35.60, 117.02],  // Zou
+            [36.88, 118.36],  // Qi
+            [35.07, 117.15],  // Teng
+            [34.78, 114.31]   // Liang
+        ], {
+            color: '#c54b3c',
+            weight: 3,
+            opacity: 0.6,
+            dashArray: '10, 8',
+            className: 'travel-route'
+        }).addTo(map);
+
+        // Custom icon factory
+        function createIcon(type, chinese) {
+            const colors = {
+                visited: '#2d6a4f',
+                mentioned: '#5a5a8a',
+                landmark: '#8b6914'
+            };
+            const size = type === 'visited' ? 32 : 26;
+
+            return L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: 50%;
+                background: ${colors[type]};
+                color: #fff;
+                font-family: 'Noto Sans SC', sans-serif;
+                font-size: ${type === 'visited' ? '13px' : '11px'};
+                font-weight: bold;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+                border: 2px solid #fff;
+            ">${chinese}</div>`,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2],
+                popupAnchor: [0, -size / 2]
+            });
+        }
+
+        // Create popup content
+        function createPopupContent(loc) {
+            const passageTags = loc.passages.map(p =>
+                `<span class="passage-tag">${p}</span>`
+            ).join('');
+
+            const visitedBadge = loc.type === 'visited'
+                ? '<span class="visited-badge">Mengzi Visited</span>'
+                : '';
+
+            const sovereignSection = loc.sovereign
+                ? `<div class="sovereign"><strong>Sovereign:</strong> ${loc.sovereign}</div>`
+                : '';
+
+            return `
+            <div class="popup-content">
+                <div class="popup-header">
+                    <span class="chinese">${loc.chinese}</span>
+                    <div class="names">
+                        <div class="english">${loc.name}</div>
+                        <div class="pinyin">${loc.pinyin}</div>
+                    </div>
+                </div>
+                <div class="popup-body">
+                    <p>${loc.description}</p>
+                    ${sovereignSection}
+                    <div class="modern-location">
+                        <strong>Modern:</strong> ${loc.modern}
+                    </div>
+                    <div class="passage-tags">
+                        ${visitedBadge}
+                        ${passageTags}
+                    </div>
+                </div>
+            </div>
+        `;
+        }
+
+        // Add markers
+        const markers = {};
+        locations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng], {
+                icon: createIcon(loc.type, loc.chinese),
+                zIndexOffset: loc.type === 'visited' ? 1000 : 500
+            }).addTo(map);
+
+            marker.bindPopup(createPopupContent(loc), {
+                maxWidth: 300,
+                className: 'custom-popup'
+            });
+
+            markers[loc.id] = marker;
+        });
+
+        // Sidebar click handlers
+        document.querySelectorAll('.location-item').forEach(item => {
+            item.addEventListener('click', function () {
+                const lat = parseFloat(this.dataset.lat);
+                const lng = parseFloat(this.dataset.lng);
+                const id = this.dataset.id;
+
+                document.querySelectorAll('.location-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+
+                map.setView([lat, lng], 8, { animate: true });
+
+                if (markers[id]) {
+                    markers[id].openPopup();
+                }
+            });
+        });
+
+        // Fit bounds to show all markers initially
+        const bounds = L.latLngBounds(locations.map(loc => [loc.lat, loc.lng]));
+        map.fitBounds(bounds, { padding: [50, 50] });
+    </script>
+
+</body>
+
+</html>
