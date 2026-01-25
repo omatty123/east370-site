@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>戰國七雄 | Seven Warring States (c. 260 BCE)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Warring States c. 5th Century BCE</title>
 
     <style>
         * {
@@ -15,172 +14,28 @@
 
         html, body {
             height: 100%;
-            background: #0b0d10;
-            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
-            color: #f2f5f7;
-        }
-
-        .container {
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            background: rgba(10, 12, 16, 0.95);
-            padding: 20px 24px;
-            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
-        }
-
-        .header .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #daa520;
-            letter-spacing: 0.15em;
-        }
-
-        .header .main {
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 4px;
-        }
-
-        .header .sub {
-            font-size: 13px;
-            opacity: 0.7;
-            margin-top: 8px;
-            line-height: 1.5;
-            max-width: 700px;
+            background: #f5f5f0;
         }
 
         .map-wrapper {
-            flex: 1;
+            min-height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background: linear-gradient(180deg, #0b0d10 0%, #141820 100%);
         }
 
-        .map-container {
-            position: relative;
+        .map-wrapper img {
             max-width: 100%;
-            max-height: calc(100vh - 160px);
-        }
-
-        .map-container img {
-            max-width: 100%;
-            max-height: calc(100vh - 160px);
+            max-height: calc(100vh - 40px);
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .legend {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(10, 12, 16, 0.92);
-            padding: 14px 18px;
-            border-radius: 10px;
-            font-size: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-            max-width: 200px;
-        }
-
-        .legend-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #daa520;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin: 6px 0;
-        }
-
-        .legend-marker {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-            margin-right: 10px;
-        }
-
-        .note {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(199, 62, 58, 0.9);
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 12px;
-            max-width: 180px;
-            line-height: 1.4;
-        }
-
-        .note strong {
-            color: #daa520;
-        }
-
-        .attribution {
-            background: rgba(10, 12, 16, 0.95);
-            padding: 12px 24px;
-            font-size: 11px;
-            opacity: 0.7;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .attribution a {
-            color: #4a90a4;
-            text-decoration: none;
-        }
-
-        .attribution a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .legend, .note {
-                position: static;
-                margin: 10px 20px;
-                max-width: none;
-            }
-
-            .map-wrapper {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .map-container img {
-                max-height: 60vh;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="chinese">戰國七雄</div>
-            <div class="main">Seven Warring States — c. 260 BCE</div>
-            <div class="sub">The map shows the territorial extent of the seven major states before Qin's final conquests. Chu (楚) dominated the south with its capital at Ying (郢), controlling the Yangtze River basin and the lakes of modern Hubei and Hunan.</div>
-        </header>
-
-        <div class="map-wrapper">
-            <div class="map-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/EN-WarringStatesAll260BCE.jpg/1280px-EN-WarringStatesAll260BCE.jpg"
-                     alt="Map of the Seven Warring States c. 260 BCE showing Qin, Zhao, Yan, Qi, Wei, Han, and Chu">
-            </div>
-        </div>
-
-        <footer class="attribution">
-            Map: <a href="https://commons.wikimedia.org/wiki/File:EN-WarringStatesAll260BCE.jpg" target="_blank">Wikimedia Commons</a> ·
-            Philg88, CC BY-SA 3.0
-        </footer>
+    <div class="map-wrapper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Chinese_plain_5c._BC_with_Yue-en.png"
+             alt="Map of the Chinese plain in the 5th century BCE showing the Warring States">
     </div>
 </body>
 </html>
