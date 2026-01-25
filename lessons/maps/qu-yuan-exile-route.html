@@ -10,23 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        html, body { height: 100%; margin: 0; background: #0b0d10; }
+        html, body { height: 100%; margin: 0; background: #f5f5f0; }
         #map { height: 100%; width: 100%; }
 
         .map-title {
             font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
-            color: #f2f5f7;
-            background: rgba(10, 12, 16, 0.92);
+            color: #1a1a1a;
+            background: rgba(255, 255, 255, 0.95);
             padding: 16px 20px;
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             max-width: 280px;
+            border: 1px solid rgba(0,0,0,0.1);
         }
         .map-title .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 20px;
             font-weight: 700;
-            color: #daa520;
+            color: #c73e3a;
             letter-spacing: 0.1em;
         }
         .map-title .main {
@@ -43,12 +44,13 @@
 
         .legend {
             font-family: 'Inter', system-ui, sans-serif;
-            color: #f2f5f7;
-            background: rgba(10, 12, 16, 0.92);
+            color: #1a1a1a;
+            background: rgba(255, 255, 255, 0.95);
             padding: 14px 16px;
             border-radius: 10px;
             font-size: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border: 1px solid rgba(0,0,0,0.1);
         }
         .legend-title {
             font-weight: 600;
@@ -56,7 +58,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #daa520;
+            color: #c73e3a;
         }
         .legend-item {
             display: flex;
@@ -78,13 +80,13 @@
         }
 
         .leaflet-popup-content-wrapper {
-            background: rgba(14, 16, 20, 0.96);
-            color: #f2f5f7;
+            background: rgba(255, 255, 255, 0.98);
+            color: #1a1a1a;
             border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         .leaflet-popup-tip {
-            background: rgba(14, 16, 20, 0.96);
+            background: rgba(255, 255, 255, 0.98);
         }
         .leaflet-popup-content {
             font-family: 'Inter', 'Noto Sans SC', sans-serif;
@@ -95,7 +97,7 @@
         .popup-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 18px;
-            color: #daa520;
+            color: #c73e3a;
             font-weight: 600;
         }
         .popup-name {
@@ -103,9 +105,42 @@
             margin-top: 2px;
         }
         .popup-desc {
-            opacity: 0.8;
+            opacity: 0.7;
             margin-top: 6px;
             font-size: 12px;
+        }
+
+        /* Location labels */
+        .location-label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .location-label .label-text {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .location-label .chinese {
+            font-size: 14px;
+            color: #c73e3a;
+        }
+        .location-label .english {
+            font-size: 11px;
+            color: #4a4a4a;
+            margin-left: 4px;
+        }
+        .location-label.death .chinese {
+            color: #8a6a00;
+        }
+        .location-label.water .chinese {
+            color: #2a6a8a;
         }
     </style>
 </head>
@@ -118,8 +153,8 @@
             attributionControl: false
         });
 
-        // Dark basemap
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        // Light basemap
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
             subdomains: "abcd",
             maxZoom: 12,
             minZoom: 5
@@ -152,14 +187,14 @@
                 <div class="legend-title">Legend</div>
                 <div class="legend-item">
                     <div class="legend-marker" style="background: #c73e3a; border-color: #c73e3a;"></div>
-                    <span>Capital / Major City</span>
+                    <span>Capital / City</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-marker" style="background: #4a90a4; border-color: #4a90a4;"></div>
                     <span>Water Feature</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-marker" style="background: #1a1a1a; border-color: #daa520;"></div>
+                    <div class="legend-marker" style="background: #daa520; border-color: #8a6a00;"></div>
                     <span>Death Site</span>
                 </div>
                 <div class="legend-item">
@@ -179,7 +214,8 @@
                 lat: 30.35,
                 lng: 112.24,
                 type: "capital",
-                desc: "Capital of Chu until 278 BCE. Captured by Qin general Bai Qi."
+                desc: "Capital of Chu until 278 BCE. Captured by Qin general Bai Qi.",
+                labelOffset: [15, -5]
             },
             jingzhou: {
                 name: "Dragon Gate",
@@ -187,7 +223,8 @@
                 lat: 30.32,
                 lng: 112.28,
                 type: "gate",
-                desc: "Eastern gate of Ying. 'I passed through the city gate with a heavy heart.'"
+                desc: "Eastern gate of Ying. 'I passed through the city gate with a heavy heart.'",
+                labelOffset: [15, 5]
             },
             xiaRiver: {
                 name: "Xia River",
@@ -195,15 +232,17 @@
                 lat: 30.15,
                 lng: 112.60,
                 type: "water",
-                desc: "Tributary of the Yangtze. 'Following the waters of the Chiang and Hsia, I travelled into exile.'"
+                desc: "Tributary of the Yangtze. 'Following the waters of the Chiang and Hsia, I travelled into exile.'",
+                labelOffset: [15, 0]
             },
             yangtze: {
-                name: "Yangtze River",
+                name: "Yangtze",
                 chinese: "江",
                 lat: 29.85,
                 lng: 113.10,
                 type: "water",
-                desc: "Main artery of Chu. Simply called 'the River' (江) in the poems."
+                desc: "Main artery of Chu. Simply called 'the River' (江) in the poems.",
+                labelOffset: [15, 0]
             },
             dongting: {
                 name: "Dongting Lake",
@@ -211,7 +250,8 @@
                 lat: 29.31,
                 lng: 112.95,
                 type: "water",
-                desc: "Great lake of the south. 'South up to the Tung-t'ing lake, and then north again to the River.'"
+                desc: "Great lake of the south. 'South up to the Tung-t'ing lake, and then north again to the River.'",
+                labelOffset: [-90, 0]
             },
             miluo: {
                 name: "Miluo River",
@@ -219,7 +259,8 @@
                 lat: 28.80,
                 lng: 113.08,
                 type: "death",
-                desc: "Site of Qu Yuan's ritual suicide in 278 BCE. Origin of the Dragon Boat Festival."
+                desc: "Site of Qu Yuan's ritual suicide in 278 BCE. Origin of the Dragon Boat Festival.",
+                labelOffset: [15, 0]
             }
         };
 
@@ -228,14 +269,15 @@
             capital: { radius: 10, color: "#c73e3a", weight: 3, fillColor: "#c73e3a", fillOpacity: 0.9 },
             gate: { radius: 7, color: "#c73e3a", weight: 2, fillColor: "#c73e3a", fillOpacity: 0.7 },
             water: { radius: 8, color: "#4a90a4", weight: 2, fillColor: "#4a90a4", fillOpacity: 0.8 },
-            death: { radius: 10, color: "#daa520", weight: 3, fillColor: "#1a1a1a", fillOpacity: 0.9 }
+            death: { radius: 10, color: "#8a6a00", weight: 3, fillColor: "#daa520", fillOpacity: 0.9 }
         };
 
-        // Add markers
+        // Add markers and labels
         for (const key in locations) {
             const loc = locations[key];
             const style = markerStyles[loc.type];
 
+            // Add circle marker
             const marker = L.circleMarker([loc.lat, loc.lng], style).addTo(map);
 
             marker.bindPopup(`
@@ -243,6 +285,19 @@
                 <div class="popup-name">${loc.name}</div>
                 <div class="popup-desc">${loc.desc}</div>
             `);
+
+            // Add permanent label
+            const labelClass = loc.type === 'death' ? 'location-label death' :
+                               loc.type === 'water' ? 'location-label water' : 'location-label';
+
+            L.marker([loc.lat, loc.lng], {
+                icon: L.divIcon({
+                    className: labelClass,
+                    html: `<div class="label-text"><span class="chinese">${loc.chinese}</span><span class="english">${loc.name}</span></div>`,
+                    iconSize: [120, 20],
+                    iconAnchor: [-loc.labelOffset[0], 10 - loc.labelOffset[1]]
+                })
+            }).addTo(map);
         }
 
         // Exile route polyline
@@ -262,9 +317,6 @@
             dashArray: "12 8",
             lineCap: "round"
         }).addTo(map);
-
-        // Add directional arrows along the route
-        // (Using decorated polyline would require a plugin, so we'll keep it simple)
 
         // Fit bounds to show all markers with padding
         const bounds = L.latLngBounds([
