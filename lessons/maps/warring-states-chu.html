@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>戰國七雄 | Seven Warring States (c. 300 BCE)</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        html, body { height: 100%; margin: 0; background: #0b0d10; }
+        #map { height: 100%; width: 100%; }
+
+        .map-title {
+            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+            color: #f2f5f7;
+            background: rgba(10, 12, 16, 0.92);
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            max-width: 300px;
+        }
+        .map-title .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #daa520;
+            letter-spacing: 0.15em;
+        }
+        .map-title .main {
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .map-title .sub {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .legend {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #f2f5f7;
+            background: rgba(10, 12, 16, 0.92);
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 11px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            max-width: 180px;
+        }
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #daa520;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+        }
+        .legend-marker {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid;
+        }
+        .legend-line {
+            width: 20px;
+            height: 3px;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: rgba(14, 16, 20, 0.96);
+            color: #f2f5f7;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .leaflet-popup-tip {
+            background: rgba(14, 16, 20, 0.96);
+        }
+        .leaflet-popup-content {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 12px 14px;
+        }
+        .popup-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .popup-name {
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .popup-desc {
+            opacity: 0.8;
+            margin-top: 6px;
+            font-size: 12px;
+        }
+
+        /* State label styles */
+        .state-label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        const map = L.map("map", {
+            zoomControl: true,
+            preferCanvas: true,
+            attributionControl: false
+        });
+
+        // Dark basemap
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+            subdomains: "abcd",
+            maxZoom: 10,
+            minZoom: 4
+        }).addTo(map);
+
+        // Attribution
+        L.control.attribution({
+            position: 'bottomright',
+            prefix: '© OpenStreetMap © CARTO'
+        }).addTo(map);
+
+        // Title control
+        const titleControl = L.control({ position: "topleft" });
+        titleControl.onAdd = function() {
+            const div = L.DomUtil.create("div", "map-title");
+            div.innerHTML = `
+                <div class="chinese">戰國七雄</div>
+                <div class="main">Seven Warring States</div>
+                <div class="sub">c. 300 BCE — Chu dominated the south with its capital at Ying (郢), while Qin consolidated power in the west</div>
+            `;
+            return div;
+        };
+        titleControl.addTo(map);
+
+        // Legend control
+        const legendControl = L.control({ position: "bottomleft" });
+        legendControl.onAdd = function() {
+            const div = L.DomUtil.create("div", "legend");
+            div.innerHTML = `
+                <div class="legend-title">Legend</div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background: #c73e3a; border-color: #c73e3a;"></div>
+                    <span>Chu (楚) — Southern</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background: #4a4a8a; border-color: #4a4a8a;"></div>
+                    <span>Qin (秦) — Western</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background: #2d5a5a; border-color: #2d5a5a;"></div>
+                    <span>Qi (齊) — Eastern</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background: #8a6a4a; border-color: #8a6a4a;"></div>
+                    <span>Other States</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-line" style="background: #4a90a4;"></div>
+                    <span>Huai River</span>
+                </div>
+            `;
+            return div;
+        };
+        legendControl.addTo(map);
+
+        // State colors
+        const stateColors = {
+            chu: "#c73e3a",
+            qin: "#4a4a8a",
+            qi: "#2d5a5a",
+            zhao: "#8a6a4a",
+            wei: "#6a5a3a",
+            han: "#5a4a4a",
+            yan: "#4a5a6a"
+        };
+
+        // Capital cities with real coordinates
+        const capitals = {
+            ying: {
+                name: "Ying",
+                chinese: "郢",
+                state: "Chu",
+                stateChinese: "楚",
+                lat: 30.35,
+                lng: 112.24,
+                color: stateColors.chu,
+                desc: "Capital of Chu until 278 BCE. Center of southern culture and shamanism."
+            },
+            xianyang: {
+                name: "Xianyang",
+                chinese: "咸陽",
+                state: "Qin",
+                stateChinese: "秦",
+                lat: 34.33,
+                lng: 108.72,
+                color: stateColors.qin,
+                desc: "Capital of Qin. Would become capital of unified China in 221 BCE."
+            },
+            linzi: {
+                name: "Linzi",
+                chinese: "臨淄",
+                state: "Qi",
+                stateChinese: "齊",
+                lat: 36.88,
+                lng: 118.31,
+                color: stateColors.qi,
+                desc: "Capital of Qi. One of the largest cities in the ancient world."
+            },
+            handan: {
+                name: "Handan",
+                chinese: "邯鄲",
+                state: "Zhao",
+                stateChinese: "趙",
+                lat: 36.61,
+                lng: 114.48,
+                color: stateColors.zhao,
+                desc: "Capital of Zhao in the north."
+            },
+            daliang: {
+                name: "Daliang",
+                chinese: "大梁",
+                state: "Wei",
+                stateChinese: "魏",
+                lat: 34.80,
+                lng: 114.31,
+                color: stateColors.wei,
+                desc: "Capital of Wei (modern Kaifeng)."
+            },
+            xinzheng: {
+                name: "Xinzheng",
+                chinese: "新鄭",
+                state: "Han",
+                stateChinese: "韓",
+                lat: 34.40,
+                lng: 113.73,
+                color: stateColors.han,
+                desc: "Capital of Han, smallest of the seven states."
+            },
+            ji: {
+                name: "Ji",
+                chinese: "薊",
+                state: "Yan",
+                stateChinese: "燕",
+                lat: 39.91,
+                lng: 116.39,
+                color: stateColors.yan,
+                desc: "Capital of Yan (modern Beijing)."
+            }
+        };
+
+        // Add capital markers
+        for (const key in capitals) {
+            const cap = capitals[key];
+
+            const marker = L.circleMarker([cap.lat, cap.lng], {
+                radius: key === 'ying' ? 12 : 9,
+                color: cap.color,
+                weight: key === 'ying' ? 4 : 2,
+                fillColor: cap.color,
+                fillOpacity: 0.9
+            }).addTo(map);
+
+            marker.bindPopup(`
+                <div class="popup-chinese" style="color: ${cap.color}">${cap.stateChinese} ${cap.chinese}</div>
+                <div class="popup-name">${cap.state} — ${cap.name}</div>
+                <div class="popup-desc">${cap.desc}</div>
+            `);
+        }
+
+        // State labels (approximate center of territories)
+        const stateLabels = [
+            { chinese: "楚", lat: 30.5, lng: 112.5, color: stateColors.chu },
+            { chinese: "秦", lat: 34.5, lng: 107.5, color: stateColors.qin },
+            { chinese: "齊", lat: 36.5, lng: 118.5, color: stateColors.qi },
+            { chinese: "趙", lat: 38.0, lng: 114.0, color: stateColors.zhao },
+            { chinese: "魏", lat: 35.5, lng: 113.0, color: stateColors.wei },
+            { chinese: "韓", lat: 34.0, lng: 112.5, color: stateColors.han },
+            { chinese: "燕", lat: 40.5, lng: 117.0, color: stateColors.yan }
+        ];
+
+        stateLabels.forEach(label => {
+            L.marker([label.lat, label.lng], {
+                icon: L.divIcon({
+                    className: 'state-label',
+                    html: `<span style="color: ${label.color}">${label.chinese}</span>`,
+                    iconSize: [40, 20],
+                    iconAnchor: [20, 10]
+                })
+            }).addTo(map);
+        });
+
+        // Huai River approximate path (simplified)
+        const huaiRiver = [
+            [32.95, 112.50],
+            [32.80, 113.50],
+            [32.60, 114.50],
+            [32.40, 115.40],
+            [32.60, 116.50],
+            [33.00, 117.50],
+            [33.20, 118.60]
+        ];
+
+        L.polyline(huaiRiver, {
+            weight: 3,
+            opacity: 0.7,
+            color: "#4a90a4",
+            lineCap: "round"
+        }).addTo(map);
+
+        // Add Huai River label
+        L.marker([32.5, 115.5], {
+            icon: L.divIcon({
+                className: 'state-label',
+                html: '<span style="color: #4a90a4; font-size: 12px;">淮河 Huai River</span>',
+                iconSize: [100, 15],
+                iconAnchor: [50, 7]
+            })
+        }).addTo(map);
+
+        // Yangtze River approximate path (simplified)
+        const yangtze = [
+            [29.50, 106.00],
+            [29.80, 108.00],
+            [30.20, 110.00],
+            [30.40, 112.00],
+            [30.00, 114.00],
+            [30.50, 116.00],
+            [31.20, 118.00],
+            [31.50, 120.00],
+            [31.30, 121.50]
+        ];
+
+        L.polyline(yangtze, {
+            weight: 3,
+            opacity: 0.6,
+            color: "#4a90a4",
+            lineCap: "round"
+        }).addTo(map);
+
+        // Fit bounds to show all of China
+        const bounds = L.latLngBounds([
+            [27.0, 105.0],
+            [42.0, 122.0]
+        ]);
+        map.fitBounds(bounds, { padding: [30, 30] });
+    </script>
+</body>
+</html>

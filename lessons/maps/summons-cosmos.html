@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>招魂宇宙觀 | The Cosmos of the Summons of the Soul</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            background: linear-gradient(180deg, #0a0c10 0%, #141820 100%);
+            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+            color: #f2f5f7;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #daa520;
+            letter-spacing: 0.15em;
+        }
+
+        .title .english {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+
+        .cosmos {
+            position: relative;
+            width: min(90vw, 700px);
+            height: min(80vh, 600px);
+        }
+
+        /* Center - Home */
+        .home {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(218, 165, 32, 0.3) 0%, rgba(218, 165, 32, 0.05) 70%, transparent 100%);
+            border: 3px solid #daa520;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 0 60px rgba(218, 165, 32, 0.3);
+        }
+
+        .home .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #daa520;
+        }
+
+        .home .english {
+            font-size: 11px;
+            color: #f2f5f7;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        .home .subtext {
+            font-size: 9px;
+            color: #f2f5f7;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        /* Direction boxes */
+        .direction {
+            position: absolute;
+            width: 160px;
+            background: rgba(20, 24, 32, 0.95);
+            border-radius: 10px;
+            padding: 12px 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .direction:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .direction .header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .direction .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .direction .english {
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        .direction .dangers {
+            font-size: 10px;
+            line-height: 1.5;
+            opacity: 0.85;
+        }
+
+        /* Direction-specific colors and positions */
+        .east {
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            border-left: 4px solid #e07a3a;
+        }
+        .east .chinese { color: #e07a3a; }
+
+        .south {
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 4px solid #c73e3a;
+        }
+        .south .chinese { color: #c73e3a; }
+
+        .west {
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            border-right: 4px solid #a07030;
+        }
+        .west .chinese { color: #a07030; }
+
+        .north {
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom: 4px solid #4a90a4;
+        }
+        .north .chinese { color: #4a90a4; }
+
+        /* Above and Below */
+        .above {
+            top: 25%;
+            right: 12%;
+            border-left: 4px solid #8a6ab0;
+            width: 140px;
+        }
+        .above .chinese { color: #8a6ab0; }
+
+        .below {
+            bottom: 25%;
+            left: 12%;
+            border-right: 4px solid #505a60;
+            width: 140px;
+        }
+        .below .chinese { color: #505a60; }
+
+        /* Connecting lines */
+        .lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .lines svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .line {
+            stroke-dasharray: 8 6;
+            stroke-opacity: 0.4;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Refrain */
+        .refrain {
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: rgba(199, 62, 58, 0.15);
+            border-radius: 8px;
+            border: 1px solid rgba(199, 62, 58, 0.3);
+        }
+
+        .refrain .text {
+            font-style: italic;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .refrain .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 16px;
+            color: #daa520;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .direction {
+                width: 130px;
+                padding: 10px;
+            }
+            .direction .chinese {
+                font-size: 16px;
+            }
+            .direction .dangers {
+                font-size: 9px;
+            }
+            .home {
+                width: 100px;
+                height: 100px;
+            }
+            .home .chinese {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <div class="chinese">招魂宇宙觀</div>
+            <div class="english">The Dangerous Cosmos — Summons of the Soul (招魂)</div>
+        </div>
+
+        <div class="cosmos">
+            <!-- Connecting lines SVG -->
+            <svg class="lines" viewBox="0 0 700 600" preserveAspectRatio="xMidYMid meet">
+                <!-- Lines from center to directions -->
+                <line class="line" x1="350" y1="300" x2="620" y2="300" stroke="#e07a3a" />
+                <line class="line" x1="350" y1="300" x2="80" y2="300" stroke="#a07030" />
+                <line class="line" x1="350" y1="300" x2="350" y2="70" stroke="#4a90a4" />
+                <line class="line" x1="350" y1="300" x2="350" y2="530" stroke="#c73e3a" />
+                <line class="line" x1="350" y1="300" x2="560" y2="170" stroke="#8a6ab0" />
+                <line class="line" x1="350" y1="300" x2="140" y2="430" stroke="#505a60" />
+            </svg>
+
+            <!-- Center - Home (Chu) -->
+            <div class="home">
+                <div class="chinese">楚</div>
+                <div class="english">CHU — HOME</div>
+                <div class="subtext">"Return to your old abode"</div>
+            </div>
+
+            <!-- East -->
+            <div class="direction east">
+                <div class="header">
+                    <span class="chinese">東</span>
+                    <span class="english">EAST</span>
+                </div>
+                <div class="dangers">
+                    Giants 1,000 fathoms tall<br>
+                    Ten suns melting metal<br>
+                    Soul would be consumed
+                </div>
+            </div>
+
+            <!-- South -->
+            <div class="direction south">
+                <div class="header">
+                    <span class="chinese">南</span>
+                    <span class="english">SOUTH</span>
+                </div>
+                <div class="dangers">
+                    Tattooed cannibals<br>
+                    Nine-headed Serpent<br>
+                    Great fox of 100 leagues
+                </div>
+            </div>
+
+            <!-- West -->
+            <div class="direction west">
+                <div class="header">
+                    <span class="chinese">西</span>
+                    <span class="english">WEST</span>
+                </div>
+                <div class="dangers">
+                    Moving Sands<br>
+                    Giant ants & wasps<br>
+                    Thunder's Chasm
+                </div>
+            </div>
+
+            <!-- North -->
+            <div class="direction north">
+                <div class="header">
+                    <span class="chinese">北</span>
+                    <span class="english">NORTH</span>
+                </div>
+                <div class="dangers">
+                    Layered ice rises high<br>
+                    Snowflakes fly 100 leagues<br>
+                    You cannot long stay
+                </div>
+            </div>
+
+            <!-- Above -->
+            <div class="direction above">
+                <div class="header">
+                    <span class="chinese">上</span>
+                    <span class="english">ABOVE</span>
+                </div>
+                <div class="dangers">
+                    Tigers & leopards<br>
+                    Nine-headed men<br>
+                    Jackal-wolves
+                </div>
+            </div>
+
+            <!-- Below -->
+            <div class="direction below">
+                <div class="header">
+                    <span class="chinese">下</span>
+                    <span class="english">BELOW</span>
+                </div>
+                <div class="dangers">
+                    Earth God Tu Bo (土伯)<br>
+                    Nine-coiled, horned<br>
+                    Tiger head, bull body
+                </div>
+            </div>
+        </div>
+
+        <div class="refrain">
+            <div class="text">"O soul, come back! Return to your old abode."</div>
+            <div class="chinese">魂兮歸來！反故居些。</div>
+        </div>
+    </div>
+</body>
+</html>

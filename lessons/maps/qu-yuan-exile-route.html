@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>屈原流亡路線 | Qu Yuan's Exile Route (278 BCE)</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        html, body { height: 100%; margin: 0; background: #0b0d10; }
+        #map { height: 100%; width: 100%; }
+
+        .map-title {
+            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+            color: #f2f5f7;
+            background: rgba(10, 12, 16, 0.92);
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            max-width: 280px;
+        }
+        .map-title .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #daa520;
+            letter-spacing: 0.1em;
+        }
+        .map-title .main {
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .map-title .sub {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .legend {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #f2f5f7;
+            background: rgba(10, 12, 16, 0.92);
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #daa520;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        .legend-marker {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid;
+        }
+        .legend-line {
+            width: 24px;
+            height: 3px;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: rgba(14, 16, 20, 0.96);
+            color: #f2f5f7;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .leaflet-popup-tip {
+            background: rgba(14, 16, 20, 0.96);
+        }
+        .leaflet-popup-content {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 12px 14px;
+        }
+        .popup-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 18px;
+            color: #daa520;
+            font-weight: 600;
+        }
+        .popup-name {
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .popup-desc {
+            opacity: 0.8;
+            margin-top: 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        const map = L.map("map", {
+            zoomControl: true,
+            preferCanvas: true,
+            attributionControl: false
+        });
+
+        // Dark basemap
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+            subdomains: "abcd",
+            maxZoom: 12,
+            minZoom: 5
+        }).addTo(map);
+
+        // Attribution
+        L.control.attribution({
+            position: 'bottomright',
+            prefix: '© OpenStreetMap © CARTO'
+        }).addTo(map);
+
+        // Title control
+        const titleControl = L.control({ position: "topleft" });
+        titleControl.onAdd = function() {
+            const div = L.DomUtil.create("div", "map-title");
+            div.innerHTML = `
+                <div class="chinese">屈原流亡路線</div>
+                <div class="main">Qu Yuan's Exile Route</div>
+                <div class="sub">278 BCE — From the fallen capital of Ying through the waterways of Chu to his final destination at the Miluo River</div>
+            `;
+            return div;
+        };
+        titleControl.addTo(map);
+
+        // Legend control
+        const legendControl = L.control({ position: "bottomleft" });
+        legendControl.onAdd = function() {
+            const div = L.DomUtil.create("div", "legend");
+            div.innerHTML = `
+                <div class="legend-title">Legend</div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background: #c73e3a; border-color: #c73e3a;"></div>
+                    <span>Capital / Major City</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background: #4a90a4; border-color: #4a90a4;"></div>
+                    <span>Water Feature</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background: #1a1a1a; border-color: #daa520;"></div>
+                    <span>Death Site</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-line" style="background: #c73e3a;"></div>
+                    <span>Exile Route</span>
+                </div>
+            `;
+            return div;
+        };
+        legendControl.addTo(map);
+
+        // Locations with real coordinates
+        const locations = {
+            ying: {
+                name: "Ying",
+                chinese: "郢",
+                lat: 30.35,
+                lng: 112.24,
+                type: "capital",
+                desc: "Capital of Chu until 278 BCE. Captured by Qin general Bai Qi."
+            },
+            jingzhou: {
+                name: "Dragon Gate",
+                chinese: "龍門",
+                lat: 30.32,
+                lng: 112.28,
+                type: "gate",
+                desc: "Eastern gate of Ying. 'I passed through the city gate with a heavy heart.'"
+            },
+            xiaRiver: {
+                name: "Xia River",
+                chinese: "夏水",
+                lat: 30.15,
+                lng: 112.60,
+                type: "water",
+                desc: "Tributary of the Yangtze. 'Following the waters of the Chiang and Hsia, I travelled into exile.'"
+            },
+            yangtze: {
+                name: "Yangtze River",
+                chinese: "江",
+                lat: 29.85,
+                lng: 113.10,
+                type: "water",
+                desc: "Main artery of Chu. Simply called 'the River' (江) in the poems."
+            },
+            dongting: {
+                name: "Dongting Lake",
+                chinese: "洞庭湖",
+                lat: 29.31,
+                lng: 112.95,
+                type: "water",
+                desc: "Great lake of the south. 'South up to the Tung-t'ing lake, and then north again to the River.'"
+            },
+            miluo: {
+                name: "Miluo River",
+                chinese: "汨羅江",
+                lat: 28.80,
+                lng: 113.08,
+                type: "death",
+                desc: "Site of Qu Yuan's ritual suicide in 278 BCE. Origin of the Dragon Boat Festival."
+            }
+        };
+
+        // Marker styles by type
+        const markerStyles = {
+            capital: { radius: 10, color: "#c73e3a", weight: 3, fillColor: "#c73e3a", fillOpacity: 0.9 },
+            gate: { radius: 7, color: "#c73e3a", weight: 2, fillColor: "#c73e3a", fillOpacity: 0.7 },
+            water: { radius: 8, color: "#4a90a4", weight: 2, fillColor: "#4a90a4", fillOpacity: 0.8 },
+            death: { radius: 10, color: "#daa520", weight: 3, fillColor: "#1a1a1a", fillOpacity: 0.9 }
+        };
+
+        // Add markers
+        for (const key in locations) {
+            const loc = locations[key];
+            const style = markerStyles[loc.type];
+
+            const marker = L.circleMarker([loc.lat, loc.lng], style).addTo(map);
+
+            marker.bindPopup(`
+                <div class="popup-chinese">${loc.chinese}</div>
+                <div class="popup-name">${loc.name}</div>
+                <div class="popup-desc">${loc.desc}</div>
+            `);
+        }
+
+        // Exile route polyline
+        const exileRoute = [
+            [30.35, 112.24],  // Ying
+            [30.32, 112.28],  // Dragon Gate
+            [30.15, 112.60],  // Xia River
+            [29.85, 113.10],  // Yangtze
+            [29.31, 112.95],  // Dongting
+            [28.80, 113.08]   // Miluo
+        ];
+
+        L.polyline(exileRoute, {
+            weight: 4,
+            opacity: 0.8,
+            color: "#c73e3a",
+            dashArray: "12 8",
+            lineCap: "round"
+        }).addTo(map);
+
+        // Add directional arrows along the route
+        // (Using decorated polyline would require a plugin, so we'll keep it simple)
+
+        // Fit bounds to show all markers with padding
+        const bounds = L.latLngBounds([
+            [28.5, 111.8],
+            [30.6, 113.5]
+        ]);
+        map.fitBounds(bounds, { padding: [50, 50] });
+    </script>
+</body>
+</html>

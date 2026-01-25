@@ -252,41 +252,72 @@
             font-size: 1.1rem;
         }
 
-        /* Tables */
+        /* Tables - Professional Styling */
         .table-container {
             overflow-x: auto;
-            margin: 1rem 0;
+            margin: 1.25rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         thead {
-            background: var(--ink);
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
             color: var(--paper);
         }
 
         th {
-            font-weight: 500;
+            font-weight: 600;
             text-align: left;
-            padding: 0.6rem 0.75rem;
-            font-size: 0.65rem;
-            letter-spacing: 0.04em;
+            padding: 14px 18px;
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
+            border-bottom: 2px solid var(--vermillion);
+        }
+
+        th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        th:last-child {
+            border-top-right-radius: 8px;
         }
 
         td {
-            padding: 12px 14px;
-            border-bottom: 1px solid var(--paper-dark);
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             vertical-align: top;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 8px;
+        }
+
+        tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 8px;
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(0, 0, 0, 0.02);
         }
 
         tr:hover td {
-            background: rgba(199, 62, 58, 0.04);
+            background: rgba(199, 62, 58, 0.06);
             transition: background 0.2s ease;
         }
 
@@ -383,17 +414,51 @@
             font-weight: 500;
         }
 
-        /* Map Section */
+        /* Interactive Map Section */
+        .map-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .map-section {
+            margin: 2rem 0;
+        }
+
+        .map-section h4 {
+            margin-bottom: 0.75rem;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .map-link:hover {
+            color: var(--vermillion);
+        }
+
+        /* Legacy ASCII Map for simple diagrams */
         .map-container {
-            background: #1a1a2e;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
             color: #e0e0e0;
             padding: 1.5rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
+            border-radius: 8px;
+            font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
             font-size: 0.75rem;
-            line-height: 1.3;
+            line-height: 1.4;
             overflow-x: auto;
             margin: 1.25rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(218, 165, 32, 0.2);
         }
 
         .map-container pre {
@@ -860,17 +925,22 @@
                     <h3>Background: The Orange Tree in Chu Culture</h3>
                     <p>The orange tree was native to the Chu region. According to ancient belief, oranges grown south of the Huai River would become bitter <em>zhi</em> (枳) if transplanted north. This botanical "loyalty" made it a powerful symbol.</p>
 
-                    <div class="map-container">
-<pre>
-    =============== HUAI RIVER (淮河) ===============
-                         |
-         NORTH           |           SOUTH
-                         |
-    Orange becomes       |    Orange thrives
-    bitter "zhi" (枳)    |    as "ju" (橘)
-                         |
-    = Disloyalty         |    = Loyalty
-</pre>
+                    <div class="feature-grid" style="margin: 1.5rem 0;">
+                        <div class="feature-card" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%); border-left: 4px solid #8a8a8a;">
+                            <div class="label" style="color: #666;">North of Huai River</div>
+                            <div class="value" style="color: #666;">枳 <span style="font-size: 0.7rem;">(zhǐ)</span></div>
+                            <p style="font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0; color: #888;">Orange becomes bitter — <em>Disloyalty</em></p>
+                        </div>
+                        <div class="feature-card" style="background: linear-gradient(135deg, #fff8e6 0%, #fff3d0 100%); border-left: 4px solid var(--gold); text-align: center; padding: 1rem;">
+                            <div style="font-family: 'Noto Sans SC', sans-serif; font-size: 1rem; color: var(--water);">淮河</div>
+                            <div style="font-size: 0.7rem; color: var(--ink-faint);">HUAI RIVER</div>
+                            <div style="font-size: 0.65rem; margin-top: 0.3rem; color: var(--ink-faint);">The boundary</div>
+                        </div>
+                        <div class="feature-card" style="background: linear-gradient(135deg, #e8f5e8 0%, #d4ebd4 100%); border-left: 4px solid #2a6a2a;">
+                            <div class="label" style="color: #2a6a2a;">South of Huai River</div>
+                            <div class="value" style="color: #2a6a2a;">橘 <span style="font-size: 0.7rem;">(jú)</span></div>
+                            <p style="font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0; color: #3a7a3a;">Orange thrives — <em>Loyalty</em></p>
+                        </div>
                     </div>
 
                     <h3>Summary & Analysis</h3>
@@ -1129,28 +1199,9 @@
 
                     <h3>The Dangerous Cosmos: Six Directions</h3>
 
-                    <div class="map-container">
-<pre>
-                    NORTH (北)
-                 [Layered ice,
-                  snowflakes fly
-                  a hundred leagues]
-                        |
-    WEST (西)           |           EAST (東)
-    [Moving Sands,      |        [Giants 1000
-     giant ants,        |         fathoms tall,
-     Thunder's Chasm,   |         ten suns,
-     no water]        HOME        melting metal]
-                     (CHU)
-                        |
-                    SOUTH (南)
-                 [Tattooed people,
-                  cannibals,
-                  Nine-headed Serpent]
-
-          ABOVE: Tigers, leopards, nine-headed monster
-          BELOW: Earth God Tu Bo (土伯)
-</pre>
+                    <div class="map-section">
+                        <iframe src="maps/summons-cosmos.html" class="map-frame" style="height: 600px;" title="The Dangerous Cosmos - Six Directions"></iframe>
+                        <a href="maps/summons-cosmos.html" target="_blank" class="map-link">↗ Open full screen</a>
                     </div>
 
                     <div class="table-container">
@@ -1372,62 +1423,19 @@
             <h2>Maps: The Geography of Chu</h2>
 
             <h3>The State of Chu and Its Neighbors (c. 300 BCE)</h3>
+            <p>The Warring States period saw seven major powers vying for supremacy. Chu dominated the south, with its capital at Ying (郢), while Qin consolidated power in the west—eventually conquering all rivals by 221 BCE.</p>
 
-            <div class="map-container">
-<pre>
-    +--------------------------------------------------+
-    |                                                  |
-    |     QIN (秦)          ZHOU           QI (齊)     |
-    |   [Northwest]      [Center]       [Northeast]   |
-    |        \              |              /          |
-    |         \   HAN  WEI |  LU SONG    /           |
-    |          \    \___|___/    |      /            |
-    |           \       |        |     /             |
-    |  ==========HUAI RIVER (淮河)==========          |
-    |                   |                             |
-    |            +------+------+                      |
-    |            |             |                      |
-    |            |    CHU      |                      |
-    |            |    (楚)     |                      |
-    |            |             |                      |
-    |            |  * Ying     |                      |
-    |            |             |                      |
-    |            +------+------+                      |
-    |                   |                             |
-    |            [Southern frontier]                  |
-    +--------------------------------------------------+
-</pre>
+            <div class="map-section">
+                <iframe src="maps/warring-states-chu.html" class="map-frame" title="Seven Warring States c. 300 BCE"></iframe>
+                <a href="maps/warring-states-chu.html" target="_blank" class="map-link">↗ Open full screen</a>
             </div>
 
             <h3>Qu Yuan's Exile Route (278 BCE)</h3>
+            <p>Following the fall of Ying to Qin forces under General Bai Qi, Qu Yuan traveled eastward through the waterways of Chu—past Dongting Lake and eventually to the Miluo River, where he ended his life.</p>
 
-            <div class="map-container">
-<pre>
-    YING (郢) [Capital]
-        |
-        | Departure: "day chia, in the morning"
-        | "middle of spring"
-        v
-    Dragon Gate (龍門)
-        |
-        | Via Xia River (夏水)
-        |
-        v
-    YANGTZE RIVER (江)
-        |
-        | "Following the waters of the Chiang and Hsia"
-        |
-        +-----> Dongting Lake (洞庭) [South]
-        |
-        v
-    Continued eastward
-        |
-        | "Nine years without returning"
-        |
-        v
-    MILUO RIVER (汨羅江)
-    [Death by drowning, 278 BCE]
-</pre>
+            <div class="map-section">
+                <iframe src="maps/qu-yuan-exile-route.html" class="map-frame" title="Qu Yuan's Exile Route"></iframe>
+                <a href="maps/qu-yuan-exile-route.html" target="_blank" class="map-link">↗ Open full screen</a>
             </div>
 
             <h3>Key Locations</h3>
