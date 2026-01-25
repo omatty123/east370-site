@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Songs of Chu — Day 1: Li Sao & Nine Songs | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --vermillion: #c73e3a;
+            --vermillion-light: #e8d4d3;
+            --teal: #2d5a5a;
+            --water: #4a90a4;
+            --purple: #6a4a8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 50%, #4a1a1a 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 550px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-day {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            text-align: center;
+        }
+
+        .hero-meta-item span {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-meta-item strong {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .nav a.portal-link {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .nav a.portal-link:hover {
+            background: var(--gold-light);
+        }
+
+        .nav a.day-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Section Headers */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--ink);
+        }
+
+        h4 {
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin: 1.25rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: var(--paper-dark);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--vermillion);
+        }
+
+        .summary-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1rem;
+            border: 1px solid var(--paper-dark);
+        }
+
+        .feature-card .label {
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-card .value {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        /* Tables - Professional Styling */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.25rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: var(--paper);
+        }
+
+        th {
+            font-weight: 600;
+            text-align: left;
+            padding: 14px 18px;
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--vermillion);
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        tr:hover td {
+            background: rgba(199, 62, 58, 0.06);
+            transition: background 0.2s ease;
+        }
+
+        .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.05em;
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 3px solid var(--vermillion);
+            margin: 1.25rem 0;
+            padding: 0.75rem 1.25rem;
+            background: rgba(199, 62, 58, 0.04);
+            font-style: italic;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        blockquote p {
+            margin-bottom: 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 0.75rem 0 1rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+            line-height: 1.5;
+        }
+
+        /* Poem Cards */
+        .poem-card {
+            background: white;
+            border: 1px solid var(--paper-dark);
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .poem-card-header {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .poem-card-header.nine-songs {
+            background: linear-gradient(135deg, #1a3a4a 0%, #2a5a6a 100%);
+        }
+
+        .poem-card-header .chinese-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .poem-card-header .english-title {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .poem-card-header .pinyin {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+        .poem-card-body {
+            padding: 1.5rem;
+        }
+
+        .poem-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .poem-meta-item {
+            background: var(--paper-dark);
+            padding: 0.75rem;
+        }
+
+        .poem-meta-item .label {
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 0.2rem;
+        }
+
+        .poem-meta-item .value {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Theme Boxes */
+        .themes-box {
+            background: #fff8e6;
+            border-left: 3px solid var(--gold);
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0;
+        }
+
+        .themes-box h4 {
+            margin-top: 0;
+            color: var(--gold);
+        }
+
+        .themes-box ol {
+            margin-bottom: 0;
+        }
+
+        /* Author Box */
+        .author-box {
+            background: var(--paper-dark);
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--teal);
+        }
+
+        .author-box h4 {
+            margin-top: 0;
+            color: var(--teal);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--paper-dark);
+        }
+
+        .section-divider span {
+            background: var(--paper);
+            padding: 0 1.5rem;
+            position: relative;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.25rem;
+            color: var(--gold);
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--paper-dark);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            font-size: 0.85rem;
+        }
+
+        .toc ol {
+            margin: 0.75rem 0 0 1.25rem;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .toc a:hover {
+            color: var(--vermillion);
+        }
+
+        /* Study Questions */
+        .study-questions {
+            background: #e8f4e8;
+            padding: 1.25rem;
+            border-left: 3px solid #2a6a2a;
+            margin: 1.5rem 0;
+        }
+
+        .study-questions h4 {
+            margin-top: 0;
+            color: #2a6a2a;
+        }
+
+        .study-questions ol {
+            margin-bottom: 0;
+        }
+
+        /* Nine Songs Mini Cards */
+        .nine-songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .mini-poem-card {
+            background: white;
+            border: 1px solid var(--paper-dark);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .mini-poem-card .header {
+            background: linear-gradient(135deg, #1a3a4a 0%, #2a5a6a 100%);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .mini-poem-card .header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .mini-poem-card .header .english {
+            color: #fff;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        .mini-poem-card .body {
+            padding: 1rem;
+        }
+
+        .mini-poem-card .body p {
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .mini-poem-card blockquote {
+            font-size: 0.8rem;
+            margin: 0.75rem 0;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer .course-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 0.3rem;
+        }
+
+        footer .course-name {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2.5rem 1rem;
+            }
+
+            .hero-chinese {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.25rem;
+            }
+
+            .poem-card-header .chinese-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media print {
+            .nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 1rem;
+                background: white;
+                color: black;
+            }
+
+            .poem-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-day">Day 1</div>
+            <div class="hero-chinese">楚辭</div>
+            <h1>Songs of Chu</h1>
+            <p class="hero-subtitle">
+                Li Sao (Encountering Sorrow) and Selections from the Nine Songs
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span>Main Text</span>
+                    <strong>離騷 Li Sao</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Author</span>
+                    <strong>屈原 Qu Yuan</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Plus</span>
+                    <strong>九歌 Nine Songs</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">← Course Home</a>
+            <a href="#lisao">Li Sao</a>
+            <a href="#ninesongs">Nine Songs</a>
+            <a href="#themes">Themes</a>
+            <a href="#questions">Questions</a>
+            <a href="songs-of-chu-day2.html" class="day-link">Day 2 →</a>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <h3>Day 1 Contents</h3>
+            <ol>
+                <li><a href="#lisao">Li Sao 離騷 (Encountering Sorrow)</a></li>
+                <li><a href="#ninesongs">From the Nine Songs 九歌</a>
+                    <ol style="margin-top: 0.5rem;">
+                        <li><a href="#hsiang-chun">The Princess of the Hsiang 湘君</a></li>
+                        <li><a href="#hsiang-furen">The Lady of the Hsiang 湘夫人</a></li>
+                        <li><a href="#tung-chun">The Lord of the East 東君</a></li>
+                        <li><a href="#kuo-shang">The Spirits of the Fallen 國殤</a></li>
+                        <li><a href="#li-hun">The Ritual Cycle 禮魂</a></li>
+                    </ol>
+                </li>
+                <li><a href="#themes">Central Themes</a></li>
+                <li><a href="#questions">Study Questions</a></li>
+            </ol>
+        </nav>
+
+        <!-- ==================== LI SAO ==================== -->
+        <section id="lisao">
+            <div class="poem-card">
+                <div class="poem-card-header">
+                    <div class="chinese-title">離騷</div>
+                    <div class="english-title">Encountering Sorrow</div>
+                    <div class="pinyin">Lí Sāo</div>
+                </div>
+                <div class="poem-card-body">
+                    <div class="poem-meta">
+                        <div class="poem-meta-item">
+                            <div class="label">Author</div>
+                            <div class="value">Qu Yuan (屈原)</div>
+                        </div>
+                        <div class="poem-meta-item">
+                            <div class="label">Length</div>
+                            <div class="value">373 lines — longest poem</div>
+                        </div>
+                        <div class="poem-meta-item">
+                            <div class="label">Form</div>
+                            <div class="value">Autobiographical lament</div>
+                        </div>
+                        <div class="poem-meta-item">
+                            <div class="label">Significance</div>
+                            <div class="value">Foundation of Chinese lyric poetry</div>
+                        </div>
+                    </div>
+
+                    <div class="summary-box">
+                        <p><strong>The Li Sao</strong> is the longest and most celebrated poem in the <em>Chuci</em> anthology. It is an autobiographical lament in which Qu Yuan describes his noble birth, his cultivation of virtue, his service to the king, his rejection by the court, and his cosmic wanderings in search of an ideal ruler or mate. The title has been interpreted as "Encountering Sorrow," "离忧" (Departing from Sorrow), or simply "Sorrow."</p>
+                    </div>
+
+                    <div class="author-box">
+                        <h4>About Qu Yuan (屈原, c. 340-278 BCE)</h4>
+                        <ul>
+                            <li>Born into Chu aristocracy — claims descent from the mythical emperor <strong>Kao Yang (高陽)</strong></li>
+                            <li>Served as Left Minister (左徒) under King Huai of Chu (楚懷王)</li>
+                            <li>Advocated alliance with Qi against the rising threat of Qin</li>
+                            <li>Slandered by rivals and exiled twice</li>
+                            <li>Drowned himself in the Miluo River (汨羅江) in 278 BCE</li>
+                            <li>Commemorated annually during the <strong>Dragon Boat Festival</strong> (端午節)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Key Terms & Names</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Chinese</th>
+                                    <th>Pinyin</th>
+                                    <th>Meaning / Significance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="chinese">高陽</td>
+                                    <td>Gāo Yáng</td>
+                                    <td>Mythical emperor; Qu Yuan's claimed ancestor</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">美人 / 美</td>
+                                    <td>měi rén / měi</td>
+                                    <td>"Fair One" / "Beauty" — the king or ideal ruler</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">香草</td>
+                                    <td>xiāng cǎo</td>
+                                    <td>Fragrant plants — symbol of virtue and moral worth</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">蘭 / 蕙</td>
+                                    <td>lán / huì</td>
+                                    <td>Orchid / melilotus — virtuous people</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">蕭艾</td>
+                                    <td>xiāo ài</td>
+                                    <td>Mugwort — corrupt courtiers, flatterers</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">彭咸</td>
+                                    <td>Péng Xián</td>
+                                    <td>Ancient worthy who drowned himself — Qu Yuan's model</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">靈氛</td>
+                                    <td>Líng Fēn</td>
+                                    <td>Diviner consulted by Qu Yuan</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">巫咸</td>
+                                    <td>Wū Xián</td>
+                                    <td>Shaman who descends with spirits</td>
+                                </tr>
+                                <tr>
+                                    <td class="chinese">崑崙</td>
+                                    <td>Kūnlún</td>
+                                    <td>Mythical mountain in the west; axis of the cosmos</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Structure & Summary</h3>
+
+                    <h4>Part 1 — Noble Birth and Cultivation (lines 1-50)</h4>
+                    <p>Qu Yuan introduces himself with an extraordinary genealogy and auspicious birth. He cultivates both inner virtue and outward beauty through fragrant plants:</p>
+                    <blockquote>
+                        "Scion of the High Lord Kao Yang,<br>
+                        Po Yung was my father's name.<br>
+                        When She Ti pointed to the first month of the year,<br>
+                        On the day <em>keng yin</em>, I passed from the womb."
+                    </blockquote>
+                    <blockquote>
+                        "Having from birth this inward beauty,<br>
+                        I added to it fair outward adornment:<br>
+                        I dressed in selinea and shady angelica,<br>
+                        And twined autumn orchids to make a garland."
+                    </blockquote>
+
+                    <h4>Part 2 — Service and Rejection (lines 51-120)</h4>
+                    <p>He offers loyal counsel to the king but is rejected. The "Fair One" (美人) listens to slanderers instead:</p>
+                    <blockquote>
+                        "But the Fragrant One refused to examine my true feelings:<br>
+                        He lent ear, instead, to slander, and raged against me.<br>
+                        How well I know that loyalty brings disaster;<br>
+                        Yet I will endure: I cannot give it up."
+                    </blockquote>
+
+                    <h4>Part 3 — The Corrupt Age (lines 121-200)</h4>
+                    <p>Society has inverted values. Worthless weeds hold power while fragrant flowers are despised:</p>
+                    <blockquote>
+                        "Thorns, king-grass, curly-ear hold the place of power:<br>
+                        But you must needs stand apart and not speak them fair."
+                    </blockquote>
+                    <blockquote>
+                        "They wear mugwort and cram their waistbands with it;<br>
+                        While the lovely valley orchids they say are not fit to wear."
+                    </blockquote>
+
+                    <h4>Part 4 — Historical Exempla (lines 201-280)</h4>
+                    <p>Qu Yuan surveys history for precedents: the sage-kings Yao and Shun vs. the tyrants Jie and Zhou. Worthy ministers like Yi Yin and Lü Wang found recognition — why not him?</p>
+                    <blockquote>
+                        "Tang of Shang and Yü of Hsia were reverent and respectful;<br>
+                        The house of Chou chose the true way without error."
+                    </blockquote>
+
+                    <h4>Part 5 — Cosmic Journey (lines 281-350)</h4>
+                    <p>Unable to find a worthy ruler on earth, Qu Yuan undertakes a shamanistic journey through the cosmos — riding dragons, commanding phoenixes, visiting heaven's gate:</p>
+                    <blockquote>
+                        "I yoked a team of jade dragons to a phoenix-figured car<br>
+                        And waited for the wind to come, to soar up on my journey."
+                    </blockquote>
+                    <blockquote>
+                        "I asked Heaven's porter to open up for me;<br>
+                        But he leant across Heaven's gate and eyed me churlishly."
+                    </blockquote>
+
+                    <h4>Part 6 — Failed Suits and Return (lines 351-369)</h4>
+                    <p>He seeks various divine maidens (allegorical rulers) but each suit fails. Finally, glimpsing his homeland from heaven, he cannot bring himself to leave:</p>
+                    <blockquote>
+                        "But when I had ascended the splendour of the heavens,<br>
+                        I suddenly caught a glimpse below of my old home.<br>
+                        The groom's heart was heavy and the horses for longing<br>
+                        Arched their heads back and refused to go on."
+                    </blockquote>
+
+                    <h4>Envoi (lines 370-373)</h4>
+                    <blockquote>
+                        "Enough! There are no true men in the state: no one to understand me.<br>
+                        Why should I cleave to the city of my birth?<br>
+                        Since none is worthy to work with in making good government,<br>
+                        I will go and join P'eng Hsien in the place where he abides."
+                    </blockquote>
+
+                    <div class="themes-box">
+                        <h4>Major Themes</h4>
+                        <ol>
+                            <li><strong>The Loyal Minister Rejected</strong> — Fidelity unrewarded; the good man slandered</li>
+                            <li><strong>Virtue vs. Corruption</strong> — Fragrant plants (virtue) vs. weeds (flatterers)</li>
+                            <li><strong>Inner Beauty and Outer Adornment</strong> — Moral cultivation expressed through dress</li>
+                            <li><strong>Time and Mortality</strong> — Fear of aging before achieving one's purpose</li>
+                            <li><strong>The Cosmic Journey</strong> — Shamanic flight as response to earthly failure</li>
+                            <li><strong>Homeland and Exile</strong> — Attachment to native soil despite rejection</li>
+                            <li><strong>Death as Integrity</strong> — Suicide as moral statement (following P'eng Hsien)</li>
+                        </ol>
+                    </div>
+
+                    <h3>Literary Techniques</h3>
+                    <ul>
+                        <li><strong>Allegory</strong> — The "Fair One" (美人) represents the king; fragrant plants represent virtuous people</li>
+                        <li><strong>Catalogue</strong> — Long lists of plants, historical figures, divine beings</li>
+                        <li><strong>Mythological framework</strong> — Journey through cosmic geography</li>
+                        <li><strong>Dialogue</strong> — Conversations with diviners, spirits, even his own soul</li>
+                        <li><strong>Rhetorical questions</strong> — "How can the round and square ever fit together?"</li>
+                    </ul>
+
+                    <h3>The Plant Symbolism System</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Plants</th>
+                                    <th>Represents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Fragrant (香)</strong></td>
+                                    <td>Orchid (蘭), angelica, melilotus, cassia</td>
+                                    <td>Virtue, moral worth, the gentleman</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Foul (臭)</strong></td>
+                                    <td>Mugwort (艾), dogwood, thorns</td>
+                                    <td>Corruption, flattery, the petty person</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Transformed</strong></td>
+                                    <td>Once-fragrant plants turned rank</td>
+                                    <td>Former worthies who became corrupt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== NINE SONGS ==================== -->
+        <div class="section-divider">
+            <span>九歌</span>
+        </div>
+
+        <section id="ninesongs">
+            <h2>From "The Nine Songs" (九歌 Jiǔ Gē)</h2>
+
+            <div class="summary-box">
+                <p>The <strong>Nine Songs</strong> are a collection of eleven shamanistic hymns used in Chu religious rituals. They describe the descent of various deities and the longing between worshippers and gods — often expressed as erotic yearning. Qu Yuan is traditionally credited with refining folk originals into literary masterpieces.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="label">Original Context</div>
+                    <div class="value">Shamanic ritual songs</div>
+                </div>
+                <div class="feature-card">
+                    <div class="label">Number</div>
+                    <div class="value">11 songs (despite "Nine")</div>
+                </div>
+                <div class="feature-card">
+                    <div class="label">Mode</div>
+                    <div class="value">Human-divine encounter</div>
+                </div>
+                <div class="feature-card">
+                    <div class="label">Key Image</div>
+                    <div class="value">Longing, waiting, parting</div>
+                </div>
+            </div>
+
+            <!-- Hsiang Chun -->
+            <div id="hsiang-chun" class="mini-poem-card">
+                <div class="header">
+                    <div class="chinese">湘君</div>
+                    <div class="english">The Princess of the Hsiang</div>
+                </div>
+                <div class="body">
+                    <p><strong>Setting:</strong> The Yuan and Hsiang rivers, Dongting Lake region. The speaker (male worshipper or shaman) awaits a goddess who does not come.</p>
+                    <blockquote>
+                        "My lady comes not but shyly waits:<br>
+                        Who is it tarries within the islet,<br>
+                        So wondrous beautiful and fair?"
+                    </blockquote>
+                    <blockquote>
+                        "Unless two hearts are both as one heart,<br>
+                        The matchmaker only wastes her labours;<br>
+                        And love not deep is too quickly broken."
+                    </blockquote>
+                    <p><strong>Key motif:</strong> Impossible rendezvous — gathering wild-figs in water, plucking lotuses from treetops. The boat journey as spiritual quest.</p>
+                </div>
+            </div>
+
+            <!-- Hsiang Fu Ren -->
+            <div id="hsiang-furen" class="mini-poem-card">
+                <div class="header">
+                    <div class="chinese">湘夫人</div>
+                    <div class="english">The Lady of the Hsiang</div>
+                </div>
+                <div class="body">
+                    <p><strong>Setting:</strong> Autumn on Dongting Lake. The male speaker awaits the Hsiang Lady (湘夫人), building an elaborate underwater palace for her.</p>
+                    <blockquote>
+                        "The Child of God, descending the northern bank,<br>
+                        Turns on me her eyes that are dark with longing.<br>
+                        Gently the wind of autumn whispers;<br>
+                        On the waves of the Tung-t'ing lake the leaves are falling."
+                    </blockquote>
+                    <blockquote>
+                        "I will build her a house within the water<br>
+                        Roofed all over with lotus leaves;<br>
+                        With walls of iris, of purple shells the chamber,<br>
+                        Perfumed pepper shall make the hall."
+                    </blockquote>
+                    <p><strong>Key motif:</strong> Elaborate preparation for an encounter that never fully happens. The underwater palace as impossible ideal.</p>
+                </div>
+            </div>
+
+            <!-- Tung Chun -->
+            <div id="tung-chun" class="mini-poem-card">
+                <div class="header">
+                    <div class="chinese">東君</div>
+                    <div class="english">The Lord of the East (Sun God)</div>
+                </div>
+                <div class="body">
+                    <p><strong>Setting:</strong> The sun god speaks as he rises in the east, reluctant to leave the beautiful ritual and music below.</p>
+                    <blockquote>
+                        "With a faint flush I start to come out of the east,<br>
+                        Shining down on my threshold, Fu-sang.<br>
+                        As I urge my horses slowly forward,<br>
+                        The night sky brightens, and day has come."
+                    </blockquote>
+                    <blockquote>
+                        "See, the priestesses, how skilled and lovely!<br>
+                        Whirling and dipping like birds in flight!<br>
+                        Unfolding the words in time to the dancing,<br>
+                        Pitch and beat all in perfect accord!"
+                    </blockquote>
+                    <p><strong>Key motif:</strong> The deity's perspective — enchanted by human worship, yet bound by cosmic duty to continue his journey.</p>
+                </div>
+            </div>
+
+            <!-- Kuo Shang -->
+            <div id="kuo-shang" class="mini-poem-card">
+                <div class="header">
+                    <div class="chinese">國殤</div>
+                    <div class="english">The Spirits of the Fallen</div>
+                </div>
+                <div class="body">
+                    <p><strong>Setting:</strong> A battlefield. This unique poem commemorates soldiers who died defending Chu — not a deity but heroic dead.</p>
+                    <blockquote>
+                        "Grasping our great shields and wearing our hide armour,<br>
+                        Wheel-hub to wheel-hub locked, we battle hand to hand.<br>
+                        Our banners darken the sky; the enemy teem like clouds:<br>
+                        Through the hail of arrows the warriors press forward."
+                    </blockquote>
+                    <blockquote>
+                        "Their bodies may have died, but their souls are living:<br>
+                        Heroes among the shades their valiant souls will be."
+                    </blockquote>
+                    <p><strong>Key motif:</strong> Martial valor as spiritual transcendence. The only "Nine Songs" piece without romantic longing — replaced by patriotic sacrifice.</p>
+                </div>
+            </div>
+
+            <!-- Li Hun -->
+            <div id="li-hun" class="mini-poem-card">
+                <div class="header">
+                    <div class="chinese">禮魂</div>
+                    <div class="english">The Ritual Cycle</div>
+                </div>
+                <div class="body">
+                    <p><strong>Function:</strong> A brief coda or envoi that closes the Nine Songs cycle, emphasizing the eternal return of the rituals.</p>
+                    <blockquote>
+                        "The rites are accomplished to the beating of the drums;<br>
+                        The flower-wand is passed on to succeeding dancers.<br>
+                        Lovely maidens sing their song, slow and solemnly.<br>
+                        Orchids in spring and chrysanthemums in autumn:<br>
+                        So it shall go on until the end of time."
+                    </blockquote>
+                    <p><strong>Key motif:</strong> Cyclical time, seasonal ritual, continuity of worship across generations.</p>
+                </div>
+            </div>
+
+            <h3>The Hsiang Goddesses: Literary Legacy</h3>
+            <p>The two Hsiang poems (湘君, 湘夫人) are among the most influential in Chinese literature. They established:</p>
+            <ul>
+                <li>The <strong>watery landscape of longing</strong> — lakes, mist, autumn leaves</li>
+                <li>The <strong>impossible meeting</strong> as central romantic motif</li>
+                <li>The <strong>elaborate, sensuous dwelling</strong> prepared for the beloved</li>
+                <li>The <strong>divine-human encounter</strong> as model for erotic poetry</li>
+            </ul>
+        </section>
+
+        <!-- ==================== THEMES ==================== -->
+        <section id="themes">
+            <h2>Central Themes Across Day 1 Readings</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Theme</th>
+                            <th>In Li Sao</th>
+                            <th>In Nine Songs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Longing for the Unattainable</strong></td>
+                            <td>Qu Yuan seeks a worthy ruler or ideal mate but fails</td>
+                            <td>Worshippers wait for gods who do not fully appear</td>
+                        </tr>
+                        <tr>
+                            <td><strong>The Journey</strong></td>
+                            <td>Cosmic flight through heaven and mythical lands</td>
+                            <td>Boat journeys across rivers and lakes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fragrant Plants</strong></td>
+                            <td>Moral allegory — virtue vs. corruption</td>
+                            <td>Ritual offerings, decoration, sensory beauty</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time and Mortality</strong></td>
+                            <td>"The days and months hurried on, never delaying"</td>
+                            <td>"Time once gone cannot be recovered"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Failed Communication</strong></td>
+                            <td>King won't listen; heaven's gate is barred</td>
+                            <td>Gods and humans cannot sustain contact</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Loyalty and Sacrifice</strong></td>
+                            <td>Death as moral statement (joining P'eng Hsien)</td>
+                            <td>Fallen warriors as heroic spirits (國殤)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ==================== STUDY QUESTIONS ==================== -->
+        <section id="questions">
+            <h2>Study Questions</h2>
+
+            <div class="study-questions">
+                <h4>For Li Sao</h4>
+                <ol>
+                    <li>How does Qu Yuan establish his moral authority in the opening section? Why does he begin with his genealogy and birth?</li>
+                    <li>Explain the "fragrant plant" allegory. What do orchids, angelica, and melilotus represent? What about mugwort and thorns?</li>
+                    <li>Who is the "Fair One" (美人)? How does this figure function allegorically in the poem?</li>
+                    <li>What is the significance of the cosmic journey? Why does Qu Yuan travel to heaven, and what does he find there?</li>
+                    <li>Why does Qu Yuan invoke P'eng Hsien at the end? What does this suggest about his understanding of virtue and death?</li>
+                    <li>How does the Li Sao balance personal grievance with political critique?</li>
+                </ol>
+            </div>
+
+            <div class="study-questions">
+                <h4>For the Nine Songs</h4>
+                <ol>
+                    <li>What is the relationship between the human worshipper and the deity in the Hsiang poems? Who is longing for whom?</li>
+                    <li>Compare the underwater palace in "The Lady of the Hsiang" with the descriptions of Chu palaces in "Summons of the Soul" (Day 2). What do these elaborate dwellings represent?</li>
+                    <li>How does "The Lord of the East" differ in perspective from the other Nine Songs? Why might the poem be written from the god's viewpoint?</li>
+                    <li>"The Spirits of the Fallen" is unique among the Nine Songs. What makes it different, and why might it be included in this religious collection?</li>
+                    <li>What does "The Ritual Cycle" suggest about the purpose and meaning of the Nine Songs as a whole?</li>
+                </ol>
+            </div>
+
+            <div class="study-questions">
+                <h4>Comparative Questions</h4>
+                <ol>
+                    <li>Both Li Sao and the Nine Songs involve seeking someone who cannot be reached. Compare Qu Yuan's search for a ruler with the shaman's search for a deity.</li>
+                    <li>How do the Li Sao and Nine Songs use landscape differently? Consider rivers, mountains, and cosmic geography.</li>
+                    <li>What role does music and ritual play in the Nine Songs? Is there an equivalent in Li Sao?</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="summary-box" style="margin-top: 3rem;">
+            <p><strong>Source:</strong> Birch, Cyril. 2008. <em>Anthology of Chinese Literature</em>. Vol. 1. New York: Grove Press.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="songs-of-chu-day2.html" style="display: inline-block; background: var(--vermillion); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 4px; font-size: 0.9rem;">Continue to Day 2 →</a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="course-title">中國文學與思想</div>
+        <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought · Winter 2026</div>
+    </footer>
+
+</body>
+
+</html>
