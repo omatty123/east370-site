@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Maps | Songs of Chu</title>
+    <title>Maps | EAST 370</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -37,9 +37,23 @@
             margin-bottom: 40px;
         }
 
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #71767b;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2f3336;
+        }
+
         .maps-grid {
             display: grid;
-            gap: 20px;
+            gap: 16px;
         }
 
         .map-card {
@@ -54,13 +68,13 @@
 
         .map-card:hover {
             background: #1d1f23;
-            border-color: #c73e3a;
+            border-color: #daa520;
         }
 
         .map-card .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 20px;
-            color: #c73e3a;
+            color: #daa520;
             margin-bottom: 4px;
         }
 
@@ -87,33 +101,68 @@
         .back-link:hover {
             color: #e7e9ea;
         }
+
+        /* Color variants */
+        .map-card.mengzi:hover { border-color: #2d5a5a; }
+        .map-card.mengzi .chinese { color: #3d7a7a; }
+
+        .map-card.mozi:hover { border-color: #8b4513; }
+        .map-card.mozi .chinese { color: #cd853f; }
+
+        .map-card.chuci:hover { border-color: #c73e3a; }
+        .map-card.chuci .chinese { color: #c73e3a; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="../songs-of-chu-day1.html" class="back-link">← Back to Songs of Chu</a>
+        <a href="../../index.html" class="back-link">← Course Portal</a>
 
         <h1>Maps</h1>
-        <p class="subtitle">Songs of Chu 楚辭</p>
+        <p class="subtitle">EAST 370 · Chinese Traditional Literature</p>
 
-        <div class="maps-grid">
-            <a href="warring-states-chu.html" class="map-card">
-                <div class="chinese">戰國</div>
-                <div class="title">Warring States (5th Century BCE)</div>
-                <div class="desc">The major states of the Chinese plain including Chu in the south.</div>
-            </a>
+        <div class="section">
+            <div class="section-title">Mengzi 孟子</div>
+            <div class="maps-grid">
+                <a href="mengzi-map.html" class="map-card mengzi">
+                    <div class="chinese">孟子地圖</div>
+                    <div class="title">Mengzi Interactive Map</div>
+                    <div class="desc">Geographic locations in the Mengzi. States visited, capitals, and Mount Tai.</div>
+                </a>
+            </div>
+        </div>
 
-            <a href="qu-yuan-exile-route.html" class="map-card">
-                <div class="chinese">屈原流亡路線</div>
-                <div class="title">Qu Yuan's Exile Route (278 BCE)</div>
-                <div class="desc">From the fallen capital of Ying through the waterways of Chu to the Miluo River.</div>
-            </a>
+        <div class="section">
+            <div class="section-title">Mozi 墨子</div>
+            <div class="maps-grid">
+                <a href="mozi-map.html" class="map-card mozi">
+                    <div class="chinese">墨子地圖</div>
+                    <div class="title">Mozi Interactive Map</div>
+                    <div class="desc">Mozi's mission to stop Chu's attack on Song. Ten days and nights on foot.</div>
+                </a>
+            </div>
+        </div>
 
-            <a href="summons-cosmos.html" class="map-card">
-                <div class="chinese">招魂</div>
-                <div class="title">Summons of the Soul Cosmos</div>
-                <div class="desc">The dangerous six directions from the Summons of the Soul.</div>
-            </a>
+        <div class="section">
+            <div class="section-title">Songs of Chu 楚辭</div>
+            <div class="maps-grid">
+                <a href="warring-states-chu.html" class="map-card chuci">
+                    <div class="chinese">戰國</div>
+                    <div class="title">Warring States (5th Century BCE)</div>
+                    <div class="desc">The major states of the Chinese plain including Chu in the south.</div>
+                </a>
+
+                <a href="qu-yuan-exile-route.html" class="map-card chuci">
+                    <div class="chinese">屈原流亡路線</div>
+                    <div class="title">Qu Yuan's Exile Route (278 BCE)</div>
+                    <div class="desc">From the fallen capital of Ying through the waterways of Chu to the Miluo River.</div>
+                </a>
+
+                <a href="summons-cosmos.html" class="map-card chuci">
+                    <div class="chinese">招魂</div>
+                    <div class="title">Summons of the Soul Cosmos</div>
+                    <div class="desc">The dangerous six directions from the Summons of the Soul.</div>
+                </a>
+            </div>
         </div>
     </div>
 </body>
