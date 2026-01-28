@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 Review & Preview | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #111;
+            --ink-light: #444;
+            --ink-faint: #999;
+            --paper: #fff;
+            --paper-alt: #f7f7f7;
+            --red: #c0392b;
+            --red-light: #e74c3c;
+            --border: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .header {
+            background: var(--ink);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .header-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--red-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        .header .date {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.3rem;
+        }
+
+        .nav {
+            background: var(--ink);
+            padding: 0.5rem 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .nav a {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        .nav a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        .nav a.active { background: var(--red); color: #fff; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        h2 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        h3 .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--red);
+            margin-right: 0.4rem;
+        }
+
+        p {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .theme-box {
+            background: var(--ink);
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .theme-box h4 {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--red-light);
+            margin-bottom: 0.4rem;
+        }
+
+        .theme-box p {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        .contrast {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .contrast { grid-template-columns: 1fr; }
+        }
+
+        .contrast-box {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.25rem;
+        }
+
+        .contrast-box h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+        }
+
+        .contrast-box p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+        }
+
+        .contrast-box.before { border-left: 3px solid var(--ink-faint); }
+        .contrast-box.after { border-left: 3px solid var(--red); }
+
+        .text-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .text-list li {
+            padding: 0.75rem 1rem;
+            background: var(--paper-alt);
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border-left: 3px solid var(--border);
+        }
+
+        .text-list li strong {
+            color: var(--ink);
+        }
+
+        .text-list li .source {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        .takeaway {
+            background: var(--paper-alt);
+            border-left: 3px solid var(--red);
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .takeaway h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+
+        .takeaway ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .takeaway li {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .preview-box {
+            background: var(--paper-alt);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1.5rem;
+        }
+
+        .preview-box h4 {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.75rem;
+        }
+
+        .preview-box ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .preview-box li {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            margin-bottom: 0.4rem;
+        }
+
+        .discussion {
+            border: 2px solid var(--ink);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .discussion h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .discussion p {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .discussion img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.75rem;
+        }
+
+        footer a { color: var(--red-light); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-label">Week 4</div>
+        <h1>Review & Preview</h1>
+        <div class="date">Tuesday, January 28 / Friday, January 31</div>
+    </header>
+
+    <nav class="nav">
+        <a href="../index.html">Course Portal</a>
+        <a href="zhuangzi-framing.html">Apophatic Framing</a>
+        <a href="zhuangzi.html">Zhuangzi Guide</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- TODAY'S REVIEW -->
+        <section class="section">
+            <h2>Tuesday Review</h2>
+            <h3><span class="ch">死</span> Death: Holding On vs. Letting Go</h3>
+
+            <div class="theme-box">
+                <h4>The Shift</h4>
+                <p>From "calling back the soul" (desperate to hold on) to treating death lightly, gently, with humility about what it even is.</p>
+            </div>
+
+            <div class="contrast">
+                <div class="contrast-box before">
+                    <h4>Before: Calling Back the Soul</h4>
+                    <p>Ritual intervention. Trying to reverse death. Grief as action. The soul might return if we do the right things.</p>
+                </div>
+                <div class="contrast-box after">
+                    <h4>Today: Letting Go</h4>
+                    <p>Acceptance. Death as transformation, not ending. Grief as attachment to be released. Humility about what we can know.</p>
+                </div>
+            </div>
+
+            <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin: 1.5rem 0 0.75rem;">Texts on Death</h4>
+            <ul class="text-list">
+                <li><strong>Zhuangzi's wife dies</strong>: He drums on a pot and sings. Transformation, not loss. <span class="source">Zhuangzi</span></li>
+                <li><strong>The skull speaks</strong>: Tells Zhuangzi the truth about death. Would not return to life if given the choice. <span class="source">Zhuangzi</span></li>
+                <li><strong>Four friends</strong>: Accept whatever the Creator makes of them. Illness, deformity, death: all just transformation. <span class="source">Zhuangzi</span></li>
+                <li><strong>Emperor Wen of Han</strong>: Generously tells his people to mourn only 3 days. Don't let grief consume life. <span class="source">Historical</span></li>
+                <li><strong>Wang Chong</strong>: Rationalist critique. Death is a process. Souls aren't real. None of this makes sense, and making sense is important. <span class="source">Lunheng</span></li>
+            </ul>
+        </section>
+
+        <!-- ZHUANGZI REVIEW -->
+        <section class="section">
+            <h2>Reviewing Zhuangzi Books 1 & 2</h2>
+            <h3><span class="ch">莊子</span> What Zhuangzi Actually Says</h3>
+
+            <p><strong>Realms matter.</strong> Dream and waking are different realms. Which realm you're in changes what counts as real. The butterfly dream isn't saying "nothing is real." It's saying: reality is realm-dependent.</p>
+
+            <p><strong>Frugal living, small desires.</strong> This makes you a clearer thinker. Not asceticism for its own sake, but because wanting less frees the mind.</p>
+
+            <p><strong>Big and Small are relative, but...</strong> Within a context, the relative difference is very important. The Peng bird and the cicada both "go their full distance," but one sees far and one sees near. Perspective matters.</p>
+
+            <p><strong>Words are not truth.</strong> Definitions, cognitive assertions about reality: these are not the same as reality. BUT when words and truth do mesh, it's often at words' most slippery. This is the enigmatic power of language as both philosophy and literature.</p>
+
+            <div class="takeaway">
+                <h4>Not Relativism: Real Directives</h4>
+                <ul>
+                    <li><strong>Big Mindedness > Small Mindedness.</strong> This is emphatic, not relative.</li>
+                    <li><strong>Live out your years.</strong> Concrete instruction.</li>
+                    <li><strong>Avoid ruin.</strong> This is your DUTY. Parallel to filial piety for Kongzi.</li>
+                </ul>
+            </div>
+
+            <p>Zhuangzi is not saying "do whatever you want." He's saying: don't get trapped in small-minded distinctions, don't invite destruction through ego, find the way to survive and flourish. These are demands.</p>
+        </section>
+
+        <!-- FRIDAY PREVIEW -->
+        <section class="section">
+            <h2>Friday Preview</h2>
+            <h3><span class="ch">史記</span> Biographies, Masters, and Mastery</h3>
+
+            <div class="preview-box">
+                <h4>Readings for Friday</h4>
+                <ul>
+                    <li><strong>Shiji</strong> (Records of the Grand Historian): Biographies. Learn about Sima Qian, the historian as author and moral witness.</li>
+                    <li><strong>More Zhuangzi</strong>: The masters and mastery. Cook Ding, the wheelwright, skilled action as Daoist practice.</li>
+                    <li><strong>Anti-relativism of the Dao school</strong>: More evidence that Daoism has standards, not just "whatever."</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 1rem;">The Shiji gives us biography as a philosophical form. Lives as arguments. Sima Qian himself suffered castration rather than abandon his work. What does it mean to write history under those conditions?</p>
+
+            <p>The mastery passages in Zhuangzi show us another face of Daoism: not withdrawal, but perfect skill. The cook's knife never dulls because he cuts through the spaces. The wheelwright can't teach what his hands know. This is knowledge that can't be spoken. Apophatic in practice.</p>
+        </section>
+
+        <!-- DISCUSSION -->
+        <div class="discussion">
+            <h4>For Discussion: Applying the Frameworks</h4>
+            <p>How would RU 儒 (Confucian), MO 墨 (Mohist), and DAO 道 (Daoist) perspectives respond to contemporary political action?</p>
+            <p>Consider: roles and relationships, impartial care vs. partial care, strategic calculation, avoiding ruin, the ego of the activist, working within vs. outside systems.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <a href="../index.html">&larr; Course Portal</a><br>
+        EAST 370 &middot; Chinese Traditional Literature and Thought &middot; Winter 2026
+    </footer>
+
+</body>
+</html>
