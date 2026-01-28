@@ -215,6 +215,103 @@
             height: 13px;
         }
 
+        /* This Week Section */
+        .this-week-section {
+            background: var(--ink);
+            padding: 1rem 1.5rem;
+        }
+
+        .this-week-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .this-week-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 70px;
+        }
+
+        .this-week-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .this-week-reading {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .this-week-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+        }
+
+        .this-week-title {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .this-week-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .this-week-link {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.7rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .this-week-link:hover {
+            color: #fff;
+            border-color: var(--gold);
+            background: rgba(184,134,11,0.2);
+        }
+
+        .this-week-link.primary {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .this-week-link.primary:hover {
+            background: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        @media (max-width: 768px) {
+            .this-week-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .this-week-links {
+                margin-left: 0;
+            }
+        }
+
         /* Timeline Section */
         .timeline-section {
             padding: 2rem 1.5rem 3rem;
@@ -673,6 +770,24 @@
         </div>
     </section>
 
+    <!-- This Week Section -->
+    <section class="this-week-section">
+        <div class="this-week-card">
+            <div class="this-week-label">This Week</div>
+            <div class="this-week-content">
+                <div class="this-week-reading">
+                    <span class="this-week-chinese">莊子</span>
+                    <span class="this-week-title">Zhuangzi: Death, Mastery, Anti-Relativism</span>
+                </div>
+                <div class="this-week-links">
+                    <a href="lessons/week4-review.html" class="this-week-link primary">Week 4 Review & Preview</a>
+                    <a href="lessons/zhuangzi-framing.html" class="this-week-link">The Apophatic & Zhuangzi</a>
+                    <a href="lessons/zhuangzi.html" class="this-week-link">Study Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Timeline Section -->
     <section class="timeline-section" id="timeline">
         <div class="timeline-header">
@@ -1081,12 +1196,6 @@
                 <a href="https://lawrence.instructure.com/courses/12070" target="_blank" rel="noopener">Canvas</a>
                 <a href="https://docs.google.com/document/d/1pe6TGFP7j74LkN62yXIgCsXP8-mQsPtPg4SqCZvGILo/edit?tab=t.0"
                     target="_blank" rel="noopener">Syllabus</a>
-            </div>
-
-            <div class="resource-card">
-                <h4>This Week</h4>
-                <a href="lessons/week4-review.html">Week 4 Review & Preview</a>
-                <a href="lessons/zhuangzi-framing.html">The Apophatic & Zhuangzi</a>
             </div>
 
             <div class="resource-card">
