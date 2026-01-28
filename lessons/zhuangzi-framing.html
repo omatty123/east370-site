@@ -335,6 +335,82 @@
             background: #f5f8f5;
         }
 
+        /* Two Ways Chart */
+        .two-ways {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .two-ways { grid-template-columns: 1fr; }
+        }
+
+        .way-col {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .way-col.apo .way-head { background: var(--ink); }
+        .way-col.cata .way-head { background: var(--paper-alt); border-bottom: 1px solid var(--border); }
+        .way-col.cata .way-head h3 { color: var(--ink); }
+        .way-col.cata .way-head .way-greek { color: var(--ink-faint); }
+
+        .way-head {
+            padding: 1rem 1.25rem;
+            text-align: center;
+        }
+
+        .way-head h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.15rem;
+        }
+
+        .way-head .way-greek {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+
+        .way-head .way-def {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.4rem;
+        }
+
+        .way-col.cata .way-head .way-def { color: var(--ink-light); }
+
+        .way-body {
+            padding: 1rem 1.25rem;
+        }
+
+        .way-body ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .way-body li {
+            font-size: 0.82rem;
+            color: var(--ink-light);
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .way-body li:last-child { border-bottom: none; }
+
+        .way-body .trad { font-weight: 500; color: var(--ink); }
+        .way-body .names { font-size: 0.75rem; color: var(--ink-faint); }
+
+        .way-col.apo .way-body .trad { color: var(--red-dark); }
+
         /* Ladder */
         .ladder {
             max-width: 650px;
@@ -588,6 +664,40 @@
             <p>You pick up the Zhuangzi. It tells you there is no fixed right or wrong. It tells you to "just go along with things." A man dreamed he was a butterfly and couldn't tell the difference.</p>
             <p>It sounds like freedom. It sounds easy. It sounds like permission to stop worrying.</p>
             <p class="kicker">It is none of those things.</p>
+        </div>
+
+        <!-- Two Ways Chart -->
+        <div class="two-ways">
+            <div class="way-col apo">
+                <div class="way-head">
+                    <h3>Apophatic</h3>
+                    <div class="way-greek">apophasis: "to un-say"</div>
+                    <div class="way-def">Truth by negation</div>
+                </div>
+                <div class="way-body">
+                    <ul>
+                        <li><span class="trad">Christian Mysticism</span> <span class="names">Desert Fathers & Mothers</span></li>
+                        <li><span class="trad">Madhyamaka Buddhism</span> <span class="names">Nagarjuna</span></li>
+                        <li><span class="trad">Daoism</span> <span class="names">Laozi, Zhuangzi</span></li>
+                        <li><span class="trad">Kabbalah</span> <span class="names">Ein Sof, Maimonides</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="way-col cata">
+                <div class="way-head">
+                    <h3>Cataphatic</h3>
+                    <div class="way-greek">kataphasis: "to affirm"</div>
+                    <div class="way-def">Truth by assertion</div>
+                </div>
+                <div class="way-body">
+                    <ul>
+                        <li><span class="trad">Scholastic Theology</span> <span class="names">Aquinas</span></li>
+                        <li><span class="trad">Confucianism</span> <span class="names">Kongzi, Mengzi</span></li>
+                        <li><span class="trad">Mohism</span> <span class="names">Mozi</span></li>
+                        <li><span class="trad">Systematic Philosophy</span> <span class="names">Aristotle, Hegel</span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
