@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Han Fu: Song Yu & Jia Yi | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --vermillion: #c73e3a;
+            --vermillion-light: #e8d4d3;
+            --teal: #2d5a5a;
+            --amber: #4a3a1a;
+            --purple: #3a1a4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 50%, #4a3a1a 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            text-align: center;
+        }
+
+        .hero-meta-item span {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-meta-item strong {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .nav a.portal-link {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .nav a.portal-link:hover {
+            background: var(--gold-light);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Section Headers */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .section-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink);
+        }
+
+        /* Author Cards */
+        .author-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .author-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .author-header {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .author-card.jiayi .author-header {
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+        }
+
+        .author-card.songyu .author-header {
+            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
+        }
+
+        .author-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-header h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-header .dates {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .author-body {
+            padding: 1.5rem;
+        }
+
+        .author-body h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .author-body h4:first-child {
+            margin-top: 0;
+        }
+
+        .author-body p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        .author-body ul {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            padding-left: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .author-body li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Work Cards */
+        .work-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .work-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .work-card.owl .work-header {
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+        }
+
+        .work-card.wind .work-header {
+            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
+        }
+
+        .work-card.lament .work-header {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+        }
+
+        .work-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .work-header-text h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .work-header-text .meta {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .work-body {
+            padding: 2rem;
+        }
+
+        .work-body h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+
+        .work-body h4:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .work-body p {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            line-height: 1.8;
+        }
+
+        .work-body ul {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .work-body li {
+            margin-bottom: 0.4rem;
+        }
+
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 4px solid var(--gold);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources Section */
+        .sources-section {
+            background: var(--paper-dark);
+            padding: 2rem 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .sources-section h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .sources-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .source-group {
+            background: #fff;
+            border-radius: 4px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .source-group h3 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .source-group p,
+        .source-group a {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .source-group a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .source-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        footer .course-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .course-name {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .term {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2.5rem 1rem 2rem;
+            }
+
+            .hero-chinese {
+                font-size: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .author-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-chinese">賦</div>
+            <h1>The Han Fu Tradition</h1>
+            <p class="hero-subtitle">Background on Song Yu, Jia Yi, and three foundational rhapsodies that shaped Chinese literary expression</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span>Period</span>
+                    <strong>戰國 — 漢</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Genre</span>
+                    <strong>賦 Rhapsody</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Authors</span>
+                    <strong>宋玉 · 賈誼</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">← Back to EAST 370</a>
+            <a href="#authors">Authors</a>
+            <a href="#works">Works</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Authors Section -->
+        <section id="authors">
+            <div class="section-header">
+                <span class="chinese">作者</span>
+                <h2>The Authors</h2>
+            </div>
+
+            <div class="author-grid">
+                <!-- Song Yu -->
+                <div class="author-card songyu">
+                    <div class="author-header">
+                        <div class="chinese">宋玉</div>
+                        <h3>Song Yu</h3>
+                        <div class="dates">fl. 298–263 BCE · State of Chu</div>
+                    </div>
+                    <div class="author-body">
+                        <h4>Life</h4>
+                        <p>A Warring States poet from the city of Yan 鄢 (modern Yicheng, Hubei), Song Yu served as a minister at the court of King Xiang of Chu. Little reliable biographical information survives; most details come from anecdotal sources compiled centuries later.</p>
+
+                        <h4>Relationship to Qu Yuan</h4>
+                        <p>Traditionally regarded as Qu Yuan's disciple and literary successor, Song Yu's name is paired with Qu Yuan's as "Qu-Song" (屈宋). Sima Qian listed Song Yu among the great poets of Chu who lived after Qu Yuan, though the exact nature of their relationship remains uncertain.</p>
+
+                        <h4>Major Works</h4>
+                        <ul>
+                            <li><em>Jiu Bian</em> 九辯 (Nine Changes)</li>
+                            <li><em>Feng Fu</em> 風賦 (Fu on the Wind)</li>
+                            <li><em>Gaotang Fu</em> 高唐賦 (Rhapsody on Gaotang Terrace)</li>
+                            <li><em>Zhao Hun</em> 招魂 (Summons of the Soul) — attribution disputed</li>
+                        </ul>
+
+                        <h4>Legacy</h4>
+                        <p>Considered the most outstanding <em>Chu Ci</em> writer after Qu Yuan. His <em>Jiu Bian</em> established "be grieved by autumn" (悲秋) as a lasting motif in Chinese literature. Many Chinese idioms still in use trace back to his poems.</p>
+                    </div>
+                </div>
+
+                <!-- Jia Yi -->
+                <div class="author-card jiayi">
+                    <div class="author-header">
+                        <div class="chinese">賈誼</div>
+                        <h3>Jia Yi</h3>
+                        <div class="dates">c. 200–168 BCE · Western Han</div>
+                    </div>
+                    <div class="author-body">
+                        <h4>Life</h4>
+                        <p>Born in Luoyang, Jia Yi displayed exceptional literary talent from youth. In 179 BCE, Emperor Wen appointed him <em>boshi</em> (博士, "professor"), then rapidly promoted him to Grand Master of the Palace. His reform proposals threatened older officials, and in 176 BCE he was exiled to Changsha as Grand Tutor to its young king.</p>
+
+                        <h4>Later Career</h4>
+                        <p>Recalled to the capital c. 172 BCE as consultant on Daoist mysticism, he was then appointed Grand Tutor to Prince Liu Yi. When the prince died in a horse-riding accident (169 BCE), Jia Yi blamed himself and died grief-stricken approximately one year later, at about age 33.</p>
+
+                        <h4>Major Works</h4>
+                        <ul>
+                            <li><em>Xinshu</em> 新書 (New Writings) — political treatise</li>
+                            <li><em>Guo Qin Lun</em> 過秦論 (Disquisition Finding Fault with Qin)</li>
+                            <li><em>Diao Qu Yuan Fu</em> 弔屈原賦 (Lament for Qu Yuan)</li>
+                            <li><em>Funiao Fu</em> 鵩鳥賦 (Fu on the Owl)</li>
+                        </ul>
+
+                        <h4>Legacy</h4>
+                        <p>One of the earliest known writers of <em>fu</em> rhapsody. His synthesis of Legalist, Daoist, and Confucian doctrines "significantly shaped the imperial institutions of the Han dynasty, which became the models for successive dynasties of imperial China" (Routledge Encyclopedia of Philosophy). His "people as root" (民本) concept influenced Chinese political thought for millennia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Section -->
+        <section id="works">
+            <div class="section-header">
+                <span class="chinese">作品</span>
+                <h2>The Works</h2>
+            </div>
+
+            <!-- Fu on the Wind -->
+            <div class="work-card wind">
+                <div class="work-header">
+                    <div class="chinese">風賦</div>
+                    <div class="work-header-text">
+                        <h3>Fu on the Wind</h3>
+                        <div class="meta">Song Yu · 4th–3rd century BCE · Warring States</div>
+                    </div>
+                </div>
+                <div class="work-body">
+                    <h4>Historical Context</h4>
+                    <p>Framed as a dialogue between Song Yu and King Xiang of Chu at Magnolia Terrace (Langtai), the poem exemplifies the courtly setting in which early <em>fu</em> were composed and performed. While likely a literary convention rather than historical record, the dialogue format became characteristic of Song Yu's works in the <em>Wen Xuan</em> anthology.</p>
+
+                    <h4>Summary</h4>
+                    <p>The king, enjoying a pleasant breeze, asks Song Yu whether common people share this wind. Song Yu's response forms the heart of the work: the same wind produces entirely different experiences depending on one's social circumstances.</p>
+
+                    <blockquote>
+                        The King's Wind: "Born from the earth, rising through beautiful landscapes, it rambles in the inner courtyard, climbs gauzy curtains, passes into the inner chamber... It is so clean and pure, fresh and cool, it cures illness, dispels hangovers, soothes the body, comforts men."
+                        <cite>— Translation adapted from David R. Knechtges, <em>Wen Xuan</em></cite>
+                    </blockquote>
+
+                    <blockquote>
+                        The Commoner's Wind: "Gustily rises from a remote lane, scooping out grime, raising dust. Sullen and sad, fretting and fuming, it dashes through holes, invades doors, stirring up sand piles, blowing dead embers, throwing up filth and muck."
+                        <cite>— Translation adapted from David R. Knechtges, <em>Wen Xuan</em></cite>
+                    </blockquote>
+
+                    <h4>Key Themes</h4>
+                    <ul>
+                        <li><strong>Social commentary through allegory:</strong> The contrast between "king's wind" (雄風) and "commoner's wind" explores class disparity</li>
+                        <li><strong>Environmental determinism:</strong> The same natural element produces vastly different lived experiences</li>
+                        <li><strong>Critique of privilege:</strong> The king naively assumes equality; Song Yu demonstrates structural inequality</li>
+                        <li><strong>Nature as vehicle for political observation:</strong> Pioneered using natural phenomena to comment on social conditions</li>
+                    </ul>
+
+                    <h4>Significance</h4>
+                    <p>The <em>Fu on the Wind</em> demonstrates how early <em>fu</em> used elaborate description and dialogue to explore social and philosophical themes. Its technique of using nature to critique political conditions became influential in Chinese literary tradition.</p>
+                </div>
+            </div>
+
+            <!-- Lament for Qu Yuan -->
+            <div class="work-card lament">
+                <div class="work-header">
+                    <div class="chinese">弔屈原賦</div>
+                    <div class="work-header-text">
+                        <h3>Lament for Qu Yuan</h3>
+                        <div class="meta">Jia Yi · 176 BCE · Western Han</div>
+                    </div>
+                </div>
+                <div class="work-body">
+                    <h4>Historical Context</h4>
+                    <p>When Jia Yi was exiled to Changsha in 176 BCE, he traveled south and crossed the Xiang River — the same region where Qu Yuan had drowned himself approximately a century earlier (c. 278 BCE). The geographical and circumstantial parallels moved Jia Yi to compose this lament, identifying his own situation with that of the great Chu poet-statesman.</p>
+
+                    <h4>Summary</h4>
+                    <p>The rhapsody mourns Qu Yuan's fate as a loyal minister who was slandered by rivals, exiled from his homeland, and driven to suicide. Jia Yi draws explicit parallels between Qu Yuan's situation and his own exile from Emperor Wen's court, reflecting on the injustice of wise counselors being rejected while sycophants prosper.</p>
+
+                    <h4>Key Themes</h4>
+                    <ul>
+                        <li><strong>Identification with Qu Yuan:</strong> Jia Yi explicitly compares his fate to the unhappy Chu statesman</li>
+                        <li><strong>Political allegory:</strong> Explores the fate of loyal ministers who are slandered at court</li>
+                        <li><strong>Sacrificial offering:</strong> Written as a tribute to Qu Yuan, cast into the river during Jia Yi's journey</li>
+                        <li><strong>Virtue unrecognized:</strong> Contemplates talented individuals rejected by corrupt courts</li>
+                    </ul>
+
+                    <h4>Significance</h4>
+                    <p>The <em>Lament</em> inspired a minor literary tradition of exiled poets composing verses and casting them into rivers during their journeys. It established a model for later literati to identify with Qu Yuan when facing political exile or persecution. The work is preserved in Sima Qian's <em>Records of the Grand Historian</em> (Volume 84).</p>
+                </div>
+            </div>
+
+            <!-- Fu on the Owl -->
+            <div class="work-card owl">
+                <div class="work-header">
+                    <div class="chinese">鵩鳥賦</div>
+                    <div class="work-header-text">
+                        <h3>Fu on the Owl</h3>
+                        <div class="meta">Jia Yi · c. 170 BCE · Western Han</div>
+                    </div>
+                </div>
+                <div class="work-body">
+                    <h4>Historical Context</h4>
+                    <p>During his three-year exile in the Changsha Kingdom, an owl flew into Jia Yi's room at sunset. In Han popular belief, owls were omens of death. The depressed Jia Yi interpreted this as a sign of his impending death and composed this rhapsody in response.</p>
+
+                    <h4>Summary</h4>
+                    <p>The rhapsody employs a question-and-answer format: frightened by the owl's appearance, the speaker receives philosophical consolation from the bird. Life is subject to constant change; fortune-telling has no real influence; human positions are never secure. The wise person must adapt to circumstances and remain flexible.</p>
+
+                    <h4>Key Themes</h4>
+                    <ul>
+                        <li><strong>Daoist self-consolation:</strong> Described as "a beautiful example of Daoist self-consolation in a world of uncertainty and change"</li>
+                        <li><strong>Philosophy of change:</strong> Uses the owl to convey Daoist wisdom about the equality of life and death</li>
+                        <li><strong>Huang-Lao influence:</strong> Reflects the Daoist school of Huang-Lao thought — all things are created by <em>dao</em> (道) and <em>de</em> (德)</li>
+                        <li><strong>Spiritual freedom:</strong> The sage exemplifies the Daoist ideal of detachment from worldly concerns</li>
+                    </ul>
+
+                    <h4>Significance</h4>
+                    <p>The <em>Fu on the Owl</em> is <strong>the earliest preserved and definitely datable <em>fu</em></strong> in Chinese literature. It established the <em>fu</em> as a vehicle for philosophical reflection and personal expression, becoming a key model for transposing Daoist ideas to poetry. Tragically, despite composing these therapeutic words, Jia Yi died just a few years later.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Sources Section -->
+    <section class="sources-section" id="sources">
+        <h2>Sources & Further Reading</h2>
+        <div class="sources-grid">
+            <div class="source-group">
+                <h3>Primary Translations</h3>
+                <p>David R. Knechtges, <em>Wen Xuan, or Selections of Refined Literature</em> (Princeton University Press)</p>
+                <p>David Hawkes, <em>The Songs of the South</em> (Penguin Classics, 1985)</p>
+                <p>Burton Watson, trans., <em>Records of the Grand Historian</em> (Columbia University Press, 1993)</p>
+            </div>
+            <div class="source-group">
+                <h3>Reference Works</h3>
+                <a href="https://plato.stanford.edu/entries/han-dynasty/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy: Philosophy in Han Dynasty China</a>
+                <a href="https://www.rep.routledge.com/articles/biographical/jia-yi-201-169-bc/v-1" target="_blank" rel="noopener">Routledge Encyclopedia of Philosophy: Jia Yi</a>
+                <a href="https://www.britannica.com/biography/Qu-Yuan" target="_blank" rel="noopener">Britannica: Qu Yuan</a>
+            </div>
+            <div class="source-group">
+                <h3>Historical Sources</h3>
+                <p>Sima Qian, <em>Shiji</em> 史記 (Records of the Grand Historian), Vol. 84</p>
+                <p>Ban Gu, <em>Hanshu</em> 漢書 (Book of Han), "Journal on Literature"</p>
+                <p>Zhu Xi, <em>Chu ci ji zhu</em> 楚辭集注 (Commentary on the Songs of Chu)</p>
+            </div>
+            <div class="source-group">
+                <h3>Recent Scholarship</h3>
+                <p>Michael Nylan, "Jia Yi (201–169 BC)," <em>Routledge Encyclopedia of Philosophy</em> (1998)</p>
+                <p>Nicholas M. Williams, "Translating Song Yu's Jiu Bian," in <em>New Frontiers in Translation Studies</em> (Springer, 2022)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="course-title">中國文學與思想</div>
+            <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
+            <div class="term">Winter 2026</div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
