@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanglin Fu: Sima Xiangru | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --vermillion: #c73e3a;
+            --vermillion-light: #e8d4d3;
+            --teal: #2d5a5a;
+            --amber: #4a3a1a;
+            --imperial: #8b0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 50%, #4a3a1a 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            text-align: center;
+        }
+
+        .hero-meta-item span {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-meta-item strong {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .nav a.portal-link {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .nav a.portal-link:hover {
+            background: var(--gold-light);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Section Headers */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .section-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        .section-header h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink);
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .card-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .card-header.imperial {
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+        }
+
+        .card-header.park {
+            background: linear-gradient(135deg, #1a4a2a 0%, #2d5a3a 100%);
+        }
+
+        .card-header.structure {
+            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
+        }
+
+        .card-header.catalog {
+            background: linear-gradient(135deg, #2a3a4a 0%, #3a4a5a 100%);
+        }
+
+        .card-header.moral {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+        }
+
+        .card-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .card-header-text h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-header-text .meta {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-body h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+
+        .card-body h4:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .card-body p {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body ul {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .card-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Author Card */
+        .author-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .author-header {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+        }
+
+        .author-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-header h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-header .dates {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .author-body {
+            padding: 1.5rem;
+        }
+
+        .author-body h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .author-body h4:first-child {
+            margin-top: 0;
+        }
+
+        .author-body p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 4px solid var(--gold);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+        }
+
+        /* Speaker Cards Grid */
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .speaker-card {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .speaker-card .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+
+        .speaker-card .name {
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .speaker-card .meaning {
+            font-size: 0.8rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .speaker-card .represents {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+        }
+
+        /* Catalog List */
+        .catalog-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .catalog-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .catalog-item .icon {
+            font-size: 1.5rem;
+        }
+
+        .catalog-item .text {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 1rem 0;
+        }
+
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.6rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-item .year {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .timeline-item .event {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        /* Sources Section */
+        .sources-section {
+            background: var(--paper-dark);
+            padding: 2rem 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .sources-section h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .sources-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .source-group {
+            background: #fff;
+            border-radius: 4px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .source-group h3 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .source-group p,
+        .source-group a {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .source-group a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .source-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        footer .course-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .course-name {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .term {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        /* Key Themes Box */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .key-themes h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            border: none;
+            padding: 0;
+        }
+
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .key-themes li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--ink-light);
+        }
+
+        .key-themes li strong {
+            color: var(--ink);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2.5rem 1rem 2rem;
+            }
+
+            .hero-chinese {
+                font-size: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            .speaker-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-chinese">上林賦</div>
+            <h1>Rhapsody on the Imperial Park</h1>
+            <p class="hero-subtitle">Sima Xiangru's magnum opus — a verbal recreation of Emperor Wu's hunting preserve that became the supreme example of Han epideictic fu</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span>Author</span>
+                    <strong>司馬相如</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Period</span>
+                    <strong>西漢 c. 137 BCE</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Genre</span>
+                    <strong>大賦 Grand Rhapsody</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="portal-link">← Back to EAST 370</a>
+            <a href="#author">The Author</a>
+            <a href="#context">Context</a>
+            <a href="#structure">Structure</a>
+            <a href="#content">Content</a>
+            <a href="#critique">Critique</a>
+            <a href="#sources">Sources</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- The Author Section -->
+        <section id="author">
+            <div class="section-header">
+                <span class="chinese">作者</span>
+                <h2>The Author</h2>
+            </div>
+
+            <div class="author-card">
+                <div class="author-header">
+                    <div class="chinese">司馬相如</div>
+                    <h3>Sima Xiangru</h3>
+                    <div class="dates">c. 179–117 BCE · Chengdu, Shu (Sichuan)</div>
+                </div>
+                <div class="author-body">
+                    <h4>Life</h4>
+                    <p>Sima Xiangru is generally regarded as the greatest of all composers of Chinese <em>fu</em> rhapsodies. Born in Chengdu into a wealthy family, he received training in literature, history, and philosophy. As a youth, he took the name "Xiangru" out of admiration for Lin Xiangru, the Warring States diplomat famous for his wit and courage.</p>
+
+                    <h4>Early Career</h4>
+                    <p>Around 150 BCE, Sima traveled to the capital Chang'an and became a mounted military attendant to Emperor Jing — a low-ranking position that suited neither his talents nor his literary temperament. In 149 BCE, he moved to the court of Liu Wu, Prince of Liang, joining a circle of brilliant literati. There he composed the <em>Zixu fu</em> (Rhapsody of Sir Fantasy), which would later catch an emperor's attention.</p>
+
+                    <h4>The Zhuo Wenjun Romance</h4>
+                    <p>After Prince Liu Wu's death in 143 BCE, Sima returned to Shu in poverty. His fortunes changed when the magistrate Wang Ji introduced him to Zhuo Wangsun, a wealthy iron merchant. At a banquet, Sima performed "Phoenix Seeking Phoenix" (鳳求凰) on the <em>qin</em> — ostensibly for the host, but truly for Zhuo's recently widowed daughter Wenjun, who listened hidden behind a screen. The two eloped that night.</p>
+                    <p>Disinherited and destitute, they opened a small wine shop where Wenjun tended bar while Sima washed pots. Eventually, public shame forced her father to recognize the marriage with a massive dowry — one of Chinese literature's most celebrated love stories.</p>
+
+                    <h4>At Emperor Wu's Court</h4>
+                    <p>In 137 BCE, a copy of the <em>Zixu fu</em> reached the sixteen-year-old Emperor Wu, who exclaimed that he regretted the author lived in a different era. Informed that Sima was very much alive, Wu summoned him to court. Thus began a relationship that would produce the <em>Shanglin fu</em> and secure Sima's place in literary history.</p>
+
+                    <h4>Legacy</h4>
+                    <p>Sima's long, imaginative compositions wove together fantastic images in an outpouring of alliterative and rhyming descriptive expressions. His language is extraordinarily rich — "majestic and beautiful" — though notoriously difficult, employing many rare characters that challenge even learned commentators. When word reached the court that Sima was dying in 117 BCE, Emperor Wu dispatched an official to collect his writings, but the poet had already passed away at approximately age 62.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historical Context Section -->
+        <section id="context">
+            <div class="section-header">
+                <span class="chinese">背景</span>
+                <h2>Historical Context</h2>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header park">
+                    <div class="chinese">上林苑</div>
+                    <div class="card-header-text">
+                        <h3>The Shanglin Park</h3>
+                        <div class="meta">Imperial Hunting Preserve · Outside Chang'an</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4>The Physical Park</h4>
+                    <p>Outside his capital of Chang'an (modern Xi'an), Emperor Wu of Han maintained a vast wilderness preserve for imperial hunts and excursions. The Shanglin Park (上林苑, "Supreme Forest Garden") was an estimated <strong>167 kilometers</strong> in circumference — a staggering expanse containing mountains, rivers, forests, and elaborate palace complexes.</p>
+
+                    <h4>Imperial Hunts</h4>
+                    <p>The park served multiple functions: a game reserve stocked with exotic animals, a botanical garden, a site for military exercises, and a stage for displaying imperial magnificence to foreign envoys. The hunts themselves were spectacular affairs involving thousands of participants, elaborate chariots, trained animals, and theatrical spectacles.</p>
+
+                    <h4>The Commission</h4>
+                    <p>When Sima appeared before Emperor Wu, he proposed something unprecedented: rather than compose another <em>fu</em> about vassal lords' hunting grounds, he wished to create a grand rhapsody celebrating the excursions and hunts of the Son of Heaven himself. The emperor provided brushes and bamboo slips, and Sima produced his magnum opus — originally titled <em>Tianzi youlie fu</em> (Rhapsody on the Excursions and Hunts of the Son of Heaven).</p>
+
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">c. 149–143 BCE</div>
+                            <div class="event">Sima composes <em>Zixu fu</em> at Prince of Liang's court</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">137 BCE</div>
+                            <div class="event">Emperor Wu reads <em>Zixu fu</em>, summons Sima to court</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 137–130 BCE</div>
+                            <div class="event">Sima composes <em>Shanglin fu</em> as sequel</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">117 BCE</div>
+                            <div class="event">Sima dies; Emperor Wu sends official to preserve his writings</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structure Section -->
+        <section id="structure">
+            <div class="section-header">
+                <span class="chinese">結構</span>
+                <h2>Structure & Dialogue</h2>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header structure">
+                    <div class="chinese">三客</div>
+                    <div class="card-header-text">
+                        <h3>The Three Speakers</h3>
+                        <div class="meta">A Dialectical Framework</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4>The Dialogic Form</h4>
+                    <p>The <em>Zixu fu</em> and <em>Shanglin fu</em> together form a single extended work employing three fictional speakers with deliberately satirical names. This dialogue format allows Sima to stage a debate that escalates from regional boasting to imperial magnificence — and ultimately to moral reflection.</p>
+
+                    <div class="speaker-grid">
+                        <div class="speaker-card">
+                            <div class="chinese">子虛</div>
+                            <div class="name">Zixu / Sir Fantasy</div>
+                            <div class="meaning">"Master Vacuous" — hollow, empty words</div>
+                            <div class="represents">Represents the State of <strong>Chu</strong></div>
+                        </div>
+                        <div class="speaker-card">
+                            <div class="chinese">烏有</div>
+                            <div class="name">Wuyou / Master No-Such</div>
+                            <div class="meaning">"Master Improbable" — skeptical response</div>
+                            <div class="represents">Represents the State of <strong>Qi</strong></div>
+                        </div>
+                        <div class="speaker-card">
+                            <div class="chinese">亡是公</div>
+                            <div class="name">Wang Shi / Lord Not-Real</div>
+                            <div class="meaning">"Lord Non-Existent" — transcends both</div>
+                            <div class="represents">Represents the <strong>Han Empire</strong></div>
+                        </div>
+                    </div>
+
+                    <h4>The Debate Unfolds</h4>
+                    <p><strong>Part I (Zixu fu):</strong> Sir Fantasy, visiting Qi, is taken hunting. When asked about it, he launches into a description of the vast Yunmeng marshes in his native Chu. His rhapsodic outburst overwhelms Master No-Such, who accuses him of improper boasting.</p>
+
+                    <p><strong>Part II (Shanglin fu):</strong> Lord Not-Real enters to refute both speakers. The hunting parks of Chu and Qi are nothing compared to the Son of Heaven's Shanglin Park. Through over 250 lines, he catalogs the imperial domain in staggering detail — then delivers an unexpected moral conclusion.</p>
+
+                    <blockquote>
+                        "The richness and beauty of the land says nothing about the moral and virtue of the king."
+                        <cite>— Critique delivered within the <em>Shanglin fu</em></cite>
+                    </blockquote>
+
+                    <h4>Why Fictional Names?</h4>
+                    <p>The speakers' names — all meaning "non-existent" or "unreal" — signal that this is literary artifice, not historical record. The names also suggest the emptiness of mere boasting and the ultimate futility of material excess without moral substance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section id="content">
+            <div class="section-header">
+                <span class="chinese">內容</span>
+                <h2>Content & Literary Technique</h2>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header catalog">
+                    <div class="chinese">萬物</div>
+                    <div class="card-header-text">
+                        <h3>The Catalog of All Things</h3>
+                        <div class="meta">Epideictic Rhapsody as Imperial Inventory</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4>The Epideictic Mode</h4>
+                    <p>The <em>Shanglin fu</em> is the supreme example of <strong>epideictic fu</strong> — display rhetoric meant to showcase verbal virtuosity while cataloging the emperor's sovereignty over all things in his realm. The park becomes a <strong>synecdoche for the empire</strong>: everything within it represents the vast dominion of Han.</p>
+
+                    <h4>What the Fu Catalogs</h4>
+                    <p>Sima proceeds through the park systematically, each section building upon the last:</p>
+
+                    <div class="catalog-list">
+                        <div class="catalog-item">
+                            <span class="icon">🌊</span>
+                            <span class="text">Waters & marine life</span>
+                        </div>
+                        <div class="catalog-item">
+                            <span class="icon">⛰️</span>
+                            <span class="text">Mountains & gorges</span>
+                        </div>
+                        <div class="catalog-item">
+                            <span class="icon">🌿</span>
+                            <span class="text">Flora & forests</span>
+                        </div>
+                        <div class="catalog-item">
+                            <span class="icon">🦁</span>
+                            <span class="text">Wild animals</span>
+                        </div>
+                        <div class="catalog-item">
+                            <span class="icon">🐎</span>
+                            <span class="text">Horses of every type</span>
+                        </div>
+                        <div class="catalog-item">
+                            <span class="icon">🐦</span>
+                            <span class="text">Exotic birds</span>
+                        </div>
+                        <div class="catalog-item">
+                            <span class="icon">💎</span>
+                            <span class="text">Rocks & minerals</span>
+                        </div>
+                        <div class="catalog-item">
+                            <span class="icon">🏛️</span>
+                            <span class="text">Terraces & palaces</span>
+                        </div>
+                    </div>
+
+                    <h4>The Hunt Itself</h4>
+                    <p>Having taken over 250 lines to describe the park, Sima details its use: as autumn turns to winter, the emperor travels from his palace to hunt. His carriage is "decorated with carved ivory and drawn by six jade dragons." The hunt is depicted with "exaggerated exuberance" — part real observation, part fantastic imagination.</p>
+
+                    <blockquote>
+                        "Twisting and twining, tortuously turning, / Arch aloft, precipitously piled."
+                        <cite>— Sima Xiangru describing the mountains, trans. Knechtges</cite>
+                    </blockquote>
+
+                    <h4>Language and Difficulty</h4>
+                    <p>Sima's language is "notorious for long catalogues of animal, plant, fish, and mineral names, many of which are only vaguely identified even by the most learned commentaries." The text bristles with rare characters, alliterative compounds, and rhyming pairs that create sensual impressions of movement, sound, and color — a "dazzling verbal description" that generations of readers have celebrated as "one of the most extraordinary displays of poetic creativity in the Chinese language."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Moral Critique Section -->
+        <section id="critique">
+            <div class="section-header">
+                <span class="chinese">諷諫</span>
+                <h2>Political Critique</h2>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header moral">
+                    <div class="chinese">風</div>
+                    <div class="card-header-text">
+                        <h3>Feng: Indirect Admonition</h3>
+                        <div class="meta">Critique Through Praise</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4>The Concept of Feng (諷)</h4>
+                    <p>The word <em>feng</em> (諷) refers to "the presentation of criticism and advice by indirection, usually in the form of subtle moral reprimands addressed to the emperor." Han <em>fu</em> writers used elaborate descriptions to "sway" (<em>feng</em>) imperial opinion — Yang Xiong later wrote that the primary purpose of his <em>fu</em> was to convey moral messages to rulers.</p>
+
+                    <h4>The Paradox of the Shanglin Fu</h4>
+                    <p>The <em>Shanglin fu</em> presents a paradox: it dazzles with descriptions of extravagance, yet its purpose is to critique that very extravagance. Through "concrete description of how the parks looked and how the hunting activities were implemented," Sima delivers "an indirect critique of the imperial hunts" with the moral that "a ruler has to obey propriety and moral principles of government."</p>
+
+                    <h4>The Moral Turn</h4>
+                    <p>After hundreds of lines celebrating imperial magnificence, the <em>fu</em> reaches an unexpected conclusion: the emperor becomes aware of the implications of such extravagance and sets his attention to reform — "implementing economic and land-use policies favorable to the people and adopting proper administrative and ritual conduct for the correct governance of the empire."</p>
+
+                    <div class="key-themes">
+                        <h4>Key Themes</h4>
+                        <ul>
+                            <li><strong>Material abundance ≠ moral virtue:</strong> The park's richness "says nothing about the moral and virtue of the king"</li>
+                            <li><strong>Microcosm of empire:</strong> The park symbolically represents Han's dominion over all things</li>
+                            <li><strong>The humiliation of boasters:</strong> Both Sir Fantasy and Master No-Such are refuted, exposing the emptiness of regional pride</li>
+                            <li><strong>Imperial frugality:</strong> The ultimate message advocates restraint against "sensual indulgence in hunting"</li>
+                            <li><strong>Display as didactic:</strong> Showing excess makes visible its moral costs</li>
+                        </ul>
+                    </div>
+
+                    <h4>Did It Work?</h4>
+                    <p>Later critics debated whether ornate <em>fu</em> actually persuaded emperors or merely entertained them. Yang Xiong famously worried that his rhapsodies were "like the work of someone who carves insects" — beautiful but ineffective. Yet the <em>Shanglin fu</em>'s structure — pleasure building to moral reflection — established a template for court literature that persisted for centuries.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discussion Questions -->
+        <section id="discussion">
+            <div class="section-header">
+                <span class="chinese">問題</span>
+                <h2>Discussion Questions</h2>
+            </div>
+
+            <div class="content-card">
+                <div class="card-body">
+                    <ul>
+                        <li>How does the <em>Shanglin fu</em> compare to the earlier fu we've read (Song Yu, Jia Yi)? What's different about its scale and purpose?</li>
+                        <li>Can you criticize power while celebrating it? Is the moral ending sincere, or is it a fig leaf for imperial flattery?</li>
+                        <li>Why use fictional speakers with names meaning "non-existent"? What does this frame accomplish?</li>
+                        <li>The park is described as a "synecdoche for the empire." How does cataloging all things assert sovereignty?</li>
+                        <li>Compare the <em>Shanglin fu</em>'s approach to political critique with Song Yu's "Fu on the Wind." How do both use natural description to comment on social conditions?</li>
+                        <li>Sima's language is famously difficult, full of rare characters. What's the rhetorical effect of linguistic excess?</li>
+                        <li>Consider the relationship between writer and patron: How does Sima navigate praising Emperor Wu while also admonishing him?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Sources Section -->
+    <section class="sources-section" id="sources">
+        <h2>Sources & Further Reading</h2>
+        <div class="sources-grid">
+            <div class="source-group">
+                <h3>Primary Translation</h3>
+                <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank" rel="noopener">David R. Knechtges, trans., "Rhapsody on the Imperial Park," <em>Wen Xuan</em>, Vol. II (Princeton UP, 1987), pp. 73–114</a>
+                <p>The standard scholarly English translation with extensive annotations.</p>
+            </div>
+            <div class="source-group">
+                <h3>Scholarly Analysis</h3>
+                <a href="https://www.degruyterbrill.com/document/doi/10.7312/cai-18536-009/html" target="_blank" rel="noopener">Cheng & Patterson, "Empire in Text: Sima Xiangru's 'Sir Vacuous/Imperial Park Rhapsody,'" in <em>How to Read Chinese Poetry in Context</em> (Columbia UP, 2018)</a>
+                <a href="https://www.academia.edu/26847903/The_Biography_of_Sima_Xiangru_and_the_Question_of_the_Fu_in_Sima_Qians_Shiji_" target="_blank" rel="noopener">"The Biography of Sima Xiangru and the Question of the Fu in Sima Qian's Shiji"</a>
+            </div>
+            <div class="source-group">
+                <h3>Reference Works</h3>
+                <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank" rel="noopener">Britannica: Sima Xiangru</a>
+                <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank" rel="noopener">EBSCO Research Starters: Sima Xiangru</a>
+                <a href="https://ctext.org/shiji" target="_blank" rel="noopener">Sima Qian, <em>Shiji</em> 史記 — Biography of Sima Xiangru</a>
+            </div>
+            <div class="source-group">
+                <h3>Visual Resources</h3>
+                <a href="https://asia.si.edu/explore-art-culture/collections/search/edanmdm:fsg_F1913.47/" target="_blank" rel="noopener">Smithsonian: "The Shanglin Park: Imperial Hunt" — Ming dynasty handscroll by Qiu Ying</a>
+                <a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank" rel="noopener">"Chinese Narrative Painting: Shanglin Park" — analysis of the visual tradition</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="course-title">中國文學與思想</div>
+            <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
+            <div class="term">Winter 2026</div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
