@@ -30,7 +30,7 @@
 
         body {
             font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
-            background: var(--ink);
+            background: var(--paper);
             color: var(--ink);
             line-height: 1.5;
             font-size: 14px;
@@ -40,7 +40,6 @@
         .breadcrumb {
             background: var(--ink);
             padding: 0.5rem 1.5rem;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
         }
 
         .breadcrumb a {
@@ -53,87 +52,76 @@
 
         /* Header */
         .header {
-            background: var(--ink);
-            padding: 1.25rem 1.5rem 1rem;
+            background: linear-gradient(135deg, var(--literary) 0%, #6a2a2a 100%);
+            padding: 1.5rem;
             text-align: center;
         }
 
         .header-chinese {
             font-family: 'Noto Serif SC', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--gold-light);
             letter-spacing: 0.2em;
         }
 
         .header h1 {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 300;
             color: rgba(255,255,255,0.8);
             letter-spacing: 0.1em;
             margin-top: 0.25rem;
         }
 
-        /* Horizontal Scroll Container */
-        .authors-scroll {
-            display: flex;
-            overflow-x: auto;
-            gap: 0;
-            padding: 0;
-            background: var(--paper-dark);
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .authors-scroll::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .authors-scroll::-webkit-scrollbar-track {
-            background: var(--ink);
-        }
-
-        .authors-scroll::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 3px;
+        /* Authors List */
+        .authors-list {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
         }
 
         /* Author Card */
         .author-card {
-            flex: 0 0 280px;
-            background: var(--paper);
-            border-right: 1px solid var(--paper-dark);
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            background: #fff;
+            border-bottom: 1px solid var(--paper-dark);
         }
 
         .author-card:last-child {
-            border-right: none;
+            border-bottom: none;
         }
 
         /* Portrait Section */
         .portrait {
-            height: 160px;
+            width: 120px;
+            height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .portrait-char {
             font-family: 'Noto Serif SC', serif;
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 700;
-            color: var(--gold);
             opacity: 0.15;
             position: absolute;
         }
 
         .portrait-name {
             font-family: 'Noto Serif SC', serif;
-            font-size: 2.2rem;
-            color: var(--literary);
+            font-size: 1.8rem;
             letter-spacing: 0.1em;
             position: relative;
             z-index: 1;
@@ -156,64 +144,75 @@
 
         /* Info Section */
         .info {
-            padding: 0.75rem 1rem;
-            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            gap: 0.3rem;
         }
 
         .name-row {
             display: flex;
             align-items: baseline;
-            gap: 0.4rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
+        }
+
+        .name-chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.4rem;
+            color: var(--literary);
         }
 
         .name-english {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--ink);
         }
 
         .dates {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--ink-faint);
         }
 
         .era-label {
+            display: inline-block;
             font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--gold);
+            color: #fff;
             font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+            margin-top: 0.1rem;
         }
 
+        .era-warring .era-label { background: #8b2323; }
+        .era-han .era-label { background: #8b6914; }
+        .era-six .era-label { background: #2d5a5a; }
+
         .works {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.6;
+            margin-top: 0.25rem;
         }
 
         .work-title {
             font-family: 'Noto Sans SC', sans-serif;
-            color: var(--literary);
+            color: var(--gold);
         }
 
         .bio {
-            font-size: 0.72rem;
-            color: var(--ink-faint);
+            font-size: 0.8rem;
+            color: var(--ink-light);
             line-height: 1.5;
         }
 
         .influence {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--literary);
             font-style: italic;
             line-height: 1.4;
-            margin-top: auto;
-            padding-top: 0.5rem;
-            border-top: 1px solid var(--paper-dark);
+            margin-top: 0.25rem;
         }
 
         /* Footer */
@@ -221,31 +220,36 @@
             background: var(--ink);
             color: rgba(255, 255, 255, 0.6);
             text-align: center;
-            padding: 1rem;
-            border-top: 1px solid rgba(184, 134, 11, 0.3);
+            padding: 1.5rem;
         }
 
         footer .course-title {
             font-family: 'Noto Serif SC', serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--gold-light);
         }
 
         footer .course-name {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.5);
             margin-top: 0.2rem;
         }
 
-        /* Scroll hint */
-        .scroll-hint {
-            background: var(--ink);
-            color: rgba(255,255,255,0.4);
-            text-align: center;
-            padding: 0.4rem;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        @media (max-width: 600px) {
+            .author-card {
+                grid-template-columns: 100px 1fr;
+                gap: 0.75rem;
+            }
+            .portrait {
+                width: 100px;
+                height: 120px;
+            }
+            .portrait-name {
+                font-size: 1.5rem;
+            }
+            .name-chinese {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -261,11 +265,9 @@
         <h1>Literary Authors from Birch's Anthology</h1>
     </header>
 
-    <div class="scroll-hint">Scroll horizontally &rarr;</div>
+    <div class="authors-list">
 
-    <div class="authors-scroll">
-
-        <!-- Qu Yuan -->
+        <!-- Qu Yuan c. 340–278 BCE -->
         <div class="author-card era-warring">
             <div class="portrait">
                 <span class="portrait-char">楚</span>
@@ -273,6 +275,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">屈原</span>
                     <span class="name-english">Qu Yuan</span>
                     <span class="dates">c. 340–278 BCE</span>
                 </div>
@@ -287,7 +290,7 @@
             </div>
         </div>
 
-        <!-- Song Yu -->
+        <!-- Song Yu c. 290–223 BCE -->
         <div class="author-card era-warring">
             <div class="portrait">
                 <span class="portrait-char">楚</span>
@@ -295,6 +298,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">宋玉</span>
                     <span class="name-english">Song Yu</span>
                     <span class="dates">c. 290–223 BCE</span>
                 </div>
@@ -309,7 +313,7 @@
             </div>
         </div>
 
-        <!-- Jia Yi -->
+        <!-- Jia Yi 200–168 BCE -->
         <div class="author-card era-han">
             <div class="portrait">
                 <span class="portrait-char">漢</span>
@@ -317,6 +321,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">賈誼</span>
                     <span class="name-english">Jia Yi</span>
                     <span class="dates">200–168 BCE</span>
                 </div>
@@ -331,7 +336,7 @@
             </div>
         </div>
 
-        <!-- Mei Sheng -->
+        <!-- Mei Sheng d. 140 BCE -->
         <div class="author-card era-han">
             <div class="portrait">
                 <span class="portrait-char">漢</span>
@@ -339,6 +344,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">枚乘</span>
                     <span class="name-english">Mei Sheng</span>
                     <span class="dates">d. 140 BCE</span>
                 </div>
@@ -351,14 +357,15 @@
             </div>
         </div>
 
-        <!-- Sima Xiangru -->
+        <!-- Sima Xiangru 179–117 BCE -->
         <div class="author-card era-han">
             <div class="portrait">
                 <span class="portrait-char">漢</span>
-                <span class="portrait-name">司馬相如</span>
+                <span class="portrait-name">相如</span>
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">司馬相如</span>
                     <span class="name-english">Sima Xiangru</span>
                     <span class="dates">179–117 BCE</span>
                 </div>
@@ -373,7 +380,7 @@
             </div>
         </div>
 
-        <!-- Ban Gu -->
+        <!-- Ban Gu 32–92 CE -->
         <div class="author-card era-han">
             <div class="portrait">
                 <span class="portrait-char">漢</span>
@@ -381,6 +388,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">班固</span>
                     <span class="name-english">Ban Gu</span>
                     <span class="dates">32–92 CE</span>
                 </div>
@@ -394,7 +402,7 @@
             </div>
         </div>
 
-        <!-- Cao Cao -->
+        <!-- Cao Cao 155–220 CE -->
         <div class="author-card era-six">
             <div class="portrait">
                 <span class="portrait-char">魏</span>
@@ -402,6 +410,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">曹操</span>
                     <span class="name-english">Cao Cao</span>
                     <span class="dates">155–220 CE</span>
                 </div>
@@ -415,7 +424,7 @@
             </div>
         </div>
 
-        <!-- Cao Zhi -->
+        <!-- Cao Zhi 192–232 CE -->
         <div class="author-card era-six">
             <div class="portrait">
                 <span class="portrait-char">魏</span>
@@ -423,6 +432,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">曹植</span>
                     <span class="name-english">Cao Zhi</span>
                     <span class="dates">192–232 CE</span>
                 </div>
@@ -437,7 +447,7 @@
             </div>
         </div>
 
-        <!-- Tao Qian -->
+        <!-- Tao Qian 365–427 CE -->
         <div class="author-card era-six">
             <div class="portrait">
                 <span class="portrait-char">晉</span>
@@ -445,6 +455,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">陶潛</span>
                     <span class="name-english">Tao Qian</span>
                     <span class="dates">365–427 CE</span>
                 </div>
@@ -459,7 +470,7 @@
             </div>
         </div>
 
-        <!-- Xie Lingyun -->
+        <!-- Xie Lingyun 385–433 CE -->
         <div class="author-card era-six">
             <div class="portrait">
                 <span class="portrait-char">宋</span>
@@ -467,6 +478,7 @@
             </div>
             <div class="info">
                 <div class="name-row">
+                    <span class="name-chinese">謝靈運</span>
                     <span class="name-english">Xie Lingyun</span>
                     <span class="dates">385–433 CE</span>
                 </div>
