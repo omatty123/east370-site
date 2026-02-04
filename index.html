@@ -1,531 +1,1234 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EAST 370 - Chinese Traditional Literature and Thought</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&family=Noto+Serif+SC&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #f5f5f7; --surface: #fff; --surface-alt: #fafafa; --border: #e5e5e5; --text: #1d1d1f; --text-muted: #86868b; --accent: #8b0000; --accent-light: #fef2f2; }
-    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); }
-    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-    .header-left { display: flex; align-items: center; gap: 16px; }
-    .course-title { font-weight: 600; font-size: 15px; }
-    .day-nav { display: flex; align-items: center; gap: 6px; }
-    .day-nav button { background: none; border: 1px solid var(--border); padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
-    .header-tools { display: flex; gap: 8px; }
-    .header-tools button { background: var(--surface-alt); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 11px; }
-    main { max-width: 1200px; margin: 0 auto; padding: 20px; }
-    .roster-strip { background: var(--surface); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; }
-    .roster-strip h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 14px; font-weight: 500; }
-    .roster-row { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 4px; }
-    .student-nameplate {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      background: linear-gradient(145deg, #fefefe, #f5f5f5);
-      padding: 14px 18px 12px;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
-      border: 1px solid rgba(0,0,0,0.06);
-      min-width: 90px;
-      position: relative;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .student-nameplate:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08); }
-    .student-nameplate::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, #8b0000, #a52a2a, #8b0000);
-      border-radius: 4px 4px 0 0;
-    }
-    .student-nameplate img {
-      width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
-      border: 2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-    .student-nameplate .name {
-      font-size: 13px; font-weight: 600; text-align: center;
-      color: var(--text); letter-spacing: 0.3px;
-    }
-    .student-nameplate .pronouns {
-      font-size: 10px; color: var(--text-muted);
-      font-style: italic; margin-top: -4px;
-    }
-    .prep-container { background: var(--surface); border-radius: 12px; overflow: hidden; }
-    .prep-header {
-      background: linear-gradient(165deg, #4a1c1c 0%, #6b2c2c 40%, #8b3a3a 70%, #9b4a4a 100%);
-      color: white; padding: 24px 28px; position: relative; overflow: hidden;
-    }
-    .prep-header::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="60" text-anchor="middle" font-size="60" fill="rgba(255,255,255,0.03)" font-family="serif">道</text></svg>');
-      background-position: right 20px top 10px; background-repeat: no-repeat; background-size: 100px;
-      pointer-events: none;
-    }
-    .prep-header .week-theme {
-      font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
-      color: #f0c060; margin-bottom: 6px; font-weight: 500; position: relative;
-    }
-    .prep-header h1 {
-      font-size: 26px; font-weight: 300; margin-bottom: 6px;
-      letter-spacing: 0.5px; position: relative;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
-    .prep-header .date { font-size: 13px; opacity: 0.75; font-weight: 300; position: relative; letter-spacing: 0.3px; }
-    .prep-header .ivanhoe {
-      display: inline-block; background: rgba(240,192,96,0.2);
-      border: 1px solid rgba(240,192,96,0.3);
-      padding: 5px 12px; border-radius: 2px; font-size: 11px; margin-top: 12px;
-      color: #f0e6d0; position: relative; letter-spacing: 0.3px;
-    }
-    .prep-header .ivanhoe a { color: #f0e6d0; text-decoration: underline; }
-    .prep-body { display: grid; grid-template-columns: 1fr 340px; min-height: 400px; }
-    .prep-main { padding: 24px; border-right: 1px solid var(--border); }
-    .prep-sidebar { padding: 24px; background: var(--surface-alt); }
-    .section-title { font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; }
-    .reading-card {
-      display: block; padding: 16px 18px; margin-bottom: 12px;
-      text-decoration: none; color: var(--text);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-      position: relative;
-    }
-    .reading-card:hover { transform: translateY(-2px); }
-    .reading-card .type-badge { display: inline-block; font-size: 9px; font-weight: 600; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 8px; }
-    .reading-card .title { font-size: 14px; font-weight: 600; margin-bottom: 5px; line-height: 1.3; }
-    .reading-card .author { font-size: 12px; margin-bottom: 3px; }
-    .reading-card .source { font-size: 11px; }
-    .reading-card .chinese { font-family: 'Noto Serif SC', serif; font-size: 16px; color: #8b0000; margin-top: 4px; }
-    .reading-card.primary {
-      background: linear-gradient(135deg, #faf6f0 0%, #f5efe6 50%, #f0ead8 100%);
-      border: 1px solid #d4c9b5;
-      border-radius: 2px;
-      box-shadow: 2px 3px 8px rgba(139,90,43,0.12), inset 0 0 30px rgba(139,90,43,0.03);
-    }
-    .reading-card.primary:hover { box-shadow: 3px 5px 12px rgba(139,90,43,0.18); }
-    .reading-card.primary .type-badge { background: #8b4513; color: #fff; }
-    .reading-card.primary .title { font-family: Georgia, 'Times New Roman', serif; }
-    .reading-card.primary .author, .reading-card.primary .source { color: #7a6b5a; }
-    .reading-card.philosophy {
-      background: linear-gradient(135deg, #fff8f0 0%, #fef5ee 50%, #fdf0e6 100%);
-      border: 1px solid #e0c9b5;
-      border-left: 4px solid #8b0000;
-      border-radius: 0;
-    }
-    .reading-card.philosophy:hover { box-shadow: 0 4px 12px rgba(139,0,0,0.15); }
-    .reading-card.philosophy .type-badge { background: #8b0000; color: #fff; }
-    .reading-card.buddhist {
-      background: linear-gradient(135deg, #f8f5f0 0%, #f5f0e8 50%, #f0ebe0 100%);
-      border: 1px solid #d0c8b8;
-      border-left: 4px solid #b8860b;
-      border-radius: 0;
-    }
-    .reading-card.buddhist:hover { box-shadow: 0 4px 12px rgba(184,134,11,0.15); }
-    .reading-card.buddhist .type-badge { background: #b8860b; color: #fff; }
-    .reading-card.poetry {
-      background: linear-gradient(135deg, #f5f8f5 0%, #f0f5f0 50%, #e8f0e8 100%);
-      border: 1px solid #c0d0c0;
-      border-left: 4px solid #2e8b57;
-      border-radius: 0;
-    }
-    .reading-card.poetry:hover { box-shadow: 0 4px 12px rgba(46,139,87,0.15); }
-    .reading-card.poetry .type-badge { background: #2e8b57; color: #fff; }
-    .web-links { margin-top: 16px; }
-    .web-link { display: inline-block; font-size: 11px; background: var(--surface-alt); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; margin: 0 6px 6px 0; color: var(--accent); text-decoration: none; }
-    .upcoming-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 16px; }
-    .upcoming-card .day-num { font-size: 13px; font-weight: 600; color: var(--accent); }
-    .upcoming-card .topic { font-size: 13px; margin-top: 4px; }
-    .upcoming-card .date { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-    .notes-box { background: #fffde7; border: 1px solid #fff59d; border-radius: 8px; padding: 14px; font-size: 12px; margin-bottom: 16px; }
-    .notes-box.special { background: #fff3e0; border-color: #ffcc80; }
-    .assignment-box { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 14px; margin-bottom: 16px; }
-    .assignment-box .label { font-size: 10px; color: #991b1b; text-transform: uppercase; }
-    .assignment-box .name { font-size: 14px; font-weight: 600; color: #7f1d1d; }
-    .assignment-box .due { font-size: 12px; color: #b91c1c; }
-    .no-class-banner { background: #ffebee; color: #c62828; padding: 40px; text-align: center; font-size: 16px; }
-    .prep-section { margin-bottom: 20px; }
-    .prep-section h3 { font-size: 12px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; letter-spacing: 0.5px; }
-    .prep-summary { background: var(--surface-alt); border-radius: 8px; padding: 16px; line-height: 1.6; font-size: 13px; white-space: pre-wrap; }
-    .keywords-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    .keywords-table th { background: var(--accent-light); color: var(--accent); padding: 8px; text-align: left; }
-    .keywords-table td { padding: 8px; border-bottom: 1px solid var(--border); }
-    .passage-card { background: var(--surface-alt); border-left: 3px solid var(--accent); padding: 12px 16px; margin-bottom: 10px; border-radius: 0 6px 6px 0; }
-    .passage-card blockquote { font-style: italic; font-size: 13px; line-height: 1.5; margin: 0 0 8px 0; }
-    .passage-card .chinese-quote { font-family: 'Noto Serif SC', serif; font-size: 14px; color: #8b0000; margin-bottom: 8px; font-style: normal; }
-    .passage-card .source { font-size: 11px; color: var(--text-muted); }
-    .sage-badge { display: inline-block; font-size: 9px; background: var(--accent-light); color: var(--accent); padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-left: 8px; }
-    .day-selector { position: relative; }
-    .day-dropdown { position: absolute; top: 100%; left: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; min-width: 450px; max-height: 450px; overflow-y: auto; display: none; z-index: 200; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
-    .day-dropdown.open { display: block; }
-    .day-option { padding: 10px 14px; cursor: pointer; font-size: 12px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); }
-    .day-option:hover { background: var(--surface-alt); }
-    .day-option.active { background: var(--accent-light); }
-    .day-option.no-class { color: var(--text-muted); font-style: italic; }
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-    .modal { background: var(--surface); border-radius: 12px; width: 400px; }
-    .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
-    .modal-close { background: none; border: none; font-size: 24px; cursor: pointer; }
-    .modal-body { padding: 20px; }
-    .timer-display { font-size: 72px; font-weight: 200; text-align: center; padding: 30px 0; font-family: monospace; }
-    .timer-controls { display: flex; gap: 10px; justify-content: center; margin-bottom: 16px; }
-    .timer-presets { display: flex; gap: 6px; justify-content: center; }
-    .btn { padding: 8px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; }
-    .btn-primary { background: var(--accent); color: white; }
-    .btn-secondary { background: var(--surface-alt); border: 1px solid var(--border); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAST 370 | Chinese Traditional Literature and Thought</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --vermillion: #c73e3a;
+            --teal: #2d5a5a;
+            --jade: #1a4a2a;
+            --brown: #3d2817;
+            --legalist: #4a1a1a;
+            --purple: #3a1a4a;
+            --amber: #4a3a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-course {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 2.2rem;
+            color: var(--gold-light);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-term {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.6rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.35rem 0.7rem;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(184, 134, 11, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        /* Syllabus Section */
+        .syllabus-section {
+            background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
+            padding: 1.5rem 1.5rem;
+        }
+
+        .syllabus-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 1.25rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--gold);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .syllabus-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .syllabus-text p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--ink-light);
+        }
+
+        .syllabus-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .syllabus-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            padding: 0.5rem 0.9rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+
+        .syllabus-link.primary {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .syllabus-link.primary:hover {
+            background: var(--gold-light);
+        }
+
+        .syllabus-link.secondary {
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .syllabus-link.secondary:hover {
+            background: #333;
+        }
+
+        .syllabus-link svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* This Week Section */
+        .this-week-section {
+            background: var(--ink);
+            padding: 1rem 1.5rem;
+        }
+
+        .this-week-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .this-week-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 70px;
+        }
+
+        .this-week-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .this-week-reading {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .this-week-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+        }
+
+        .this-week-title {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .this-week-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .this-week-link {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.7rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .this-week-link:hover {
+            color: #fff;
+            border-color: var(--gold);
+            background: rgba(184,134,11,0.2);
+        }
+
+        .this-week-link.primary {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .this-week-link.primary:hover {
+            background: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        @media (max-width: 768px) {
+            .this-week-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .this-week-links {
+                margin-left: 0;
+            }
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 2rem 1.5rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-header h2 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--ink);
+        }
+
+        /* Vertical Left-Justified Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 140px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 110px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                    var(--paper) 0%,
+                    var(--gold) 10%,
+                    var(--gold) 90%,
+                    var(--paper) 100%);
+            opacity: 0.6;
+        }
+
+        /* Era Group */
+        .era-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .era-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .era-header::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
+            background: var(--paper);
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .era-year {
+            position: absolute;
+            left: -130px;
+            width: 85px;
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .era-year span {
+            font-size: 0.6rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            margin-left: 0.2rem;
+        }
+
+        .era-name {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            font-weight: 500;
+        }
+
+        .era-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--ink-light);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin-left: 0;
+        }
+
+        /* Reading Cards */
+        .reading-card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .reading-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .reading-card .card-top {
+            transition: opacity 0.3s ease;
+        }
+
+        .reading-card:hover .card-top {
+            opacity: 0.95;
+        }
+
+        .reading-card.placeholder {
+            opacity: 0.6;
+        }
+
+        .reading-card.placeholder:hover {
+            transform: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            cursor: default;
+        }
+
+        .card-top {
+            padding: 0.9rem 0.75rem 0.5rem;
+            text-align: center;
+        }
+
+        /* Color coding by tradition */
+        .reading-card.confucian .card-top {
+            background: linear-gradient(135deg, #1a3a3a 0%, #2d4a4a 100%);
+        }
+
+        .reading-card.daoist .card-top {
+            background: linear-gradient(135deg, #1a4a2a 0%, #2d5a3a 100%);
+        }
+
+        .reading-card.mohist .card-top {
+            background: linear-gradient(135deg, #3d2817 0%, #5a3d24 100%);
+        }
+
+        .reading-card.legalist .card-top {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+        }
+
+        .reading-card.historical .card-top {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .reading-card.literary .card-top {
+            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+        }
+
+        .reading-card.poetry .card-top {
+            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+        }
+
+        .reading-card.buddhist .card-top {
+            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
+        }
+
+        .reading-card.prose .card-top {
+            background: linear-gradient(135deg, #2a3a4a 0%, #3a4a5a 100%);
+        }
+
+        .reading-card.fiction .card-top {
+            background: linear-gradient(135deg, #3a2a3a 0%, #4a3a4a 100%);
+        }
+
+        .card-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-title {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0.02em;
+        }
+
+        .card-bottom {
+            padding: 0.5rem 0.75rem;
+            text-align: center;
+        }
+
+        .card-link {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink);
+            padding: 0.3rem 0.5rem;
+            border-radius: 2px;
+            background: var(--paper-dark);
+            transition: all 0.2s ease;
+        }
+
+        .reading-card:hover .card-link {
+            background: var(--gold);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .card-link {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-placeholder {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+            padding: 0.3rem 0.5rem;
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background: var(--paper-dark);
+            padding: 1.5rem 1.5rem;
+        }
+
+        .resources-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .resources-header h2 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.75rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: #fff;
+            padding: 0.85rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .resource-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            margin-bottom: 0.4rem;
+        }
+
+        .resource-card a {
+            display: block;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 0.25rem 0;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s ease;
+        }
+
+        .resource-card a:last-child {
+            border-bottom: none;
+        }
+
+        .resource-card a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        footer .course-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .course-name {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .term {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-chinese {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1rem;
+            }
+
+            .syllabus-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline {
+                padding-left: 80px;
+            }
+
+            .timeline::before {
+                left: 55px;
+            }
+
+            .era-header::before {
+                left: -25px;
+            }
+
+            .era-year {
+                left: -75px;
+                width: 50px;
+                font-size: 0.7rem;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline {
+                padding-left: 60px;
+            }
+
+            .timeline::before {
+                left: 35px;
+            }
+
+            .era-header::before {
+                left: -25px;
+            }
+
+            .era-year {
+                left: -55px;
+                width: 35px;
+                font-size: 0.6rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <div class="header-left">
-      <span class="course-title">EAST 370 · Chinese Traditional Literature and Thought</span>
-      <div class="day-nav">
-        <button onclick="prevDay()">←</button>
-        <div class="day-selector">
-          <button onclick="toggleDayDropdown()" style="min-width:120px"><span id="currentDay">Day 1</span></button>
-          <div class="day-dropdown" id="dayDropdown"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-course">EAST 370</div>
+            <div class="hero-chinese">中國文學與思想</div>
+            <h1>Chinese Traditional Literature and Thought</h1>
+            <div class="hero-term">Winter 2026</div>
         </div>
-        <button onclick="nextDay()">→</button>
-      </div>
-    </div>
-    <div class="header-tools">
-      <button onclick="openTimerModal()">⏱️ Timer</button>
-      <button onclick="window.open('https://drive.google.com/drive/u/2/folders/17nwKLGBRbd8Qu-adTAQnBKnPRCaj5CUW','_blank','noopener,noreferrer')">📖 Ivanhoe</button>
-      <button onclick="window.open('https://drive.google.com/file/d/11ji5DMSpxID7tePLmeAV8_ScBTCv41ro/view?usp=drive_link','_blank','noopener,noreferrer')">📚 Birch</button>
-      <button onclick="window.open('https://docs.google.com/document/d/1pe6TGFP7j74LkN62yXIgCsXP8-mQsPtPg4SqCZvGILo/edit','_blank','noopener,noreferrer')">📄 Syllabus</button>
-    </div>
-  </header>
-  <main>
-    <div class="roster-strip">
-      <h3>Class Roster</h3>
-      <div class="roster-row" id="rosterRow"></div>
-    </div>
-    <div class="prep-container">
-      <div class="prep-header">
-        <div class="week-theme" id="weekTheme">Week 1</div>
-        <h1 id="dayTitle">Day 1: Introduction</h1>
-        <div class="date" id="dayDate"></div>
-        <div class="ivanhoe" id="ivanhoeRef" style="display:none"></div>
-      </div>
-      <div class="prep-body">
-        <div class="prep-main" id="prepMain"></div>
-        <div class="prep-sidebar" id="prepSidebar"></div>
-      </div>
-    </div>
-  </main>
-  <div class="modal-overlay" id="timerModal">
-    <div class="modal">
-      <div class="modal-header"><h2>Class Timer</h2><button class="modal-close" onclick="closeTimerModal()">×</button></div>
-      <div class="modal-body">
-        <div class="timer-display" id="timerDisplay">10:00</div>
-        <div class="timer-controls">
-          <button class="btn btn-primary" onclick="startTimer()">▶ Start</button>
-          <button class="btn btn-secondary" onclick="pauseTimer()">⏸ Pause</button>
-          <button class="btn btn-secondary" onclick="resetTimer()">↺ Reset</button>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#syllabus">Syllabus</a>
+            <a href="#timeline">Timeline</a>
+            <a href="#resources">Resources</a>
         </div>
-        <div class="timer-presets">
-          <button class="btn btn-secondary" onclick="setTimer(5)">5m</button>
-          <button class="btn btn-secondary" onclick="setTimer(10)">10m</button>
-          <button class="btn btn-secondary" onclick="setTimer(15)">15m</button>
-          <button class="btn btn-secondary" onclick="setTimer(20)">20m</button>
+    </nav>
+
+    <!-- Syllabus Section -->
+    <section class="syllabus-section" id="syllabus">
+        <div class="syllabus-card">
+            <div class="syllabus-text">
+                <p>A survey of major works of Chinese literature and philosophy from the Zhou dynasty through the Yuan
+                    dynasty, examining foundational texts in Confucian thought, Daoist philosophy, historical writing,
+                    Buddhist traditions, and poetic expression.</p>
+            </div>
+            <div class="syllabus-links">
+                <a href="https://docs.google.com/document/d/1pe6TGFP7j74LkN62yXIgCsXP8-mQsPtPg4SqCZvGILo/edit?tab=t.0"
+                    target="_blank" rel="noopener" class="syllabus-link primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    Syllabus
+                </a>
+                <a href="https://lawrence.instructure.com/courses/12070" target="_blank" rel="noopener"
+                    class="syllabus-link secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <line x1="3" y1="9" x2="21" y2="9" />
+                    </svg>
+                    Canvas
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-<script>
-// STUDENTS - Update this with your EAST 370 roster
-var students = [];
+    </section>
 
-var days = [];
+    <!-- This Week Section -->
+    <section class="this-week-section">
+        <div class="this-week-card">
+            <div class="this-week-label">This Week</div>
+            <div class="this-week-content">
+                <div class="this-week-reading">
+                    <span class="this-week-chinese">莊子</span>
+                    <span class="this-week-title">Zhuangzi: Death, Mastery, Anti-Relativism</span>
+                </div>
+                <div class="this-week-links">
+                    <a href="lessons/week4-review.html" class="this-week-link primary">Week 4 Review & Preview</a>
+                    <a href="lessons/zhuangzi-framing.html" class="this-week-link">The Apophatic & Zhuangzi</a>
+                    <a href="lessons/zhuangzi.html" class="this-week-link">Study Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-var currentDayIndex = 0;
-var timerInterval = null;
-var timerSeconds = 600;
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="timeline-header">
+            <h2>Course Readings</h2>
+            <div class="subtitle">Texts in Historical Context</div>
+        </div>
 
-function escapeHtml(value) {
-  return String(value == null ? "" : value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+        <div class="timeline">
 
-function localIsoDate() {
-  var now = new Date();
-  var year = now.getFullYear();
-  var month = String(now.getMonth() + 1).padStart(2, "0");
-  var day = String(now.getDate()).padStart(2, "0");
-  return year + "-" + month + "-" + day;
-}
+            <!-- Spring and Autumn Period -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">770<span>BCE</span></span>
+                    <span class="era-name">Spring & Autumn</span>
+                    <span class="era-chinese">春秋</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Book of Songs -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">詩經</div>
+                            <div class="card-title">Book of Songs</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-async function loadStudents() {
-  try {
-    var response = await fetch("students.json");
-    if (!response.ok) return;
-    var payload = await response.json();
-    if (payload && Array.isArray(payload.students)) {
-      students = payload.students;
-    }
-  } catch (e) {
-    // Optional file; fallback to inline list if missing.
-  }
-}
+                    <!-- Kongzi -->
+                    <a href="lessons/kongzi.html" class="reading-card confucian">
+                        <div class="card-top">
+                            <div class="card-chinese">論語</div>
+                            <div class="card-title">Kongzi (Analects)</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
 
-async function loadDays() {
-  try {
-    var response = await fetch("prep/days.json");
-    if (!response.ok) return;
-    var payload = await response.json();
-    if (payload && Array.isArray(payload.days)) {
-      days = payload.days;
-    }
-  } catch (e) {
-    // Optional file; fallback to inline list if present.
-  }
-}
+                    <!-- Historical Writings -->
+                    <a href="lessons/histories.html" class="reading-card historical">
+                        <div class="card-top">
+                            <div class="card-chinese">史</div>
+                            <div class="card-title">Historical Writings</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Deep Dive</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-function renderRoster() {
-  var strip = document.querySelector(".roster-strip");
-  var html = "";
-  if (students.length === 0) {
-    strip.style.display = "none";
-    document.getElementById("rosterRow").innerHTML = "";
-    return;
-  }
-  strip.style.display = "block";
-  for (var i = 0; i < students.length; i++) {
-    var s = students[i];
-    var displayName = escapeHtml(s.preferredName || s.firstName || "");
-    var pronouns = escapeHtml(s.pronouns || "");
-    var initial = (displayName || "?").charAt(0) || "?";
-    html += '<div class="student-nameplate">';
-    html += '<img src="' + escapeHtml(s.photo || "") + '" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23ddd%22/><text x=%2250%22 y=%2260%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22%23999%22>' + initial + '</text></svg>\'">';
-    html += '<div class="name">' + displayName + '</div>';
-    if (s.pronouns) html += '<div class="pronouns">' + pronouns + '</div>';
-    html += '</div>';
-  }
-  document.getElementById("rosterRow").innerHTML = html;
-}
+            <!-- Warring States Period -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">475<span>BCE</span></span>
+                    <span class="era-name">Warring States</span>
+                    <span class="era-chinese">戰國</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Mozi -->
+                    <a href="lessons/mozi.html" class="reading-card mohist">
+                        <div class="card-top">
+                            <div class="card-chinese">墨子</div>
+                            <div class="card-title">Mozi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
 
-function formatDate(d) {
-  var dt = new Date(d + "T12:00:00");
-  return dt.toLocaleDateString("en-US", {month: "short", day: "numeric"});
-}
+                    <!-- Mengzi -->
+                    <a href="lessons/mengzi.html" class="reading-card confucian">
+                        <div class="card-top">
+                            <div class="card-chinese">孟子</div>
+                            <div class="card-title">Mengzi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
 
-function formatFullDate(d) {
-  var dt = new Date(d + "T12:00:00");
-  return dt.toLocaleDateString("en-US", {weekday: "long", month: "long", day: "numeric", year: "numeric"});
-}
+                    <!-- Songs of Chu -->
+                    <a href="lessons/songs-of-chu-day1.html" class="reading-card literary">
+                        <div class="card-top">
+                            <div class="card-chinese">楚辭</div>
+                            <div class="card-title">Songs of Chu</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Day 1: Li Sao & Nine Songs</span>
+                        </div>
+                    </a>
 
-function initDropdown() {
-  var html = "";
-  for (var i = 0; i < days.length; i++) {
-    var p = days[i];
-    var cls = "day-option";
-    if (i === currentDayIndex) cls += " active";
-    if (p.noClass) cls += " no-class";
-    var label = p.day ? "Day " + p.day + ": " : "";
-    label += p.topic.length > 40 ? p.topic.substring(0, 40) + "..." : p.topic;
-    html += '<div class="' + cls + '" onclick="loadDay(' + i + ')">';
-    html += '<span>' + label + '</span>';
-    html += '<span class="date">' + p.dayOfWeek + ' ' + formatDate(p.date) + '</span>';
-    html += '</div>';
-  }
-  document.getElementById("dayDropdown").innerHTML = html;
-}
+                    <!-- Songs of Chu Day 2 -->
+                    <a href="lessons/songs-of-chu-day2.html" class="reading-card literary">
+                        <div class="card-top">
+                            <div class="card-chinese">楚辭</div>
+                            <div class="card-title">Songs of Chu</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Day 2: Nine Declarations & More</span>
+                        </div>
+                    </a>
 
-function loadDay(i) {
-  if (i < 0 || i >= days.length) return;
-  currentDayIndex = i;
-  var p = days[i];
+                    <!-- Laozi -->
+                    <a href="lessons/laozi.html" class="reading-card daoist">
+                        <div class="card-top">
+                            <div class="card-chinese">老子</div>
+                            <div class="card-title">Laozi (Daodejing)</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
 
-  document.getElementById("currentDay").textContent = p.day ? "Day " + p.day : p.topic;
-  document.getElementById("weekTheme").textContent = "Week " + p.week + " · " + (p.theme || "");
-  document.getElementById("dayTitle").textContent = p.day ? "Day " + p.day + ": " + p.topic : p.topic;
-  document.getElementById("dayDate").textContent = formatFullDate(p.date);
+                    <!-- Zhuangzi -->
+                    <a href="lessons/zhuangzi.html" class="reading-card daoist">
+                        <div class="card-top">
+                            <div class="card-chinese">莊子</div>
+                            <div class="card-title">Zhuangzi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
 
-  var iv = document.getElementById("ivanhoeRef");
-  if (p.ivanhoe) {
-    // Find the first philosophy reading's URL for this day
-    var ivUrl = "https://drive.google.com/drive/u/2/folders/17nwKLGBRbd8Qu-adTAQnBKnPRCaj5CUW";
-    for (var r = 0; r < p.readings.length; r++) {
-      if (p.readings[r].type === "philosophy" && p.readings[r].url) {
-        ivUrl = p.readings[r].url;
-        break;
-      }
-    }
-    iv.innerHTML = '📖 <a href="' + escapeHtml(ivUrl) + '" target="_blank" rel="noopener noreferrer" style="color:#f0e6d0;text-decoration:underline;">Ivanhoe: ' + escapeHtml(p.ivanhoe) + '</a>';
-    iv.style.display = "inline-block";
-  } else {
-    iv.style.display = "none";
-  }
+                    <!-- Xunzi -->
+                    <a href="lessons/xunzi.html" class="reading-card confucian">
+                        <div class="card-top">
+                            <div class="card-chinese">荀子</div>
+                            <div class="card-title">Xunzi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Study Guide</span>
+                        </div>
+                    </a>
 
-  renderMain(p);
-  renderSidebar(p, i);
+                    <!-- Han Feizi -->
+                    <div class="reading-card legalist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">韓非子</div>
+                            <div class="card-title">Han Feizi</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  var opts = document.querySelectorAll(".day-option");
-  for (var j = 0; j < opts.length; j++) {
-    opts[j].className = opts[j].className.replace(" active", "");
-    if (j === i) opts[j].className += " active";
-  }
-  document.getElementById("dayDropdown").className = "day-dropdown";
-}
+            <!-- Qin Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">221<span>BCE</span></span>
+                    <span class="era-name">Qin</span>
+                    <span class="era-chinese">秦</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Faults of Qin -->
+                    <div class="reading-card prose placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">過秦</div>
+                            <div class="card-title">Faults of Qin</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-function renderMain(p) {
-  var m = document.getElementById("prepMain");
+            <!-- Han Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">206<span>BCE</span></span>
+                    <span class="era-name">Han</span>
+                    <span class="era-chinese">漢</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Sima Qian -->
+                    <div class="reading-card historical placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">史記</div>
+                            <div class="card-title">Sima Qian</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-  if (p.noClass) {
-    m.innerHTML = '<div class="no-class-banner">🚫 No Class — ' + escapeHtml(p.topic) + '</div>';
-    return;
-  }
+                    <!-- Han Fu -->
+                    <a href="lessons/fu-background.html" class="reading-card poetry">
+                        <div class="card-top">
+                            <div class="card-chinese">賦</div>
+                            <div class="card-title">Han Rhyme Prose</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Background</span>
+                        </div>
+                    </a>
 
-  var h = "";
+                    <!-- Shanglin Fu -->
+                    <a href="lessons/shanglin-fu.html" class="reading-card poetry">
+                        <div class="card-top">
+                            <div class="card-chinese">上林</div>
+                            <div class="card-title">Shanglin Fu</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link">Deep Dive</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-  // Readings
-  if (p.readings && p.readings.length > 0) {
-    h += '<div class="section-title">Today\'s Readings</div>';
-    for (var i = 0; i < p.readings.length; i++) {
-      var r = p.readings[i];
-      var tc = r.type || "philosophy";
-      h += '<a class="reading-card ' + tc + '" href="' + escapeHtml(r.url || '#') + '" target="_blank" rel="noopener noreferrer">';
-      h += '<div class="type-badge">' + escapeHtml(tc.charAt(0).toUpperCase() + tc.slice(1)) + '</div>';
-      h += '<div class="title">' + escapeHtml(r.title) + '</div>';
-      if (r.titleChinese) h += '<div class="chinese">' + escapeHtml(r.titleChinese) + '</div>';
-      if (r.author) h += '<div class="author">' + escapeHtml(r.author) + '</div>';
-      if (r.source || r.pages) {
-        h += '<div class="source">' + escapeHtml(r.source || "") + (r.pages ? " · pp. " + escapeHtml(r.pages) : "") + '</div>';
-      }
-      h += '</a>';
-    }
-  }
+            <!-- Period of Division -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">220<span>CE</span></span>
+                    <span class="era-name">Six Dynasties</span>
+                    <span class="era-chinese">六朝</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Recluse Poetry -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">隱逸</div>
+                            <div class="card-title">Recluse Poetry</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-  if (!h) h = '<p style="color:var(--text-muted);padding:20px">No readings for this day.</p>';
-  m.innerHTML = h;
-}
+                    <!-- Huiyuan -->
+                    <div class="reading-card buddhist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">慧遠</div>
+                            <div class="card-title">Huiyuan</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-function renderSidebar(p, i) {
-  var s = document.getElementById("prepSidebar");
-  var h = "";
+            <!-- Tang Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">618<span>CE</span></span>
+                    <span class="era-name">Tang</span>
+                    <span class="era-chinese">唐</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Tang Poetry -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">唐詩</div>
+                            <div class="card-title">Tang Poetry</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-  if (p.notes) {
-    h += '<div class="section-title">Notes</div>';
-    h += '<div class="notes-box">' + escapeHtml(p.notes) + '</div>';
-  }
+                    <!-- Tang Prose -->
+                    <div class="reading-card prose placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">古文</div>
+                            <div class="card-title">Tang Prose</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-  if (p.assignment) {
-    h += '<div class="assignment-box">';
-    h += '<div class="label">📌 Assignment Due</div>';
-    h += '<div class="name">' + escapeHtml(p.assignment.name) + '</div>';
-    h += '<div class="due">' + p.assignment.dueDay + ', ' + formatDate(p.assignment.due) + '</div>';
-    h += '</div>';
-  }
+                    <!-- Tang Stories -->
+                    <div class="reading-card fiction placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">傳奇</div>
+                            <div class="card-title">Tang Stories</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-  var ni = i + 1;
-  while (ni < days.length && days[ni].noClass) ni++;
-  var nx = days[ni];
+                    <!-- Huayan -->
+                    <div class="reading-card buddhist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">華嚴</div>
+                            <div class="card-title">Huayan Buddhism</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  h += '<div class="section-title">Coming Up Next</div>';
-  if (nx) {
-    h += '<div class="upcoming-card">';
-    h += '<div class="day-num">' + (nx.day ? "Day " + nx.day : nx.topic) + '</div>';
-    h += '<div class="topic">' + nx.topic + '</div>';
-    h += '<div class="date">' + nx.dayOfWeek + ', ' + formatDate(nx.date) + '</div>';
-    h += '</div>';
-  } else {
-    h += '<div class="upcoming-card"><div class="topic">End of Course</div></div>';
-  }
+            <!-- Song Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">960<span>CE</span></span>
+                    <span class="era-name">Song</span>
+                    <span class="era-chinese">宋</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Ci Poetry -->
+                    <div class="reading-card poetry placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">詞</div>
+                            <div class="card-title">Ci Poetry</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-  s.innerHTML = h;
-}
+                    <!-- Song Prose -->
+                    <div class="reading-card prose placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">散文</div>
+                            <div class="card-title">Song Prose</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-function prevDay() { loadDay(currentDayIndex - 1); }
-function nextDay() { loadDay(currentDayIndex + 1); }
+                    <!-- Neo-Confucianism -->
+                    <div class="reading-card confucian placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">理學</div>
+                            <div class="card-title">Neo-Confucianism</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-function toggleDayDropdown() {
-  var dd = document.getElementById("dayDropdown");
-  dd.className = dd.className.indexOf("open") >= 0 ? "day-dropdown" : "day-dropdown open";
-}
+                    <!-- Chan Buddhism -->
+                    <div class="reading-card buddhist placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">禪</div>
+                            <div class="card-title">Chan Buddhism</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-function updateTimerDisplay() {
-  var m = Math.floor(timerSeconds / 60);
-  var s = timerSeconds % 60;
-  document.getElementById("timerDisplay").textContent =
-    (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
-}
+            <!-- Yuan Dynasty -->
+            <div class="era-group">
+                <div class="era-header">
+                    <span class="era-year">1271<span>CE</span></span>
+                    <span class="era-name">Yuan</span>
+                    <span class="era-chinese">元</span>
+                </div>
+                <div class="card-grid">
+                    <!-- Yuan Drama -->
+                    <div class="reading-card fiction placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">雜劇</div>
+                            <div class="card-title">Yuan Drama</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
 
-function startTimer() {
-  if (timerInterval) return;
-  timerInterval = setInterval(function() {
-    timerSeconds--;
-    updateTimerDisplay();
-    if (timerSeconds <= 0) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      alert("Time!");
-    }
-  }, 1000);
-}
+                    <!-- Water Margin -->
+                    <div class="reading-card fiction placeholder">
+                        <div class="card-top">
+                            <div class="card-chinese">水滸</div>
+                            <div class="card-title">Water Margin</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-placeholder">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-function pauseTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-}
+        </div>
+    </section>
 
-function resetTimer() {
-  pauseTimer();
-  timerSeconds = 600;
-  updateTimerDisplay();
-}
+    <!-- Resources Section -->
+    <section class="resources-section" id="resources">
+        <div class="resources-header">
+            <h2>Resources</h2>
+        </div>
 
-function setTimer(m) {
-  pauseTimer();
-  timerSeconds = m * 60;
-  updateTimerDisplay();
-}
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h4>Primary Texts</h4>
+                <a href="https://ctext.org/" target="_blank" rel="noopener">Chinese Text Project</a>
+                <a href="https://plato.stanford.edu/entries/mencius/" target="_blank" rel="noopener">SEP: Mencius</a>
+                <a href="https://plato.stanford.edu/entries/xunzi/" target="_blank" rel="noopener">SEP: Xunzi</a>
+            </div>
 
-function openTimerModal() {
-  document.getElementById("timerModal").className = "modal-overlay active";
-}
+            <div class="resource-card">
+                <h4>Dictionaries</h4>
+                <a href="https://www.mdbg.net/" target="_blank" rel="noopener">MDBG Dictionary</a>
+                <a href="https://www.zdic.net/" target="_blank" rel="noopener">Zdic (Chinese)</a>
+            </div>
 
-function closeTimerModal() {
-  document.getElementById("timerModal").className = "modal-overlay";
-}
+            <div class="resource-card">
+                <h4>Historical Maps</h4>
+                <a href="https://chgis.fas.harvard.edu/" target="_blank" rel="noopener">China Historical GIS</a>
+                <a href="https://worldmap.harvard.edu/chinamap/" target="_blank" rel="noopener">Harvard WorldMap</a>
+            </div>
 
-function findToday() {
-  var t = localIsoDate();
-  for (var i = 0; i < days.length; i++) {
-    if (days[i].date === t) return i;
-    if (days[i].date > t) return i;
-  }
-  return days.length - 1;
-}
+            <div class="resource-card">
+                <h4>Course Admin</h4>
+                <a href="https://lawrence.instructure.com/courses/12070" target="_blank" rel="noopener">Canvas</a>
+                <a href="https://docs.google.com/document/d/1pe6TGFP7j74LkN62yXIgCsXP8-mQsPtPg4SqCZvGILo/edit?tab=t.0"
+                    target="_blank" rel="noopener">Syllabus</a>
+            </div>
 
-document.addEventListener("click", function(e) {
-  if (!e.target.closest(".day-selector")) {
-    document.getElementById("dayDropdown").className = "day-dropdown";
-  }
-});
+            <div class="resource-card">
+                <h4>Thematic Studies</h4>
+                <a href="lessons/tian-heaven.html">天 Heaven Across Six Texts</a>
+                <a href="lessons/fu-background.html">賦 Han Fu: Song Yu & Jia Yi</a>
+                <a href="lessons/shanglin-fu.html">上林賦 Sima Xiangru's Masterwork</a>
+                <a href="lessons/authors.html">文人 Literary Authors</a>
+            </div>
+        </div>
+    </section>
 
-document.getElementById("timerModal").addEventListener("click", function(e) {
-  if (e.target === this) closeTimerModal();
-});
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="course-title">中國文學與思想</div>
+            <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
+            <div class="term">Winter 2026</div>
+        </div>
+    </footer>
 
-window.onload = async function() {
-  await loadStudents();
-  await loadDays();
-  renderRoster();
-  if (!days.length) {
-    document.getElementById("currentDay").textContent = "No data";
-    document.getElementById("dayTitle").textContent = "No schedule loaded";
-    document.getElementById("dayDate").textContent = "";
-    document.getElementById("weekTheme").textContent = "";
-    document.getElementById("prepMain").innerHTML = '<p style="color:var(--text-muted);padding:20px">No schedule data found. Add <code>prep/days.json</code>.</p>';
-    document.getElementById("prepSidebar").innerHTML = "";
-    updateTimerDisplay();
-    return;
-  }
-  initDropdown();
-  loadDay(findToday());
-  updateTimerDisplay();
-};
-</script>
 </body>
+
 </html>
