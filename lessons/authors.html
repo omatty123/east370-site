@@ -8,13 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
-            --ink-faint: #8a8a8a;
+            --ink-faint: #7a7a7a;
             --paper: #faf9f7;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
@@ -30,16 +30,17 @@
 
         body {
             font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
-            background: var(--paper);
+            background: var(--ink);
             color: var(--ink);
-            line-height: 1.6;
-            font-size: 15px;
+            line-height: 1.5;
+            font-size: 14px;
         }
 
         /* Breadcrumb */
         .breadcrumb {
             background: var(--ink);
             padding: 0.5rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
         }
 
         .breadcrumb a {
@@ -50,129 +51,153 @@
             text-decoration: none;
         }
 
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--literary) 0%, #6a2a2a 100%);
-            padding: 1.5rem;
+            background: var(--ink);
+            padding: 1.25rem 1.5rem 1rem;
             text-align: center;
         }
 
         .header-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 2rem;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
             color: var(--gold-light);
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
         }
 
         .header h1 {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0.1em;
+            margin-top: 0.25rem;
         }
 
-        /* Grid */
-        .authors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1px;
+        /* Horizontal Scroll Container */
+        .authors-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 0;
+            padding: 0;
             background: var(--paper-dark);
-            max-width: 1400px;
-            margin: 0 auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
 
-        /* Card */
-        .author-card {
-            background: #fff;
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            min-height: 140px;
+        .authors-scroll::-webkit-scrollbar {
+            height: 6px;
         }
 
-        .author-portrait {
-            width: 100px;
-            height: 120px;
-            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+        .authors-scroll::-webkit-scrollbar-track {
+            background: var(--ink);
+        }
+
+        .authors-scroll::-webkit-scrollbar-thumb {
+            background: var(--gold);
             border-radius: 3px;
+        }
+
+        /* Author Card */
+        .author-card {
+            flex: 0 0 280px;
+            background: var(--paper);
+            border-right: 1px solid var(--paper-dark);
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-card:last-child {
+            border-right: none;
+        }
+
+        /* Portrait Section */
+        .portrait {
+            height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow: hidden;
         }
 
-        .author-portrait img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: sepia(20%) contrast(1.1);
-        }
-
-        .portrait-placeholder {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 2.5rem;
+        .portrait-char {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 5rem;
+            font-weight: 700;
             color: var(--gold);
-            opacity: 0.6;
+            opacity: 0.15;
+            position: absolute;
         }
 
-        .author-info {
+        .portrait-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.2rem;
+            color: var(--literary);
+            letter-spacing: 0.1em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Warring States - deep red */
+        .era-warring .portrait { background: linear-gradient(180deg, #f5e6e6 0%, #ebe0d8 100%); }
+        .era-warring .portrait-char { color: #8b2323; }
+        .era-warring .portrait-name { color: #5a1a1a; }
+
+        /* Han - amber/gold */
+        .era-han .portrait { background: linear-gradient(180deg, #f5ecd8 0%, #ebe0d0 100%); }
+        .era-han .portrait-char { color: #8b6914; }
+        .era-han .portrait-name { color: #4a3a1a; }
+
+        /* Six Dynasties - teal/jade */
+        .era-six .portrait { background: linear-gradient(180deg, #e6f0ee 0%, #dce8e4 100%); }
+        .era-six .portrait-char { color: #2d5a5a; }
+        .era-six .portrait-name { color: #1a3a3a; }
+
+        /* Info Section */
+        .info {
+            padding: 0.75rem 1rem;
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.4rem;
         }
 
-        .author-header {
+        .name-row {
             display: flex;
             align-items: baseline;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
         }
 
-        .author-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.3rem;
-            color: var(--literary);
-            line-height: 1;
-        }
-
-        .author-english {
+        .name-english {
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--ink);
         }
 
-        .author-dates {
+        .dates {
             font-size: 0.7rem;
             color: var(--ink-faint);
         }
 
-        .era-tag {
-            display: inline-block;
-            padding: 0.15rem 0.4rem;
-            border-radius: 2px;
+        .era-label {
             font-size: 0.6rem;
-            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            background: rgba(74, 26, 26, 0.1);
-            color: var(--literary);
-            margin-top: 0.1rem;
+            color: var(--gold);
+            font-weight: 600;
         }
 
         .works {
             font-size: 0.75rem;
             color: var(--ink-light);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        .work-chinese {
+        .work-title {
             font-family: 'Noto Sans SC', sans-serif;
-            color: var(--gold);
+            color: var(--literary);
         }
 
         .bio {
@@ -187,7 +212,7 @@
             font-style: italic;
             line-height: 1.4;
             margin-top: auto;
-            padding-top: 0.3rem;
+            padding-top: 0.5rem;
             border-top: 1px solid var(--paper-dark);
         }
 
@@ -197,30 +222,30 @@
             color: rgba(255, 255, 255, 0.6);
             text-align: center;
             padding: 1rem;
+            border-top: 1px solid rgba(184, 134, 11, 0.3);
         }
 
         footer .course-title {
-            font-family: 'Noto Sans SC', sans-serif;
+            font-family: 'Noto Serif SC', serif;
             font-size: 0.9rem;
             color: var(--gold-light);
         }
 
         footer .course-name {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.2rem;
         }
 
-        @media (max-width: 700px) {
-            .authors-grid {
-                grid-template-columns: 1fr;
-            }
-            .author-card {
-                grid-template-columns: 80px 1fr;
-            }
-            .author-portrait {
-                width: 80px;
-                height: 100px;
-            }
+        /* Scroll hint */
+        .scroll-hint {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 0.4rem;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
     </style>
 </head>
@@ -232,223 +257,225 @@
     </nav>
 
     <header class="header">
-        <div class="header-chinese">文人</div>
+        <div class="header-chinese">文人列傳</div>
         <h1>Literary Authors from Birch's Anthology</h1>
     </header>
 
-    <div class="authors-grid">
+    <div class="scroll-hint">Scroll horizontally &rarr;</div>
+
+    <div class="authors-scroll">
 
         <!-- Qu Yuan -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Qu_Yuan_Chen_Hongshou.jpg" alt="Qu Yuan">
+        <div class="author-card era-warring">
+            <div class="portrait">
+                <span class="portrait-char">楚</span>
+                <span class="portrait-name">屈原</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">屈原</span>
-                    <span class="author-english">Qu Yuan</span>
-                    <span class="author-dates">c. 340–278 BCE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Qu Yuan</span>
+                    <span class="dates">c. 340–278 BCE</span>
                 </div>
-                <span class="era-tag">Warring States · Chu</span>
+                <span class="era-label">Warring States · Chu</span>
                 <div class="works">
-                    <span class="work-chinese">離騷</span> Li Sao ·
-                    <span class="work-chinese">九歌</span> Nine Songs ·
-                    <span class="work-chinese">天問</span> Heavenly Questions
+                    <span class="work-title">離騷</span> Li Sao ·
+                    <span class="work-title">九歌</span> Nine Songs ·
+                    <span class="work-title">天問</span> Heavenly Questions
                 </div>
-                <div class="bio">Minister of Chu, slandered and exiled. Drowned himself after Chu's fall to Qin.</div>
+                <div class="bio">Minister of Chu, slandered and exiled. Drowned himself in the Miluo River after Chu fell to Qin.</div>
                 <div class="influence">Father of Chinese poetry. Template for the wronged loyal minister.</div>
             </div>
         </div>
 
         <!-- Song Yu -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Song_Yu.jpg/440px-Song_Yu.jpg" alt="Song Yu">
+        <div class="author-card era-warring">
+            <div class="portrait">
+                <span class="portrait-char">楚</span>
+                <span class="portrait-name">宋玉</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">宋玉</span>
-                    <span class="author-english">Song Yu</span>
-                    <span class="author-dates">c. 290–223 BCE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Song Yu</span>
+                    <span class="dates">c. 290–223 BCE</span>
                 </div>
-                <span class="era-tag">Warring States · Chu</span>
+                <span class="era-label">Warring States · Chu</span>
                 <div class="works">
-                    <span class="work-chinese">九辯</span> Nine Debates ·
-                    <span class="work-chinese">高唐賦</span> Gaotang Fu ·
-                    <span class="work-chinese">神女賦</span> Goddess Fu
+                    <span class="work-title">九辯</span> Nine Debates ·
+                    <span class="work-title">高唐賦</span> Gaotang Fu ·
+                    <span class="work-title">神女賦</span> Goddess Fu
                 </div>
-                <div class="bio">Disciple of Qu Yuan. Known for beauty, eloquence, and sensuous imagery.</div>
-                <div class="influence">Bridge between Chuci and Han fu. Dream-encounter narratives.</div>
+                <div class="bio">Disciple of Qu Yuan. Known for beauty, eloquence, and sensuous dream-encounter imagery.</div>
+                <div class="influence">Bridge between Chuci and Han fu. Inventor of the goddess-encounter narrative.</div>
             </div>
         </div>
 
         <!-- Jia Yi -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Jia_Yi.jpg/440px-Jia_Yi.jpg" alt="Jia Yi">
+        <div class="author-card era-han">
+            <div class="portrait">
+                <span class="portrait-char">漢</span>
+                <span class="portrait-name">賈誼</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">賈誼</span>
-                    <span class="author-english">Jia Yi</span>
-                    <span class="author-dates">200–168 BCE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Jia Yi</span>
+                    <span class="dates">200–168 BCE</span>
                 </div>
-                <span class="era-tag">Early Han</span>
+                <span class="era-label">Early Han</span>
                 <div class="works">
-                    <span class="work-chinese">吊屈原賦</span> Lament for Qu Yuan ·
-                    <span class="work-chinese">鵩鳥賦</span> The Owl ·
-                    <span class="work-chinese">過秦論</span> Faults of Qin
+                    <span class="work-title">吊屈原賦</span> Lament for Qu Yuan ·
+                    <span class="work-title">鵩鳥賦</span> The Owl ·
+                    <span class="work-title">過秦論</span> Faults of Qin
                 </div>
-                <div class="bio">Brilliant young official, exiled due to jealousy. Died young of grief.</div>
-                <div class="influence">Model of tragic genius. Established literary homage tradition.</div>
-            </div>
-        </div>
-
-        <!-- Sima Xiangru -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Sima_Xiangru.jpg/440px-Sima_Xiangru.jpg" alt="Sima Xiangru">
-            </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">司馬相如</span>
-                    <span class="author-english">Sima Xiangru</span>
-                    <span class="author-dates">179–117 BCE</span>
-                </div>
-                <span class="era-tag">Western Han</span>
-                <div class="works">
-                    <span class="work-chinese">子虛賦</span> Sir Fantasy ·
-                    <span class="work-chinese">上林賦</span> Shanglin Fu ·
-                    <span class="work-chinese">大人賦</span> The Great Man
-                </div>
-                <div class="bio">Master of grand fu. Eloped with widow Zhuo Wenjun. Court poet to Emperor Wu.</div>
-                <div class="influence">Supreme Han fu stylist. Shanglin Fu set standard for imperial spectacle.</div>
+                <div class="bio">Brilliant young official, exiled due to jealousy at court. Died at 33, consumed by grief.</div>
+                <div class="influence">Model of tragic genius cut down by politics. Established literary homage tradition.</div>
             </div>
         </div>
 
         <!-- Mei Sheng -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <span class="portrait-placeholder">枚</span>
+        <div class="author-card era-han">
+            <div class="portrait">
+                <span class="portrait-char">漢</span>
+                <span class="portrait-name">枚乘</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">枚乘</span>
-                    <span class="author-english">Mei Sheng</span>
-                    <span class="author-dates">d. 140 BCE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Mei Sheng</span>
+                    <span class="dates">d. 140 BCE</span>
                 </div>
-                <span class="era-tag">Western Han</span>
+                <span class="era-label">Western Han</span>
                 <div class="works">
-                    <span class="work-chinese">七發</span> Qi Fa (Seven Stimuli)
+                    <span class="work-title">七發</span> Qi Fa (Seven Stimuli)
                 </div>
-                <div class="bio">Served several princes. Created new form where visitor cures prince through vivid descriptions.</div>
-                <div class="influence">Invented the "Seven" genre. Pioneer of escalating rhetorical set-pieces.</div>
+                <div class="bio">Served several princes before Emperor Wu's court. Created new form: visitor cures prince through escalating descriptions.</div>
+                <div class="influence">Invented the "Seven" genre imitated for centuries.</div>
+            </div>
+        </div>
+
+        <!-- Sima Xiangru -->
+        <div class="author-card era-han">
+            <div class="portrait">
+                <span class="portrait-char">漢</span>
+                <span class="portrait-name">司馬相如</span>
+            </div>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Sima Xiangru</span>
+                    <span class="dates">179–117 BCE</span>
+                </div>
+                <span class="era-label">Western Han</span>
+                <div class="works">
+                    <span class="work-title">子虛賦</span> Sir Fantasy ·
+                    <span class="work-title">上林賦</span> Shanglin Fu ·
+                    <span class="work-title">大人賦</span> The Great Man
+                </div>
+                <div class="bio">Master of grand fu. Eloped with widow Zhuo Wenjun. Court poet to Emperor Wu. Known for stuttering.</div>
+                <div class="influence">Supreme Han fu stylist. Shanglin Fu set standard for imperial spectacle.</div>
             </div>
         </div>
 
         <!-- Ban Gu -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Ban_Gu.jpg/440px-Ban_Gu.jpg" alt="Ban Gu">
+        <div class="author-card era-han">
+            <div class="portrait">
+                <span class="portrait-char">漢</span>
+                <span class="portrait-name">班固</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">班固</span>
-                    <span class="author-english">Ban Gu</span>
-                    <span class="author-dates">32–92 CE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Ban Gu</span>
+                    <span class="dates">32–92 CE</span>
                 </div>
-                <span class="era-tag">Eastern Han</span>
+                <span class="era-label">Eastern Han</span>
                 <div class="works">
-                    <span class="work-chinese">兩都賦</span> Two Capitals Fu ·
-                    <span class="work-chinese">漢書</span> History of Han
+                    <span class="work-title">兩都賦</span> Two Capitals Fu ·
+                    <span class="work-title">漢書</span> History of Han
                 </div>
-                <div class="bio">Historian and poet. Completed Han Shu. Died in prison after political implication.</div>
+                <div class="bio">Historian and poet from literary family. Completed the Han Shu. Died in prison after political implication.</div>
                 <div class="influence">Redirected fu toward moral purpose. Template for capital-city fu.</div>
             </div>
         </div>
 
         <!-- Cao Cao -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Cao_Cao_scth.jpg" alt="Cao Cao">
+        <div class="author-card era-six">
+            <div class="portrait">
+                <span class="portrait-char">魏</span>
+                <span class="portrait-name">曹操</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">曹操</span>
-                    <span class="author-english">Cao Cao</span>
-                    <span class="author-dates">155–220 CE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Cao Cao</span>
+                    <span class="dates">155–220 CE</span>
                 </div>
-                <span class="era-tag">Late Han · Wei</span>
+                <span class="era-label">Late Han · Wei</span>
                 <div class="works">
-                    <span class="work-chinese">短歌行</span> Short Song ·
-                    <span class="work-chinese">觀滄海</span> Viewing the Ocean
+                    <span class="work-title">短歌行</span> Short Song ·
+                    <span class="work-title">觀滄海</span> Viewing the Ocean
                 </div>
-                <div class="bio">Warlord who unified the north. Genuine poet who gathered literary talents at court.</div>
+                <div class="bio">Warlord who unified north China. Despite reputation as schemer, a genuine poet who gathered literary talents.</div>
                 <div class="influence">Pioneer of Jian'an style—direct, vigorous, unadorned.</div>
             </div>
         </div>
 
         <!-- Cao Zhi -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Cao_Zhi.jpg/440px-Cao_Zhi.jpg" alt="Cao Zhi">
+        <div class="author-card era-six">
+            <div class="portrait">
+                <span class="portrait-char">魏</span>
+                <span class="portrait-name">曹植</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">曹植</span>
-                    <span class="author-english">Cao Zhi</span>
-                    <span class="author-dates">192–232 CE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Cao Zhi</span>
+                    <span class="dates">192–232 CE</span>
                 </div>
-                <span class="era-tag">Wei</span>
+                <span class="era-label">Wei</span>
                 <div class="works">
-                    <span class="work-chinese">洛神賦</span> Goddess of the Luo ·
-                    <span class="work-chinese">白馬篇</span> White Horse ·
-                    <span class="work-chinese">七步詩</span> Seven-Step Poem
+                    <span class="work-title">洛神賦</span> Goddess of the Luo ·
+                    <span class="work-title">白馬篇</span> White Horse ·
+                    <span class="work-title">七步詩</span> Seven-Step Poem
                 </div>
-                <div class="bio">Most gifted of Cao Cao's sons. Lost succession, lived under suspicion.</div>
+                <div class="bio">Most gifted of Cao Cao's sons. Lost succession struggle, spent life under suspicion.</div>
                 <div class="influence">Greatest Jian'an poet. Model of talent thwarted by politics.</div>
             </div>
         </div>
 
         <!-- Tao Qian -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Tao_Yuanming.jpg/440px-Tao_Yuanming.jpg" alt="Tao Qian">
+        <div class="author-card era-six">
+            <div class="portrait">
+                <span class="portrait-char">晉</span>
+                <span class="portrait-name">陶潛</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">陶潛</span>
-                    <span class="author-english">Tao Qian</span>
-                    <span class="author-dates">365–427 CE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Tao Qian</span>
+                    <span class="dates">365–427 CE</span>
                 </div>
-                <span class="era-tag">Eastern Jin</span>
+                <span class="era-label">Eastern Jin</span>
                 <div class="works">
-                    <span class="work-chinese">歸去來辭</span> Return ·
-                    <span class="work-chinese">桃花源記</span> Peach Blossom Spring ·
-                    <span class="work-chinese">飲酒</span> Drinking Wine
+                    <span class="work-title">歸去來辭</span> Return ·
+                    <span class="work-title">桃花源記</span> Peach Blossom Spring ·
+                    <span class="work-title">飲酒</span> Drinking Wine
                 </div>
-                <div class="bio">Resigned office rather than bow. Farmed, drank, wrote in poverty.</div>
+                <div class="bio">Resigned office rather than bow for five pecks of rice. Farmed, drank, wrote in poverty.</div>
                 <div class="influence">Patron saint of reclusion. Model for "fields and gardens" poetry.</div>
             </div>
         </div>
 
         <!-- Xie Lingyun -->
-        <div class="author-card">
-            <div class="author-portrait">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Xie_Lingyun.jpg/440px-Xie_Lingyun.jpg" alt="Xie Lingyun">
+        <div class="author-card era-six">
+            <div class="portrait">
+                <span class="portrait-char">宋</span>
+                <span class="portrait-name">謝靈運</span>
             </div>
-            <div class="author-info">
-                <div class="author-header">
-                    <span class="author-chinese">謝靈運</span>
-                    <span class="author-english">Xie Lingyun</span>
-                    <span class="author-dates">385–433 CE</span>
+            <div class="info">
+                <div class="name-row">
+                    <span class="name-english">Xie Lingyun</span>
+                    <span class="dates">385–433 CE</span>
                 </div>
-                <span class="era-tag">Liu Song</span>
+                <span class="era-label">Liu Song</span>
                 <div class="works">
-                    <span class="work-chinese">山水詩</span> Landscape poetry ·
-                    <span class="work-chinese">登池上樓</span> Ascending the Tower
+                    <span class="work-title">山水詩</span> Landscape poetry ·
+                    <span class="work-title">登池上樓</span> Ascending the Tower
                 </div>
-                <div class="bio">Arrogant aristocrat. Famous for hiking boots and mountain expeditions. Executed for rebellion.</div>
+                <div class="bio">Arrogant aristocrat famous for hiking boots and mountain expeditions. Executed for rebellion.</div>
                 <div class="influence">Father of landscape poetry. Made scenery the subject, not backdrop.</div>
             </div>
         </div>
