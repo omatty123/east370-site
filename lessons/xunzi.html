@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xunzi 荀子 | EAST 370 Study Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-lighter: #6a6a6a;
+            --paper: #faf9f7;
+            --paper-dark: #f0ede8;
+            --accent: #8b4513;
+            --accent-light: #a0522d;
+            --gold: #8b6914;
+            --gold-light: #a67c00;
+            --section-1: #5c3317;
+            --section-2: #2f4f4f;
+            --section-3: #4a3728;
+            --section-4: #3d3d6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Serif', Georgia, serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #3d2914 0%, #5c3317 50%, #3d2914 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            color: var(--gold-light);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 60px rgba(166, 124, 0, 0.4);
+        }
+
+        .hero h1 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            margin: 0 auto 3rem;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .hero-meta-item {
+            text-align: center;
+        }
+
+        .hero-meta-item span {
+            display: block;
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-meta-item strong {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(61, 41, 20, 0.97);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(166, 124, 0, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: var(--gold-light);
+            background: rgba(166, 124, 0, 0.15);
+            box-shadow: inset 0 -2px 0 var(--gold);
+        }
+
+        .nav a.map-link {
+            background: var(--gold);
+            color: #fff;
+        }
+
+        .nav a.map-link:hover {
+            background: var(--gold-light);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: linear-gradient(180deg, rgba(92, 51, 23, 0.05) 0%, var(--paper) 100%);
+            padding: 4rem 2rem;
+        }
+
+        .intro-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ink-lighter);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .intro-content {
+            background: #fff;
+            border-radius: 6px;
+            padding: 2.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            line-height: 1.9;
+        }
+
+        .intro-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .intro-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+        }
+
+        .intro-content a:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* Table of Contents */
+        .toc-section {
+            background: var(--paper);
+            padding: 4rem 2rem;
+        }
+
+        .toc-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .toc-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ink-lighter);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .toc-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .toc-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            border-left-width: 8px;
+        }
+
+        .toc-card.chapter-1 {
+            border-color: var(--section-1);
+        }
+
+        .toc-card.chapter-2 {
+            border-color: var(--section-2);
+        }
+
+        .toc-card.chapter-3 {
+            border-color: var(--section-3);
+        }
+
+        .toc-card.chapter-4 {
+            border-color: var(--section-4);
+        }
+
+        .toc-card .chapter-num {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-lighter);
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-card .chapter-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .toc-card .chapter-subtitle {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+        }
+
+        .toc-card .chapter-desc {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+
+        .toc-external {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 3px;
+            margin-top: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .toc-external:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .toc-external svg {
+            width: 10px;
+            height: 10px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-header.section-1 {
+            background: linear-gradient(135deg, var(--section-1) 0%, #3d2914 100%);
+        }
+
+        .section-header.section-2 {
+            background: linear-gradient(135deg, var(--section-2) 0%, #1a2f2f 100%);
+        }
+
+        .section-header.section-3 {
+            background: linear-gradient(135deg, var(--section-3) 0%, #2a1f16 100%);
+        }
+
+        .section-header.section-4 {
+            background: linear-gradient(135deg, var(--section-4) 0%, #252547 100%);
+        }
+
+        .section-number {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .chinese-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header .passage-ref {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .content-section h3 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .content-section.teal h3 {
+            color: var(--section-2);
+            border-color: var(--section-2);
+        }
+
+        .content-section.brown h3 {
+            color: var(--section-3);
+            border-color: var(--section-3);
+        }
+
+        .content-section.purple h3 {
+            color: var(--section-4);
+            border-color: var(--section-4);
+        }
+
+        /* Key Terms Tables */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 2rem;
+            font-size: 0.95rem;
+        }
+
+        .terms-table th {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-lighter);
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: var(--paper-dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        .terms-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .terms-table .chinese-cell {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+        }
+
+        .terms-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        .terms-table tr:hover {
+            background: rgba(139, 69, 19, 0.04);
+            transition: background 0.2s ease;
+        }
+
+        /* Synopsis */
+        .synopsis {
+            background: #fff;
+            border-radius: 6px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .synopsis::before {
+            content: '"';
+            font-family: Georgia, serif;
+            font-size: 5rem;
+            color: var(--paper-dark);
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            line-height: 1;
+        }
+
+        .synopsis-content {
+            padding-left: 0.5rem;
+        }
+
+        .synopsis-content p {
+            margin-bottom: 1rem;
+        }
+
+        .synopsis-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .synopsis-content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+        }
+
+        .synopsis-content a:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* Themes Grid */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .theme-card {
+            background: linear-gradient(135deg, #fff 0%, var(--paper) 100%);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .theme-card .number {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--paper-dark);
+            float: left;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+
+        .theme-card h4 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-card p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+
+        /* Famous Saying Box */
+        .saying-box {
+            background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+            color: #fff;
+            padding: 2.5rem;
+            border-radius: 6px;
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .saying-box .saying-chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .saying-box .saying-pinyin {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .saying-box .saying-meaning {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .saying-box .saying-note {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background: var(--paper-dark);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--gold);
+            font-style: italic;
+        }
+
+        .quote-block cite {
+            display: block;
+            margin-top: 0.75rem;
+            font-style: normal;
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--ink-lighter);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: var(--paper-dark);
+            padding: 4rem 2rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: var(--ink);
+            color: #fff;
+            padding: 1rem 1.25rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(139, 69, 19, 0.03);
+        }
+
+        /* Discussion Questions */
+        .questions-section {
+            padding: 4rem 2rem;
+            background: #fff;
+        }
+
+        .questions-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .questions-container h2 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ink-lighter);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .question-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+        }
+
+        .question-item .q-num {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .question-item p {
+            font-size: 1rem;
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        /* Resources */
+        .resources-section {
+            background: linear-gradient(180deg, var(--paper) 0%, var(--paper-dark) 100%);
+            padding: 4rem 2rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .resource-card h4 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-lighter);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card a {
+            display: block;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .resource-card a:last-child {
+            border-bottom: none;
+        }
+
+        .resource-card a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer .course {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-chinese {
+                letter-spacing: 0.15em;
+            }
+
+            .nav-inner {
+                gap: 0.75rem;
+            }
+
+            .nav a {
+                font-size: 0.65rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .container {
+                padding: 2.5rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-chinese">荀子</div>
+            <h1>The Xunzi</h1>
+            <p class="hero-subtitle">
+                "Human nature is evil; goodness is the result of conscious activity."<br>
+                The contrarian Confucian who championed ritual, argued against innate goodness, and stripped Heaven of
+                moral agency.
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span>Author</span>
+                    <strong>荀況</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Period</span>
+                    <strong>戰國</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Circa</span>
+                    <strong>310–235 BCE</strong>
+                </div>
+                <div class="hero-meta-item">
+                    <span>Chapters</span>
+                    <strong>32 篇</strong>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="map-link">Course Portal</a>
+            <a href="#intro">Introduction</a>
+            <a href="#toc">Contents</a>
+            <a href="#nature">Human Nature</a>
+            <a href="#ritual">Ritual & Music</a>
+            <a href="#names">Names</a>
+            <a href="#heaven">Heaven</a>
+            <a href="#themes">Themes</a>
+            <a href="#questions">Questions</a>
+        </div>
+    </nav>
+
+    <!-- Introduction -->
+    <section class="intro-section" id="intro">
+        <div class="intro-container">
+            <h2 class="intro-title">The Third Sage of Confucianism</h2>
+            <div class="intro-content">
+                <p><strong>Xunzi</strong> (荀子, c. 310–235 BCE) stands as the third great figure of classical
+                    Confucianism after Confucius and Mencius. Yet his legacy is paradoxical: he trained two of China's
+                    most influential thinkers—<a href="https://plato.stanford.edu/entries/hanfeizi/"
+                        target="_blank">Han Feizi</a>, founder of Legalism, and <a
+                        href="https://en.wikipedia.org/wiki/Li_Si" target="_blank">Li Si</a>, the prime minister who
+                    unified China under Qin—and was later marginalized by the very Confucian tradition he helped shape.
+                </p>
+
+                <p>Where <a href="mengzi.html">Mencius</a> saw human nature as innately good, Xunzi declared it
+                    <strong>evil</strong> (惡). Where Mencius trusted intuition and the "sprouts" of virtue, Xunzi
+                    emphasized <strong>learning</strong>, <strong>ritual</strong>, and <strong>conscious effort</strong>
+                    (偽). Where Mencius saw Heaven as a moral force, Xunzi saw it as morally indifferent nature operating
+                    by regular patterns.
+                </p>
+
+                <p>Neo-Confucians of the Song dynasty (960–1279) championed Mencius and dismissed Xunzi as heterodox,
+                    largely due to his "human nature is evil" thesis. But contemporary scholars increasingly recognize
+                    Xunzi as a sophisticated thinker whose emphasis on ritual, education, and social institutions offers
+                    resources that Mencian optimism cannot provide. As <a
+                        href="https://plato.stanford.edu/entries/xunzi/" target="_blank">Stanford Encyclopedia of
+                        Philosophy</a> notes, Xunzi's works represent "the most systematic and comprehensive of the
+                    classical Confucian texts."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="toc-section" id="toc">
+        <div class="toc-container">
+            <h2 class="toc-title">Key Chapters</h2>
+            <div class="toc-grid">
+                <div class="toc-card chapter-1">
+                    <div class="chapter-num">Chapter 1</div>
+                    <div class="chapter-title">勸學</div>
+                    <div class="chapter-subtitle">Encouraging Learning</div>
+                    <div class="chapter-desc">The opening chapter establishes learning as the foundation of
+                        self-cultivation. Famous for the "blue dye" metaphor.</div>
+                    <a href="https://ctext.org/xunzi/quan-xue" target="_blank" rel="noopener" class="toc-external">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        ctext
+                    </a>
+                </div>
+                <div class="toc-card chapter-2">
+                    <div class="chapter-num">Chapter 17</div>
+                    <div class="chapter-title">天論</div>
+                    <div class="chapter-subtitle">Discourse on Heaven</div>
+                    <div class="chapter-desc">Xunzi's naturalistic account of Heaven as operating by constant patterns,
+                        without moral will or response to human behavior.</div>
+                    <a href="https://ctext.org/xunzi/tian-lun" target="_blank" rel="noopener" class="toc-external">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        ctext
+                    </a>
+                </div>
+                <div class="toc-card chapter-3">
+                    <div class="chapter-num">Chapter 19</div>
+                    <div class="chapter-title">禮論</div>
+                    <div class="chapter-subtitle">Discourse on Ritual</div>
+                    <div class="chapter-desc">The most comprehensive early Chinese theory of ritual as humanizing
+                        technology that transforms raw nature into civilization.</div>
+                    <a href="https://ctext.org/xunzi/li-lun" target="_blank" rel="noopener" class="toc-external">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        ctext
+                    </a>
+                </div>
+                <div class="toc-card chapter-4">
+                    <div class="chapter-num">Chapter 22</div>
+                    <div class="chapter-title">正名</div>
+                    <div class="chapter-subtitle">Rectification of Names</div>
+                    <div class="chapter-desc">Xunzi's sophisticated philosophy of language, extending Confucius's
+                        doctrine that correct naming is essential to social order.</div>
+                    <a href="https://ctext.org/xunzi/zheng-ming" target="_blank" rel="noopener" class="toc-external">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        ctext
+                    </a>
+                </div>
+                <div class="toc-card chapter-1">
+                    <div class="chapter-num">Chapter 23</div>
+                    <div class="chapter-title">性惡</div>
+                    <div class="chapter-subtitle">Human Nature is Evil</div>
+                    <div class="chapter-desc">Xunzi's famous argument against Mencius: humans naturally tend toward
+                        selfish desires that only ritual and learning can correct.</div>
+                    <a href="https://ctext.org/xunzi/xing-e" target="_blank" rel="noopener" class="toc-external">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        ctext
+                    </a>
+                </div>
+                <div class="toc-card chapter-2">
+                    <div class="chapter-num">Chapter 20</div>
+                    <div class="chapter-title">樂論</div>
+                    <div class="chapter-subtitle">Discourse on Music</div>
+                    <div class="chapter-desc">Music as a tool for emotional cultivation and social harmony—a defense
+                        against Mohist attacks on musical extravagance.</div>
+                    <a href="https://ctext.org/xunzi/yue-lun" target="_blank" rel="noopener" class="toc-external">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                        ctext
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Human Nature Section -->
+    <div class="section-header section-1" id="nature">
+        <div class="section-number">Core Doctrine</div>
+        <div class="chinese-title">性惡</div>
+        <h2>Human Nature is Evil</h2>
+        <div class="passage-ref">Chapter 23: Xing E (性惡)</div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h3>Key Terms</h3>
+            <table class="terms-table">
+                <thead>
+                    <tr>
+                        <th>Chinese</th>
+                        <th>Pinyin</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="chinese-cell">性</td>
+                        <td class="pinyin-cell">xìng</td>
+                        <td>Human nature; inborn tendencies and capacities</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">惡</td>
+                        <td class="pinyin-cell">è</td>
+                        <td>Evil, bad; what leads to social disorder if unchecked</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">偽</td>
+                        <td class="pinyin-cell">wěi</td>
+                        <td>Conscious activity, deliberate effort; the source of goodness</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">情</td>
+                        <td class="pinyin-cell">qíng</td>
+                        <td>Emotions, feelings; natural responses that need guidance</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">欲</td>
+                        <td class="pinyin-cell">yù</td>
+                        <td>Desires; natural but potentially disruptive if unregulated</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section">
+            <h3>Synopsis</h3>
+            <div class="synopsis">
+                <div class="synopsis-content">
+                    <p><strong>The Core Argument:</strong> Xunzi opens Chapter 23 with a direct challenge to Mencius:
+                        "Human nature is evil; goodness is the result of conscious activity (偽)." By "nature" (性) Xunzi
+                        means what is inborn and spontaneous—the raw desires for food, sex, profit, and comfort that
+                        humans share with animals. Left to themselves, these desires lead to competition, conflict, and
+                        chaos.</p>
+
+                    <p><strong>Against Mencian Optimism:</strong> Mencius claimed humans possess innate moral "sprouts."
+                        But Xunzi asks: if nature were good, why would we need sages, rituals, or laws? "Crooked wood
+                        must await the press frame before it becomes straight; blunt metal must await the grindstone
+                        before it becomes sharp." Likewise, human nature requires external shaping.</p>
+
+                    <p><strong>The Role of Conscious Effort:</strong> Goodness comes from 偽 (wěi)—conscious, deliberate
+                        effort guided by learning, ritual, and accumulated cultural wisdom. The sages didn't discover
+                        morality within; they <em>created</em> rituals and norms to regulate our problematic nature.
+                        Through sustained practice, these artificial constraints become second nature—what <a
+                            href="https://iep.utm.edu/xunzi/#H3" target="_blank">Internet Encyclopedia of Philosophy</a>
+                        calls "acquired virtue."</p>
+
+                    <p><strong>A Realist Humanism:</strong> Importantly, Xunzi does not counsel despair. Because humans
+                        can learn, any person can become a sage—even Yao or Shun. The difference between a sage and a
+                        petty person is not raw material but accumulated effort. As <a
+                            href="https://plato.stanford.edu/entries/xunzi/#HumNat" target="_blank">Stanford Encyclopedia
+                            notes</a>, Xunzi's position is less pessimistic than it first appears: human nature is
+                        malleable, and moral achievement is open to all.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="saying-box">
+            <div class="saying-chinese">人之性惡，其善者偽也</div>
+            <div class="saying-pinyin">rén zhī xìng è, qí shàn zhě wěi yě</div>
+            <div class="saying-meaning">"Human nature is evil; goodness is the result of conscious activity."</div>
+            <div class="saying-note">The opening line of Chapter 23</div>
+        </div>
+
+        <section class="content-section">
+            <h3>Xunzi vs. Mencius on Human Nature</h3>
+            <table class="comparison-table" style="margin-top: 1rem;">
+                <thead>
+                    <tr>
+                        <th>Issue</th>
+                        <th>Mencius (孟子)</th>
+                        <th>Xunzi (荀子)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Human Nature</strong></td>
+                        <td>Innately good; possesses moral "sprouts"</td>
+                        <td>Innately evil; selfish desires dominate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Source of Virtue</strong></td>
+                        <td>Internal; nurture what is already there</td>
+                        <td>External; acquire through learning and ritual</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Role of Sages</strong></td>
+                        <td>Exemplify fully developed innate potential</td>
+                        <td>Created rituals to correct flawed nature</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Metaphor</strong></td>
+                        <td>Water flows downward (natural goodness)</td>
+                        <td>Crooked wood needs press frame (correction)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Moral Cultivation</strong></td>
+                        <td>Extension and nurturing of sprouts</td>
+                        <td>Transformation through sustained effort</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Ritual & Music Section -->
+    <div class="section-header section-2" id="ritual">
+        <div class="section-number">Core Doctrine</div>
+        <div class="chinese-title">禮樂</div>
+        <h2>Ritual and Music</h2>
+        <div class="passage-ref">Chapters 19 (禮論) & 20 (樂論)</div>
+    </div>
+
+    <div class="container">
+        <section class="content-section teal">
+            <h3>Key Terms</h3>
+            <table class="terms-table">
+                <thead>
+                    <tr>
+                        <th>Chinese</th>
+                        <th>Pinyin</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="chinese-cell">禮</td>
+                        <td class="pinyin-cell">lǐ</td>
+                        <td>Ritual propriety; the inherited forms that structure civilized life</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">樂</td>
+                        <td class="pinyin-cell">yuè</td>
+                        <td>Music; emotional cultivation through aesthetic harmony</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">分</td>
+                        <td class="pinyin-cell">fèn</td>
+                        <td>Social distinctions; differentiated roles that prevent conflict</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">養</td>
+                        <td class="pinyin-cell">yǎng</td>
+                        <td>Nourishment, cultivation; ritual as nurturing desires properly</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section teal">
+            <h3>Synopsis</h3>
+            <div class="synopsis">
+                <div class="synopsis-content">
+                    <p><strong>Ritual as Humanizing Technology:</strong> If human nature is flawed, how does society
+                        function at all? Xunzi's answer: <strong>ritual</strong> (禮). The sages invented rituals to
+                        channel human desires into socially constructive forms. Ritual doesn't suppress desire—it
+                        <em>cultivates</em> and <em>refines</em> it. As <a
+                            href="https://plato.stanford.edu/entries/xunzi/#RitMus" target="_blank">Stanford
+                            Encyclopedia</a> explains, Xunzi sees ritual as "the highest expression of the cultural
+                        order."
+                    </p>
+
+                    <p><strong>The Origin of Ritual:</strong> Why did rituals arise? "Human beings are born with
+                        desires. When desires are unsatisfied, seeking must occur. When seeking is without measure or
+                        limit, there is bound to be contention. Contention leads to disorder, and disorder leads to
+                        poverty." The sage kings created ritual to establish <strong>distinctions</strong> (分)—ranks,
+                        roles, limits—so that desires could be satisfied without mutual destruction.</p>
+
+                    <p><strong>Music as Emotional Education:</strong> Where ritual regulates external behavior, music
+                        cultivates internal emotions. Against the <a href="https://plato.stanford.edu/entries/mohism/"
+                            target="_blank">Mohists</a> who condemned music as wasteful, Xunzi argues that "music enters
+                        deeply into people" and transforms character. Proper music produces harmony; licentious music
+                        produces chaos. The state therefore has a stake in controlling musical forms.</p>
+
+                    <p><strong>Neither Too Much Nor Too Little:</strong> Xunzi criticizes both excess and deficiency.
+                        Rituals should "nourish" (養) desire appropriately—elaborate enough to satisfy human needs for
+                        meaning and beauty, restrained enough to prevent waste. This is why funeral rites exist: they
+                        provide proper expression for grief while preventing both callous neglect and ruinous
+                        extravagance.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="quote-block">
+            "Ritual trims what is too long, stretches what is too short, eliminates excess, remedies deficiency,
+            and extends the forms of love and reverence so that they grow and complete the beauty of proper conduct."
+            <cite>— Xunzi, Chapter 19 (禮論)</cite>
+        </div>
+
+        <section class="content-section teal">
+            <h3>Functions of Ritual</h3>
+            <div class="themes-grid">
+                <div class="theme-card">
+                    <span class="number">1</span>
+                    <h4>Regulate Desires</h4>
+                    <p>Ritual channels natural desires into appropriate expressions, preventing both excess and
+                        deficiency.</p>
+                </div>
+                <div class="theme-card">
+                    <span class="number">2</span>
+                    <h4>Create Distinctions</h4>
+                    <p>Social roles and ranks prevent conflict by ensuring each person knows their place and
+                        responsibilities.</p>
+                </div>
+                <div class="theme-card">
+                    <span class="number">3</span>
+                    <h4>Beautify Life</h4>
+                    <p>Ritual elevates human life above mere survival, creating meaning, beauty, and cultural
+                        achievement.</p>
+                </div>
+                <div class="theme-card">
+                    <span class="number">4</span>
+                    <h4>Transform Character</h4>
+                    <p>Through sustained practice, ritual transforms raw nature into cultivated virtue—artificial becomes
+                        natural.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Rectification of Names Section -->
+    <div class="section-header section-3" id="names">
+        <div class="section-number">Core Doctrine</div>
+        <div class="chinese-title">正名</div>
+        <h2>Rectification of Names</h2>
+        <div class="passage-ref">Chapter 22: Zheng Ming (正名)</div>
+    </div>
+
+    <div class="container">
+        <section class="content-section brown">
+            <h3>Key Terms</h3>
+            <table class="terms-table">
+                <thead>
+                    <tr>
+                        <th>Chinese</th>
+                        <th>Pinyin</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="chinese-cell">名</td>
+                        <td class="pinyin-cell">míng</td>
+                        <td>Names, terms; the linguistic categories that organize thought</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">實</td>
+                        <td class="pinyin-cell">shí</td>
+                        <td>Realities, actualities; what names refer to</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">約定俗成</td>
+                        <td class="pinyin-cell">yuē dìng sú chéng</td>
+                        <td>"Established by convention"; how names gain authority</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">辯</td>
+                        <td class="pinyin-cell">biàn</td>
+                        <td>Disputation, argument; what proper naming enables</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section brown">
+            <h3>Synopsis</h3>
+            <div class="synopsis">
+                <div class="synopsis-content">
+                    <p><strong>Extending Confucius's Doctrine:</strong> Confucius declared that good government requires
+                        "rectifying names" (正名)—ensuring that titles match reality. Xunzi develops this into a
+                        sophisticated philosophy of language. Names matter because they shape thought, and thought shapes
+                        action. When names become confused, communication breaks down, social coordination fails, and
+                        chaos ensues.</p>
+
+                    <p><strong>Names as Convention:</strong> How are names established? "When a name is fixed by
+                        agreement and the custom is established, it is called appropriate (義)." Names are not natural
+                        connections between sound and reality—they are <strong>social conventions</strong> (約定俗成) that
+                        gain authority through collective use. This makes Xunzi one of the earliest <a
+                            href="https://plato.stanford.edu/entries/xunzi/#RecNam" target="_blank">conventionalists</a>
+                        about language.</p>
+
+                    <p><strong>Against Sophistry:</strong> Xunzi attacks three fallacies that "confuse names and
+                        realities": (1) using names to confuse names ("a white horse is not a horse"); (2) using
+                        realities to confuse names (pointing to different things with the same name); (3) using names to
+                        confuse realities (making words mean whatever one wants). These fallacies were deployed by
+                        Warring States sophists; Xunzi sees them as politically dangerous.</p>
+
+                    <p><strong>The Ruler's Control of Language:</strong> Because names shape society, the sage-king must
+                        control linguistic usage. "When the True King arises, he will certainly follow the old names...
+                        and create new names." This is not arbitrary power but cosmic responsibility: proper naming
+                        reflects and maintains the moral order.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="saying-box">
+            <div class="saying-chinese">名無固宜，約之以命</div>
+            <div class="saying-pinyin">míng wú gù yí, yuē zhī yǐ mìng</div>
+            <div class="saying-meaning">"Names have no inherent appropriateness; they are fixed by agreement."</div>
+            <div class="saying-note">Xunzi's conventionalist theory of language (Chapter 22)</div>
+        </div>
+    </div>
+
+    <!-- Heaven Section -->
+    <div class="section-header section-4" id="heaven">
+        <div class="section-number">Core Doctrine</div>
+        <div class="chinese-title">天論</div>
+        <h2>Discourse on Heaven</h2>
+        <div class="passage-ref">Chapter 17: Tian Lun (天論)</div>
+    </div>
+
+    <div class="container">
+        <section class="content-section purple">
+            <h3>Key Terms</h3>
+            <table class="terms-table">
+                <thead>
+                    <tr>
+                        <th>Chinese</th>
+                        <th>Pinyin</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="chinese-cell">天</td>
+                        <td class="pinyin-cell">tiān</td>
+                        <td>Heaven; for Xunzi, nature operating by constant patterns</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">天行有常</td>
+                        <td class="pinyin-cell">tiān xíng yǒu cháng</td>
+                        <td>"Heaven operates with constancy"; nature follows regular laws</td>
+                    </tr>
+                    <tr>
+                        <td class="chinese-cell">制天命而用之</td>
+                        <td class="pinyin-cell">zhì tiān mìng ér yòng zhī</td>
+                        <td>"Regulate what Heaven has mandated and use it"; human mastery over nature</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section purple">
+            <h3>Synopsis</h3>
+            <div class="synopsis">
+                <div class="synopsis-content">
+                    <p><strong>Demystifying Heaven:</strong> Chapter 17 is one of the most remarkable texts in early
+                        Chinese thought. Where Mencius saw Heaven (天) as a moral force that responds to human virtue,
+                        Xunzi strips Heaven of agency: "Heaven operates with constancy (常). It does not exist for the
+                        sake of Yao; it does not perish for the sake of Jie." The sun rises, seasons turn, crops grow—
+                        regardless of who is ruling or how virtuous they are.</p>
+
+                    <p><strong>Against Superstition:</strong> Xunzi ridicules those who pray for rain, fear eclipses, or
+                        consult oracles. "You pray for rain and it rains. Why? I say: No reason. It is the same as when
+                        you do not pray and it rains." Stars falling, trees groaning—these are natural phenomena, not
+                        omens. What truly causes disorder is human failure: "strange political measures, cruel
+                        punishments, neglect of agriculture."</p>
+
+                    <p><strong>Human Responsibility:</strong> If Heaven is not moral, where does morality come from?
+                        From <em>us</em>. This is Xunzi's humanistic turn: "Instead of regarding Heaven as great and
+                        longing for it, why not foster things and regulate them? Instead of obeying Heaven and praising
+                        it, why not <strong>regulate what Heaven has mandated and use it</strong> (制天命而用之)?" Humans can
+                        and should take control of their destiny through knowledge, technology, and moral effort.</p>
+
+                    <p><strong>A Proto-Scientific Worldview:</strong> As <a
+                            href="https://plato.stanford.edu/entries/xunzi/#WorWorHea" target="_blank">Stanford
+                            Encyclopedia</a> observes, Xunzi's naturalism anticipates later developments in Chinese
+                        thought. Heaven is not a god to be worshipped but a set of regularities to be understood and
+                        used. This makes Xunzi unusual among classical Confucians—and explains both his influence on
+                        Legalism and his marginalization by later Neo-Confucians who preferred Mencius's more spiritual
+                        conception.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="saying-box">
+            <div class="saying-chinese">天行有常，不為堯存，不為桀亡</div>
+            <div class="saying-pinyin">tiān xíng yǒu cháng, bù wéi Yáo cún, bù wéi Jié wáng</div>
+            <div class="saying-meaning">"Heaven operates with constancy—it does not exist for Yao, nor perish for Jie."
+            </div>
+            <div class="saying-note">Xunzi's naturalistic manifesto (Chapter 17)</div>
+        </div>
+
+        <section class="content-section purple">
+            <h3>Xunzi vs. Mencius on Heaven</h3>
+            <table class="comparison-table" style="margin-top: 1rem;">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Mencius</th>
+                        <th>Xunzi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nature of Heaven</strong></td>
+                        <td>Moral force that bestows or withdraws Mandate</td>
+                        <td>Natural processes operating by constant patterns</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Heaven's Response</strong></td>
+                        <td>Responds to human virtue and vice</td>
+                        <td>Indifferent to human affairs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Omens</strong></td>
+                        <td>Signs of Heaven's approval or displeasure</td>
+                        <td>Natural phenomena with no moral significance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Human Task</strong></td>
+                        <td>Align with Heaven's moral will</td>
+                        <td>Master natural processes through knowledge</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Major Themes Section -->
+    <section class="comparison-section" id="themes">
+        <div class="container">
+            <h2
+                style="font-family: 'Noto Sans', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ink-lighter); text-align: center; margin-bottom: 2rem;">
+                Major Themes Across the Text</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Theme</th>
+                        <th>Key Chapters</th>
+                        <th>Core Argument</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Human Nature is Evil</strong></td>
+                        <td>Ch. 23 (性惡)</td>
+                        <td>Humans are born with selfish desires that lead to conflict. Goodness must be acquired through
+                            conscious effort, learning, and ritual practice.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>The Primacy of Ritual</strong></td>
+                        <td>Ch. 19 (禮論)</td>
+                        <td>Ritual (禮) is the great civilizing technology that transforms raw human nature into cultured
+                            virtue. It channels desires, creates social distinctions, and enables cooperation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Learning and Self-Cultivation</strong></td>
+                        <td>Ch. 1 (勸學)</td>
+                        <td>Anyone can become a sage through sustained study and practice. The gentleman differs from the
+                            petty person not in raw material but in accumulated effort.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Naturalistic Heaven</strong></td>
+                        <td>Ch. 17 (天論)</td>
+                        <td>Heaven operates by constant patterns without moral will. Humans should master nature through
+                            knowledge rather than worship or fear it.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rectification of Names</strong></td>
+                        <td>Ch. 22 (正名)</td>
+                        <td>Proper naming is essential to social order. Names are conventional but their correct use is
+                            a matter of moral and political importance.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Music and Emotion</strong></td>
+                        <td>Ch. 20 (樂論)</td>
+                        <td>Music shapes character by cultivating proper emotional responses. The state should promote
+                            harmonious music and ban licentious music.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="questions-section" id="questions">
+        <div class="questions-container">
+            <h2>Discussion Questions</h2>
+
+            <div class="question-item">
+                <div class="q-num">Question 1</div>
+                <p>Xunzi claims human nature is "evil" while Mencius claims it is "good." Are they actually disagreeing
+                    about the same thing, or do they define "human nature" differently? What counts as "nature" for
+                    each?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 2</div>
+                <p>Xunzi argues that goodness comes from "conscious activity" (偽) and learning rather than innate
+                    tendencies. Does this make morality arbitrary? If the sages <em>invented</em> rituals, what makes
+                    their inventions authoritative?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 3</div>
+                <p>Compare Xunzi's view of ritual with religious ritual in traditions you know. Is Xunzi's conception
+                    purely functional (social technology) or does it retain spiritual dimensions?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 4</div>
+                <p>Xunzi strips Heaven of moral agency and mocks superstition. Yet he still uses Heaven-language and
+                    endorses state rituals. Is this inconsistent, or is something more subtle going on?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 5</div>
+                <p>Xunzi's students included Han Feizi (Legalism) and Li Si (Qin unification). Is there something about
+                    Xunzi's philosophy that leads toward authoritarian politics, or did his students misapply his
+                    ideas?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 6</div>
+                <p>Neo-Confucians rejected Xunzi for his "human nature is evil" thesis. Was this fair? Are there
+                    resources in Xunzi's thought that later Confucianism lost by marginalizing him?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources-section">
+        <div class="container">
+            <h2
+                style="font-family: 'Noto Sans', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ink-lighter); text-align: center; margin-bottom: 2rem;">
+                Further Resources</h2>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h4>Online Resources</h4>
+                    <a href="https://ctext.org/xunzi" target="_blank" rel="noopener">Xunzi — Chinese Text Project</a>
+                    <a href="https://plato.stanford.edu/entries/xunzi/" target="_blank" rel="noopener">Stanford
+                        Encyclopedia of Philosophy: Xunzi</a>
+                    <a href="https://iep.utm.edu/xunzi/" target="_blank" rel="noopener">Internet Encyclopedia of
+                        Philosophy: Xunzi</a>
+                </div>
+                <div class="resource-card">
+                    <h4>Translations</h4>
+                    <a href="https://www.hackettpublishing.com/xunzi-the-complete-text" target="_blank"
+                        rel="noopener">Eric Hutton, <em>Xunzi: The Complete Text</em> (Princeton, 2014)</a>
+                    <a href="https://www.sup.org/books/title/?id=2756" target="_blank" rel="noopener">John Knoblock,
+                        <em>Xunzi: A Translation and Study</em> (Stanford, 1988–1994)</a>
+                    <a href="https://ctext.org/xunzi/ens" target="_blank" rel="noopener">Burton Watson, <em>Xunzi: Basic
+                            Writings</em> — Online Excerpts</a>
+                </div>
+                <div class="resource-card">
+                    <h4>Scholarly Works</h4>
+                    <a href="https://www.jstor.org/stable/2943516" target="_blank" rel="noopener">Nivison, "Hsün Tzu on
+                        Human Nature"</a>
+                    <a href="https://www.cambridge.org/core/books/rituals-of-the-way/B6A2D0B9E1F2B08D8A4E5F4C6B7A8D9E"
+                        target="_blank" rel="noopener">Machle, <em>Xunzi's Moral Epistemology</em></a>
+                    <a href="https://ndpr.nd.edu/reviews/xunzi-the-complete-text/" target="_blank" rel="noopener">Review:
+                        Hutton's <em>Xunzi</em> Translation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="course">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <p>Winter 2026</p>
+    </footer>
+
+</body>
+
+</html>
