@@ -1,41 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Warring States c. 5th Century BCE</title>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warring States c. 5th Century BCE | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            background: #f5f5f0;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .map-wrapper {
-            min-height: 100%;
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+        }
+
+        .breadcrumb a {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
+                        url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .header-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
+        }
+
+        .header h1 {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-subtitle {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 2rem;
+        }
+
+        .map-wrapper {
+            max-width: 100%;
+            text-align: center;
         }
 
         .map-wrapper img {
             max-width: 100%;
-            max-height: calc(100vh - 40px);
+            max-height: calc(100vh - 300px);
             height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .map-caption {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header-chinese { font-size: 1.4rem; }
+            .header h1 { font-size: 0.95rem; }
+            .main-content { padding: 1rem; }
         }
     </style>
 </head>
+
 <body>
-    <div class="map-wrapper">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Chinese_plain_5c._BC_with_Yue-en.png"
-             alt="Map of the Chinese plain in the 5th century BCE showing the Warring States">
-    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../../index.html">← EAST 370</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-chinese">戰國時代</div>
+        <h1>Warring States c. 5th Century BCE</h1>
+        <div class="header-subtitle">Map of the Chinese Plain</div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="map-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Chinese_plain_5c._BC_with_Yue-en.png"
+                 alt="Map of the Chinese plain in the 5th century BCE showing the Warring States">
+            <p class="map-caption">The major states of the Warring States period, including Chu in the south</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
 </body>
+
 </html>
