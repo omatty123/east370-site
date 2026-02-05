@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mozi Study Guide | EAST 370</title>
+    <title>Mozi 墨子 | EAST 370 Study Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -18,24 +18,20 @@
             --gold: #b8860b;
             --gold-light: #daa520;
             --mo: #A67C52;
+            /* Section colors */
+            --section-1: #A67C52;
+            --section-2: #6B4423;
+            --section-3: #4a4a4a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.8;
+            font-size: 17px;
         }
 
         /* Compact Header */
@@ -55,9 +51,7 @@
             text-decoration: none;
         }
 
-        .page-header .back:hover {
-            color: var(--gold-light);
-        }
+        .page-header .back:hover { color: var(--gold-light); }
 
         .page-title {
             display: flex;
@@ -78,14 +72,18 @@
             color: #fff;
         }
 
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--mo);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
         .page-title .meta {
             font-size: 0.7rem;
             color: #888;
-        }
-
-        .page-title .meta span {
-            margin: 0 0.3rem;
-            color: #555;
         }
 
         /* Navigation */
@@ -94,18 +92,18 @@
             top: 0;
             background: var(--ink);
             z-index: 1000;
-            padding: 0.5rem 1.5rem;
+            padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
-            gap: 1.2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            border-top: 1px solid #333;
         }
 
         .nav a {
-            font-size: 0.65rem;
-            color: #888;
+            font-size: 0.7rem;
+            color: #aaa;
             text-decoration: none;
+            letter-spacing: 0.03em;
             transition: color 0.2s;
         }
 
@@ -113,291 +111,291 @@
             color: var(--gold-light);
         }
 
-        /* Main Content */
+        /* Multi-Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .two-col-wide-left {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .two-col-wide-right {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-col, .two-col-wide-left, .two-col-wide-right {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Container */
         .container {
             max-width: 900px;
             margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Reading Info */
+        .reading-info {
+            background: linear-gradient(180deg, rgba(166, 124, 82, 0.08) 0%, var(--paper) 100%);
             padding: 2rem 1.5rem;
         }
 
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .section-header h2 {
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #999;
-            margin-bottom: 0.3rem;
-        }
-
-        .section-header .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--mo);
-            margin-right: 0.5rem;
-        }
-
-        .section-header .subtitle {
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: var(--ink);
-        }
-
-        /* Intro Section */
-        .intro-section {
-            background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
-            padding: 2.5rem 1.5rem;
-        }
-
-        .intro-card {
-            background: #fff;
-            border-radius: 4px;
-            padding: 2rem;
+        .reading-box {
             max-width: 900px;
             margin: 0 auto;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid var(--mo);
-        }
-
-        .intro-card p {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--ink-light);
-            margin-bottom: 1rem;
-        }
-
-        .intro-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .intro-highlight {
-            background: var(--paper-dark);
-            padding: 1rem 1.25rem;
-            border-radius: 4px;
-            margin: 1.5rem 0;
-            font-style: italic;
-        }
-
-        /* Key Terms Grid */
-        .terms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .term-card {
             background: #fff;
-            border-radius: 4px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--mo);
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--gold);
         }
 
-        .term-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-            border-left-width: 5px;
-        }
-
-        .term-card.essential {
-            border-left-color: var(--gold);
-        }
-
-        .term-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--mo);
-            margin-bottom: 0.25rem;
-        }
-
-        .term-pinyin {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.25rem;
-        }
-
-        .term-meaning {
-            font-size: 0.8rem;
-            color: var(--ink-light);
-            line-height: 1.5;
-        }
-
-        /* Doctrines Section */
-        .doctrines-section {
-            padding: 2rem 1.5rem;
-        }
-
-        .doctrine-pair {
-            background: #fff;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .doctrine-header {
-            background: var(--ink);
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .doctrine-number {
-            width: 36px;
-            height: 36px;
-            background: var(--mo);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .doctrine-title {
-            flex: 1;
-        }
-
-        .doctrine-title h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #fff;
-            margin-bottom: 0.2rem;
-        }
-
-        .doctrine-title .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.9rem;
-            color: var(--gold-light);
-        }
-
-        .doctrine-body {
-            padding: 1.5rem;
-        }
-
-        .doctrine-body p {
-            font-size: 0.9rem;
-            color: var(--ink-light);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .doctrine-body p:last-child {
-            margin-bottom: 0;
-        }
-
-        .doctrine-quote {
-            background: var(--paper-dark);
-            padding: 1rem 1.25rem;
-            border-left: 3px solid var(--gold);
-            font-style: italic;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        /* Arguments Section */
-        .argument-box {
-            background: #fff;
-            border-radius: 4px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .argument-box h4 {
-            font-size: 1rem;
-            color: var(--mo);
+        .reading-box h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
             margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .argument-box h4 .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.1rem;
-        }
-
-        .argument-box p {
-            font-size: 0.9rem;
-            color: var(--ink-light);
-            line-height: 1.7;
-        }
-
-        .argument-box ol {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .argument-box li {
-            font-size: 0.9rem;
+        .reading-box p {
+            font-size: 0.95rem;
             color: var(--ink-light);
             margin-bottom: 0.5rem;
         }
 
-        /* Critique Section */
-        .critique-section {
-            background: var(--paper-dark);
-            padding: 2.5rem 1.5rem;
+        /* Section Headers */
+        .section-header {
+            padding: 3rem 1.5rem 2rem;
+            text-align: center;
         }
 
-        .critique-card {
-            background: var(--ink);
-            border-radius: 4px;
-            padding: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
+        .section-header.ethics { background: linear-gradient(135deg, var(--section-1) 0%, #8B6914 100%); }
+        .section-header.politics { background: linear-gradient(135deg, var(--section-2) 0%, #4a2c13 100%); }
+        .section-header.method { background: linear-gradient(135deg, var(--section-3) 0%, #2a2a2a 100%); }
+
+        .section-number {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1rem;
+            font-weight: 400;
             color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.3rem;
         }
 
-        .critique-card h3 {
-            font-size: 1.2rem;
-            color: var(--gold-light);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .critique-card h3 .chinese {
+        .section-header .chinese-title {
             font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .critique-card p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.7;
+        /* Content Sections */
+        .content-section { margin-bottom: 2.5rem; }
+
+        .content-section h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--mo);
             margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--mo);
+            display: inline-block;
         }
 
-        .critique-point {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 1rem 1.25rem;
-            border-radius: 4px;
-            margin-bottom: 0.75rem;
-            border-left: 3px solid var(--mo);
+        .content-section.brown h3 { color: var(--section-2); border-color: var(--section-2); }
+        .content-section.gray h3 { color: var(--section-3); border-color: var(--section-3); }
+
+        /* Key Terms */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
         }
 
-        .critique-point strong {
+        .terms-table th {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            background: var(--paper-dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        .terms-table td {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .terms-table .chinese-cell {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .terms-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        /* Synopsis */
+        .synopsis {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .synopsis p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .synopsis p:last-child { margin-bottom: 0; }
+
+        /* Quote Block */
+        .quote-block {
+            background: var(--paper-dark);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--gold);
+            font-style: italic;
+        }
+
+        .quote-block cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+        }
+
+        /* Famous Saying */
+        .saying-box {
+            background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 6px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .saying-box .saying-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.6rem;
             color: var(--gold-light);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.08em;
         }
 
-        /* Three Standards */
+        .saying-box .saying-meaning {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .saying-box .saying-note {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: var(--ink);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+
+        /* Questions */
+        .questions-section {
+            background: #fff;
+            padding: 3rem 1.5rem;
+        }
+
+        .questions-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .questions-container h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-item:last-child { border-bottom: none; }
+
+        .question-item .q-num {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--mo);
+            margin-bottom: 0.3rem;
+        }
+
+        .question-item p {
+            font-size: 0.95rem;
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        /* Three Standards Grid */
         .standards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         @media (max-width: 768px) {
@@ -408,21 +406,21 @@
 
         .standard-card {
             background: #fff;
-            border-radius: 4px;
+            border-radius: 6px;
             padding: 1.25rem;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .standard-card .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
+            font-size: 1.4rem;
             color: var(--mo);
             margin-bottom: 0.25rem;
         }
 
         .standard-card h4 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--ink);
             margin-bottom: 0.5rem;
         }
@@ -431,96 +429,6 @@
             font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.5;
-        }
-
-        /* Discussion Questions */
-        .discussion-section {
-            padding: 2rem 1.5rem;
-        }
-
-        .discussion-list {
-            list-style: none;
-            counter-reset: discussion;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .discussion-list li {
-            counter-increment: discussion;
-            padding: 1rem 1.25rem 1rem 3.5rem;
-            background: #fff;
-            margin-bottom: 0.75rem;
-            border-radius: 4px;
-            position: relative;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .discussion-list li::before {
-            content: counter(discussion);
-            position: absolute;
-            left: 1rem;
-            top: 1rem;
-            width: 28px;
-            height: 28px;
-            background: var(--mo);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-
-        .discussion-list li strong {
-            color: var(--mo);
-        }
-
-        /* Resources */
-        .resources-section {
-            background: var(--paper-dark);
-            padding: 2rem 1.5rem;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .resource-card {
-            background: #fff;
-            padding: 1.25rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .resource-card h4 {
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #888;
-            margin-bottom: 0.75rem;
-        }
-
-        .resource-card a {
-            display: block;
-            color: var(--ink);
-            text-decoration: none;
-            padding: 0.35rem 0;
-            font-size: 0.85rem;
-            border-bottom: 1px solid #eee;
-            transition: color 0.2s ease;
-        }
-
-        .resource-card a:last-child {
-            border-bottom: none;
-        }
-
-        .resource-card a:hover {
-            color: var(--gold);
         }
 
         /* Footer */
@@ -550,46 +458,10 @@
             letter-spacing: 0.08em;
         }
 
-        footer a {
-            color: var(--gold-light);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                padding: 2rem 1rem 1.5rem;
-            }
-
-            .hero-chinese {
-                font-size: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 1rem;
-            }
-
-            .hero-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .container {
-                padding: 1.5rem 1rem;
-            }
-
-            .nav {
-                gap: 1rem;
-            }
-
-            .doctrine-header {
-                flex-direction: column;
-                text-align: center;
-            }
+            .nav { gap: 1rem; }
+            .container { padding: 2rem 1rem; }
         }
     </style>
 </head>
@@ -609,385 +481,358 @@
     <!-- Navigation -->
     <nav class="nav">
         <a href="maps/mozi-map.html">Map</a>
-        <a href="#overview">Overview</a>
-        <a href="#terms">Terms</a>
-        <a href="#doctrines">Doctrines</a>
-        <a href="#standards">Standards</a>
-        <a href="#critique">vs. Confucius</a>
-        <a href="#discussion">Discussion</a>
+        <a href="#reading">Reading</a>
+        <a href="#ethics">Ethics</a>
+        <a href="#politics">Politics</a>
+        <a href="#method">Method</a>
+        <a href="#questions">Questions</a>
     </nav>
 
-    <!-- Overview Section -->
-    <section class="intro-section" id="overview">
-        <div class="intro-card">
-            <p><strong>Mozi</strong> (墨子, "Master Mo") founded Mohism, arguably the first systematically organized
-                philosophical movement in Chinese history. A strong argument can be made that it is Mozi, not Confucius,
-                who deserves the title of China's first philosopher-the first to construct explicit arguments for his
-                positions rather than relying on received wisdom.</p>
-
-            <div class="intro-highlight">
-                "The benevolent person's planning on behalf of the world is in no respect different from the filial
-                son's planning on behalf of his parents."
-            </div>
-
-            <p>Mozi likely emerged from the artisan class and may have been a carpenter. His followers formed a highly
-                organized movement with military discipline, led by a series of "Grand Masters" (巨子 <em>juzi</em>). The
-                Mohists were famous for their austerity, their opposition to aggressive warfare, and their willingness
-                to die defending besieged cities against unjust attacks.</p>
-
-            <p>Unlike Confucius, who relied on cultivated moral intuition and ritual propriety, Mozi demanded explicit
-                standards (<em>fa</em>) for evaluating claims and policies. His consequentialist ethics judged actions
-                by their effects on social order, material welfare, and population growth.</p>
+    <!-- Reading Info -->
+    <section class="reading-info" id="reading">
+        <div class="reading-box">
+            <h2>Assigned Reading</h2>
+            <p><strong>Ivanhoe & Van Norden, pp. 57–108</strong> — Introduction and selections covering the ten doctrines</p>
+            <p style="font-size: 0.85rem; margin-top: 0.75rem;"><strong>Mozi</strong> founded Mohism, arguably China's first systematically organized philosophical movement. A strong argument: Mozi, not Confucius, is China's first philosopher—the first to construct explicit arguments rather than relying on received wisdom.</p>
         </div>
     </section>
 
-    <!-- Key Terms Section -->
-    <section class="container" id="terms">
-        <div class="section-header">
-            <h2>Key Vocabulary</h2>
-            <div class="subtitle"><span class="chinese">關鍵詞</span> Essential Terms</div>
+    <!-- Part 1: Ethics -->
+    <div class="section-header ethics" id="ethics">
+        <div class="section-number">Part One</div>
+        <div class="chinese-title">兼愛·非攻</div>
+        <h2>Ethics: Inclusive Care</h2>
+    </div>
+
+    <div class="container">
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">兼愛</td>
+                            <td class="pinyin-cell">jiān ài</td>
+                            <td>Inclusive care; impartial concern for all</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">非攻</td>
+                            <td class="pinyin-cell">fēi gōng</td>
+                            <td>Condemning aggression; anti-war doctrine</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">義</td>
+                            <td class="pinyin-cell">yì</td>
+                            <td>Righteousness; objective moral standard</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">利</td>
+                            <td class="pinyin-cell">lì</td>
+                            <td>Benefit; the ultimate criterion</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3>Inclusive Care (兼愛)</h3>
+                <div class="synopsis">
+                    <p><strong>The Core Problem:</strong> Theft, assault, exploitation, war—all stem from "partiality": people caring only for themselves and their families at others' expense.</p>
+                    <p><strong>The Solution:</strong> Care for all equally. "If people regarded others' states as they regard their own, who would attack?" Universal benefit replaces partial interest.</p>
+                    <p><strong>Against Confucian Graded Love:</strong> Mozi rejects the idea that we should love family more than strangers—this partiality causes conflict.</p>
+                </div>
+            </section>
         </div>
 
-        <div class="terms-grid">
-            <div class="term-card essential">
-                <div class="term-chinese">兼愛</div>
-                <div class="term-pinyin">Jian Ai</div>
-                <div class="term-meaning">Inclusive care / impartial concern. The core Mohist ethical principle: caring
-                    for all people equally, without the graded distinctions of Confucian ethics.</div>
-            </div>
-
-            <div class="term-card essential">
-                <div class="term-chinese">法</div>
-                <div class="term-pinyin">Fa</div>
-                <div class="term-meaning">Model, standard, paradigm. An explicit criterion for judgment-like a
-                    carpenter's square or compass-used to evaluate claims and policies objectively.</div>
-            </div>
-
-            <div class="term-card essential">
-                <div class="term-chinese">義</div>
-                <div class="term-pinyin">Yi</div>
-                <div class="term-meaning">Righteousness, morality, duty. What is ethically correct according to
-                    objective standards, not mere convention.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">利</div>
-                <div class="term-pinyin">Li</div>
-                <div class="term-meaning">Benefit, profit, advantage. For Mozi, the ultimate criterion: does a practice
-                    benefit the people?</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">天</div>
-                <div class="term-pinyin">Tian</div>
-                <div class="term-meaning">Heaven. For Mozi, an active moral agent that rewards the good and punishes the
-                    wicked. The ultimate standard of righteousness.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">鬼神</div>
-                <div class="term-pinyin">Gui Shen</div>
-                <div class="term-meaning">Ghosts and spirits. Mozi argued belief in spirits is socially useful-they
-                    serve as moral enforcers when humans fail.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">類</div>
-                <div class="term-pinyin">Lei</div>
-                <div class="term-meaning">Kind, category, class. Things of the same <em>lei</em> should be treated
-                    similarly-foundation of Mohist analogical reasoning.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">巨子</div>
-                <div class="term-pinyin">Juzi</div>
-                <div class="term-meaning">Grand Master. The leader of a Mohist community, with authority over doctrine
-                    and practice.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ten Doctrines Section -->
-    <section class="doctrines-section" id="doctrines">
-        <div class="container">
-            <div class="section-header">
-                <h2>Core Teaching</h2>
-                <div class="subtitle"><span class="chinese">十論</span> The Ten Doctrines</div>
-            </div>
-
-            <p style="text-align: center; color: var(--ink-light); margin-bottom: 2rem; font-size: 0.9rem;">The Mohists
-                presented their philosophy through ten doctrines organized in five complementary pairs.</p>
-
-            <!-- Doctrine Pair 1 -->
-            <div class="doctrine-pair">
-                <div class="doctrine-header">
-                    <div class="doctrine-number">1</div>
-                    <div class="doctrine-title">
-                        <h3>Inclusive Care & Condemning Aggression</h3>
-                        <div class="chinese">兼愛 · 非攻</div>
-                    </div>
-                </div>
-                <div class="doctrine-body">
-                    <p><strong>Inclusive Care (兼愛 Jian Ai)</strong> is the heart of Mohist ethics. Mozi argued that the
-                        world's problems-theft, assault, exploitation, war-all stem from "partiality": people caring
-                        only for themselves and their own families at others' expense.</p>
-
-                    <div class="doctrine-quote">
-                        "Suppose there were two men... One holds to partiality and the other holds to inclusiveness. The
-                        one who holds to partiality would say, 'How could I care for my friend's parents as I care for
-                        my own?' But the one who holds to inclusiveness would say, 'I will care for my friend's parents
-                        as I care for my own.'"
-                    </div>
-
-                    <p><strong>Condemning Aggression (非攻 Fei Gong)</strong> follows logically: if we should care for all
-                        equally, then aggressive warfare-which harms the innocent-is the greatest crime. The Mohists
-                        were famous for defending besieged cities and developing defensive military technology.</p>
-                </div>
-            </div>
-
-            <!-- Doctrine Pair 2 -->
-            <div class="doctrine-pair">
-                <div class="doctrine-header">
-                    <div class="doctrine-number">2</div>
-                    <div class="doctrine-title">
-                        <h3>Promoting the Worthy & Conforming Upward</h3>
-                        <div class="chinese">尚賢 · 尚同</div>
-                    </div>
-                </div>
-                <div class="doctrine-body">
-                    <p><strong>Promoting the Worthy (尚賢 Shang Xian)</strong> attacks hereditary aristocracy. Officials
-                        should be chosen by merit, not birth. "If a person is capable, promote him. If incapable, demote
-                        him."</p>
-
-                    <p><strong>Conforming Upward (尚同 Shang Tong)</strong> establishes a moral hierarchy: people should
-                        align their judgments with their superiors, ultimately with Heaven itself. This creates unified
-                        moral standards rather than conflicting opinions.</p>
-
-                    <div class="doctrine-quote">
-                        "In ancient times, when people were first born... everyone had their own sense of right and
-                        wrong (<em>yi</em>). With one person there was one sense of right and wrong; with two people,
-                        two senses; with ten, ten senses. The more people, the more different senses."
-                    </div>
-                </div>
-            </div>
-
-            <!-- Doctrine Pair 3 -->
-            <div class="doctrine-pair">
-                <div class="doctrine-header">
-                    <div class="doctrine-number">3</div>
-                    <div class="doctrine-title">
-                        <h3>Moderation in Use & Moderation in Burial</h3>
-                        <div class="chinese">節用 · 節葬</div>
-                    </div>
-                </div>
-                <div class="doctrine-body">
-                    <p><strong>Moderation in Use (節用 Jie Yong)</strong> condemns waste. Resources spent on luxury could
-                        feed the hungry and clothe the cold.</p>
-
-                    <p><strong>Moderation in Burial (節葬 Jie Zang)</strong> directly attacks Confucian funeral practices.
-                        Elaborate coffins, long mourning periods, and burial goods impoverish the living without helping
-                        the dead.</p>
-
-                    <div class="doctrine-quote">
-                        "If we try to enrich the state by means of lavish burials and prolonged mourning, it would be
-                        like seeking a full harvest by burning the seeds."
-                    </div>
-                </div>
-            </div>
-
-            <!-- Doctrine Pair 4 -->
-            <div class="doctrine-pair">
-                <div class="doctrine-header">
-                    <div class="doctrine-number">4</div>
-                    <div class="doctrine-title">
-                        <h3>Heaven's Intent & Understanding Ghosts</h3>
-                        <div class="chinese">天志 · 明鬼</div>
-                    </div>
-                </div>
-                <div class="doctrine-body">
-                    <p><strong>Heaven's Intent (天志 Tian Zhi)</strong> provides the ultimate moral standard. Heaven loves
-                        all people impartially and wants their welfare. Rulers who follow Heaven's will bring
-                        prosperity; those who violate it are punished.</p>
-
-                    <p><strong>Understanding Ghosts (明鬼 Ming Gui)</strong> argues that spirits exist and enforce
-                        morality. Even if you doubt their existence, Mozi argues it's socially beneficial to
-                        believe-spirits deter crime when human authorities fail.</p>
-                </div>
-            </div>
-
-            <!-- Doctrine Pair 5 -->
-            <div class="doctrine-pair">
-                <div class="doctrine-header">
-                    <div class="doctrine-number">5</div>
-                    <div class="doctrine-title">
-                        <h3>Condemning Music & Condemning Fatalism</h3>
-                        <div class="chinese">非樂 · 非命</div>
-                    </div>
-                </div>
-                <div class="doctrine-body">
-                    <p><strong>Condemning Music (非樂 Fei Yue)</strong> targets Confucian emphasis on ritual music. The
-                        bells, drums, and performances of court ceremonies waste resources and distract from productive
-                        labor.</p>
-
-                    <p><strong>Condemning Fatalism (非命 Fei Ming)</strong> attacks the belief that fate determines
-                        outcomes. If people believe their lot is fixed, they won't strive to improve. Mozi insists human
-                        effort matters.</p>
-
-                    <div class="doctrine-quote">
-                        "If we establish the doctrine of fatalism and thereby instruct the common people, they will
-                        become lazy and neglect their work. This is not the way to govern the state."
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Three Standards Section -->
-    <section class="container" id="standards">
-        <div class="section-header">
-            <h2>Mohist Method</h2>
-            <div class="subtitle"><span class="chinese">三表</span> The Three Standards</div>
+        <div class="saying-box">
+            <div class="saying-chinese">兼相愛，交相利</div>
+            <div class="saying-meaning">"Inclusive mutual care, reciprocal mutual benefit"</div>
+            <div class="saying-note">The Mohist ethical formula</div>
         </div>
 
-        <p style="text-align: center; color: var(--ink-light); margin-bottom: 1.5rem; font-size: 0.9rem;">Mozi's
-            epistemological test: any claim must pass three criteria to be accepted.</p>
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Condemning Aggression (非攻)</h3>
+                <div class="synopsis">
+                    <p><strong>Logical Extension:</strong> If we should care for all equally, aggressive warfare—harming the innocent—is the greatest crime.</p>
+                    <p><strong>Practical Commitment:</strong> Mohists were famous for defending besieged cities against unjust attacks, developing defensive military technology.</p>
+                    <p><strong>Consistency Test:</strong> If killing one person is murder, why is killing thousands in war "glorious"? The logic is identical—only the scale differs.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3>Moderation Doctrines</h3>
+                <div class="synopsis">
+                    <p><strong>節用 Moderation in Use:</strong> Resources spent on luxury could feed the hungry. Condemns waste.</p>
+                    <p><strong>節葬 Moderation in Burial:</strong> Elaborate Confucian funerals impoverish the living without helping the dead. "Like seeking harvest by burning seeds."</p>
+                    <p><strong>非樂 Against Music:</strong> Court ceremonies with bells and drums waste resources. What does ritual music produce? Nothing useful.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="quote-block">
+            "If people regarded others' states as they regard their own, who would attack others' states? ... If people regarded others' families as they regard their own, who would bring disorder to others' families?"
+            <cite>— Mozi, "Inclusive Care"</cite>
+        </div>
+    </div>
+
+    <!-- Part 2: Politics -->
+    <div class="section-header politics" id="politics">
+        <div class="section-number">Part Two</div>
+        <div class="chinese-title">尚賢·尚同</div>
+        <h2>Politics: Order and Authority</h2>
+    </div>
+
+    <div class="container">
+        <div class="two-col">
+            <section class="content-section brown">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">尚賢</td>
+                            <td class="pinyin-cell">shàng xián</td>
+                            <td>Promoting the worthy; meritocracy</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">尚同</td>
+                            <td class="pinyin-cell">shàng tóng</td>
+                            <td>Conforming upward; unified standards</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">天志</td>
+                            <td class="pinyin-cell">tiān zhì</td>
+                            <td>Heaven's intent; ultimate moral source</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">鬼神</td>
+                            <td class="pinyin-cell">guǐ shén</td>
+                            <td>Ghosts and spirits; moral enforcers</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section brown">
+                <h3>Promoting the Worthy (尚賢)</h3>
+                <div class="synopsis">
+                    <p><strong>Against Hereditary Rule:</strong> Officials should be chosen by merit, not birth. "If capable, promote him. If incapable, demote him."</p>
+                    <p><strong>Radical Meritocracy:</strong> Even farmers and artisans can rise to office if worthy. Talent determines status, not family background.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="two-col">
+            <section class="content-section brown">
+                <h3>Conforming Upward (尚同)</h3>
+                <div class="synopsis">
+                    <p><strong>The Problem:</strong> "With one person, one sense of right; with ten, ten senses." Moral chaos from conflicting opinions.</p>
+                    <p><strong>The Solution:</strong> Unified standards. Align judgments with superiors, ultimately with Heaven. Creates moral consensus.</p>
+                </div>
+            </section>
+
+            <section class="content-section brown">
+                <h3>Heaven and Spirits</h3>
+                <div class="synopsis">
+                    <p><strong>天志 Heaven's Intent:</strong> Heaven loves all impartially and wants their welfare. Provides the ultimate moral standard.</p>
+                    <p><strong>明鬼 Understanding Ghosts:</strong> Spirits enforce morality when humans fail. Even if you doubt their existence, belief is socially useful—spirits deter crime.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="quote-block">
+            "In ancient times, when people were first born... everyone had their own sense of right and wrong. The more people, the more different senses. So the world was in chaos."
+            <cite>— Mozi, "Conforming Upward"</cite>
+        </div>
+
+        <section class="content-section brown">
+            <h3>Mozi vs. Confucius</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Confucius</th>
+                        <th>Mozi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Love</strong></td>
+                        <td>Graded—family comes first</td>
+                        <td>Impartial—care for all equally</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ritual</strong></td>
+                        <td>Moral foundation; shapes character</td>
+                        <td>Wasteful tradition; lacks objective standard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Music</strong></td>
+                        <td>Cultivates virtue</td>
+                        <td>Wastes resources</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Funerals</strong></td>
+                        <td>Elaborate = filial piety</td>
+                        <td>Impoverishes the living</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Method</strong></td>
+                        <td>Moral intuition; ritual propriety</td>
+                        <td>Explicit standards (法 fa)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Part 3: Method -->
+    <div class="section-header method" id="method">
+        <div class="section-number">Part Three</div>
+        <div class="chinese-title">三表</div>
+        <h2>Method: The Three Standards</h2>
+    </div>
+
+    <div class="container">
+        <div class="two-col">
+            <section class="content-section gray">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">法</td>
+                            <td class="pinyin-cell">fǎ</td>
+                            <td>Model, standard—like carpenter's square</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">三表</td>
+                            <td class="pinyin-cell">sān biǎo</td>
+                            <td>Three standards; epistemological test</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">類</td>
+                            <td class="pinyin-cell">lèi</td>
+                            <td>Kind, category—basis of analogy</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">非命</td>
+                            <td class="pinyin-cell">fēi mìng</td>
+                            <td>Condemning fatalism</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section gray">
+                <h3>Why Standards Matter</h3>
+                <div class="synopsis">
+                    <p><strong>Against Intuition:</strong> Confucians rely on cultivated moral sense. Mozi objects: customs vary between cultures. We need objective criteria.</p>
+                    <p><strong>The Craftsman's Model:</strong> A carpenter uses a square and compass, not feelings. Ethics needs the same precision—explicit standards (法 fa) for judgment.</p>
+                </div>
+            </section>
+        </div>
 
         <div class="standards-grid">
             <div class="standard-card">
                 <div class="chinese">本</div>
                 <h4>Root / Precedent</h4>
-                <p>Does it accord with the practice of the ancient sage-kings? Historical precedent provides evidence
-                    that a policy can work.</p>
+                <p>Does it accord with the sage-kings' practice? Historical evidence a policy can work.</p>
             </div>
-
             <div class="standard-card">
                 <div class="chinese">原</div>
                 <h4>Source / Evidence</h4>
-                <p>Can it be verified by what ordinary people see and hear? Empirical observation grounds claims in
-                    reality.</p>
+                <p>Can ordinary people verify it through observation? Empirical grounding.</p>
             </div>
-
             <div class="standard-card">
                 <div class="chinese">用</div>
                 <h4>Use / Consequences</h4>
-                <p>Does it benefit the state and the people when put into practice? Practical results are the ultimate
-                    test.</p>
+                <p>Does it benefit state and people in practice? Results are the ultimate test.</p>
             </div>
         </div>
 
-        <div class="argument-box">
-            <h4><span class="chinese">辯</span> Example: Argument Against Fatalism</h4>
-            <ol>
-                <li><strong>Root:</strong> The sage-kings Yao, Shun, and Yu did not believe in fate-they worked hard and
-                    achieved order.</li>
-                <li><strong>Source:</strong> We observe that people who work hard prosper, while the lazy fail.</li>
-                <li><strong>Use:</strong> Believing in fate makes people passive; rejecting fate encourages effort and
-                    improves society.</li>
-            </ol>
-            <p>Therefore, fatalism fails all three standards and should be rejected.</p>
+        <div class="two-col">
+            <section class="content-section gray">
+                <h3>Against Fatalism (非命)</h3>
+                <div class="synopsis">
+                    <p><strong>Applying the Standards:</strong></p>
+                    <p><strong>Root:</strong> Sage-kings didn't believe in fate—they worked hard and achieved order.</p>
+                    <p><strong>Source:</strong> We observe hard workers prosper while the lazy fail.</p>
+                    <p><strong>Use:</strong> Fatalism makes people passive; rejecting it encourages effort.</p>
+                    <p><em>Therefore: fatalism fails all three standards.</em></p>
+                </div>
+            </section>
+
+            <section class="content-section gray">
+                <h3>Mohist Legacy</h3>
+                <div class="synopsis">
+                    <p><strong>Organization:</strong> Followers formed a disciplined movement led by "Grand Masters" (巨子 juzi), willing to die for their principles.</p>
+                    <p><strong>Later Mohists:</strong> Developed sophisticated logic, optics, geometry, and mechanics—China's closest equivalent to Greek natural philosophy.</p>
+                    <p><strong>Decline:</strong> Mohism faded after Han dynasty but influenced Legalism and Chinese consequentialist thinking.</p>
+                </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Critique Section -->
-    <section class="critique-section" id="critique">
-        <div class="critique-card">
-            <h3><span class="chinese">非儒</span> Mozi vs. Confucius</h3>
-
-            <p>The Mozi contains explicit chapters titled "Against the Confucians" (非儒). While Mozi may have originally
-                studied Confucianism, he came to reject its core assumptions.</p>
-
-            <div class="critique-point">
-                <strong>Against Ritual Propriety (禮 Li):</strong> Confucians treat traditional ritual as the foundation
-                of morality. Mozi objects: customs vary between cultures. If ritual is just "what we've always done," it
-                can't provide objective moral guidance.
-            </div>
-
-            <div class="critique-point">
-                <strong>Against Graded Love:</strong> Confucians say we should love family more than strangers. Mozi
-                argues this "partiality" causes conflict-I favor my family at your family's expense. Only impartial care
-                creates harmony.
-            </div>
-
-            <div class="critique-point">
-                <strong>Against Lavish Funerals:</strong> Confucian filial piety demands elaborate burials and
-                three-year mourning. Mozi calculates: this wastes resources, weakens the living, and reduces the
-                population. It's economically disastrous.
-            </div>
-
-            <div class="critique-point">
-                <strong>Against Music:</strong> Confucians see ritual music as morally cultivating. Mozi asks: what does
-                it produce? Nothing. The resources for bells and drums should feed the hungry.
-            </div>
-
-            <p style="margin-top: 1.5rem; font-style: italic;">Mencius later responded that Mohist "inclusive care"
-                amounts to "having no father"-a devastating insult implying Mozi's ethics would destroy the family
-                itself.</p>
+        <div class="saying-box">
+            <div class="saying-chinese">言必有三表</div>
+            <div class="saying-meaning">"Every doctrine must have three standards"</div>
+            <div class="saying-note">Mozi's epistemological principle</div>
         </div>
-    </section>
+    </div>
 
     <!-- Discussion Questions -->
-    <section class="discussion-section" id="discussion">
-        <div class="section-header">
+    <section class="questions-section" id="questions">
+        <div class="questions-container">
             <h2>Discussion Questions</h2>
-            <div class="subtitle"><span class="chinese">討論</span> For Class</div>
-        </div>
 
-        <ol class="discussion-list">
-            <li><strong>Impartiality vs. Special Relationships:</strong> Is Mencius right that "inclusive care"
-                undermines family bonds? Can you care for your parents AND care equally for strangers? What's the
-                difference between treating everyone fairly and loving everyone identically?</li>
-
-            <li><strong>Consequentialism:</strong> Mozi judges actions by their consequences (benefit to society). What
-                are the strengths and weaknesses of this approach? Can good intentions matter even if outcomes are bad?
-            </li>
-
-            <li><strong>Standards for Truth:</strong> Mozi's "three standards" combine precedent, observation, and
-                practical results. Is this a good epistemology? What's missing? How does it compare to modern scientific
-                method?</li>
-
-            <li><strong>Against Music:</strong> Is Mozi's argument against music convincing? Should resources spent on
-                arts and entertainment be redirected to material needs? What value does music have that Mozi misses?
-            </li>
-
-            <li><strong>Religion as Social Tool:</strong> Mozi argues belief in spirits is useful even if spirits don't
-                exist. Is this a good argument? Is it ethical to promote beliefs for their social effects rather than
-                their truth?</li>
-
-            <li><strong>Meritocracy:</strong> "Promoting the worthy" sounds good-but who decides who's worthy? Could
-                Mozi's system create its own kind of elite? How is it different from modern meritocracy debates?</li>
-        </ol>
-    </section>
-
-    <!-- Resources -->
-    <section class="resources-section">
-        <div class="section-header">
-            <h2>Resources</h2>
-            <div class="subtitle">Further Reading</div>
-        </div>
-
-        <div class="resources-grid">
-            <div class="resource-card">
-                <h4>Primary Texts</h4>
-                <a href="https://ctext.org/mozi" target="_blank" rel="noopener">Mozi at ctext.org</a>
-                <a href="https://ctext.org/mozi/universal-love-i" target="_blank" rel="noopener">"Universal Love"
-                    chapters</a>
-                <a href="https://ctext.org/mozi/anti-fatalism-i" target="_blank" rel="noopener">"Anti-Fatalism"
-                    chapters</a>
+            <div class="question-item">
+                <div class="q-num">Question 1</div>
+                <p>Is Mencius right that "inclusive care" undermines family bonds? Can you care for your parents AND care equally for strangers? What's the difference between treating everyone fairly and loving everyone identically?</p>
             </div>
 
-            <div class="resource-card">
-                <h4>Encyclopedias</h4>
-                <a href="https://plato.stanford.edu/entries/mohism/" target="_blank" rel="noopener">SEP: Mohism</a>
-                <a href="https://plato.stanford.edu/entries/mohist-canons/" target="_blank" rel="noopener">SEP: Mohist
-                    Canons</a>
-                <a href="https://iep.utm.edu/mohism/" target="_blank" rel="noopener">IEP: Mohism</a>
+            <div class="question-item">
+                <div class="q-num">Question 2</div>
+                <p>Mozi judges actions by their consequences (benefit to society). What are the strengths and weaknesses of this approach? Can good intentions matter even if outcomes are bad?</p>
             </div>
 
-            <div class="resource-card">
-                <h4>Course Materials</h4>
-                <a href="kongzi.html">Kongzi Study Guide</a>
-                <a href="mengzi.html">Mengzi Study Guide</a>
-                <a href="../index.html">Course Portal</a>
+            <div class="question-item">
+                <div class="q-num">Question 3</div>
+                <p>Mozi's "three standards" combine precedent, observation, and practical results. Is this a good epistemology? What's missing? How does it compare to modern scientific method?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 4</div>
+                <p>Is Mozi's argument against music convincing? Should resources spent on arts and entertainment be redirected to material needs? What value does music have that Mozi misses?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 5</div>
+                <p>Mozi argues belief in spirits is useful even if spirits don't exist. Is this a good argument? Is it ethical to promote beliefs for their social effects rather than their truth?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 6</div>
+                <p>"Promoting the worthy" sounds good—but who decides who's worthy? Could Mozi's meritocracy create its own kind of elite? How does this compare to modern meritocracy debates?</p>
             </div>
         </div>
     </section>
