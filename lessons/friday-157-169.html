@@ -6,26 +6,29 @@
   <title>Friday 157–169 | EAST 370</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #1a1a1a;
       --ink-light: #4a4a4a;
-      --ink-faint: #7a7a7a;
-      --paper: #faf9f7;
+      --ink-faint: #8a8a8a;
+      --paper: #fafaf8;
       --paper-dark: #f0ede8;
       --gold: #b8860b;
       --gold-light: #daa520;
       --accent: #4a1a1a;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background: var(--paper);
       color: var(--ink);
       line-height: 1.6;
       font-size: 15px;
     }
+
+    /* Breadcrumb */
     .breadcrumb {
       background: var(--ink);
       padding: 0.6rem 1.5rem;
@@ -36,35 +39,46 @@
       letter-spacing: 0.08em;
       color: var(--gold);
       text-decoration: none;
+      transition: color 0.2s;
     }
+    .breadcrumb a:hover {
+      color: var(--gold-light);
+    }
+
+    /* Hero */
     .hero {
-      background: linear-gradient(135deg, #1f1a16 0%, #3a2a1f 60%, #1f1a16 100%);
+      background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.8)),
+                  url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
       color: #fff;
       padding: 2.5rem 1.5rem 2rem;
       text-align: center;
     }
     .hero .ch {
-      font-family: 'Noto Serif SC', serif;
+      font-family: 'Noto Sans SC', sans-serif;
       font-size: 2rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.1em;
       color: var(--gold-light);
     }
     .hero h1 {
       font-weight: 300;
-      font-size: 1.1rem;
-      letter-spacing: 0.08em;
-      margin-top: 0.4rem;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      margin-top: 0.3rem;
     }
     .hero .sub {
-      margin-top: 0.6rem;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.7);
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      color: #999;
     }
+
+    /* Container */
     .container {
       max-width: 980px;
       margin: 0 auto;
       padding: 1.5rem;
     }
+
+    /* Card */
     .card {
       background: #fff;
       border: 1px solid var(--paper-dark);
@@ -72,6 +86,7 @@
       border-radius: 4px;
       padding: 1.2rem 1.4rem;
       margin-bottom: 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
     .work-title {
       display: flex;
@@ -80,7 +95,7 @@
       align-items: baseline;
     }
     .work-title .cn {
-      font-family: 'Noto Serif SC', serif;
+      font-family: 'Noto Sans SC', sans-serif;
       font-size: 1.4rem;
       color: var(--accent);
     }
@@ -93,6 +108,8 @@
       font-size: 0.85rem;
       margin-top: 0.2rem;
     }
+
+    /* Section */
     .section {
       margin-top: 0.8rem;
     }
@@ -105,24 +122,58 @@
     }
     ul { padding-left: 1.1rem; }
     li { margin: 0.25rem 0; }
+
+    /* References */
     .refs {
       margin-top: 1.5rem;
       font-size: 0.85rem;
       color: var(--ink-light);
     }
-    .refs a { color: var(--accent); text-decoration: none; }
+    .refs a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .refs a:hover {
+      color: var(--gold-light);
+    }
+
+    /* Footer */
     footer {
       background: var(--ink);
-      color: rgba(255, 255, 255, 0.6);
+      padding: 1.25rem 1.5rem;
       text-align: center;
-      padding: 1.5rem;
       margin-top: 2rem;
+    }
+    footer .foot-chinese {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: 0.2rem;
+    }
+    footer .foot-title {
+      font-size: 0.7rem;
+      color: #aaa;
+      margin-bottom: 0.3rem;
+    }
+    footer .foot-term {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero .ch { font-size: 1.6rem; }
+      .hero h1 { font-size: 0.9rem; }
+      .work-title .cn { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
   <nav class="breadcrumb">
-    <a href="../index.html">&larr; Back to EAST 370</a>
+    <a href="../index.html">&larr; EAST 370</a>
   </nav>
 
   <header class="hero">
@@ -145,7 +196,7 @@
       <div class="section">
         <h3>What This Work Does</h3>
         <ul>
-          <li>Defends a scholar-official’s dignity after political demotion.</li>
+          <li>Defends a scholar-official's dignity after political demotion.</li>
           <li>Frames withdrawal as a matter of character and integrity rather than public performance.</li>
         </ul>
       </div>
@@ -153,7 +204,7 @@
         <h3>Concepts to Teach</h3>
         <ul>
           <li>Letters as moral self-justification and reputation management.</li>
-          <li>Retreat vs. disgrace: what counts as “proper” withdrawal?</li>
+          <li>Retreat vs. disgrace: what counts as "proper" withdrawal?</li>
         </ul>
       </div>
       <div class="section">
@@ -185,7 +236,7 @@
       <div class="section">
         <h3>Concepts to Teach</h3>
         <ul>
-          <li>“Withdrawal” as moral protest, not laziness.</li>
+          <li>"Withdrawal" as moral protest, not laziness.</li>
           <li>Daoist critique of court culture and ritual.</li>
         </ul>
       </div>
@@ -218,7 +269,7 @@
         <h3>Concepts to Teach</h3>
         <ul>
           <li>Utopia as critique of political disorder.</li>
-          <li>Retreat as imagination: the “place” is real in story but elusive in reality.</li>
+          <li>Retreat as imagination: the "place" is real in story but elusive in reality.</li>
         </ul>
       </div>
       <div class="section">
@@ -238,13 +289,13 @@
       <div class="section">
         <h3>Author & Context</h3>
         <p>The piece is a parallel-prose composition preserved in the Wenxuan.</p>
-        <p>Scholarly commentary describes it as a satire of a would-be recluse who seeks reputation and office, often linked to Zhou Yong, highlighting how “reclusion” can be performative.</p>
+        <p>Scholarly commentary describes it as a satire of a would-be recluse who seeks reputation and office, often linked to Zhou Yong, highlighting how "reclusion" can be performative.</p>
       </div>
       <div class="section">
         <h3>What This Work Does</h3>
         <ul>
           <li>Attacks hypocritical withdrawal as a strategy for career advancement.</li>
-          <li>Uses “North Mountain” as a moral stage for sincerity versus self-promotion.</li>
+          <li>Uses "North Mountain" as a moral stage for sincerity versus self-promotion.</li>
         </ul>
       </div>
       <div class="section">
@@ -277,7 +328,9 @@
   </main>
 
   <footer>
-    EAST 370 · Chinese Traditional Literature and Thought · Winter 2026
+    <div class="foot-chinese">中國文學與思想</div>
+    <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+    <div class="foot-term">WINTER 2026</div>
   </footer>
 </body>
 </html>
