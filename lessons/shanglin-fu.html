@@ -55,37 +55,51 @@
         .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
         .page-title .meta { font-size: 0.7rem; color: #888; }
 
-        /* Navigation */
-        .nav {
-            background: var(--ink);
-            padding: 0.6rem 1.5rem;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-top: 1px solid rgba(255,255,255,0.1);
+        /* Layout Shell */
+        .layout {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 200px);
         }
 
-        .nav a {
-            font-size: 0.7rem;
-            color: #aaa;
+        /* Sidebar Nav */
+        .sidebar {
+            padding: 2rem 0 2rem 1.5rem;
+            position: sticky;
+            top: 0;
+            align-self: start;
+            height: fit-content;
+        }
+
+        .sidebar a {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
             text-decoration: none;
-            letter-spacing: 0.03em;
+            padding: 0.4rem 0;
+            letter-spacing: 0.02em;
             transition: color 0.2s;
         }
 
-        .nav a:hover {
-            color: var(--gold-light);
+        .sidebar a:hover {
+            color: var(--gold);
+        }
+
+        .sidebar .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+            opacity: 0.6;
         }
 
         /* Main Content */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
+        .main {
+            padding: 2rem 2rem 2rem 2.5rem;
+            border-left: 1px solid var(--paper-dark);
         }
 
         /* Section Headers */
@@ -125,47 +139,30 @@
             margin-bottom: 2rem;
         }
 
-        .card-header {
-            padding: 1.5rem 2rem;
+        .card-label {
+            padding: 1rem 2rem;
             display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            background: var(--ink);
+            align-items: baseline;
+            gap: 1rem;
+            border-bottom: 1px solid var(--paper-dark);
         }
 
-        .card-header.park {
-            background: linear-gradient(135deg, #1a4a2a 0%, #2d5a3a 100%);
-        }
-
-        .card-header.structure {
-            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
-        }
-
-        .card-header.catalog {
-            background: linear-gradient(135deg, #2a3a4a 0%, #3a4a5a 100%);
-        }
-
-        .card-header.moral {
-            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
-        }
-
-        .card-header .chinese {
+        .card-label .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.8rem;
-            color: var(--gold-light);
-            line-height: 1;
-        }
-
-        .card-header-text h3 {
             font-size: 1.3rem;
-            font-weight: 400;
-            color: #fff;
-            margin-bottom: 0.3rem;
+            color: var(--gold);
         }
 
-        .card-header-text .meta {
+        .card-label h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .card-label .meta {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--ink-faint);
+            margin-left: auto;
         }
 
         .card-body {
@@ -221,45 +218,48 @@
         }
 
         .author-header {
-            padding: 1.5rem;
-            text-align: center;
-            background: var(--ink);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            border-bottom: 1px solid var(--paper-dark);
         }
 
         .author-header .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.8rem;
-            color: var(--gold-light);
-            margin-bottom: 0.25rem;
+            font-size: 1.3rem;
+            color: var(--gold);
         }
 
         .author-header h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #fff;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--ink);
         }
 
         .author-header .dates {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--ink-faint);
+            margin-left: auto;
         }
 
         .author-body {
-            padding: 1.5rem;
+            padding: 2rem;
+            columns: 2;
+            column-gap: 2.5rem;
+        }
+
+        .author-subsection {
+            break-inside: avoid;
+            margin-bottom: 1.25rem;
         }
 
         .author-body h4 {
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--ink-faint);
+            color: var(--gold);
             margin-bottom: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .author-body h4:first-child {
-            margin-top: 0;
         }
 
         .author-body p {
@@ -289,7 +289,7 @@
         /* Speaker Cards Grid */
         .speaker-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin: 1rem 0;
         }
@@ -298,7 +298,7 @@
             background: var(--paper-dark);
             border-radius: 4px;
             padding: 1rem;
-            text-align: center;
+            border-left: 3px solid var(--gold);
         }
 
         .speaker-card .chinese {
@@ -329,7 +329,7 @@
         /* Catalog List */
         .catalog-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 0.75rem;
             margin: 1rem 0;
         }
@@ -410,14 +410,13 @@
             letter-spacing: 0.15em;
             color: var(--ink-faint);
             margin-bottom: 1.5rem;
-            text-align: center;
         }
 
         .sources-grid {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
@@ -483,20 +482,20 @@
         footer {
             background: var(--ink);
             padding: 1.25rem 1.5rem;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
             color: var(--gold-light);
-            margin-bottom: 0.2rem;
         }
 
         footer .foot-title {
             font-size: 0.7rem;
             color: #aaa;
-            margin-bottom: 0.3rem;
         }
 
         footer .foot-term {
@@ -504,6 +503,7 @@
             font-weight: 600;
             color: var(--gold);
             letter-spacing: 0.08em;
+            margin-left: auto;
         }
 
         /* Key Themes Box */
@@ -528,12 +528,15 @@
         .key-themes ul {
             margin: 0;
             padding-left: 1.5rem;
+            columns: 2;
+            column-gap: 2rem;
         }
 
         .key-themes li {
             margin-bottom: 0.5rem;
             font-size: 0.95rem;
             color: var(--ink-light);
+            break-inside: avoid;
         }
 
         .key-themes li strong {
@@ -541,24 +544,90 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
             }
 
-            .card-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.75rem;
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                border-left: none;
+                padding: 1.5rem;
+            }
+
+            /* Show mobile nav */
+            .mobile-nav {
+                display: flex;
+            }
+
+            .author-body {
+                columns: 1;
             }
 
             .speaker-grid {
                 grid-template-columns: 1fr;
             }
 
-            .nav {
-                gap: 1rem;
+            .catalog-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .key-themes ul {
+                columns: 1;
+            }
+
+            .card-label {
+                flex-wrap: wrap;
+            }
+
+            .card-label .meta {
+                margin-left: 0;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            footer .foot-term {
+                margin-left: 0;
+            }
+        }
+
+        /* Mobile nav (hidden on desktop) */
+        .mobile-nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: none;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-nav a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--gold-light);
+        }
+
+        @media (max-width: 900px) {
+            .mobile-nav {
+                display: flex;
             }
         }
     </style>
@@ -575,8 +644,8 @@
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav class="nav">
+    <!-- Mobile Navigation (hidden on desktop) -->
+    <nav class="mobile-nav">
         <a href="#author">The Author</a>
         <a href="#context">Context</a>
         <a href="#structure">Structure</a>
@@ -585,279 +654,296 @@
         <a href="#sources">Sources</a>
     </nav>
 
-    <div class="container">
+    <div class="layout">
 
-        <!-- The Author Section -->
-        <section id="author">
-            <div class="section-header">
-                <span class="chinese">作者</span>
-                <h2>The Author</h2>
-            </div>
+        <!-- Sidebar Nav (desktop) -->
+        <nav class="sidebar">
+            <div class="label">Sections</div>
+            <a href="#author">The Author</a>
+            <a href="#context">Historical Context</a>
+            <a href="#structure">Structure & Dialogue</a>
+            <a href="#content">Content & Technique</a>
+            <a href="#critique">Political Critique</a>
+            <a href="#discussion">Discussion</a>
+            <a href="#sources">Sources</a>
+        </nav>
 
-            <div class="author-card">
-                <div class="author-header">
-                    <div class="chinese">司馬相如</div>
-                    <h3>Sima Xiangru</h3>
-                    <div class="dates">c. 179–117 BCE · Chengdu, Shu (Sichuan)</div>
+        <div class="main">
+
+            <!-- The Author Section -->
+            <section id="author">
+                <div class="section-header">
+                    <span class="chinese">作者</span>
+                    <h2>The Author</h2>
                 </div>
-                <div class="author-body">
-                    <h4>Life</h4>
-                    <p>Sima Xiangru is <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"generally regarded as the greatest of all composers of Chinese <em>fu</em> rhapsodies."</a> Born in Chengdu, the principal city of Shu (modern Sichuan), into <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">a prosperous family</a>, he received a comprehensive education in literature, history, and philosophy. As a youth, he took the name "Xiangru" <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">out of admiration for Lin Xiangru</a>, the Warring States diplomat famous for his wit and courage (<a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank"><em>Shiji</em> 117</a>).</p>
 
-                    <h4>Early Career</h4>
-                    <p>Around 150 BCE, Sima <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">used his family wealth to purchase an appointment at the imperial court</a> as a mounted military attendant to Emperor Jing — a low-ranking position that suited neither his talents nor his literary temperament (the emperor was <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">"known for his dislike of literary embellishment"</a>). In 149 BCE, he moved to the court of Liu Wu, Prince of Liang, <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">joining a circle of brilliant literati</a> including Zou Yang, Yan Ji, and Mei Sheng. There he composed the <em>Zixu fu</em> (<a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">Knechtges</a>: "Rhapsody of Sir Fantasy"), which would later catch an emperor's attention.</p>
+                <div class="author-card">
+                    <div class="author-header">
+                        <span class="chinese">司馬相如</span>
+                        <h3>Sima Xiangru</h3>
+                        <span class="dates">c. 179–117 BCE · Chengdu, Shu (Sichuan)</span>
+                    </div>
+                    <div class="author-body">
+                        <div class="author-subsection">
+                            <h4>Life</h4>
+                            <p>Sima Xiangru is <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"generally regarded as the greatest of all composers of Chinese <em>fu</em> rhapsodies."</a> Born in Chengdu, the principal city of Shu (modern Sichuan), into <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">a prosperous family</a>, he received a comprehensive education in literature, history, and philosophy. As a youth, he took the name "Xiangru" <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">out of admiration for Lin Xiangru</a>, the Warring States diplomat famous for his wit and courage (<a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank"><em>Shiji</em> 117</a>).</p>
+                        </div>
 
-                    <h4>The Zhuo Wenjun Romance</h4>
-                    <p>After Prince Liu Wu's death in 144 BCE (<a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">Britannica</a>), Sima returned to Shu in poverty. His fortunes changed when the magistrate Wang Ji introduced him to Zhuo Wangsun, a wealthy iron manufacturer (<a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank"><em>Shiji</em> 117</a>). At a banquet, Sima performed "Phoenix Seeking Phoenix" (鳳求凰) on the <em>qin</em> — ostensibly for the host, but truly for Zhuo's recently widowed daughter Wenjun, <a href="https://thehistorianshut.com/2020/03/31/the-musical-love-story-of-sima-xiangru-and-zhuo-wenjun/" target="_blank">who listened hidden behind a screen</a>. The two eloped that night (<a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">142 BCE</a>).</p>
-                    <p>Disinherited and destitute, they opened a small wine shop where <a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank">Wenjun tended bar while Sima washed pots</a>. Eventually, public shame forced her father to recognize the marriage with a massive dowry — <a href="https://thehistorianshut.com/2020/03/31/the-musical-love-story-of-sima-xiangru-and-zhuo-wenjun/" target="_blank">"one of Chinese literature's most celebrated love stories"</a> and one of the few early romances ending happily rather than tragically.</p>
+                        <div class="author-subsection">
+                            <h4>Early Career</h4>
+                            <p>Around 150 BCE, Sima <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">used his family wealth to purchase an appointment at the imperial court</a> as a mounted military attendant to Emperor Jing — a low-ranking position that suited neither his talents nor his literary temperament (the emperor was <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">"known for his dislike of literary embellishment"</a>). In 149 BCE, he moved to the court of Liu Wu, Prince of Liang, <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">joining a circle of brilliant literati</a> including Zou Yang, Yan Ji, and Mei Sheng. There he composed the <em>Zixu fu</em> (<a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">Knechtges</a>: "Rhapsody of Sir Fantasy"), which would later catch an emperor's attention.</p>
+                        </div>
 
-                    <h4>At Emperor Wu's Court</h4>
-                    <p>In 137 BCE, a copy of the <em>Zixu fu</em> reached the sixteen-year-old Emperor Wu, who <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">exclaimed: "Why do I not have the privilege of being this man's contemporary?!"</a> Informed that Sima was very much alive (<a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">via Yang Deyi, keeper of the imperial hounds</a>), Wu summoned him to court. Emperor Wu made Sima <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"gentleman attendant" (郎), later "Leader of the court gentlemen" (中郎將)</a>. Thus began a relationship that would produce the <em>Shanglin fu</em> and secure Sima's place in literary history.</p>
+                        <div class="author-subsection">
+                            <h4>The Zhuo Wenjun Romance</h4>
+                            <p>After Prince Liu Wu's death in 144 BCE (<a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">Britannica</a>), Sima returned to Shu in poverty. His fortunes changed when the magistrate Wang Ji introduced him to Zhuo Wangsun, a wealthy iron manufacturer (<a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank"><em>Shiji</em> 117</a>). At a banquet, Sima performed "Phoenix Seeking Phoenix" (鳳求凰) on the <em>qin</em> — ostensibly for the host, but truly for Zhuo's recently widowed daughter Wenjun, <a href="https://thehistorianshut.com/2020/03/31/the-musical-love-story-of-sima-xiangru-and-zhuo-wenjun/" target="_blank">who listened hidden behind a screen</a>. The two eloped that night (<a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">142 BCE</a>).</p>
+                            <p>Disinherited and destitute, they opened a small wine shop where <a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank">Wenjun tended bar while Sima washed pots</a>. Eventually, public shame forced her father to recognize the marriage with a massive dowry — <a href="https://thehistorianshut.com/2020/03/31/the-musical-love-story-of-sima-xiangru-and-zhuo-wenjun/" target="_blank">"one of Chinese literature's most celebrated love stories"</a> and one of the few early romances ending happily rather than tragically.</p>
+                        </div>
 
-                    <h4>Legacy</h4>
-                    <p>Sima's long compositions <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">"wove together fantastic images in an outpouring of alliterative and rhyming descriptive expressions that gave sensual impressions of movement, sound, and color."</a> His language is extraordinarily rich — <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"notorious for long catalogues of animal, plant, fish, and mineral names, many of which are only vaguely identified even by the most learned commentaries."</a> When word reached the court that Sima was dying in 117 BCE, <a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank">Emperor Wu dispatched an official to collect his writings</a>, but the poet had already passed away at approximately age 62, possibly from <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">diabetes</a>.</p>
+                        <div class="author-subsection">
+                            <h4>At Emperor Wu's Court</h4>
+                            <p>In 137 BCE, a copy of the <em>Zixu fu</em> reached the sixteen-year-old Emperor Wu, who <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">exclaimed: "Why do I not have the privilege of being this man's contemporary?!"</a> Informed that Sima was very much alive (<a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">via Yang Deyi, keeper of the imperial hounds</a>), Wu summoned him to court. Emperor Wu made Sima <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"gentleman attendant" (郎), later "Leader of the court gentlemen" (中郎將)</a>. Thus began a relationship that would produce the <em>Shanglin fu</em> and secure Sima's place in literary history.</p>
+                        </div>
+
+                        <div class="author-subsection">
+                            <h4>Legacy</h4>
+                            <p>Sima's long compositions <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">"wove together fantastic images in an outpouring of alliterative and rhyming descriptive expressions that gave sensual impressions of movement, sound, and color."</a> His language is extraordinarily rich — <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"notorious for long catalogues of animal, plant, fish, and mineral names, many of which are only vaguely identified even by the most learned commentaries."</a> When word reached the court that Sima was dying in 117 BCE, <a href="https://cup.columbia.edu/book/records-of-the-grand-historian/9780231081672" target="_blank">Emperor Wu dispatched an official to collect his writings</a>, but the poet had already passed away at approximately age 62, possibly from <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">diabetes</a>.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Historical Context Section -->
-        <section id="context">
-            <div class="section-header">
-                <span class="chinese">背景</span>
-                <h2>Historical Context</h2>
-            </div>
+            <!-- Historical Context Section -->
+            <section id="context">
+                <div class="section-header">
+                    <span class="chinese">背景</span>
+                    <h2>Historical Context</h2>
+                </div>
 
-            <div class="content-card">
-                <div class="card-header park">
-                    <div class="chinese">上林苑</div>
-                    <div class="card-header-text">
+                <div class="content-card">
+                    <div class="card-label">
+                        <span class="chinese">上林苑</span>
                         <h3>The Shanglin Park</h3>
-                        <div class="meta">Imperial Hunting Preserve · Outside Chang'an</div>
+                        <span class="meta">Imperial Hunting Preserve · Outside Chang'an</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>The Physical Park</h4>
+                        <p><a href="https://asia.si.edu/explore-art-culture/collections/search/edanmdm:fsg_F1913.47/" target="_blank">Outside his capital of Chang'an</a> (modern Xi'an, Shaanxi Province), Emperor Wu of Han (r. 141–87 BCE) maintained a vast wilderness preserve for imperial hunts and excursions. The Shanglin Park (上林苑) was originally created by the <a href="https://www.worldhistory.org/Chang'an/" target="_blank">First Emperor of Qin</a>, then <a href="https://www.worldhistory.org/Chang'an/" target="_blank">"completely transformed" by Emperor Wu</a> into a pleasure park spreading for <a href="https://link.springer.com/chapter/10.1007/978-981-97-7131-8_1" target="_blank">hundreds of <em>li</em></a> (with one <em>li</em> ≈ 0.5 km).</p>
+
+                        <h4>Imperial Hunts</h4>
+                        <p>The park was <a href="https://link.springer.com/chapter/10.1007/978-981-97-7131-8_1" target="_blank">"constructed as a microcosm of the empire, a study ground for the emperor and his officials to observe nature, plants and animals, as well as the setting for organized hunts and animal fights."</a> It contained <a href="https://www.worldhistory.org/Chang'an/" target="_blank">"all manner of exotic flowers, tropical plants and trees,"</a> a menagerie with <a href="https://www.worldhistory.org/Chang'an/" target="_blank">"exotic birds, a rhinoceros, and an elephant,"</a> artificial water features, and the Jianzhang Palace which became the royal residence.</p>
+
+                        <h4>The Commission</h4>
+                        <p>When Sima appeared before Emperor Wu, he <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"stated that he wished to compose a grand fu on the emperor's excursions and hunts"</a> — proposing something unprecedented: rather than write about vassal lords' hunting grounds, he would celebrate the Son of Heaven himself. <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"The emperor had the chief steward of writing give Sima a supply of brushes and bamboo slips"</a> which Sima used to compose his magnum opus — originally titled <em>Tianzi youlie fu</em> (<a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"Rhapsody on the Excursions and Hunts of the Son of Heaven"</a>).</p>
+
+                        <div class="mini-timeline">
+                            <div class="timeline-item">
+                                <div class="year">c. 149–143 BCE</div>
+                                <div class="event">Sima composes <em>Zixu fu</em> at Prince of Liang's court</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="year">137 BCE</div>
+                                <div class="event">Emperor Wu reads <em>Zixu fu</em>, summons Sima to court</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="year">c. 137–130 BCE</div>
+                                <div class="event">Sima composes <em>Shanglin fu</em> as sequel</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="year">117 BCE</div>
+                                <div class="event">Sima dies; Emperor Wu sends official to preserve his writings</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h4>The Physical Park</h4>
-                    <p><a href="https://asia.si.edu/explore-art-culture/collections/search/edanmdm:fsg_F1913.47/" target="_blank">Outside his capital of Chang'an</a> (modern Xi'an, Shaanxi Province), Emperor Wu of Han (r. 141–87 BCE) maintained a vast wilderness preserve for imperial hunts and excursions. The Shanglin Park (上林苑) was originally created by the <a href="https://www.worldhistory.org/Chang'an/" target="_blank">First Emperor of Qin</a>, then <a href="https://www.worldhistory.org/Chang'an/" target="_blank">"completely transformed" by Emperor Wu</a> into a pleasure park spreading for <a href="https://link.springer.com/chapter/10.1007/978-981-97-7131-8_1" target="_blank">hundreds of <em>li</em></a> (with one <em>li</em> ≈ 0.5 km).</p>
+            </section>
 
-                    <h4>Imperial Hunts</h4>
-                    <p>The park was <a href="https://link.springer.com/chapter/10.1007/978-981-97-7131-8_1" target="_blank">"constructed as a microcosm of the empire, a study ground for the emperor and his officials to observe nature, plants and animals, as well as the setting for organized hunts and animal fights."</a> It contained <a href="https://www.worldhistory.org/Chang'an/" target="_blank">"all manner of exotic flowers, tropical plants and trees,"</a> a menagerie with <a href="https://www.worldhistory.org/Chang'an/" target="_blank">"exotic birds, a rhinoceros, and an elephant,"</a> artificial water features, and the Jianzhang Palace which became the royal residence.</p>
-
-                    <h4>The Commission</h4>
-                    <p>When Sima appeared before Emperor Wu, he <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"stated that he wished to compose a grand fu on the emperor's excursions and hunts"</a> — proposing something unprecedented: rather than write about vassal lords' hunting grounds, he would celebrate the Son of Heaven himself. <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"The emperor had the chief steward of writing give Sima a supply of brushes and bamboo slips"</a> which Sima used to compose his magnum opus — originally titled <em>Tianzi youlie fu</em> (<a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"Rhapsody on the Excursions and Hunts of the Son of Heaven"</a>).</p>
-
-                    <div class="mini-timeline">
-                        <div class="timeline-item">
-                            <div class="year">c. 149–143 BCE</div>
-                            <div class="event">Sima composes <em>Zixu fu</em> at Prince of Liang's court</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="year">137 BCE</div>
-                            <div class="event">Emperor Wu reads <em>Zixu fu</em>, summons Sima to court</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="year">c. 137–130 BCE</div>
-                            <div class="event">Sima composes <em>Shanglin fu</em> as sequel</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="year">117 BCE</div>
-                            <div class="event">Sima dies; Emperor Wu sends official to preserve his writings</div>
-                        </div>
-                    </div>
+            <!-- Structure Section -->
+            <section id="structure">
+                <div class="section-header">
+                    <span class="chinese">結構</span>
+                    <h2>Structure & Dialogue</h2>
                 </div>
-            </div>
-        </section>
 
-        <!-- Structure Section -->
-        <section id="structure">
-            <div class="section-header">
-                <span class="chinese">結構</span>
-                <h2>Structure & Dialogue</h2>
-            </div>
-
-            <div class="content-card">
-                <div class="card-header structure">
-                    <div class="chinese">三客</div>
-                    <div class="card-header-text">
+                <div class="content-card">
+                    <div class="card-label">
+                        <span class="chinese">三客</span>
                         <h3>The Three Speakers</h3>
-                        <div class="meta">A Dialectical Framework</div>
+                        <span class="meta">A Dialectical Framework</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>The Dialogic Form</h4>
+                        <p>The <em>Zixu fu</em> and <em>Shanglin fu</em> together form a single extended work employing <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">three fictional speakers with deliberately satirical names</a>. The speakers <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"respectively represent the states of Chu, Qi, and the Han imperial court."</a> This dialogue format allows Sima to stage a debate that escalates from regional boasting to imperial magnificence — and ultimately to moral reflection.</p>
+
+                        <div class="speaker-grid">
+                            <div class="speaker-card">
+                                <div class="chinese">子虛</div>
+                                <div class="name">Zixu / Sir Fantasy</div>
+                                <div class="meaning"><a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"hollow, empty words"</a></div>
+                                <div class="represents">Represents the State of <strong>Chu</strong></div>
+                            </div>
+                            <div class="speaker-card">
+                                <div class="chinese">烏有</div>
+                                <div class="name">Wuyou / Master No-Such</div>
+                                <div class="meaning"><a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"how could such a thing exist?"</a></div>
+                                <div class="represents">Represents the State of <strong>Qi</strong></div>
+                            </div>
+                            <div class="speaker-card">
+                                <div class="chinese">亡是公</div>
+                                <div class="name">Wang Shi / Lord Not-Real</div>
+                                <div class="meaning"><a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"someone who does not exist"</a></div>
+                                <div class="represents">Represents the <strong>Han Empire</strong></div>
+                            </div>
+                        </div>
+
+                        <h4>The Debate Unfolds</h4>
+                        <p><strong>Part I (Zixu fu):</strong> Sir Fantasy, visiting Qi, is taken hunting. When asked about it, he <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"launches into a description of the vast Yunmeng Park in his native state of Chu."</a> His <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">"rhapsodic outburst overwhelms"</a> Master No-Such, who accuses him of improper boasting.</p>
+
+                        <p><strong>Part II (Shanglin fu):</strong> Lord Not-Real enters to refute both speakers. <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"He humbles both speakers with his exhaustive exposition on the majesty of the Shanglin hunting park,"</a> catalogs the imperial domain in staggering detail — then delivers an unexpected moral conclusion. Through their <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"consequent humiliation, the text not only demonstrates the Han Empire's material abundance and territorial expanse but also subtly conveys the author's political critique."</a></p>
+
+                        <blockquote>
+                            "The richness and beauty of the land says nothing about the moral and virtue of the king."
+                            <cite>— Critique delivered within the <em>Shanglin fu</em> (<a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">source</a>)</cite>
+                        </blockquote>
+
+                        <h4>Why Fictional Names?</h4>
+                        <p>The speakers' names — all meaning "non-existent" or "unreal" — signal that this is literary artifice. As <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">EBSCO notes</a>: "As the satiric names of its characters suggest, the fu is full of hyperbole, exhibiting a descriptive power and imagistic vocabulary that surpasses anything found in Chinese literature."</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h4>The Dialogic Form</h4>
-                    <p>The <em>Zixu fu</em> and <em>Shanglin fu</em> together form a single extended work employing <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">three fictional speakers with deliberately satirical names</a>. The speakers <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"respectively represent the states of Chu, Qi, and the Han imperial court."</a> This dialogue format allows Sima to stage a debate that escalates from regional boasting to imperial magnificence — and ultimately to moral reflection.</p>
+            </section>
 
-                    <div class="speaker-grid">
-                        <div class="speaker-card">
-                            <div class="chinese">子虛</div>
-                            <div class="name">Zixu / Sir Fantasy</div>
-                            <div class="meaning"><a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"hollow, empty words"</a></div>
-                            <div class="represents">Represents the State of <strong>Chu</strong></div>
-                        </div>
-                        <div class="speaker-card">
-                            <div class="chinese">烏有</div>
-                            <div class="name">Wuyou / Master No-Such</div>
-                            <div class="meaning"><a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"how could such a thing exist?"</a></div>
-                            <div class="represents">Represents the State of <strong>Qi</strong></div>
-                        </div>
-                        <div class="speaker-card">
-                            <div class="chinese">亡是公</div>
-                            <div class="name">Wang Shi / Lord Not-Real</div>
-                            <div class="meaning"><a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"someone who does not exist"</a></div>
-                            <div class="represents">Represents the <strong>Han Empire</strong></div>
-                        </div>
-                    </div>
-
-                    <h4>The Debate Unfolds</h4>
-                    <p><strong>Part I (Zixu fu):</strong> Sir Fantasy, visiting Qi, is taken hunting. When asked about it, he <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"launches into a description of the vast Yunmeng Park in his native state of Chu."</a> His <a href="https://www.britannica.com/biography/Sima-Xiangru" target="_blank">"rhapsodic outburst overwhelms"</a> Master No-Such, who accuses him of improper boasting.</p>
-
-                    <p><strong>Part II (Shanglin fu):</strong> Lord Not-Real enters to refute both speakers. <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"He humbles both speakers with his exhaustive exposition on the majesty of the Shanglin hunting park,"</a> catalogs the imperial domain in staggering detail — then delivers an unexpected moral conclusion. Through their <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"consequent humiliation, the text not only demonstrates the Han Empire's material abundance and territorial expanse but also subtly conveys the author's political critique."</a></p>
-
-                    <blockquote>
-                        "The richness and beauty of the land says nothing about the moral and virtue of the king."
-                        <cite>— Critique delivered within the <em>Shanglin fu</em> (<a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">source</a>)</cite>
-                    </blockquote>
-
-                    <h4>Why Fictional Names?</h4>
-                    <p>The speakers' names — all meaning "non-existent" or "unreal" — signal that this is literary artifice. As <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">EBSCO notes</a>: "As the satiric names of its characters suggest, the fu is full of hyperbole, exhibiting a descriptive power and imagistic vocabulary that surpasses anything found in Chinese literature."</p>
+            <!-- Content Section -->
+            <section id="content">
+                <div class="section-header">
+                    <span class="chinese">內容</span>
+                    <h2>Content & Literary Technique</h2>
                 </div>
-            </div>
-        </section>
 
-        <!-- Content Section -->
-        <section id="content">
-            <div class="section-header">
-                <span class="chinese">內容</span>
-                <h2>Content & Literary Technique</h2>
-            </div>
-
-            <div class="content-card">
-                <div class="card-header catalog">
-                    <div class="chinese">萬物</div>
-                    <div class="card-header-text">
+                <div class="content-card">
+                    <div class="card-label">
+                        <span class="chinese">萬物</span>
                         <h3>The Catalog of All Things</h3>
-                        <div class="meta">Epideictic Rhapsody as Imperial Inventory</div>
+                        <span class="meta">Epideictic Rhapsody as Imperial Inventory</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>The Epideictic Mode</h4>
+                        <p>The <em>Shanglin fu</em> is the supreme example of <strong>epideictic fu</strong> — display rhetoric meant to showcase verbal virtuosity. As <a href="https://www.degruyterbrill.com/document/doi/10.7312/cai-18536-009/html" target="_blank">Cheng & Patterson</a> explain, the park creates a <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"miniaturized domain through a seemingly interminable description of mountains and rivers, flora and fauna, rocks and minerals, terraces and palaces: the imperial park, which seems to have everything, is a synecdoche for the larger"</a> empire. This served the function of <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"cataloguing and proclaiming the emperor's sovereignty over all things in his land."</a></p>
+
+                        <h4>What the Fu Catalogs</h4>
+                        <p>Sima <a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">"lays out the bounds of Shanglin Park, and embarks on a long and lyrical description"</a> systematically:</p>
+
+                        <div class="catalog-list">
+                            <div class="catalog-item">
+                                <span class="icon">🌊</span>
+                                <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Waters & marine life</a></span>
+                            </div>
+                            <div class="catalog-item">
+                                <span class="icon">⛰️</span>
+                                <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Mountains & gorges</a></span>
+                            </div>
+                            <div class="catalog-item">
+                                <span class="icon">🌿</span>
+                                <span class="text">Flora & forests</span>
+                            </div>
+                            <div class="catalog-item">
+                                <span class="icon">🦁</span>
+                                <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Wild animals</a></span>
+                            </div>
+                            <div class="catalog-item">
+                                <span class="icon">🐎</span>
+                                <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Horses of every type</a></span>
+                            </div>
+                            <div class="catalog-item">
+                                <span class="icon">🐦</span>
+                                <span class="text">Exotic birds</span>
+                            </div>
+                            <div class="catalog-item">
+                                <span class="icon">💎</span>
+                                <span class="text">Rocks & minerals</span>
+                            </div>
+                            <div class="catalog-item">
+                                <span class="icon">🏛️</span>
+                                <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Palaces & pavilions</a></span>
+                            </div>
+                        </div>
+
+                        <h4>The Hunt Itself</h4>
+                        <p><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">"Having taken over 250 lines to describe the park, Sima starts to detail its use by the emperor and his court. As autumn turns to the start of winter, the emperor travels from his palace to go hunting. He is in his carriage, which is decorated with carved ivory and drawn by six jade dragons."</a> The entire work is <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"replete with exaggerated exuberance and a confluence of the real and the imaginary."</a></p>
+
+                        <blockquote>
+                            "Twisting and twining, tortuously turning, / Arch aloft, precipitously piled."
+                            <cite>— Sima Xiangru describing the mountains (<a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">trans. Knechtges</a>)</cite>
+                        </blockquote>
+
+                        <h4>Language and Difficulty</h4>
+                        <p>Sima's <em>fu</em> are <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"notorious for long catalogues of animal, plant, fish, and mineral names, many of which are only vaguely identified even by the most learned commentaries."</a> <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"Sima Xiangru's language is particularly rich, especially his alliterative and rhyming descriptives."</a> The result: <a href="https://asia.si.edu/explore-art-culture/collections/search/edanmdm:fsg_F1913.47/" target="_blank">"Sima's dazzling verbal description of the park's terrain and the extravagant hunts that took place in it has long been celebrated as one of the most extraordinary displays of poetic creativity in the Chinese language."</a></p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h4>The Epideictic Mode</h4>
-                    <p>The <em>Shanglin fu</em> is the supreme example of <strong>epideictic fu</strong> — display rhetoric meant to showcase verbal virtuosity. As <a href="https://www.degruyterbrill.com/document/doi/10.7312/cai-18536-009/html" target="_blank">Cheng & Patterson</a> explain, the park creates a <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"miniaturized domain through a seemingly interminable description of mountains and rivers, flora and fauna, rocks and minerals, terraces and palaces: the imperial park, which seems to have everything, is a synecdoche for the larger"</a> empire. This served the function of <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"cataloguing and proclaiming the emperor's sovereignty over all things in his land."</a></p>
+            </section>
 
-                    <h4>What the Fu Catalogs</h4>
-                    <p>Sima <a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">"lays out the bounds of Shanglin Park, and embarks on a long and lyrical description"</a> systematically:</p>
-
-                    <div class="catalog-list">
-                        <div class="catalog-item">
-                            <span class="icon">🌊</span>
-                            <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Waters & marine life</a></span>
-                        </div>
-                        <div class="catalog-item">
-                            <span class="icon">⛰️</span>
-                            <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Mountains & gorges</a></span>
-                        </div>
-                        <div class="catalog-item">
-                            <span class="icon">🌿</span>
-                            <span class="text">Flora & forests</span>
-                        </div>
-                        <div class="catalog-item">
-                            <span class="icon">🦁</span>
-                            <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Wild animals</a></span>
-                        </div>
-                        <div class="catalog-item">
-                            <span class="icon">🐎</span>
-                            <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Horses of every type</a></span>
-                        </div>
-                        <div class="catalog-item">
-                            <span class="icon">🐦</span>
-                            <span class="text">Exotic birds</span>
-                        </div>
-                        <div class="catalog-item">
-                            <span class="icon">💎</span>
-                            <span class="text">Rocks & minerals</span>
-                        </div>
-                        <div class="catalog-item">
-                            <span class="icon">🏛️</span>
-                            <span class="text"><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">Palaces & pavilions</a></span>
-                        </div>
-                    </div>
-
-                    <h4>The Hunt Itself</h4>
-                    <p><a href="https://eclecticlight.co/2017/05/15/chinese-narrative-painting-shanglin-park/" target="_blank">"Having taken over 250 lines to describe the park, Sima starts to detail its use by the emperor and his court. As autumn turns to the start of winter, the emperor travels from his palace to go hunting. He is in his carriage, which is decorated with carved ivory and drawn by six jade dragons."</a> The entire work is <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"replete with exaggerated exuberance and a confluence of the real and the imaginary."</a></p>
-
-                    <blockquote>
-                        "Twisting and twining, tortuously turning, / Arch aloft, precipitously piled."
-                        <cite>— Sima Xiangru describing the mountains (<a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">trans. Knechtges</a>)</cite>
-                    </blockquote>
-
-                    <h4>Language and Difficulty</h4>
-                    <p>Sima's <em>fu</em> are <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"notorious for long catalogues of animal, plant, fish, and mineral names, many of which are only vaguely identified even by the most learned commentaries."</a> <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"Sima Xiangru's language is particularly rich, especially his alliterative and rhyming descriptives."</a> The result: <a href="https://asia.si.edu/explore-art-culture/collections/search/edanmdm:fsg_F1913.47/" target="_blank">"Sima's dazzling verbal description of the park's terrain and the extravagant hunts that took place in it has long been celebrated as one of the most extraordinary displays of poetic creativity in the Chinese language."</a></p>
+            <!-- Moral Critique Section -->
+            <section id="critique">
+                <div class="section-header">
+                    <span class="chinese">諷諫</span>
+                    <h2>Political Critique</h2>
                 </div>
-            </div>
-        </section>
 
-        <!-- Moral Critique Section -->
-        <section id="critique">
-            <div class="section-header">
-                <span class="chinese">諷諫</span>
-                <h2>Political Critique</h2>
-            </div>
-
-            <div class="content-card">
-                <div class="card-header moral">
-                    <div class="chinese">風</div>
-                    <div class="card-header-text">
+                <div class="content-card">
+                    <div class="card-label">
+                        <span class="chinese">風</span>
                         <h3>Feng: Indirect Admonition</h3>
-                        <div class="meta">Critique Through Praise</div>
+                        <span class="meta">Critique Through Praise</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>The Concept of Feng (諷)</h4>
+                        <p>The word <em>feng</em> (諷) refers to <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"the presentation of criticism and advice by indirection, usually in the form of subtle moral reprimands addressed to the emperor."</a> Han <em>fu</em> writers used elaborate descriptions to "sway" (<em>feng</em>) imperial opinion. <a href="https://iep.utm.edu/yangxion/" target="_blank">Yang Xiong</a> later wrote that <a href="https://iep.utm.edu/yangxion/" target="_blank">"fu is used to admonish (<em>feng</em>)"</a> — he believed this was <a href="https://iep.utm.edu/yangxion/" target="_blank">"the original purpose of the earliest fu-type writings of Qu Yuan."</a></p>
+
+                        <h4>The Paradox of the Shanglin Fu</h4>
+                        <p>The <em>Shanglin fu</em> presents a paradox: it dazzles with descriptions of extravagance, yet its purpose is to critique that very extravagance. <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"With its concrete description of how the parks looked and how the hunting activities were implemented, the rhapsody is an indirect critique of the imperial hunts in the Shanglin Park, with the moral that a ruler does not only have to care for his own pleasure, but that he has to obey propriety and moral principles of government."</a></p>
+
+                        <h4>The Moral Turn</h4>
+                        <p>After hundreds of lines celebrating imperial magnificence, the <em>fu</em> reaches an unexpected conclusion: <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"the fu shows the emperor becoming aware of the implications of such extravagance and setting his attention to reform, implementing economic and land-use policies favorable to the people and adopting proper administrative and ritual conduct for the correct governance of the empire."</a> The work <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"subtly conveys the author's political critique against sensual indulgence in hunting, advocating instead for imperial frugality."</a></p>
+
+                        <div class="key-themes">
+                            <h4>Key Themes</h4>
+                            <ul>
+                                <li><strong>Material abundance ≠ moral virtue:</strong> The park's richness <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"says nothing about the moral and virtue of the king"</a></li>
+                                <li><strong>Microcosm of empire:</strong> The park <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"might better be seen as a symbolic re-imagining of the park as a microcosmic representation of the realm"</a></li>
+                                <li><strong>The humiliation of boasters:</strong> Both Sir Fantasy and Master No-Such are <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"humiliated"</a>, exposing the emptiness of regional pride</li>
+                                <li><strong>Imperial frugality:</strong> The ultimate message <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"advocates for imperial frugality"</a></li>
+                                <li><strong>Display as didactic:</strong> Showing excess makes visible its moral costs</li>
+                            </ul>
+                        </div>
+
+                        <h4>Did It Work?</h4>
+                        <p>Later critics debated whether ornate <em>fu</em> actually persuaded emperors or merely entertained them. <a href="https://iep.utm.edu/yangxion/" target="_blank">Yang Xiong was "disturbed by the wasteful extravagance of the imperial court"</a> and attempted to use his <em>fu</em> for "suasive admonition," but <a href="https://iep.utm.edu/yangxion/" target="_blank">"his couched admonitions against extravagance went unnoticed and unheeded by Emperor Cheng."</a> He later perceived the harmful effects of <a href="https://iep.utm.edu/yangxion/" target="_blank">"using a hundred statements of encouragement for each statement of remonstration."</a> Yet the <em>Shanglin fu</em>'s structure — pleasure building to moral reflection — established a template for court literature that persisted for centuries.</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h4>The Concept of Feng (諷)</h4>
-                    <p>The word <em>feng</em> (諷) refers to <a href="https://muse.jhu.edu/pub/267/edited_volume/chapter/1318258" target="_blank">"the presentation of criticism and advice by indirection, usually in the form of subtle moral reprimands addressed to the emperor."</a> Han <em>fu</em> writers used elaborate descriptions to "sway" (<em>feng</em>) imperial opinion. <a href="https://iep.utm.edu/yangxion/" target="_blank">Yang Xiong</a> later wrote that <a href="https://iep.utm.edu/yangxion/" target="_blank">"fu is used to admonish (<em>feng</em>)"</a> — he believed this was <a href="https://iep.utm.edu/yangxion/" target="_blank">"the original purpose of the earliest fu-type writings of Qu Yuan."</a></p>
+            </section>
 
-                    <h4>The Paradox of the Shanglin Fu</h4>
-                    <p>The <em>Shanglin fu</em> presents a paradox: it dazzles with descriptions of extravagance, yet its purpose is to critique that very extravagance. <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"With its concrete description of how the parks looked and how the hunting activities were implemented, the rhapsody is an indirect critique of the imperial hunts in the Shanglin Park, with the moral that a ruler does not only have to care for his own pleasure, but that he has to obey propriety and moral principles of government."</a></p>
+            <!-- Discussion Questions -->
+            <section id="discussion">
+                <div class="section-header">
+                    <span class="chinese">問題</span>
+                    <h2>Discussion Questions</h2>
+                </div>
 
-                    <h4>The Moral Turn</h4>
-                    <p>After hundreds of lines celebrating imperial magnificence, the <em>fu</em> reaches an unexpected conclusion: <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"the fu shows the emperor becoming aware of the implications of such extravagance and setting his attention to reform, implementing economic and land-use policies favorable to the people and adopting proper administrative and ritual conduct for the correct governance of the empire."</a> The work <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"subtly conveys the author's political critique against sensual indulgence in hunting, advocating instead for imperial frugality."</a></p>
-
-                    <div class="key-themes">
-                        <h4>Key Themes</h4>
+                <div class="content-card">
+                    <div class="card-body">
                         <ul>
-                            <li><strong>Material abundance ≠ moral virtue:</strong> The park's richness <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"says nothing about the moral and virtue of the king"</a></li>
-                            <li><strong>Microcosm of empire:</strong> The park <a href="https://www.ebsco.com/research-starters/history/sima-xiangru" target="_blank">"might better be seen as a symbolic re-imagining of the park as a microcosmic representation of the realm"</a></li>
-                            <li><strong>The humiliation of boasters:</strong> Both Sir Fantasy and Master No-Such are <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"humiliated"</a>, exposing the emptiness of regional pride</li>
-                            <li><strong>Imperial frugality:</strong> The ultimate message <a href="https://pinnaclepubs.com/index.php/PAPPS/article/download/229/236" target="_blank">"advocates for imperial frugality"</a></li>
-                            <li><strong>Display as didactic:</strong> Showing excess makes visible its moral costs</li>
+                            <li>How does the <em>Shanglin fu</em> compare to the earlier fu we've read (Song Yu, Jia Yi)? What's different about its scale and purpose?</li>
+                            <li>Can you criticize power while celebrating it? Is the moral ending sincere, or is it a fig leaf for imperial flattery?</li>
+                            <li>Why use fictional speakers with names meaning "non-existent"? What does this frame accomplish?</li>
+                            <li>The park is described as a "synecdoche for the empire." How does cataloging all things assert sovereignty?</li>
+                            <li>Compare the <em>Shanglin fu</em>'s approach to political critique with Song Yu's "Fu on the Wind." How do both use natural description to comment on social conditions?</li>
+                            <li>Sima's language is famously difficult, full of rare characters. What's the rhetorical effect of linguistic excess?</li>
+                            <li>Consider the relationship between writer and patron: How does Sima navigate praising Emperor Wu while also admonishing him?</li>
                         </ul>
                     </div>
-
-                    <h4>Did It Work?</h4>
-                    <p>Later critics debated whether ornate <em>fu</em> actually persuaded emperors or merely entertained them. <a href="https://iep.utm.edu/yangxion/" target="_blank">Yang Xiong was "disturbed by the wasteful extravagance of the imperial court"</a> and attempted to use his <em>fu</em> for "suasive admonition," but <a href="https://iep.utm.edu/yangxion/" target="_blank">"his couched admonitions against extravagance went unnoticed and unheeded by Emperor Cheng."</a> He later perceived the harmful effects of <a href="https://iep.utm.edu/yangxion/" target="_blank">"using a hundred statements of encouragement for each statement of remonstration."</a> Yet the <em>Shanglin fu</em>'s structure — pleasure building to moral reflection — established a template for court literature that persisted for centuries.</p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Discussion Questions -->
-        <section id="discussion">
-            <div class="section-header">
-                <span class="chinese">問題</span>
-                <h2>Discussion Questions</h2>
-            </div>
-
-            <div class="content-card">
-                <div class="card-body">
-                    <ul>
-                        <li>How does the <em>Shanglin fu</em> compare to the earlier fu we've read (Song Yu, Jia Yi)? What's different about its scale and purpose?</li>
-                        <li>Can you criticize power while celebrating it? Is the moral ending sincere, or is it a fig leaf for imperial flattery?</li>
-                        <li>Why use fictional speakers with names meaning "non-existent"? What does this frame accomplish?</li>
-                        <li>The park is described as a "synecdoche for the empire." How does cataloging all things assert sovereignty?</li>
-                        <li>Compare the <em>Shanglin fu</em>'s approach to political critique with Song Yu's "Fu on the Wind." How do both use natural description to comment on social conditions?</li>
-                        <li>Sima's language is famously difficult, full of rare characters. What's the rhetorical effect of linguistic excess?</li>
-                        <li>Consider the relationship between writer and patron: How does Sima navigate praising Emperor Wu while also admonishing him?</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
+        </div>
     </div>
 
     <!-- Sources Section -->
