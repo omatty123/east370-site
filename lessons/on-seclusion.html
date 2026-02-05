@@ -35,47 +35,47 @@
       line-height: 1.6;
     }
 
-    /* === BREADCRUMB === */
-    .breadcrumb {
+    /* === COMPACT HEADER - LEFT ALIGNED === */
+    .page-header {
       background: var(--ink);
       padding: 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .breadcrumb a {
+
+    .page-header .back {
       font-size: 0.7rem;
-      color: #aaa;
+      color: #888;
       text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
-    }
-    .breadcrumb a:hover { color: var(--gold-light); }
-
-    /* === HERO === */
-    .hero {
-      background: var(--ink);/*
-                  REMOVED*/
-      padding: 2.5rem 1.5rem 2rem;
-      text-align: center;
     }
 
-    .hero .calligraphy {
+    .page-header .back:hover { color: var(--gold-light); }
+
+    .page-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .page-title .ch {
       font-family: 'Noto Sans SC', sans-serif;
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: var(--gold-light);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.3rem;
     }
 
-    .hero h1 {
-      font-size: 1rem;
-      font-weight: 300;
+    .page-title .en {
+      font-size: 0.85rem;
+      font-weight: 500;
       color: #fff;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.4rem;
     }
 
-    .hero .meta {
+    .page-title .meta {
       font-size: 0.7rem;
-      color: #999;
+      color: #888;
     }
 
     /* === THINKERS RAIL === */
@@ -452,14 +452,13 @@
 </head>
 <body>
 
-  <nav class="breadcrumb">
-    <a href="../index.html">&larr; EAST 370</a>
-  </nav>
-
-  <header class="hero">
-    <div class="calligraphy">論隱逸</div>
-    <h1>On Seclusion: Two Letters, a Dream, and a Satire</h1>
-    <div class="meta">Birch pp. 157–169 · Period of Division (220–589 CE)</div>
+  <header class="page-header">
+    <a href="../index.html" class="back">&larr; EAST 370</a>
+    <div class="page-title">
+      <span class="ch">論隱逸</span>
+      <span class="en">On Seclusion</span>
+      <span class="meta">Birch pp. 157–169<span>·</span>Period of Division (220–589 CE)</span>
+    </div>
   </header>
 
   <!-- Thinkers Rail -->

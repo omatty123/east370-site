@@ -42,101 +42,22 @@
             font-size: 16px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Page Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
-        }
-
-        .breadcrumb a {
-            font-size: 0.7rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-            padding: 3rem 2rem 2.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 2rem;
-            color: var(--gold-light);
-            letter-spacing: 0.2em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 550px;
-            margin: 0 auto 1.5rem;
-            line-height: 1.6;
-        }
-
-        .hero-meta {
             display: flex;
-            gap: 2rem;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
+            gap: 0.5rem;
         }
-
-        .hero-meta-item {
-            text-align: center;
-        }
-
-        .hero-meta-item span {
-            display: block;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.3rem;
-        }
-
-        .hero-meta-item strong {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
-            color: var(--gold-light);
-        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
 
         /* Navigation */
         .nav {
@@ -758,19 +679,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-chinese {
-                font-size: 1rem;
-                letter-spacing: 0.1em;
-            }
-
-            .hero h1 {
-                font-size: 1.1rem;
-            }
-
-            .hero-meta {
-                gap: 1rem;
-            }
-
             .nav {
                 gap: 1rem;
             }
@@ -788,35 +696,14 @@
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../index.html">&larr; EAST 370</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-chinese">早期史書</div>
-            <h1>Early Historical Writings</h1>
-            <p class="hero-subtitle">Three foundational texts from the Zhou Dynasty period, exploring themes of fate,
-                filial piety, and the arts of persuasion.</p>
-
-            <div class="hero-meta">
-                <div class="hero-meta-item">
-                    <span>Text One</span>
-                    <strong>左傳</strong>
-                </div>
-                <div class="hero-meta-item">
-                    <span>Text Two</span>
-                    <strong>國語</strong>
-                </div>
-                <div class="hero-meta-item">
-                    <span>Text Three</span>
-                    <strong>戰國策</strong>
-                </div>
-            </div>
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">早期史書</span>
+            <span class="en">Early Historical Writings</span>
+            <span class="meta">左傳 · 國語 · 戰國策</span>
         </div>
-    </section>
+    </header>
 
     <!-- Navigation -->
     <nav class="nav">

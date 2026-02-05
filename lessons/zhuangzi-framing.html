@@ -39,70 +39,22 @@
             font-size: 16px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Page Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
-
-        .breadcrumb a {
-            font-size: 0.75rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Hero */
-        .hero {
-            background: var(--ink);
-            padding: 3rem 2rem 2.5rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .hero-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero h1 {
-            font-size: 1rem;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.03em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--gold-light);
-        }
-
-        .hero-sub {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 300;
-        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
 
         /* Nav */
         .nav {
@@ -646,20 +598,14 @@
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../index.html">&larr; EAST 370</a>
-    </div>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-label">Framing Lecture</div>
-            <div class="hero-chinese">知不知</div>
-            <h1>Knowing by <em>Unknowing</em></h1>
-            <div class="hero-sub">The Apophatic Tradition and the Zhuangzi</div>
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">知不知</span>
+            <span class="en">The Apophatic & the Zhuangzi</span>
+            <span class="meta">Framing Lecture</span>
         </div>
-    </section>
+    </header>
 
     <!-- Nav -->
     <nav class="nav">

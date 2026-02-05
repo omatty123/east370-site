@@ -38,88 +38,22 @@
             font-size: 16px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Page Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
-        }
-
-        .breadcrumb a {
-            font-size: 0.75rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--ink);
-            padding: 2.5rem 2rem 2rem;
-            text-align: center;
-        }
-
-        .hero-code {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 2rem;
-            color: var(--gold-light);
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero h1 {
-            font-size: 1.25rem;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 650px;
-            margin: 0 auto 1.25rem;
-            line-height: 1.6;
-        }
-
-        .hero-meta {
             display: flex;
-            gap: 2rem;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
+            gap: 0.5rem;
         }
-
-        .hero-meta-item {
-            text-align: center;
-        }
-
-        .hero-meta-item span {
-            display: block;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.25rem;
-        }
-
-        .hero-meta-item strong {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
 
         /* Navigation */
         .nav {
@@ -608,16 +542,9 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                padding: 2rem 1rem 1.5rem;
-            }
-
-            .hero-chinese {
-                font-size: 2.2rem;
-            }
-
-            .hero h1 {
-                font-size: 1rem;
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .card-header {
@@ -639,32 +566,14 @@
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../index.html">&larr; EAST 370</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-code">Lesson</div>
-        <div class="hero-chinese">上林賦</div>
-        <h1>Rhapsody on the Imperial Park</h1>
-        <p class="hero-subtitle">Sima Xiangru's magnum opus — a verbal recreation of Emperor Wu's hunting preserve that became the supreme example of Han epideictic fu</p>
-        <div class="hero-meta">
-            <div class="hero-meta-item">
-                <span>Author</span>
-                <strong>司馬相如</strong>
-            </div>
-            <div class="hero-meta-item">
-                <span>Period</span>
-                <strong>西漢 c. 137 BCE</strong>
-            </div>
-            <div class="hero-meta-item">
-                <span>Genre</span>
-                <strong>大賦 Grand Rhapsody</strong>
-            </div>
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">上林賦</span>
+            <span class="en">Rhapsody on the Imperial Park</span>
+            <span class="meta">Sima Xiangru, c. 137 BCE</span>
         </div>
-    </section>
+    </header>
 
     <!-- Navigation -->
     <nav class="nav">
