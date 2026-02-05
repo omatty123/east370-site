@@ -137,6 +137,80 @@
             }
         }
 
+        /* RU Evolution */
+        .ru-evolution {
+            background: var(--paper-dark);
+            padding: 1.5rem;
+        }
+
+        .ru-evolution h2 {
+            text-align: center;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 1rem;
+        }
+
+        .ru-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            .ru-grid { grid-template-columns: 1fr; }
+        }
+
+        .ru-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .ru-card.current {
+            border: 2px solid var(--ru);
+            background: linear-gradient(180deg, #e8f4f4 0%, #fff 100%);
+        }
+
+        .ru-card .version {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--ru);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ru-card .name-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin: 0.3rem 0;
+        }
+
+        .ru-card .name-en {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+        }
+
+        .ru-card .key-idea {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+            padding: 0.5rem;
+            background: var(--paper);
+            border-radius: 4px;
+        }
+
+        .ru-card .key-idea strong {
+            color: var(--ru);
+        }
+
         /* Container */
         .container {
             max-width: 900px;
@@ -500,15 +574,45 @@
 
     <!-- Navigation -->
     <nav class="nav">
+        <a href="#evolution">RU Evolution</a>
         <a href="#reading">Reading</a>
         <a href="#book-1">Book 1</a>
         <a href="#book-2">Book 2</a>
-        <a href="#book-3">Book 3</a>
         <a href="#book-6">Book 6</a>
-        <a href="#book-7">Book 7</a>
         <a href="#themes">Themes</a>
         <a href="#questions">Questions</a>
     </nav>
+
+    <!-- RU Evolution: Placing Mengzi in the Tradition -->
+    <section class="ru-evolution" id="evolution">
+        <h2>The Evolution of the Ru Tradition</h2>
+        <div class="ru-grid">
+            <div class="ru-card">
+                <div class="version">RU 1.0</div>
+                <div class="name-ch">孔子</div>
+                <div class="name-en">Kongzi (~551-479 BCE)</div>
+                <div class="key-idea">
+                    <strong>Ren 仁</strong> — Benevolence through self-cultivation. Learn from the ancients. Character built through ritual practice.
+                </div>
+            </div>
+            <div class="ru-card current">
+                <div class="version">RU 2.0</div>
+                <div class="name-ch">孟子</div>
+                <div class="name-en">Mengzi (~372-289 BCE)</div>
+                <div class="key-idea">
+                    <strong>Four Sprouts 四端</strong> — Human nature is good. Virtue is innate, requiring cultivation of what's already there.
+                </div>
+            </div>
+            <div class="ru-card">
+                <div class="version">RU 3.0</div>
+                <div class="name-ch">荀子</div>
+                <div class="name-en">Xunzi (~310-235 BCE)</div>
+                <div class="key-idea">
+                    <strong>Wei 偽</strong> — Deliberate effort. Human nature is problematic. Goodness must be constructed through learning.
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Reading Info -->
     <section class="reading-info" id="reading">
