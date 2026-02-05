@@ -86,16 +86,16 @@
             color: #fff;
         }
 
-        /* Main Content */
+        /* Main Content - FULL WIDTH, LEFT ALIGNED */
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
+            max-width: 1200px;
+            margin: 0;
+            padding: 2rem 1.5rem 2rem 3%;
             flex: 1;
         }
 
         .section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .section-title {
@@ -104,14 +104,28 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--ink-faint);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--paper-dark);
+            margin-bottom: 0.75rem;
         }
 
         .maps-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1rem;
+        }
+
+        /* All maps in one grid */
+        .all-maps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .all-maps { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .all-maps { grid-template-columns: 1fr; }
         }
 
         .map-card {
@@ -209,52 +223,37 @@
 
     <!-- Main Content -->
     <div class="container">
+        <div class="all-maps">
+            <a href="mengzi-map.html" class="map-card mengzi">
+                <div class="chinese">孟子地圖</div>
+                <div class="title">Mengzi Interactive Map</div>
+                <div class="desc">Geographic locations in the Mengzi. States visited, capitals, and Mount Tai.</div>
+            </a>
 
-        <div class="section">
-            <div class="section-title">Mengzi 孟子</div>
-            <div class="maps-grid">
-                <a href="mengzi-map.html" class="map-card mengzi">
-                    <div class="chinese">孟子地圖</div>
-                    <div class="title">Mengzi Interactive Map</div>
-                    <div class="desc">Geographic locations in the Mengzi. States visited, capitals, and Mount Tai.</div>
-                </a>
-            </div>
+            <a href="mozi-map.html" class="map-card mozi">
+                <div class="chinese">墨子地圖</div>
+                <div class="title">Mozi Interactive Map</div>
+                <div class="desc">Mozi's mission to stop Chu's attack on Song. Ten days and nights on foot.</div>
+            </a>
+
+            <a href="warring-states-chu.html" class="map-card chuci">
+                <div class="chinese">戰國</div>
+                <div class="title">Warring States (5th c. BCE)</div>
+                <div class="desc">The major states of the Chinese plain including Chu in the south.</div>
+            </a>
+
+            <a href="qu-yuan-exile-route.html" class="map-card chuci">
+                <div class="chinese">屈原流亡路線</div>
+                <div class="title">Qu Yuan's Exile Route</div>
+                <div class="desc">From Ying through the waterways of Chu to the Miluo River (278 BCE).</div>
+            </a>
+
+            <a href="summons-cosmos.html" class="map-card chuci">
+                <div class="chinese">招魂</div>
+                <div class="title">Summons of the Soul Cosmos</div>
+                <div class="desc">The dangerous six directions from the Summons of the Soul.</div>
+            </a>
         </div>
-
-        <div class="section">
-            <div class="section-title">Mozi 墨子</div>
-            <div class="maps-grid">
-                <a href="mozi-map.html" class="map-card mozi">
-                    <div class="chinese">墨子地圖</div>
-                    <div class="title">Mozi Interactive Map</div>
-                    <div class="desc">Mozi's mission to stop Chu's attack on Song. Ten days and nights on foot.</div>
-                </a>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Songs of Chu 楚辭</div>
-            <div class="maps-grid">
-                <a href="warring-states-chu.html" class="map-card chuci">
-                    <div class="chinese">戰國</div>
-                    <div class="title">Warring States (5th Century BCE)</div>
-                    <div class="desc">The major states of the Chinese plain including Chu in the south.</div>
-                </a>
-
-                <a href="qu-yuan-exile-route.html" class="map-card chuci">
-                    <div class="chinese">屈原流亡路線</div>
-                    <div class="title">Qu Yuan's Exile Route (278 BCE)</div>
-                    <div class="desc">From the fallen capital of Ying through the waterways of Chu to the Miluo River.</div>
-                </a>
-
-                <a href="summons-cosmos.html" class="map-card chuci">
-                    <div class="chinese">招魂</div>
-                    <div class="title">Summons of the Soul Cosmos</div>
-                    <div class="desc">The dangerous six directions from the Summons of the Soul.</div>
-                </a>
-            </div>
-        </div>
-
     </div>
 
     <!-- Footer -->
