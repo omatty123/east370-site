@@ -137,36 +137,38 @@
         }
 
         .author-header {
-            padding: 1.5rem;
-            text-align: center;
-            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            background: var(--paper);
+            border-left: 4px solid var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .author-card.jiayi .author-header {
-            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+            border-left-color: var(--amber);
         }
 
         .author-card.songyu .author-header {
-            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
+            border-left-color: var(--purple);
         }
 
         .author-header .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.8rem;
-            color: var(--gold-light);
-            margin-bottom: 0.25rem;
+            font-size: 1.6rem;
+            color: var(--ink);
         }
 
-        .author-header h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #fff;
-            margin-bottom: 0.5rem;
+        .author-header-text h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
         }
 
-        .author-header .dates {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+        .author-header-text .dates {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
         }
 
         .author-body {
@@ -213,42 +215,43 @@
         }
 
         .work-header {
-            padding: 1.5rem 2rem;
+            padding: 1.25rem 1.5rem;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            background: var(--ink);
+            gap: 1rem;
+            background: var(--paper);
+            border-left: 4px solid var(--gold);
         }
 
         .work-card.owl .work-header {
-            background: linear-gradient(135deg, #4a3a1a 0%, #6a5a2a 100%);
+            border-left-color: var(--amber);
         }
 
         .work-card.wind .work-header {
-            background: linear-gradient(135deg, #3a1a4a 0%, #5a2a6a 100%);
+            border-left-color: var(--purple);
         }
 
         .work-card.lament .work-header {
-            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+            border-left-color: var(--vermillion);
         }
 
         .work-header .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.8rem;
-            color: var(--gold-light);
+            font-size: 1.6rem;
+            color: var(--ink);
             line-height: 1;
         }
 
         .work-header-text h3 {
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: #fff;
-            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
         }
 
         .work-header-text .meta {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+            color: var(--ink-faint);
         }
 
         .work-body {
@@ -440,8 +443,10 @@
                 <div class="author-card songyu">
                     <div class="author-header">
                         <div class="chinese">宋玉</div>
-                        <h3>Song Yu</h3>
-                        <div class="dates">fl. 298–263 BCE · State of Chu</div>
+                        <div class="author-header-text">
+                            <h3>Song Yu</h3>
+                            <div class="dates">fl. 298–263 BCE · State of Chu</div>
+                        </div>
                     </div>
                     <div class="author-body">
                         <h4>Life</h4>
@@ -467,8 +472,10 @@
                 <div class="author-card jiayi">
                     <div class="author-header">
                         <div class="chinese">賈誼</div>
-                        <h3>Jia Yi</h3>
-                        <div class="dates">c. 200–168 BCE · Western Han</div>
+                        <div class="author-header-text">
+                            <h3>Jia Yi</h3>
+                            <div class="dates">c. 200–168 BCE · Western Han</div>
+                        </div>
                     </div>
                     <div class="author-body">
                         <h4>Life</h4>
