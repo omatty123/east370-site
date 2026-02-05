@@ -38,64 +38,54 @@
             font-size: 16px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Compact Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
-        }
-
-        .breadcrumb a {
-            font-size: 0.7rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--ink);
-            padding: 1.5rem 1.5rem 1.2rem;
-            text-align: center;
-        }
-
-        .hero-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 2rem;
-            color: var(--gold-light);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.3rem;
-        }
-
-        .hero h1 {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .hero-meta span {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .hero-meta strong {
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .page-header .back:hover {
             color: var(--gold-light);
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .page-title .meta span {
+            margin: 0 0.3rem;
+            color: #555;
         }
 
         /* Navigation */
@@ -104,36 +94,23 @@
             top: 0;
             background: var(--ink);
             z-index: 1000;
-            padding: 0.6rem 1.5rem;
+            padding: 0.5rem 1.5rem;
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
+            border-top: 1px solid #333;
         }
 
         .nav a {
-            font-size: 0.7rem;
-            color: #aaa;
+            font-size: 0.65rem;
+            color: #888;
             text-decoration: none;
-            letter-spacing: 0.03em;
             transition: color 0.2s;
         }
 
         .nav a:hover {
             color: var(--gold-light);
-        }
-
-        .nav a.portal-link {
-            background: var(--mo);
-            color: #fff;
-            font-weight: 600;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-        }
-
-        .nav a.portal-link:hover {
-            background: var(--gold-light);
-            color: var(--ink);
         }
 
         /* Main Content */
@@ -619,30 +596,23 @@
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../index.html">&larr; EAST 370</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-chinese">墨子</div>
-        <h1>The Mozi</h1>
-        <div class="hero-meta">
-            <span><strong>Author:</strong> Mo Di (Master Mo)</span>
-            <span><strong>Period:</strong> ~470-391 BCE</span>
-            <span><strong>Reading:</strong> Ivanhoe pp. 57-108</span>
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">墨子</span>
+            <span class="en">The Mozi</span>
+            <span class="meta">Mo Di (~470-391 BCE)<span>·</span>Ivanhoe pp. 57-108</span>
         </div>
-    </section>
+    </header>
 
     <!-- Navigation -->
     <nav class="nav">
-        <a href="../index.html" class="portal-link">Course Portal</a>
-        <a href="maps/mozi-map.html">Interactive Map</a>
+        <a href="maps/mozi-map.html">Map</a>
         <a href="#overview">Overview</a>
-        <a href="#terms">Key Terms</a>
-        <a href="#doctrines">Ten Doctrines</a>
-        <a href="#standards">Three Standards</a>
+        <a href="#terms">Terms</a>
+        <a href="#doctrines">Doctrines</a>
+        <a href="#standards">Standards</a>
         <a href="#critique">vs. Confucius</a>
         <a href="#discussion">Discussion</a>
     </nav>
