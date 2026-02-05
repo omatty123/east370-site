@@ -1,124 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maps | EAST 370</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            /* Map colors */
+            --mengzi: #2D7D7D;
+            --mozi: #A67C52;
+            --chuci: #B54545;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            min-height: 100%;
-            background: #0f1419;
-            font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
-            color: #e7e9ea;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+        }
+
+        .breadcrumb a {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
+                        url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .header-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
+        }
+
+        .header h1 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-subtitle {
+            font-size: 0.7rem;
+            color: #999;
+        }
+
+        /* Main Content */
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 48px 24px;
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #71767b;
-            margin-bottom: 40px;
+            padding: 2rem 1.5rem;
+            flex: 1;
         }
 
         .section {
-            margin-bottom: 40px;
+            margin-bottom: 2.5rem;
         }
 
         .section-title {
-            font-size: 12px;
+            font-size: 0.6rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #71767b;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #2f3336;
+            color: var(--ink-faint);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--paper-dark);
         }
 
         .maps-grid {
             display: grid;
-            gap: 16px;
+            gap: 1rem;
         }
 
         .map-card {
-            background: #16181c;
-            border: 1px solid #2f3336;
-            border-radius: 12px;
-            padding: 20px;
+            background: #fff;
+            border: 1px solid var(--paper-dark);
+            border-radius: 8px;
+            padding: 1.25rem;
             text-decoration: none;
             color: inherit;
-            transition: background 0.2s, border-color 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
         }
 
         .map-card:hover {
-            background: #1d1f23;
-            border-color: #daa520;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .map-card .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 20px;
-            color: #daa520;
-            margin-bottom: 4px;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
         }
 
         .map-card .title {
-            font-size: 16px;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
         }
 
         .map-card .desc {
-            font-size: 14px;
-            color: #71767b;
+            font-size: 0.8rem;
+            color: var(--ink-light);
             line-height: 1.5;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 32px;
-            color: #71767b;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .back-link:hover {
-            color: #e7e9ea;
-        }
-
         /* Color variants */
-        .map-card.mengzi:hover { border-color: #2d5a5a; }
-        .map-card.mengzi .chinese { color: #3d7a7a; }
+        .map-card.mengzi:hover { border-color: var(--mengzi); }
+        .map-card.mengzi .chinese { color: var(--mengzi); }
 
-        .map-card.mozi:hover { border-color: #8b4513; }
-        .map-card.mozi .chinese { color: #cd853f; }
+        .map-card.mozi:hover { border-color: var(--mozi); }
+        .map-card.mozi .chinese { color: var(--mozi); }
 
-        .map-card.chuci:hover { border-color: #c73e3a; }
-        .map-card.chuci .chinese { color: #c73e3a; }
+        .map-card.chuci:hover { border-color: var(--chuci); }
+        .map-card.chuci .chinese { color: var(--chuci); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header-chinese { font-size: 1.4rem; }
+            .header h1 { font-size: 1rem; }
+            .container { padding: 1.5rem 1rem; }
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <a href="../../index.html" class="back-link">← Course Portal</a>
 
+<body>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../../index.html">← EAST 370</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-chinese">地圖</div>
         <h1>Maps</h1>
-        <p class="subtitle">EAST 370 · Chinese Traditional Literature</p>
+        <div class="header-subtitle">EAST 370 · Chinese Traditional Literature</div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
 
         <div class="section">
             <div class="section-title">Mengzi 孟子</div>
@@ -164,6 +261,16 @@
                 </a>
             </div>
         </div>
+
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
 </body>
+
 </html>
