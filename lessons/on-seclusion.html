@@ -6,615 +6,778 @@
   <title>On Seclusion (157–169) | EAST 370</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #1a1a1a;
-      --ink-light: #4a4a4a;
-      --ink-faint: #7a7a7a;
-      --paper: #faf9f7;
-      --paper-dark: #f0ede8;
-      --gold: #b8860b;
-      --gold-light: #daa520;
-      --accent: #4a1a1a;
-      --teal: #2d5a5a;
-      --green: #1a4a2a;
+      --ink: #0a0a0a;
+      --ink-wash: #2a2a2a;
+      --ink-light: #5a5a5a;
+      --ink-faint: #8a8a8a;
+      --paper: #f7f5f0;
+      --paper-aged: #ebe7dc;
+      --cinnabar: #c43c3c;
+      --cinnabar-dark: #8a2a2a;
+      --jade: #4a6a5a;
+      --jade-light: #6a8a7a;
+      --gold: #a8860b;
+      --gold-muted: #8a7020;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+      font-family: 'Crimson Text', Georgia, serif;
       background: var(--paper);
       color: var(--ink);
-      line-height: 1.75;
-      font-size: 15px;
+      line-height: 1.8;
+      font-size: 17px;
+      min-height: 100vh;
     }
+
+    /* Ink wash texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(200,195,180,0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(180,175,160,0.2) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* === BREADCRUMB === */
     .breadcrumb {
       background: var(--ink);
-      padding: 0.6rem 1.5rem;
+      padding: 0.6rem 2rem;
     }
     .breadcrumb a {
       font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.15em;
       color: var(--gold);
       text-decoration: none;
+      font-family: system-ui, sans-serif;
+      transition: color 0.2s;
     }
+    .breadcrumb a:hover { color: #d4a82a; }
+
+    /* === HERO === */
     .hero {
-      background: linear-gradient(135deg, #1f1a16 0%, #3a2a1f 60%, #1f1a16 100%);
+      background:
+        linear-gradient(180deg,
+          rgba(10,10,10,0.95) 0%,
+          rgba(30,28,24,0.9) 40%,
+          rgba(50,45,35,0.85) 70%,
+          rgba(80,70,55,0.8) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="mist" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:rgb(60,55,45);stop-opacity:0.3"/><stop offset="100%" style="stop-color:rgb(40,35,30);stop-opacity:0"/></linearGradient></defs><path d="M0 80 Q25 60 50 70 T100 60 L100 100 L0 100 Z" fill="url(%23mist)"/></svg>');
+      background-size: cover;
       color: #fff;
-      padding: 3rem 1.5rem 2.5rem;
+      padding: 4rem 2rem 3.5rem;
       text-align: center;
-    }
-    .hero .ch {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 2.5rem;
-      letter-spacing: 0.25em;
-      color: var(--gold-light);
-    }
-    .hero h1 {
-      font-weight: 300;
-      font-size: 1.2rem;
-      letter-spacing: 0.06em;
-      margin-top: 0.6rem;
-    }
-    .hero .sub {
-      margin-top: 0.7rem;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.7);
-    }
-    .container {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    /* Intro Section */
-    .intro {
-      margin-bottom: 2.5rem;
-    }
-    .intro h2 {
-      font-size: 1.1rem;
-      color: var(--ink);
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-    .intro p {
-      margin-bottom: 1rem;
-      color: var(--ink-light);
-    }
-
-    /* Key Concepts Box */
-    .concepts-box {
-      background: #fff;
-      border: 1px solid var(--paper-dark);
-      border-left: 4px solid var(--teal);
-      border-radius: 4px;
-      padding: 1.2rem 1.4rem;
-      margin-bottom: 2.5rem;
-    }
-    .concepts-box h3 {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--teal);
-      margin-bottom: 0.8rem;
-    }
-    .concepts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    .concept {
-      padding: 0.6rem 0;
-    }
-    .concept .term {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.1rem;
-      color: var(--accent);
-    }
-    .concept .pinyin {
-      font-size: 0.8rem;
-      color: var(--ink-faint);
-      font-style: italic;
-    }
-    .concept .def {
-      font-size: 0.85rem;
-      color: var(--ink-light);
-      margin-top: 0.2rem;
-    }
-
-    /* Reading Cards */
-    .reading {
-      background: #fff;
-      border: 1px solid var(--paper-dark);
-      border-radius: 6px;
-      margin-bottom: 2.5rem;
+      position: relative;
       overflow: hidden;
     }
-    .reading-header {
-      background: linear-gradient(135deg, var(--accent) 0%, #6a3030 100%);
-      color: #fff;
-      padding: 1.2rem 1.6rem;
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--paper));
     }
-    .reading-header.daoist {
-      background: linear-gradient(135deg, var(--green) 0%, #2d6a3a 100%);
+
+    .hero .calligraphy {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      color: var(--paper);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+      margin-bottom: 0.3em;
+      opacity: 0.95;
     }
-    .reading-header.literary {
-      background: linear-gradient(135deg, #3a2a1a 0%, #5a4a2a 100%);
+
+    .hero h1 {
+      font-weight: 400;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
     }
-    .reading-header.satirical {
-      background: linear-gradient(135deg, #2a3a4a 0%, #3a4a5a 100%);
+
+    .hero .meta {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.05em;
     }
-    .reading-header .cn {
+
+    /* === THINKERS RAIL === */
+    .thinkers {
+      background: var(--ink);
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    .thinkers::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 20px;
+      background: var(--gold);
+    }
+
+    .thinkers-label {
+      text-align: center;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-family: system-ui, sans-serif;
+    }
+
+    .thinkers-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Seal-stamp style thinker cards */
+    .thinker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid rgba(168,134,11,0.3);
+      background: rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .thinker::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px solid rgba(168,134,11,0.15);
+      pointer-events: none;
+    }
+
+    .thinker:hover {
+      background: rgba(168,134,11,0.1);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .thinker .seal {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--cinnabar);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .thinker .name {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.02em;
+    }
+
+    .thinker .dates {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.15rem;
+      font-family: system-ui, sans-serif;
+    }
+
+    /* === MAIN CONTENT === */
+    .main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    /* === INTRO === */
+    .intro {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .intro::before,
+    .intro::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .intro::before { top: 0; }
+    .intro::after { bottom: 0; }
+
+    .intro h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .intro p {
+      color: var(--ink-light);
+      font-size: 1.05rem;
+    }
+
+    /* === SCROLLS (Columns Grid) === */
+    .scrolls {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 1200px) {
+      .scrolls { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    }
+    @media (max-width: 680px) {
+      .scrolls { grid-template-columns: 1fr; }
+    }
+
+    /* === SCROLL (Individual Column) === */
+    .scroll {
+      background: #fff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow:
+        0 1px 3px rgba(0,0,0,0.04),
+        0 8px 24px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    /* Top decorative bar */
+    .scroll::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .scroll.han::before { background: linear-gradient(90deg, var(--cinnabar-dark), var(--cinnabar)); }
+    .scroll.weijin::before { background: linear-gradient(90deg, #2a4a3a, var(--jade)); }
+    .scroll.jin::before { background: linear-gradient(90deg, #5a4020, #8a6a30); }
+    .scroll.qi::before { background: linear-gradient(90deg, #2a3a4a, #4a6080); }
+
+    /* Header */
+    .scroll-head {
+      padding: 1.8rem 1.5rem 1.5rem;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(250,248,242,1) 0%, rgba(255,255,255,1) 100%);
+      border-bottom: 1px solid var(--paper-aged);
+    }
+
+    .scroll-head .era {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--ink-faint);
+      font-family: system-ui, sans-serif;
+      margin-bottom: 0.6rem;
+    }
+
+    .scroll.han .scroll-head .era { color: var(--cinnabar); }
+    .scroll.weijin .scroll-head .era { color: var(--jade); }
+    .scroll.jin .scroll-head .era { color: #8a6a30; }
+    .scroll.qi .scroll-head .era { color: #4a6080; }
+
+    .scroll-head .chinese {
       font-family: 'Noto Serif SC', serif;
       font-size: 1.8rem;
-      letter-spacing: 0.1em;
-      color: var(--gold-light);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
     }
-    .reading-header .en {
+
+    .scroll-head .title {
       font-size: 1rem;
-      font-weight: 500;
-      margin-top: 0.3rem;
+      font-weight: 600;
+      color: var(--ink-wash);
+      margin-bottom: 0.4rem;
     }
-    .reading-header .meta {
-      font-size: 0.75rem;
-      opacity: 0.8;
-      margin-top: 0.4rem;
+
+    .scroll-head .author {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      font-style: italic;
     }
-    .reading-body {
-      padding: 1.6rem;
+
+    .scroll-head .author a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--gold-muted);
+      text-underline-offset: 2px;
     }
-    .section {
-      margin-bottom: 1.5rem;
+
+    /* Body */
+    .scroll-body {
+      padding: 1.5rem;
+      flex: 1;
+      font-size: 0.95rem;
     }
-    .section:last-child {
-      margin-bottom: 0;
-    }
-    .section h3 {
-      font-size: 0.75rem;
+
+    .scroll-body h3 {
+      font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--gold);
-      margin-bottom: 0.5rem;
+      margin: 1.5rem 0 0.5rem;
+      font-family: system-ui, sans-serif;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .section h3::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--paper-dark);
-    }
-    .section p {
-      margin-bottom: 0.8rem;
-    }
-    .section p:last-child {
-      margin-bottom: 0;
     }
 
-    /* Chinese Text Blocks */
-    .chinese-block {
-      background: #fffdf8;
-      border-left: 3px solid var(--gold-light);
+    .scroll-body h3:first-child { margin-top: 0; }
+
+    .scroll-body p {
+      color: var(--ink-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .scroll-body ul {
+      padding-left: 1.1rem;
+      margin: 0.4rem 0;
+    }
+
+    .scroll-body li {
+      color: var(--ink-light);
+      margin: 0.3rem 0;
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.6rem;
+      font-family: system-ui, sans-serif;
+      font-weight: 500;
+    }
+
+    .tag.confucian { background: #f0f5f5; color: #2a5050; border-left: 2px solid #4a8080; }
+    .tag.daoist { background: #f0f5f0; color: #2a4a2a; border-left: 2px solid var(--jade); }
+    .tag.political { background: #f5f0ea; color: #5a4020; border-left: 2px solid #8a6a30; }
+    .tag.literary { background: #f5f0f5; color: #5a3a5a; border-left: 2px solid #8a5a8a; }
+
+    /* Quote blocks */
+    .quote {
+      background: linear-gradient(135deg, #fffdf5, #faf8f0);
+      border-left: 3px solid var(--gold);
       padding: 1rem 1.2rem;
       margin: 1rem 0;
-      border-radius: 0 4px 4px 0;
-    }
-    .chinese-block .zh {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.1rem;
-      line-height: 1.9;
-      color: var(--ink);
-      margin-bottom: 0.6rem;
-    }
-    .chinese-block .trans {
       font-style: italic;
       color: var(--ink-light);
-      font-size: 0.95rem;
+      position: relative;
     }
-    .chinese-block cite {
+
+    .quote::before {
+      content: '"';
+      position: absolute;
+      top: -0.2rem;
+      left: 0.5rem;
+      font-size: 2.5rem;
+      color: var(--gold);
+      opacity: 0.3;
+      font-family: Georgia, serif;
+    }
+
+    .quote cite {
       display: block;
       font-style: normal;
       font-size: 0.75rem;
       color: var(--ink-faint);
       margin-top: 0.5rem;
+      font-family: system-ui, sans-serif;
     }
-
-    /* Philosophy Tags */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.8rem;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0.25rem 0.6rem;
-      border-radius: 3px;
-      font-weight: 500;
-    }
-    .tag.confucian { background: #e8f0f0; color: #1a3a3a; }
-    .tag.daoist { background: #e8f0e8; color: #1a4a2a; }
-    .tag.political { background: #f0ebe8; color: #4a3020; }
-    .tag.literary { background: #f0e8f0; color: #4a2a4a; }
 
     /* Links */
-    a.scholar-link {
-      color: var(--accent);
+    a.ref {
+      color: var(--cinnabar-dark);
       text-decoration: none;
-      border-bottom: 1px solid var(--gold-light);
-    }
-    a.scholar-link:hover {
-      color: var(--gold);
-      border-color: var(--gold);
+      border-bottom: 1px solid rgba(196,60,60,0.3);
+      transition: all 0.2s;
     }
 
-    /* Lists */
-    ul, ol {
-      padding-left: 1.3rem;
-      margin: 0.6rem 0;
-    }
-    li {
-      margin: 0.4rem 0;
+    a.ref:hover {
+      color: var(--cinnabar);
+      border-bottom-color: var(--cinnabar);
     }
 
-    /* Discussion */
+    /* === DISCUSSION === */
     .discussion {
-      background: linear-gradient(135deg, #fffbf0 0%, #fff8e8 100%);
-      border: 1px solid var(--gold-light);
-      border-radius: 6px;
-      padding: 1.5rem 1.6rem;
-      margin-top: 2rem;
-    }
-    .discussion h2 {
-      font-size: 0.85rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .discussion ol {
-      padding-left: 1.4rem;
-    }
-    .discussion li {
-      margin: 0.7rem 0;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      background: linear-gradient(135deg, #fdfcf8, #f8f6f0);
+      border: 1px solid var(--paper-aged);
+      padding: 2rem 2.5rem;
+      position: relative;
     }
 
-    /* Source */
-    .source {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--paper-dark);
+    .discussion::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cinnabar), var(--jade), #8a6a30, #4a6080);
     }
-    .source h3 {
-      font-size: 0.7rem;
+
+    .discussion h2 {
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--ink-faint);
-      margin-bottom: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-family: system-ui, sans-serif;
     }
-    .source p {
-      font-size: 0.85rem;
+
+    .discussion ol {
+      padding-left: 1.5rem;
+    }
+
+    .discussion li {
+      margin: 1rem 0;
       color: var(--ink-light);
-      margin-bottom: 0.5rem;
     }
-    .source a {
-      color: var(--accent);
+
+    .discussion strong {
+      color: var(--ink);
+    }
+
+    /* === SOURCES === */
+    .sources {
+      max-width: 800px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid var(--paper-aged);
+      font-size: 0.9rem;
+      color: var(--ink-faint);
+    }
+
+    .sources h3 {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--ink-light);
+      margin-bottom: 1rem;
+      font-family: system-ui, sans-serif;
+    }
+
+    .sources a {
+      color: var(--cinnabar-dark);
       text-decoration: none;
     }
-    .source a:hover {
+
+    .sources a:hover {
       text-decoration: underline;
     }
 
+    .sources ul {
+      padding-left: 1.2rem;
+      margin-top: 0.8rem;
+      columns: 2;
+      column-gap: 2rem;
+    }
+
+    @media (max-width: 680px) {
+      .sources ul { columns: 1; }
+    }
+
+    .sources li {
+      margin: 0.4rem 0;
+      break-inside: avoid;
+    }
+
+    /* === FOOTER === */
     footer {
       background: var(--ink);
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255,255,255,0.5);
       text-align: center;
-      padding: 1.5rem;
-      font-size: 0.8rem;
+      padding: 2rem;
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      font-family: system-ui, sans-serif;
+      letter-spacing: 0.05em;
     }
   </style>
 </head>
 <body>
+
   <nav class="breadcrumb">
     <a href="../index.html">&larr; Back to EAST 370</a>
   </nav>
 
   <header class="hero">
-    <div class="ch">論隱逸</div>
+    <div class="calligraphy">論隱逸</div>
     <h1>On Seclusion: Two Letters, a Dream, and a Satire</h1>
-    <div class="sub">Birch, pp. 157–169 · Period of Division (220–589 CE)</div>
+    <div class="meta">Birch pp. 157–169 &middot; Period of Division (220–589 CE)</div>
   </header>
 
-  <main class="container">
+  <!-- Thinkers Rail -->
+  <section class="thinkers">
+    <div class="thinkers-label">Philosophers &amp; Thinkers Referenced</div>
+    <div class="thinkers-row">
+      <a href="https://plato.stanford.edu/entries/confucius/" target="_blank" class="thinker">
+        <span class="seal">孔子</span>
+        <span class="name">Confucius</span>
+        <span class="dates">551–479 BCE</span>
+      </a>
+      <a href="https://plato.stanford.edu/entries/laozi/" target="_blank" class="thinker">
+        <span class="seal">老子</span>
+        <span class="name">Laozi</span>
+        <span class="dates">6th c. BCE?</span>
+      </a>
+      <a href="https://plato.stanford.edu/entries/zhuangzi/" target="_blank" class="thinker">
+        <span class="seal">莊子</span>
+        <span class="name">Zhuangzi</span>
+        <span class="dates">369–286 BCE</span>
+      </a>
+      <a href="https://plato.stanford.edu/entries/han-dynasty/" target="_blank" class="thinker">
+        <span class="seal">董仲舒</span>
+        <span class="name">Dong Zhongshu</span>
+        <span class="dates">179–104 BCE</span>
+      </a>
+      <a href="https://www.britannica.com/biography/Sima-Qian" target="_blank" class="thinker">
+        <span class="seal">司馬遷</span>
+        <span class="name">Sima Qian</span>
+        <span class="dates">145–86 BCE</span>
+      </a>
+      <a href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank" class="thinker">
+        <span class="seal">嵇康</span>
+        <span class="name">Xi Kang</span>
+        <span class="dates">223–262 CE</span>
+      </a>
+      <a href="https://www.britannica.com/biography/Tao-Qian" target="_blank" class="thinker">
+        <span class="seal">陶潛</span>
+        <span class="name">Tao Qian</span>
+        <span class="dates">365–427 CE</span>
+      </a>
+    </div>
+  </section>
+
+  <main class="main">
 
     <section class="intro">
       <h2>The Problem of Withdrawal</h2>
-      <p>Between the fall of the Han dynasty (220 CE) and the reunification under the Sui (589 CE), China fragmented into competing kingdoms. For the educated elite, this raised an urgent question: <strong>what does a scholar-official owe a state that may be illegitimate, unstable, or morally compromised?</strong></p>
-      <p>The four texts in this section offer competing answers. Each engages differently with the two dominant philosophical frameworks—Confucianism and Daoism—and each reveals that "seclusion" (yinyi 隱逸) is never merely personal. It is always a political act, a philosophical statement, and a claim about what constitutes a meaningful life.</p>
+      <p>When does a scholar leave public life? These four texts—spanning four centuries—offer competing answers, each engaging differently with Confucianism and Daoism. "Seclusion" (<em>yǐnyì</em> 隱逸) is never merely personal: it is always political, philosophical, and a claim about what makes life meaningful.</p>
     </section>
 
-    <div class="concepts-box">
-      <h3>Key Terms</h3>
-      <div class="concepts-grid">
-        <div class="concept">
-          <span class="term">隱逸</span>
-          <span class="pinyin">yǐnyì</span>
-          <div class="def">Reclusion, withdrawal from public life</div>
-        </div>
-        <div class="concept">
-          <span class="term">無為</span>
-          <span class="pinyin">wúwéi</span>
-          <div class="def">"Non-action" or effortless action; acting in accord with natural spontaneity</div>
-        </div>
-        <div class="concept">
-          <span class="term">自然</span>
-          <span class="pinyin">zìrán</span>
-          <div class="def">"Self-so"; naturalness, spontaneity</div>
-        </div>
-        <div class="concept">
-          <span class="term">性</span>
-          <span class="pinyin">xìng</span>
-          <div class="def">Inborn nature; what one is by constitution</div>
-        </div>
-      </div>
-    </div>
+    <!-- Four Scrolls -->
+    <div class="scrolls">
 
-    <!-- YANG YUN -->
-    <article class="reading">
-      <div class="reading-header">
-        <div class="cn">報孫會宗書</div>
-        <div class="en">Letter to Sun Huizong</div>
-        <div class="meta">Yang Yun 楊惲 · Western Han (1st c. BCE) · pp. 159–161 · Trans. Burton Watson</div>
-      </div>
-      <div class="reading-body">
-
-        <div class="section">
-          <h3>Historical Context</h3>
-          <p>Yang Yun was the grandson of the historian <a href="https://www.britannica.com/biography/Sima-Qian" class="scholar-link" target="_blank">Sima Qian</a> (author of the <em>Shiji</em>). He rose to prominence under Emperor Xuan (r. 74–48 BCE), was enfeoffed as a marquis, and played a key role in exposing a plot by the Huo family to overthrow the emperor. But court politics turned against him: he was accused of treasonable speech, stripped of his title, and banished to the countryside.</p>
-          <p>His friend Sun Huizong wrote to rebuke him: a gentleman in disgrace should practice "humble and abject seclusion," not throw parties and speculate in grain markets. This letter is Yang Yun's response.</p>
+      <!-- Scroll 1: Yang Yun -->
+      <article class="scroll han">
+        <div class="scroll-head">
+          <div class="era">Western Han &middot; 1st c. BCE</div>
+          <div class="chinese">報孫會宗書</div>
+          <div class="title">Letter to Sun Huizong</div>
+          <div class="author">Yang Yun 楊惲 &middot; Trans. Burton Watson</div>
         </div>
-
-        <div class="section">
-          <h3>The Philosophical Argument</h3>
+        <div class="scroll-body">
           <div class="tags">
-            <span class="tag confucian">Confucian Framework</span>
+            <span class="tag confucian">Confucian</span>
             <span class="tag political">Political Ethics</span>
           </div>
-          <p>Yang Yun does not reject Confucianism—he <em>deploys</em> it. His key move is to invoke a distinction from the Han Confucian thinker <a href="https://plato.stanford.edu/entries/han-dynasty/" class="scholar-link" target="_blank">Dong Zhongshu</a> (c. 179–104 BCE):</p>
 
-          <div class="chinese-block">
-            <div class="trans">"To strive with all one's might for benevolence and righteousness, fearful always lest one fail to educate the people—this is the ambition of a statesman. To strive with all one's might for goods and profit, fearful always of poverty and want—this is the business of ordinary people."</div>
-            <cite>— p. 161</cite>
+          <h3>Context</h3>
+          <p>Yang Yun, grandson of <a class="ref" href="https://www.britannica.com/biography/Sima-Qian" target="_blank">Sima Qian</a>, fell from court favor and retired to farming. His friend criticized him for enjoying life rather than performing shame.</p>
+
+          <h3>The Argument</h3>
+          <p>Yang deploys <a class="ref" href="https://plato.stanford.edu/entries/han-dynasty/" target="_blank">Dong Zhongshu</a>'s distinction: statesmen pursue benevolence; commoners pursue livelihood. Since Yang is now a commoner, Sun's standards don't apply.</p>
+
+          <div class="quote">
+            "Those who do not follow the same road cannot lay plans for each other."
+            <cite>— <a class="ref" href="https://plato.stanford.edu/entries/confucius/" target="_blank">Confucius</a>, <a class="ref" href="https://ctext.org/analects/wei-ling-gong" target="_blank">Analects 15.40</a></cite>
           </div>
 
-          <p>Yang's logic: Sun Huizong is a statesman pursuing benevolence (rén 仁); Yang is now an ordinary person pursuing livelihood. They follow different <em>dao</em>. He cites <a href="https://plato.stanford.edu/entries/confucius/" class="scholar-link" target="_blank">Confucius</a> (<a href="https://ctext.org/analects/wei-ling-gong" class="scholar-link" target="_blank"><em>Analects</em> 15.40</a>): <strong>"Those who do not follow the same road cannot lay plans for each other"</strong> (道不同，不相為謀).</p>
-          <p>This is a <em>Confucian</em> defense of withdrawal—not by rejecting Confucian values, but by arguing that the obligations of the gentleman (junzi 君子) no longer apply once one has been demoted to commoner status. It's a clever rhetorical move: he accepts the framework but exits its jurisdiction.</p>
+          <h3>Key Move</h3>
+          <p>A <em>Confucian</em> defense of withdrawal: he accepts the framework but exits its jurisdiction by changing his social category.</p>
         </div>
+      </article>
 
-        <div class="section">
-          <h3>The Life He Defends</h3>
-          <p>Yang describes his retirement in vivid terms: farming, feasting on holidays, making music with his wife (she plays the lute; he sings in the Qin style), drinking until his ears burn. Then he sings:</p>
-
-          <div class="chinese-block">
-            <div class="trans">"I sowed the southern hill / But I could not keep back the weeds. / I planted an acre of beans / But they fell off the vine, leaving bare stems. / Man's life should be spent in joy; / Why wait in vain for wealth and honor?"</div>
-            <cite>— p. 160</cite>
-          </div>
-
-          <p>This echoes folk and Daoist traditions of "enjoying the moment" (及時行樂). But Yang frames it as the natural consequence of his changed status, not as philosophical Daoism. He's not a sage hiding from the world—he's a commoner living like one.</p>
+      <!-- Scroll 2: Xi Kang -->
+      <article class="scroll weijin">
+        <div class="scroll-head">
+          <div class="era">Wei-Jin &middot; 3rd c. CE</div>
+          <div class="chinese">與山巨源絕交書</div>
+          <div class="title">Letter to Shan Tao</div>
+          <div class="author"><a href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank">Xi Kang 嵇康</a> &middot; Trans. J.R. Hightower</div>
         </div>
-
-        <div class="section">
-          <h3>The Sting in the Tail</h3>
-          <p>Yang admits to grain speculation—buying cheap, selling dear for 10% profit—and calls it "a vile and merchantly thing." He's not claiming moral purity. The letter's tone mixes self-deprecation with defiance: he knows he's fallen, but he refuses to perform shame. The implicit argument: <em>Sun's standards don't apply to me anymore, so stop judging me by them.</em></p>
-        </div>
-      </div>
-    </article>
-
-    <!-- XI KANG -->
-    <article class="reading">
-      <div class="reading-header daoist">
-        <div class="cn">與山巨源絕交書</div>
-        <div class="en">Letter to Shan Tao (Letter Breaking Off Relations)</div>
-        <div class="meta">Xi Kang 嵇康 · Wei-Jin (3rd c. CE) · pp. 162–166 · Trans. J.R. Hightower</div>
-      </div>
-      <div class="reading-body">
-
-        <div class="section">
-          <h3>Historical Context</h3>
-          <p>Xi Kang (223–262 CE) was one of the <a href="https://plato.stanford.edu/entries/neo-daoism/" class="scholar-link" target="_blank">Seven Sages of the Bamboo Grove</a> (竹林七賢)—a group of scholars who gathered to drink, debate philosophy, and refuse participation in the corrupt politics of their time. The Sima family was consolidating power, soon to overthrow the Wei dynasty and establish the Jin. Praising "virtuous usurpers" like the Zhou founders was regime propaganda; criticizing them was dissent.</p>
-          <p>When Xi Kang's friend <strong>Shan Tao</strong> left his government post and recommended Xi Kang as his replacement, Xi Kang responded with this letter—a refusal so thorough that it ends their friendship. Xi Kang was later executed, in part for his nonconformity.</p>
-        </div>
-
-        <div class="section">
-          <h3">The Philosophical Argument</h3>
+        <div class="scroll-body">
           <div class="tags">
             <span class="tag daoist">Daoist</span>
             <span class="tag political">Anti-Confucian</span>
           </div>
-          <p>Unlike Yang Yun, Xi Kang explicitly rejects the Confucian framework. He names his philosophical masters:</p>
 
-          <div class="chinese-block">
-            <div class="trans">"<a href="https://plato.stanford.edu/entries/laozi/" class="scholar-link" target="_blank">Laozi</a> and <a href="https://plato.stanford.edu/entries/zhuangzi/" class="scholar-link" target="_blank">Zhuang Zhou</a> are my masters: they held mean positions. I would hardly criticize them. And Confucius, out of his love for all, was ready to hold a coachman's whip."</div>
-            <cite>— p. 162</cite>
-          </div>
+          <h3>Context</h3>
+          <p>One of the <a class="ref" href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank">Seven Sages of the Bamboo Grove</a>. When offered a government post, he wrote this refusal—ending a friendship. Later executed for nonconformity.</p>
 
-          <p>Note the backhanded treatment of Confucius: praised only for his willingness to take a lowly job—not for his teachings on governance. Xi Kang then attacks the Confucian culture-heroes directly:</p>
+          <h3>The Argument</h3>
+          <p>"<a class="ref" href="https://plato.stanford.edu/entries/laozi/" target="_blank">Laozi</a> and <a class="ref" href="https://plato.stanford.edu/entries/zhuangzi/" target="_blank">Zhuangzi</a> are my masters." He attacks Confucian culture-heroes (Tang, Wu Wang, Duke of Zhou) as regime propaganda.</p>
 
-          <div class="chinese-block">
-            <div class="trans">"I am always finding fault with Tang and Wu Wang, or running down the Duke of Zhou and Confucius. If I did not stop this in society, it is clear that the religion of the times would not put up with me."</div>
-            <cite>— p. 165</cite>
-          </div>
+          <h3>Seven Things He Cannot Stand</h3>
+          <ul>
+            <li>Lying abed while heralds wait</li>
+            <li>Bowing in formal clothes while infested with lice</li>
+            <li>Funerals, paperwork, vulgar colleagues</li>
+            <li>Having his mind bound with worldly cares</li>
+          </ul>
 
-          <p>Tang and Wu Wang founded the Shang and Zhou dynasties by overthrowing their predecessors—exactly what the Sima family was about to do. Criticizing these "sage kings" was a political statement as much as a philosophical one.</p>
-        </div>
-
-        <div class="section">
-          <h3>The Seven Things He Cannot Stand</h3>
-          <p>Xi Kang lists seven aspects of official life incompatible with his nature (xìng 性):</p>
-          <ol>
-            <li><strong>Lying late abed</strong> while heralds wait at his door</li>
-            <li><strong>Walking and singing freely</strong> while subordinates restrict his movement</li>
-            <li><strong>Bowing and kowtowing in formal clothes</strong> while infested with lice ("I commonly go half a month without washing my face")</li>
-            <li><strong>Writing letters and handling business</strong>—he hates paperwork</li>
-            <li><strong>Attending funerals</strong>—rituals he finds unbearable</li>
-            <li><strong>Serving with vulgar people</strong> and their "double-dealings"</li>
-            <li><strong>Having his mind bound</strong> with a thousand worldly cares</li>
-          </ol>
-          <p>This list deliberately mixes bodily discomforts (lice, sleepiness) with philosophical objections (hypocrisy, mental bondage). For Xi Kang, there is no separation: his Daoism is about <em>naturalness</em> (zìrán 自然), and his bodily habits are as much "his nature" as his ideas. To force him into ritual propriety would be to violate his very being.</p>
-        </div>
-
-        <div class="section">
-          <h3>The Wild Deer</h3>
-          <div class="chinese-block">
-            <div class="trans">"In this I am like the wild deer, which captured young and reared in captivity will be docile and obedient. But if it be caught when full-grown, it will stare wildly and butt against its bonds, dashing into boiling water or fire to escape. You may dress it up with a golden bridle and feed it delicacies, and it will but long the more for its native woods and yearn for rich pasture."</div>
+          <div class="quote">
+            "I am like the wild deer... dress it up with a golden bridle and it will but long the more for its native woods."
             <cite>— p. 163</cite>
           </div>
-          <p>This is the letter's central image. Xi Kang claims he was "spoiled" as a child—never disciplined into Confucian ritual behavior—so his nature is now untameable. Office would be a cage; he would destroy himself trying to escape. The claim is that his rejection of service is not a choice but a <em>necessity of his constitution</em>.</p>
+
+          <h3>Key Move</h3>
+          <p><a class="ref" href="https://plato.stanford.edu/entries/daoism/" target="_blank">Wúwéi</a> (無為) as philosophical program: his bodily nature and his ideas are one.</p>
         </div>
+      </article>
 
-        <div class="section">
-          <h3>Wuwei as Program</h3>
-          <div class="chinese-block">
-            <div class="trans">"Of late I have been studying the techniques of prolonging one's life, casting out all ideas of fame and glory, eliminating tastes, and letting my mind wander in stillness: what is most worthwhile to me is Inaction."</div>
-            <cite>— p. 165</cite>
-          </div>
-          <p><a href="https://plato.stanford.edu/entries/daoism/" class="scholar-link" target="_blank">Wuwei</a> (無為) is the Daoist term for "non-action" or "effortless action"—acting in accordance with natural spontaneity rather than imposing one's will. For Xi Kang, retirement isn't just personal preference; it's a philosophical program derived from the <a href="https://plato.stanford.edu/entries/laozi/" class="scholar-link" target="_blank"><em>Laozi</em></a> and <a href="https://plato.stanford.edu/entries/zhuangzi/" class="scholar-link" target="_blank"><em>Zhuangzi</em></a>. To enter office would be to betray his deepest commitments.</p>
+      <!-- Scroll 3: Tao Qian -->
+      <article class="scroll jin">
+        <div class="scroll-head">
+          <div class="era">Eastern Jin &middot; c. 421 CE</div>
+          <div class="chinese">桃花源記</div>
+          <div class="title">Peach Blossom Spring</div>
+          <div class="author"><a href="https://www.britannica.com/biography/Tao-Qian" target="_blank">Tao Qian 陶潛</a> &middot; Trans. Cyril Birch</div>
         </div>
-      </div>
-    </article>
-
-    <!-- TAO QIAN -->
-    <article class="reading">
-      <div class="reading-header literary">
-        <div class="cn">桃花源記</div>
-        <div class="en">Peach Blossom Spring</div>
-        <div class="meta"><a href="https://www.britannica.com/biography/Tao-Qian" target="_blank" style="color: inherit; border-bottom: 1px solid rgba(255,255,255,0.5);">Tao Qian 陶潛</a> (Tao Yuanming 陶淵明) · Eastern Jin (c. 421 CE) · pp. 167–168 · Trans. Cyril Birch</div>
-      </div>
-      <div class="reading-body">
-
-        <div class="section">
-          <h3>The Story</h3>
-          <p>During the Taiyuan reign period (376–396 CE), a fisherman from Wuling follows a stream and loses track of distance. He comes upon a grove of blossoming peach trees—"no tree of any other kind"—and follows the stream to its source. He finds a narrow cave, squeezes through, and emerges into a hidden valley: fertile fields, pleasant ponds, mulberry and willow trees, paths connecting farms, people working contentedly.</p>
-          <p>The villagers explain: their ancestors fled here during the <strong>Qin dynasty</strong> (221–206 BCE) to escape the turmoil. They've been isolated ever since. They don't even know the Han dynasty existed, let alone the Wei or Jin. The fisherman stays several days, then leaves—ignoring their request to tell no one. He marks his route, reports to the prefect, who sends officers. They fail. A learned hermit tries. He falls ill and dies. "Since that time there have been no further 'seekers of the ford.'"</p>
-        </div>
-
-        <div class="section">
-          <h3>Philosophical Resonances</h3>
+        <div class="scroll-body">
           <div class="tags">
             <span class="tag daoist">Daoist Primitivism</span>
-            <span class="tag confucian">Confucian Allusion</span>
             <span class="tag political">Utopian Critique</span>
           </div>
 
-          <p><strong>Daoist Primitivism:</strong> The Peach Blossom Spring echoes <a href="https://plato.stanford.edu/entries/laozi/" class="scholar-link" target="_blank"><em>Laozi</em> chapter 80</a>, which imagines an ideal community: "Let there be a small state with few people... Let them find their food sweet, their clothes beautiful, their homes comfortable, their customs delightful. Though a neighboring state be within sight... the people will grow old and die without ever having been there." Tao Qian's hidden village realizes this vision: small, self-sufficient, cut off from history.</p>
+          <h3>The Story</h3>
+          <p>A fisherman stumbles into a hidden valley. Its people fled the Qin tyranny centuries ago; they don't know the Han existed. He leaves, tells authorities, and can never find it again.</p>
 
-          <p><strong>Confucian Allusion:</strong> The final phrase—"seekers of the ford" (問津者)—alludes to <a href="https://ctext.org/analects/wei-zi" class="scholar-link" target="_blank"><em>Analects</em> 18.6</a>. <a href="https://plato.stanford.edu/entries/confucius/" class="scholar-link" target="_blank">Confucius</a> sends his disciple Zilu to ask two recluses (Changju and Jieni) where to cross a river. They mock Confucius for trying to reform a disordered world: "The whole world is inundated by the same flood. Who can reverse its flow?" Confucius responds: "I cannot associate with birds and beasts. If I cannot associate with people, who can I associate with?" Tao Qian's ending—"no further seekers of the ford"—suggests that the search for utopia, like the search for the crossing, has been abandoned.</p>
-        </div>
+          <h3>Philosophical Echoes</h3>
+          <p>Echoes <a class="ref" href="https://plato.stanford.edu/entries/laozi/" target="_blank"><em>Laozi</em> ch. 80</a>: "Let there be a small state with few people... they will grow old and die without traveling."</p>
 
-        <div class="section">
-          <h3>Why Can't It Be Found Again?</h3>
-          <p>The story insists the place is <em>real</em>—the fisherman stayed there, ate their food—but <em>unreachable</em>. Several interpretations:</p>
+          <div class="quote">
+            "Since that time there have been no further 'seekers of the ford.'"
+            <cite>— alludes to <a class="ref" href="https://ctext.org/analects/wei-zi" target="_blank">Analects 18.6</a></cite>
+          </div>
+
+          <h3>Why Unreachable?</h3>
           <ul>
-            <li><strong>Betrayal destroys utopia:</strong> The villagers said "Do not speak of us to the people outside." The fisherman told the prefect anyway. His betrayal makes return impossible.</li>
-            <li><strong>Utopia is by definition unreachable:</strong> The moment you seek it deliberately, it disappears. This matches the Daoist paradox that seeking the Way (Dao) through effort defeats the purpose.</li>
-            <li><strong>The state destroys what it cannot control:</strong> The prefect sends officers—agents of government—and they fail. The hermit (a private seeker) also fails. Perhaps the Peach Blossom Spring can only be stumbled upon, never reached by intention.</li>
+            <li>Betrayal destroys utopia</li>
+            <li>Seeking it deliberately makes it vanish</li>
+            <li>The state destroys what it cannot control</li>
           </ul>
+
+          <h3>Key Move</h3>
+          <p>Utopia exists but is unrepeatable—a critique of the entire political order.</p>
         </div>
+      </article>
 
-        <div class="section">
-          <h3>The Political Edge</h3>
-          <p>The villagers fled the <strong>Qin</strong>—the dynasty synonymous with tyranny, book-burning, and forced labor. Tao Qian wrote during the Eastern Jin, a period of weak central government, warlord conflict, and northern invasion. The fantasy of a community that escaped <em>all</em> dynastic history is pointed: it imagines life without the state. The Peach Blossom Spring isn't just a pleasant fable—it's a critique of the entire political order.</p>
+      <!-- Scroll 4: Kong Zhigui -->
+      <article class="scroll qi">
+        <div class="scroll-head">
+          <div class="era">Southern Qi &middot; late 5th c. CE</div>
+          <div class="chinese">北山移文</div>
+          <div class="title">Proclamation on North Mountain</div>
+          <div class="author">Kong Zhigui 孔稚珪 &middot; Trans. J.R. Hightower</div>
         </div>
-      </div>
-    </article>
-
-    <!-- KONG ZHIGUI -->
-    <article class="reading">
-      <div class="reading-header satirical">
-        <div class="cn">北山移文</div>
-        <div class="en">Proclamation on North Mountain</div>
-        <div class="meta">Kong Zhigui 孔稚珪 · Southern Qi (late 5th c. CE) · pp. 169–173 · Trans. J.R. Hightower</div>
-      </div>
-      <div class="reading-body">
-
-        <div class="section">
-          <h3>The Satire</h3>
-          <p>This is a satirical piece in ornate parallel prose (pianwen 駢文). The conceit: the spirits of Bell Mountain (Zhongshan 鍾山) issue a formal proclamation denouncing a certain <strong>Zhou Yong</strong> 周顒, who posed as a recluse—studying Daoist and Buddhist texts, living in a hermitage called "Grass Hut" (Caotang 草堂)—but immediately accepted office when the court summoned him. The mountains themselves bar his return.</p>
-        </div>
-
-        <div class="section">
-          <h3>The Accusation</h3>
+        <div class="scroll-body">
           <div class="tags">
-            <span class="tag political">Authentic vs. Performative</span>
-            <span class="tag literary">Reclusion as Career</span>
-          </div>
-          <p>By the fifth century, "reclusion" had become a recognized path to fame. Emperors sought out famous hermits to demonstrate their own virtue; being summoned from retirement was prestigious. Kong Zhigui's satire attacks this system:</p>
-
-          <div class="chinese-block">
-            <div class="trans">"At the present time there is Zhou Tzu [Zhou Yong], / An outstanding man among the vulgar, / Cultured and a scholar, / Philosopher and scribe. / But he needs must / Imitate Yan He's retirement, / Copy Nan-guo's meditation, / Occupy the Grass Hut by imposture, / Usurp a hermit's cap on North Mountain..."</div>
-            <cite>— p. 170</cite>
+            <span class="tag political">Authentic vs. Fake</span>
+            <span class="tag literary">Satire</span>
           </div>
 
-          <p>The names <strong>Yan He</strong> and <strong>Nan-guo</strong> refer to genuine recluses from the <a href="https://plato.stanford.edu/entries/zhuangzi/" class="scholar-link" target="_blank"><em>Zhuangzi</em></a> and <em>Liezi</em>. Zhou Yong is accused of <em>imitating</em> them—performing reclusion for career advancement rather than inner conviction.</p>
-        </div>
+          <h3>The Satire</h3>
+          <p>Mountain spirits denounce Zhou Yong, who posed as a recluse but immediately accepted office when summoned. The mountains bar his return.</p>
 
-        <div class="section">
-          <h3>Nature Rejects the Hypocrite</h3>
-          <div class="chinese-block">
-            <div class="trans">"He burned his castalian garments and tore his lotus clothes / He raised a worldly face and carried on in a vulgar manner. / Wind-driven clouds grieved as they carried their anger / Rock-rimmed springs sobbed as they trickled their disappointment / Forests and crags appeared to lack something / Grass and trees seemed to have suffered loss."</div>
+          <h3>The Accusation</h3>
+          <p>He "imitated Yan He's retirement, copied Nanguo's meditation"—figures from the <a class="ref" href="https://plato.stanford.edu/entries/zhuangzi/" target="_blank"><em>Zhuangzi</em></a>. He performed reclusion for career advancement.</p>
+
+          <div class="quote">
+            "Wind-driven clouds grieved... Rock-rimmed springs sobbed... Grass and trees seemed to have suffered loss."
             <cite>— p. 171</cite>
           </div>
-          <p>The landscape itself mourns the betrayal. Mountains, springs, forests—the very environment of reclusion—reject the man who used them as a prop. The proclamation concludes by ordering the mountains to "bar our mountain windows, / close our cloud-passes" against Zhou Yong's return.</p>
-        </div>
 
-        <div class="section">
-          <h3>What the Satire Assumes</h3>
-          <p>The piece only works because readers share certain assumptions:</p>
-          <ul>
-            <li>There <em>is</em> such a thing as authentic reclusion (the genuine sages invoked throughout)</li>
-            <li>Withdrawal should be motivated by inner conviction, not career strategy</li>
-            <li>The tension between reclusion and office is a <em>real</em> dilemma, not a pose</li>
-          </ul>
-          <p>Kong Zhigui isn't attacking reclusion—he's <em>defending</em> it against those who would cheapen it. The piece presupposes the Xi Kang position (reclusion as authentic Daoist practice) and uses it to condemn fakers. This tells us that by the late fifth century, the discourse of withdrawal had become sophisticated enough to distinguish genuine from performative versions—and that the distinction mattered.</p>
-        </div>
-      </div>
-    </article>
+          <h3>What It Reveals</h3>
+          <p>By the 5th century, "reclusion" was a recognized career path. Emperors sought famous hermits to demonstrate virtue. Being summoned was prestigious.</p>
 
-    <div class="discussion">
+          <h3>Key Move</h3>
+          <p>Defends authentic withdrawal by satirizing fakers—assumes the Xi Kang position and uses it to condemn poseurs.</p>
+        </div>
+      </article>
+
+    </div><!-- /scrolls -->
+
+    <!-- Discussion -->
+    <section class="discussion">
       <h2>Discussion Questions</h2>
       <ol>
-        <li><strong>Yang Yun claims he's now an "ordinary person," not a statesman.</strong> Is this a genuine philosophical move or a rhetorical dodge? Can you simply opt out of the Confucian framework by changing your social position?</li>
-        <li><strong>Xi Kang mixes bodily complaints (lice, sleepiness) with philosophical objections.</strong> Why? What does this tell us about his understanding of "nature" (xìng 性) and the relationship between body and ethics?</li>
-        <li><strong>The Peach Blossom Spring cannot be found again.</strong> Is this because the fisherman betrayed the villagers? Because utopia is inherently unreachable? Because the state destroys what it cannot control? What does your answer reveal about Tao Qian's view of politics?</li>
-        <li><strong>Kong Zhigui's satire assumes we can distinguish "real" from "fake" recluses.</strong> What are the criteria? How would you actually tell the difference?</li>
-        <li><strong>All four texts assume that withdrawal requires justification.</strong> Why? What does this reveal about the default expectations for educated men in early medieval China—and about the power of those expectations?</li>
-        <li><strong>Compare the relationship to Confucianism across the four texts.</strong> Yang Yun uses Confucian categories; Xi Kang rejects them; Tao Qian alludes to them ironically; Kong Zhigui satirizes their misuse. Is there a coherent "philosophy of seclusion" here, or four incompatible positions?</li>
+        <li><strong>Can you opt out of Confucianism?</strong> Yang Yun claims he's now a commoner. Is this legitimate, or a rhetorical dodge?</li>
+        <li><strong>Why mix lice with philosophy?</strong> Xi Kang lists bodily discomforts alongside ethical objections. What does this say about his concept of "nature" (<em>xìng</em> 性)?</li>
+        <li><strong>Why can't the fisherman return?</strong> Betrayal? The Daoist paradox of seeking? The state's destructive reach?</li>
+        <li><strong>How do you spot a fake recluse?</strong> Kong Zhigui assumes we can distinguish authentic from performative withdrawal. What are the criteria?</li>
+        <li><strong>Compare the four relationships to Confucianism:</strong> Yang uses it, Xi Kang rejects it, Tao Qian alludes ironically, Kong satirizes its misuse. Is there a coherent philosophy of seclusion?</li>
       </ol>
-    </div>
+    </section>
 
-    <section class="source">
-      <h3>Source & Further Reading</h3>
-      <p><strong>Primary Source:</strong> Cyril Birch, ed., <em>Anthology of Chinese Literature: From Early Times to the Fourteenth Century</em> (New York: Grove Press, 1965), pp. 157–169.</p>
-      <p><strong>Translators:</strong> Burton Watson (Yang Yun), J.R. Hightower (Xi Kang, Kong Zhigui), Cyril Birch (Tao Qian).</p>
-      <p><strong>Scholarly Context:</strong></p>
+    <!-- Sources -->
+    <section class="sources">
+      <h3>Sources &amp; Further Reading</h3>
+      <p><strong>Primary:</strong> Cyril Birch, ed., <em>Anthology of Chinese Literature</em> (Grove Press, 1965), pp. 157–169.</p>
       <ul>
-        <li><a href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank">Stanford Encyclopedia of Philosophy: Neo-Daoism</a> — on Xi Kang, the Seven Sages, and the philosophy of naturalness (zìrán)</li>
-        <li><a href="https://plato.stanford.edu/entries/han-dynasty/" target="_blank">Stanford Encyclopedia of Philosophy: Philosophy in Han Dynasty China</a> — on Dong Zhongshu and correlative cosmology</li>
-        <li><a href="https://plato.stanford.edu/entries/daoism/" target="_blank">Stanford Encyclopedia of Philosophy: Daoism</a> — on wuwei and Daoist ethics</li>
-        <li><a href="https://plato.stanford.edu/entries/laozi/" target="_blank">Stanford Encyclopedia of Philosophy: Laozi</a> — on the <em>Daodejing</em> and primitivist utopianism</li>
+        <li><a href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank">SEP: Neo-Daoism</a></li>
+        <li><a href="https://plato.stanford.edu/entries/confucius/" target="_blank">SEP: Confucius</a></li>
+        <li><a href="https://plato.stanford.edu/entries/zhuangzi/" target="_blank">SEP: Zhuangzi</a></li>
+        <li><a href="https://plato.stanford.edu/entries/laozi/" target="_blank">SEP: Laozi</a></li>
+        <li><a href="https://plato.stanford.edu/entries/daoism/" target="_blank">SEP: Daoism</a></li>
+        <li><a href="https://plato.stanford.edu/entries/han-dynasty/" target="_blank">SEP: Han Dynasty</a></li>
       </ul>
     </section>
 
   </main>
 
   <footer>
-    EAST 370 · Chinese Traditional Literature and Thought · Winter 2026
+    EAST 370 &middot; Chinese Traditional Literature and Thought &middot; Winter 2026
   </footer>
+
 </body>
 </html>
