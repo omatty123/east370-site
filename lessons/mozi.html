@@ -272,36 +272,32 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Section Headers */
+        /* Section Headers - Clean dividers */
         .section-header {
-            padding: 3rem 1.5rem 2rem;
-            text-align: center;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            padding: 1.5rem 1.5rem 0.5rem;
+            border-top: 1px solid #ddd;
         }
 
-        .section-header.ethics { background: linear-gradient(135deg, var(--section-1) 0%, #8B6914 100%); }
-        .section-header.politics { background: linear-gradient(135deg, var(--section-2) 0%, #4a2c13 100%); }
-        .section-header.method { background: linear-gradient(135deg, var(--section-3) 0%, #2a2a2a 100%); }
-
-        .section-number {
-            font-size: 0.7rem;
+        .section-header .section-number {
+            font-size: 0.6rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
         }
 
         .section-header h2 {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #fff;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 0.25rem 0;
         }
 
         .section-header .chinese-title {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--mo);
         }
 
         /* Content Sections */
@@ -643,7 +639,7 @@
     </section>
 
     <!-- Part 1: Ethics -->
-    <div class="section-header ethics" id="ethics">
+    <div class="section-header" id="ethics">
         <div class="section-number">Part One</div>
         <div class="chinese-title">兼愛·非攻</div>
         <h2>Ethics: Inclusive Care</h2>
@@ -729,7 +725,7 @@
     </div>
 
     <!-- Part 2: Politics -->
-    <div class="section-header politics" id="politics">
+    <div class="section-header" id="politics">
         <div class="section-number">Part Two</div>
         <div class="chinese-title">尚賢·尚同</div>
         <h2>Politics: Order and Authority</h2>
@@ -846,7 +842,7 @@
     </div>
 
     <!-- Part 3: Method -->
-    <div class="section-header method" id="method">
+    <div class="section-header" id="method">
         <div class="section-number">Part Three</div>
         <div class="chinese-title">三表</div>
         <h2>Method: The Three Standards</h2>
