@@ -7,15 +7,13 @@
     <title>Songs of Chu — Day 2: Nine Declarations & More | EAST 370</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
             --ink-faint: #8a8a8a;
-            --paper: #faf9f7;
+            --paper: #fafaf8;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
@@ -36,30 +34,38 @@
         }
 
         body {
-            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
             line-height: 1.7;
             font-size: 16px;
         }
 
-        /* Hero Section - Vermillion for Chu Ci */
-        .hero {
-            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 50%, #4a1a1a 100%);
-            padding: 4rem 2rem 3rem;
-            text-align: center;
-            position: relative;
+        /* Breadcrumb Bar */
+        .breadcrumb {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+        .breadcrumb a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.8)),
+                        url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
         }
 
         .hero-content {
@@ -69,17 +75,30 @@
             margin: 0 auto;
         }
 
+        .hero-day-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
         .hero-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 4rem;
-            color: var(--gold);
+            font-size: 3rem;
+            color: var(--gold-light);
             letter-spacing: 0.2em;
             margin-bottom: 0.5rem;
         }
 
         .hero h1 {
             font-family: 'Inter', sans-serif;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 300;
             color: #fff;
             letter-spacing: 0.1em;
@@ -117,7 +136,7 @@
 
         .hero-meta-item strong {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--gold-light);
         }
 
@@ -129,17 +148,12 @@
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 0.75rem 1.5rem;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
-        }
-
-        .nav-inner {
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
             gap: 0.5rem;
             flex-wrap: wrap;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
         }
 
         .nav a {
@@ -157,7 +171,6 @@
         .nav a:hover {
             color: var(--gold-light);
             background: rgba(184, 134, 11, 0.15);
-            box-shadow: inset 0 -2px 0 var(--gold);
         }
 
         .nav a.portal-link {
@@ -167,6 +180,11 @@
 
         .nav a.portal-link:hover {
             background: var(--gold-light);
+        }
+
+        .nav a.day-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Main Content */
@@ -218,7 +236,7 @@
             background: var(--paper-dark);
             padding: 1.25rem;
             margin: 1.25rem 0;
-            border-left: 3px solid var(--vermillion);
+            border-left: 3px solid var(--gold);
         }
 
         .summary-box p:last-child {
@@ -252,7 +270,7 @@
             font-size: 1.1rem;
         }
 
-        /* Tables - Professional Styling */
+        /* Tables */
         .table-container {
             overflow-x: auto;
             margin: 1.25rem 0;
@@ -282,7 +300,7 @@
             font-size: 0.7rem;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            border-bottom: 2px solid var(--vermillion);
+            border-bottom: 2px solid var(--gold);
         }
 
         th:first-child {
@@ -317,7 +335,7 @@
         }
 
         tr:hover td {
-            background: rgba(199, 62, 58, 0.06);
+            background: rgba(184, 134, 11, 0.06);
             transition: background 0.2s ease;
         }
 
@@ -328,10 +346,10 @@
 
         /* Blockquotes */
         blockquote {
-            border-left: 3px solid var(--vermillion);
+            border-left: 3px solid var(--gold);
             margin: 1.25rem 0;
             padding: 0.75rem 1.25rem;
-            background: rgba(199, 62, 58, 0.04);
+            background: rgba(184, 134, 11, 0.04);
             font-style: italic;
             font-size: 0.9rem;
             line-height: 1.7;
@@ -361,7 +379,8 @@
         }
 
         .poem-card-header {
-            background: linear-gradient(135deg, #4a1a1a 0%, #6a2a2a 100%);
+            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
+                        url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
             padding: 1.5rem;
             text-align: center;
         }
@@ -369,7 +388,7 @@
         .poem-card-header .chinese-title {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 2rem;
-            color: var(--gold);
+            color: var(--gold-light);
             margin-bottom: 0.3rem;
         }
 
@@ -443,27 +462,7 @@
         }
 
         .map-link:hover {
-            color: var(--vermillion);
-        }
-
-        /* Legacy ASCII Map for simple diagrams */
-        .map-container {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
-            color: #e0e0e0;
-            padding: 1.5rem;
-            border-radius: 8px;
-            font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
-            font-size: 0.75rem;
-            line-height: 1.4;
-            overflow-x: auto;
-            margin: 1.25rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(218, 165, 32, 0.2);
-        }
-
-        .map-container pre {
-            margin: 0;
-            white-space: pre;
+            color: var(--gold);
         }
 
         /* Theme Boxes */
@@ -523,7 +522,7 @@
         }
 
         .toc a:hover {
-            color: var(--vermillion);
+            color: var(--gold);
         }
 
         /* Study Questions */
@@ -546,44 +545,55 @@
         /* Footer */
         footer {
             background: var(--ink);
-            color: rgba(255, 255, 255, 0.6);
+            padding: 1.25rem 1.5rem;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
         }
 
-        footer .course-title {
+        footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
             margin-bottom: 0.3rem;
         }
 
-        footer .course-name {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero {
-                padding: 2.5rem 1rem;
+                padding: 2rem 1rem;
             }
 
             .hero-chinese {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .hero h1 {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
             }
 
             .poem-card-header .chinese-title {
                 font-size: 1.5rem;
             }
+
+            .nav {
+                gap: 0.3rem;
+            }
         }
 
         @media print {
+            .breadcrumb,
             .nav {
                 display: none;
             }
@@ -611,10 +621,15 @@
 
 <body>
 
+    <!-- Breadcrumb Bar -->
+    <div class="breadcrumb">
+        <a href="../index.html">&larr; EAST 370</a>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div style="display: inline-block; background: var(--gold); color: #fff; padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;">Day 2</div>
+            <div class="hero-day-badge">Day 2</div>
             <div class="hero-chinese">楚辭</div>
             <h1>Songs of Chu</h1>
             <p class="hero-subtitle">
@@ -639,17 +654,14 @@
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-inner">
-            <a href="../index.html" class="portal-link">← Course Home</a>
-            <a href="songs-of-chu-day1.html" style="background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.9);">← Day 1</a>
-            <a href="#overview">Overview</a>
-            <a href="#poem1">Lament for Ying</a>
-            <a href="#poem2">Orange Tree</a>
-            <a href="#poem3">Nine Arguments</a>
-            <a href="#poem4">Summons of Soul</a>
-            <a href="#poem5">Recluse</a>
-            <a href="#maps">Maps</a>
-        </div>
+        <a href="songs-of-chu-day1.html" class="day-link">&larr; Day 1</a>
+        <a href="#overview">Overview</a>
+        <a href="#poem1">Lament for Ying</a>
+        <a href="#poem2">Orange Tree</a>
+        <a href="#poem3">Nine Arguments</a>
+        <a href="#poem4">Summons of Soul</a>
+        <a href="#poem5">Recluse</a>
+        <a href="#maps">Maps</a>
     </nav>
 
     <main class="container">
@@ -677,7 +689,7 @@
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="label">Title</div>
-                    <div class="value">楚辭 <span style="font-size: 0.7rem; color: var(--ink-faint);">(Chǔ Cí)</span></div>
+                    <div class="value">楚辭 <span style="font-size: 0.7rem; color: var(--ink-faint);">(Chu Ci)</span></div>
                 </div>
                 <div class="feature-card">
                     <div class="label">Meaning</div>
@@ -747,7 +759,7 @@
                 <div class="poem-card-header">
                     <div class="chinese-title">哀郢</div>
                     <div class="english-title">A Lament for Ying</div>
-                    <div class="pinyin">Āi Yǐng</div>
+                    <div class="pinyin">Ai Ying</div>
                 </div>
                 <div class="poem-card-body">
                     <div class="poem-meta">
@@ -789,32 +801,32 @@
                             <tbody>
                                 <tr>
                                     <td class="chinese">郢</td>
-                                    <td>Yǐng</td>
+                                    <td>Ying</td>
                                     <td>Capital city of Chu state</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">江</td>
-                                    <td>Jiāng</td>
+                                    <td>Jiang</td>
                                     <td>The Yangtze River</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">夏</td>
-                                    <td>Xià</td>
+                                    <td>Xia</td>
                                     <td>The Xia River (tributary)</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">洞庭</td>
-                                    <td>Dòngtíng</td>
+                                    <td>Dongting</td>
                                     <td>Dongting Lake</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">龍門</td>
-                                    <td>Lóngmén</td>
+                                    <td>Longmen</td>
                                     <td>Dragon Gate (city gate of Ying)</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">堯舜</td>
-                                    <td>Yáo Shùn</td>
+                                    <td>Yao Shun</td>
                                     <td>Legendary sage-kings</td>
                                 </tr>
                             </tbody>
@@ -876,7 +888,7 @@
                 <div class="poem-card-header">
                     <div class="chinese-title">橘頌</div>
                     <div class="english-title">In Praise of the Orange Tree</div>
-                    <div class="pinyin">Jú Sòng</div>
+                    <div class="pinyin">Ju Song</div>
                 </div>
                 <div class="poem-card-body">
                     <div class="poem-meta">
@@ -907,17 +919,17 @@
                             <tbody>
                                 <tr>
                                     <td class="chinese">橘</td>
-                                    <td>jú</td>
+                                    <td>ju</td>
                                     <td>Orange/tangerine tree</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">后土</td>
-                                    <td>Hòu Tǔ</td>
+                                    <td>Hou Tu</td>
                                     <td>God of Earth</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">伯夷</td>
-                                    <td>Bó Yí</td>
+                                    <td>Bo Yi</td>
                                     <td>Ancient paragon of virtue</td>
                                 </tr>
                             </tbody>
@@ -930,7 +942,7 @@
                     <div class="feature-grid" style="margin: 1.5rem 0;">
                         <div class="feature-card" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%); border-left: 4px solid #8a8a8a;">
                             <div class="label" style="color: #666;">North of Huai River</div>
-                            <div class="value" style="color: #666;">枳 <span style="font-size: 0.7rem;">(zhǐ)</span></div>
+                            <div class="value" style="color: #666;">枳 <span style="font-size: 0.7rem;">(zhi)</span></div>
                             <p style="font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0; color: #888;">Orange becomes bitter — <em>Disloyalty</em></p>
                         </div>
                         <div class="feature-card" style="background: linear-gradient(135deg, #fff8e6 0%, #fff3d0 100%); border-left: 4px solid var(--gold); text-align: center; padding: 1rem;">
@@ -940,7 +952,7 @@
                         </div>
                         <div class="feature-card" style="background: linear-gradient(135deg, #e8f5e8 0%, #d4ebd4 100%); border-left: 4px solid #2a6a2a;">
                             <div class="label" style="color: #2a6a2a;">South of Huai River</div>
-                            <div class="value" style="color: #2a6a2a;">橘 <span style="font-size: 0.7rem;">(jú)</span></div>
+                            <div class="value" style="color: #2a6a2a;">橘 <span style="font-size: 0.7rem;">(ju)</span></div>
                             <p style="font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0; color: #3a7a3a;">Orange thrives — <em>Loyalty</em></p>
                         </div>
                     </div>
@@ -1013,7 +1025,7 @@
                 <div class="poem-card-header">
                     <div class="chinese-title">九辯</div>
                     <div class="english-title">From "The Nine Arguments"</div>
-                    <div class="pinyin">Jiǔ Biàn</div>
+                    <div class="pinyin">Jiu Bian</div>
                 </div>
                 <div class="poem-card-body">
                     <div class="poem-meta">
@@ -1054,22 +1066,22 @@
                             <tbody>
                                 <tr>
                                     <td class="chinese">白露</td>
-                                    <td>bái lù</td>
+                                    <td>bai lu</td>
                                     <td>White dew (autumn phenomenon)</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">梧桐</td>
-                                    <td>wútóng</td>
+                                    <td>wutong</td>
                                     <td>Paulownia tree</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">蟋蟀</td>
-                                    <td>xīshuài</td>
+                                    <td>xishuai</td>
                                     <td>Cricket</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">蘭</td>
-                                    <td>lán</td>
+                                    <td>lan</td>
                                     <td>Orchid</td>
                                 </tr>
                             </tbody>
@@ -1132,7 +1144,7 @@
                 <div class="poem-card-header">
                     <div class="chinese-title">招魂</div>
                     <div class="english-title">The Summons of the Soul</div>
-                    <div class="pinyin">Zhāo Hún</div>
+                    <div class="pinyin">Zhao Hun</div>
                 </div>
                 <div class="poem-card-body">
                     <div class="poem-meta">
@@ -1163,27 +1175,27 @@
                             <tbody>
                                 <tr>
                                     <td class="chinese">招魂</td>
-                                    <td>zhāo hún</td>
+                                    <td>zhao hun</td>
                                     <td>Summoning the soul</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">巫陽</td>
-                                    <td>Wū Yáng</td>
+                                    <td>Wu Yang</td>
                                     <td>Shaman "Wu Yang"</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">帝</td>
-                                    <td>Dì</td>
+                                    <td>Di</td>
                                     <td>The Lord God</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">魂</td>
-                                    <td>hún</td>
+                                    <td>hun</td>
                                     <td>The <em>hun</em> soul</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">土伯</td>
-                                    <td>Tǔ Bó</td>
+                                    <td>Tu Bo</td>
                                     <td>Earth God / Underworld Lord</td>
                                 </tr>
                             </tbody>
@@ -1203,7 +1215,7 @@
 
                     <div class="map-section">
                         <iframe src="maps/summons-cosmos.html" class="map-frame" style="height: 600px;" title="The Dangerous Cosmos - Six Directions"></iframe>
-                        <a href="maps/summons-cosmos.html" target="_blank" class="map-link">↗ Open full screen</a>
+                        <a href="maps/summons-cosmos.html" target="_blank" class="map-link">Open full screen</a>
                     </div>
 
                     <div class="table-container">
@@ -1292,7 +1304,7 @@
                 <div class="poem-card-header">
                     <div class="chinese-title">招隱士</div>
                     <div class="english-title">Summons for a Gentleman Who Became a Recluse</div>
-                    <div class="pinyin">Zhāo Yǐn Shì</div>
+                    <div class="pinyin">Zhao Yin Shi</div>
                 </div>
                 <div class="poem-card-body">
                     <div class="poem-meta">
@@ -1333,17 +1345,17 @@
                             <tbody>
                                 <tr>
                                     <td class="chinese">隱士</td>
-                                    <td>yǐn shì</td>
+                                    <td>yin shi</td>
                                     <td>Recluse, hermit</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">桂</td>
-                                    <td>guì</td>
+                                    <td>gui</td>
                                     <td>Cassia/osmanthus tree</td>
                                 </tr>
                                 <tr>
                                     <td class="chinese">王孫</td>
-                                    <td>wáng sūn</td>
+                                    <td>wang sun</td>
                                     <td>"Prince" or "young nobleman"</td>
                                 </tr>
                             </tbody>
@@ -1429,7 +1441,7 @@
 
             <div class="map-section">
                 <iframe src="maps/warring-states-chu.html" class="map-frame" title="Seven Warring States c. 300 BCE"></iframe>
-                <a href="maps/warring-states-chu.html" target="_blank" class="map-link">↗ Open full screen</a>
+                <a href="maps/warring-states-chu.html" target="_blank" class="map-link">Open full screen</a>
             </div>
 
             <h3>Qu Yuan's Exile Route (278 BCE)</h3>
@@ -1437,7 +1449,7 @@
 
             <div class="map-section">
                 <iframe src="maps/qu-yuan-exile-route.html" class="map-frame" title="Qu Yuan's Exile Route"></iframe>
-                <a href="maps/qu-yuan-exile-route.html" target="_blank" class="map-link">↗ Open full screen</a>
+                <a href="maps/qu-yuan-exile-route.html" target="_blank" class="map-link">Open full screen</a>
             </div>
 
             <h3>Key Locations</h3>
@@ -1565,15 +1577,16 @@
         </div>
 
         <div style="text-align: center; margin-top: 2rem;">
-            <a href="songs-of-chu-day1.html" style="display: inline-block; background: var(--teal); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 4px; font-size: 0.9rem;">← Back to Day 1</a>
+            <a href="songs-of-chu-day1.html" style="display: inline-block; background: var(--gold); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 4px; font-size: 0.9rem;">&larr; Back to Day 1</a>
         </div>
 
     </main>
 
     <!-- Footer -->
     <footer>
-        <div class="course-title">中國文學與思想</div>
-        <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought · Winter 2026</div>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
     </footer>
 
 </body>
