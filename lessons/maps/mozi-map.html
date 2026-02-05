@@ -128,35 +128,6 @@
             opacity: 0.9;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
-                        REMOVED*/
-            padding: 2rem 1.5rem;
-            text-align: center;
-        }
-
-        .header-title .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.3rem;
-        }
-
-        .header-title h1 {
-            font-size: 1rem;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.3rem;
-        }
-
-        .header-title p {
-            font-size: 0.7rem;
-            color: #999;
-        }
-
         /* Main Layout */
         .main-container {
             display: grid;
@@ -576,8 +547,7 @@
 
         /* Story Section */
         .story-section {
-            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
-                        REMOVED*/
+            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9));
             padding: 2rem 1.5rem;
             color: #fff;
         }
@@ -781,10 +751,15 @@
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../../index.html">&larr; EAST 370</a>
-    </div>
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../../index.html">EAST 370</a>
+        <span class="divider">/</span>
+        <div class="title">
+            <span class="chinese">墨子地圖</span>
+            <h1>Mozi Interactive Map</h1>
+        </div>
+    </header>
 
     <!-- Navigation -->
     <nav class="nav">
@@ -794,14 +769,6 @@
         <a href="#story">The Mission</a>
         <a href="#table">Reference Table</a>
     </nav>
-
-    <header>
-        <div class="header-title">
-            <div class="chinese">墨子地圖</div>
-            <h1>Geographic Locations in the Mozi</h1>
-            <p>Warring States Period (c. 470-391 BCE)</p>
-        </div>
-    </header>
 
     <div class="main-container">
         <aside class="sidebar">
