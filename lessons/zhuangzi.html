@@ -112,6 +112,89 @@
             color: var(--gold-light);
         }
 
+        /* Dao Evolution */
+        .dao-evolution {
+            background: var(--paper-dark);
+            padding: 1.5rem;
+        }
+
+        .dao-evolution h2 {
+            text-align: center;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 1rem;
+        }
+
+        .dao-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            .dao-grid { grid-template-columns: 1fr; }
+        }
+
+        .dao-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        a.dao-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .dao-card.current {
+            border: 2px solid var(--dao);
+            background: linear-gradient(180deg, #e8f4eb 0%, #fff 100%);
+        }
+
+        .dao-card .label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--dao);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dao-card .name-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin: 0.3rem 0;
+        }
+
+        .dao-card .name-en {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .dao-card .key-idea {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+            padding: 0.5rem;
+            background: var(--paper);
+            border-radius: 4px;
+        }
+
+        .dao-card .key-idea strong {
+            color: var(--dao);
+        }
+
         /* Multi-Column Layout */
         .two-col {
             display: grid;
@@ -316,33 +399,34 @@
             color: var(--ink-faint);
         }
 
-        /* Famous Saying */
+        /* Famous Saying - Left-aligned, elegant */
         .saying-box {
-            background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
-            color: #fff;
-            padding: 2rem;
+            background: #fff;
+            padding: 1.5rem 1.5rem 1.5rem 2rem;
             border-radius: 6px;
             margin: 2rem 0;
-            text-align: center;
+            border-left: 4px solid var(--dao);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
         }
 
         .saying-box .saying-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.6rem;
-            color: var(--gold-light);
-            margin-bottom: 0.4rem;
-            letter-spacing: 0.08em;
+            font-size: 1.4rem;
+            color: var(--dao);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
         }
 
         .saying-box .saying-meaning {
             font-size: 1rem;
-            color: #fff;
+            color: var(--ink);
             margin-bottom: 0.5rem;
+            font-style: italic;
         }
 
         .saying-box .saying-note {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            color: var(--ink-faint);
         }
 
         /* Themes Grid */
@@ -516,12 +600,36 @@
 
     <!-- Navigation -->
     <nav class="nav">
+        <a href="#evolution">Daoism</a>
         <a href="#reading">Reading</a>
         <a href="#structure">Structure</a>
         <a href="#stories">Stories</a>
         <a href="#themes">Themes</a>
         <a href="#questions">Questions</a>
     </nav>
+
+    <!-- Dao Evolution -->
+    <section class="dao-evolution" id="evolution">
+        <h2>Two Voices of Daoism</h2>
+        <div class="dao-grid">
+            <a href="laozi.html" class="dao-card">
+                <div class="label">The Daodejing</div>
+                <div class="name-ch">老子</div>
+                <div class="name-en">Laozi (traditional 6th c. BCE)</div>
+                <div class="key-idea">
+                    <strong>Wu wei 無為</strong> — Non-action, effortless action. Return to simplicity. Cryptic, poetic, political.
+                </div>
+            </a>
+            <div class="dao-card current">
+                <div class="label">The Zhuangzi</div>
+                <div class="name-ch">莊子</div>
+                <div class="name-en">Zhuangzi (~369-286 BCE)</div>
+                <div class="key-idea">
+                    <strong>Transformation 化</strong> — Perspectival relativism, spontaneous freedom. Playful, paradoxical, personal.
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Reading Info -->
     <section class="reading-info" id="reading">
