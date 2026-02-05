@@ -7,21 +7,17 @@
     <title>Mozi Study Guide | EAST 370</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
             --ink-faint: #8a8a8a;
-            --paper: #faf9f7;
+            --paper: #fafaf8;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            --primary: #4a3728;
-            --primary-light: #6b5344;
-            --accent: #8b4513;
+            --mo: #A67C52;
         }
 
         * {
@@ -35,54 +31,53 @@
         }
 
         body {
-            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
             line-height: 1.7;
             font-size: 16px;
         }
 
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+        }
+
+        .breadcrumb a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #3d2817 0%, #5a3d2b 50%, #3d2817 100%);
-            padding: 4rem 2rem 3rem;
+            background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.8)),
+                        url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
+            padding: 2.5rem 1.5rem 2rem;
             text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
         }
 
         .hero-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 4rem;
+            font-size: 3rem;
             color: var(--gold-light);
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
         }
 
         .hero h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: #fff;
-            letter-spacing: 0.08em;
-            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
         }
 
         .hero-meta {
@@ -90,7 +85,7 @@
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: rgba(255, 255, 255, 0.7);
         }
 
@@ -108,49 +103,38 @@
         .nav {
             position: sticky;
             top: 0;
-            background: rgba(61, 40, 23, 0.97);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            background: var(--ink);
             z-index: 1000;
-            padding: 0.75rem 1.5rem;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
-        }
-
-        .nav-inner {
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
         .nav a {
-            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.7);
+            color: #aaa;
             text-decoration: none;
-            padding: 0.4rem 0.75rem;
-            border-radius: 2px;
-            transition: all 0.2s ease;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
         }
 
         .nav a:hover {
             color: var(--gold-light);
-            background: rgba(184, 134, 11, 0.15);
-            box-shadow: inset 0 -2px 0 var(--gold);
         }
 
         .nav a.portal-link {
-            background: var(--gold);
-            color: #1a1a1a;
+            background: var(--mo);
+            color: #fff;
             font-weight: 600;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
         }
 
         .nav a.portal-link:hover {
             background: var(--gold-light);
+            color: var(--ink);
         }
 
         /* Main Content */
@@ -167,18 +151,18 @@
         }
 
         .section-header h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
+            letter-spacing: 0.08em;
+            color: #999;
             margin-bottom: 0.3rem;
         }
 
         .section-header .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--mo);
             margin-right: 0.5rem;
         }
 
@@ -201,7 +185,7 @@
             max-width: 900px;
             margin: 0 auto;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid var(--accent);
+            border-left: 4px solid var(--mo);
         }
 
         .intro-card p {
@@ -236,7 +220,7 @@
             border-radius: 4px;
             padding: 1.25rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--accent);
+            border-left: 3px solid var(--mo);
             transition: all 0.3s ease;
         }
 
@@ -247,13 +231,13 @@
         }
 
         .term-card.essential {
-            border-left-color: var(--primary);
+            border-left-color: var(--gold);
         }
 
         .term-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--mo);
             margin-bottom: 0.25rem;
         }
 
@@ -284,7 +268,7 @@
         }
 
         .doctrine-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--ink);
             padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
@@ -294,13 +278,13 @@
         .doctrine-number {
             width: 36px;
             height: 36px;
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--mo);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            color: var(--gold-light);
+            color: #fff;
             font-size: 1rem;
         }
 
@@ -356,7 +340,7 @@
 
         .argument-box h4 {
             font-size: 1rem;
-            color: var(--primary);
+            color: var(--mo);
             margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
@@ -392,7 +376,7 @@
         }
 
         .critique-card {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: var(--ink);
             border-radius: 4px;
             padding: 2rem;
             max-width: 900px;
@@ -425,7 +409,7 @@
             padding: 1rem 1.25rem;
             border-radius: 4px;
             margin-bottom: 0.75rem;
-            border-left: 3px solid var(--gold);
+            border-left: 3px solid var(--mo);
         }
 
         .critique-point strong {
@@ -457,7 +441,7 @@
         .standard-card .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--mo);
             margin-bottom: 0.25rem;
         }
 
@@ -502,7 +486,7 @@
             top: 1rem;
             width: 28px;
             height: 28px;
-            background: var(--primary);
+            background: var(--mo);
             color: #fff;
             border-radius: 50%;
             display: flex;
@@ -513,7 +497,7 @@
         }
 
         .discussion-list li strong {
-            color: var(--primary);
+            color: var(--mo);
         }
 
         /* Resources */
@@ -538,10 +522,10 @@
         }
 
         .resource-card h4 {
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--ink-faint);
+            letter-spacing: 0.06em;
+            color: #888;
             margin-bottom: 0.75rem;
         }
 
@@ -566,29 +550,28 @@
         /* Footer */
         footer {
             background: var(--ink);
-            color: rgba(255, 255, 255, 0.6);
+            padding: 1.25rem 1.5rem;
             text-align: center;
-            padding: 2rem 1.5rem;
         }
 
-        footer .course-title {
+        footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
             margin-bottom: 0.3rem;
         }
 
-        footer .course-name {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.75rem;
-        }
-
-        footer .term {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
             color: var(--gold);
+            letter-spacing: 0.08em;
         }
 
         footer a {
@@ -603,15 +586,15 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero {
-                padding: 3rem 1rem 2.5rem;
+                padding: 2rem 1rem 1.5rem;
             }
 
             .hero-chinese {
-                font-size: 3rem;
+                font-size: 2rem;
             }
 
             .hero h1 {
-                font-size: 1.4rem;
+                font-size: 1rem;
             }
 
             .hero-meta {
@@ -623,13 +606,8 @@
                 padding: 1.5rem 1rem;
             }
 
-            .nav-inner {
-                gap: 0.3rem;
-            }
-
-            .nav a {
-                font-size: 0.6rem;
-                padding: 0.3rem 0.5rem;
+            .nav {
+                gap: 1rem;
             }
 
             .doctrine-header {
@@ -642,31 +620,32 @@
 
 <body>
 
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="../index.html">&larr; EAST 370</a>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-chinese">墨子</div>
-            <h1>The Mozi</h1>
-            <div class="hero-meta">
-                <span><strong>Author:</strong> Mo Di (Master Mo)</span>
-                <span><strong>Period:</strong> ~470–391 BCE</span>
-                <span><strong>Reading:</strong> Ivanhoe pp. 57–108</span>
-            </div>
+        <div class="hero-chinese">墨子</div>
+        <h1>The Mozi</h1>
+        <div class="hero-meta">
+            <span><strong>Author:</strong> Mo Di (Master Mo)</span>
+            <span><strong>Period:</strong> ~470-391 BCE</span>
+            <span><strong>Reading:</strong> Ivanhoe pp. 57-108</span>
         </div>
     </section>
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-inner">
-            <a href="../index.html" class="portal-link">Course Portal</a>
-            <a href="maps/mozi-map.html">Interactive Map</a>
-            <a href="#overview">Overview</a>
-            <a href="#terms">Key Terms</a>
-            <a href="#doctrines">Ten Doctrines</a>
-            <a href="#standards">Three Standards</a>
-            <a href="#critique">vs. Confucius</a>
-            <a href="#discussion">Discussion</a>
-        </div>
+        <a href="../index.html" class="portal-link">Course Portal</a>
+        <a href="maps/mozi-map.html">Interactive Map</a>
+        <a href="#overview">Overview</a>
+        <a href="#terms">Key Terms</a>
+        <a href="#doctrines">Ten Doctrines</a>
+        <a href="#standards">Three Standards</a>
+        <a href="#critique">vs. Confucius</a>
+        <a href="#discussion">Discussion</a>
     </nav>
 
     <!-- Overview Section -->
@@ -674,7 +653,7 @@
         <div class="intro-card">
             <p><strong>Mozi</strong> (墨子, "Master Mo") founded Mohism, arguably the first systematically organized
                 philosophical movement in Chinese history. A strong argument can be made that it is Mozi, not Confucius,
-                who deserves the title of China's first philosopher—the first to construct explicit arguments for his
+                who deserves the title of China's first philosopher-the first to construct explicit arguments for his
                 positions rather than relying on received wisdom.</p>
 
             <div class="intro-highlight">
@@ -683,12 +662,12 @@
             </div>
 
             <p>Mozi likely emerged from the artisan class and may have been a carpenter. His followers formed a highly
-                organized movement with military discipline, led by a series of "Grand Masters" (巨子 <em>jùzǐ</em>). The
+                organized movement with military discipline, led by a series of "Grand Masters" (巨子 <em>juzi</em>). The
                 Mohists were famous for their austerity, their opposition to aggressive warfare, and their willingness
                 to die defending besieged cities against unjust attacks.</p>
 
             <p>Unlike Confucius, who relied on cultivated moral intuition and ritual propriety, Mozi demanded explicit
-                standards (<em>fǎ</em>) for evaluating claims and policies. His consequentialist ethics judged actions
+                standards (<em>fa</em>) for evaluating claims and policies. His consequentialist ethics judged actions
                 by their effects on social order, material welfare, and population growth.</p>
         </div>
     </section>
@@ -703,56 +682,56 @@
         <div class="terms-grid">
             <div class="term-card essential">
                 <div class="term-chinese">兼愛</div>
-                <div class="term-pinyin">Jiān Ài</div>
+                <div class="term-pinyin">Jian Ai</div>
                 <div class="term-meaning">Inclusive care / impartial concern. The core Mohist ethical principle: caring
                     for all people equally, without the graded distinctions of Confucian ethics.</div>
             </div>
 
             <div class="term-card essential">
                 <div class="term-chinese">法</div>
-                <div class="term-pinyin">Fǎ</div>
-                <div class="term-meaning">Model, standard, paradigm. An explicit criterion for judgment—like a
-                    carpenter's square or compass—used to evaluate claims and policies objectively.</div>
+                <div class="term-pinyin">Fa</div>
+                <div class="term-meaning">Model, standard, paradigm. An explicit criterion for judgment-like a
+                    carpenter's square or compass-used to evaluate claims and policies objectively.</div>
             </div>
 
             <div class="term-card essential">
                 <div class="term-chinese">義</div>
-                <div class="term-pinyin">Yì</div>
+                <div class="term-pinyin">Yi</div>
                 <div class="term-meaning">Righteousness, morality, duty. What is ethically correct according to
                     objective standards, not mere convention.</div>
             </div>
 
             <div class="term-card">
                 <div class="term-chinese">利</div>
-                <div class="term-pinyin">Lì</div>
+                <div class="term-pinyin">Li</div>
                 <div class="term-meaning">Benefit, profit, advantage. For Mozi, the ultimate criterion: does a practice
                     benefit the people?</div>
             </div>
 
             <div class="term-card">
                 <div class="term-chinese">天</div>
-                <div class="term-pinyin">Tiān</div>
+                <div class="term-pinyin">Tian</div>
                 <div class="term-meaning">Heaven. For Mozi, an active moral agent that rewards the good and punishes the
                     wicked. The ultimate standard of righteousness.</div>
             </div>
 
             <div class="term-card">
                 <div class="term-chinese">鬼神</div>
-                <div class="term-pinyin">Guǐ Shén</div>
-                <div class="term-meaning">Ghosts and spirits. Mozi argued belief in spirits is socially useful—they
+                <div class="term-pinyin">Gui Shen</div>
+                <div class="term-meaning">Ghosts and spirits. Mozi argued belief in spirits is socially useful-they
                     serve as moral enforcers when humans fail.</div>
             </div>
 
             <div class="term-card">
                 <div class="term-chinese">類</div>
-                <div class="term-pinyin">Lèi</div>
+                <div class="term-pinyin">Lei</div>
                 <div class="term-meaning">Kind, category, class. Things of the same <em>lei</em> should be treated
-                    similarly—foundation of Mohist analogical reasoning.</div>
+                    similarly-foundation of Mohist analogical reasoning.</div>
             </div>
 
             <div class="term-card">
                 <div class="term-chinese">巨子</div>
-                <div class="term-pinyin">Jùzǐ</div>
+                <div class="term-pinyin">Juzi</div>
                 <div class="term-meaning">Grand Master. The leader of a Mohist community, with authority over doctrine
                     and practice.</div>
             </div>
@@ -780,8 +759,8 @@
                     </div>
                 </div>
                 <div class="doctrine-body">
-                    <p><strong>Inclusive Care (兼愛 Jiān Ài)</strong> is the heart of Mohist ethics. Mozi argued that the
-                        world's problems—theft, assault, exploitation, war—all stem from "partiality": people caring
+                    <p><strong>Inclusive Care (兼愛 Jian Ai)</strong> is the heart of Mohist ethics. Mozi argued that the
+                        world's problems-theft, assault, exploitation, war-all stem from "partiality": people caring
                         only for themselves and their own families at others' expense.</p>
 
                     <div class="doctrine-quote">
@@ -791,8 +770,8 @@
                         as I care for my own.'"
                     </div>
 
-                    <p><strong>Condemning Aggression (非攻 Fēi Gōng)</strong> follows logically: if we should care for all
-                        equally, then aggressive warfare—which harms the innocent—is the greatest crime. The Mohists
+                    <p><strong>Condemning Aggression (非攻 Fei Gong)</strong> follows logically: if we should care for all
+                        equally, then aggressive warfare-which harms the innocent-is the greatest crime. The Mohists
                         were famous for defending besieged cities and developing defensive military technology.</p>
                 </div>
             </div>
@@ -807,11 +786,11 @@
                     </div>
                 </div>
                 <div class="doctrine-body">
-                    <p><strong>Promoting the Worthy (尚賢 Shàng Xián)</strong> attacks hereditary aristocracy. Officials
+                    <p><strong>Promoting the Worthy (尚賢 Shang Xian)</strong> attacks hereditary aristocracy. Officials
                         should be chosen by merit, not birth. "If a person is capable, promote him. If incapable, demote
                         him."</p>
 
-                    <p><strong>Conforming Upward (尚同 Shàng Tóng)</strong> establishes a moral hierarchy: people should
+                    <p><strong>Conforming Upward (尚同 Shang Tong)</strong> establishes a moral hierarchy: people should
                         align their judgments with their superiors, ultimately with Heaven itself. This creates unified
                         moral standards rather than conflicting opinions.</p>
 
@@ -833,10 +812,10 @@
                     </div>
                 </div>
                 <div class="doctrine-body">
-                    <p><strong>Moderation in Use (節用 Jié Yòng)</strong> condemns waste. Resources spent on luxury could
+                    <p><strong>Moderation in Use (節用 Jie Yong)</strong> condemns waste. Resources spent on luxury could
                         feed the hungry and clothe the cold.</p>
 
-                    <p><strong>Moderation in Burial (節葬 Jié Zàng)</strong> directly attacks Confucian funeral practices.
+                    <p><strong>Moderation in Burial (節葬 Jie Zang)</strong> directly attacks Confucian funeral practices.
                         Elaborate coffins, long mourning periods, and burial goods impoverish the living without helping
                         the dead.</p>
 
@@ -857,13 +836,13 @@
                     </div>
                 </div>
                 <div class="doctrine-body">
-                    <p><strong>Heaven's Intent (天志 Tiān Zhì)</strong> provides the ultimate moral standard. Heaven loves
+                    <p><strong>Heaven's Intent (天志 Tian Zhi)</strong> provides the ultimate moral standard. Heaven loves
                         all people impartially and wants their welfare. Rulers who follow Heaven's will bring
                         prosperity; those who violate it are punished.</p>
 
-                    <p><strong>Understanding Ghosts (明鬼 Míng Guǐ)</strong> argues that spirits exist and enforce
+                    <p><strong>Understanding Ghosts (明鬼 Ming Gui)</strong> argues that spirits exist and enforce
                         morality. Even if you doubt their existence, Mozi argues it's socially beneficial to
-                        believe—spirits deter crime when human authorities fail.</p>
+                        believe-spirits deter crime when human authorities fail.</p>
                 </div>
             </div>
 
@@ -877,11 +856,11 @@
                     </div>
                 </div>
                 <div class="doctrine-body">
-                    <p><strong>Condemning Music (非樂 Fēi Yuè)</strong> targets Confucian emphasis on ritual music. The
+                    <p><strong>Condemning Music (非樂 Fei Yue)</strong> targets Confucian emphasis on ritual music. The
                         bells, drums, and performances of court ceremonies waste resources and distract from productive
                         labor.</p>
 
-                    <p><strong>Condemning Fatalism (非命 Fēi Mìng)</strong> attacks the belief that fate determines
+                    <p><strong>Condemning Fatalism (非命 Fei Ming)</strong> attacks the belief that fate determines
                         outcomes. If people believe their lot is fixed, they won't strive to improve. Mozi insists human
                         effort matters.</p>
 
@@ -930,7 +909,7 @@
         <div class="argument-box">
             <h4><span class="chinese">辯</span> Example: Argument Against Fatalism</h4>
             <ol>
-                <li><strong>Root:</strong> The sage-kings Yao, Shun, and Yu did not believe in fate—they worked hard and
+                <li><strong>Root:</strong> The sage-kings Yao, Shun, and Yu did not believe in fate-they worked hard and
                     achieved order.</li>
                 <li><strong>Source:</strong> We observe that people who work hard prosper, while the lazy fail.</li>
                 <li><strong>Use:</strong> Believing in fate makes people passive; rejecting fate encourages effort and
@@ -949,14 +928,14 @@
                 studied Confucianism, he came to reject its core assumptions.</p>
 
             <div class="critique-point">
-                <strong>Against Ritual Propriety (禮 Lǐ):</strong> Confucians treat traditional ritual as the foundation
+                <strong>Against Ritual Propriety (禮 Li):</strong> Confucians treat traditional ritual as the foundation
                 of morality. Mozi objects: customs vary between cultures. If ritual is just "what we've always done," it
                 can't provide objective moral guidance.
             </div>
 
             <div class="critique-point">
                 <strong>Against Graded Love:</strong> Confucians say we should love family more than strangers. Mozi
-                argues this "partiality" causes conflict—I favor my family at your family's expense. Only impartial care
+                argues this "partiality" causes conflict-I favor my family at your family's expense. Only impartial care
                 creates harmony.
             </div>
 
@@ -972,7 +951,7 @@
             </div>
 
             <p style="margin-top: 1.5rem; font-style: italic;">Mencius later responded that Mohist "inclusive care"
-                amounts to "having no father"—a devastating insult implying Mozi's ethics would destroy the family
+                amounts to "having no father"-a devastating insult implying Mozi's ethics would destroy the family
                 itself.</p>
         </div>
     </section>
@@ -1005,7 +984,7 @@
                 exist. Is this a good argument? Is it ethical to promote beliefs for their social effects rather than
                 their truth?</li>
 
-            <li><strong>Meritocracy:</strong> "Promoting the worthy" sounds good—but who decides who's worthy? Could
+            <li><strong>Meritocracy:</strong> "Promoting the worthy" sounds good-but who decides who's worthy? Could
                 Mozi's system create its own kind of elite? How is it different from modern meritocracy debates?</li>
         </ol>
     </section>
@@ -1046,10 +1025,9 @@
 
     <!-- Footer -->
     <footer>
-        <p style="margin-bottom: 8px;"><a href="../index.html">← Course Portal</a></p>
-        <div class="course-title">中國文學與思想</div>
-        <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
-        <div class="term">Winter 2026</div>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
     </footer>
 
 </body>
