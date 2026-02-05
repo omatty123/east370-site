@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laozi Study Guide | EAST 370</title>
+    <title>Laozi 老子 | EAST 370 Study Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,309 +19,370 @@
             --gold-light: #daa520;
             --dao: #3D8B4D;
             --dao-dark: #2d6b3f;
+            /* Section colors */
+            --section-1: #3D8B4D;
+            --section-2: #2f4f4f;
+            --section-3: #3d3d6b;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.8;
+            font-size: 17px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Compact Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
-        }
-
-        .breadcrumb a {
-            font-size: 0.75rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 50%, var(--ink) 100%);
-            padding: 3rem 2rem 2.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.8;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 3.5rem;
-            color: var(--gold-light);
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero-subtitle {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .hero-meta span {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .hero-meta strong {
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .page-header .back:hover { color: var(--gold-light); }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
             color: var(--gold-light);
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--dao);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
         }
 
         /* Navigation */
         .nav {
             position: sticky;
             top: 0;
-            background: rgba(26, 26, 26, 0.97);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            background: var(--ink);
             z-index: 1000;
-            padding: 0.75rem 1.5rem;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
-        }
-
-        .nav-inner {
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
         .nav a {
-            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.7);
+            color: #aaa;
             text-decoration: none;
-            padding: 0.4rem 0.75rem;
-            border-radius: 2px;
-            transition: all 0.2s ease;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
         }
 
         .nav a:hover {
             color: var(--gold-light);
-            background: rgba(184, 134, 11, 0.15);
-            box-shadow: inset 0 -2px 0 var(--gold);
         }
 
-        .nav a.portal-link {
-            background: var(--gold);
-            color: #1a1a1a;
-            font-weight: 600;
+        /* Multi-Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
-        .nav a.portal-link:hover {
-            background: var(--gold-light);
+        .two-col-wide-left {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
         }
 
-        /* Main Content */
+        .two-col-wide-right {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-col, .two-col-wide-left, .two-col-wide-right {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Container */
         .container {
             max-width: 900px;
             margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Reading Info */
+        .reading-info {
+            background: linear-gradient(180deg, rgba(61, 139, 77, 0.08) 0%, var(--paper) 100%);
             padding: 2rem 1.5rem;
+        }
+
+        .reading-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 6px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--gold);
+        }
+
+        .reading-box h2 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .reading-box p {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            margin-bottom: 0.5rem;
         }
 
         /* Section Headers */
         .section-header {
+            padding: 3rem 1.5rem 2rem;
             text-align: center;
-            margin-bottom: 2rem;
+        }
+
+        .section-header.dao { background: linear-gradient(135deg, var(--section-1) 0%, #1a5555 100%); }
+        .section-header.politics { background: linear-gradient(135deg, var(--section-2) 0%, #1a2f2f 100%); }
+        .section-header.paradox { background: linear-gradient(135deg, var(--section-3) 0%, #252547 100%); }
+
+        .section-number {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
         }
 
         .section-header h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
+            font-size: 1rem;
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 0.08em;
             margin-bottom: 0.3rem;
         }
 
-        .section-header .chinese {
+        .section-header .chinese-title {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            color: var(--dao);
-            margin-right: 0.5rem;
-        }
-
-        .section-header .subtitle {
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: var(--ink);
-        }
-
-        /* Opening Quote */
-        .opening-section {
-            background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
-            padding: 2.5rem 1.5rem;
-        }
-
-        .opening-quote {
-            background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
-            border-radius: 4px;
-            padding: 2.5rem 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            color: #fff;
-        }
-
-        .opening-quote .chinese-text {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.8rem;
-            color: var(--gold-light);
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-
-        .opening-quote .english-text {
-            font-size: 1.1rem;
-            font-style: italic;
-            line-height: 1.8;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 0.75rem;
         }
 
-        .opening-quote .reference {
-            font-size: 0.8rem;
-            color: var(--gold-light);
-        }
+        /* Content Sections */
+        .content-section { margin-bottom: 2.5rem; }
 
-        /* Intro Card */
-        .intro-card {
-            background: #fff;
-            border-radius: 4px;
-            padding: 2rem;
-            max-width: 900px;
-            margin: 2rem auto 0;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid var(--dao);
-        }
-
-        .intro-card p {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--ink-light);
-            margin-bottom: 1rem;
-        }
-
-        .intro-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Key Terms Grid */
-        .terms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .term-card {
-            background: #fff;
-            border-radius: 4px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--dao);
-            transition: transform 0.2s ease;
-        }
-
-        .term-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-            border-left-width: 5px;
-        }
-
-        .term-card.essential {
-            border-left-color: var(--dao-dark);
-            background: linear-gradient(135deg, #fff 0%, #f5faf6 100%);
-        }
-
-        .term-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 2.2rem;
+        .content-section h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
             color: var(--dao);
-            margin-bottom: 0.25rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--dao);
+            display: inline-block;
         }
 
-        .term-pinyin {
-            font-size: 0.95rem;
+        .content-section.teal h3 { color: var(--section-2); border-color: var(--section-2); }
+        .content-section.purple h3 { color: var(--section-3); border-color: var(--section-3); }
+
+        /* Key Terms */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .terms-table th {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            background: var(--paper-dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        .terms-table td {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .terms-table .chinese-cell {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .terms-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        /* Synopsis */
+        .synopsis {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .synopsis p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .synopsis p:last-child { margin-bottom: 0; }
+
+        /* Quote Block */
+        .quote-block {
+            background: var(--paper-dark);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--gold);
+            font-style: italic;
+        }
+
+        .quote-block cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+        }
+
+        /* Famous Saying */
+        .saying-box {
+            background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 6px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .saying-box .saying-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.6rem;
+            color: var(--gold-light);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.08em;
+        }
+
+        .saying-box .saying-meaning {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .saying-box .saying-note {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Themes Grid */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .theme-card {
+            background: #fff;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .theme-card h4 {
+            font-size: 0.85rem;
             font-weight: 600;
             color: var(--ink);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.4rem;
         }
 
-        .term-meaning {
-            font-size: 0.8rem;
+        .theme-card p {
+            font-size: 0.85rem;
             color: var(--ink-light);
-            line-height: 1.5;
+            line-height: 1.6;
         }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: var(--ink);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85rem;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
 
         /* Chapter Grid */
         .chapter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.5rem;
         }
 
         .chapter-card {
@@ -330,12 +391,6 @@
             border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .chapter-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .chapter-card.highlight {
@@ -350,340 +405,105 @@
             background: var(--dao);
             color: #fff;
             font-weight: 700;
-            font-size: 0.9rem;
-            min-width: 36px;
+            font-size: 0.75rem;
+            min-width: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 0.5rem;
+            padding: 0.5rem 0.4rem;
         }
 
         .chapter-content {
-            padding: 0.65rem 0.85rem;
+            padding: 0.5rem 0.65rem;
             flex: 1;
         }
 
         .chapter-title {
             font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--ink);
-            margin-bottom: 0.2rem;
-        }
-
-        .chapter-note {
             font-size: 0.75rem;
-            color: var(--ink-light);
-            line-height: 1.4;
-        }
-
-        /* Structure Section */
-        .structure-section {
-            background: var(--paper-dark);
-            padding: 2.5rem 1.5rem;
-        }
-
-        .structure-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .structure-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .structure-card {
-            background: #fff;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .structure-card-header {
-            background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .structure-card-header .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-        }
-
-        .structure-card-header h3 {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .structure-card-header .subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.8rem;
-        }
-
-        .structure-card-body {
-            padding: 1.5rem;
-        }
-
-        .structure-card-body p {
-            font-size: 0.9rem;
-            color: var(--ink-light);
-            line-height: 1.7;
-        }
-
-        /* Themes Section */
-        .themes-section {
-            padding: 2rem 1.5rem;
-        }
-
-        .theme-card {
-            background: #fff;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .theme-header {
-            background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .theme-header .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-        }
-
-        .theme-header h3 {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .theme-body {
-            padding: 1.5rem;
-        }
-
-        .theme-body p {
-            font-size: 0.9rem;
-            color: var(--ink-light);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .theme-quote {
-            background: var(--paper-dark);
-            padding: 1.25rem 1.5rem;
-            border-left: 3px solid var(--gold);
-            margin: 1rem 0;
-            font-style: italic;
-            font-size: 0.95rem;
             color: var(--ink);
         }
 
-        .theme-quote .ref {
-            font-style: normal;
-            font-size: 0.8rem;
-            color: var(--dao);
-            margin-top: 0.5rem;
-            display: block;
-        }
-
-        /* Political Philosophy */
-        .political-section {
-            background: var(--paper-dark);
-            padding: 2.5rem 1.5rem;
-        }
-
-        .political-card {
-            background: #fff;
-            border-radius: 4px;
-            padding: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .political-card h3 {
-            font-size: 1.1rem;
-            color: var(--dao);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .political-card h3 .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-        }
-
-        .political-card p {
-            font-size: 0.9rem;
-            color: var(--ink-light);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .political-point {
-            background: var(--paper-dark);
-            padding: 1rem 1.25rem;
-            border-radius: 4px;
-            margin-bottom: 0.75rem;
-            border-left: 3px solid var(--dao);
-        }
-
-        .political-point strong {
-            color: var(--dao);
-        }
-
-        /* Paradoxes Section */
-        .paradoxes-section {
-            padding: 2rem 1.5rem;
-        }
-
+        /* Paradox Cards */
         .paradox-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1rem;
-            max-width: 900px;
-            margin: 0 auto;
         }
 
         .paradox-card {
             background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
             border-radius: 4px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             color: #fff;
         }
 
         .paradox-card .quote {
             font-style: italic;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
         }
 
         .paradox-card .ref {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--gold-light);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .paradox-card .explanation {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: rgba(255, 255, 255, 0.8);
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 0.75rem;
+            padding-top: 0.5rem;
         }
 
-        /* Discussion Questions */
-        .discussion-section {
-            padding: 2rem 1.5rem;
+        /* Questions */
+        .questions-section {
+            background: #fff;
+            padding: 3rem 1.5rem;
         }
 
-        .discussion-list {
-            list-style: none;
-            counter-reset: discussion;
-            max-width: 900px;
+        .questions-container {
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .discussion-list li {
-            counter-increment: discussion;
-            padding: 1rem 1.25rem 1rem 3.5rem;
-            background: #fff;
-            margin-bottom: 0.75rem;
-            border-radius: 4px;
-            position: relative;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        .questions-container h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            text-align: center;
+            margin-bottom: 1.5rem;
         }
 
-        .discussion-list li::before {
-            content: counter(discussion);
-            position: absolute;
-            left: 1rem;
-            top: 1rem;
-            width: 28px;
-            height: 28px;
-            background: var(--dao);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.85rem;
+        .question-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
         }
 
-        .discussion-list li strong {
-            color: var(--dao);
-        }
+        .question-item:last-child { border-bottom: none; }
 
-        /* Resources */
-        .resources-section {
-            background: var(--paper-dark);
-            padding: 2rem 1.5rem;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .resource-card {
-            background: #fff;
-            padding: 1.25rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .resource-card h4 {
+        .question-item .q-num {
             font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--ink-faint);
-            margin-bottom: 0.75rem;
+            color: var(--dao);
+            margin-bottom: 0.3rem;
         }
 
-        .resource-card a {
-            display: block;
+        .question-item p {
+            font-size: 0.95rem;
             color: var(--ink);
-            text-decoration: none;
-            padding: 0.35rem 0;
-            font-size: 0.85rem;
-            border-bottom: 1px solid #eee;
-            transition: color 0.2s ease;
-        }
-
-        .resource-card a:last-child {
-            border-bottom: none;
-        }
-
-        .resource-card a:hover {
-            color: var(--gold);
+            line-height: 1.7;
         }
 
         /* Footer */
         footer {
             background: var(--ink);
-            color: rgba(255, 255, 255, 0.6);
+            padding: 1.25rem 1.5rem;
             text-align: center;
-            padding: 1.5rem 1.5rem;
         }
 
         footer .foot-chinese {
@@ -708,723 +528,372 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                padding: 2.5rem 1rem 2rem;
-            }
-
-            .hero-chinese {
-                font-size: 1.8rem;
-            }
-
-            .hero h1 {
-                font-size: 1.2rem;
-            }
-
-            .hero-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .container {
-                padding: 1.5rem 1rem;
-            }
-
-            .nav-inner {
-                gap: 0.3rem;
-            }
-
-            .nav a {
-                font-size: 0.6rem;
-                padding: 0.3rem 0.5rem;
-            }
-
-            .opening-quote .chinese-text {
-                font-size: 1.4rem;
-            }
+            .nav { gap: 1rem; }
+            .container { padding: 2rem 1rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../index.html">&larr; EAST 370</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-chinese">道德經</div>
-            <h1>The Daodejing</h1>
-            <div class="hero-subtitle">"The Classic of the Way and Virtue"</div>
-            <div class="hero-meta">
-                <span><strong>Attributed to:</strong> Laozi (老子)</span>
-                <span><strong>Period:</strong> ~4th century BCE</span>
-                <span><strong>Reading:</strong> Ivanhoe pp. 171–210</span>
-            </div>
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">老子</span>
+            <span class="en">Daodejing</span>
+            <span class="meta">Laozi (traditional 6th c. BCE)<span>·</span>Ivanhoe pp. 171-210</span>
         </div>
-    </section>
+    </header>
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-inner">
-            <a href="../index.html" class="portal-link">Course Portal</a>
-            <a href="#overview">Overview</a>
-            <a href="#terms">Key Terms</a>
-            <a href="#chapters">Ch. 1–37</a>
-            <a href="#structure">Structure</a>
-            <a href="#themes">Themes</a>
-            <a href="#paradoxes">Paradoxes</a>
-            <a href="#discussion">Discussion</a>
-        </div>
+        <a href="#reading">Reading</a>
+        <a href="#dao">The Dao</a>
+        <a href="#chapters">Chapters</a>
+        <a href="#politics">Politics</a>
+        <a href="#paradoxes">Paradoxes</a>
+        <a href="#questions">Questions</a>
     </nav>
 
-    <!-- Opening Quote -->
-    <section class="opening-section" id="overview">
-        <div class="opening-quote">
-            <div class="chinese-text">道可道，非常道。名可名，非常名。</div>
-            <div class="english-text">"The Way that can be spoken of is not the constant Way.<br>The name that can be
-                named is not the constant name."</div>
-            <div class="reference">— Chapter 1</div>
-        </div>
-
-        <div class="intro-card">
-            <p>The <strong>Daodejing</strong> (道德經) is one of the most translated texts in world literature. In just
-                5,000 characters across 81 brief chapters, it presents a radical alternative to the Confucian
-                worldview—one that finds wisdom in yielding rather than striving, in emptiness rather than fullness, in
-                returning to nature rather than cultivating civilization.</p>
-
-            <p><strong>Laozi</strong> (老子, "Old Master") may be a legendary figure. According to tradition, he was a
-                Zhou court archivist who met the young Confucius and later departed westward, leaving behind this text
-                at a border crossing. Modern scholars debate whether "Laozi" was a single author or the tradition's name
-                for accumulated wisdom.</p>
-
-            <p>What's certain is the text's power. The Daodejing has shaped Chinese philosophy, religion, art, medicine,
-                and martial arts for over two millennia. Its influence extends to Chan Buddhism and, in the modern
-                world, to everything from management theory to environmental ethics.</p>
+    <!-- Reading Info -->
+    <section class="reading-info" id="reading">
+        <div class="reading-box">
+            <h2>Assigned Reading</h2>
+            <p><strong>Ivanhoe & Van Norden, pp. 171-210</strong> — Introduction and selections from 81 chapters of the Daodejing</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">The text divides into <strong>Daojing</strong> (道經, Ch. 1-37) on the nature of the Dao, and <strong>Dejing</strong> (德經, Ch. 38-81) on virtue and governance.</p>
         </div>
     </section>
 
-    <!-- Key Terms Section -->
-    <section class="container" id="terms">
-        <div class="section-header">
-            <h2>Key Vocabulary</h2>
-            <div class="subtitle"><span class="chinese">關鍵詞</span> Essential Terms</div>
+    <!-- Part 1: The Nature of Dao -->
+    <div class="section-header dao" id="dao">
+        <div class="section-number">Part One</div>
+        <div class="chinese-title">道之本性</div>
+        <h2>The Nature of the Dao</h2>
+    </div>
+
+    <div class="container">
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">道</td>
+                            <td class="pinyin-cell">dào</td>
+                            <td>The Way; ultimate reality, source of all being</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">德</td>
+                            <td class="pinyin-cell">dé</td>
+                            <td>Virtue/Power; potency received from the Dao</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">無為</td>
+                            <td class="pinyin-cell">wú wéi</td>
+                            <td>Non-action; effortless action in harmony with nature</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">自然</td>
+                            <td class="pinyin-cell">zìrán</td>
+                            <td>Naturalness; things being what they are</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">樸</td>
+                            <td class="pinyin-cell">pǔ</td>
+                            <td>The Uncarved Block; original simplicity</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3>The Ineffable Dao</h3>
+                <div class="synopsis">
+                    <p><strong>Beyond Language:</strong> "The Dao that can be spoken is not the constant Dao." The text undermines itself at the outset—if the Dao could be captured in words, it wouldn't be the real Dao.</p>
+                    <p><strong>Source of All:</strong> The Dao is the origin of heaven and earth, the "mother of the myriad things." It operates without forcing, without intention.</p>
+                    <p><strong>Emptiness as Power:</strong> The Dao is like a bowl—its usefulness comes from what is not there. Non-being (無) is not nothingness but limitlessness.</p>
+                </div>
+            </section>
         </div>
 
-        <div class="terms-grid">
-            <div class="term-card essential">
-                <div class="term-chinese">道</div>
-                <div class="term-pinyin">Dào</div>
-                <div class="term-meaning">The Way. The ultimate reality, source of all being. Transcendent, ineffable,
-                    beyond language. "The Dao that can be spoken is not the constant Dao."</div>
-            </div>
-
-            <div class="term-card essential">
-                <div class="term-chinese">德</div>
-                <div class="term-pinyin">Dé</div>
-                <div class="term-meaning">Virtue / Power. The inherent potency beings receive from the Dao. Not moral
-                    virtue but authentic power—the "virtue" of water to flow downward.</div>
-            </div>
-
-            <div class="term-card essential">
-                <div class="term-chinese">無為</div>
-                <div class="term-pinyin">Wú Wéi</div>
-                <div class="term-meaning">Non-action / Effortless action. Not passivity but freedom from forced,
-                    desire-driven striving. Acting in spontaneous harmony with nature.</div>
-            </div>
-
-            <div class="term-card essential">
-                <div class="term-chinese">自然</div>
-                <div class="term-pinyin">Zìrán</div>
-                <div class="term-meaning">Naturalness / Self-so. Things being what they naturally are without
-                    interference. The spontaneous operation of nature. Authenticity.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">無</div>
-                <div class="term-pinyin">Wú</div>
-                <div class="term-meaning">Non-being / Emptiness. Describes the Dao's transcendence. Not nothingness but
-                    limitlessness—like the emptiness of a bowl that makes it useful.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">有</div>
-                <div class="term-pinyin">Yǒu</div>
-                <div class="term-meaning">Being / Having. Manifest existence, the world of forms. Arises from and
-                    returns to non-being.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">樸</div>
-                <div class="term-pinyin">Pǔ</div>
-                <div class="term-meaning">The Uncarved Block. Symbol of original simplicity before civilization imposes
-                    artificial distinctions. The uncorrupted natural state.</div>
-            </div>
-
-            <div class="term-card">
-                <div class="term-chinese">柔</div>
-                <div class="term-pinyin">Róu</div>
-                <div class="term-meaning">Softness / Yielding. The power of the weak over the strong—water wearing away
-                    stone. Flexibility triumphs over rigidity.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter Notes Section -->
-    <section class="container" id="chapters">
-        <div class="section-header">
-            <h2>Chapter Guide</h2>
-            <div class="subtitle"><span class="chinese">道經</span> Daojing (Chapters 1–37)</div>
+        <div class="saying-box">
+            <div class="saying-chinese">道可道，非常道。名可名，非常名。</div>
+            <div class="saying-meaning">"The Way that can be spoken is not the constant Way. The name that can be named is not the constant name."</div>
+            <div class="saying-note">Chapter 1 — The text's famous opening</div>
         </div>
 
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Water as Model</h3>
+                <div class="synopsis">
+                    <p><strong>Highest Good:</strong> "The highest good is like water—it benefits all things and contends with none." Water seeks the low places others avoid.</p>
+                    <p><strong>Soft Overcomes Hard:</strong> Nothing is softer than water, yet it wears away stone. The weak defeats the strong; the soft defeats the hard.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3>Returning to the Root</h3>
+                <div class="synopsis">
+                    <p><strong>Primordial Simplicity:</strong> While Confucians look back to Zhou civilization, Daoists look further—to a time before culture carved us into artificial shapes.</p>
+                    <p><strong>Reversal as Motion:</strong> "Returning is the motion of the Dao." All things return to their source; knowing when to stop prevents disaster.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="quote-block">
+            "Nothing under heaven is softer or weaker than water, yet nothing is better at attacking the hard and strong."
+            <cite>— Chapter 78</cite>
+        </div>
+    </div>
+
+    <!-- Chapter Overview -->
+    <div class="section-header" style="background: var(--paper-dark); padding: 2rem 1.5rem;" id="chapters">
+        <h2 style="color: var(--ink);">Chapter Guide: Daojing (1-37)</h2>
+    </div>
+
+    <div class="container" style="padding-top: 1.5rem;">
         <div class="chapter-grid">
-            <div class="chapter-card">
-                <div class="chapter-num">1</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Mystery of mystery</div>
-                    <div class="chapter-note">Fundamental ontology — the Dao that can be spoken is not the constant Dao
-                    </div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">2</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Strive and fail!</div>
-                    <div class="chapter-note">Opposites create each other; the sage acts without striving</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">3</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Strong bones, weak commitments</div>
-                    <div class="chapter-note">Keep people's bellies full and ambitions empty</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">4</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Fundamental ontology</div>
-                    <div class="chapter-note">The Dao is empty yet inexhaustible — ancestor of all things</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">5</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Heaven and straw dogs</div>
-                    <div class="chapter-note">Heaven and earth are not humane — treat all things as straw dogs</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">6</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Enigmatic yin</div>
-                    <div class="chapter-note">The spirit of the valley never dies — mysterious feminine</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">7</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Irony, paradox, and the sage</div>
-                    <div class="chapter-note">Heaven and earth endure; the sage puts himself last</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">8</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">WATER</div>
-                    <div class="chapter-note">The highest good is like water — benefits all, contends with none</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">9</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Humble heaven</div>
-                    <div class="chapter-note">Fill to the brim and it spills — know when to stop</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">10</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Ontology of the One</div>
-                    <div class="chapter-note">Play the part of feminine; Mysterious Virtue (玄德)</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">11</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">There: not there</div>
-                    <div class="chapter-note">Profit from what is there; use from what is not</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">12</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Blind/deaden/deafen</div>
-                    <div class="chapter-note">Five colors blind the eye — mysterious senses overwhelmed</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">13</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Body and survival most important</div>
-                    <div class="chapter-note">Favor and disgrace both bring anxiety</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">14</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">夷 希 微</div>
-                    <div class="chapter-note">What cannot be seen, heard, or grasped — the formless form</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">15</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Describing ultimate truth is hard</div>
-                    <div class="chapter-note">YIN YANG — the ancient masters were subtle and profound</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">16</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">ROOTS and LI SAO vibes</div>
-                    <div class="chapter-note">Return to the root; embrace stillness and constancy</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">17</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">On Ruling / this is just who we are</div>
-                    <div class="chapter-note">The best rulers — the people barely know they exist</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">18</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Abandon the great way</div>
-                    <div class="chapter-note">When Dao is lost, benevolence and righteousness appear</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">19</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Manifest Plainness, Embrace simplicity</div>
-                    <div class="chapter-note">Abandon sageness, discard wisdom — people benefit a hundredfold</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">20</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">LI SAO — I, Alone!</div>
-                    <div class="chapter-note">I alone am different — drifting, unattached, like an infant</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">21</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Way is vague, elusive</div>
-                    <div class="chapter-note">The nature of great virtue follows the Dao alone</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">22</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Biblical — meek</div>
-                    <div class="chapter-note">Yield and overcome; bend and be straight</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">23</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Identify w/ the Way — and loss?</div>
-                    <div class="chapter-note">Nature speaks few words; a whirlwind doesn't last all morning</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">24</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Excess, pointless, brag, stride</div>
-                    <div class="chapter-note">Those who stand on tiptoe don't stand firm</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">25</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">True King! Before Heaven and Earth</div>
-                    <div class="chapter-note">Something formless and complete — I call it Dao</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">26</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Anti-light and agitated</div>
-                    <div class="chapter-note">Heavy is the root of light; stillness masters agitation</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">27</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Fundamental mystery</div>
-                    <div class="chapter-note">Relationship between good and bad — good walker leaves no tracks</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">28</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">CHILD / INFINITE / UNHEWN WOOD</div>
-                    <div class="chapter-note">Know the male, keep to the female — return to the uncarved block (樸)</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">29</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Anti-extreme, excessive, extravagant</div>
-                    <div class="chapter-note">The world is a sacred vessel — cannot be controlled</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">30</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Anti-Army; rely on WU is anti-Dao</div>
-                    <div class="chapter-note">Those who use Dao to advise rulers oppose using force</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">31</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Military victories are always sad</div>
-                    <div class="chapter-note">Weapons are tools of ill omen — use only when unavoidable</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">32</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Kongzi: Know when to stop!</div>
-                    <div class="chapter-note">The Dao is eternally nameless; know when to stop and avoid danger</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">33</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Others/self knowledge</div>
-                    <div class="chapter-note">"Subtle enlightenment" — knowing others is clever; knowing yourself is
-                        enlightened</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">34</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Ruler does not lord over</div>
-                    <div class="chapter-note">Insignificant + Great = Meta Great — the Dao flows everywhere</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">35</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Great Image — never run dry</div>
-                    <div class="chapter-note">Put to use! Fun! — hold fast to the great image</div>
-                </div>
-            </div>
-            <div class="chapter-card">
-                <div class="chapter-num">36</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">"Subtle enlightenment"</div>
-                    <div class="chapter-note">To shrink something, first stretch it; soft overcomes hard</div>
-                </div>
-            </div>
-            <div class="chapter-card highlight">
-                <div class="chapter-num">37</div>
-                <div class="chapter-content">
-                    <div class="chapter-title">Statecraft / nameless unhewn wood</div>
-                    <div class="chapter-note">Press them down with the weight of the nameless uncarved block — the Dao
-                        never acts, yet nothing is left undone</div>
-                </div>
-            </div>
+            <div class="chapter-card highlight"><div class="chapter-num">1</div><div class="chapter-content"><div class="chapter-title">The Dao beyond words</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">2</div><div class="chapter-content"><div class="chapter-title">Opposites create each other</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">3</div><div class="chapter-content"><div class="chapter-title">Empty bellies, full hearts</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">4</div><div class="chapter-content"><div class="chapter-title">Dao: empty yet inexhaustible</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">5</div><div class="chapter-content"><div class="chapter-title">Heaven's straw dogs</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">6</div><div class="chapter-content"><div class="chapter-title">The mysterious feminine</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">7</div><div class="chapter-content"><div class="chapter-title">The sage puts himself last</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">8</div><div class="chapter-content"><div class="chapter-title">WATER — highest good</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">9</div><div class="chapter-content"><div class="chapter-title">Know when to stop</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">10</div><div class="chapter-content"><div class="chapter-title">Mysterious Virtue (玄德)</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">11</div><div class="chapter-content"><div class="chapter-title">Use from what is not</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">12</div><div class="chapter-content"><div class="chapter-title">Five colors blind the eye</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">13</div><div class="chapter-content"><div class="chapter-title">Favor and disgrace</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">14</div><div class="chapter-content"><div class="chapter-title">The formless form</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">15</div><div class="chapter-content"><div class="chapter-title">Ancient masters: subtle</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">16</div><div class="chapter-content"><div class="chapter-title">Return to the root</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">17</div><div class="chapter-content"><div class="chapter-title">Best rulers barely known</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">18</div><div class="chapter-content"><div class="chapter-title">When Dao is lost...</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">19</div><div class="chapter-content"><div class="chapter-title">Abandon sageness</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">20</div><div class="chapter-content"><div class="chapter-title">I alone am different</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">21</div><div class="chapter-content"><div class="chapter-title">Great virtue follows Dao</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">22</div><div class="chapter-content"><div class="chapter-title">Yield and overcome</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">23</div><div class="chapter-content"><div class="chapter-title">Nature speaks few words</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">24</div><div class="chapter-content"><div class="chapter-title">Tiptoe stance won't hold</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">25</div><div class="chapter-content"><div class="chapter-title">Before Heaven and Earth</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">26</div><div class="chapter-content"><div class="chapter-title">Heavy roots light</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">27</div><div class="chapter-content"><div class="chapter-title">Good walker: no tracks</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">28</div><div class="chapter-content"><div class="chapter-title">Return to uncarved block</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">29</div><div class="chapter-content"><div class="chapter-title">World: sacred vessel</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">30</div><div class="chapter-content"><div class="chapter-title">Oppose using force</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">31</div><div class="chapter-content"><div class="chapter-title">Weapons: tools of ill omen</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">32</div><div class="chapter-content"><div class="chapter-title">Dao eternally nameless</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">33</div><div class="chapter-content"><div class="chapter-title">Know yourself: enlightened</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">34</div><div class="chapter-content"><div class="chapter-title">Dao flows everywhere</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">35</div><div class="chapter-content"><div class="chapter-title">Hold the great image</div></div></div>
+            <div class="chapter-card"><div class="chapter-num">36</div><div class="chapter-content"><div class="chapter-title">Soft overcomes hard</div></div></div>
+            <div class="chapter-card highlight"><div class="chapter-num">37</div><div class="chapter-content"><div class="chapter-title">Dao never acts, nothing undone</div></div></div>
         </div>
-    </section>
+    </div>
 
-    <!-- Structure Section -->
-    <section class="structure-section" id="structure">
-        <div class="section-header">
-            <h2>Text Structure</h2>
-            <div class="subtitle"><span class="chinese">結構</span> Two Books</div>
+    <!-- Part 2: Political Philosophy -->
+    <div class="section-header politics" id="politics">
+        <div class="section-number">Part Two</div>
+        <div class="chinese-title">治國</div>
+        <h2>Political Philosophy</h2>
+    </div>
+
+    <div class="container">
+        <div class="two-col">
+            <section class="content-section teal">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">無</td>
+                            <td class="pinyin-cell">wú</td>
+                            <td>Non-being; the Dao's transcendence</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">柔</td>
+                            <td class="pinyin-cell">róu</td>
+                            <td>Softness; power of yielding</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">聖人</td>
+                            <td class="pinyin-cell">shèng rén</td>
+                            <td>Sage; the ideal ruler</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section teal">
+                <h3>The Sage-Ruler</h3>
+                <div class="synopsis">
+                    <p><strong>Invisible Leadership:</strong> "The best ruler is one whose existence the people barely know." Next comes one they love; then one they fear; worst is one they despise.</p>
+                    <p><strong>Minimal Government:</strong> The sage acts without acting (wu wei), teaches without words, and when work is done, takes no credit—therefore it lasts.</p>
+                </div>
+            </section>
         </div>
 
-        <div class="structure-grid">
-            <div class="structure-card">
-                <div class="structure-card-header">
-                    <div class="chinese">道經</div>
-                    <div>
-                        <h3>Daojing</h3>
-                        <div class="subtitle">Classic of the Way (Ch. 1–37)</div>
-                    </div>
+        <div class="two-col">
+            <section class="content-section teal">
+                <h3>Against Civilization</h3>
+                <div class="synopsis">
+                    <p><strong>Confucian Virtues = Decline:</strong> "When the great Dao is abandoned, benevolence and righteousness appear." These are symptoms, not cures—when people lived naturally, they didn't need moral concepts.</p>
+                    <p><strong>Small State, Few People:</strong> The ideal community needs no weapons, no writing, no advanced technology. People hear neighboring roosters but never visit.</p>
                 </div>
-                <div class="structure-card-body">
-                    <p>The first book focuses on the nature of the Dao itself: its ineffability, its role as source of
-                        all things, and the cosmic principles that govern reality. Here we find the famous opening lines
-                        and the text's deepest metaphysical reflections.</p>
-                </div>
-            </div>
+            </section>
 
-            <div class="structure-card">
-                <div class="structure-card-header">
-                    <div class="chinese">德經</div>
-                    <div>
-                        <h3>Dejing</h3>
-                        <div class="subtitle">Classic of Virtue (Ch. 38–81)</div>
-                    </div>
+            <section class="content-section teal">
+                <h3>Anti-War Stance</h3>
+                <div class="synopsis">
+                    <p><strong>Weapons = Ill Omen:</strong> "Those who use Dao to advise rulers oppose using force." Weapons are tools of violence—the sage uses them only when unavoidable.</p>
+                    <p><strong>Victory = Mourning:</strong> Military victories should be mourned, not celebrated. The general who wins should observe funeral rites.</p>
                 </div>
-                <div class="structure-card-body">
-                    <p>The second book addresses De (virtue/power) and its application to human life and governance.
-                        More practical in orientation, it discusses the sage-ruler, military strategy, and how to live
-                        in harmony with the Dao.</p>
-                </div>
-            </div>
+            </section>
         </div>
 
-        <div class="intro-card" style="margin-top: 1.5rem;">
-            <p><strong>Note on Textual History:</strong> The Mawangdui silk manuscripts (168 BCE) reverse this order,
-                placing the Dejing first. The Guodian bamboo texts (c. 300 BCE) are even older but incomplete. The
-                received text we read today was shaped by later commentators, especially Wang Bi (226–249 CE).</p>
+        <div class="saying-box">
+            <div class="saying-chinese">無為而無不為</div>
+            <div class="saying-meaning">"The Dao never acts, yet nothing is left undone."</div>
+            <div class="saying-note">Chapter 37 — The paradox of effortless effectiveness</div>
         </div>
-    </section>
+    </div>
 
-    <!-- Themes Section -->
-    <section class="themes-section" id="themes">
-        <div class="container">
-            <div class="section-header">
-                <h2>Major Themes</h2>
-                <div class="subtitle"><span class="chinese">主題</span> Central Ideas</div>
-            </div>
+    <!-- Part 3: Paradoxes -->
+    <div class="section-header paradox" id="paradoxes">
+        <div class="section-number">Part Three</div>
+        <div class="chinese-title">反</div>
+        <h2>Famous Paradoxes</h2>
+    </div>
 
-            <!-- Theme 1: The Ineffable Dao -->
-            <div class="theme-card">
-                <div class="theme-header">
-                    <div class="chinese">言</div>
-                    <h3>The Limits of Language</h3>
-                </div>
-                <div class="theme-body">
-                    <p>The Daodejing begins by undermining itself: if the Dao could be captured in words, it wouldn't be
-                        the real Dao. Language creates distinctions (beautiful/ugly, good/bad) that distort reality. The
-                        sage "practices the teaching that is without words."</p>
-
-                    <div class="theme-quote">
-                        "Those who know do not speak; those who speak do not know."
-                        <span class="ref">— Chapter 56</span>
-                    </div>
-
-                    <p>This paradox explains the text's cryptic style. It uses contradiction, imagery, and negation to
-                        point beyond language toward direct experience of the Dao.</p>
-                </div>
-            </div>
-
-            <!-- Theme 2: Returning to the Root -->
-            <div class="theme-card">
-                <div class="theme-header">
-                    <div class="chinese">歸</div>
-                    <h3>Returning to the Root</h3>
-                </div>
-                <div class="theme-body">
-                    <p>While Confucians look back to the Zhou golden age of culture, Daoists look further back—to a
-                        primordial simplicity before civilization. The goal is to "return to the state of the uncarved
-                        block" (樸), the natural wholeness before society carved us into artificial shapes.</p>
-
-                    <div class="theme-quote">
-                        "Returning is the motion of the Dao. Weakness is the function of the Dao. The myriad things
-                        under heaven are born from being. Being is born from non-being."
-                        <span class="ref">— Chapter 40</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Theme 3: Wu Wei -->
-            <div class="theme-card">
-                <div class="theme-header">
-                    <div class="chinese">無為</div>
-                    <h3>Non-Action (Wu Wei)</h3>
-                </div>
-                <div class="theme-body">
-                    <p>Wu wei doesn't mean doing nothing. It means acting without forcing, without ego-driven striving.
-                        Water doesn't "try" to flow downhill—it simply follows its nature. The sage acts the same way:
-                        effectively but without struggle.</p>
-
-                    <div class="theme-quote">
-                        "The Dao never acts, yet nothing is left undone. If lords and kings could hold to it, the myriad
-                        things would transform themselves."
-                        <span class="ref">— Chapter 37</span>
-                    </div>
-
-                    <p>The opposite of wu wei is <em>wei</em> (為)—deliberate, calculated action that inevitably creates
-                        resistance and unintended consequences.</p>
-                </div>
-            </div>
-
-            <!-- Theme 4: The Power of the Weak -->
-            <div class="theme-card">
-                <div class="theme-header">
-                    <div class="chinese">柔</div>
-                    <h3>The Power of Softness</h3>
-                </div>
-                <div class="theme-body">
-                    <p>The Daodejing reverses conventional values. The soft overcomes the hard. The low position is the
-                        position of power. Emptiness is fullness. Water, the softest thing, wears away stone.</p>
-
-                    <div class="theme-quote">
-                        "Nothing under heaven is softer or weaker than water, yet nothing is better at attacking the
-                        hard and strong. There is nothing that can replace it."
-                        <span class="ref">— Chapter 78</span>
-                    </div>
-
-                    <p>This has practical implications: the general who yields wins; the ruler who stays in the
-                        background succeeds; the person who doesn't compete has no competitors.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Political Philosophy -->
-    <section class="political-section">
-        <div class="political-card">
-            <h3><span class="chinese">治國</span> Political Philosophy: The Sage-Ruler</h3>
-
-            <p>The Daodejing is also a handbook for rulers. But its advice inverts conventional political wisdom. Where
-                Confucians wanted activist rulers cultivating virtue, Daoists want rulers who barely seem to exist.</p>
-
-            <div class="political-point">
-                <strong>Minimal Government:</strong> "The best ruler is one whose existence the people barely know. Next
-                comes one whom they love and praise. Next comes one whom they fear. And next comes one whom they
-                despise."
-            </div>
-
-            <div class="political-point">
-                <strong>Against Knowledge:</strong> "In ancient times, those who were good at practicing the Dao did not
-                use it to enlighten the people, but to keep them in ignorance." This controversial passage may mean
-                freeing people from the artificial distinctions that breed competition and conflict.
-            </div>
-
-            <div class="political-point">
-                <strong>Small State, Few People:</strong> The ideal community is small enough that people can hear
-                neighboring roosters but have no desire to visit. They need no weapons, no writing, no advanced
-                technology.
-            </div>
-
-            <p style="margin-top: 1.5rem;">This political vision stands in direct opposition to Confucian ideals of
-                civilizational development. Where Confucians see progress in ritual, music, and moral education, Daoists
-                see decline from original simplicity.</p>
-        </div>
-    </section>
-
-    <!-- Paradoxes Section -->
-    <section class="paradoxes-section" id="paradoxes">
-        <div class="section-header">
-            <h2>Famous Paradoxes</h2>
-            <div class="subtitle"><span class="chinese">反</span> Reversal as Method</div>
-        </div>
-
+    <div class="container">
         <div class="paradox-grid">
             <div class="paradox-card">
                 <div class="quote">"The highest virtue is not virtuous; therefore it truly has virtue."</div>
                 <div class="ref">— Chapter 38</div>
-                <div class="explanation">Those who consciously pursue virtue have already lost it. True virtue operates
-                    without self-awareness of being virtuous.</div>
+                <div class="explanation">Those who consciously pursue virtue have already lost it. True virtue operates without self-awareness.</div>
             </div>
 
             <div class="paradox-card">
                 <div class="quote">"To hold and fill to overflowing is not as good as stopping in time."</div>
                 <div class="ref">— Chapter 9</div>
-                <div class="explanation">The point of maximum success is the moment before decline begins. Know when to
-                    stop; fullness invites emptying.</div>
-            </div>
-
-            <div class="paradox-card">
-                <div class="quote">"The five colors blind the eye. The five tones deafen the ear."</div>
-                <div class="ref">— Chapter 12</div>
-                <div class="explanation">Sensory stimulation overwhelms natural perception. Simplicity preserves
-                    clarity; complexity destroys it.</div>
+                <div class="explanation">Maximum success is the moment before decline. Know when to stop; fullness invites emptying.</div>
             </div>
 
             <div class="paradox-card">
                 <div class="quote">"When the great Dao is abandoned, benevolence and rightness appear."</div>
                 <div class="ref">— Chapter 18</div>
-                <div class="explanation">Confucian virtues are symptoms of decline. When people lived naturally, they
-                    didn't need concepts like "benevolence"—they just were benevolent.</div>
+                <div class="explanation">Confucian virtues are symptoms of decline. When people lived naturally, they didn't need moral concepts.</div>
+            </div>
+
+            <div class="paradox-card">
+                <div class="quote">"The five colors blind the eye. The five tones deafen the ear."</div>
+                <div class="ref">— Chapter 12</div>
+                <div class="explanation">Sensory stimulation overwhelms natural perception. Simplicity preserves clarity.</div>
             </div>
 
             <div class="paradox-card">
                 <div class="quote">"A great state is like the lower reaches of a river."</div>
                 <div class="ref">— Chapter 61</div>
-                <div class="explanation">The low position attracts; all water flows to it. A great nation becomes great
-                    by placing itself below others, drawing them in rather than forcing them down.</div>
+                <div class="explanation">The low position attracts. A great nation becomes great by placing itself below others.</div>
             </div>
 
             <div class="paradox-card">
-                <div class="quote">"One who knows others is clever; one who knows himself is enlightened."</div>
-                <div class="ref">— Chapter 33</div>
-                <div class="explanation">External knowledge pales beside self-knowledge. The greatest conquest is
-                    conquering yourself.</div>
+                <div class="quote">"Those who know do not speak; those who speak do not know."</div>
+                <div class="ref">— Chapter 56</div>
+                <div class="explanation">True understanding cannot be verbalized. The text undermines its own authority.</div>
             </div>
         </div>
-    </section>
+
+        <section class="content-section purple" style="margin-top: 2rem;">
+            <h3>Laozi vs. Confucius</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Confucian View</th>
+                        <th>Daoist View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Golden Age</strong></td>
+                        <td>Zhou dynasty civilization</td>
+                        <td>Primordial simplicity before culture</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Human Problem</strong></td>
+                        <td>Lack of cultivation</td>
+                        <td>Too much cultivation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Solution</strong></td>
+                        <td>Ritual, learning, moral effort</td>
+                        <td>Return to naturalness, wu wei</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ideal Ruler</strong></td>
+                        <td>Moral exemplar, active transformer</td>
+                        <td>Invisible, does nothing yet nothing undone</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="quote-block">
+            "To exalt Heaven and long for it—how can this compare to nourishing things and overseeing them?"
+            <cite>— Cf. Xunzi's later naturalistic turn, which draws on Daoist themes</cite>
+        </div>
+    </div>
 
     <!-- Discussion Questions -->
-    <section class="discussion-section" id="discussion">
-        <div class="section-header">
+    <section class="questions-section" id="questions">
+        <div class="questions-container">
             <h2>Discussion Questions</h2>
-            <div class="subtitle"><span class="chinese">討論</span> For Class</div>
-        </div>
 
-        <ol class="discussion-list">
-            <li><strong>The Language Paradox:</strong> If the Dao can't be spoken, why write a book about it? Is the
-                Daodejing undermining itself, or is there a method to using language against language?</li>
-
-            <li><strong>Wu Wei in Practice:</strong> What would "non-action" look like in your own life? Is it possible
-                to act without ego, without striving? Can you think of activities where you experience effortless
-                action?</li>
-
-            <li><strong>Civilization as Decline:</strong> The text suggests culture is a falling away from natural
-                goodness. Is this convincing? What would be lost if we "returned to the uncarved block"?</li>
-
-            <li><strong>Soft Power:</strong> "The soft overcomes the hard." Can you find examples in politics,
-                relationships, or daily life where yielding proves more effective than forcing?</li>
-
-            <li><strong>Political Implications:</strong> The text has been read as supporting everything from anarchism
-                to authoritarianism. What kind of politics does it actually imply? Is "keeping people in ignorance"
-                paternalistic or liberating?</li>
-
-            <li><strong>Confucius vs. Laozi:</strong> Both respond to the same crisis (Zhou dynasty decline) with
-                opposite prescriptions. Who has the better diagnosis? Is the solution more culture or less?</li>
-        </ol>
-    </section>
-
-    <!-- Resources -->
-    <section class="resources-section">
-        <div class="section-header">
-            <h2>Resources</h2>
-            <div class="subtitle">Further Reading</div>
-        </div>
-
-        <div class="resources-grid">
-            <div class="resource-card">
-                <h4>Primary Texts</h4>
-                <a href="https://ctext.org/dao-de-jing" target="_blank" rel="noopener">Daodejing at ctext.org</a>
-                <a href="https://ctext.org/dao-de-jing/dao-jing" target="_blank" rel="noopener">Daojing (Ch. 1–37)</a>
-                <a href="https://ctext.org/dao-de-jing/de-jing" target="_blank" rel="noopener">Dejing (Ch. 38–81)</a>
+            <div class="question-item">
+                <div class="q-num">Question 1</div>
+                <p>If the Dao can't be spoken, why write a book about it? Is the Daodejing undermining itself, or is there a method to using language against language?</p>
             </div>
 
-            <div class="resource-card">
-                <h4>Encyclopedias</h4>
-                <a href="https://plato.stanford.edu/entries/laozi/" target="_blank" rel="noopener">SEP: Laozi</a>
-                <a href="https://plato.stanford.edu/entries/daoism/" target="_blank" rel="noopener">SEP: Daoism</a>
-                <a href="https://iep.utm.edu/daoism/" target="_blank" rel="noopener">IEP: Daoism</a>
+            <div class="question-item">
+                <div class="q-num">Question 2</div>
+                <p>What would "non-action" (wu wei) look like in your own life? Is it possible to act without ego, without striving? Can you think of activities where you experience effortless action?</p>
             </div>
 
-            <div class="resource-card">
-                <h4>Course Materials</h4>
-                <a href="kongzi.html">Kongzi Study Guide</a>
-                <a href="zhuangzi.html">Zhuangzi Study Guide</a>
-                <a href="../index.html">Course Portal</a>
+            <div class="question-item">
+                <div class="q-num">Question 3</div>
+                <p>The text suggests culture is a falling away from natural goodness. Is this convincing? What would be lost if we "returned to the uncarved block"?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 4</div>
+                <p>"The soft overcomes the hard." Can you find examples in politics, relationships, or daily life where yielding proves more effective than forcing?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 5</div>
+                <p>The text has been read as supporting everything from anarchism to authoritarianism. What kind of politics does it actually imply? Is "keeping people in ignorance" paternalistic or liberating?</p>
+            </div>
+
+            <div class="question-item">
+                <div class="q-num">Question 6</div>
+                <p>Confucius and Laozi respond to the same crisis (Zhou dynasty decline) with opposite prescriptions. Who has the better diagnosis? Is the solution more culture or less?</p>
             </div>
         </div>
     </section>
