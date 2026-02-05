@@ -7,21 +7,18 @@
     <title>Laozi Study Guide | EAST 370</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
             --ink-faint: #8a8a8a;
-            --paper: #faf9f7;
+            --paper: #fafaf8;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            --primary: #1a4a2a;
-            --primary-light: #2d6b3f;
-            --accent: #3d7a4a;
+            --dao: #3D8B4D;
+            --dao-dark: #2d6b3f;
         }
 
         * {
@@ -35,17 +32,35 @@
         }
 
         body {
-            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
             line-height: 1.7;
             font-size: 16px;
         }
 
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+        }
+
+        .breadcrumb a {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0d2818 0%, #1a4a2a 50%, #0d2818 100%);
-            padding: 4rem 2rem 3rem;
+            background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 50%, var(--ink) 100%);
+            padding: 3rem 2rem 2.5rem;
             text-align: center;
             position: relative;
         }
@@ -70,7 +85,7 @@
 
         .hero-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--gold-light);
             letter-spacing: 0.15em;
             margin-bottom: 0.5rem;
@@ -78,15 +93,15 @@
 
         .hero h1 {
             font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 300;
             color: #fff;
             letter-spacing: 0.08em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .hero-subtitle {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.7);
             font-style: italic;
             margin-bottom: 1rem;
@@ -97,7 +112,7 @@
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: rgba(255, 255, 255, 0.7);
         }
 
@@ -115,7 +130,7 @@
         .nav {
             position: sticky;
             top: 0;
-            background: rgba(13, 40, 24, 0.97);
+            background: rgba(26, 26, 26, 0.97);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             z-index: 1000;
@@ -185,7 +200,7 @@
         .section-header .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1.5rem;
-            color: var(--primary);
+            color: var(--dao);
             margin-right: 0.5rem;
         }
 
@@ -202,7 +217,7 @@
         }
 
         .opening-quote {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
             border-radius: 4px;
             padding: 2.5rem 2rem;
             max-width: 900px;
@@ -240,7 +255,7 @@
             max-width: 900px;
             margin: 2rem auto 0;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid var(--dao);
         }
 
         .intro-card p {
@@ -267,7 +282,7 @@
             border-radius: 4px;
             padding: 1.25rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--accent);
+            border-left: 3px solid var(--dao);
             transition: transform 0.2s ease;
         }
 
@@ -278,14 +293,14 @@
         }
 
         .term-card.essential {
-            border-left-color: var(--primary);
+            border-left-color: var(--dao-dark);
             background: linear-gradient(135deg, #fff 0%, #f5faf6 100%);
         }
 
         .term-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 2.2rem;
-            color: var(--primary);
+            color: var(--dao);
             margin-bottom: 0.25rem;
         }
 
@@ -332,7 +347,7 @@
         }
 
         .chapter-num {
-            background: var(--primary);
+            background: var(--dao);
             color: #fff;
             font-weight: 700;
             font-size: 0.9rem;
@@ -389,7 +404,7 @@
         }
 
         .structure-card-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
             padding: 1.25rem 1.5rem;
             display: flex;
             align-items: center;
@@ -437,7 +452,7 @@
         }
 
         .theme-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
             padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
@@ -480,7 +495,7 @@
         .theme-quote .ref {
             font-style: normal;
             font-size: 0.8rem;
-            color: var(--primary);
+            color: var(--dao);
             margin-top: 0.5rem;
             display: block;
         }
@@ -502,7 +517,7 @@
 
         .political-card h3 {
             font-size: 1.1rem;
-            color: var(--primary);
+            color: var(--dao);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -525,11 +540,11 @@
             padding: 1rem 1.25rem;
             border-radius: 4px;
             margin-bottom: 0.75rem;
-            border-left: 3px solid var(--primary);
+            border-left: 3px solid var(--dao);
         }
 
         .political-point strong {
-            color: var(--primary);
+            color: var(--dao);
         }
 
         /* Paradoxes Section */
@@ -546,7 +561,7 @@
         }
 
         .paradox-card {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, var(--dao) 0%, var(--dao-dark) 100%);
             border-radius: 4px;
             padding: 1.5rem;
             color: #fff;
@@ -602,7 +617,7 @@
             top: 1rem;
             width: 28px;
             height: 28px;
-            background: var(--primary);
+            background: var(--dao);
             color: #fff;
             border-radius: 50%;
             display: flex;
@@ -613,7 +628,7 @@
         }
 
         .discussion-list li strong {
-            color: var(--primary);
+            color: var(--dao);
         }
 
         /* Resources */
@@ -660,7 +675,7 @@
         }
 
         .resource-card a:hover {
-            color: var(--primary);
+            color: var(--gold);
         }
 
         /* Footer */
@@ -668,50 +683,41 @@
             background: var(--ink);
             color: rgba(255, 255, 255, 0.6);
             text-align: center;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1.5rem;
         }
 
-        footer .course-title {
+        footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
             margin-bottom: 0.3rem;
         }
 
-        footer .course-name {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.75rem;
-        }
-
-        footer .term {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
             color: var(--gold);
-        }
-
-        footer a {
-            color: var(--gold-light);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+            letter-spacing: 0.08em;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero {
-                padding: 3rem 1rem 2.5rem;
+                padding: 2.5rem 1rem 2rem;
             }
 
             .hero-chinese {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
             .hero h1 {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
 
             .hero-meta {
@@ -740,6 +746,11 @@
 </head>
 
 <body>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="../index.html">&larr; EAST 370</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1420,10 +1431,9 @@
 
     <!-- Footer -->
     <footer>
-        <p style="margin-bottom: 8px;"><a href="../index.html">← Course Portal</a></p>
-        <div class="course-title">中國文學與思想</div>
-        <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
-        <div class="term">Winter 2026</div>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
     </footer>
 
 </body>
