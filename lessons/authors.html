@@ -7,19 +7,22 @@
     <title>Literary Authors | EAST 370</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
-            --ink-faint: #7a7a7a;
-            --paper: #faf9f7;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            --literary: #4a1a1a;
+            /* School colors */
+            --ru: #2D7D7D;
+            --mo: #A67C52;
+            --dao: #3D8B4D;
+            --fa: #B54545;
+            --fo: #7B5EA7;
         }
 
         * {
@@ -28,48 +31,56 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.5;
-            font-size: 14px;
+            line-height: 1.6;
         }
 
         /* Breadcrumb */
         .breadcrumb {
             background: var(--ink);
-            padding: 0.5rem 1.5rem;
+            padding: 0.6rem 1.5rem;
         }
 
         .breadcrumb a {
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gold);
+            color: #aaa;
             text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
         }
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--literary) 0%, #6a2a2a 100%);
-            padding: 1.5rem;
+            background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.8)),
+                        url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
+            padding: 2rem 1.5rem;
             text-align: center;
         }
 
         .header-chinese {
-            font-family: 'Noto Serif SC', serif;
+            font-family: 'Noto Sans SC', sans-serif;
             font-size: 2rem;
             color: var(--gold-light);
-            letter-spacing: 0.2em;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
         }
 
         .header h1 {
             font-size: 0.9rem;
             font-weight: 300;
-            color: rgba(255,255,255,0.8);
-            letter-spacing: 0.1em;
-            margin-top: 0.25rem;
+            color: #fff;
+            letter-spacing: 0.05em;
         }
 
         /* Authors List */
@@ -77,6 +88,16 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 1rem;
+        }
+
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            padding: 0.5rem 0;
         }
 
         /* Author Card */
@@ -87,6 +108,9 @@
             padding: 1rem;
             background: #fff;
             border-bottom: 1px solid var(--paper-dark);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .author-card:last-child {
@@ -112,7 +136,7 @@
         }
 
         .portrait-char {
-            font-family: 'Noto Serif SC', serif;
+            font-family: 'Noto Sans SC', sans-serif;
             font-size: 4rem;
             font-weight: 700;
             opacity: 0.15;
@@ -120,7 +144,7 @@
         }
 
         .portrait-name {
-            font-family: 'Noto Serif SC', serif;
+            font-family: 'Noto Sans SC', sans-serif;
             font-size: 1.8rem;
             letter-spacing: 0.1em;
             position: relative;
@@ -157,9 +181,9 @@
         }
 
         .name-chinese {
-            font-family: 'Noto Serif SC', serif;
+            font-family: 'Noto Sans SC', sans-serif;
             font-size: 1.4rem;
-            color: var(--literary);
+            color: var(--ink);
         }
 
         .name-english {
@@ -191,7 +215,7 @@
         }
 
         .era-warring .era-label { background: #8b2323; }
-        .era-han .era-label { background: #8b6914; }
+        .era-han .era-label { background: var(--gold); }
         .era-six .era-label { background: #2d5a5a; }
 
         .works {
@@ -214,7 +238,7 @@
 
         .influence {
             font-size: 0.75rem;
-            color: var(--literary);
+            color: var(--ink);
             font-style: italic;
             line-height: 1.4;
             margin-top: 0.25rem;
@@ -223,24 +247,34 @@
         /* Footer */
         footer {
             background: var(--ink);
-            color: rgba(255, 255, 255, 0.6);
+            padding: 1.25rem 1.5rem;
             text-align: center;
-            padding: 1.5rem;
         }
 
-        footer .course-title {
-            font-family: 'Noto Serif SC', serif;
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
             color: var(--gold-light);
+            margin-bottom: 0.2rem;
         }
 
-        footer .course-name {
+        footer .foot-title {
             font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 0.2rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
         }
 
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
         @media (max-width: 600px) {
+            .header-chinese { font-size: 1.6rem; }
+            .header h1 { font-size: 0.85rem; }
             .author-card {
                 grid-template-columns: 100px 1fr;
                 gap: 0.75rem;
@@ -262,7 +296,7 @@
 <body>
 
     <nav class="breadcrumb">
-        <a href="../index.html">&larr; Back to EAST 370</a>
+        <a href="../index.html">&larr; EAST 370</a>
     </nav>
 
     <header class="header">
@@ -440,15 +474,16 @@
                     <span class="work-title">北山移文</span> Proclamation on North Mountain
                 </div>
                 <div class="bio">Southern dynasties writer known for satirical prose criticizing opportunistic officials who fake reclusion for prestige.</div>
-                <div class="influence">Friday pp. 157-169 closing text: exposes the politics of \"performing\" withdrawal.</div>
+                <div class="influence">Friday pp. 157-169 closing text: exposes the politics of "performing" withdrawal.</div>
             </div>
         </div>
 
     </div>
 
     <footer>
-        <div class="course-title">中國文學與思想</div>
-        <div class="course-name">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
     </footer>
 
 </body>
