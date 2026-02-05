@@ -34,85 +34,206 @@
             font-size: 17px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Compact Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
-        }
-
-        .breadcrumb a {
-            font-size: 0.7rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
-                        REMOVED*/
-            min-height: 50vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 3rem 2rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .hero-content { max-width: 900px; }
-
-        .hero-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: clamp(3rem, 10vw, 5rem);
-            color: var(--gold-light);
-            letter-spacing: 0.2em;
-            margin-bottom: 0.5rem;
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
         }
 
-        .hero h1 {
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
+        .page-header .back:hover { color: var(--gold-light); }
 
-        .hero-subtitle {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-            font-style: italic;
-        }
-
-        .hero-meta {
+        .page-title {
             display: flex;
-            gap: 2rem;
-            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
 
-        .hero-meta-item { text-align: center; }
-        .hero-meta-item span {
-            display: block;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.3rem;
-        }
-        .hero-meta-item strong {
+        .page-title .ch {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--gold-light);
         }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--ru);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* RU Evolution */
+        .ru-evolution {
+            background: var(--paper-dark);
+            padding: 1.5rem;
+        }
+
+        .ru-evolution h2 {
+            text-align: center;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 1rem;
+        }
+
+        .ru-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ru-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .ru-card.current {
+            border: 2px solid var(--ru);
+            background: linear-gradient(180deg, #e8f4f4 0%, #fff 100%);
+        }
+
+        .ru-card .version {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--ru);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ru-card .name-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin: 0.3rem 0;
+        }
+
+        .ru-card .name-en {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+        }
+
+        .ru-card .key-idea {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+            padding: 0.5rem;
+            background: var(--paper);
+            border-radius: 4px;
+        }
+
+        .ru-card .key-idea strong {
+            color: var(--ru);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            background: #fff;
+            padding: 2rem 1.5rem;
+        }
+
+        .comparison-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        .evolution-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .evolution-table th {
+            background: var(--ink);
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .evolution-table th.highlight {
+            background: var(--ru);
+        }
+
+        .evolution-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .evolution-table td.highlight {
+            background: rgba(45, 125, 125, 0.06);
+        }
+
+        .evolution-table .question-cell {
+            font-weight: 600;
+            color: var(--ink-light);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .evolution-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Multi-Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .two-col-wide-left {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .two-col-wide-right {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-col, .two-col-wide-left, .two-col-wide-right {
+                grid-template-columns: 1fr;
+            }
+        }
+
 
         /* Navigation */
         .nav {
@@ -484,44 +605,111 @@
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../index.html">&larr; EAST 370</a>
-    </div>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-chinese">荀子</div>
-            <h1>The Xunzi</h1>
-            <p class="hero-subtitle">
-                The last great Confucian of the classical period—champion of learning, ritual, and deliberate effort over innate goodness.
-            </p>
-            <div class="hero-meta">
-                <div class="hero-meta-item">
-                    <span>Author</span>
-                    <strong>荀況</strong>
-                </div>
-                <div class="hero-meta-item">
-                    <span>Period</span>
-                    <strong>戰國</strong>
-                </div>
-                <div class="hero-meta-item">
-                    <span>Circa</span>
-                    <strong>310–235 BCE</strong>
-                </div>
-            </div>
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">荀子</span>
+            <span class="en">The Xunzi</span>
+            <span class="tag">RU 3.0</span>
+            <span class="meta">Xun Kuang (~310-235 BCE)<span style="margin: 0 0.5rem; color: #555;">·</span>Ivanhoe pp. 269-297</span>
         </div>
-    </section>
+    </header>
 
     <!-- Navigation -->
     <nav class="nav">
+        <a href="#evolution">RU Evolution</a>
         <a href="#reading">Reading</a>
         <a href="#learning">Learning</a>
         <a href="#society">Society</a>
         <a href="#heaven">Heaven</a>
         <a href="#questions">Questions</a>
     </nav>
+
+    <!-- RU Evolution: The Main Event -->
+    <section class="ru-evolution" id="evolution">
+        <h2>The Evolution of the Ru Tradition</h2>
+        <div class="ru-grid">
+            <div class="ru-card">
+                <div class="version">RU 1.0</div>
+                <div class="name-ch">孔子</div>
+                <div class="name-en">Kongzi (~551-479 BCE)</div>
+                <div class="key-idea">
+                    <strong>Ren 仁</strong> — Benevolence through self-cultivation. Learn from the ancients. Character built through ritual practice.
+                </div>
+            </div>
+            <div class="ru-card">
+                <div class="version">RU 2.0</div>
+                <div class="name-ch">孟子</div>
+                <div class="name-en">Mengzi (~372-289 BCE)</div>
+                <div class="key-idea">
+                    <strong>Four Sprouts</strong> — Human nature is good. Virtue is innate, requiring only cultivation of what's already there.
+                </div>
+            </div>
+            <div class="ru-card current">
+                <div class="version">RU 3.0</div>
+                <div class="name-ch">荀子</div>
+                <div class="name-en">Xunzi (~310-235 BCE)</div>
+                <div class="key-idea">
+                    <strong>Wei 偽</strong> — Deliberate effort. Human nature is problematic. Goodness must be constructed through learning and ritual.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Comparison Table -->
+    <section class="comparison-section">
+        <div class="comparison-wrapper">
+            <table class="evolution-table">
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Kongzi 孔子</th>
+                        <th>Mengzi 孟子</th>
+                        <th class="highlight">Xunzi 荀子</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="question-cell">Human Nature</td>
+                        <td>Not directly addressed; focus on cultivation</td>
+                        <td><strong>Good</strong> — innate "sprouts" of virtue</td>
+                        <td class="highlight"><strong>Problematic</strong> — desires lead to conflict without shaping</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Source of Virtue</td>
+                        <td>Learning from ancients and self-reflection</td>
+                        <td><strong>Internal</strong> — extend what's already there</td>
+                        <td class="highlight"><strong>External</strong> — constructed through deliberate effort (偽)</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Role of Learning</td>
+                        <td>Essential: "study as if you'll never catch up"</td>
+                        <td>Important but secondary to extending innate goodness</td>
+                        <td class="highlight"><strong>Foundational</strong> — "blue dye from indigo" transformation</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Role of Ritual (禮)</td>
+                        <td>Shapes character, expresses respect</td>
+                        <td>Expression of inner moral sense</td>
+                        <td class="highlight"><strong>Structures desire</strong> — "ritual is nurture" (養)</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">View of Heaven (天)</td>
+                        <td>Moral force; source of Mandate</td>
+                        <td>Moral source; humans share Heaven's nature</td>
+                        <td class="highlight"><strong>Naturalistic</strong> — constant patterns, no moral will</td>
+                    </tr>
+                    <tr>
+                        <td class="question-cell">Social Order</td>
+                        <td>Rectification of names; proper roles</td>
+                        <td>Humane government based on moral power</td>
+                        <td class="highlight"><strong>Distinctions (分)</strong> — hierarchy enables cooperation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <!-- Reading Info -->
     <section class="reading-info" id="reading">
@@ -573,58 +761,57 @@
     </div>
 
     <div class="container">
-        <section class="content-section">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">學</td>
-                        <td class="pinyin-cell">xué</td>
-                        <td>Learning; the foundation of all moral cultivation</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">積</td>
-                        <td class="pinyin-cell">jī</td>
-                        <td>Accumulation; virtue built through sustained effort</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">偽</td>
-                        <td class="pinyin-cell">wěi</td>
-                        <td>Deliberate effort, conscious activity; source of goodness</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">師</td>
-                        <td class="pinyin-cell">shī</td>
-                        <td>Teacher; essential guide for proper learning</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">禮</td>
-                        <td class="pinyin-cell">lǐ</td>
-                        <td>Ritual; the measure and standard for cultivation</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">學</td>
+                            <td class="pinyin-cell">xué</td>
+                            <td>Learning; foundation of all moral cultivation</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">積</td>
+                            <td class="pinyin-cell">jī</td>
+                            <td>Accumulation; virtue built through sustained effort</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">偽</td>
+                            <td class="pinyin-cell">wěi</td>
+                            <td>Deliberate effort; source of goodness</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">師</td>
+                            <td class="pinyin-cell">shī</td>
+                            <td>Teacher; essential guide for learning</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">禮</td>
+                            <td class="pinyin-cell">lǐ</td>
+                            <td>Ritual; measure and standard</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section">
-            <h3>Chapter 1: An Exhortation to Learning</h3>
-            <div class="synopsis">
-                <p><strong>The Blue Dye Metaphor:</strong> Xunzi opens with one of the most famous images in Chinese philosophy: "Blue dye is gotten from the indigo plant, and yet it is bluer than the plant. Ice comes from water, and yet it is colder than water." The student can surpass his sources—but only through the transformative process of learning.</p>
-
-                <p><strong>Accumulation is Everything:</strong> "Without accumulating tiny steps, you have no way to go a thousand <em>li</em>. Without accumulating little streams, you have no way to form river or sea." Virtue is not innate but built gradually. The gentleman differs from the petty person not in raw talent but in sustained effort over time.</p>
-
-                <p><strong>The Necessity of Teachers:</strong> Learning requires guidance. "In learning, nothing is more expedient than to draw near to the right person." The teacher provides both the proper model and the ritual standards. Without a teacher, one learns haphazardly and never achieves true understanding.</p>
-
-                <p><strong>Ritual as the Endpoint:</strong> Where does learning lead? "Learning comes to ritual and then stops." The <em>Odes</em> and <em>History</em> provide content, but ritual provides the structure that makes all knowledge coherent and actionable.</p>
-            </div>
-        </section>
+            <section class="content-section">
+                <h3>Chapter 1: Exhortation to Learning</h3>
+                <div class="synopsis">
+                    <p><strong>Blue Dye Metaphor:</strong> "Blue dye is gotten from the indigo plant, yet it is bluer than the plant." The student can surpass his sources—through the transformative process of learning.</p>
+                    <p><strong>Accumulation:</strong> "Without accumulating tiny steps, you have no way to go a thousand <em>li</em>." Virtue is not innate but built gradually through sustained effort.</p>
+                    <p><strong>Necessity of Teachers:</strong> "In learning, nothing is more expedient than to draw near to the right person." Without a teacher, one learns haphazardly.</p>
+                    <p><strong>Ritual as Endpoint:</strong> "Learning comes to ritual and then stops." Ritual makes all knowledge coherent and actionable.</p>
+                </div>
+            </section>
+        </div>
 
         <div class="saying-box">
             <div class="saying-chinese">青出於藍而青於藍</div>
@@ -632,45 +819,30 @@
             <div class="saying-note">Chapter 1 — The student can surpass the source</div>
         </div>
 
-        <section class="content-section">
-            <h3>Chapter 2: Cultivating Oneself</h3>
-            <div class="synopsis">
-                <p><strong>Self-Examination:</strong> "When you observe goodness in others, then inspect yourself, desirous of cultivating it. When you observe badness in others, then examine yourself, fearful of discovering it." The gentleman uses others as mirrors for self-improvement.</p>
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Chapter 2: Cultivating Oneself</h3>
+                <div class="synopsis">
+                    <p><strong>Self-Examination:</strong> "When you observe goodness in others, inspect yourself. When you observe badness in others, examine yourself, fearful." The gentleman uses others as mirrors.</p>
+                    <p><strong>Ritual as Measure:</strong> "Ritual is that by which to correct your person. The teacher is that by which to correct your practice of ritual."</p>
+                    <p><strong>Controlling Qi:</strong> For unyielding blood-qi, soften with harmony. For deep thinking, simplify with goodness. Each imbalance requires its specific corrective.</p>
+                </div>
+            </section>
 
-                <p><strong>Ritual as the Measure:</strong> "Ritual is that by which to correct your person. The teacher is that by which to correct your practice of ritual." Without these external standards, one has no way to distinguish right from wrong.</p>
-
-                <p><strong>Controlling the Qi:</strong> The methods for "controlling the <em>qi</em> and nourishing the heart" include: for unyielding blood and <em>qi</em>, soften with harmoniousness; for overly deep thinking, simplify with easy goodness; for ferocious courage, reform with proper compliance. Each imbalance requires its specific corrective.</p>
-
-                <p><strong>The Proper Model:</strong> "He who likes the right model and carries it out is a man of good breeding. He who focuses his intentions upon it and embodies it is a gentleman. He who completely understands it and practices it without tiring is a sage."</p>
-            </div>
-        </section>
-
-        <div class="quote-block">
-            "If your bearing is reverent and respectful and your heart is loyal and faithful, if your method is ritual and the standards of righteousness and your disposition is concern for others, then you may wander across the whole world, and even if you become trapped among barbarians, no one will fail to value you."
-            <cite>— Xunzi, Chapter 2</cite>
+            <section class="content-section">
+                <h3>Learning vs. Innate Nature</h3>
+                <div class="synopsis">
+                    <p><strong>Earthworm vs. Crab:</strong> The earthworm thrives through single-mindedness. The crab, with six legs and pincers, must borrow holes because it is frenetic. <em>Focus beats natural gifts.</em></p>
+                    <p><strong>Crooked Wood:</strong> Needs the press frame. Blunt metal needs the grindstone. Human nature requires external shaping through ritual.</p>
+                    <p><strong>Old Nags vs. Swift Horses:</strong> "Qi Ji takes a single leap—no farther than ten strides. Yet old nags ridden ten days equal him." <em>Persistence outweighs talent.</em></p>
+                </div>
+            </section>
         </div>
 
-        <section class="content-section">
-            <h3>Learning vs. Innate Nature</h3>
-            <div class="themes-grid">
-                <div class="theme-card">
-                    <h4>The Earthworm vs. the Crab</h4>
-                    <p>The earthworm has no claws or fangs, yet thrives through single-mindedness. The crab has six legs and two pincers, yet must borrow holes because it is frenetic. Focus beats natural gifts.</p>
-                </div>
-                <div class="theme-card">
-                    <h4>Crooked Wood & the Press Frame</h4>
-                    <p>Crooked wood needs the press frame to become straight; blunt metal needs the grindstone. Human nature requires external shaping through ritual and learning.</p>
-                </div>
-                <div class="theme-card">
-                    <h4>Old Nags vs. Swift Horses</h4>
-                    <p>"Let the horse Qi Ji take a single leap—it still would go no farther than ten strides. Yet old nags ridden ten days equal him." Persistence outweighs talent.</p>
-                </div>
-                <div class="theme-card">
-                    <h4>The Gentleman's Learning</h4>
-                    <p>"The learning of the gentleman enters through his ears, fastens to his heart, spreads through his four limbs, and manifests itself in his actions." It transforms the whole person.</p>
-                </div>
-            </div>
-        </section>
+        <div class="quote-block">
+            "If your bearing is reverent and your heart loyal, if your method is ritual and your disposition concern for others, then you may wander the whole world—even trapped among barbarians, no one will fail to value you."
+            <cite>— Xunzi, Chapter 2</cite>
+        </div>
     </div>
 
     <!-- Part 2: Society and Government -->
@@ -681,62 +853,69 @@
     </div>
 
     <div class="container">
-        <section class="content-section teal">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">分</td>
-                        <td class="pinyin-cell">fèn</td>
-                        <td>Distinctions, social divisions; what makes civilization possible</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">義</td>
-                        <td class="pinyin-cell">yì</td>
-                        <td>Righteousness, standards; the norms that structure society</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">群</td>
-                        <td class="pinyin-cell">qún</td>
-                        <td>Community, social grouping; humans' distinctive capacity</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">養</td>
-                        <td class="pinyin-cell">yǎng</td>
-                        <td>Nourishment; ritual as properly satisfying desires</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section teal">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">分</td>
+                            <td class="pinyin-cell">fèn</td>
+                            <td>Distinctions; makes civilization possible</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">義</td>
+                            <td class="pinyin-cell">yì</td>
+                            <td>Righteousness; norms that structure society</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">群</td>
+                            <td class="pinyin-cell">qún</td>
+                            <td>Community; humans' distinctive capacity</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">養</td>
+                            <td class="pinyin-cell">yǎng</td>
+                            <td>Nourishment; ritual satisfies desires</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section teal">
-            <h3>Chapter 5: Against Physiognomy</h3>
-            <div class="synopsis">
-                <p><strong>What Makes Humans Human?</strong> "What is that by which humans are human? I say: It is because they have distinctions." Birds and beasts have male and female, but not the proper relationship of father and son. They have the male sex and the female sex, but no differentiation between male and female roles.</p>
+            <section class="content-section teal">
+                <h3>Ch. 5: Against Physiognomy</h3>
+                <div class="synopsis">
+                    <p><strong>What Makes Humans Human?</strong> "It is because they have distinctions." Birds have male/female but not father/son relationships. Animals lack role differentiation.</p>
+                    <p><strong>Distinctions Enable Community:</strong> "Of distinctions, none are greater than social divisions, and of social divisions, none are greater than rituals." Hierarchy enables flourishing.</p>
+                    <p><strong>Don't Judge by Appearances:</strong> What matters is conduct, not face. Cultivated virtue, not inborn traits.</p>
+                </div>
+            </section>
+        </div>
 
-                <p><strong>Distinctions Enable Community:</strong> "Of distinctions, none are greater than social divisions, and of social divisions, none are greater than rituals." Social roles and hierarchies are not oppressive constraints but the very foundation of human flourishing.</p>
+        <div class="two-col">
+            <section class="content-section teal">
+                <h3>Ch. 9: Regulations of a True King</h3>
+                <div class="synopsis">
+                    <p><strong>Human Uniqueness:</strong> "Water and fire have qi but no life. Grasses have life but no awareness. Beasts have awareness but no righteousness. Humans have all—so they are most precious."</p>
+                    <p><strong>Social Divisions Prevent Chaos:</strong> "Why can humans form communities? Because of social divisions." Without ranks and limits, desires clash endlessly.</p>
+                </div>
+            </section>
 
-                <p><strong>Why Not Judge by Appearances:</strong> The chapter attacks physiognomy (judging character by physical appearance). What matters is not one's face but one's conduct, not inborn traits but cultivated virtue.</p>
-            </div>
-        </section>
-
-        <section class="content-section teal">
-            <h3>Chapter 9: The Regulations of a True King</h3>
-            <div class="synopsis">
-                <p><strong>Why Humans Need Community:</strong> "Water and fire have <em>qi</em> but are without life. Grasses and trees have life but are without awareness. Birds and beasts have awareness but are without standards of righteousness. Humans have <em>qi</em> and life and awareness, and moreover they have standards of righteousness. And so, they are the most precious things under Heaven."</p>
-
-                <p><strong>Social Divisions Prevent Chaos:</strong> "Why are humans able to form communities? I say: It is because of social divisions." Without divisions—ranks, roles, limits—desires would clash endlessly. "If there is chaos, then there will be poverty. If there is poverty, then there will be weakness."</p>
-
-                <p><strong>The Sage-King's Regulations:</strong> The true king ensures proper timing for agriculture, hunting, and forestry. "Plow in the spring, weed in the summer, harvest in the fall, and store in the winter." Nature has its regularities; good government aligns human activity with them.</p>
-            </div>
-        </section>
+            <section class="content-section teal">
+                <h3>Ch. 19: Discourse on Ritual</h3>
+                <div class="synopsis">
+                    <p><strong>Why Ritual Arose:</strong> "Humans are born having desires. When they have desires but do not get objects of desire, they cannot but seek. Seeking without limit leads to struggle and chaos."</p>
+                    <p><strong>Ritual = Nourishment:</strong> Ritual doesn't suppress desire—it <em>cultivates</em> it. "禮者，養也" — Ritual nurtures properly.</p>
+                </div>
+            </section>
+        </div>
 
         <div class="quote-block">
             "Humans cannot be without community. If they form communities but are without social divisions, then they will struggle. If they struggle, then there will be chaos. If there is chaos, then there will be poverty."
@@ -771,46 +950,46 @@
     </div>
 
     <div class="container">
-        <section class="content-section purple">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">天</td>
-                        <td class="pinyin-cell">tiān</td>
-                        <td>Heaven; for Xunzi, nature operating by constant patterns</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">常</td>
-                        <td class="pinyin-cell">cháng</td>
-                        <td>Constancy; Heaven's regular, unchanging operations</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">人妖</td>
-                        <td class="pinyin-cell">rén yāo</td>
-                        <td>"Human ill omens"; social disasters caused by misgovernment</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section purple">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">天</td>
+                            <td class="pinyin-cell">tiān</td>
+                            <td>Heaven; nature's constant patterns</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">常</td>
+                            <td class="pinyin-cell">cháng</td>
+                            <td>Constancy; regular operations</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">人妖</td>
+                            <td class="pinyin-cell">rén yāo</td>
+                            <td>"Human ill omens"; misgovernment disasters</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section purple">
-            <h3>Chapter 17: Heaven's Constancy</h3>
-            <div class="synopsis">
-                <p><strong>Heaven Has No Moral Will:</strong> "The activities of Heaven are constant. They do not persist because of Yao. They do not perish because of Jie." The sun rises, the seasons turn, the crops grow—regardless of who is ruling or how virtuous they are. Heaven is not a moral force that rewards the good and punishes the wicked.</p>
-
-                <p><strong>Respond Correctly and Prosper:</strong> "If you respond to them with order, then you will have good fortune. If you respond to them with chaos, then you will have misfortune." Success comes not from pleasing Heaven but from aligning human activity with natural regularities.</p>
-
-                <p><strong>Against Superstition:</strong> "If stars fall or trees groan, the people of the state are all filled with fear and say, 'What is this?' I say: It is nothing. These are simply rarely occurring things among the changes in Heaven and earth." Eclipses, strange weather, unusual natural events—these are not omens, just uncommon phenomena.</p>
-            </div>
-        </section>
+            <section class="content-section purple">
+                <h3>Ch. 17: Heaven's Constancy</h3>
+                <div class="synopsis">
+                    <p><strong>No Moral Will:</strong> "Heaven's activities are constant. They do not persist because of Yao. They do not perish because of Jie." Heaven doesn't reward virtue or punish vice.</p>
+                    <p><strong>Respond Correctly:</strong> "Respond with order → good fortune. Respond with chaos → misfortune." Success comes from alignment, not pleasing Heaven.</p>
+                    <p><strong>Against Superstition:</strong> "If stars fall, people fear. I say: It is nothing. Simply rare phenomena." Eclipses are not omens.</p>
+                </div>
+            </section>
+        </div>
 
         <div class="saying-box">
             <div class="saying-chinese">天行有常，不為堯存，不為桀亡</div>
@@ -818,52 +997,49 @@
             <div class="saying-note">Chapter 17 — Xunzi's naturalistic manifesto</div>
         </div>
 
-        <section class="content-section purple">
-            <h3>"Human Ill Omens"</h3>
-            <div class="synopsis">
-                <p><strong>What to Really Fear:</strong> While people fear cosmic omens, Xunzi says the real disasters are <strong>human ill omens</strong> (人妖): "When poor plowing harms the planting, when the cutting loses control over the weeds, when the government is unstable and loses control over the people"—these cause famine and suffering, not falling stars.</p>
+        <div class="two-col">
+            <section class="content-section purple">
+                <h3>"Human Ill Omens" 人妖</h3>
+                <div class="synopsis">
+                    <p><strong>What to Really Fear:</strong> While people fear cosmic omens, the real disasters are <strong>human ill omens</strong>: poor plowing, unstable government, loss of control over the people—these cause famine, not falling stars.</p>
+                    <p><strong>True Disasters:</strong> "When ritual is not cultivated, when men and women engage in disorderly conduct, then fathers and sons are suspicious, superiors and inferiors desert one another."</p>
+                </div>
+            </section>
 
-                <p><strong>The List of Human Disasters:</strong> "When ritual and the standards of righteousness are not cultivated, when insiders and outsiders are not properly differentiated, when men and women engage in perverse, disorderly conduct, then fathers and sons are suspicious of one another, superiors and inferiors desert one another." <em>These</em> are the true ill omens.</p>
-
-                <p><strong>Rain Sacrifice:</strong> "One performs the rain sacrifice and it rains. Why? I say: There is no special reason. It is the same as when one does not perform the rain sacrifice and it rains." Xunzi doesn't abolish ritual—but he denies it has supernatural efficacy. "The gentleman regards this as proper form. The common people regard it as connecting with spirits."</p>
-            </div>
-        </section>
+            <section class="content-section purple">
+                <h3>Rain Sacrifice</h3>
+                <div class="synopsis">
+                    <p><strong>No Supernatural Efficacy:</strong> "One performs the rain sacrifice and it rains. Why? There is no special reason. Same as when one doesn't sacrifice and it rains."</p>
+                    <p><strong>Different Meanings:</strong> "The gentleman regards this as proper form. The common people regard it as connecting with spirits." Xunzi keeps ritual but strips it of magic.</p>
+                </div>
+            </section>
+        </div>
 
         <section class="content-section purple">
             <h3>Xunzi vs. Earlier Views of Heaven</h3>
             <table class="comparison-table">
                 <thead>
                     <tr>
-                        <th>View</th>
-                        <th>Earlier Tradition / Mencius</th>
+                        <th>Question</th>
+                        <th>Earlier Tradition</th>
                         <th>Xunzi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>Nature of Heaven</strong></td>
-                        <td>Moral force that bestows or withdraws Mandate</td>
+                        <td>Moral force; bestows Mandate</td>
                         <td>Natural processes with constant patterns</td>
                     </tr>
                     <tr>
-                        <td><strong>Heaven's Response</strong></td>
-                        <td>Responds to human virtue and vice</td>
-                        <td>Indifferent to human affairs</td>
-                    </tr>
-                    <tr>
                         <td><strong>Omens</strong></td>
-                        <td>Signs of Heaven's approval or displeasure</td>
-                        <td>Natural phenomena, no moral significance</td>
-                    </tr>
-                    <tr>
-                        <td><strong>What to Fear</strong></td>
-                        <td>Losing Heaven's favor</td>
-                        <td>Human misgovernment and social disorder</td>
+                        <td>Signs of Heaven's approval</td>
+                        <td>Natural phenomena, no moral meaning</td>
                     </tr>
                     <tr>
                         <td><strong>Ritual Efficacy</strong></td>
                         <td>Influences Heaven</td>
-                        <td>"Proper form"—psychological, not supernatural</td>
+                        <td>"Proper form"—psychological only</td>
                     </tr>
                 </tbody>
             </table>
