@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -17,13 +17,12 @@
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
             --ink-faint: #8a8a8a;
-            --paper: #faf9f7;
+            --paper: #fafaf8;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
+            --ru: #2D7D7D;
             --vermillion: #c73e3a;
-            --teal: #2d5a5a;
-            --teal-light: #3d7a7a;
             --visited: #2d6a4f;
             --mentioned: #5a5a8a;
         }
@@ -35,10 +34,28 @@
         }
 
         body {
-            font-family: 'Inter', 'Noto Sans', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
             min-height: 100vh;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+        }
+
+        .breadcrumb a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
         }
 
         /* Navigation */
@@ -89,54 +106,49 @@
         }
 
         .nav a.study-link {
-            border: 1px solid var(--teal);
+            border: 1px solid var(--ru);
             color: rgba(255, 255, 255, 0.9);
         }
 
         .nav a.study-link:hover {
-            background: var(--teal);
+            background: var(--ru);
             color: #fff;
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, #1a3a3a 0%, #2d4a4a 100%);
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
+                        url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
+            padding: 2rem 2rem;
+            text-align: center;
         }
 
         .header-title .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.6rem;
+            font-size: 2rem;
             color: var(--gold-light);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
         }
 
         .header-title h1 {
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 300;
             color: #fff;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
         }
 
         .header-title p {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.7rem;
+            color: #999;
         }
 
         /* Main Layout */
         .main-container {
             display: grid;
             grid-template-columns: 320px 1fr;
-            height: calc(100vh - 140px);
+            height: calc(100vh - 200px);
         }
 
         @media (max-width: 900px) {
@@ -194,12 +206,12 @@
         }
 
         .location-item:hover {
-            background: rgba(45, 90, 90, 0.04);
+            background: rgba(45, 125, 125, 0.04);
         }
 
         .location-item.active {
-            background: rgba(45, 90, 90, 0.08);
-            border-left: 3px solid var(--teal);
+            background: rgba(45, 125, 125, 0.08);
+            border-left: 3px solid var(--ru);
         }
 
         .location-item.visited {
@@ -416,7 +428,7 @@
         .popup-content .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1.6rem;
-            color: var(--teal);
+            color: var(--ru);
         }
 
         .popup-content .names {
@@ -455,7 +467,7 @@
             border-radius: 3px;
             margin-top: 0.6rem;
             font-size: 0.75rem;
-            border-left: 3px solid var(--teal);
+            border-left: 3px solid var(--ru);
         }
 
         .popup-content .modern-location strong {
@@ -490,16 +502,16 @@
         }
 
         .popup-content .sovereign {
-            background: rgba(45, 90, 90, 0.08);
+            background: rgba(45, 125, 125, 0.08);
             padding: 0.4rem 0.6rem;
             border-radius: 3px;
             margin-top: 0.6rem;
             font-size: 0.8rem;
-            border-left: 3px solid var(--teal);
+            border-left: 3px solid var(--ru);
         }
 
         .popup-content .sovereign strong {
-            color: var(--teal);
+            color: var(--ru);
         }
 
         /* Kingdom Labels on Map */
@@ -578,7 +590,7 @@
         }
 
         .locations-table tr:hover td {
-            background: rgba(45, 90, 90, 0.02);
+            background: rgba(45, 125, 125, 0.02);
         }
 
         .locations-table tr.visited td {
@@ -602,21 +614,28 @@
         /* Footer */
         footer {
             background: var(--ink);
-            color: rgba(255, 255, 255, 0.6);
+            padding: 1.25rem 1.5rem;
             text-align: center;
-            padding: 2rem 1.5rem;
         }
 
-        footer .course {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--gold);
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
             margin-bottom: 0.3rem;
         }
 
-        footer p {
-            font-size: 0.85rem;
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
         }
 
         /* Travel route styling */
@@ -646,6 +665,11 @@
 
 <body>
 
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="../../index.html">&larr; EAST 370</a>
+    </div>
+
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-inner">
@@ -657,12 +681,10 @@
     </nav>
 
     <header>
-        <div class="header-left">
-            <div class="header-title">
-                <span class="chinese">孟子地圖</span>
-                <h1>Geographic Locations in the Mengzi</h1>
-                <p>Warring States Period (c. 372-289 BCE)</p>
-            </div>
+        <div class="header-title">
+            <div class="chinese">孟子地圖</div>
+            <h1>Geographic Locations in the Mengzi</h1>
+            <p>Warring States Period (c. 372-289 BCE)</p>
         </div>
     </header>
 
@@ -961,8 +983,9 @@
     </section>
 
     <footer>
-        <div class="course">EAST 370 · Chinese Traditional Literature and Thought</div>
-        <p>Winter 2026</p>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
     </footer>
 
     <script>
