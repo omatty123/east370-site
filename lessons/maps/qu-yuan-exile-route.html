@@ -7,15 +7,96 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        html, body { height: 100%; margin: 0; background: #f5f5f0; }
-        #map { height: 100%; width: 100%; }
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            background: var(--paper);
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+        }
+
+        .breadcrumb a {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Header */
+        .header {
+            background: var(--ink);
+            padding: 1.5rem 1.5rem 1.25rem;
+            text-align: center;
+        }
+
+        .header-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
+        }
+
+        .header h1 {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-sub {
+            font-size: 0.7rem;
+            color: #999;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Map container */
+        .map-container {
+            height: calc(100vh - 180px);
+            min-height: 400px;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
 
         .map-title {
             font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
-            color: #1a1a1a;
+            color: var(--ink);
             background: rgba(255, 255, 255, 0.95);
             padding: 16px 20px;
             border-radius: 12px;
@@ -27,7 +108,7 @@
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 20px;
             font-weight: 700;
-            color: #c73e3a;
+            color: var(--gold);
             letter-spacing: 0.1em;
         }
         .map-title .main {
@@ -44,7 +125,7 @@
 
         .legend {
             font-family: 'Inter', system-ui, sans-serif;
-            color: #1a1a1a;
+            color: var(--ink);
             background: rgba(255, 255, 255, 0.95);
             padding: 14px 16px;
             border-radius: 10px;
@@ -58,7 +139,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #c73e3a;
+            color: var(--gold);
         }
         .legend-item {
             display: flex;
@@ -81,7 +162,7 @@
 
         .leaflet-popup-content-wrapper {
             background: rgba(255, 255, 255, 0.98);
-            color: #1a1a1a;
+            color: var(--ink);
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
@@ -97,7 +178,7 @@
         .popup-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 18px;
-            color: #c73e3a;
+            color: var(--gold);
             font-weight: 600;
         }
         .popup-name {
@@ -129,23 +210,73 @@
         }
         .location-label .chinese {
             font-size: 14px;
-            color: #c73e3a;
+            color: var(--gold);
         }
         .location-label .english {
             font-size: 11px;
-            color: #4a4a4a;
+            color: var(--ink-light);
             margin-left: 4px;
         }
         .location-label.death .chinese {
-            color: #8a6a00;
+            color: var(--gold);
         }
         .location-label.water .chinese {
             color: #2a6a8a;
         }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1rem 1.5rem;
+            text-align: center;
+        }
+
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.65rem;
+            color: #aaa;
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-term {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
     </style>
 </head>
 <body>
-    <div id="map"></div>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../../index.html">&larr; EAST 370</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-chinese">屈原流亡路線</div>
+        <h1>Qu Yuan's Exile Route (278 BCE)</h1>
+        <p class="header-sub">From the fallen capital of Ying through the waterways of Chu to his final destination at the Miluo River</p>
+    </header>
+
+    <!-- Map -->
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
     <script>
         const map = L.map("map", {
             zoomControl: true,
@@ -186,7 +317,7 @@
             div.innerHTML = `
                 <div class="legend-title">Legend</div>
                 <div class="legend-item">
-                    <div class="legend-marker" style="background: #c73e3a; border-color: #c73e3a;"></div>
+                    <div class="legend-marker" style="background: #b8860b; border-color: #b8860b;"></div>
                     <span>Capital / City</span>
                 </div>
                 <div class="legend-item">
@@ -198,7 +329,7 @@
                     <span>Death Site</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-line" style="background: #c73e3a;"></div>
+                    <div class="legend-line" style="background: #b8860b;"></div>
                     <span>Exile Route</span>
                 </div>
             `;
@@ -266,8 +397,8 @@
 
         // Marker styles by type
         const markerStyles = {
-            capital: { radius: 10, color: "#c73e3a", weight: 3, fillColor: "#c73e3a", fillOpacity: 0.9 },
-            gate: { radius: 7, color: "#c73e3a", weight: 2, fillColor: "#c73e3a", fillOpacity: 0.7 },
+            capital: { radius: 10, color: "#b8860b", weight: 3, fillColor: "#b8860b", fillOpacity: 0.9 },
+            gate: { radius: 7, color: "#b8860b", weight: 2, fillColor: "#b8860b", fillOpacity: 0.7 },
             water: { radius: 8, color: "#4a90a4", weight: 2, fillColor: "#4a90a4", fillOpacity: 0.8 },
             death: { radius: 10, color: "#8a6a00", weight: 3, fillColor: "#daa520", fillOpacity: 0.9 }
         };
@@ -313,7 +444,7 @@
         L.polyline(exileRoute, {
             weight: 4,
             opacity: 0.8,
-            color: "#c73e3a",
+            color: "#b8860b",
             dashArray: "12 8",
             lineCap: "round"
         }).addTo(map);
