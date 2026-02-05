@@ -38,46 +38,46 @@
             flex-direction: column;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Page Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .breadcrumb a {
-            font-size: 0.75rem;
-            color: #aaa;
+        .page-header > a {
+            font-size: 0.7rem;
+            color: #888;
             text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
         }
 
-        .breadcrumb a:hover {
+        .page-header > a:hover {
             color: var(--gold-light);
         }
 
-        /* Header */
-        .header {
-            background: linear-gradient(rgba(26,26,26,0.85), rgba(26,26,26,0.9)),
-                        REMOVED*/
-            padding: 2rem 1.5rem;
-            text-align: center;
+        .page-header .divider {
+            color: #555;
+            font-size: 0.7rem;
         }
 
-        .header .chinese {
+        .page-header .title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .page-header .title .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            font-weight: 700;
             color: var(--gold-light);
-            letter-spacing: 0.15em;
         }
 
-        .header .english {
-            font-size: 1rem;
-            font-weight: 300;
+        .page-header h1 {
+            font-size: 0.8rem;
+            font-weight: 400;
             color: #fff;
-            margin-top: 0.3rem;
-            letter-spacing: 0.05em;
         }
 
         /* Main content */

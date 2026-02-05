@@ -172,28 +172,17 @@
 
         /* Section Headers */
         .section-header {
-            padding: 3rem 1.5rem 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-header.section-1 {
-            background: linear-gradient(135deg, var(--section-1) 0%, #5a0000 100%);
-        }
-
-        .section-header.section-2 {
-            background: linear-gradient(135deg, var(--section-2) 0%, #0a2a0a 100%);
-        }
-
-        .section-header.section-3 {
-            background: linear-gradient(135deg, var(--section-3) 0%, #0a0a3a 100%);
+            max-width: 900px;
+            margin: 2rem auto 0;
+            padding: 1.5rem 1.5rem 0.5rem;
+            border-top: 1px solid #ddd;
         }
 
         .section-number {
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--ink-faint);
             margin-bottom: 0.5rem;
         }
 
@@ -201,7 +190,7 @@
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             font-weight: 400;
-            color: #fff;
+            color: var(--ink);
             letter-spacing: 0.08em;
             margin-bottom: 0.3rem;
         }
@@ -209,13 +198,13 @@
         .section-header .chinese-title {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--ink-light);
             margin-bottom: 0.5rem;
         }
 
         .section-header .source {
             font-style: italic;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--ink-faint);
             font-size: 0.85rem;
         }
 

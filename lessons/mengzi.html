@@ -276,27 +276,24 @@
 
         /* Section Headers */
         .section-header {
-            padding: 3rem 1.5rem 2rem;
-            text-align: center;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            padding: 1.5rem 1.5rem 0.5rem;
+            border-top: 1px solid #ddd;
         }
-
-        .section-header.section-1 { background: linear-gradient(135deg, var(--section-1) 0%, #1a5555 100%); }
-        .section-header.section-2 { background: linear-gradient(135deg, var(--section-2) 0%, #2a0d2a 100%); }
-        .section-header.section-3 { background: linear-gradient(135deg, var(--section-3) 0%, #2a2a0d 100%); }
-        .section-header.section-4 { background: linear-gradient(135deg, var(--section-4) 0%, #0d0d2a 100%); }
 
         .section-number {
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--ink-faint);
             margin-bottom: 0.5rem;
         }
 
         .section-header h2 {
             font-size: 1rem;
             font-weight: 400;
-            color: #fff;
+            color: var(--ink);
             letter-spacing: 0.08em;
             margin-bottom: 0.3rem;
         }
@@ -304,7 +301,7 @@
         .section-header .chinese-title {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--ink-light);
         }
 
         /* Content Sections */

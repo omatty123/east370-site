@@ -40,22 +40,46 @@
             min-height: 100vh;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Page Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .breadcrumb a {
+        .page-header a {
             font-size: 0.7rem;
-            color: #aaa;
+            color: #888;
             text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
         }
 
-        .breadcrumb a:hover {
+        .page-header a:hover {
             color: var(--gold-light);
+        }
+
+        .page-header .divider {
+            color: #555;
+            font-size: 0.7rem;
+        }
+
+        .page-header .title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .page-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+        }
+
+        .page-header h1 {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #fff;
         }
 
         /* Navigation */
