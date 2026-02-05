@@ -17,6 +17,7 @@
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
+            --teal: #2d5a5a;
             /* School colors */
             --ru: #2D7D7D;
             --mo: #A67C52;
@@ -40,9 +41,10 @@
             background: var(--paper);
             color: var(--ink);
             line-height: 1.6;
+            font-size: 16px;
         }
 
-        /* Compact Header - LEFT ALIGNED */
+        /* Page Header */
         .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
@@ -85,22 +87,101 @@
             color: #888;
         }
 
-        /* Authors List */
-        .authors-list {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1rem;
+        /* Mobile nav (hidden on desktop) */
+        .mobile-nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: none;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-nav a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Layout Shell */
+        .layout {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 180px 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Sidebar Nav */
+        .sidebar {
+            padding: 2rem 0 2rem 1.5rem;
+            position: sticky;
+            top: 0;
+            align-self: start;
+            height: fit-content;
+        }
+
+        .sidebar a {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+
+        .sidebar a:hover {
+            color: var(--gold);
+        }
+
+        .sidebar .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+            opacity: 0.6;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 2rem 2rem 2rem 2.5rem;
+            border-left: 1px solid var(--paper-dark);
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
             gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gold);
         }
 
-        @media (max-width: 800px) {
-            .authors-list {
-                grid-template-columns: 1fr;
-            }
+        .section-header .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold);
         }
 
+        .section-header h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink);
+        }
+
+        /* Era Section Labels */
         .section-label {
             font-size: 0.6rem;
             font-weight: 700;
@@ -109,6 +190,19 @@
             text-transform: uppercase;
             margin-bottom: 0.6rem;
             padding: 0.5rem 0;
+            margin-top: 2rem;
+        }
+
+        .section-label:first-child {
+            margin-top: 0;
+        }
+
+        /* Authors Grid */
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         /* Author Card */
@@ -223,6 +317,7 @@
             padding: 0.2rem 0.5rem;
             border-radius: 2px;
             margin-top: 0.1rem;
+            width: fit-content;
         }
 
         .era-warring .era-label { background: #8b2323; }
@@ -263,24 +358,34 @@
             margin-top: 0.25rem;
         }
 
+        /* Inline citation links */
+        .info a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        .info a:hover {
+            color: var(--gold);
+        }
+
         /* Footer */
         footer {
             background: var(--ink);
             padding: 1.25rem 1.5rem;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
             color: var(--gold-light);
-            margin-bottom: 0.2rem;
         }
 
         footer .foot-title {
             font-size: 0.7rem;
             color: #aaa;
-            margin-bottom: 0.3rem;
         }
 
         footer .foot-term {
@@ -288,12 +393,44 @@
             font-weight: 600;
             color: var(--gold);
             letter-spacing: 0.08em;
+            margin-left: auto;
         }
 
         /* Responsive */
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                border-left: none;
+                padding: 1.5rem;
+            }
+
+            .mobile-nav {
+                display: flex;
+            }
+
+            .authors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            footer .foot-term {
+                margin-left: 0;
+            }
+        }
+
         @media (max-width: 600px) {
-            .header-chinese { font-size: 1.6rem; }
-            .header h1 { font-size: 0.85rem; }
             .author-card {
                 grid-template-columns: 100px 1fr;
                 gap: 0.75rem;
@@ -323,180 +460,220 @@
         </div>
     </header>
 
-    <div class="authors-list">
+    <!-- Mobile Navigation (hidden on desktop) -->
+    <nav class="mobile-nav">
+        <a href="#warring-states">Warring States</a>
+        <a href="#han">Han</a>
+        <a href="#six-dynasties">Six Dynasties</a>
+    </nav>
 
-        <!-- Qu Yuan c. 340–278 BCE -->
-        <div class="author-card era-warring">
-            <div class="portrait">
-                <img src="../images/quyuan.jpg" alt="Qu Yuan">
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">屈原</span>
-                    <a href="https://en.wikipedia.org/wiki/Qu_Yuan" target="_blank" class="name-english">Qu Yuan</a>
-                    <span class="dates">c. 340–278 BCE</span>
+    <div class="layout">
+        <nav class="sidebar">
+            <div class="label">Sections</div>
+            <a href="#warring-states">Warring States</a>
+            <a href="#han">Han</a>
+            <a href="#six-dynasties">Six Dynasties</a>
+        </nav>
+
+        <div class="main">
+
+            <!-- Warring States -->
+            <section id="warring-states">
+                <div class="section-label">Warring States</div>
+                <div class="authors-grid">
+
+                    <!-- Qu Yuan c. 340-278 BCE -->
+                    <div class="author-card era-warring">
+                        <div class="portrait">
+                            <img src="../images/quyuan.jpg" alt="Qu Yuan">
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">屈原</span>
+                                <a href="https://en.wikipedia.org/wiki/Qu_Yuan" target="_blank" class="name-english">Qu Yuan</a>
+                                <span class="dates">c. 340–278 BCE</span>
+                            </div>
+                            <span class="era-label">Warring States · Chu</span>
+                            <div class="works">
+                                <a href="https://en.wikipedia.org/wiki/Li_Sao" target="_blank" class="work-title">離騷</a> Li Sao ·
+                                <a href="https://en.wikipedia.org/wiki/Nine_Songs" target="_blank" class="work-title">九歌</a> Nine Songs ·
+                                <a href="https://en.wikipedia.org/wiki/Tianwen" target="_blank" class="work-title">天問</a> Heavenly Questions
+                            </div>
+                            <div class="bio">Minister of Chu, slandered and exiled. Drowned himself in the Miluo River after Chu fell to Qin.</div>
+                            <div class="influence">Father of Chinese poetry. Template for the wronged loyal minister.</div>
+                        </div>
+                    </div>
+
+                    <!-- Song Yu c. 290-223 BCE -->
+                    <div class="author-card era-warring">
+                        <div class="portrait">
+                            <img src="../images/SongYu.jpeg" alt="Song Yu">
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">宋玉</span>
+                                <a href="https://en.wikipedia.org/wiki/Song_Yu" target="_blank" class="name-english">Song Yu</a>
+                                <span class="dates">c. 290–223 BCE</span>
+                            </div>
+                            <span class="era-label">Warring States · Chu</span>
+                            <div class="works">
+                                <a href="https://en.wikipedia.org/wiki/Jiu_Bian" target="_blank" class="work-title">九辯</a> Nine Debates ·
+                                <a href="https://en.wikipedia.org/wiki/Gaotang_Fu" target="_blank" class="work-title">高唐賦</a> Gaotang Fu ·
+                                <a href="https://en.wikipedia.org/wiki/Shennu_Fu" target="_blank" class="work-title">神女賦</a> Goddess Fu
+                            </div>
+                            <div class="bio">Disciple of Qu Yuan. Known for beauty, eloquence, and sensuous dream-encounter imagery.</div>
+                            <div class="influence">Bridge between Chuci and Han fu. Inventor of the goddess-encounter narrative.</div>
+                        </div>
+                    </div>
+
                 </div>
-                <span class="era-label">Warring States · Chu</span>
-                <div class="works">
-                    <a href="https://en.wikipedia.org/wiki/Li_Sao" target="_blank" class="work-title">離騷</a> Li Sao ·
-                    <a href="https://en.wikipedia.org/wiki/Nine_Songs" target="_blank" class="work-title">九歌</a> Nine Songs ·
-                    <a href="https://en.wikipedia.org/wiki/Tianwen" target="_blank" class="work-title">天問</a> Heavenly Questions
+            </section>
+
+            <!-- Han -->
+            <section id="han">
+                <div class="section-label">Han Dynasty</div>
+                <div class="authors-grid">
+
+                    <!-- Jia Yi 200-168 BCE -->
+                    <div class="author-card era-han">
+                        <div class="portrait">
+                            <img src="../images/JiaYi.png" alt="Jia Yi">
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">賈誼</span>
+                                <a href="https://en.wikipedia.org/wiki/Jia_Yi" target="_blank" class="name-english">Jia Yi</a>
+                                <span class="dates">200–168 BCE</span>
+                            </div>
+                            <span class="era-label">Early Han</span>
+                            <div class="works">
+                                <a href="https://ctext.org/chu-ci/ai-shi-ming" target="_blank" class="work-title">吊屈原賦</a> Lament for Qu Yuan ·
+                                <a href="https://en.wikipedia.org/wiki/Fu_Niao_Fu" target="_blank" class="work-title">鵩鳥賦</a> The Owl ·
+                                <a href="https://en.wikipedia.org/wiki/Faults_of_Qin" target="_blank" class="work-title">過秦論</a> Faults of Qin
+                            </div>
+                            <div class="bio">Brilliant young official, exiled due to jealousy at court. Later made tutor to Prince Liu Yi, who died in a horse-riding accident. Jia Yi blamed himself and died of grief a year later, at 33.</div>
+                            <div class="influence">Model of tragic genius cut down by politics. Established literary homage tradition.</div>
+                        </div>
+                    </div>
+
+                    <!-- Sima Xiangru 179-117 BCE -->
+                    <div class="author-card era-han">
+                        <div class="portrait">
+                            <img src="../images/SimaXiangru.jpg" alt="Sima Xiangru">
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">司馬相如</span>
+                                <a href="https://en.wikipedia.org/wiki/Sima_Xiangru" target="_blank" class="name-english">Sima Xiangru</a>
+                                <span class="dates">179–117 BCE</span>
+                            </div>
+                            <span class="era-label">Western Han</span>
+                            <div class="works">
+                                <a href="https://en.wikipedia.org/wiki/Zi_Xu_Fu" target="_blank" class="work-title">子虛賦</a> Sir Fantasy ·
+                                <a href="shanglin-fu.html" class="work-title">上林賦</a> Shanglin Fu ·
+                                <a href="https://en.wikipedia.org/wiki/Daren_Fu" target="_blank" class="work-title">大人賦</a> The Great Man
+                            </div>
+                            <div class="bio">Master of grand fu. Eloped with widow Zhuo Wenjun. Court poet to Emperor Wu. Known for stuttering.</div>
+                            <div class="influence">Supreme Han fu stylist. Shanglin Fu set standard for imperial spectacle.</div>
+                        </div>
+                    </div>
+
+                    <!-- Yang Yiin (Yang Yun) d. 54 BCE -->
+                    <div class="author-card era-han">
+                        <div class="portrait">
+                            <span class="portrait-char">楊</span>
+                            <span class="portrait-name">惲</span>
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">楊惲</span>
+                                <a href="https://en.wikipedia.org/wiki/Yang_Yun" target="_blank" rel="noopener" class="name-english">Yang Yiin (Yang Yun)</a>
+                                <span class="dates">d. 54 BCE</span>
+                            </div>
+                            <span class="era-label">Western Han</span>
+                            <div class="works">
+                                <a href="on-seclusion.html" class="work-title">報孫會宗書</a> Letter to Sun Hui-tsung
+                            </div>
+                            <div class="bio">Han official and writer whose self-defensive letter became a classic of political prose and personal voice under pressure.</div>
+                            <div class="influence">Friday pp. 157-169 opening text: rhetorical self-fashioning, grievance, and literati ethics.</div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="bio">Minister of Chu, slandered and exiled. Drowned himself in the Miluo River after Chu fell to Qin.</div>
-                <div class="influence">Father of Chinese poetry. Template for the wronged loyal minister.</div>
-            </div>
+            </section>
+
+            <!-- Six Dynasties -->
+            <section id="six-dynasties">
+                <div class="section-label">Six Dynasties</div>
+                <div class="authors-grid">
+
+                    <!-- Hsi K'ang 223-262 CE -->
+                    <div class="author-card era-six">
+                        <div class="portrait">
+                            <span class="portrait-char">嵇</span>
+                            <span class="portrait-name">康</span>
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">嵇康</span>
+                                <a href="https://en.wikipedia.org/wiki/Ji_Kang" target="_blank" rel="noopener" class="name-english">Hsi K'ang (Ji Kang)</a>
+                                <span class="dates">223–262 CE</span>
+                            </div>
+                            <span class="era-label">Wei-Jin</span>
+                            <div class="works">
+                                <a href="on-seclusion.html" class="work-title">與山巨源絕交書</a> Letter to Shan Tao
+                            </div>
+                            <div class="bio">Philosopher, musician, and member of the Seven Sages of the Bamboo Grove; executed after political conflict at court.</div>
+                            <div class="influence">Friday pp. 157-169: paradigmatic refusal of office and the ethics of withdrawal.</div>
+                        </div>
+                    </div>
+
+                    <!-- Tao Yuanming 365-427 CE -->
+                    <div class="author-card era-six">
+                        <div class="portrait">
+                            <span class="portrait-char">陶</span>
+                            <span class="portrait-name">淵明</span>
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">陶潛 / 陶淵明</span>
+                                <a href="https://en.wikipedia.org/wiki/Tao_Yuanming" target="_blank" rel="noopener" class="name-english">Tao Ch'ien (Tao Yuanming)</a>
+                                <span class="dates">365–427 CE</span>
+                            </div>
+                            <span class="era-label">Six Dynasties · Eastern Jin</span>
+                            <div class="works">
+                                <a href="https://en.wikipedia.org/wiki/The_Peach_Blossom_Spring" target="_blank" class="work-title">桃花源記</a> Peach Blossom Spring
+                            </div>
+                            <div class="bio">Civil official who repeatedly left office and returned to farming life. Canonical poet of withdrawal and rustic integrity.</div>
+                            <div class="influence">Core voice for Friday's pages 157-169 recluse-poetry unit: retreat as an ethical and aesthetic choice, not simple escapism.</div>
+                        </div>
+                    </div>
+
+                    <!-- Kung Chih-kuei 447-501 CE -->
+                    <div class="author-card era-six">
+                        <div class="portrait">
+                            <span class="portrait-char">孔</span>
+                            <span class="portrait-name">稚珪</span>
+                        </div>
+                        <div class="info">
+                            <div class="name-row">
+                                <span class="name-chinese">孔稚珪</span>
+                                <span class="name-english">Kung Chih-kuei (Kong Zhigui)</span>
+                                <span class="dates">447–501 CE</span>
+                            </div>
+                            <span class="era-label">Southern Qi</span>
+                            <div class="works">
+                                <a href="on-seclusion.html" class="work-title">北山移文</a> Proclamation on North Mountain
+                            </div>
+                            <div class="bio">Southern dynasties writer known for satirical prose criticizing opportunistic officials who fake reclusion for prestige.</div>
+                            <div class="influence">Friday pp. 157-169 closing text: exposes the politics of "performing" withdrawal.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
         </div>
-
-        <!-- Song Yu c. 290–223 BCE -->
-        <div class="author-card era-warring">
-            <div class="portrait">
-                <img src="../images/SongYu.jpeg" alt="Song Yu">
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">宋玉</span>
-                    <a href="https://en.wikipedia.org/wiki/Song_Yu" target="_blank" class="name-english">Song Yu</a>
-                    <span class="dates">c. 290–223 BCE</span>
-                </div>
-                <span class="era-label">Warring States · Chu</span>
-                <div class="works">
-                    <a href="https://en.wikipedia.org/wiki/Jiu_Bian" target="_blank" class="work-title">九辯</a> Nine Debates ·
-                    <a href="https://en.wikipedia.org/wiki/Gaotang_Fu" target="_blank" class="work-title">高唐賦</a> Gaotang Fu ·
-                    <a href="https://en.wikipedia.org/wiki/Shennu_Fu" target="_blank" class="work-title">神女賦</a> Goddess Fu
-                </div>
-                <div class="bio">Disciple of Qu Yuan. Known for beauty, eloquence, and sensuous dream-encounter imagery.</div>
-                <div class="influence">Bridge between Chuci and Han fu. Inventor of the goddess-encounter narrative.</div>
-            </div>
-        </div>
-
-        <!-- Jia Yi 200–168 BCE -->
-        <div class="author-card era-han">
-            <div class="portrait">
-                <img src="../images/JiaYi.png" alt="Jia Yi">
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">賈誼</span>
-                    <a href="https://en.wikipedia.org/wiki/Jia_Yi" target="_blank" class="name-english">Jia Yi</a>
-                    <span class="dates">200–168 BCE</span>
-                </div>
-                <span class="era-label">Early Han</span>
-                <div class="works">
-                    <a href="https://ctext.org/chu-ci/ai-shi-ming" target="_blank" class="work-title">吊屈原賦</a> Lament for Qu Yuan ·
-                    <a href="https://en.wikipedia.org/wiki/Fu_Niao_Fu" target="_blank" class="work-title">鵩鳥賦</a> The Owl ·
-                    <a href="https://en.wikipedia.org/wiki/Faults_of_Qin" target="_blank" class="work-title">過秦論</a> Faults of Qin
-                </div>
-                <div class="bio">Brilliant young official, exiled due to jealousy at court. Later made tutor to Prince Liu Yi, who died in a horse-riding accident. Jia Yi blamed himself and died of grief a year later, at 33.</div>
-                <div class="influence">Model of tragic genius cut down by politics. Established literary homage tradition.</div>
-            </div>
-        </div>
-
-        <!-- Sima Xiangru 179–117 BCE -->
-        <div class="author-card era-han">
-            <div class="portrait">
-                <img src="../images/SimaXiangru.jpg" alt="Sima Xiangru">
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">司馬相如</span>
-                    <a href="https://en.wikipedia.org/wiki/Sima_Xiangru" target="_blank" class="name-english">Sima Xiangru</a>
-                    <span class="dates">179–117 BCE</span>
-                </div>
-                <span class="era-label">Western Han</span>
-                <div class="works">
-                    <a href="https://en.wikipedia.org/wiki/Zi_Xu_Fu" target="_blank" class="work-title">子虛賦</a> Sir Fantasy ·
-                    <a href="shanglin-fu.html" class="work-title">上林賦</a> Shanglin Fu ·
-                    <a href="https://en.wikipedia.org/wiki/Daren_Fu" target="_blank" class="work-title">大人賦</a> The Great Man
-                </div>
-                <div class="bio">Master of grand fu. Eloped with widow Zhuo Wenjun. Court poet to Emperor Wu. Known for stuttering.</div>
-                <div class="influence">Supreme Han fu stylist. Shanglin Fu set standard for imperial spectacle.</div>
-            </div>
-        </div>
-
-        <!-- Yang Yiin (Yang Yun) d. 54 BCE -->
-        <div class="author-card era-han">
-            <div class="portrait">
-                <span class="portrait-char">楊</span>
-                <span class="portrait-name">惲</span>
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">楊惲</span>
-                    <a href="https://en.wikipedia.org/wiki/Yang_Yun" target="_blank" rel="noopener" class="name-english">Yang Yiin (Yang Yun)</a>
-                    <span class="dates">d. 54 BCE</span>
-                </div>
-                <span class="era-label">Western Han</span>
-                <div class="works">
-                    <a href="on-seclusion.html" class="work-title">報孫會宗書</a> Letter to Sun Hui-tsung
-                </div>
-                <div class="bio">Han official and writer whose self-defensive letter became a classic of political prose and personal voice under pressure.</div>
-                <div class="influence">Friday pp. 157-169 opening text: rhetorical self-fashioning, grievance, and literati ethics.</div>
-            </div>
-        </div>
-
-        <!-- Hsi K'ang 223–262 CE -->
-        <div class="author-card era-six">
-            <div class="portrait">
-                <span class="portrait-char">嵇</span>
-                <span class="portrait-name">康</span>
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">嵇康</span>
-                    <a href="https://en.wikipedia.org/wiki/Ji_Kang" target="_blank" rel="noopener" class="name-english">Hsi K'ang (Ji Kang)</a>
-                    <span class="dates">223–262 CE</span>
-                </div>
-                <span class="era-label">Wei-Jin</span>
-                <div class="works">
-                    <a href="on-seclusion.html" class="work-title">與山巨源絕交書</a> Letter to Shan Tao
-                </div>
-                <div class="bio">Philosopher, musician, and member of the Seven Sages of the Bamboo Grove; executed after political conflict at court.</div>
-                <div class="influence">Friday pp. 157-169: paradigmatic refusal of office and the ethics of withdrawal.</div>
-            </div>
-        </div>
-
-        <!-- Tao Yuanming 365–427 CE -->
-        <div class="author-card era-six">
-            <div class="portrait">
-                <span class="portrait-char">陶</span>
-                <span class="portrait-name">淵明</span>
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">陶潛 / 陶淵明</span>
-                    <a href="https://en.wikipedia.org/wiki/Tao_Yuanming" target="_blank" rel="noopener" class="name-english">Tao Ch'ien (Tao Yuanming)</a>
-                    <span class="dates">365–427 CE</span>
-                </div>
-                <span class="era-label">Six Dynasties · Eastern Jin</span>
-                <div class="works">
-                    <a href="https://en.wikipedia.org/wiki/The_Peach_Blossom_Spring" target="_blank" class="work-title">桃花源記</a> Peach Blossom Spring
-                </div>
-                <div class="bio">Civil official who repeatedly left office and returned to farming life. Canonical poet of withdrawal and rustic integrity.</div>
-                <div class="influence">Core voice for Friday's pages 157-169 recluse-poetry unit: retreat as an ethical and aesthetic choice, not simple escapism.</div>
-            </div>
-        </div>
-
-        <!-- Kung Chih-kuei 447–501 CE -->
-        <div class="author-card era-six">
-            <div class="portrait">
-                <span class="portrait-char">孔</span>
-                <span class="portrait-name">稚珪</span>
-            </div>
-            <div class="info">
-                <div class="name-row">
-                    <span class="name-chinese">孔稚珪</span>
-                    <span class="name-english">Kung Chih-kuei (Kong Zhigui)</span>
-                    <span class="dates">447–501 CE</span>
-                </div>
-                <span class="era-label">Southern Qi</span>
-                <div class="works">
-                    <a href="on-seclusion.html" class="work-title">北山移文</a> Proclamation on North Mountain
-                </div>
-                <div class="bio">Southern dynasties writer known for satirical prose criticizing opportunistic officials who fake reclusion for prestige.</div>
-                <div class="influence">Friday pp. 157-169 closing text: exposes the politics of "performing" withdrawal.</div>
-            </div>
-        </div>
-
     </div>
 
     <footer>
