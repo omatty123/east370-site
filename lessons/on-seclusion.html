@@ -6,21 +6,22 @@
   <title>On Seclusion (157–169) | EAST 370</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #0a0a0a;
-      --ink-wash: #2a2a2a;
-      --ink-light: #5a5a5a;
+      --ink: #1a1a1a;
+      --ink-light: #4a4a4a;
       --ink-faint: #8a8a8a;
-      --paper: #f7f5f0;
-      --paper-aged: #ebe7dc;
-      --cinnabar: #c43c3c;
-      --cinnabar-dark: #8a2a2a;
-      --jade: #4a6a5a;
-      --jade-light: #6a8a7a;
-      --gold: #a8860b;
-      --gold-muted: #8a7020;
+      --paper: #fafaf8;
+      --paper-dark: #f0ede8;
+      --gold: #b8860b;
+      --gold-light: #daa520;
+      /* Era colors */
+      --han: #c43c3c;
+      --han-dark: #8a2a2a;
+      --weijin: #4a6a5a;
+      --jin: #8a6a30;
+      --qi: #4a6080;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,239 +29,150 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Crimson Text', Georgia, serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background: var(--paper);
       color: var(--ink);
-      line-height: 1.8;
-      font-size: 17px;
-      min-height: 100vh;
-    }
-
-    /* Ink wash texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background:
-        radial-gradient(ellipse at 20% 0%, rgba(200,195,180,0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 100%, rgba(180,175,160,0.2) 0%, transparent 40%);
-      pointer-events: none;
-      z-index: -1;
+      line-height: 1.6;
     }
 
     /* === BREADCRUMB === */
     .breadcrumb {
       background: var(--ink);
-      padding: 0.6rem 2rem;
+      padding: 0.6rem 1.5rem;
     }
     .breadcrumb a {
       font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--gold);
+      color: #aaa;
       text-decoration: none;
-      font-family: system-ui, sans-serif;
+      letter-spacing: 0.03em;
       transition: color 0.2s;
     }
-    .breadcrumb a:hover { color: #d4a82a; }
+    .breadcrumb a:hover { color: var(--gold-light); }
 
     /* === HERO === */
     .hero {
-      background:
-        linear-gradient(180deg,
-          rgba(10,10,10,0.95) 0%,
-          rgba(30,28,24,0.9) 40%,
-          rgba(50,45,35,0.85) 70%,
-          rgba(80,70,55,0.8) 100%),
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="mist" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:rgb(60,55,45);stop-opacity:0.3"/><stop offset="100%" style="stop-color:rgb(40,35,30);stop-opacity:0"/></linearGradient></defs><path d="M0 80 Q25 60 50 70 T100 60 L100 100 L0 100 Z" fill="url(%23mist)"/></svg>');
-      background-size: cover;
-      color: #fff;
-      padding: 4rem 2rem 3.5rem;
+      background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.8)),
+                  url('https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=1200') center/cover;
+      padding: 2.5rem 1.5rem 2rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--paper));
     }
 
     .hero .calligraphy {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      font-weight: 700;
-      letter-spacing: 0.4em;
-      color: var(--paper);
-      text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
-      margin-bottom: 0.3em;
-      opacity: 0.95;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 2rem;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
     }
 
     .hero h1 {
-      font-weight: 400;
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.85);
-      font-style: italic;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
     }
 
     .hero .meta {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.05em;
+      font-size: 0.7rem;
+      color: #999;
     }
 
     /* === THINKERS RAIL === */
     .thinkers {
-      background: var(--ink);
-      padding: 2rem 1rem;
-      position: relative;
-    }
-
-    .thinkers::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1px;
-      height: 20px;
-      background: var(--gold);
+      background: #f5f5f3;
+      padding: 1rem 1.5rem;
     }
 
     .thinkers-label {
-      text-align: center;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      font-family: system-ui, sans-serif;
+      margin-bottom: 0.6rem;
     }
 
     .thinkers-row {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
+      gap: 0.4rem;
     }
 
-    /* Seal-stamp style thinker cards */
     .thinker {
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      padding: 0.8rem 1.2rem;
-      border: 1px solid rgba(168,134,11,0.3);
-      background: rgba(255,255,255,0.02);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .thinker::before {
-      content: '';
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      right: 4px;
-      bottom: 4px;
-      border: 1px solid rgba(168,134,11,0.15);
-      pointer-events: none;
+      padding: 0.4rem 0.8rem;
+      background: #fff;
+      border-radius: 4px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     .thinker:hover {
-      background: rgba(168,134,11,0.1);
-      border-color: var(--gold);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .thinker .seal {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.5rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--cinnabar);
+      color: var(--gold);
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.2rem;
     }
 
     .thinker .name {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.8);
-      letter-spacing: 0.02em;
+      font-size: 0.65rem;
+      color: var(--ink);
     }
 
     .thinker .dates {
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.4);
-      margin-top: 0.15rem;
-      font-family: system-ui, sans-serif;
+      font-size: 0.55rem;
+      color: var(--ink-faint);
     }
 
     /* === MAIN CONTENT === */
     .main {
-      max-width: 1500px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
+      padding: 2rem 1.5rem;
     }
 
     /* === INTRO === */
     .intro {
       max-width: 720px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 2rem;
       text-align: center;
-      position: relative;
-      padding: 2rem 0;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--paper-dark);
     }
-
-    .intro::before,
-    .intro::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .intro::before { top: 0; }
-    .intro::after { bottom: 0; }
 
     .intro h2 {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 1rem;
-      letter-spacing: 0.02em;
+      margin-bottom: 0.8rem;
     }
 
     .intro p {
       color: var(--ink-light);
-      font-size: 1.05rem;
+      font-size: 0.9rem;
     }
 
     /* === SCROLLS (Columns Grid) === */
     .scrolls {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
 
     @media (max-width: 1200px) {
-      .scrolls { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+      .scrolls { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 680px) {
       .scrolls { grid-template-columns: 1fr; }
@@ -269,95 +181,87 @@
     /* === SCROLL (Individual Column) === */
     .scroll {
       background: #fff;
-      position: relative;
+      border-radius: 6px;
       display: flex;
       flex-direction: column;
-      box-shadow:
-        0 1px 3px rgba(0,0,0,0.04),
-        0 8px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       overflow: hidden;
     }
 
     /* Top decorative bar */
     .scroll::before {
       content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
+      display: block;
+      height: 3px;
     }
 
-    .scroll.han::before { background: linear-gradient(90deg, var(--cinnabar-dark), var(--cinnabar)); }
-    .scroll.weijin::before { background: linear-gradient(90deg, #2a4a3a, var(--jade)); }
-    .scroll.jin::before { background: linear-gradient(90deg, #5a4020, #8a6a30); }
-    .scroll.qi::before { background: linear-gradient(90deg, #2a3a4a, #4a6080); }
+    .scroll.han::before { background: var(--han); }
+    .scroll.weijin::before { background: var(--weijin); }
+    .scroll.jin::before { background: var(--jin); }
+    .scroll.qi::before { background: var(--qi); }
 
     /* Header */
     .scroll-head {
-      padding: 1.8rem 1.5rem 1.5rem;
+      padding: 1rem 1rem 0.8rem;
+      background: #2a2a2a;
       text-align: center;
-      background: linear-gradient(180deg, rgba(250,248,242,1) 0%, rgba(255,255,255,1) 100%);
-      border-bottom: 1px solid var(--paper-aged);
     }
 
     .scroll-head .era {
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--ink-faint);
-      font-family: system-ui, sans-serif;
-      margin-bottom: 0.6rem;
+      letter-spacing: 0.1em;
+      color: #888;
+      margin-bottom: 0.4rem;
     }
 
-    .scroll.han .scroll-head .era { color: var(--cinnabar); }
-    .scroll.weijin .scroll-head .era { color: var(--jade); }
-    .scroll.jin .scroll-head .era { color: #8a6a30; }
-    .scroll.qi .scroll-head .era { color: #4a6080; }
+    .scroll.han .scroll-head .era { color: var(--han); }
+    .scroll.weijin .scroll-head .era { color: var(--weijin); }
+    .scroll.jin .scroll-head .era { color: var(--jin); }
+    .scroll.qi .scroll-head .era { color: var(--qi); }
 
     .scroll-head .chinese {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--ink);
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--gold-light);
       line-height: 1.2;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
 
     .scroll-head .title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink-wash);
-      margin-bottom: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 0.3rem;
     }
 
     .scroll-head .author {
-      font-size: 0.85rem;
-      color: var(--ink-light);
-      font-style: italic;
+      font-size: 0.7rem;
+      color: #aaa;
     }
 
     .scroll-head .author a {
-      color: inherit;
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+    .scroll-head .author a:hover {
       text-decoration: underline;
-      text-decoration-color: var(--gold-muted);
-      text-underline-offset: 2px;
     }
 
     /* Body */
     .scroll-body {
-      padding: 1.5rem;
+      padding: 1rem;
       flex: 1;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
     }
 
     .scroll-body h3 {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: var(--gold);
-      margin: 1.5rem 0 0.5rem;
-      font-family: system-ui, sans-serif;
+      margin: 1rem 0 0.4rem;
       font-weight: 600;
     }
 
@@ -365,121 +269,103 @@
 
     .scroll-body p {
       color: var(--ink-light);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
     }
 
     .scroll-body ul {
-      padding-left: 1.1rem;
-      margin: 0.4rem 0;
+      padding-left: 1rem;
+      margin: 0.3rem 0;
     }
 
     .scroll-body li {
       color: var(--ink-light);
-      margin: 0.3rem 0;
+      margin: 0.2rem 0;
+      line-height: 1.4;
     }
 
     /* Tags */
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1rem;
+      gap: 0.3rem;
+      margin-bottom: 0.8rem;
     }
 
     .tag {
-      font-size: 0.55rem;
+      font-size: 0.5rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.25rem 0.6rem;
-      font-family: system-ui, sans-serif;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.5rem;
       font-weight: 500;
+      border-radius: 3px;
     }
 
-    .tag.confucian { background: #f0f5f5; color: #2a5050; border-left: 2px solid #4a8080; }
-    .tag.daoist { background: #f0f5f0; color: #2a4a2a; border-left: 2px solid var(--jade); }
-    .tag.political { background: #f5f0ea; color: #5a4020; border-left: 2px solid #8a6a30; }
-    .tag.literary { background: #f5f0f5; color: #5a3a5a; border-left: 2px solid #8a5a8a; }
+    .tag.confucian { background: #e8f0f0; color: #2a5050; }
+    .tag.daoist { background: #e8f0e8; color: #2a4a2a; }
+    .tag.political { background: #f0ebe5; color: #5a4020; }
+    .tag.literary { background: #f0e8f0; color: #5a3a5a; }
 
     /* Quote blocks */
     .quote {
-      background: linear-gradient(135deg, #fffdf5, #faf8f0);
-      border-left: 3px solid var(--gold);
-      padding: 1rem 1.2rem;
-      margin: 1rem 0;
+      background: var(--paper-dark);
+      border-left: 2px solid var(--gold);
+      padding: 0.8rem 1rem;
+      margin: 0.8rem 0;
       font-style: italic;
       color: var(--ink-light);
-      position: relative;
-    }
-
-    .quote::before {
-      content: '"';
-      position: absolute;
-      top: -0.2rem;
-      left: 0.5rem;
-      font-size: 2.5rem;
-      color: var(--gold);
-      opacity: 0.3;
-      font-family: Georgia, serif;
+      font-size: 0.8rem;
     }
 
     .quote cite {
       display: block;
       font-style: normal;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       color: var(--ink-faint);
-      margin-top: 0.5rem;
-      font-family: system-ui, sans-serif;
+      margin-top: 0.4rem;
     }
 
     /* Links */
     a.ref {
-      color: var(--cinnabar-dark);
+      color: var(--gold);
       text-decoration: none;
-      border-bottom: 1px solid rgba(196,60,60,0.3);
+      border-bottom: 1px solid rgba(184,134,11,0.3);
       transition: all 0.2s;
     }
 
     a.ref:hover {
-      color: var(--cinnabar);
-      border-bottom-color: var(--cinnabar);
+      color: var(--gold-light);
+      border-bottom-color: var(--gold-light);
     }
 
     /* === DISCUSSION === */
     .discussion {
       max-width: 800px;
-      margin: 0 auto 3rem;
-      background: linear-gradient(135deg, #fdfcf8, #f8f6f0);
-      border: 1px solid var(--paper-aged);
-      padding: 2rem 2.5rem;
-      position: relative;
-    }
-
-    .discussion::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--cinnabar), var(--jade), #8a6a30, #4a6080);
+      margin: 0 auto 2rem;
+      background: #fff;
+      border-radius: 6px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     .discussion h2 {
-      font-size: 0.75rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       color: var(--gold);
-      margin-bottom: 1.5rem;
-      font-family: system-ui, sans-serif;
+      margin-bottom: 1rem;
+      font-weight: 700;
     }
 
     .discussion ol {
-      padding-left: 1.5rem;
+      padding-left: 1.2rem;
     }
 
     .discussion li {
-      margin: 1rem 0;
+      margin: 0.8rem 0;
       color: var(--ink-light);
+      font-size: 0.85rem;
+      line-height: 1.5;
     }
 
     .discussion strong {
@@ -490,23 +376,23 @@
     .sources {
       max-width: 800px;
       margin: 0 auto;
-      padding-top: 2rem;
-      border-top: 1px solid var(--paper-aged);
-      font-size: 0.9rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--paper-dark);
+      font-size: 0.8rem;
       color: var(--ink-faint);
     }
 
     .sources h3 {
-      font-size: 0.65rem;
+      font-size: 0.55rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       color: var(--ink-light);
-      margin-bottom: 1rem;
-      font-family: system-ui, sans-serif;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
     }
 
     .sources a {
-      color: var(--cinnabar-dark);
+      color: var(--gold);
       text-decoration: none;
     }
 
@@ -515,8 +401,8 @@
     }
 
     .sources ul {
-      padding-left: 1.2rem;
-      margin-top: 0.8rem;
+      padding-left: 1rem;
+      margin-top: 0.6rem;
       columns: 2;
       column-gap: 2rem;
     }
@@ -526,38 +412,59 @@
     }
 
     .sources li {
-      margin: 0.4rem 0;
+      margin: 0.3rem 0;
       break-inside: avoid;
     }
 
     /* === FOOTER === */
     footer {
       background: var(--ink);
-      color: rgba(255,255,255,0.5);
+      padding: 1.25rem 1.5rem;
       text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      font-family: system-ui, sans-serif;
-      letter-spacing: 0.05em;
+    }
+
+    footer .foot-chinese {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: 0.2rem;
+    }
+
+    footer .foot-title {
+      font-size: 0.7rem;
+      color: #aaa;
+      margin-bottom: 0.3rem;
+    }
+
+    footer .foot-term {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero .calligraphy { font-size: 1.6rem; }
+      .hero h1 { font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
 
   <nav class="breadcrumb">
-    <a href="../index.html">&larr; Back to EAST 370</a>
+    <a href="../index.html">&larr; EAST 370</a>
   </nav>
 
   <header class="hero">
     <div class="calligraphy">論隱逸</div>
     <h1>On Seclusion: Two Letters, a Dream, and a Satire</h1>
-    <div class="meta">Birch pp. 157–169 &middot; Period of Division (220–589 CE)</div>
+    <div class="meta">Birch pp. 157–169 · Period of Division (220–589 CE)</div>
   </header>
 
   <!-- Thinkers Rail -->
   <section class="thinkers">
-    <div class="thinkers-label">Philosophers &amp; Thinkers Referenced</div>
+    <div class="thinkers-label">Philosophers & Thinkers Referenced</div>
     <div class="thinkers-row">
       <a href="https://plato.stanford.edu/entries/confucius/" target="_blank" class="thinker">
         <span class="seal">孔子</span>
@@ -610,10 +517,10 @@
       <!-- Scroll 1: Yang Yun -->
       <article class="scroll han">
         <div class="scroll-head">
-          <div class="era">Western Han &middot; 1st c. BCE</div>
+          <div class="era">Western Han · 1st c. BCE</div>
           <div class="chinese">報孫會宗書</div>
           <div class="title">Letter to Sun Huizong</div>
-          <div class="author">Yang Yun 楊惲 &middot; Trans. Burton Watson</div>
+          <div class="author">Yang Yun 楊惲 · Trans. Burton Watson</div>
         </div>
         <div class="scroll-body">
           <div class="tags">
@@ -640,10 +547,10 @@
       <!-- Scroll 2: Xi Kang -->
       <article class="scroll weijin">
         <div class="scroll-head">
-          <div class="era">Wei-Jin &middot; 3rd c. CE</div>
+          <div class="era">Wei-Jin · 3rd c. CE</div>
           <div class="chinese">與山巨源絕交書</div>
           <div class="title">Letter to Shan Tao</div>
-          <div class="author"><a href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank">Xi Kang 嵇康</a> &middot; Trans. J.R. Hightower</div>
+          <div class="author"><a href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank">Xi Kang 嵇康</a> · Trans. J.R. Hightower</div>
         </div>
         <div class="scroll-body">
           <div class="tags">
@@ -678,10 +585,10 @@
       <!-- Scroll 3: Tao Qian -->
       <article class="scroll jin">
         <div class="scroll-head">
-          <div class="era">Eastern Jin &middot; c. 421 CE</div>
+          <div class="era">Eastern Jin · c. 421 CE</div>
           <div class="chinese">桃花源記</div>
           <div class="title">Peach Blossom Spring</div>
-          <div class="author"><a href="https://www.britannica.com/biography/Tao-Qian" target="_blank">Tao Qian 陶潛</a> &middot; Trans. Cyril Birch</div>
+          <div class="author"><a href="https://www.britannica.com/biography/Tao-Qian" target="_blank">Tao Qian 陶潛</a> · Trans. Cyril Birch</div>
         </div>
         <div class="scroll-body">
           <div class="tags">
@@ -715,10 +622,10 @@
       <!-- Scroll 4: Kong Zhigui -->
       <article class="scroll qi">
         <div class="scroll-head">
-          <div class="era">Southern Qi &middot; late 5th c. CE</div>
+          <div class="era">Southern Qi · late 5th c. CE</div>
           <div class="chinese">北山移文</div>
           <div class="title">Proclamation on North Mountain</div>
-          <div class="author">Kong Zhigui 孔稚珪 &middot; Trans. J.R. Hightower</div>
+          <div class="author">Kong Zhigui 孔稚珪 · Trans. J.R. Hightower</div>
         </div>
         <div class="scroll-body">
           <div class="tags">
@@ -761,7 +668,7 @@
 
     <!-- Sources -->
     <section class="sources">
-      <h3>Sources &amp; Further Reading</h3>
+      <h3>Sources & Further Reading</h3>
       <p><strong>Primary:</strong> Cyril Birch, ed., <em>Anthology of Chinese Literature</em> (Grove Press, 1965), pp. 157–169.</p>
       <ul>
         <li><a href="https://plato.stanford.edu/entries/neo-daoism/" target="_blank">SEP: Neo-Daoism</a></li>
@@ -776,7 +683,9 @@
   </main>
 
   <footer>
-    EAST 370 &middot; Chinese Traditional Literature and Thought &middot; Winter 2026
+    <div class="foot-chinese">中國文學與思想</div>
+    <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+    <div class="foot-term">WINTER 2026</div>
   </footer>
 
 </body>
