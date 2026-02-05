@@ -136,6 +136,105 @@
             }
         }
 
+        /* Bio Section */
+        .bio-section {
+            background: linear-gradient(135deg, #f5f0eb 0%, var(--paper) 100%);
+            padding: 2rem 1.5rem;
+        }
+
+        .bio-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 600px) {
+            .bio-grid { grid-template-columns: 1fr; }
+        }
+
+        .bio-portrait {
+            text-align: center;
+        }
+
+        .bio-portrait img {
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .bio-portrait .name-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.8rem;
+            color: var(--mo);
+            margin-top: 0.75rem;
+        }
+
+        .bio-portrait .name-en {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+        }
+
+        .bio-content h2 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--mo);
+            margin-bottom: 0.5rem;
+        }
+
+        .bio-content .tagline {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .bio-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .bio-fact {
+            background: #fff;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--mo);
+        }
+
+        .bio-fact .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+        }
+
+        .bio-fact .value {
+            font-size: 0.85rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .bio-claim {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--mo);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .bio-claim strong {
+            color: var(--gold-light);
+        }
+
         /* Container */
         .container {
             max-width: 900px;
@@ -481,12 +580,58 @@
     <!-- Navigation -->
     <nav class="nav">
         <a href="maps/mozi-map.html">Map</a>
-        <a href="#reading">Reading</a>
+        <a href="#bio">Biography</a>
         <a href="#ethics">Ethics</a>
         <a href="#politics">Politics</a>
         <a href="#method">Method</a>
         <a href="#questions">Questions</a>
     </nav>
+
+    <!-- Biography Section -->
+    <section class="bio-section" id="bio">
+        <div class="bio-grid">
+            <div class="bio-portrait">
+                <img src="../images/SongYu.jpeg" alt="Mozi portrait" style="filter: sepia(30%);">
+                <div class="name-ch">墨翟</div>
+                <div class="name-en">Mo Di (Master Mo)</div>
+            </div>
+            <div class="bio-content">
+                <h2>The Anti-Confucian</h2>
+                <p class="tagline">Craftsman-turned-philosopher who built China's first organized intellectual movement—and its most radical challenge to tradition.</p>
+
+                <div class="bio-facts">
+                    <div class="bio-fact">
+                        <div class="label">Active</div>
+                        <div class="value">~470–391 BCE</div>
+                    </div>
+                    <div class="bio-fact">
+                        <div class="label">Origin</div>
+                        <div class="value">State of Lu or Song</div>
+                    </div>
+                    <div class="bio-fact">
+                        <div class="label">Background</div>
+                        <div class="value">Artisan / Craftsman</div>
+                    </div>
+                    <div class="bio-fact">
+                        <div class="label">Movement</div>
+                        <div class="value">Mohism 墨家</div>
+                    </div>
+                    <div class="bio-fact">
+                        <div class="label">Reading</div>
+                        <div class="value">Ivanhoe pp. 57–108</div>
+                    </div>
+                    <div class="bio-fact">
+                        <div class="label">Known For</div>
+                        <div class="value">Universal love, anti-war activism</div>
+                    </div>
+                </div>
+
+                <div class="bio-claim">
+                    <strong>Bold claim:</strong> Mozi, not Confucius, is China's first true philosopher—the first to construct explicit <em>arguments</em> rather than relying on received wisdom and personal cultivation.
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Reading Info -->
     <section class="reading-info" id="reading">
