@@ -17,155 +17,83 @@
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            /* School colors */
             --ru: #2D7D7D;
-            --mo: #A67C52;
-            --dao: #3D8B4D;
-            --fa: #B54545;
-            --fo: #7B5EA7;
             /* Section colors */
-            --section-1: #1a4a4a;
+            --section-1: #2D7D7D;
             --section-2: #4a1a4a;
             --section-3: #4a4a1a;
             --section-4: #1a1a4a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.8;
+            font-size: 17px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Compact Header */
+        .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
-        }
-
-        .breadcrumb a {
-            font-size: 0.75rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 50%, var(--ink) 100%);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 3rem 2rem;
-            position: relative;
-            overflow: hidden;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-        }
+        .page-header .back:hover { color: var(--gold-light); }
 
-        .hero-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            color: var(--gold-light);
-            letter-spacing: 0.2em;
-            margin-bottom: 0.75rem;
-            text-shadow: 0 0 60px rgba(184, 134, 11, 0.4);
-        }
-
-        .hero h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            font-weight: 300;
-            color: #fff;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-style: italic;
-            line-height: 1.7;
-        }
-
-        .hero-meta {
+        .page-title {
             display: flex;
-            gap: 2.5rem;
-            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
 
-        .hero-meta-item {
-            text-align: center;
-        }
-
-        .hero-meta-item span {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.4rem;
-        }
-
-        .hero-meta-item strong {
+        .page-title .ch {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--gold-light);
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--ru);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
         }
 
         /* Navigation */
         .nav {
             position: sticky;
             top: 0;
-            background: rgba(26, 26, 26, 0.97);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            background: var(--ink);
             z-index: 1000;
             padding: 0.6rem 1.5rem;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
-        }
-
-        .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
@@ -173,230 +101,142 @@
         }
 
         .nav a {
-            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
             color: #aaa;
             text-decoration: none;
-            padding: 0.4rem 0.75rem;
-            border-radius: 2px;
-            transition: all 0.3s ease;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
         }
 
         .nav a:hover {
             color: var(--gold-light);
-            background: rgba(184, 134, 11, 0.15);
         }
 
-        .nav a.map-link {
-            background: var(--ru);
-            color: #fff;
+        /* Multi-Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
-        .nav a.map-link:hover {
-            background: #3a9a9a;
+        .two-col-wide-left {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
         }
 
-        /* Main Content */
+        .two-col-wide-right {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-col, .two-col-wide-left, .two-col-wide-right {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Container */
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        /* Table of Contents */
-        .toc-section {
-            background: linear-gradient(180deg, rgba(45, 125, 125, 0.03) 0%, var(--paper) 100%);
-            padding: 3rem 2rem;
-        }
-
-        .toc-container {
             max-width: 900px;
             margin: 0 auto;
+            padding: 3rem 1.5rem;
         }
 
-        .toc-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--ink-faint);
-            text-align: center;
-            margin-bottom: 1.5rem;
+        /* Reading Info */
+        .reading-info {
+            background: linear-gradient(180deg, rgba(45, 125, 125, 0.08) 0%, var(--paper) 100%);
+            padding: 2rem 1.5rem;
         }
 
-        .toc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .toc-card {
+        .reading-box {
+            max-width: 900px;
+            margin: 0 auto;
             background: #fff;
             border-radius: 6px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid var(--ru);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--gold);
         }
 
-        .toc-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .toc-card.book-1 {
-            border-color: var(--section-1);
-        }
-
-        .toc-card.book-2 {
-            border-color: var(--section-2);
-        }
-
-        .toc-card.book-3 {
-            border-color: var(--section-3);
-        }
-
-        .toc-card.book-6 {
-            border-color: var(--section-4);
-        }
-
-        .toc-card .book-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.6rem;
+        .reading-box h2 {
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-faint);
-            margin-bottom: 0.4rem;
-        }
-
-        .toc-card .book-title {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.35rem;
-            color: var(--ink);
-            margin-bottom: 0.2rem;
-        }
-
-        .toc-card .book-subtitle {
-            font-size: 0.85rem;
-            color: var(--ink-light);
+            letter-spacing: 0.15em;
+            color: var(--gold);
             margin-bottom: 0.75rem;
         }
 
-        .toc-card .passages {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .toc-card .passage-link {
-            font-family: monospace;
-            font-size: 0.7rem;
-            padding: 0.2rem 0.4rem;
-            background: var(--paper);
-            border: 1px solid #ddd;
-            border-radius: 3px;
+        .reading-box p {
+            font-size: 0.95rem;
             color: var(--ink-light);
-            text-decoration: none;
-            transition: all 0.2s ease;
+            margin-bottom: 0.5rem;
         }
 
-        .toc-card .passage-link:hover {
-            background: var(--ru);
-            color: #fff;
-            border-color: var(--ru);
+        .chapter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
 
-        .toc-external {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--ru);
-            text-decoration: none;
-            padding: 0.15rem 0.4rem;
-            border: 1px solid var(--ru);
+        .chapter-item {
+            font-size: 0.85rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--paper);
             border-radius: 3px;
-            margin-top: 0.75rem;
-            transition: all 0.2s ease;
         }
 
-        .toc-external:hover {
-            background: var(--ru);
-            color: #fff;
+        .chapter-item .ch-num {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
         }
 
-        .toc-external svg {
-            width: 10px;
-            height: 10px;
+        .chapter-item .ch-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--ru);
         }
 
         /* Section Headers */
         .section-header {
-            padding: 4rem 2rem 2.5rem;
+            padding: 3rem 1.5rem 2rem;
             text-align: center;
-            position: relative;
         }
 
-        .section-header.section-1 {
-            background: linear-gradient(135deg, var(--section-1) 0%, #0d2a2a 100%);
-        }
-
-        .section-header.section-2 {
-            background: linear-gradient(135deg, var(--section-2) 0%, #2a0d2a 100%);
-        }
-
-        .section-header.section-3 {
-            background: linear-gradient(135deg, var(--section-3) 0%, #2a2a0d 100%);
-        }
-
-        .section-header.section-4 {
-            background: linear-gradient(135deg, var(--section-4) 0%, #0d0d2a 100%);
-        }
+        .section-header.section-1 { background: linear-gradient(135deg, var(--section-1) 0%, #1a5555 100%); }
+        .section-header.section-2 { background: linear-gradient(135deg, var(--section-2) 0%, #2a0d2a 100%); }
+        .section-header.section-3 { background: linear-gradient(135deg, var(--section-3) 0%, #2a2a0d 100%); }
+        .section-header.section-4 { background: linear-gradient(135deg, var(--section-4) 0%, #0d0d2a 100%); }
 
         .section-number {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.2em;
             color: rgba(255, 255, 255, 0.5);
             margin-bottom: 0.5rem;
         }
 
         .section-header h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-size: 1rem;
             font-weight: 400;
             color: #fff;
             letter-spacing: 0.08em;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
         }
 
         .section-header .chinese-title {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            color: var(--gold-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header .passage-ref {
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Content Sections */
-        .content-section {
-            padding: 2.5rem 0;
-        }
+        .content-section { margin-bottom: 2.5rem; }
 
         .content-section h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             color: var(--ru);
@@ -406,46 +246,33 @@
             display: inline-block;
         }
 
-        .content-section.purple h3 {
-            color: var(--section-2);
-            border-color: var(--section-2);
-        }
+        .content-section.purple h3 { color: var(--section-2); border-color: var(--section-2); }
+        .content-section.olive h3 { color: var(--section-3); border-color: var(--section-3); }
+        .content-section.blue h3 { color: var(--section-4); border-color: var(--section-4); }
 
-        .content-section.olive h3 {
-            color: var(--section-3);
-            border-color: var(--section-3);
-        }
-
-        .content-section.blue h3 {
-            color: var(--section-4);
-            border-color: var(--section-4);
-        }
-
-        /* Key Terms Tables */
+        /* Key Terms */
         .terms-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.25rem 0 1.5rem;
+            margin: 1rem 0;
             font-size: 0.9rem;
         }
 
         .terms-table th {
-            font-family: 'Inter', sans-serif;
             font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--ink-faint);
             text-align: left;
-            padding: 0.6rem 0.9rem;
+            padding: 0.6rem 0.75rem;
             background: var(--paper-dark);
             border-bottom: 2px solid #ddd;
         }
 
         .terms-table td {
-            padding: 10px 12px;
+            padding: 0.6rem 0.75rem;
             border-bottom: 1px solid #eee;
             vertical-align: top;
-            line-height: 1.6;
         }
 
         .terms-table .chinese-cell {
@@ -458,84 +285,40 @@
             color: var(--ink-light);
         }
 
-        .terms-table tr:hover {
-            background: rgba(184, 134, 11, 0.04);
-            transition: background 0.2s ease;
-        }
-
         /* Synopsis */
         .synopsis {
             background: #fff;
             border-radius: 6px;
             padding: 1.5rem;
-            margin: 1.25rem 0;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-            position: relative;
+            margin: 1rem 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
         }
 
-        .synopsis::before {
-            content: '"';
-            font-family: Georgia, serif;
-            font-size: 4rem;
-            color: var(--paper-dark);
-            position: absolute;
-            top: -0.3rem;
-            left: 0.75rem;
-            line-height: 1;
+        .synopsis p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
         }
 
-        .synopsis-content {
-            padding-left: 0.4rem;
+        .synopsis p:last-child { margin-bottom: 0; }
+
+        /* Quote Block */
+        .quote-block {
+            background: var(--paper-dark);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--gold);
+            font-style: italic;
         }
 
-        .synopsis-content p {
-            margin-bottom: 0.9rem;
+        .quote-block cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
         }
 
-        .synopsis-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Themes Grid */
-        .themes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-            margin: 1.25rem 0;
-        }
-
-        .theme-card {
-            background: linear-gradient(135deg, #fff 0%, var(--paper) 100%);
-            padding: 1.25rem;
-            border-radius: 6px;
-            border: 1px solid #e5e5e5;
-        }
-
-        .theme-card .number {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--paper-dark);
-            float: left;
-            margin-right: 0.75rem;
-            line-height: 1;
-        }
-
-        .theme-card h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.4rem;
-        }
-
-        .theme-card p {
-            font-size: 0.8rem;
-            color: var(--ink-light);
-            line-height: 1.6;
-        }
-
-        /* Famous Saying Box */
+        /* Famous Saying */
         .saying-box {
             background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
             color: #fff;
@@ -547,96 +330,90 @@
 
         .saying-box .saying-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             color: var(--gold-light);
             margin-bottom: 0.4rem;
-            letter-spacing: 0.1em;
-        }
-
-        .saying-box .saying-pinyin {
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 0.75rem;
-            font-size: 0.85rem;
+            letter-spacing: 0.08em;
         }
 
         .saying-box .saying-meaning {
             font-size: 1rem;
             color: #fff;
-            margin-bottom: 0.75rem;
-            max-width: 450px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 0.5rem;
         }
 
         .saying-box .saying-note {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Quote Block */
-        .quote-block {
-            background: var(--paper-dark);
-            padding: 1.25rem 1.5rem;
-            margin: 1.25rem 0;
-            border-left: 4px solid var(--gold);
-            font-style: italic;
+        /* Themes Grid */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
         }
 
-        .quote-block cite {
-            display: block;
-            margin-top: 0.6rem;
-            font-style: normal;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            color: var(--ink-faint);
+        .theme-card {
+            background: #fff;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .theme-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.4rem;
+        }
+
+        .theme-card p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
         }
 
         /* Comparison Table */
         .comparison-section {
             background: var(--paper-dark);
-            padding: 3rem 2rem;
+            padding: 3rem 1.5rem;
         }
 
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             background: #fff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             border-radius: 6px;
             overflow: hidden;
+            margin: 1rem 0;
         }
 
         .comparison-table th {
-            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             background: var(--ink);
             color: #fff;
-            padding: 0.9rem 1rem;
+            padding: 0.75rem 1rem;
             text-align: left;
         }
 
         .comparison-table td {
-            padding: 0.9rem 1rem;
+            padding: 0.75rem 1rem;
             border-bottom: 1px solid #eee;
             font-size: 0.85rem;
             vertical-align: top;
         }
 
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
+        .comparison-table tr:last-child td { border-bottom: none; }
 
-        .comparison-table tr:hover td {
-            background: rgba(45, 125, 125, 0.03);
-        }
-
-        /* Discussion Questions */
+        /* Questions */
         .questions-section {
-            padding: 3rem 2rem;
             background: #fff;
+            padding: 3rem 1.5rem;
         }
 
         .questions-container {
@@ -645,85 +422,33 @@
         }
 
         .questions-container h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             color: var(--ink-faint);
             text-align: center;
             margin-bottom: 1.5rem;
         }
 
         .question-item {
-            padding: 1.25rem;
+            padding: 1rem 0;
             border-bottom: 1px solid #eee;
         }
 
-        .question-item:last-child {
-            border-bottom: none;
-        }
+        .question-item:last-child { border-bottom: none; }
 
         .question-item .q-num {
-            font-family: 'Inter', sans-serif;
             font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--ru);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
         }
 
         .question-item p {
             font-size: 0.95rem;
             color: var(--ink);
             line-height: 1.7;
-        }
-
-        /* Resources */
-        .resources-section {
-            background: linear-gradient(180deg, var(--paper) 0%, var(--paper-dark) 100%);
-            padding: 3rem 2rem;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .resource-card {
-            background: #fff;
-            padding: 1.25rem;
-            border-radius: 6px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .resource-card h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--ink-faint);
-            margin-bottom: 0.75rem;
-        }
-
-        .resource-card a {
-            display: block;
-            color: var(--ru);
-            text-decoration: none;
-            padding: 0.4rem 0;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85rem;
-            transition: color 0.2s ease;
-        }
-
-        .resource-card a:last-child {
-            border-bottom: none;
-        }
-
-        .resource-card a:hover {
-            color: var(--gold);
         }
 
         /* Footer */
@@ -753,304 +478,63 @@
             letter-spacing: 0.08em;
         }
 
-        /* Mini-maps in book headers */
-        .section-header {
-            position: relative;
-        }
-
-        .section-header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .mini-map-container {
-            position: absolute;
-            top: 0.75rem;
-            right: 1.5rem;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            z-index: 1;
-            cursor: pointer;
-        }
-
-        .mini-map {
-            width: 100%;
-            height: 100%;
-            background: #f5f3ef;
-        }
-
-        .mini-map .leaflet-control-container {
-            display: none;
-        }
-
-        /* Custom mini-map markers */
-        .mini-marker {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #c54b3c;
-            color: #fff;
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 12px;
-            font-weight: bold;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            border: 2px solid #fff;
-        }
-
-        .mini-marker.visited {
-            background: #2d6a4f;
-        }
-
-        .mini-marker.mentioned {
-            background: #5a5a8a;
-        }
-
-        .mini-marker.landmark {
-            background: var(--gold);
-        }
-
-        .mini-marker.capital {
-            background: var(--gold);
-        }
-
-        .mini-map-container:hover {
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: scale(1.02);
-            transition: all 0.2s ease;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-chinese {
-                letter-spacing: 0.1em;
-            }
-
-            .nav-inner {
-                gap: 0.75rem;
-            }
-
-            .nav a {
-                font-size: 0.6rem;
-                padding: 0.3rem 0.5rem;
-            }
-
-            .container {
-                padding: 2rem 1.25rem;
-            }
-
-            .mini-map-container {
-                position: relative;
-                top: auto;
-                right: auto;
-                width: 100%;
-                height: 140px;
-                border-radius: 8px;
-                margin-top: 1rem;
-            }
+            .nav { gap: 1rem; }
+            .container { padding: 2rem 1rem; }
         }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="../index.html">← EAST 370</a>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-chinese">孟子</div>
-            <h1>The Mengzi</h1>
-            <p class="hero-subtitle">
-                "Human nature is good, just as water naturally flows downward."<br>
-                The foundational Confucian text on moral cultivation, benevolent government, and the innate goodness of
-                human nature.
-            </p>
-            <div class="hero-meta">
-                <div class="hero-meta-item">
-                    <span>Author</span>
-                    <strong>孟軻</strong>
-                </div>
-                <div class="hero-meta-item">
-                    <span>Period</span>
-                    <strong>戰國</strong>
-                </div>
-                <div class="hero-meta-item">
-                    <span>Circa</span>
-                    <strong>372–289 BCE</strong>
-                </div>
-                <div class="hero-meta-item">
-                    <span>Books</span>
-                    <strong>7 篇</strong>
-                </div>
-            </div>
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">孟子</span>
+            <span class="en">The Mengzi</span>
+            <span class="meta">Mengzi (~372-289 BCE)<span>·</span>Ivanhoe pp. 115-159</span>
         </div>
-    </section>
+    </header>
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-inner">
-            <a href="../index.html" class="map-link">Course Portal</a>
-            <a href="#toc">Contents</a>
-            <a href="#book-1">Book 1</a>
-            <a href="#book-2">Book 2</a>
-            <a href="#book-3">Book 3</a>
-            <a href="#book-4">Book 4</a>
-            <a href="#book-5">Book 5</a>
-            <a href="#book-6">Book 6</a>
-            <a href="#book-7">Book 7</a>
-            <a href="#themes">Themes</a>
-            <a href="#questions">Questions</a>
-            <a href="maps/mengzi-map.html" class="map-link">View Map</a>
-        </div>
+        <a href="#reading">Reading</a>
+        <a href="#book-1">Book 1</a>
+        <a href="#book-2">Book 2</a>
+        <a href="#book-3">Book 3</a>
+        <a href="#book-6">Book 6</a>
+        <a href="#book-7">Book 7</a>
+        <a href="#themes">Themes</a>
+        <a href="#questions">Questions</a>
     </nav>
 
-    <!-- Table of Contents -->
-    <section class="toc-section" id="toc">
-        <div class="toc-container">
-            <h2 class="toc-title">Key Passages by Book</h2>
-            <div class="toc-grid">
-                <div class="toc-card book-1">
-                    <div class="book-num">Book 1</div>
-                    <div class="book-title">梁惠王</div>
-                    <div class="book-subtitle">King Hui of Liang</div>
-                    <div class="passages">
-                        <a href="#book-1" class="passage-link">1A1</a>
-                        <a href="#book-1" class="passage-link">1A3</a>
-                        <a href="#book-1" class="passage-link">1A7</a>
-                        <a href="#book-1" class="passage-link">1B8</a>
-                    </div>
-                    <a href="https://ctext.org/mengzi/liang-hui-wang-i" target="_blank" rel="noopener"
-                        class="toc-external">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        ctext
-                    </a>
+    <!-- Reading Info -->
+    <section class="reading-info" id="reading">
+        <div class="reading-box">
+            <h2>Assigned Reading</h2>
+            <p><strong>Ivanhoe & Van Norden, pp. 115-159</strong> — Introduction and selections from seven books</p>
+            <div class="chapter-list">
+                <div class="chapter-item">
+                    <span class="ch-num">Book 1</span>
+                    <span class="ch-chinese">梁惠王</span> King Hui of Liang
                 </div>
-                <div class="toc-card book-2">
-                    <div class="book-num">Book 2</div>
-                    <div class="book-title">公孫丑</div>
-                    <div class="book-subtitle">Gongsun Chou</div>
-                    <div class="passages">
-                        <a href="#book-2" class="passage-link">2A2</a>
-                        <a href="#book-2" class="passage-link">2A6</a>
-                        <a href="#book-2" class="passage-link">2B13</a>
-                    </div>
-                    <a href="https://ctext.org/mengzi/gong-sun-chou-i" target="_blank" rel="noopener"
-                        class="toc-external">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        ctext
-                    </a>
+                <div class="chapter-item">
+                    <span class="ch-num">Book 2</span>
+                    <span class="ch-chinese">公孫丑</span> Gongsun Chou
                 </div>
-                <div class="toc-card book-3">
-                    <div class="book-num">Book 3</div>
-                    <div class="book-title">滕文公</div>
-                    <div class="book-subtitle">Duke Wen of Teng</div>
-                    <div class="passages">
-                        <a href="#book-3" class="passage-link">3A3</a>
-                        <a href="#book-3" class="passage-link">3A4</a>
-                        <a href="#book-3" class="passage-link">3A5</a>
-                    </div>
-                    <a href="https://ctext.org/mengzi/teng-wen-gong-i" target="_blank" rel="noopener"
-                        class="toc-external">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        ctext
-                    </a>
+                <div class="chapter-item">
+                    <span class="ch-num">Book 3</span>
+                    <span class="ch-chinese">滕文公</span> Duke Wen of Teng
                 </div>
-                <div class="toc-card book-4">
-                    <div class="book-num">Book 4</div>
-                    <div class="book-title">離婁</div>
-                    <div class="book-subtitle">Li Lou</div>
-                    <div class="passages">
-                        <a href="#book-4" class="passage-link">4A17</a>
-                        <a href="#book-4" class="passage-link">4A27</a>
-                        <a href="#book-4" class="passage-link">4B12</a>
-                        <a href="#book-4" class="passage-link">4B19</a>
-                    </div>
-                    <a href="https://ctext.org/mengzi/li-lou-i" target="_blank" rel="noopener" class="toc-external">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        ctext
-                    </a>
+                <div class="chapter-item">
+                    <span class="ch-num">Book 6</span>
+                    <span class="ch-chinese">告子</span> Gaozi
                 </div>
-                <div class="toc-card book-5">
-                    <div class="book-num">Book 5</div>
-                    <div class="book-title">萬章</div>
-                    <div class="book-subtitle">Wan Zhang</div>
-                    <div class="passages">
-                        <a href="#book-5" class="passage-link">5A2</a>
-                        <a href="#book-5" class="passage-link">5A9</a>
-                    </div>
-                    <a href="https://ctext.org/mengzi/wan-zhang-i" target="_blank" rel="noopener" class="toc-external">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        ctext
-                    </a>
-                </div>
-                <div class="toc-card book-6">
-                    <div class="book-num">Book 6</div>
-                    <div class="book-title">告子</div>
-                    <div class="book-subtitle">Gaozi</div>
-                    <div class="passages">
-                        <a href="#book-6" class="passage-link">6A1–4</a>
-                        <a href="#book-6" class="passage-link">6A6</a>
-                        <a href="#book-6" class="passage-link">6A8</a>
-                    </div>
-                    <a href="https://ctext.org/mengzi/gaozi-i" target="_blank" rel="noopener" class="toc-external">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        ctext
-                    </a>
-                </div>
-                <div class="toc-card book-7">
-                    <div class="book-num">Book 7</div>
-                    <div class="book-title">盡心</div>
-                    <div class="book-subtitle">Jin Xin</div>
-                    <div class="passages">
-                        <a href="#book-7" class="passage-link">7A1</a>
-                        <a href="#book-7" class="passage-link">7A15</a>
-                        <a href="#book-7" class="passage-link">7A26</a>
-                        <a href="#book-7" class="passage-link">7B31</a>
-                    </div>
-                    <a href="https://ctext.org/mengzi/jin-xin-i" target="_blank" rel="noopener" class="toc-external">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                            <polyline points="15 3 21 3 21 9" />
-                            <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        ctext
-                    </a>
+                <div class="chapter-item">
+                    <span class="ch-num">Book 7</span>
+                    <span class="ch-chinese">盡心</span> Fully Applying the Heart
                 </div>
             </div>
         </div>
@@ -1058,185 +542,120 @@
 
     <!-- Book 1: King Hui of Liang -->
     <div class="section-header section-1" id="book-1">
-        <div class="section-header-content">
-            <div class="section-number">Book One</div>
-            <div class="chinese-title">梁惠王</div>
-            <h2>King Hui of Liang</h2>
-            <div class="passage-ref">Passages 1A1, 1A3, 1A7, 1B8</div>
-        </div>
-        <div class="mini-map-container">
-            <div id="mini-map-1" class="mini-map"></div>
-        </div>
+        <div class="section-number">Book One</div>
+        <div class="chinese-title">梁惠王</div>
+        <h2>King Hui of Liang</h2>
     </div>
 
     <div class="container">
-        <section class="content-section">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">仁</td>
-                        <td class="pinyin-cell">rén</td>
-                        <td>Benevolence, humaneness; the cardinal Confucian virtue</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">義</td>
-                        <td class="pinyin-cell">yì</td>
-                        <td>Righteousness, moral rightness; doing what is proper</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">利</td>
-                        <td class="pinyin-cell">lì</td>
-                        <td>Profit, benefit, advantage; what Mengzi warns against prioritizing</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">王道</td>
-                        <td class="pinyin-cell">wáng dào</td>
-                        <td>"The Kingly Way"; rule through virtue rather than force</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">不忍人之心</td>
-                        <td class="pinyin-cell">bù rěn rén zhī xīn</td>
-                        <td>"A heart that cannot bear others' suffering"; innate compassion</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">仁</td>
+                            <td class="pinyin-cell">ren</td>
+                            <td>Benevolence; the cardinal Confucian virtue</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">義</td>
+                            <td class="pinyin-cell">yi</td>
+                            <td>Righteousness; doing what is proper</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">利</td>
+                            <td class="pinyin-cell">li</td>
+                            <td>Profit; what Mengzi warns against prioritizing</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">王道</td>
+                            <td class="pinyin-cell">wang dao</td>
+                            <td>"Kingly Way"; rule through virtue</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-content">
-                    <p><strong>1A1 — Profit vs. Benevolence:</strong> The book opens with King Hui asking Mengzi how to
-                        "profit" his state. Mengzi's famous reply: "Why must Your Majesty say 'profit'? Let there be
-                        benevolence and righteousness, and that is all." If everyone seeks profit, the state will be
-                        torn apart by competing interests. This establishes the core Mencian teaching that ethics must
-                        come before expediency.</p>
-
-                    <p><strong>1A7 — The Ox and the Bell:</strong> King Xuan of Qi spared an ox from being slaughtered
-                        for a bell-consecration ceremony. Mengzi uses this incident to show the king already possesses
-                        the "heart that cannot bear" seeing others suffer—he simply needs to extend this compassion from
-                        animals to his people. The famous analogy: failing to care for the people is not "cannot" (不能)
-                        but "will not" (不為).</p>
-
-                    <p><strong>1B8 — On Regicide:</strong> When asked about the killing of the tyrant Zhou of Shang,
-                        Mengzi shockingly declares: "I have heard of the execution of a 'fellow' named Zhou, but I have
-                        not heard of the killing of a ruler." A king who abandons benevolence and righteousness is no
-                        longer a king—he becomes a mere "fellow" (一夫) whom it is righteous to remove.</p>
+            <section class="content-section">
+                <h3>Book 1 Synopsis</h3>
+                <div class="synopsis">
+                    <p><strong>1A1 — Profit vs. Benevolence:</strong> King Hui asks how to "profit" his state. Mengzi: "Why say profit? Let there be benevolence and righteousness." If everyone seeks profit, the state tears apart.</p>
+                    <p><strong>1A7 — The Ox and Bell:</strong> King Xuan spares an ox from slaughter. Mengzi shows he already has the "heart that cannot bear suffering"—he simply needs to extend it from animals to people.</p>
+                    <p><strong>1B8 — On Regicide:</strong> Asked about killing tyrant Zhou: "I have heard of executing a fellow named Zhou, not killing a ruler." A tyrant is no king.</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <div class="saying-box">
             <div class="saying-chinese">何必曰利</div>
-            <div class="saying-pinyin">hé bì yuē lì</div>
             <div class="saying-meaning">"Why must you speak of profit?"</div>
             <div class="saying-note">Mengzi's opening challenge to King Hui (1A1)</div>
         </div>
-
-        <section class="content-section">
-            <h3>Major Themes</h3>
-            <div class="themes-grid">
-                <div class="theme-card">
-                    <span class="number">1</span>
-                    <h4>Ethics Over Expediency</h4>
-                    <p>Mengzi argues that pursuing profit (利) leads to social disintegration, while cultivating
-                        benevolence (仁) and righteousness (義) naturally produces prosperity.</p>
-                </div>
-                <div class="theme-card">
-                    <span class="number">2</span>
-                    <h4>Extension of Compassion</h4>
-                    <p>The moral task is not acquiring new virtues but extending our innate compassion from near to far,
-                        from family to strangers, from animals to all people.</p>
-                </div>
-                <div class="theme-card">
-                    <span class="number">3</span>
-                    <h4>Conditional Sovereignty</h4>
-                    <p>Legitimacy depends on virtue. A ruler who tyrannizes loses the Mandate of Heaven and may
-                        rightfully be deposed—a radical political doctrine.</p>
-                </div>
-            </div>
-        </section>
     </div>
 
     <!-- Book 2: Gongsun Chou -->
     <div class="section-header section-2" id="book-2">
-        <div class="section-header-content">
-            <div class="section-number">Book Two</div>
-            <div class="chinese-title">公孫丑</div>
-            <h2>Gongsun Chou</h2>
-            <div class="passage-ref">Passages 2A2, 2A6, 2B13</div>
-        </div>
-        <div class="mini-map-container">
-            <div id="mini-map-2" class="mini-map"></div>
-        </div>
+        <div class="section-number">Book Two</div>
+        <div class="chinese-title">公孫丑</div>
+        <h2>Gongsun Chou</h2>
     </div>
 
     <div class="container">
-        <section class="content-section purple">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">浩然之氣</td>
-                        <td class="pinyin-cell">hào rán zhī qì</td>
-                        <td>"Flood-like qi"; the vital energy that fills one who acts righteously</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">四端</td>
-                        <td class="pinyin-cell">sì duān</td>
-                        <td>The "Four Sprouts/Beginnings" of virtue innate in all humans</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">惻隱之心</td>
-                        <td class="pinyin-cell">cè yǐn zhī xīn</td>
-                        <td>Heart of compassion; feeling of alarm and sympathy; sprout of benevolence (仁)</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">揠苗助長</td>
-                        <td class="pinyin-cell">yà miáo zhù zhǎng</td>
-                        <td>"Pulling up seedlings to help them grow"; forcing moral development</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section purple">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">浩然之氣</td>
+                            <td class="pinyin-cell">hao ran zhi qi</td>
+                            <td>"Flood-like qi"; energy of the righteous</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">四端</td>
+                            <td class="pinyin-cell">si duan</td>
+                            <td>The Four Sprouts of virtue</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">惻隱之心</td>
+                            <td class="pinyin-cell">ce yin zhi xin</td>
+                            <td>Heart of compassion; sprout of benevolence</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">揠苗助長</td>
+                            <td class="pinyin-cell">ya miao zhu zhang</td>
+                            <td>"Pulling up seedlings"; forcing growth</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section purple">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-content">
-                    <p><strong>2A2 — Flood-like Qi and the Song Farmer:</strong> Mengzi describes cultivating
-                        "flood-like qi" (浩然之氣)—a vast, vital energy that fills one who consistently acts righteously.
-                        But this cannot be forced. The famous parable: a farmer of Song pulled on his seedlings to help
-                        them grow faster, only to kill them all. Moral cultivation requires steady, patient effort—not
-                        anxious striving.</p>
-
-                    <p><strong>2A6 — The Four Sprouts:</strong> Mengzi's most systematic statement on human nature. All
-                        humans possess four innate moral "sprouts": compassion (leading to benevolence), disdain for
-                        shameful conduct (to righteousness), deference (to ritual propriety), and the sense of right and
-                        wrong (to wisdom). These are as natural to humans as four limbs. The moral task is nurturing
-                        these sprouts to full growth.</p>
+            <section class="content-section purple">
+                <h3>Book 2 Synopsis</h3>
+                <div class="synopsis">
+                    <p><strong>2A2 — Flood-like Qi:</strong> Mengzi cultivates vast energy through righteous action. But this cannot be forced—a farmer of Song pulled seedlings to help them grow and killed them all. Moral cultivation requires patience.</p>
+                    <p><strong>2A6 — The Four Sprouts:</strong> All humans have innate moral sprouts: compassion (to benevolence), disdain (to righteousness), deference (to propriety), right/wrong (to wisdom). As natural as four limbs.</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <div class="saying-box">
             <div class="saying-chinese">揠苗助長</div>
-            <div class="saying-pinyin">yà miáo zhù zhǎng</div>
             <div class="saying-meaning">"Pulling up seedlings to help them grow"</div>
             <div class="saying-note">Still used today to warn against forcing development (2A2)</div>
         </div>
@@ -1245,27 +664,20 @@
             <h3>The Four Sprouts (四端)</h3>
             <div class="themes-grid">
                 <div class="theme-card">
-                    <span class="number">仁</span>
-                    <h4>Compassion → Benevolence</h4>
-                    <p>惻隱之心 (cè yǐn zhī xīn) — The heart that cannot bear to see others suffer becomes the virtue of
-                        benevolence when cultivated.</p>
+                    <h4>Compassion -> Benevolence (仁)</h4>
+                    <p>惻隱之心 — The heart that cannot bear others' suffering becomes benevolence when cultivated.</p>
                 </div>
                 <div class="theme-card">
-                    <span class="number">義</span>
-                    <h4>Disdain → Righteousness</h4>
-                    <p>羞惡之心 (xiū wù zhī xīn) — The heart of disdain for what is shameful develops into the virtue of
-                        righteousness.</p>
+                    <h4>Disdain -> Righteousness (義)</h4>
+                    <p>羞惡之心 — Disdain for what is shameful develops into righteousness.</p>
                 </div>
                 <div class="theme-card">
-                    <span class="number">禮</span>
-                    <h4>Deference → Ritual Propriety</h4>
-                    <p>辭讓之心 (cí ràng zhī xīn) — The instinct to defer and yield to others becomes proper ritual conduct.
-                    </p>
+                    <h4>Deference -> Propriety (禮)</h4>
+                    <p>辭讓之心 — The instinct to yield becomes proper ritual conduct.</p>
                 </div>
                 <div class="theme-card">
-                    <span class="number">智</span>
-                    <h4>Discernment → Wisdom</h4>
-                    <p>是非之心 (shì fēi zhī xīn) — The innate sense of right and wrong develops into moral wisdom.</p>
+                    <h4>Discernment -> Wisdom (智)</h4>
+                    <p>是非之心 — The sense of right and wrong develops into wisdom.</p>
                 </div>
             </div>
         </section>
@@ -1273,302 +685,113 @@
 
     <!-- Book 3: Duke Wen of Teng -->
     <div class="section-header section-3" id="book-3">
-        <div class="section-header-content">
-            <div class="section-number">Book Three</div>
-            <div class="chinese-title">滕文公</div>
-            <h2>Duke Wen of Teng</h2>
-            <div class="passage-ref">Passages 3A3, 3A4, 3A5</div>
-        </div>
-        <div class="mini-map-container">
-            <div id="mini-map-3" class="mini-map"></div>
-        </div>
+        <div class="section-number">Book Three</div>
+        <div class="chinese-title">滕文公</div>
+        <h2>Duke Wen of Teng</h2>
     </div>
 
     <div class="container">
-        <section class="content-section olive">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">井田</td>
-                        <td class="pinyin-cell">jǐng tián</td>
-                        <td>"Well-field" system; idealized land distribution in nine squares</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">勞心者</td>
-                        <td class="pinyin-cell">láo xīn zhě</td>
-                        <td>"Those who labor with their minds"; the ruling/scholarly class</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">勞力者</td>
-                        <td class="pinyin-cell">láo lì zhě</td>
-                        <td>"Those who labor with their strength"; farmers and workers</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">農家</td>
-                        <td class="pinyin-cell">nóng jiā</td>
-                        <td>The "Agriculturalist" school; Xu Xing's philosophy</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section olive">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">井田</td>
+                            <td class="pinyin-cell">jing tian</td>
+                            <td>"Well-field" land system</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">勞心者</td>
+                            <td class="pinyin-cell">lao xin zhe</td>
+                            <td>"Those who labor with minds"</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">勞力者</td>
+                            <td class="pinyin-cell">lao li zhe</td>
+                            <td>"Those who labor with strength"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section olive">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-content">
-                    <p><strong>3A3 — The Well-Field System:</strong> Mengzi outlines the idealized "well-field" (井田)
-                        land system where eight families farm outer plots while jointly cultivating a central plot for
-                        the lord. This represents benevolent government providing for the people's material welfare as a
-                        foundation for moral education.</p>
-
-                    <p><strong>3A4 — Debate with Xu Xing:</strong> The Agriculturalist Xu Xing argues that rulers should
-                        farm alongside their subjects. Mengzi's devastating response: "Does Xu Xing weave his own cloth?
-                        Make his own pots? Forge his own tools?" Division of labor is natural and necessary. "Those who
-                        labor with their minds govern others; those who labor with their strength are governed by
-                        others." Society requires specialization.</p>
-
-                    <p><strong>3A5 — Debate with the Mohist Yi Zhi:</strong> The Mohist Yi Zhi, who had converted to
-                        Confucianism, gave his parents an elaborate burial despite Mohist teachings against such
-                        extravagance. When confronted about this inconsistency, Mengzi defends him: ancient people,
-                        seeing wild animals devouring their parents' corpses, wept and buried them—not from convention
-                        but from genuine feeling. Ritual emerges from authentic human emotion, not arbitrary rules.</p>
+            <section class="content-section olive">
+                <h3>Book 3 Synopsis</h3>
+                <div class="synopsis">
+                    <p><strong>3A3 — Well-Field System:</strong> Eight families farm outer plots; jointly cultivate center for the lord. Benevolent government provides material welfare as foundation for moral education.</p>
+                    <p><strong>3A4 — Debate with Xu Xing:</strong> Agriculturalist says rulers should farm alongside subjects. Mengzi: "Does he weave his cloth? Make his pots?" Division of labor is natural. "Those who labor with minds govern; those with strength are governed."</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <div class="quote-block">
-            "Those who labor with their minds govern others; those who labor with their strength are governed by others.
-            Those who are governed by others feed others; those who govern others are fed by others. This is a principle
-            universally recognized."
+            "Those who labor with their minds govern others; those who labor with their strength are governed by others. Those governed feed others; those who govern are fed by others."
             <cite>— Mengzi 3A4</cite>
         </div>
     </div>
 
-    <!-- Book 4: Li Lou -->
-    <div class="section-header section-2" id="book-4">
-        <div class="section-header-content">
-            <div class="section-number">Book Four</div>
-            <div class="chinese-title">離婁</div>
-            <h2>Li Lou</h2>
-            <div class="passage-ref">Passages 4A17, 4A27, 4B12, 4B19, 4B28</div>
-        </div>
-        <div class="mini-map-container">
-            <div id="mini-map-4" class="mini-map"></div>
-        </div>
-    </div>
-
-    <div class="container">
-        <section class="content-section purple">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">權</td>
-                        <td class="pinyin-cell">quán</td>
-                        <td>Discretion; "weighing" circumstances to determine proper action</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">赤子之心</td>
-                        <td class="pinyin-cell">chì zǐ zhī xīn</td>
-                        <td>"Heart of a child"; innate moral innocence great people preserve</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">君子</td>
-                        <td class="pinyin-cell">jūn zǐ</td>
-                        <td>Gentleman; morally cultivated person; exemplary person</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="content-section purple">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-content">
-                    <p><strong>4A17 — Discretion (Drowning Sister-in-Law):</strong> Chunyu Kun challenges Mengzi: ritual
-                        says men and women should not touch when handing things to each other—but what if your
-                        sister-in-law is drowning? Mengzi replies: "To not pull your sister-in-law out when she is
-                        drowning is to be a beast." Following ritual is proper, but saving her with your hand is
-                        discretion (權). Virtue requires contextual judgment, not rigid rule-following.</p>
-
-                    <p><strong>4A27 — The Core of Virtue:</strong> The core of benevolence is serving one's parents; the
-                        core of righteousness is obeying one's elder brother. If one delights in these, "they grow...
-                        without realizing it one's feet begin to step in time to them and one's hands dance according to
-                        their rhythms."</p>
-
-                    <p><strong>4B12 — Heart of a Child:</strong> "Great people are those who do not lose the hearts of
-                        their children." The sage preserves the innate moral innocence that ordinary people abandon
-                        through worldly corruption.</p>
-
-                    <p><strong>4B19 — Human Distinctiveness:</strong> "That by which humans differ from birds and beasts
-                        is slight. The people abandon it. The gentleman preserves it." What makes us human is our moral
-                        potential—easily lost if not cultivated.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="saying-box">
-            <div class="saying-chinese">權</div>
-            <div class="saying-pinyin">quán</div>
-            <div class="saying-meaning">"Discretion" — weighing circumstances to find the right action</div>
-            <div class="saying-note">The virtue of contextual moral judgment (4A17)</div>
-        </div>
-    </div>
-
-    <!-- Book 5: Wan Zhang -->
-    <div class="section-header section-3" id="book-5">
-        <div class="section-header-content">
-            <div class="section-number">Book Five</div>
-            <div class="chinese-title">萬章</div>
-            <h2>Wan Zhang</h2>
-            <div class="passage-ref">Passages 5A2, 5A9</div>
-        </div>
-        <div class="mini-map-container">
-            <div id="mini-map-5" class="mini-map"></div>
-        </div>
-    </div>
-
-    <div class="container">
-        <section class="content-section olive">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">舜</td>
-                        <td class="pinyin-cell">Shùn</td>
-                        <td>Sage-king Shun; paradigm of filial piety despite wicked family</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">人倫</td>
-                        <td class="pinyin-cell">rén lún</td>
-                        <td>Human relations; the five relationships defining ethical life</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="content-section olive">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-content">
-                    <p><strong>5A2 — Shun's Marriage:</strong> Wan Zhang asks: the Odes say one must inform parents
-                        before marriage, yet sage Shun married without informing his. How? Mengzi explains: Shun's
-                        parents were wicked and would have prevented it. "For a man and woman to dwell together in one
-                        home is the greatest of human relations." To inform them would mean abandoning this greatest
-                        relation, causing resentment. The sage navigates impossible circumstances with discretion.</p>
-
-                    <p><strong>5A9 — Wisdom of Boli Xi:</strong> Did the sage Boli Xi really sell himself to a cattle
-                        herder to meet Duke Mu? Mengzi says no—this story was "fabricated by those obsessed with taking
-                        office." Boli Xi knew when a ruler could not be advised, when to leave, and when a good ruler
-                        arose. "To sell oneself so as to accomplish things for one's lord—even a villager who cared for
-                        himself would not do this."</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
     <!-- Book 6: Gaozi -->
     <div class="section-header section-4" id="book-6">
-        <div class="section-header-content">
-            <div class="section-number">Book Six</div>
-            <div class="chinese-title">告子</div>
-            <h2>Gaozi</h2>
-            <div class="passage-ref">Passages 6A1–4, 6A6, 6A8</div>
-        </div>
-        <div class="mini-map-container">
-            <div id="mini-map-6" class="mini-map"></div>
-        </div>
+        <div class="section-number">Book Six</div>
+        <div class="chinese-title">告子</div>
+        <h2>Gaozi</h2>
     </div>
 
     <div class="container">
-        <section class="content-section blue">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">性</td>
-                        <td class="pinyin-cell">xìng</td>
-                        <td>Human nature; innate tendencies and capacities</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">性善</td>
-                        <td class="pinyin-cell">xìng shàn</td>
-                        <td>"Human nature is good"; Mengzi's core thesis</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">牛山</td>
-                        <td class="pinyin-cell">niú shān</td>
-                        <td>Ox Mountain; setting of famous parable on human nature</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">夜氣</td>
-                        <td class="pinyin-cell">yè qì</td>
-                        <td>"Night qi"; the restorative energy of rest that renews moral sense</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">良心</td>
-                        <td class="pinyin-cell">liáng xīn</td>
-                        <td>"Original/good heart"; innate moral conscience</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section blue">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">性</td>
+                            <td class="pinyin-cell">xing</td>
+                            <td>Human nature</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">性善</td>
+                            <td class="pinyin-cell">xing shan</td>
+                            <td>"Human nature is good"</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">牛山</td>
+                            <td class="pinyin-cell">niu shan</td>
+                            <td>Ox Mountain; famous parable</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">夜氣</td>
+                            <td class="pinyin-cell">ye qi</td>
+                            <td>"Night qi"; restorative moral energy</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section blue">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-content">
-                    <p><strong>6A1–4 — Debates with Gaozi:</strong> Gaozi argues human nature is like water—it has no
-                        inherent direction (toward good or evil) and simply flows where channeled. Mengzi counters:
-                        water indeed has no preference for east or west, but it certainly flows downward! Human nature
-                        similarly tends toward goodness. Evil is like forcing water uphill—possible, but against its
-                        nature.</p>
-
-                    <p><strong>6A6 — Universal Moral Taste:</strong> Just as mouths agree on tastes and ears on sounds,
-                        minds agree on what is right and wrong. The sages simply discovered first what our minds already
-                        approve. Morality is not arbitrary convention but reflects our shared human nature.</p>
-
-                    <p><strong>6A8 — The Ox Mountain Parable:</strong> The trees of Ox Mountain were once beautiful, but
-                        hatchets stripped them bare, and grazing prevented regrowth. Seeing the barren mountain, people
-                        assume it was always so. Similarly, when we see people behaving badly, we assume humans are
-                        naturally evil. But the "night qi" (夜氣)—the moral renewal that comes with rest—shows that
-                        goodness constantly tries to resurface, only to be cut down again by daily circumstances.</p>
+            <section class="content-section blue">
+                <h3>Book 6 Synopsis</h3>
+                <div class="synopsis">
+                    <p><strong>6A1-4 — Debates with Gaozi:</strong> Gaozi: nature is like water—no direction, flows where channeled. Mengzi: water has no east/west preference, but certainly flows downward! Nature tends toward good. Evil is like forcing water uphill.</p>
+                    <p><strong>6A8 — Ox Mountain:</strong> Trees were once beautiful; hatchets stripped them, grazing prevented regrowth. Seeing the barren mountain, people assume it was always so. "Night qi" (moral renewal in rest) shows goodness constantly resurfaces, only to be cut down daily.</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <div class="saying-box">
             <div class="saying-chinese">人性之善也，猶水之就下也</div>
-            <div class="saying-pinyin">rén xìng zhī shàn yě, yóu shuǐ zhī jiù xià yě</div>
             <div class="saying-meaning">"Human nature tends toward goodness as water tends downward."</div>
             <div class="saying-note">Mengzi's definitive statement on human nature (6A2)</div>
         </div>
@@ -1576,94 +799,64 @@
 
     <!-- Book 7: Jin Xin -->
     <div class="section-header section-1" id="book-7">
-        <div class="section-header-content">
-            <div class="section-number">Book Seven</div>
-            <div class="chinese-title">盡心</div>
-            <h2>Jin Xin (Fully Applying the Heart)</h2>
-            <div class="passage-ref">Passages 7A1, 7A15, 7A26, 7B31</div>
-        </div>
-        <div class="mini-map-container">
-            <div id="mini-map-7" class="mini-map"></div>
-        </div>
+        <div class="section-number">Book Seven</div>
+        <div class="chinese-title">盡心</div>
+        <h2>Jin Xin (Fully Applying the Heart)</h2>
     </div>
 
     <div class="container">
-        <section class="content-section">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">盡心</td>
-                        <td class="pinyin-cell">jìn xīn</td>
-                        <td>"Fully applying the heart"; complete moral engagement</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">良知</td>
-                        <td class="pinyin-cell">liáng zhī</td>
-                        <td>"Best knowledge"; innate moral knowing without deliberation</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">良能</td>
-                        <td class="pinyin-cell">liáng néng</td>
-                        <td>"Best capability"; innate moral ability without learning</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">命</td>
-                        <td class="pinyin-cell">mìng</td>
-                        <td>Fate; mandate; what is beyond human control</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="two-col">
+            <section class="content-section">
+                <h3>Key Terms</h3>
+                <table class="terms-table">
+                    <thead>
+                        <tr>
+                            <th>Chinese</th>
+                            <th>Pinyin</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="chinese-cell">盡心</td>
+                            <td class="pinyin-cell">jin xin</td>
+                            <td>Fully applying the heart</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">良知</td>
+                            <td class="pinyin-cell">liang zhi</td>
+                            <td>Innate moral knowing</td>
+                        </tr>
+                        <tr>
+                            <td class="chinese-cell">良能</td>
+                            <td class="pinyin-cell">liang neng</td>
+                            <td>Innate moral ability</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <section class="content-section">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-content">
-                    <p><strong>7A1 — Understanding Nature and Heaven:</strong> "To fully apply one's heart is to
-                        understand one's nature. If one understands one's nature, then one understands Heaven." This
-                        opening passage of Book 7 lays out the path of self-cultivation: introspection leads to
-                        understanding our moral nature, which reveals our connection to the cosmic order.</p>
-
-                    <p><strong>7A15 — Innate Knowledge and Ability:</strong> "What people are capable of without
-                        studying is their best capability. What they know without pondering is their best knowledge."
-                        Infants naturally love their parents; children naturally respect elders. These innate moral
-                        responses are the foundation—we need only "extend these to the world."</p>
-
-                    <p><strong>7A26 — Against Extremes:</strong> Yang Zhu was "for ourselves" (egoism); Mozi was for
-                        "impartial caring" (universal love). Zimo tried holding to the middle. But "holding to the
-                        middle without discretion is the same as holding to one extreme." True virtue requires judgment,
-                        not formulaic positions.</p>
-
-                    <p><strong>7B31 — Extension of Moral Reactions:</strong> "People all have things they will not bear.
-                        To extend this reaction to that which they will bear is benevolence." The task of moral
-                        cultivation is extending our natural reactions from paradigmatic cases to new situations—filling
-                        out our innate moral dispositions.</p>
+            <section class="content-section">
+                <h3>Book 7 Synopsis</h3>
+                <div class="synopsis">
+                    <p><strong>7A1 — Understanding Nature:</strong> "To fully apply one's heart is to understand one's nature. To understand nature is to understand Heaven." Introspection reveals moral nature reveals cosmic order.</p>
+                    <p><strong>7A15 — Innate Knowledge:</strong> What people can do without studying is "best capability"; what they know without pondering is "best knowledge." Infants love parents; children respect elders. Extend these to the world.</p>
+                    <p><strong>7A26 — Against Extremes:</strong> Yang Zhu (egoism) and Mozi (impartial love) are opposites. Zimo tried the middle. But "holding the middle without discretion is holding one extreme." Virtue requires judgment.</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <div class="saying-box">
             <div class="saying-chinese">盡其心者，知其性也</div>
-            <div class="saying-pinyin">jìn qí xīn zhě, zhī qí xìng yě</div>
             <div class="saying-meaning">"To fully apply one's heart is to understand one's nature."</div>
             <div class="saying-note">The path from self-cultivation to cosmic understanding (7A1)</div>
         </div>
     </div>
 
-    <!-- Comparative Themes -->
+    <!-- Major Themes -->
     <section class="comparison-section" id="themes">
         <div class="container">
-            <h2
-                style="font-family: 'Inter', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ink-faint); text-align: center; margin-bottom: 1.5rem;">
-                Major Themes Across the Text</h2>
+            <h2 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--ink-faint); text-align: center; margin-bottom: 1.5rem;">Major Themes Across the Text</h2>
 
             <table class="comparison-table">
                 <thead>
@@ -1676,39 +869,28 @@
                 <tbody>
                     <tr>
                         <td><strong>Human Nature is Good</strong></td>
-                        <td>2A6, 6A1–8</td>
-                        <td>All humans possess innate moral "sprouts" that naturally develop into virtue when properly
-                            nurtured. Evil results from neglect or bad environment, not inherent depravity.</td>
+                        <td>2A6, 6A1-8</td>
+                        <td>Innate moral "sprouts" develop into virtue when nurtured. Evil results from neglect, not depravity.</td>
                     </tr>
                     <tr>
                         <td><strong>Benevolent Government</strong></td>
-                        <td>1A1, 1A3, 1A7, 3A3</td>
-                        <td>Rulers must prioritize the people's welfare over profit. The "Kingly Way" (王道) rules through
-                            virtue, not force. Material security enables moral cultivation.</td>
+                        <td>1A1, 1A3, 1A7</td>
+                        <td>Rulers prioritize people's welfare over profit. Material security enables moral cultivation.</td>
                     </tr>
                     <tr>
                         <td><strong>Extension of Virtue</strong></td>
                         <td>1A7, 2A6, 7A15</td>
-                        <td>Moral growth means extending our innate compassion outward: from family to community, from
-                            humans to animals, from near to far.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Moral Cultivation</strong></td>
-                        <td>2A2, 6A8</td>
-                        <td>Virtue requires steady cultivation like growing plants—forcing development (揠苗助長) kills it.
-                            The goal is nurturing innate goodness, not acquiring foreign virtues.</td>
+                        <td>Extend innate compassion outward: family to community, humans to animals, near to far.</td>
                     </tr>
                     <tr>
                         <td><strong>Right to Revolution</strong></td>
-                        <td>1B8, 5A5</td>
-                        <td>Sovereignty depends on virtue. A tyrannical ruler loses the Mandate of Heaven and becomes a
-                            mere "fellow" (一夫) whom subjects may rightfully remove.</td>
+                        <td>1B8</td>
+                        <td>A tyrant loses the Mandate of Heaven—becomes a "fellow" whom subjects may remove.</td>
                     </tr>
                     <tr>
                         <td><strong>Division of Labor</strong></td>
                         <td>3A4</td>
-                        <td>Society naturally divides into those who govern and those who are governed. This
-                            specialization is necessary and legitimate when rulers fulfill their responsibilities.</td>
+                        <td>Society divides into those who govern and those governed. Specialization is natural.</td>
                     </tr>
                 </tbody>
             </table>
@@ -1722,83 +904,32 @@
 
             <div class="question-item">
                 <div class="q-num">Question 1</div>
-                <p>Mengzi famously claims that human nature is good. What is his evidence for this? How does he respond
-                    to counter-examples like cruel tyrants or ordinary people doing evil?</p>
+                <p>Mengzi claims human nature is good. What is his evidence? How does he respond to counter-examples like cruel tyrants?</p>
             </div>
 
             <div class="question-item">
                 <div class="q-num">Question 2</div>
-                <p>In 1A7, Mengzi distinguishes between "cannot" (不能) and "will not" (不為). What is the significance of
-                    this distinction for his moral philosophy? How does the ox-and-bell story illustrate it?</p>
+                <p>In 1A7, Mengzi distinguishes "cannot" from "will not." How does the ox-and-bell story illustrate this?</p>
             </div>
 
             <div class="question-item">
                 <div class="q-num">Question 3</div>
-                <p>What is Mengzi's view on the relationship between material welfare and moral cultivation? Can people
-                    be virtuous while hungry? What role should government play?</p>
+                <p>What is the relationship between material welfare and moral cultivation? Can people be virtuous while hungry?</p>
             </div>
 
             <div class="question-item">
                 <div class="q-num">Question 4</div>
-                <p>Compare Mengzi's "sprout" (端) metaphor with the "Ox Mountain" (牛山) parable. What do these different
-                    images suggest about the nature of moral development and the causes of moral failure?</p>
+                <p>Compare the "sprout" metaphor with the "Ox Mountain" parable. What do these suggest about moral development?</p>
             </div>
 
             <div class="question-item">
                 <div class="q-num">Question 5</div>
-                <p>Mengzi's doctrine that a tyrannical king is no longer a "king" but merely a "fellow" (一夫) was
-                    controversial. What are the implications of this view? How might it be used—or misused?</p>
+                <p>Mengzi's doctrine that a tyrant is merely a "fellow" was controversial. What are the implications? How might it be misused?</p>
             </div>
 
             <div class="question-item">
                 <div class="q-num">Question 6</div>
-                <p>In his debate with Xu Xing (3A4), Mengzi defends social hierarchy and division of labor. Is his
-                    argument convincing? What assumptions does it rest on?</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources -->
-    <section class="resources-section">
-        <div class="container">
-            <h2
-                style="font-family: 'Inter', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ink-faint); text-align: center; margin-bottom: 1.5rem;">
-                Further Resources</h2>
-
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <h4>Online Resources</h4>
-                    <a href="https://ctext.org/mengzi" target="_blank" rel="noopener">Mengzi — Chinese Text Project</a>
-                    <a href="https://plato.stanford.edu/entries/mencius/" target="_blank" rel="noopener">Stanford
-                        Encyclopedia of
-                        Philosophy: Mencius</a>
-                    <a href="https://iep.utm.edu/mencius/" target="_blank" rel="noopener">Internet Encyclopedia of
-                        Philosophy:
-                        Mencius</a>
-                </div>
-                <div class="resource-card">
-                    <h4>Translations</h4>
-                    <a href="https://www.hackettpublishing.com/mengzi" target="_blank" rel="noopener">Bryan Van Norden,
-                        <em>Mengzi</em>
-                        (Hackett, 2008)</a>
-                    <a href="https://www.penguin.co.uk/books/35022/mencius-by-mencius/9780140449716" target="_blank"
-                        rel="noopener">D.C. Lau, <em>Mencius</em> (Penguin Classics, 2003)</a>
-                    <a href="https://ctext.org/mengzi/ens" target="_blank" rel="noopener">James Legge, <em>The Works of
-                            Mencius</em>
-                        (1895) — Online</a>
-                </div>
-                <div class="resource-card">
-                    <h4>Scholarly Articles</h4>
-                    <a href="https://www.jstor.org/stable/1399376" target="_blank" rel="noopener">Nivison, "Motivation
-                        and Moral Action
-                        in Mencius"</a>
-                    <a href="https://www.jstor.org/stable/1398997" target="_blank" rel="noopener">Shun, "Mencius on
-                        Jen-hsing"
-                        (Philosophy East and West)</a>
-                    <a href="https://ndpr.nd.edu/reviews/mencius-and-early-chinese-thought/" target="_blank"
-                        rel="noopener">Review:
-                        Shun, <em>Mencius and Early Chinese Thought</em></a>
-                </div>
+                <p>In his debate with Xu Xing (3A4), Mengzi defends division of labor. Is his argument convincing?</p>
             </div>
         </div>
     </section>
@@ -1809,108 +940,6 @@
         <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
         <div class="foot-term">WINTER 2026</div>
     </footer>
-
-    <script>
-        // Location data for mini-maps
-        const locations = {
-            liang: { name: '梁', lat: 34.78, lng: 114.31, type: 'visited' },
-            qi: { name: '齊', lat: 36.88, lng: 118.36, type: 'visited' },
-            zou: { name: '鄒', lat: 35.60, lng: 117.02, type: 'visited' },
-            teng: { name: '滕', lat: 35.07, lng: 117.15, type: 'visited' },
-            chu: { name: '楚', lat: 30.35, lng: 112.24, type: 'mentioned' },
-            song: { name: '宋', lat: 34.44, lng: 115.65, type: 'mentioned' },
-            qin: { name: '秦', lat: 34.33, lng: 108.71, type: 'mentioned' },
-            lu: { name: '魯', lat: 35.59, lng: 116.99, type: 'mentioned' },
-            zheng: { name: '鄭', lat: 34.16, lng: 113.75, type: 'mentioned' },
-            chen: { name: '陳', lat: 33.75, lng: 114.89, type: 'mentioned' },
-            taishan: { name: '泰', lat: 36.18, lng: 117.12, type: 'landmark' },
-            niushan: { name: '牛', lat: 35.75, lng: 114.35, type: 'landmark' }
-        };
-
-        // Locations by book
-        const bookLocations = {
-            1: ['liang', 'qi', 'zou', 'chu', 'taishan'],  // 1A1 Liang, 1A7 Qi/Zou/Chu/Taishan
-            2: ['qi', 'song'],                              // 2A2 Song, 2A6 innate heart, 2B13 Qi
-            3: ['teng', 'chu'],                             // 3A3-5 Teng, Chu mentioned
-            4: ['zheng', 'lu'],                             // 4B2 Zheng, references to Lu
-            5: ['qin', 'lu'],                               // 5A9 Qin (Boli Xi)
-            6: ['qi', 'qin', 'niushan'],                   // 6A4 Qin/Chu, 6A8 Ox Mountain
-            7: ['chen', 'zheng', 'lu']                     // 7B37 Chen, Zheng
-        };
-
-        // Create custom marker icon
-        function createMiniIcon(chinese, type) {
-            return L.divIcon({
-                className: 'mini-marker-icon',
-                html: `<div class="mini-marker ${type}">${chinese}</div>`,
-                iconSize: [28, 28],
-                iconAnchor: [14, 14]
-            });
-        }
-
-        // Initialize a mini-map
-        function initMiniMap(bookNum) {
-            const mapId = `mini-map-${bookNum}`;
-            const mapElement = document.getElementById(mapId);
-            if (!mapElement) return;
-
-            const locs = bookLocations[bookNum];
-            if (!locs || locs.length === 0) return;
-
-            // Create map with no controls
-            const map = L.map(mapId, {
-                zoomControl: false,
-                attributionControl: false,
-                dragging: false,
-                scrollWheelZoom: false,
-                doubleClickZoom: false,
-                boxZoom: false,
-                keyboard: false,
-                touchZoom: false
-            });
-
-            // Light tile layer
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-                subdomains: 'abcd',
-                maxZoom: 19
-            }).addTo(map);
-
-            // Add markers for this book's locations
-            const markers = [];
-            locs.forEach(locId => {
-                const loc = locations[locId];
-                if (loc) {
-                    const marker = L.marker([loc.lat, loc.lng], {
-                        icon: createMiniIcon(loc.name, loc.type),
-                        interactive: false
-                    }).addTo(map);
-                    markers.push([loc.lat, loc.lng]);
-                }
-            });
-
-            // Fit bounds to show all markers with more context
-            if (markers.length > 0) {
-                const bounds = L.latLngBounds(markers);
-                // Use lower maxZoom to show more geographic context
-                map.fitBounds(bounds, { padding: [15, 15], maxZoom: 4 });
-            }
-        }
-
-        // Initialize all mini-maps when DOM is ready
-        document.addEventListener('DOMContentLoaded', function () {
-            for (let i = 1; i <= 7; i++) {
-                initMiniMap(i);
-            }
-
-            // Make mini-map containers clickable
-            document.querySelectorAll('.mini-map-container').forEach(container => {
-                container.addEventListener('click', function () {
-                    window.location.href = 'maps/mengzi-map.html';
-                });
-                container.setAttribute('title', 'Click to view full map');
-            });
-        });
-    </script>
 
 </body>
 
