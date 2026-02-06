@@ -17,7 +17,8 @@
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            /* Text colors */
+            --teal: #2d5a5a;
+            /* Text accent colors */
             --shijing: #8B4513;
             --mozi: #1a4a4a;
             --lunyu: #4a1a4a;
@@ -40,8 +41,7 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.6;
         }
 
         /* Page Header */
@@ -61,444 +61,297 @@
         .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
         .page-title .meta { font-size: 0.7rem; color: #888; }
 
-        /* Navigation */
+        /* Nav */
         .nav {
-            position: sticky;
-            top: 0;
             background: var(--ink);
-            z-index: 1000;
             padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
         .nav a {
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
             color: #aaa;
             text-decoration: none;
+            letter-spacing: 0.03em;
             transition: color 0.2s;
         }
+        .nav a:hover { color: var(--gold-light); }
 
-        .nav a:hover {
-            color: var(--gold-light);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-
-        /* Introduction Section */
-        .intro-section {
-            padding: 3rem 1.5rem;
-            background: linear-gradient(180deg, rgba(26, 26, 26, 0.03) 0%, var(--paper) 100%);
-        }
-
-        .intro-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        /* Section label */
         .section-label {
             font-size: 0.6rem;
             font-weight: 700;
             color: #999;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
-
-        .intro-content {
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .intro-content p {
-            margin-bottom: 1.25rem;
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-            border-left: 4px solid var(--gold);
-            padding: 1.25rem;
-            margin: 1.5rem 0;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.9rem;
-        }
-
-        .warning-box strong {
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
             color: var(--gold);
+            font-weight: 400;
         }
 
-        /* Text Cards Grid */
-        .texts-section {
-            padding: 3rem 1.5rem;
+        /* Content sections */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .content-section.alt {
+            background: var(--paper-dark);
+        }
+        .content-section.dark {
+            background: var(--ink);
         }
 
-        .texts-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .texts-grid {
+        /* Content grid */
+        .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.25rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         }
 
-        .text-card {
+        /* Cards */
+        .card {
             background: #fff;
             border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-
-        .text-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .text-card-header {
-            padding: 1.25rem;
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
             color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
-
-        .text-card.shijing .text-card-header { background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%); }
-        .text-card.mozi .text-card-header { background: linear-gradient(135deg, #1a4a4a 0%, #2d6a6a 100%); }
-        .text-card.lunyu .text-card-header { background: linear-gradient(135deg, #4a1a4a 0%, #6a2d6a 100%); }
-        .text-card.mengzi .text-card-header { background: linear-gradient(135deg, #2d5a5a 0%, #3d7a7a 100%); }
-        .text-card.daodejing .text-card-header { background: linear-gradient(135deg, #4a4a1a 0%, #6a6a2d 100%); }
-        .text-card.xunzi .text-card-header { background: linear-gradient(135deg, #1a1a4a 0%, #2d2d6a 100%); }
-
-        .text-card-chinese {
+        .card-head .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.75rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .text-card-title {
             font-size: 0.85rem;
+            color: var(--gold-light);
             font-weight: 400;
-            opacity: 0.9;
         }
-
-        .text-card-body {
-            padding: 1.25rem;
+        .card-head .accent {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+            margin-right: 0.2rem;
         }
-
-        .text-card-nature {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-faint);
+        .card-body {
+            padding: 0.75rem;
+        }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
             margin-bottom: 0.5rem;
         }
-
-        .text-card-summary {
-            font-size: 0.85rem;
-            color: var(--ink-light);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .text-card-quote {
-            background: var(--paper-dark);
-            padding: 0.75rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .text-card-quote .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--ink);
-            margin-bottom: 0.4rem;
-        }
-
-        .text-card-quote .translation {
-            font-size: 0.8rem;
-            font-style: italic;
-            color: var(--ink-light);
-        }
-
-        .text-card-link {
-            display: inline-block;
-            font-size: 0.7rem;
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             color: var(--gold);
-            text-decoration: none;
-            padding: 0.35rem 0.7rem;
-            border: 1px solid var(--gold);
-            border-radius: 3px;
-            transition: all 0.2s ease;
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
         }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        .text-card-link:hover {
-            background: var(--gold);
-            color: #fff;
-        }
-
-        /* Comparison Table Section */
-        .comparison-section {
+        /* Blockquotes in cards */
+        blockquote {
             background: var(--paper-dark);
-            padding: 3rem 1.5rem;
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+        }
+        blockquote .q-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            font-style: normal;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
         }
 
-        .comparison-container {
-            max-width: 1100px;
-            margin: 0 auto;
+        /* Warning/note box */
+        .note-box {
+            background: #fff;
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            border-radius: 0 4px 4px 0;
         }
+        .note-box strong { color: var(--gold); }
 
+        /* Comparison table */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             background: #fff;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             border-radius: 6px;
             overflow: hidden;
-            font-size: 0.8rem;
-            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            margin-top: 0.6rem;
         }
-
         .comparison-table th {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            background: var(--ink);
+            background: #2a2a2a;
             color: #fff;
-            padding: 0.75rem;
+            padding: 0.5rem 0.6rem;
             text-align: left;
         }
-
         .comparison-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid #eee;
+            padding: 0.5rem 0.6rem;
+            border-bottom: 1px solid #f0f0f0;
             vertical-align: top;
         }
-
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .comparison-table tr:hover td {
-            background: rgba(184, 134, 11, 0.03);
-        }
-
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover td { background: rgba(184,134,11,0.03); }
         .comparison-table .text-name {
             font-weight: 600;
             white-space: nowrap;
-        }
-
-        .comparison-table .chinese-cell {
             font-family: 'Noto Sans SC', sans-serif;
         }
-
         .yes-cell { color: #2e7d32; font-weight: 500; }
         .no-cell { color: #c62828; font-weight: 500; }
         .partial-cell { color: #f57c00; font-weight: 500; }
 
-        /* Key Passages Section */
-        .passages-section {
-            padding: 3rem 1.5rem;
-        }
-
-        .passages-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .passage-block {
+        /* Binary myth/reality cards */
+        .binary-card {
             background: #fff;
             border-radius: 6px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            border-left: 4px solid var(--gold);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-
-        .passage-block.shijing { border-color: var(--shijing); }
-        .passage-block.mozi { border-color: var(--mozi); }
-        .passage-block.lunyu { border-color: var(--lunyu); }
-        .passage-block.mengzi { border-color: var(--mengzi); }
-        .passage-block.daodejing { border-color: var(--daodejing); }
-        .passage-block.xunzi { border-color: var(--xunzi); }
-
-        .passage-source {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-faint);
-            margin-bottom: 0.75rem;
-        }
-
-        .passage-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
-            color: var(--ink);
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-
-        .passage-translation {
-            font-style: italic;
-            color: var(--ink-light);
-            margin-bottom: 0.75rem;
-            padding-left: 1rem;
-            border-left: 2px solid #ddd;
-            font-size: 0.9rem;
-        }
-
-        .passage-analysis {
-            font-size: 0.85rem;
-            color: var(--ink);
-            line-height: 1.7;
-        }
-
-        /* Against Lazy Binary Section */
-        .binary-section {
-            background: var(--ink);
-            color: #fff;
-            padding: 3rem 1.5rem;
-        }
-
-        .binary-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .binary-container .section-label {
-            color: var(--gold-light);
-        }
-
-        .binary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
-            margin-top: 1.5rem;
-        }
-
-        .binary-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            padding: 1.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .binary-card .claim {
-            font-size: 0.85rem;
-            color: #ff6b6b;
-            margin-bottom: 0.6rem;
+        .binary-card .card-head { background: #2a2a2a; }
+        .binary-card .card-body .claim {
+            font-size: 0.8rem;
+            color: #c62828;
             text-decoration: line-through;
+            margin-bottom: 0.4rem;
         }
-
-        .binary-card .reality {
-            font-size: 0.85rem;
-            color: #69db7c;
-            line-height: 1.6;
+        .binary-card .card-body .reality {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.3rem;
         }
-
-        .binary-card .evidence {
+        .binary-card .card-body .reality strong { color: #2e7d32; }
+        .binary-card .card-body .evidence {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.9rem;
-            color: var(--gold-light);
-            margin-top: 0.6rem;
+            font-size: 0.8rem;
+            color: var(--gold);
         }
 
-        /* Spectrum Section */
-        .spectrum-section {
-            padding: 3rem 1.5rem;
-            background: var(--paper);
-        }
-
-        .spectrum-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
+        /* Spectrum */
         .spectrum-bar {
             background: linear-gradient(90deg, #8B4513 0%, #1a4a4a 17%, #4a1a4a 33%, #2d5a5a 50%, #4a4a1a 67%, #1a1a4a 100%);
-            height: 16px;
-            border-radius: 8px;
-            margin: 1.5rem 0;
+            height: 10px;
+            border-radius: 5px;
+            margin: 0.6rem 0 0.3rem;
         }
-
         .spectrum-labels {
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
-            color: var(--ink-light);
-            margin-top: 0.5rem;
+            font-size: 0.6rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
-
         .spectrum-texts {
             display: flex;
             justify-content: space-between;
-            margin-top: 1.25rem;
+            margin-top: 0.6rem;
         }
-
         .spectrum-text {
             text-align: center;
             flex: 1;
         }
-
-        .spectrum-text .chinese {
+        .spectrum-text .s-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--ink);
         }
-
-        .spectrum-text .name {
-            font-size: 0.6rem;
+        .spectrum-text .s-name {
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--ink-faint);
-            margin-top: 0.25rem;
+            margin-top: 0.15rem;
         }
 
-        /* Discussion Questions */
-        .questions-section {
-            padding: 3rem 1.5rem;
-            background: #fff;
+        /* Question items */
+        .q-item {
+            padding: 0.15rem 0;
+            border-bottom: 1px solid #f0f0f0;
         }
-
-        .questions-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .question-item {
-            padding: 1.25rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .question-item:last-child {
-            border-bottom: none;
-        }
-
-        .question-item .q-num {
-            font-size: 0.65rem;
+        .q-item:last-child { border-bottom: none; }
+        .q-item .q-num {
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--gold);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.25rem;
+        }
+        .q-item p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
         }
 
-        .question-item p {
-            font-size: 0.9rem;
-            color: var(--ink);
-            line-height: 1.7;
+        /* Text card links */
+        .text-link {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gold);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            margin-top: 0.4rem;
+            transition: all 0.2s;
         }
+        .text-link:hover { background: var(--gold); color: #fff; }
 
         /* Footer */
         footer {
@@ -506,20 +359,17 @@
             padding: 1.25rem 1.5rem;
             text-align: center;
         }
-
         footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
             color: var(--gold-light);
             margin-bottom: 0.2rem;
         }
-
         footer .foot-title {
             font-size: 0.7rem;
             color: #aaa;
             margin-bottom: 0.3rem;
         }
-
         footer .foot-term {
             font-size: 0.6rem;
             font-weight: 600;
@@ -527,40 +377,23 @@
             letter-spacing: 0.08em;
         }
 
-        footer a {
-            color: var(--gold-light);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
         /* Responsive */
-        @media (max-width: 768px) {
-            .comparison-table {
-                font-size: 0.75rem;
-            }
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid.three-col { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .spectrum-texts { flex-wrap: wrap; gap: 0.5rem; }
+            .spectrum-text { flex: 0 0 30%; }
+            .comparison-table { font-size: 0.65rem; }
             .comparison-table th,
-            .comparison-table td {
-                padding: 0.5rem 0.4rem;
-            }
-            .texts-grid {
-                grid-template-columns: 1fr;
-            }
-            .spectrum-texts {
-                flex-wrap: wrap;
-                gap: 0.75rem;
-            }
-            .spectrum-text {
-                flex: 0 0 30%;
-            }
+            .comparison-table td { padding: 0.4rem; }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Page Header -->
     <header class="page-header">
         <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
@@ -570,7 +403,7 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav class="nav">
         <a href="#intro">Introduction</a>
         <a href="#texts">Six Texts</a>
@@ -581,333 +414,331 @@
     </nav>
 
     <!-- Introduction -->
-    <section class="intro-section" id="intro">
-        <div class="intro-container">
-            <div class="section-label">Introduction</div>
-            <div class="intro-content">
-                <p>
-                    The concept of <strong>Heaven (天 <em>tian</em>)</strong> is central to early Chinese philosophy,
-                    yet it is frequently misunderstood through oversimplified binaries: "Confucian Heaven is moral
-                    and personal; Daoist Heaven is impersonal and indifferent." This thematic study examines 天
-                    across six foundational texts to reveal a more complex picture.
-                </p>
-
-                <div class="warning-box">
-                    <strong>The Lazy Binary to Avoid:</strong> "Confucians believe in a moral Heaven that rewards
-                    and punishes; Daoists believe in an indifferent natural process." As the textual evidence
-                    shows, this distinction collapses under scrutiny. The Daodejing's Heaven has preferences
-                    and "hates" certain things; Confucius's Heaven can be inscrutable and seemingly destructive.
+    <section class="content-section" id="intro">
+        <div class="section-label"><span class="chinese">天</span> Introduction</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">概論</span> Overview</div>
+                <div class="card-body">
+                    <p>
+                        The concept of <strong>Heaven (天 <em>tian</em>)</strong> is central to early Chinese philosophy,
+                        yet it is frequently misunderstood through oversimplified binaries: "Confucian Heaven is moral
+                        and personal; Daoist Heaven is impersonal and indifferent." This thematic study examines 天
+                        across six foundational texts to reveal a more complex picture.
+                    </p>
+                    <p>
+                        Each text presents a distinct conception of 天, but the differences are more nuanced than
+                        simple personal/impersonal dichotomies. This page provides key passages, comparative analysis,
+                        and discussion questions to help you engage with the primary sources directly.
+                    </p>
                 </div>
-
-                <p>
-                    Each text presents a distinct conception of 天, but the differences are more nuanced than
-                    simple personal/impersonal dichotomies. This page provides key passages, comparative analysis,
-                    and discussion questions to help you engage with the primary sources directly.
-                </p>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">注意</span> The Lazy Binary to Avoid</div>
+                <div class="card-body">
+                    <div class="note-box">
+                        <strong>The Lazy Binary to Avoid:</strong> "Confucians believe in a moral Heaven that rewards
+                        and punishes; Daoists believe in an indifferent natural process." As the textual evidence
+                        shows, this distinction collapses under scrutiny. The Daodejing's Heaven has preferences
+                        and "hates" certain things; Confucius's Heaven can be inscrutable and seemingly destructive.
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Six Texts Grid -->
-    <section class="texts-section" id="texts">
-        <div class="texts-container">
-            <div class="section-label">Heaven in Six Texts</div>
-            <div class="texts-grid">
+    <!-- Six Texts -->
+    <section class="content-section alt" id="texts">
+        <div class="section-label"><span class="chinese">六書</span> Heaven in Six Texts</div>
+        <div class="content-grid three-col">
 
-                <!-- Shijing -->
-                <div class="text-card shijing">
-                    <div class="text-card-header">
-                        <div class="text-card-chinese">詩經</div>
-                        <div class="text-card-title">Book of Odes (11th-7th c. BCE)</div>
-                    </div>
-                    <div class="text-card-body">
-                        <div class="text-card-nature">Nature of Heaven</div>
-                        <div class="text-card-summary">
-                            Moral sovereign who grants and withdraws the Mandate. Heaven is wrathful,
-                            watchful, and actively judges rulers. The earliest articulation of 天命
-                            (Mandate of Heaven) as conditional on virtue.
-                        </div>
-                        <div class="text-card-quote">
-                            <div class="chinese">天命靡常</div>
-                            <div class="translation">"The Mandate of Heaven is not constant."</div>
-                        </div>
-                        <a href="https://ctext.org/book-of-poetry" target="_blank" class="text-card-link">Read on CText</a>
-                    </div>
+            <!-- Shijing -->
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--shijing)"></span><span class="chinese">詩經</span> Book of Odes (11th-7th c. BCE)</div>
+                <div class="card-body">
+                    <h4>Nature of Heaven</h4>
+                    <p>
+                        Moral sovereign who grants and withdraws the Mandate. Heaven is wrathful,
+                        watchful, and actively judges rulers. The earliest articulation of 天命
+                        (Mandate of Heaven) as conditional on virtue.
+                    </p>
+                    <blockquote>
+                        <span class="q-chinese">天命靡常</span>
+                        "The Mandate of Heaven is not constant."
+                    </blockquote>
+                    <a href="https://ctext.org/book-of-poetry" target="_blank" class="text-link">Read on CText</a>
                 </div>
-
-                <!-- Mozi -->
-                <div class="text-card mozi">
-                    <div class="text-card-header">
-                        <div class="text-card-chinese">墨子</div>
-                        <div class="text-card-title">Mozi (5th c. BCE)</div>
-                    </div>
-                    <div class="text-card-body">
-                        <div class="text-card-nature">Nature of Heaven</div>
-                        <div class="text-card-summary">
-                            Personal deity with explicit will (天志). Heaven desires righteousness,
-                            abhors wickedness, and actively rewards/punishes. The most explicitly
-                            theistic conception among the philosophers.
-                        </div>
-                        <div class="text-card-quote">
-                            <div class="chinese">天欲義而惡不義</div>
-                            <div class="translation">"Heaven desires righteousness and abhors unrighteousness."</div>
-                        </div>
-                        <a href="mozi.html" class="text-card-link">Study Guide</a>
-                    </div>
-                </div>
-
-                <!-- Lunyu -->
-                <div class="text-card lunyu">
-                    <div class="text-card-header">
-                        <div class="text-card-chinese">論語</div>
-                        <div class="text-card-title">Analects (5th c. BCE)</div>
-                    </div>
-                    <div class="text-card-body">
-                        <div class="text-card-nature">Nature of Heaven</div>
-                        <div class="text-card-summary">
-                            Mysterious moral force that bestows virtue but also takes away.
-                            Confucius trusts Heaven yet experiences it as inscrutable. The famous
-                            cry "Heaven is destroying me!" reveals existential anguish.
-                        </div>
-                        <div class="text-card-quote">
-                            <div class="chinese">天喪予！天喪予！</div>
-                            <div class="translation">"Heaven is destroying me! Heaven is destroying me!"</div>
-                        </div>
-                        <a href="kongzi.html" class="text-card-link">Study Guide</a>
-                    </div>
-                </div>
-
-                <!-- Mengzi -->
-                <div class="text-card mengzi">
-                    <div class="text-card-header">
-                        <div class="text-card-chinese">孟子</div>
-                        <div class="text-card-title">Mencius (4th c. BCE)</div>
-                    </div>
-                    <div class="text-card-body">
-                        <div class="text-card-nature">Nature of Heaven</div>
-                        <div class="text-card-summary">
-                            Source of human moral nature. Heaven implants the "four sprouts" of
-                            virtue in human hearts. To know your nature is to know Heaven.
-                            Speaks through the people, not through miracles.
-                        </div>
-                        <div class="text-card-quote">
-                            <div class="chinese">盡其心者，知其性也。知其性，則知天矣。</div>
-                            <div class="translation">"One who fully develops the heart-mind knows their nature. Knowing their nature, they know Heaven."</div>
-                        </div>
-                        <a href="mengzi.html" class="text-card-link">Study Guide</a>
-                    </div>
-                </div>
-
-                <!-- Daodejing -->
-                <div class="text-card daodejing">
-                    <div class="text-card-header">
-                        <div class="text-card-chinese">道德經</div>
-                        <div class="text-card-title">Daodejing (4th c. BCE)</div>
-                    </div>
-                    <div class="text-card-body">
-                        <div class="text-card-nature">Nature of Heaven</div>
-                        <div class="text-card-summary">
-                            Impersonal but <strong>NOT indifferent</strong>. Heaven operates through
-                            natural patterns, yet it "hates" certain things, "sides with good people,"
-                            and redistributes from excess to lack. 不仁 means "without partiality," not "cruel."
-                        </div>
-                        <div class="text-card-quote">
-                            <div class="chinese">天道無親，常與善人。</div>
-                            <div class="translation">"The Way of Heaven has no favorites; it constantly sides with good people."</div>
-                        </div>
-                        <a href="laozi.html" class="text-card-link">Study Guide</a>
-                    </div>
-                </div>
-
-                <!-- Xunzi -->
-                <div class="text-card xunzi">
-                    <div class="text-card-header">
-                        <div class="text-card-chinese">荀子</div>
-                        <div class="text-card-title">Xunzi (3rd c. BCE)</div>
-                    </div>
-                    <div class="text-card-body">
-                        <div class="text-card-nature">Nature of Heaven</div>
-                        <div class="text-card-summary">
-                            Amoral natural process operating by constant patterns. Heaven neither
-                            rewards nor punishes. The revolutionary call: don't praise Heaven—master
-                            it and use it! The genuine naturalist outlier.
-                        </div>
-                        <div class="text-card-quote">
-                            <div class="chinese">制天命而用之</div>
-                            <div class="translation">"Master Heaven's mandate and use it!"</div>
-                        </div>
-                        <a href="https://ctext.org/xunzi/tian-lun" target="_blank" class="text-card-link">Tianlun on CText</a>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- Mozi -->
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--mozi)"></span><span class="chinese">墨子</span> Mozi (5th c. BCE)</div>
+                <div class="card-body">
+                    <h4>Nature of Heaven</h4>
+                    <p>
+                        Personal deity with explicit will (天志). Heaven desires righteousness,
+                        abhors wickedness, and actively rewards/punishes. The most explicitly
+                        theistic conception among the philosophers.
+                    </p>
+                    <blockquote>
+                        <span class="q-chinese">天欲義而惡不義</span>
+                        "Heaven desires righteousness and abhors unrighteousness."
+                    </blockquote>
+                    <a href="mozi.html" class="text-link">Study Guide</a>
+                </div>
+            </div>
+
+            <!-- Lunyu -->
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--lunyu)"></span><span class="chinese">論語</span> Analects (5th c. BCE)</div>
+                <div class="card-body">
+                    <h4>Nature of Heaven</h4>
+                    <p>
+                        Mysterious moral force that bestows virtue but also takes away.
+                        Confucius trusts Heaven yet experiences it as inscrutable. The famous
+                        cry "Heaven is destroying me!" reveals existential anguish.
+                    </p>
+                    <blockquote>
+                        <span class="q-chinese">天喪予！天喪予！</span>
+                        "Heaven is destroying me! Heaven is destroying me!"
+                    </blockquote>
+                    <a href="kongzi.html" class="text-link">Study Guide</a>
+                </div>
+            </div>
+
+            <!-- Mengzi -->
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--mengzi)"></span><span class="chinese">孟子</span> Mencius (4th c. BCE)</div>
+                <div class="card-body">
+                    <h4>Nature of Heaven</h4>
+                    <p>
+                        Source of human moral nature. Heaven implants the "four sprouts" of
+                        virtue in human hearts. To know your nature is to know Heaven.
+                        Speaks through the people, not through miracles.
+                    </p>
+                    <blockquote>
+                        <span class="q-chinese">盡其心者，知其性也。知其性，則知天矣。</span>
+                        "One who fully develops the heart-mind knows their nature. Knowing their nature, they know Heaven."
+                    </blockquote>
+                    <a href="mengzi.html" class="text-link">Study Guide</a>
+                </div>
+            </div>
+
+            <!-- Daodejing -->
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--daodejing)"></span><span class="chinese">道德經</span> Daodejing (4th c. BCE)</div>
+                <div class="card-body">
+                    <h4>Nature of Heaven</h4>
+                    <p>
+                        Impersonal but <strong>NOT indifferent</strong>. Heaven operates through
+                        natural patterns, yet it "hates" certain things, "sides with good people,"
+                        and redistributes from excess to lack. 不仁 means "without partiality," not "cruel."
+                    </p>
+                    <blockquote>
+                        <span class="q-chinese">天道無親，常與善人。</span>
+                        "The Way of Heaven has no favorites; it constantly sides with good people."
+                    </blockquote>
+                    <a href="laozi.html" class="text-link">Study Guide</a>
+                </div>
+            </div>
+
+            <!-- Xunzi -->
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--xunzi)"></span><span class="chinese">荀子</span> Xunzi (3rd c. BCE)</div>
+                <div class="card-body">
+                    <h4>Nature of Heaven</h4>
+                    <p>
+                        Amoral natural process operating by constant patterns. Heaven neither
+                        rewards nor punishes. The revolutionary call: don't praise Heaven—master
+                        it and use it! The genuine naturalist outlier.
+                    </p>
+                    <blockquote>
+                        <span class="q-chinese">制天命而用之</span>
+                        "Master Heaven's mandate and use it!"
+                    </blockquote>
+                    <a href="https://ctext.org/xunzi/tian-lun" target="_blank" class="text-link">Tianlun on CText</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Comparison Table -->
-    <section class="comparison-section" id="comparison">
-        <div class="comparison-container">
-            <div class="section-label">Comparative Analysis</div>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Text</th>
-                        <th>Has Preferences?</th>
-                        <th>Has Agency?</th>
-                        <th>Inscrutable?</th>
-                        <th>Can Cause Suffering?</th>
-                        <th>Key Function</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-name">詩經 Shijing</td>
-                        <td class="yes-cell">Yes</td>
-                        <td class="yes-cell">Yes</td>
-                        <td class="partial-cell">Somewhat</td>
-                        <td class="yes-cell">Yes</td>
-                        <td>Grants/withdraws mandate</td>
-                    </tr>
-                    <tr>
-                        <td class="text-name">墨子 Mozi</td>
-                        <td class="yes-cell">Yes (explicit)</td>
-                        <td class="yes-cell">Yes (direct)</td>
-                        <td class="no-cell">No</td>
-                        <td class="yes-cell">Yes</td>
-                        <td>Rewards/punishes</td>
-                    </tr>
-                    <tr>
-                        <td class="text-name">論語 Lunyu</td>
-                        <td class="yes-cell">Yes</td>
-                        <td class="yes-cell">Yes</td>
-                        <td class="yes-cell">Yes</td>
-                        <td class="yes-cell">Yes (天喪予)</td>
-                        <td>Bestows virtue; takes away</td>
-                    </tr>
-                    <tr>
-                        <td class="text-name">孟子 Mengzi</td>
-                        <td class="yes-cell">Yes</td>
-                        <td class="partial-cell">Indirect</td>
-                        <td class="partial-cell">Somewhat</td>
-                        <td class="partial-cell">Implicit</td>
-                        <td>Source of moral nature</td>
-                    </tr>
-                    <tr>
-                        <td class="text-name">道德經 Daodejing</td>
-                        <td class="yes-cell">Yes (天之所惡)</td>
-                        <td class="yes-cell">Yes (patterns)</td>
-                        <td class="yes-cell">Yes</td>
-                        <td class="partial-cell">Natural cycles</td>
-                        <td>Redistributes; sides with good</td>
-                    </tr>
-                    <tr>
-                        <td class="text-name">荀子 Xunzi</td>
-                        <td class="no-cell">No</td>
-                        <td class="no-cell">No (constant)</td>
-                        <td class="no-cell">No</td>
-                        <td class="no-cell">Indifferent</td>
-                        <td>Natural process to master</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <section class="content-section" id="comparison">
+        <div class="section-label"><span class="chinese">比較</span> Comparative Analysis</div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Text</th>
+                    <th>Has Preferences?</th>
+                    <th>Has Agency?</th>
+                    <th>Inscrutable?</th>
+                    <th>Can Cause Suffering?</th>
+                    <th>Key Function</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-name">詩經 Shijing</td>
+                    <td class="yes-cell">Yes</td>
+                    <td class="yes-cell">Yes</td>
+                    <td class="partial-cell">Somewhat</td>
+                    <td class="yes-cell">Yes</td>
+                    <td>Grants/withdraws mandate</td>
+                </tr>
+                <tr>
+                    <td class="text-name">墨子 Mozi</td>
+                    <td class="yes-cell">Yes (explicit)</td>
+                    <td class="yes-cell">Yes (direct)</td>
+                    <td class="no-cell">No</td>
+                    <td class="yes-cell">Yes</td>
+                    <td>Rewards/punishes</td>
+                </tr>
+                <tr>
+                    <td class="text-name">論語 Lunyu</td>
+                    <td class="yes-cell">Yes</td>
+                    <td class="yes-cell">Yes</td>
+                    <td class="yes-cell">Yes</td>
+                    <td class="yes-cell">Yes (天喪予)</td>
+                    <td>Bestows virtue; takes away</td>
+                </tr>
+                <tr>
+                    <td class="text-name">孟子 Mengzi</td>
+                    <td class="yes-cell">Yes</td>
+                    <td class="partial-cell">Indirect</td>
+                    <td class="partial-cell">Somewhat</td>
+                    <td class="partial-cell">Implicit</td>
+                    <td>Source of moral nature</td>
+                </tr>
+                <tr>
+                    <td class="text-name">道德經 Daodejing</td>
+                    <td class="yes-cell">Yes (天之所惡)</td>
+                    <td class="yes-cell">Yes (patterns)</td>
+                    <td class="yes-cell">Yes</td>
+                    <td class="partial-cell">Natural cycles</td>
+                    <td>Redistributes; sides with good</td>
+                </tr>
+                <tr>
+                    <td class="text-name">荀子 Xunzi</td>
+                    <td class="no-cell">No</td>
+                    <td class="no-cell">No (constant)</td>
+                    <td class="no-cell">No</td>
+                    <td class="no-cell">Indifferent</td>
+                    <td>Natural process to master</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
     <!-- Key Passages -->
-    <section class="passages-section" id="passages">
-        <div class="passages-container">
-            <div class="section-label">Key Passages</div>
+    <section class="content-section alt" id="passages">
+        <div class="section-label"><span class="chinese">經文</span> Key Passages</div>
+        <div class="content-grid">
 
-            <div class="passage-block shijing">
-                <div class="passage-source">Shijing, Ode 254 (Ban)</div>
-                <div class="passage-chinese">敬天之怒，無敢戲豫。</div>
-                <div class="passage-translation">
-                    "Revere the anger of Heaven, and presume not to make sport or be idle."
-                </div>
-                <div class="passage-analysis">
-                    Heaven possesses anger (怒) that humans must respect. This is not an impersonal
-                    force but an entity capable of emotional response to human behavior.
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--shijing)"></span> Shijing, Ode 254 (Ban)</div>
+                <div class="card-body">
+                    <blockquote>
+                        <span class="q-chinese">敬天之怒，無敢戲豫。</span>
+                        "Revere the anger of Heaven, and presume not to make sport or be idle."
+                    </blockquote>
+                    <p>
+                        Heaven possesses anger (怒) that humans must respect. This is not an impersonal
+                        force but an entity capable of emotional response to human behavior.
+                    </p>
                 </div>
             </div>
 
-            <div class="passage-block lunyu">
-                <div class="passage-source">Lunyu 11.9</div>
-                <div class="passage-chinese">顏淵死。子曰：「噫！天喪予！天喪予！」</div>
-                <div class="passage-translation">
-                    "When Yan Yuan died, the Master cried: 'Alas! Heaven is destroying me! Heaven is destroying me!'"
-                </div>
-                <div class="passage-analysis">
-                    Confucius attributes his favorite disciple's death to Heaven's action. Heaven doesn't
-                    just reward—it takes away. The repeated cry (天喪予！天喪予！) reveals genuine anguish
-                    at Heaven's inscrutability.
-                </div>
-            </div>
-
-            <div class="passage-block daodejing">
-                <div class="passage-source">Daodejing, Chapter 73</div>
-                <div class="passage-chinese">天之所惡，孰知其故？</div>
-                <div class="passage-translation">
-                    "What Heaven hates—who knows the reason?"
-                </div>
-                <div class="passage-analysis">
-                    Crucial evidence against the "indifferent Daoist Heaven" cliche. Heaven actively
-                    <em>hates</em> (惡) certain things. The inscrutability is about <em>why</em> Heaven
-                    hates what it hates, not whether it has preferences at all.
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--lunyu)"></span> Lunyu 11.9</div>
+                <div class="card-body">
+                    <blockquote>
+                        <span class="q-chinese">顏淵死。子曰：「噫！天喪予！天喪予！」</span>
+                        "When Yan Yuan died, the Master cried: 'Alas! Heaven is destroying me! Heaven is destroying me!'"
+                    </blockquote>
+                    <p>
+                        Confucius attributes his favorite disciple's death to Heaven's action. Heaven doesn't
+                        just reward—it takes away. The repeated cry (天喪予！天喪予！) reveals genuine anguish
+                        at Heaven's inscrutability.
+                    </p>
                 </div>
             </div>
 
-            <div class="passage-block daodejing">
-                <div class="passage-source">Daodejing, Chapter 79</div>
-                <div class="passage-chinese">天道無親，常與善人。</div>
-                <div class="passage-translation">
-                    "The Way of Heaven has no favorites; it constantly sides with good people."
-                </div>
-                <div class="passage-analysis">
-                    Even while claiming "no favorites" (無親), the text says Heaven <em>constantly
-                    accompanies</em> (常與) good people. Impartial in method, but not in outcome—Heaven's
-                    very structure aligns with goodness.
-                </div>
-            </div>
-
-            <div class="passage-block daodejing">
-                <div class="passage-source">Daodejing, Chapter 5</div>
-                <div class="passage-chinese">天地不仁，以萬物為芻狗。</div>
-                <div class="passage-translation">
-                    "Heaven and Earth are not ren; they treat the myriad things as straw dogs."
-                </div>
-                <div class="passage-analysis">
-                    Often mistranslated as "Heaven is not benevolent" or "Heaven is ruthless." But 不仁
-                    means "without partial benevolence" (rejecting Confucian 仁 as favoritism). The straw
-                    dogs (芻狗) were ritual objects honored during sacrifice then discarded—treated according
-                    to their time and function, not with nepotistic attachment.
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--daodejing)"></span> Daodejing, Chapter 73</div>
+                <div class="card-body">
+                    <blockquote>
+                        <span class="q-chinese">天之所惡，孰知其故？</span>
+                        "What Heaven hates—who knows the reason?"
+                    </blockquote>
+                    <p>
+                        Crucial evidence against the "indifferent Daoist Heaven" cliche. Heaven actively
+                        <em>hates</em> (惡) certain things. The inscrutability is about <em>why</em> Heaven
+                        hates what it hates, not whether it has preferences at all.
+                    </p>
                 </div>
             </div>
 
-            <div class="passage-block xunzi">
-                <div class="passage-source">Xunzi, Tianlun (天論)</div>
-                <div class="passage-chinese">天行有常，不為堯存，不為桀亡。</div>
-                <div class="passage-translation">
-                    "Heaven's operations are constant; they do not persist because of Yao, nor perish because of Jie."
-                </div>
-                <div class="passage-analysis">
-                    The genuine naturalist break. Heaven operates by invariable patterns regardless of
-                    whether the ruler is a sage (Yao) or a tyrant (Jie). Human fortune depends on human
-                    response, not Heaven's favor.
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--daodejing)"></span> Daodejing, Chapter 79</div>
+                <div class="card-body">
+                    <blockquote>
+                        <span class="q-chinese">天道無親，常與善人。</span>
+                        "The Way of Heaven has no favorites; it constantly sides with good people."
+                    </blockquote>
+                    <p>
+                        Even while claiming "no favorites" (無親), the text says Heaven <em>constantly
+                        accompanies</em> (常與) good people. Impartial in method, but not in outcome—Heaven's
+                        very structure aligns with goodness.
+                    </p>
                 </div>
             </div>
 
-            <div class="passage-block xunzi">
-                <div class="passage-source">Xunzi, Tianlun (天論)</div>
-                <div class="passage-chinese">大天而思之，孰與物畜而制之！從天而頌之，孰與制天命而用之！</div>
-                <div class="passage-translation">
-                    "To exalt Heaven and contemplate it—how can this compare with nurturing things and controlling
-                    them! To follow Heaven and praise it—how can this compare with mastering Heaven's mandate and using it!"
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--daodejing)"></span> Daodejing, Chapter 5</div>
+                <div class="card-body">
+                    <blockquote>
+                        <span class="q-chinese">天地不仁，以萬物為芻狗。</span>
+                        "Heaven and Earth are not ren; they treat the myriad things as straw dogs."
+                    </blockquote>
+                    <p>
+                        Often mistranslated as "Heaven is not benevolent" or "Heaven is ruthless." But 不仁
+                        means "without partial benevolence" (rejecting Confucian 仁 as favoritism). The straw
+                        dogs (芻狗) were ritual objects honored during sacrifice then discarded—treated according
+                        to their time and function, not with nepotistic attachment.
+                    </p>
                 </div>
-                <div class="passage-analysis">
-                    Revolutionary inversion of piety. Rather than revering Heaven, <em>master</em> it. Rather
-                    than awaiting Heaven's dispensation, <em>use</em> natural patterns for human benefit. This
-                    is the only genuinely "indifferent Heaven" position—because Xunzi doesn't care whether
-                    Heaven cares.
+            </div>
+
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--xunzi)"></span> Xunzi, Tianlun (天論) — Constancy</div>
+                <div class="card-body">
+                    <blockquote>
+                        <span class="q-chinese">天行有常，不為堯存，不為桀亡。</span>
+                        "Heaven's operations are constant; they do not persist because of Yao, nor perish because of Jie."
+                    </blockquote>
+                    <p>
+                        The genuine naturalist break. Heaven operates by invariable patterns regardless of
+                        whether the ruler is a sage (Yao) or a tyrant (Jie). Human fortune depends on human
+                        response, not Heaven's favor.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--xunzi)"></span> Xunzi, Tianlun (天論) — Mastery</div>
+                <div class="card-body">
+                    <blockquote>
+                        <span class="q-chinese">大天而思之，孰與物畜而制之！從天而頌之，孰與制天命而用之！</span>
+                        "To exalt Heaven and contemplate it—how can this compare with nurturing things and controlling
+                        them! To follow Heaven and praise it—how can this compare with mastering Heaven's mandate and using it!"
+                    </blockquote>
+                    <p>
+                        Revolutionary inversion of piety. Rather than revering Heaven, <em>master</em> it. Rather
+                        than awaiting Heaven's dispensation, <em>use</em> natural patterns for human benefit. This
+                        is the only genuinely "indifferent Heaven" position—because Xunzi doesn't care whether
+                        Heaven cares.
+                    </p>
                 </div>
             </div>
 
@@ -915,12 +746,13 @@
     </section>
 
     <!-- Against Lazy Binaries -->
-    <section class="binary-section" id="binary">
-        <div class="binary-container">
-            <div class="section-label">Against Lazy Binaries</div>
-            <div class="binary-grid">
+    <section class="content-section" id="binary">
+        <div class="section-label"><span class="chinese">辨正</span> Against Lazy Binaries</div>
+        <div class="content-grid three-col">
 
-                <div class="binary-card">
+            <div class="binary-card">
+                <div class="card-head">Myth vs. Reality</div>
+                <div class="card-body">
                     <div class="claim">"Daoist Heaven is indifferent"</div>
                     <div class="reality">
                         <strong>Wrong.</strong> The Daodejing says Heaven hates certain things (天之所惡)
@@ -928,8 +760,11 @@
                     </div>
                     <div class="evidence">Ch. 73, 79</div>
                 </div>
+            </div>
 
-                <div class="binary-card">
+            <div class="binary-card">
+                <div class="card-head">Myth vs. Reality</div>
+                <div class="card-body">
                     <div class="claim">"Confucian Heaven is purely benevolent"</div>
                     <div class="reality">
                         <strong>Wrong.</strong> Confucius cried "Heaven is destroying me!" when Yan Hui
@@ -937,8 +772,11 @@
                     </div>
                     <div class="evidence">Analects 11.9</div>
                 </div>
+            </div>
 
-                <div class="binary-card">
+            <div class="binary-card">
+                <div class="card-head">Myth vs. Reality</div>
+                <div class="card-body">
                     <div class="claim">"Only Mohists have a personal deity"</div>
                     <div class="reality">
                         <strong>Partially true.</strong> Mozi's Heaven is most explicitly personal, but
@@ -946,8 +784,11 @@
                     </div>
                     <div class="evidence">天志 chapters</div>
                 </div>
+            </div>
 
-                <div class="binary-card">
+            <div class="binary-card">
+                <div class="card-head">Myth vs. Reality</div>
+                <div class="card-body">
                     <div class="claim">"Xunzi is the naturalist outlier"</div>
                     <div class="reality">
                         <strong>Correct.</strong> Xunzi genuinely breaks with tradition. His Heaven
@@ -955,108 +796,109 @@
                     </div>
                     <div class="evidence">天論</div>
                 </div>
-
             </div>
+
         </div>
     </section>
 
     <!-- Spectrum -->
-    <section class="spectrum-section">
-        <div class="spectrum-container">
-            <div class="section-label">Spectrum of Conceptions</div>
-            <div class="spectrum-bar"></div>
-            <div class="spectrum-labels">
-                <span>More Personal/Active</span>
-                <span>More Naturalistic/Impersonal</span>
+    <section class="content-section alt">
+        <div class="section-label"><span class="chinese">光譜</span> Spectrum of Conceptions</div>
+        <div class="spectrum-bar"></div>
+        <div class="spectrum-labels">
+            <span>More Personal / Active</span>
+            <span>More Naturalistic / Impersonal</span>
+        </div>
+        <div class="spectrum-texts">
+            <div class="spectrum-text">
+                <div class="s-chinese">墨子</div>
+                <div class="s-name">Mozi</div>
             </div>
-            <div class="spectrum-texts">
-                <div class="spectrum-text">
-                    <div class="chinese">墨子</div>
-                    <div class="name">Mozi</div>
-                </div>
-                <div class="spectrum-text">
-                    <div class="chinese">詩經</div>
-                    <div class="name">Shijing</div>
-                </div>
-                <div class="spectrum-text">
-                    <div class="chinese">論語</div>
-                    <div class="name">Lunyu</div>
-                </div>
-                <div class="spectrum-text">
-                    <div class="chinese">孟子</div>
-                    <div class="name">Mengzi</div>
-                </div>
-                <div class="spectrum-text">
-                    <div class="chinese">道德經</div>
-                    <div class="name">Daodejing</div>
-                </div>
-                <div class="spectrum-text">
-                    <div class="chinese">荀子</div>
-                    <div class="name">Xunzi</div>
-                </div>
+            <div class="spectrum-text">
+                <div class="s-chinese">詩經</div>
+                <div class="s-name">Shijing</div>
+            </div>
+            <div class="spectrum-text">
+                <div class="s-chinese">論語</div>
+                <div class="s-name">Lunyu</div>
+            </div>
+            <div class="spectrum-text">
+                <div class="s-chinese">孟子</div>
+                <div class="s-name">Mengzi</div>
+            </div>
+            <div class="spectrum-text">
+                <div class="s-chinese">道德經</div>
+                <div class="s-name">Daodejing</div>
+            </div>
+            <div class="spectrum-text">
+                <div class="s-chinese">荀子</div>
+                <div class="s-name">Xunzi</div>
             </div>
         </div>
     </section>
 
     <!-- Discussion Questions -->
-    <section class="questions-section" id="questions">
-        <div class="questions-container">
-            <div class="section-label">Discussion Questions</div>
-
-            <div class="question-item">
-                <div class="q-num">Question 1</div>
-                <p>
-                    If the Daodejing says Heaven "hates" certain things and "sides with good people,"
-                    why do Western textbooks often describe Daoist Heaven as "impersonal and indifferent"?
-                    What assumptions might be driving this characterization?
-                </p>
+    <section class="content-section" id="questions">
+        <div class="section-label"><span class="chinese">討論</span> Discussion Questions</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">問</span> Questions 1-3</div>
+                <div class="card-body">
+                    <div class="q-item">
+                        <div class="q-num">Question 1</div>
+                        <p>
+                            If the Daodejing says Heaven "hates" certain things and "sides with good people,"
+                            why do Western textbooks often describe Daoist Heaven as "impersonal and indifferent"?
+                            What assumptions might be driving this characterization?
+                        </p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 2</div>
+                        <p>
+                            Confucius cries "Heaven is destroying me!" (天喪予) when Yan Hui dies. How does this
+                            complicate the idea that Confucian Heaven is purely benevolent and supportive?
+                            What does the text reveal about Confucius's relationship with Heaven?
+                        </p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 3</div>
+                        <p>
+                            The Daodejing Chapter 5 says Heaven treats things like "straw dogs" (芻狗).
+                            Given that straw dogs were honored during rituals then discarded afterward,
+                            does this passage support or undermine the "indifferent Heaven" reading?
+                        </p>
+                    </div>
+                </div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 2</div>
-                <p>
-                    Confucius cries "Heaven is destroying me!" (天喪予) when Yan Hui dies. How does this
-                    complicate the idea that Confucian Heaven is purely benevolent and supportive?
-                    What does the text reveal about Confucius's relationship with Heaven?
-                </p>
+            <div class="card">
+                <div class="card-head"><span class="chinese">問</span> Questions 4-6</div>
+                <div class="card-body">
+                    <div class="q-item">
+                        <div class="q-num">Question 4</div>
+                        <p>
+                            Both Laozi (天之所惡，孰知其故) and Confucius (in his anguish over Yan Hui)
+                            express that Heaven is inscrutable. Is the inscrutability of Heaven a shared
+                            feature across these traditions, rather than a difference?
+                        </p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 5</div>
+                        <p>
+                            Xunzi says we should "master Heaven and use it" (制天命而用之) rather than
+                            praise or worship it. What social, political, or philosophical conditions
+                            might have led to this radical break from earlier views?
+                        </p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 6</div>
+                        <p>
+                            Compare Mozi's 天志 (Will of Heaven) with Mencius's 天命 (Mandate of Heaven).
+                            Both claim Heaven's authority—but for what purposes? How do their political
+                            implications differ?
+                        </p>
+                    </div>
+                </div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 3</div>
-                <p>
-                    The Daodejing Chapter 5 says Heaven treats things like "straw dogs" (芻狗).
-                    Given that straw dogs were honored during rituals then discarded afterward,
-                    does this passage support or undermine the "indifferent Heaven" reading?
-                </p>
-            </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 4</div>
-                <p>
-                    Both Laozi (天之所惡，孰知其故) and Confucius (in his anguish over Yan Hui)
-                    express that Heaven is inscrutable. Is the inscrutability of Heaven a shared
-                    feature across these traditions, rather than a difference?
-                </p>
-            </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 5</div>
-                <p>
-                    Xunzi says we should "master Heaven and use it" (制天命而用之) rather than
-                    praise or worship it. What social, political, or philosophical conditions
-                    might have led to this radical break from earlier views?
-                </p>
-            </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 6</div>
-                <p>
-                    Compare Mozi's 天志 (Will of Heaven) with Mencius's 天命 (Mandate of Heaven).
-                    Both claim Heaven's authority—but for what purposes? How do their political
-                    implications differ?
-                </p>
-            </div>
-
         </div>
     </section>
 
