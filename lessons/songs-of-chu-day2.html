@@ -17,28 +17,17 @@
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            --vermillion: #c73e3a;
-            --vermillion-light: #e8d4d3;
             --teal: #2d5a5a;
             --water: #4a90a4;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.6;
         }
 
         /* Page Header */
@@ -58,406 +47,271 @@
         .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
         .page-title .meta { font-size: 0.7rem; color: #888; }
 
-        /* Navigation */
+        /* Nav — matches index.html */
         .nav {
-            position: sticky;
-            top: 0;
-            background: rgba(26, 26, 26, 0.97);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+            background: var(--ink);
             padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
         .nav a {
-            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.7);
+            color: #aaa;
             text-decoration: none;
-            padding: 0.4rem 0.75rem;
-            border-radius: 2px;
-            transition: all 0.2s ease;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
         }
+        .nav a:hover { color: var(--gold-light); }
 
-        .nav a:hover {
-            color: var(--gold-light);
-            background: rgba(184, 134, 11, 0.15);
-        }
-
-        .nav a.portal-link {
-            background: var(--gold);
-            color: #fff;
-        }
-
-        .nav a.portal-link:hover {
-            background: var(--gold-light);
-        }
-
-        .nav a.day-link {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        /* Section Headers */
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--ink);
-        }
-
-        h3 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 1rem;
-            margin: 1.5rem 0 0.75rem;
-            color: var(--ink);
-        }
-
-        h4 {
-            font-weight: 500;
-            font-size: 0.75rem;
+        /* Section Labels */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--ink-faint);
-            margin: 1.25rem 0 0.75rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
         }
 
-        p {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.65;
+        /* Content Sections */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
         }
-
-        /* Summary Box */
-        .summary-box {
+        .content-section.alt {
             background: var(--paper-dark);
-            padding: 1.25rem;
-            margin: 1.25rem 0;
-            border-left: 3px solid var(--gold);
         }
 
-        .summary-box p:last-child {
-            margin-bottom: 0;
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.tri {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+        .content-grid.quad {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         }
 
-        /* Feature Cards */
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-body {
+            padding: 0.75rem;
+        }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul, .card-body ol { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Feature cards (small stat cards) */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin: 1.25rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.6rem;
         }
-
         .feature-card {
-            background: white;
-            padding: 1rem;
-            border: 1px solid var(--paper-dark);
+            background: #fff;
+            padding: 0.6rem 0.75rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-
         .feature-card .label {
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--ink-faint);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.15rem;
         }
-
         .feature-card .value {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+        }
+        .feature-card .value .note {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            color: var(--ink-faint);
         }
 
         /* Tables */
-        .table-container {
+        .table-wrap {
             overflow-x: auto;
-            margin: 1.25rem 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin: 0.5rem 0;
+            border-radius: 4px;
         }
-
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            font-size: 0.85rem;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            background: #fff;
         }
-
-        thead {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            color: var(--paper);
-        }
-
+        thead { background: #2a2a2a; color: var(--paper); }
         th {
             font-weight: 600;
             text-align: left;
-            padding: 14px 18px;
-            font-size: 0.7rem;
+            padding: 0.5rem 0.6rem;
+            font-size: 0.6rem;
             letter-spacing: 0.06em;
             text-transform: uppercase;
             border-bottom: 2px solid var(--gold);
         }
-
-        th:first-child {
-            border-top-left-radius: 8px;
-        }
-
-        th:last-child {
-            border-top-right-radius: 8px;
-        }
-
         td {
-            padding: 14px 18px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 0.45rem 0.6rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
             vertical-align: top;
-            line-height: 1.6;
+            line-height: 1.5;
         }
-
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        tbody tr:last-child td:first-child {
-            border-bottom-left-radius: 8px;
-        }
-
-        tbody tr:last-child td:last-child {
-            border-bottom-right-radius: 8px;
-        }
-
-        tr:nth-child(even) td {
-            background: rgba(0, 0, 0, 0.02);
-        }
-
-        tr:hover td {
-            background: rgba(184, 134, 11, 0.06);
-            transition: background 0.2s ease;
-        }
-
-        .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.05em;
-        }
+        tbody tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+        .ch-cell { font-family: 'Noto Sans SC', sans-serif; font-size: 0.9em; }
 
         /* Blockquotes */
         blockquote {
-            border-left: 3px solid var(--gold);
-            margin: 1.25rem 0;
-            padding: 0.75rem 1.25rem;
-            background: rgba(184, 134, 11, 0.04);
-            font-style: italic;
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-
-        blockquote p {
-            margin-bottom: 0;
-        }
-
-        /* Lists */
-        ul, ol {
-            margin: 0.75rem 0 1rem 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        li {
-            margin-bottom: 0.4rem;
-            line-height: 1.5;
-        }
-
-        /* Poem Cards */
-        .poem-card {
-            background: white;
-            border: 1px solid var(--paper-dark);
-            margin: 2rem 0;
-            overflow: hidden;
-        }
-
-        .poem-card-header {
-            background: var(--ink);
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .poem-card-header .chinese-title {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-            margin-bottom: 0.3rem;
-        }
-
-        .poem-card-header .english-title {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        .poem-card-header .pinyin {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.8rem;
-            font-style: italic;
-        }
-
-        .poem-card-body {
-            padding: 1.5rem;
-        }
-
-        .poem-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .poem-meta-item {
             background: var(--paper-dark);
-            padding: 0.75rem;
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
         }
-
-        .poem-meta-item .label {
-            font-size: 0.6rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
             color: var(--ink-faint);
-            margin-bottom: 0.2rem;
         }
 
-        .poem-meta-item .value {
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Interactive Map Section */
+        /* Map iframes */
         .map-frame {
             width: 100%;
-            height: 500px;
+            height: 400px;
             border: none;
-            border-radius: 8px;
-            margin: 1.25rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-
-        .map-section {
-            margin: 2rem 0;
-        }
-
-        .map-section h4 {
-            margin-bottom: 0.75rem;
-        }
-
         .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
+            display: inline-block;
+            font-size: 0.7rem;
             color: var(--teal);
             text-decoration: none;
+            margin-top: 0.25rem;
         }
+        .map-link:hover { color: var(--gold); }
 
-        .map-link:hover {
-            color: var(--gold);
-        }
-
-        /* Theme Boxes */
-        .themes-box {
-            background: #fff8e6;
-            border-left: 3px solid var(--gold);
-            padding: 1rem 1.25rem;
-            margin: 1.25rem 0;
-        }
-
-        .themes-box h4 {
-            margin-top: 0;
-            color: var(--gold);
-        }
-
-        .themes-box ol {
-            margin-bottom: 0;
-        }
-
-        /* Author Box */
-        .author-box {
+        /* Sources */
+        .sources {
             background: var(--paper-dark);
-            padding: 1.25rem;
-            margin: 1.25rem 0;
-            border-left: 3px solid var(--teal);
+            padding: 1rem 1.5rem 1.5rem;
         }
-
-        .author-box h4 {
-            margin-top: 0;
-            color: var(--teal);
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
-
-        /* TOC */
-        .toc {
-            background: var(--paper-dark);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
         }
-
-        .toc h3 {
-            margin-top: 0;
-            font-size: 0.85rem;
-        }
-
-        .toc ol {
-            margin: 0.75rem 0 0 1.25rem;
-        }
-
-        .toc li {
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
             margin-bottom: 0.5rem;
         }
-
-        .toc a {
-            color: var(--ink);
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
             text-decoration: none;
-            font-size: 0.85rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
         }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
 
-        .toc a:hover {
+        /* Themed accent boxes */
+        .accent-box {
+            border-left: 3px solid var(--gold);
+            background: rgba(184,134,11,0.04);
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .accent-box.teal { border-left-color: var(--teal); background: var(--paper-dark); }
+        .accent-box.green { border-left-color: #2a6a2a; background: #e8f4e8; }
+        .accent-box h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
             color: var(--gold);
+            margin-bottom: 0.4rem;
         }
-
-        /* Study Questions */
-        .study-questions {
-            background: #e8f4e8;
-            padding: 1.25rem;
-            border-left: 3px solid #2a6a2a;
-            margin: 1.5rem 0;
-        }
-
-        .study-questions h4 {
-            margin-top: 0;
-            color: #2a6a2a;
-        }
-
-        .study-questions ol {
-            margin-bottom: 0;
-        }
+        .accent-box.teal h4 { color: var(--teal); }
+        .accent-box.green h4 { color: #2a6a2a; }
+        .accent-box ul, .accent-box ol { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; margin: 0; }
+        .accent-box li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .accent-box p { font-size: 0.8rem; color: var(--ink-light); line-height: 1.65; margin-bottom: 0.4rem; }
+        .accent-box p:last-child { margin-bottom: 0; }
 
         /* Footer */
         footer {
@@ -465,58 +319,30 @@
             padding: 1.25rem 1.5rem;
             text-align: center;
         }
-
-        footer .foot-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-            margin-bottom: 0.2rem;
-        }
-
-        footer .foot-title {
-            font-size: 0.7rem;
-            color: #aaa;
-            margin-bottom: 0.3rem;
-        }
-
-        footer .foot-term {
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--gold);
-            letter-spacing: 0.08em;
-        }
+        footer .foot-chinese { font-family: 'Noto Sans SC', sans-serif; font-size: 1rem; color: var(--gold-light); margin-bottom: 0.2rem; }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term { font-size: 0.6rem; font-weight: 600; color: var(--gold); letter-spacing: 0.08em; }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .poem-card-header .chinese-title {
-                font-size: 1rem;
-            }
-
-            .nav {
-                gap: 0.3rem;
-            }
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid.tri { grid-template-columns: 1fr; }
+            .content-grid.quad { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .page-header { flex-direction: column; align-items: flex-start; }
         }
 
         @media print {
-            .page-header,
-            .nav {
-                display: none;
-            }
-
-            .poem-card {
-                page-break-inside: avoid;
-            }
+            .page-header, .nav { display: none; }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Page Header -->
     <header class="page-header">
         <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
@@ -526,9 +352,9 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav class="nav">
-        <a href="songs-of-chu-day1.html" class="day-link">&larr; Day 1</a>
+        <a href="songs-of-chu-day1.html">&larr; Day 1</a>
         <a href="#overview">Overview</a>
         <a href="#poem1">Lament for Ying</a>
         <a href="#poem2">Orange Tree</a>
@@ -538,194 +364,131 @@
         <a href="#maps">Maps</a>
     </nav>
 
-    <main class="container">
+    <!-- ==================== OVERVIEW ==================== -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">楚辭</span> THE CHUCI ANTHOLOGY</div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="label">Title</div>
+                <div class="value">楚辭 <span class="note">(Chu Ci)</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Meaning</div>
+                <div class="value">"Songs of Ch'u"</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Origin</div>
+                <div class="value">State of Chu (楚國)</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Compiler</div>
+                <div class="value">劉向 Liu Xiang</div>
+            </div>
+        </div>
 
-        <!-- Table of Contents -->
-        <nav class="toc">
-            <h3>Contents</h3>
-            <ol>
-                <li><a href="#overview">General Background: The Chuci Anthology</a></li>
-                <li><a href="#poem1">A Lament for Ying (哀郢)</a></li>
-                <li><a href="#poem2">In Praise of the Orange Tree (橘頌)</a></li>
-                <li><a href="#poem3">From "The Nine Arguments" (九辯)</a></li>
-                <li><a href="#poem4">The Summons of the Soul (招魂)</a></li>
-                <li><a href="#poem5">Summons for a Gentleman Who Became a Recluse (招隱士)</a></li>
-                <li><a href="#maps">Maps: The Geography of Chu</a></li>
-                <li><a href="#authors">Authors of the Chuci</a></li>
-                <li><a href="#questions">Study Questions</a></li>
-            </ol>
-        </nav>
-
-        <!-- ==================== OVERVIEW ==================== -->
-        <section id="overview">
-            <h2>General Background: The Chuci Anthology</h2>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="label">Title</div>
-                    <div class="value">楚辭 <span style="font-size: 0.7rem; color: var(--ink-faint);">(Chu Ci)</span></div>
-                </div>
-                <div class="feature-card">
-                    <div class="label">Meaning</div>
-                    <div class="value">"Songs of Ch'u"</div>
-                </div>
-                <div class="feature-card">
-                    <div class="label">Origin</div>
-                    <div class="value">State of Chu (楚國)</div>
-                </div>
-                <div class="feature-card">
-                    <div class="label">Compiler</div>
-                    <div class="value">劉向 Liu Xiang</div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">歷史</span> HISTORICAL & CULTURAL CONTEXT</div>
+                <div class="card-body">
+                    <p>The State of <strong>Chu</strong> was a powerful kingdom in southern China, centered in present-day Hubei and Hunan provinces. It had a distinct culture from the Zhou heartland in the north:</p>
+                    <ul>
+                        <li>Strong <strong>shamanistic religious traditions</strong></li>
+                        <li>Lush, watery landscape of rivers, lakes, and marshes</li>
+                        <li>Political turmoil as Qin gradually conquered rival states</li>
+                        <li>Rich mythological imagination</li>
+                    </ul>
                 </div>
             </div>
-
-            <h3>Historical & Cultural Context</h3>
-            <p>The State of <strong>Chu</strong> was a powerful kingdom in southern China, centered in present-day Hubei and Hunan provinces. It had a distinct culture from the Zhou heartland in the north:</p>
-            <ul>
-                <li>Strong <strong>shamanistic religious traditions</strong></li>
-                <li>Lush, watery landscape of rivers, lakes, and marshes</li>
-                <li>Political turmoil as Qin gradually conquered rival states</li>
-                <li>Rich mythological imagination</li>
-            </ul>
-
-            <h3>Literary Significance</h3>
-            <p>The <em>Chuci</em> represents the <strong>"southern" tradition</strong> of Chinese poetry, contrasting with the northern <em>Shijing</em> tradition:</p>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Shijing (Northern)</th>
-                            <th>Chuci (Southern)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Regular, short lines</td>
-                            <td>Longer, irregular verses</td>
-                        </tr>
-                        <tr>
-                            <td>Folk and court songs</td>
-                            <td>Personal, emotional expression</td>
-                        </tr>
-                        <tr>
-                            <td>Realistic imagery</td>
-                            <td>Supernatural, mythological imagery</td>
-                        </tr>
-                        <tr>
-                            <td>Anonymous authors</td>
-                            <td>Named individual poets</td>
-                        </tr>
-                        <tr>
-                            <td>Social, didactic</td>
-                            <td>Personal, lyrical</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <p>The <em>Chuci</em> introduced the <strong><em>sao</em> (騷) style</strong> of poetry and profoundly influenced all subsequent Chinese literature.</p>
-        </section>
-
-        <!-- ==================== POEM 1 ==================== -->
-        <section id="poem1">
-            <div class="poem-card">
-                <div class="poem-card-header">
-                    <div class="chinese-title">哀郢</div>
-                    <div class="english-title">A Lament for Ying</div>
-                    <div class="pinyin">Ai Ying</div>
-                </div>
-                <div class="poem-card-body">
-                    <div class="poem-meta">
-                        <div class="poem-meta-item">
-                            <div class="label">From</div>
-                            <div class="value"><span class="chinese">九章</span> "Nine Declarations"</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Author</div>
-                            <div class="value">Qu Yuan (屈原)</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Form</div>
-                            <div class="value">Lyrical lament with <em>Envoi</em></div>
-                        </div>
-                    </div>
-
-                    <div class="author-box">
-                        <h4>About Qu Yuan (屈原, c. 340-278 BCE)</h4>
-                        <ul>
-                            <li>Minister and poet of the State of Chu</li>
-                            <li>Served King Huai of Chu (楚懷王)</li>
-                            <li>Banished due to court intrigues and slander</li>
-                            <li>Drowned himself in the Miluo River (汨羅江) in 278 BCE</li>
-                            <li>Commemorated annually during the <strong>Dragon Boat Festival</strong> (端午節)</li>
-                        </ul>
-                    </div>
-
-                    <h3>Key Terms</h3>
-                    <div class="table-container">
+            <div class="card">
+                <div class="card-head"><span class="chinese">文學</span> LITERARY SIGNIFICANCE</div>
+                <div class="card-body">
+                    <p>The <em>Chuci</em> represents the <strong>"southern" tradition</strong> of Chinese poetry, contrasting with the northern <em>Shijing</em> tradition:</p>
+                    <div class="table-wrap">
                         <table>
                             <thead>
-                                <tr>
-                                    <th>Chinese</th>
-                                    <th>Pinyin</th>
-                                    <th>Meaning</th>
-                                </tr>
+                                <tr><th>Shijing (Northern)</th><th>Chuci (Southern)</th></tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="chinese">郢</td>
-                                    <td>Ying</td>
-                                    <td>Capital city of Chu state</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">江</td>
-                                    <td>Jiang</td>
-                                    <td>The Yangtze River</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">夏</td>
-                                    <td>Xia</td>
-                                    <td>The Xia River (tributary)</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">洞庭</td>
-                                    <td>Dongting</td>
-                                    <td>Dongting Lake</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">龍門</td>
-                                    <td>Longmen</td>
-                                    <td>Dragon Gate (city gate of Ying)</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">堯舜</td>
-                                    <td>Yao Shun</td>
-                                    <td>Legendary sage-kings</td>
-                                </tr>
+                                <tr><td>Regular, short lines</td><td>Longer, irregular verses</td></tr>
+                                <tr><td>Folk and court songs</td><td>Personal, emotional expression</td></tr>
+                                <tr><td>Realistic imagery</td><td>Supernatural, mythological imagery</td></tr>
+                                <tr><td>Anonymous authors</td><td>Named individual poets</td></tr>
+                                <tr><td>Social, didactic</td><td>Personal, lyrical</td></tr>
                             </tbody>
                         </table>
                     </div>
+                    <p>The <em>Chuci</em> introduced the <strong><em>sao</em> (騷) style</strong> of poetry and profoundly influenced all subsequent Chinese literature.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <h3>Historical Background: The Fall of Ying (278 BCE)</h3>
+    <!-- ==================== POEM 1: LAMENT FOR YING ==================== -->
+    <section class="content-section alt" id="poem1">
+        <div class="section-label"><span class="chinese">哀郢</span> A LAMENT FOR YING</div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="label">From</div>
+                <div class="value">九章 <span class="note">"Nine Declarations"</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Author</div>
+                <div class="value">Qu Yuan (屈原)</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Form</div>
+                <div class="value">Lyrical lament with <em>Envoi</em></div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">屈原</span> ABOUT QU YUAN (c. 340-278 BCE)</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Minister and poet of the State of Chu</li>
+                        <li>Served King Huai of Chu (楚懷王)</li>
+                        <li>Banished due to court intrigues and slander</li>
+                        <li>Drowned himself in the Miluo River (汨羅江) in 278 BCE</li>
+                        <li>Commemorated annually during the <strong>Dragon Boat Festival</strong> (端午節)</li>
+                    </ul>
+                    <h4>Historical Background: The Fall of Ying (278 BCE)</h4>
                     <p>In <strong>278 BCE</strong>, the Qin general <strong>Bai Qi (白起)</strong> captured Ying, the capital of Chu. This catastrophic event forced the Chu court to relocate eastward. Qu Yuan, already in exile, witnessed this disaster from afar.</p>
                     <p>Qu Yuan had been exiled for his opposition to Chu's alliance with Qin. His warnings about Qin's treachery went unheeded. The king he served, King Huai, had died in Qin captivity (296 BCE).</p>
-
-                    <h3>Summary & Analysis</h3>
-
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">KEY TERMS</div>
+                <div class="card-body">
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Chinese</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+                            <tbody>
+                                <tr><td class="ch-cell">郢</td><td>Ying</td><td>Capital city of Chu state</td></tr>
+                                <tr><td class="ch-cell">江</td><td>Jiang</td><td>The Yangtze River</td></tr>
+                                <tr><td class="ch-cell">夏</td><td>Xia</td><td>The Xia River (tributary)</td></tr>
+                                <tr><td class="ch-cell">洞庭</td><td>Dongting</td><td>Dongting Lake</td></tr>
+                                <tr><td class="ch-cell">龍門</td><td>Longmen</td><td>Dragon Gate (city gate of Ying)</td></tr>
+                                <tr><td class="ch-cell">堯舜</td><td>Yao Shun</td><td>Legendary sage-kings</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">SUMMARY & ANALYSIS</div>
+                <div class="card-body">
                     <h4>Part 1 — Departure</h4>
                     <p>The poem opens with cosmic disorder — "High Heaven is not constant" — reflecting political chaos. The journey by boat eastward becomes a metaphor for exile.</p>
                     <blockquote>
                         "I passed through the city gate with a heavy heart:<br>
                         On the day <em>chia</em>, in the morning, my journey began."
                     </blockquote>
-
                     <h4>Part 2 — Wandering</h4>
                     <p>The poet drifts aimlessly through the waterways — past Dongting Lake, along the Xia River. Geographic confusion mirrors psychological confusion. The "nine years" of exile emphasizes prolonged suffering.</p>
-
                     <h4>Part 3 — Accusation</h4>
                     <p>The poem shifts to direct criticism of the king and court. Flatterers are compared to "backbiters" who slandered even Yao and Shun.</p>
-
                     <h4>Envoi</h4>
                     <blockquote>
                         "The birds fly home to their old haunts where they came from;<br>
@@ -733,19 +496,20 @@
                         That I was cast off and banished was truly for no crime.<br>
                         By day and night I never can forget."
                     </blockquote>
-
-                    <div class="themes-box">
-                        <h4>Major Themes</h4>
-                        <ol>
-                            <li><strong>Exile and Displacement</strong> — Physical journey reflects spiritual alienation</li>
-                            <li><strong>Loyalty vs. Recognition</strong> — The loyal minister rejected by an ungrateful ruler</li>
-                            <li><strong>Political Critique</strong> — Corruption, flattery, and weak leadership</li>
-                            <li><strong>Nostalgia and Homeland</strong> — Attachment to place as moral value</li>
-                            <li><strong>Cosmic Disorder</strong> — Heaven's inconstancy mirrors political chaos</li>
-                        </ol>
-                    </div>
-
-                    <h3>Literary Techniques</h3>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">THEMES & TECHNIQUES</div>
+                <div class="card-body">
+                    <h4>Major Themes</h4>
+                    <ol>
+                        <li><strong>Exile and Displacement</strong> — Physical journey reflects spiritual alienation</li>
+                        <li><strong>Loyalty vs. Recognition</strong> — The loyal minister rejected by an ungrateful ruler</li>
+                        <li><strong>Political Critique</strong> — Corruption, flattery, and weak leadership</li>
+                        <li><strong>Nostalgia and Homeland</strong> — Attachment to place as moral value</li>
+                        <li><strong>Cosmic Disorder</strong> — Heaven's inconstancy mirrors political chaos</li>
+                    </ol>
+                    <h4>Literary Techniques</h4>
                     <ul>
                         <li><strong>Journey as metaphor</strong> — Physical travel represents spiritual wandering</li>
                         <li><strong>Nature imagery</strong> — Rivers and seasons reflect emotional states</li>
@@ -754,85 +518,70 @@
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ==================== POEM 2 ==================== -->
-        <section id="poem2">
-            <div class="poem-card">
-                <div class="poem-card-header">
-                    <div class="chinese-title">橘頌</div>
-                    <div class="english-title">In Praise of the Orange Tree</div>
-                    <div class="pinyin">Ju Song</div>
-                </div>
-                <div class="poem-card-body">
-                    <div class="poem-meta">
-                        <div class="poem-meta-item">
-                            <div class="label">From</div>
-                            <div class="value"><span class="chinese">九章</span> "Nine Declarations"</div>
+    <!-- ==================== POEM 2: ORANGE TREE ==================== -->
+    <section class="content-section" id="poem2">
+        <div class="section-label"><span class="chinese">橘頌</span> IN PRAISE OF THE ORANGE TREE</div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="label">From</div>
+                <div class="value">九章 <span class="note">"Nine Declarations"</span></div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Author</div>
+                <div class="value">Qu Yuan (屈原)</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Form</div>
+                <div class="value">Ode/Hymn (<em>song</em> 頌)</div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">BACKGROUND: THE ORANGE TREE IN CHU CULTURE</div>
+                <div class="card-body">
+                    <p>The orange tree was native to the Chu region. According to ancient belief, oranges grown south of the Huai River would become bitter <em>zhi</em> (枳) if transplanted north. This botanical "loyalty" made it a powerful symbol.</p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin: 0.5rem 0;">
+                        <div style="background: #f5f5f5; padding: 0.5rem; border-left: 3px solid #8a8a8a; border-radius: 3px;">
+                            <div style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em; color: #666;">North of Huai River</div>
+                            <div style="font-family: 'Noto Sans SC', sans-serif; font-size: 0.9rem; color: #666;">枳 <span style="font-size: 0.65rem;">(zhi)</span></div>
+                            <div style="font-size: 0.7rem; color: #888; margin-top: 0.2rem;">Orange becomes bitter — <em>Disloyalty</em></div>
                         </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Author</div>
-                            <div class="value">Qu Yuan (屈原)</div>
+                        <div style="background: #fff8e6; padding: 0.5rem; border-left: 3px solid var(--gold); border-radius: 3px; text-align: center;">
+                            <div style="font-family: 'Noto Sans SC', sans-serif; font-size: 0.9rem; color: var(--water);">淮河</div>
+                            <div style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint);">HUAI RIVER</div>
+                            <div style="font-size: 0.6rem; margin-top: 0.15rem; color: var(--ink-faint);">The boundary</div>
                         </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Form</div>
-                            <div class="value">Ode/Hymn (<em>song</em> 頌)</div>
+                        <div style="background: #e8f5e8; padding: 0.5rem; border-left: 3px solid #2a6a2a; border-radius: 3px;">
+                            <div style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em; color: #2a6a2a;">South of Huai River</div>
+                            <div style="font-family: 'Noto Sans SC', sans-serif; font-size: 0.9rem; color: #2a6a2a;">橘 <span style="font-size: 0.65rem;">(ju)</span></div>
+                            <div style="font-size: 0.7rem; color: #3a7a3a; margin-top: 0.2rem;">Orange thrives — <em>Loyalty</em></div>
                         </div>
                     </div>
-
-                    <h3>Key Terms</h3>
-                    <div class="table-container">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">KEY TERMS</div>
+                <div class="card-body">
+                    <div class="table-wrap">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Chinese</th>
-                                    <th>Pinyin</th>
-                                    <th>Meaning</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Chinese</th><th>Pinyin</th><th>Meaning</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td class="chinese">橘</td>
-                                    <td>ju</td>
-                                    <td>Orange/tangerine tree</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">后土</td>
-                                    <td>Hou Tu</td>
-                                    <td>God of Earth</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">伯夷</td>
-                                    <td>Bo Yi</td>
-                                    <td>Ancient paragon of virtue</td>
-                                </tr>
+                                <tr><td class="ch-cell">橘</td><td>ju</td><td>Orange/tangerine tree</td></tr>
+                                <tr><td class="ch-cell">后土</td><td>Hou Tu</td><td>God of Earth</td></tr>
+                                <tr><td class="ch-cell">伯夷</td><td>Bo Yi</td><td>Ancient paragon of virtue</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <h3>Background: The Orange Tree in Chu Culture</h3>
-                    <p>The orange tree was native to the Chu region. According to ancient belief, oranges grown south of the Huai River would become bitter <em>zhi</em> (枳) if transplanted north. This botanical "loyalty" made it a powerful symbol.</p>
-
-                    <div class="feature-grid" style="margin: 1.5rem 0;">
-                        <div class="feature-card" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%); border-left: 4px solid #8a8a8a;">
-                            <div class="label" style="color: #666;">North of Huai River</div>
-                            <div class="value" style="color: #666;">枳 <span style="font-size: 0.7rem;">(zhi)</span></div>
-                            <p style="font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0; color: #888;">Orange becomes bitter — <em>Disloyalty</em></p>
-                        </div>
-                        <div class="feature-card" style="background: linear-gradient(135deg, #fff8e6 0%, #fff3d0 100%); border-left: 4px solid var(--gold); text-align: center; padding: 1rem;">
-                            <div style="font-family: 'Noto Sans SC', sans-serif; font-size: 1rem; color: var(--water);">淮河</div>
-                            <div style="font-size: 0.7rem; color: var(--ink-faint);">HUAI RIVER</div>
-                            <div style="font-size: 0.65rem; margin-top: 0.3rem; color: var(--ink-faint);">The boundary</div>
-                        </div>
-                        <div class="feature-card" style="background: linear-gradient(135deg, #e8f5e8 0%, #d4ebd4 100%); border-left: 4px solid #2a6a2a;">
-                            <div class="label" style="color: #2a6a2a;">South of Huai River</div>
-                            <div class="value" style="color: #2a6a2a;">橘 <span style="font-size: 0.7rem;">(ju)</span></div>
-                            <p style="font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0; color: #3a7a3a;">Orange thrives — <em>Loyalty</em></p>
-                        </div>
-                    </div>
-
-                    <h3>Summary & Analysis</h3>
-
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">SUMMARY & ANALYSIS</div>
+                <div class="card-body">
                     <h4>Physical Description as Moral Allegory</h4>
                     <ul>
                         <li><strong>Deep roots</strong> = "singleness of purpose"</li>
@@ -840,135 +589,94 @@
                         <li><strong>Sharp spines</strong> = self-protection, moral firmness</li>
                         <li><strong>Orange outside, white inside</strong> = external beauty matching inner purity</li>
                     </ul>
-
                     <blockquote>
                         "Orange on the outside, but pure white within, the fruits yield a parable for human conduct!"
                     </blockquote>
-
                     <blockquote>
                         "I would fade as you fade with the passing years, and ever be your friend.<br>
                         In your acts like Po Yi: I set you up as my model."
                     </blockquote>
-
-                    <div class="themes-box">
-                        <h4>Major Themes</h4>
-                        <ol>
-                            <li><strong>Loyalty to Native Land</strong> — Rootedness as virtue</li>
-                            <li><strong>Inner vs. Outer Virtue</strong> — Appearance matching character</li>
-                            <li><strong>Independence and Integrity</strong> — Standing alone against corruption</li>
-                            <li><strong>Nature as Moral Teacher</strong> — Natural phenomena as ethical exempla</li>
-                        </ol>
-                    </div>
-
-                    <h3>Comparison: Orange Tree vs. Gentleman</h3>
-                    <div class="table-container">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">THEMES & COMPARISON</div>
+                <div class="card-body">
+                    <h4>Major Themes</h4>
+                    <ol>
+                        <li><strong>Loyalty to Native Land</strong> — Rootedness as virtue</li>
+                        <li><strong>Inner vs. Outer Virtue</strong> — Appearance matching character</li>
+                        <li><strong>Independence and Integrity</strong> — Standing alone against corruption</li>
+                        <li><strong>Nature as Moral Teacher</strong> — Natural phenomena as ethical exempla</li>
+                    </ol>
+                    <h4>Orange Tree vs. Gentleman</h4>
+                    <div class="table-wrap">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Orange Tree</th>
-                                    <th>Gentleman (Junzi)</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Orange Tree</th><th>Gentleman (Junzi)</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td>Cannot be transplanted</td>
-                                    <td>Loyal to homeland</td>
-                                </tr>
-                                <tr>
-                                    <td>Deep roots</td>
-                                    <td>Firm principles</td>
-                                </tr>
-                                <tr>
-                                    <td>Sharp thorns</td>
-                                    <td>Self-defense against corruption</td>
-                                </tr>
-                                <tr>
-                                    <td>White inside</td>
-                                    <td>Inner purity</td>
-                                </tr>
+                                <tr><td>Cannot be transplanted</td><td>Loyal to homeland</td></tr>
+                                <tr><td>Deep roots</td><td>Firm principles</td></tr>
+                                <tr><td>Sharp thorns</td><td>Self-defense against corruption</td></tr>
+                                <tr><td>White inside</td><td>Inner purity</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ==================== POEM 3 ==================== -->
-        <section id="poem3">
-            <div class="poem-card">
-                <div class="poem-card-header">
-                    <div class="chinese-title">九辯</div>
-                    <div class="english-title">From "The Nine Arguments"</div>
-                    <div class="pinyin">Jiu Bian</div>
+    <!-- ==================== POEM 3: NINE ARGUMENTS ==================== -->
+    <section class="content-section alt" id="poem3">
+        <div class="section-label"><span class="chinese">九辯</span> FROM "THE NINE ARGUMENTS"</div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="label">Author</div>
+                <div class="value">Song Yu (宋玉)</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Form</div>
+                <div class="value">Lyrical meditation</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Note</div>
+                <div class="value">Excerpt from longer poem</div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">宋玉</span> ABOUT SONG YU (c. 319-298 BCE)</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Disciple or follower of Qu Yuan</li>
+                        <li>Court poet of Chu</li>
+                        <li>Known for elaborate, sensuous descriptive poetry</li>
+                        <li>Pioneer of the <em>fu</em> (rhapsody) genre</li>
+                    </ul>
+                    <h4>The Autumn Melancholy Tradition</h4>
+                    <p>This poem is one of the foundational texts of the <strong>"sorrowful autumn" (<em>beiqiu</em> 悲秋)</strong> tradition in Chinese literature. It established autumn as the season of melancholy, decline, and unfulfilled ambition — a theme that dominated Chinese poetry for over two thousand years.</p>
                 </div>
-                <div class="poem-card-body">
-                    <div class="poem-meta">
-                        <div class="poem-meta-item">
-                            <div class="label">Author</div>
-                            <div class="value">Song Yu (宋玉)</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Form</div>
-                            <div class="value">Lyrical meditation</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Note</div>
-                            <div class="value">Excerpt from longer poem</div>
-                        </div>
-                    </div>
-
-                    <div class="author-box">
-                        <h4>About Song Yu (宋玉, c. 319-298 BCE)</h4>
-                        <ul>
-                            <li>Disciple or follower of Qu Yuan</li>
-                            <li>Court poet of Chu</li>
-                            <li>Known for elaborate, sensuous descriptive poetry</li>
-                            <li>Pioneer of the <em>fu</em> (rhapsody) genre</li>
-                        </ul>
-                    </div>
-
-                    <h3>Key Terms</h3>
-                    <div class="table-container">
+            </div>
+            <div class="card">
+                <div class="card-head">KEY TERMS</div>
+                <div class="card-body">
+                    <div class="table-wrap">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Chinese</th>
-                                    <th>Pinyin</th>
-                                    <th>Meaning</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Chinese</th><th>Pinyin</th><th>Meaning</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td class="chinese">白露</td>
-                                    <td>bai lu</td>
-                                    <td>White dew (autumn phenomenon)</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">梧桐</td>
-                                    <td>wutong</td>
-                                    <td>Paulownia tree</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">蟋蟀</td>
-                                    <td>xishuai</td>
-                                    <td>Cricket</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">蘭</td>
-                                    <td>lan</td>
-                                    <td>Orchid</td>
-                                </tr>
+                                <tr><td class="ch-cell">白露</td><td>bai lu</td><td>White dew (autumn phenomenon)</td></tr>
+                                <tr><td class="ch-cell">梧桐</td><td>wutong</td><td>Paulownia tree</td></tr>
+                                <tr><td class="ch-cell">蟋蟀</td><td>xishuai</td><td>Cricket</td></tr>
+                                <tr><td class="ch-cell">蘭</td><td>lan</td><td>Orchid</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <h3>Background: The Autumn Melancholy Tradition</h3>
-                    <div class="summary-box">
-                        <p>This poem is one of the foundational texts of the <strong>"sorrowful autumn" (<em>beiqiu</em> 悲秋)</strong> tradition in Chinese literature. It established autumn as the season of melancholy, decline, and unfulfilled ambition — a theme that dominated Chinese poetry for over two thousand years.</p>
-                    </div>
-
-                    <h3>Summary & Analysis</h3>
-
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">SUMMARY & ANALYSIS</div>
+                <div class="card-body">
                     <h4>Part 1 — Cosmic Setting</h4>
                     <blockquote>
                         "High Heaven divides the four seasons equally:<br>
@@ -976,31 +684,30 @@
                         The white dew has fallen on the flowers of the field,<br>
                         And these t'ung and catalpa trees will soon grow thin and bare."
                     </blockquote>
-
                     <h4>Part 2 — Personal Lament</h4>
                     <blockquote>
                         "I have left behind my blossom-burgeoning prime:<br>
                         Sere and withered, I am full of melancholy."
                     </blockquote>
-
                     <h4>Part 3 — Court Frustration</h4>
                     <blockquote>
                         "But ninefold are the gates of my lord,<br>
                         And fierce, snarling dogs run out from them and bark,<br>
                         And the gate-beam is bolted, and none can go through."
                     </blockquote>
-
-                    <div class="themes-box">
-                        <h4>Major Themes</h4>
-                        <ol>
-                            <li><strong>Seasonal Melancholy</strong> — Autumn as objective correlative for sorrow</li>
-                            <li><strong>Aging and Mortality</strong> — Time's passage, lost opportunities</li>
-                            <li><strong>Political Exclusion</strong> — The blocked path to the ruler</li>
-                            <li><strong>The Unrecognized Worthy</strong> — Talent wasted in a corrupt age</li>
-                        </ol>
-                    </div>
-
-                    <h3>Literary Influence</h3>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">THEMES & INFLUENCE</div>
+                <div class="card-body">
+                    <h4>Major Themes</h4>
+                    <ol>
+                        <li><strong>Seasonal Melancholy</strong> — Autumn as objective correlative for sorrow</li>
+                        <li><strong>Aging and Mortality</strong> — Time's passage, lost opportunities</li>
+                        <li><strong>Political Exclusion</strong> — The blocked path to the ruler</li>
+                        <li><strong>The Unrecognized Worthy</strong> — Talent wasted in a corrupt age</li>
+                    </ol>
+                    <h4>Literary Influence</h4>
                     <p>The "Nine Arguments" established:</p>
                     <ol>
                         <li>The autumn melancholy tradition (<em>beiqiu</em>)</li>
@@ -1010,73 +717,47 @@
                     </ol>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ==================== POEM 4 ==================== -->
-        <section id="poem4">
-            <div class="poem-card">
-                <div class="poem-card-header">
-                    <div class="chinese-title">招魂</div>
-                    <div class="english-title">The Summons of the Soul</div>
-                    <div class="pinyin">Zhao Hun</div>
-                </div>
-                <div class="poem-card-body">
-                    <div class="poem-meta">
-                        <div class="poem-meta-item">
-                            <div class="label">Author</div>
-                            <div class="value">Qu Yuan or Song Yu</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Form</div>
-                            <div class="value">Ritual summoning poem</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Structure</div>
-                            <div class="value">Prologue, Summons, Enticements, Envoi</div>
-                        </div>
-                    </div>
-
-                    <h3>Key Terms</h3>
-                    <div class="table-container">
+    <!-- ==================== POEM 4: SUMMONS OF THE SOUL ==================== -->
+    <section class="content-section" id="poem4">
+        <div class="section-label"><span class="chinese">招魂</span> THE SUMMONS OF THE SOUL</div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="label">Author</div>
+                <div class="value">Qu Yuan or Song Yu</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Form</div>
+                <div class="value">Ritual summoning poem</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Structure</div>
+                <div class="value">Prologue, Summons, Enticements, Envoi</div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">KEY TERMS</div>
+                <div class="card-body">
+                    <div class="table-wrap">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Chinese</th>
-                                    <th>Pinyin</th>
-                                    <th>Meaning</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Chinese</th><th>Pinyin</th><th>Meaning</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td class="chinese">招魂</td>
-                                    <td>zhao hun</td>
-                                    <td>Summoning the soul</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">巫陽</td>
-                                    <td>Wu Yang</td>
-                                    <td>Shaman "Wu Yang"</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">帝</td>
-                                    <td>Di</td>
-                                    <td>The Lord God</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">魂</td>
-                                    <td>hun</td>
-                                    <td>The <em>hun</em> soul</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">土伯</td>
-                                    <td>Tu Bo</td>
-                                    <td>Earth God / Underworld Lord</td>
-                                </tr>
+                                <tr><td class="ch-cell">招魂</td><td>zhao hun</td><td>Summoning the soul</td></tr>
+                                <tr><td class="ch-cell">巫陽</td><td>Wu Yang</td><td>Shaman "Wu Yang"</td></tr>
+                                <tr><td class="ch-cell">帝</td><td>Di</td><td>The Lord God</td></tr>
+                                <tr><td class="ch-cell">魂</td><td>hun</td><td>The <em>hun</em> soul</td></tr>
+                                <tr><td class="ch-cell">土伯</td><td>Tu Bo</td><td>Earth God / Underworld Lord</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <h3>Background: Soul-Summoning Ritual</h3>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">SOUL-SUMMONING RITUAL</div>
+                <div class="card-body">
                     <p>The <em>zhaohun</em> was an actual Chu religious practice performed when someone was dying. Shamans (<em>wu</em> 巫) would call the departed soul back to the body using:</p>
                     <ul>
                         <li>Walking backwards</li>
@@ -1084,83 +765,72 @@
                         <li>Calling in specific directions</li>
                         <li>Offering enticements</li>
                     </ul>
+                </div>
+            </div>
+        </div>
 
-                    <h3>The Dangerous Cosmos: Six Directions</h3>
+        <!-- Cosmos Map -->
+        <div style="margin-top: 0.75rem;">
+            <iframe src="maps/summons-cosmos.html" class="map-frame" style="height: 500px;" title="The Dangerous Cosmos - Six Directions"></iframe>
+            <a href="maps/summons-cosmos.html" target="_blank" class="map-link">Open full screen</a>
+        </div>
 
-                    <div class="map-section">
-                        <iframe src="maps/summons-cosmos.html" class="map-frame" style="height: 600px;" title="The Dangerous Cosmos - Six Directions"></iframe>
-                        <a href="maps/summons-cosmos.html" target="_blank" class="map-link">Open full screen</a>
-                    </div>
-
-                    <div class="table-container">
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">THE DANGEROUS COSMOS: SIX DIRECTIONS</div>
+                <div class="card-body">
+                    <div class="table-wrap">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Direction</th>
-                                    <th>Dangers</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Direction</th><th>Dangers</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td>East</td>
-                                    <td>Giants a thousand fathoms tall; ten suns melting metal</td>
-                                </tr>
-                                <tr>
-                                    <td>South</td>
-                                    <td>Tattooed cannibals; Nine-headed Serpent; great fox</td>
-                                </tr>
-                                <tr>
-                                    <td>West</td>
-                                    <td>Moving Sands; giant ants and wasps; Thunder's Chasm</td>
-                                </tr>
-                                <tr>
-                                    <td>North</td>
-                                    <td>Layered ice; endless snowflakes</td>
-                                </tr>
-                                <tr>
-                                    <td>Above</td>
-                                    <td>Tigers and leopards; nine-headed men; jackal-wolves</td>
-                                </tr>
-                                <tr>
-                                    <td>Below</td>
-                                    <td>Tu Bo: nine-coiled, horns, tiger head, bull body</td>
-                                </tr>
+                                <tr><td>East</td><td>Giants a thousand fathoms tall; ten suns melting metal</td></tr>
+                                <tr><td>South</td><td>Tattooed cannibals; Nine-headed Serpent; great fox</td></tr>
+                                <tr><td>West</td><td>Moving Sands; giant ants and wasps; Thunder's Chasm</td></tr>
+                                <tr><td>North</td><td>Layered ice; endless snowflakes</td></tr>
+                                <tr><td>Above</td><td>Tigers and leopards; nine-headed men; jackal-wolves</td></tr>
+                                <tr><td>Below</td><td>Tu Bo: nine-coiled, horns, tiger head, bull body</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <h3>The Enticements: Pleasures of Home</h3>
-
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">THE ENTICEMENTS: PLEASURES OF HOME</div>
+                <div class="card-body">
                     <h4>Architecture</h4>
                     <blockquote>
                         "High walls and deep chambers, with railings and tiered balconies;<br>
                         Stepped terraces, storied pavilions, whose tops look on the high mountains"
                     </blockquote>
-
                     <h4>Attendants</h4>
                     <blockquote>
                         "Twice eight handmaids to serve your bed, each night alternating in duty,<br>
                         The lovely daughters of noble families, far excelling common maidens."
                     </blockquote>
-
                     <h4>Food & Entertainment</h4>
                     <blockquote>
                         "Rice, broom-corn, early wheat, mixed all with yellow millet;<br>
                         Bitter, salt, sour, hot and sweet: there are dishes of all flavours."
                     </blockquote>
-
-                    <div class="themes-box">
-                        <h4>Major Themes</h4>
-                        <ol>
-                            <li><strong>The Dangerous Cosmos</strong> — World beyond civilization as threat</li>
-                            <li><strong>Home vs. Wilderness</strong> — Civilization as refuge</li>
-                            <li><strong>Body and Soul</strong> — Anxiety about spiritual departure</li>
-                            <li><strong>Sensory Pleasure</strong> — Material delights as soul's anchor</li>
-                            <li><strong>Ritual and Literature</strong> — Religious practice as artistic material</li>
-                        </ol>
-                    </div>
-
-                    <h3>Cultural Significance</h3>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">MAJOR THEMES</div>
+                <div class="card-body">
+                    <ol>
+                        <li><strong>The Dangerous Cosmos</strong> — World beyond civilization as threat</li>
+                        <li><strong>Home vs. Wilderness</strong> — Civilization as refuge</li>
+                        <li><strong>Body and Soul</strong> — Anxiety about spiritual departure</li>
+                        <li><strong>Sensory Pleasure</strong> — Material delights as soul's anchor</li>
+                        <li><strong>Ritual and Literature</strong> — Religious practice as artistic material</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">CULTURAL SIGNIFICANCE</div>
+                <div class="card-body">
                     <p>This poem is invaluable as evidence for:</p>
                     <ul>
                         <li>Chu religious beliefs and practices</li>
@@ -1170,77 +840,60 @@
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ==================== POEM 5 ==================== -->
-        <section id="poem5">
-            <div class="poem-card">
-                <div class="poem-card-header">
-                    <div class="chinese-title">招隱士</div>
-                    <div class="english-title">Summons for a Gentleman Who Became a Recluse</div>
-                    <div class="pinyin">Zhao Yin Shi</div>
+    <!-- ==================== POEM 5: RECLUSE ==================== -->
+    <section class="content-section alt" id="poem5">
+        <div class="section-label"><span class="chinese">招隱士</span> SUMMONS FOR A GENTLEMAN WHO BECAME A RECLUSE</div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="label">Author</div>
+                <div class="value">Liu An (劉安)</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Period</div>
+                <div class="value">Han Dynasty</div>
+            </div>
+            <div class="feature-card">
+                <div class="label">Form</div>
+                <div class="value">Short lyric with refrain</div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">劉安</span> ABOUT LIU AN (179-122 BCE)</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Han Dynasty prince, grandson of the founder</li>
+                        <li>Patron of scholars and Daoist adepts</li>
+                        <li>Compiled the <em>Huainanzi</em> (淮南子)</li>
+                        <li>Executed for alleged rebellion</li>
+                    </ul>
+                    <h4>The Recluse Tradition</h4>
+                    <p>By the Han Dynasty, a tradition had developed of worthy men withdrawing from corrupt government to live in mountain seclusion. This poem expresses <strong>ambivalence</strong> about reclusion — summoning the recluse back suggests society's need for virtuous men.</p>
                 </div>
-                <div class="poem-card-body">
-                    <div class="poem-meta">
-                        <div class="poem-meta-item">
-                            <div class="label">Author</div>
-                            <div class="value">Liu An (劉安)</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Period</div>
-                            <div class="value">Han Dynasty</div>
-                        </div>
-                        <div class="poem-meta-item">
-                            <div class="label">Form</div>
-                            <div class="value">Short lyric with refrain</div>
-                        </div>
-                    </div>
-
-                    <div class="author-box">
-                        <h4>About Liu An (劉安, 179-122 BCE)</h4>
-                        <ul>
-                            <li>Han Dynasty prince, grandson of the founder</li>
-                            <li>Patron of scholars and Daoist adepts</li>
-                            <li>Compiled the <em>Huainanzi</em> (淮南子)</li>
-                            <li>Executed for alleged rebellion</li>
-                        </ul>
-                    </div>
-
-                    <h3>Key Terms</h3>
-                    <div class="table-container">
+            </div>
+            <div class="card">
+                <div class="card-head">KEY TERMS</div>
+                <div class="card-body">
+                    <div class="table-wrap">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Chinese</th>
-                                    <th>Pinyin</th>
-                                    <th>Meaning</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Chinese</th><th>Pinyin</th><th>Meaning</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td class="chinese">隱士</td>
-                                    <td>yin shi</td>
-                                    <td>Recluse, hermit</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">桂</td>
-                                    <td>gui</td>
-                                    <td>Cassia/osmanthus tree</td>
-                                </tr>
-                                <tr>
-                                    <td class="chinese">王孫</td>
-                                    <td>wang sun</td>
-                                    <td>"Prince" or "young nobleman"</td>
-                                </tr>
+                                <tr><td class="ch-cell">隱士</td><td>yin shi</td><td>Recluse, hermit</td></tr>
+                                <tr><td class="ch-cell">桂</td><td>gui</td><td>Cassia/osmanthus tree</td></tr>
+                                <tr><td class="ch-cell">王孫</td><td>wang sun</td><td>"Prince" or "young nobleman"</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <h3>Background: The Recluse Tradition</h3>
-                    <p>By the Han Dynasty, a tradition had developed of worthy men withdrawing from corrupt government to live in mountain seclusion. This poem expresses <strong>ambivalence</strong> about reclusion — summoning the recluse back suggests society's need for virtuous men.</p>
-
-                    <h3>Summary & Analysis</h3>
-
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">SUMMARY & ANALYSIS</div>
+                <div class="card-body">
                     <h4>The Mountain World</h4>
                     <blockquote>
                         "The cassia trees grow thick<br>
@@ -1248,7 +901,6 @@
                         Twisting and snaking,<br>
                         Their branches interlacing."
                     </blockquote>
-
                     <h4>The Absent Prince</h4>
                     <blockquote>
                         "A prince went wandering<br>
@@ -1256,210 +908,179 @@
                         In spring the grass grows<br>
                         Lush and green."
                     </blockquote>
-
                     <h4>The Refrain</h4>
                     <blockquote>
                         "O prince, return!<br>
                         In the mountains you cannot stay long."
                     </blockquote>
-
-                    <div class="themes-box">
-                        <h4>Major Themes</h4>
-                        <ol>
-                            <li><strong>Civilization vs. Nature</strong> — The wild as beautiful but dangerous</li>
-                            <li><strong>Engagement vs. Withdrawal</strong> — The recluse called back to society</li>
-                            <li><strong>Loneliness and Isolation</strong> — Even animals "seek for their kind"</li>
-                            <li><strong>Time and Loss</strong> — Seasons pass; life is short</li>
-                        </ol>
-                    </div>
-
-                    <h3>Comparison: Two "Summons" Poems</h3>
-                    <div class="table-container">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">THEMES & COMPARISON</div>
+                <div class="card-body">
+                    <h4>Major Themes</h4>
+                    <ol>
+                        <li><strong>Civilization vs. Nature</strong> — The wild as beautiful but dangerous</li>
+                        <li><strong>Engagement vs. Withdrawal</strong> — The recluse called back to society</li>
+                        <li><strong>Loneliness and Isolation</strong> — Even animals "seek for their kind"</li>
+                        <li><strong>Time and Loss</strong> — Seasons pass; life is short</li>
+                    </ol>
+                    <h4>Two "Summons" Poems Compared</h4>
+                    <div class="table-wrap">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Summons of the Soul</th>
-                                    <th>Summons for a Recluse</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Summons of the Soul</th><th>Summons for a Recluse</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td>Soul has involuntarily departed</td>
-                                    <td>Gentleman has voluntarily withdrawn</td>
-                                </tr>
-                                <tr>
-                                    <td>Cosmic dangers (all directions)</td>
-                                    <td>Earthly dangers (one mountain)</td>
-                                </tr>
-                                <tr>
-                                    <td>Elaborate civilized enticements</td>
-                                    <td>Simple plea to return</td>
-                                </tr>
-                                <tr>
-                                    <td>Ritual origin</td>
-                                    <td>Literary/philosophical origin</td>
-                                </tr>
+                                <tr><td>Soul has involuntarily departed</td><td>Gentleman has voluntarily withdrawn</td></tr>
+                                <tr><td>Cosmic dangers (all directions)</td><td>Earthly dangers (one mountain)</td></tr>
+                                <tr><td>Elaborate civilized enticements</td><td>Simple plea to return</td></tr>
+                                <tr><td>Ritual origin</td><td>Literary/philosophical origin</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ==================== MAPS ==================== -->
-        <section id="maps">
-            <h2>Maps: The Geography of Chu</h2>
+    <!-- ==================== MAPS ==================== -->
+    <section class="content-section" id="maps">
+        <div class="section-label"><span class="chinese">地圖</span> MAPS: THE GEOGRAPHY OF CHU</div>
 
-            <h3>The State of Chu and Its Neighbors (c. 300 BCE)</h3>
-            <p>The Warring States period saw seven major powers vying for supremacy. Chu dominated the south, with its capital at Ying (郢), while Qin consolidated power in the west—eventually conquering all rivals by 221 BCE.</p>
-
-            <div class="map-section">
-                <iframe src="maps/warring-states-chu.html" class="map-frame" title="Seven Warring States c. 300 BCE"></iframe>
-                <a href="maps/warring-states-chu.html" target="_blank" class="map-link">Open full screen</a>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head">THE STATE OF CHU AND ITS NEIGHBORS (c. 300 BCE)</div>
+                <div class="card-body">
+                    <p>The Warring States period saw seven major powers vying for supremacy. Chu dominated the south, with its capital at Ying (郢), while Qin consolidated power in the west — eventually conquering all rivals by 221 BCE.</p>
+                    <iframe src="maps/warring-states-chu.html" class="map-frame" title="Seven Warring States c. 300 BCE"></iframe>
+                    <a href="maps/warring-states-chu.html" target="_blank" class="map-link">Open full screen</a>
+                </div>
             </div>
-
-            <h3>Qu Yuan's Exile Route (278 BCE)</h3>
-            <p>Following the fall of Ying to Qin forces under General Bai Qi, Qu Yuan traveled eastward through the waterways of Chu—past Dongting Lake and eventually to the Miluo River, where he ended his life.</p>
-
-            <div class="map-section">
-                <iframe src="maps/qu-yuan-exile-route.html" class="map-frame" title="Qu Yuan's Exile Route"></iframe>
-                <a href="maps/qu-yuan-exile-route.html" target="_blank" class="map-link">Open full screen</a>
+            <div class="card">
+                <div class="card-head">QU YUAN'S EXILE ROUTE (278 BCE)</div>
+                <div class="card-body">
+                    <p>Following the fall of Ying to Qin forces under General Bai Qi, Qu Yuan traveled eastward through the waterways of Chu — past Dongting Lake and eventually to the Miluo River, where he ended his life.</p>
+                    <iframe src="maps/qu-yuan-exile-route.html" class="map-frame" title="Qu Yuan's Exile Route"></iframe>
+                    <a href="maps/qu-yuan-exile-route.html" target="_blank" class="map-link">Open full screen</a>
+                </div>
             </div>
-
-            <h3>Key Locations</h3>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Location</th>
-                            <th>Chinese</th>
-                            <th>Significance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Ying</td>
-                            <td class="chinese">郢</td>
-                            <td>Capital of Chu until 278 BCE; near modern Jingzhou, Hubei</td>
-                        </tr>
-                        <tr>
-                            <td>Dragon Gate</td>
-                            <td class="chinese">龍門</td>
-                            <td>Eastern city gate of Ying</td>
-                        </tr>
-                        <tr>
-                            <td>Yangtze River</td>
-                            <td class="chinese">江</td>
-                            <td>Main east-west artery of Chu</td>
-                        </tr>
-                        <tr>
-                            <td>Xia River</td>
-                            <td class="chinese">夏水</td>
-                            <td>Tributary; part of exile route</td>
-                        </tr>
-                        <tr>
-                            <td>Dongting Lake</td>
-                            <td class="chinese">洞庭湖</td>
-                            <td>Large lake in northern Hunan; liminal zone</td>
-                        </tr>
-                        <tr>
-                            <td>Miluo River</td>
-                            <td class="chinese">汨羅江</td>
-                            <td>Where Qu Yuan drowned himself</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>The Three Zones of Chu</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Zone</th>
-                            <th>Characteristics</th>
-                            <th>In the Poems</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Northern Chu</strong> (Civilization)</td>
-                            <td>River valleys, cities, courts</td>
-                            <td>Home; where soul should return</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Central Chu</strong> (Transition)</td>
-                            <td>Lakes, marshes, shamans</td>
-                            <td>Liminal space of wandering</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Southern Chu</strong> (Wilderness)</td>
-                            <td>Mountains, forests, "tattooed peoples"</td>
-                            <td>Dangerous; unknown</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- ==================== AUTHORS ==================== -->
-        <section id="authors">
-            <h2>Authors of the Chuci</h2>
-
-            <div class="author-box">
-                <h4>Qu Yuan <span class="chinese">屈原</span> (c. 340-278 BCE)</h4>
-                <p><strong>Life:</strong> Born into Chu aristocracy. Served as Left Minister (左徒) under King Huai of Chu. Advocated alliance with Qi against Qin. Slandered by rivals and exiled twice. Witnessed the fall of Ying from exile. Drowned himself in the Miluo River.</p>
-                <p><strong>Works:</strong> <em>Li Sao</em> (離騷), <em>Jiu Ge</em> (九歌), <em>Jiu Zhang</em> (九章), <em>Tian Wen</em> (天問)</p>
-                <p><strong>Legacy:</strong> Considered China's first great individual poet. Model of the loyal minister. Dragon Boat Festival commemorates his death.</p>
-            </div>
-
-            <div class="author-box">
-                <h4>Song Yu <span class="chinese">宋玉</span> (c. 319-298 BCE)</h4>
-                <p><strong>Life:</strong> Disciple or younger contemporary of Qu Yuan. Lower-ranking court position. Known for sensuous, elaborate descriptions.</p>
-                <p><strong>Works:</strong> <em>Jiu Bian</em> (九辯) and several <em>fu</em> rhapsodies.</p>
-                <p><strong>Legacy:</strong> Established the autumn melancholy tradition. Pioneer of the <em>fu</em> genre. Model of the talented but unrecognized poet.</p>
-            </div>
-
-            <div class="author-box">
-                <h4>Liu An <span class="chinese">劉安</span> (179-122 BCE)</h4>
-                <p><strong>Life:</strong> Han Dynasty prince, grandson of the founder. Patron of scholars and Daoists. Compiled the <em>Huainanzi</em>. Executed for alleged rebellion.</p>
-                <p><strong>Works:</strong> <em>Zhao Yin Shi</em> (招隱士) and <em>Huainanzi</em> philosophical compilation.</p>
-            </div>
-        </section>
-
-        <!-- ==================== STUDY QUESTIONS ==================== -->
-        <section id="questions">
-            <h2>Study Questions</h2>
-
-            <div class="study-questions">
-                <ol>
-                    <li>How does Qu Yuan's political situation shape the imagery and themes of "A Lament for Ying"?</li>
-                    <li>Compare the use of nature symbolism in "In Praise of the Orange Tree" and "From the Nine Arguments." How do natural objects represent human virtues?</li>
-                    <li>What does "The Summons of the Soul" reveal about Chu religious beliefs and cosmology?</li>
-                    <li>How does the "Summons for a Recluse" complicate the Daoist ideal of withdrawal from society?</li>
-                    <li>Trace the theme of loyalty and betrayal across the five poems. How is the relationship between minister and ruler portrayed?</li>
-                    <li>What role does geography play in the <em>Chuci</em>? How do the rivers, lakes, and mountains of Chu shape the poetry?</li>
-                    <li>Compare the two "summons" poems. What different purposes does the summoning serve in each?</li>
-                    <li>How do these poems establish emotional and thematic patterns that influenced later Chinese poetry?</li>
-                </ol>
-            </div>
-        </section>
-
-        <div class="summary-box" style="margin-top: 3rem;">
-            <p><strong>Source:</strong> Birch, Cyril. 2008. <em>Anthology of Chinese Literature</em>. Vol. 1. New York: Grove Press.</p>
         </div>
 
-        <div style="text-align: center; margin-top: 2rem;">
-            <a href="songs-of-chu-day1.html" style="display: inline-block; background: var(--gold); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 4px; font-size: 0.9rem;">&larr; Back to Day 1</a>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">KEY LOCATIONS</div>
+                <div class="card-body">
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Location</th><th>Chinese</th><th>Significance</th></tr></thead>
+                            <tbody>
+                                <tr><td>Ying</td><td class="ch-cell">郢</td><td>Capital of Chu until 278 BCE; near modern Jingzhou, Hubei</td></tr>
+                                <tr><td>Dragon Gate</td><td class="ch-cell">龍門</td><td>Eastern city gate of Ying</td></tr>
+                                <tr><td>Yangtze River</td><td class="ch-cell">江</td><td>Main east-west artery of Chu</td></tr>
+                                <tr><td>Xia River</td><td class="ch-cell">夏水</td><td>Tributary; part of exile route</td></tr>
+                                <tr><td>Dongting Lake</td><td class="ch-cell">洞庭湖</td><td>Large lake in northern Hunan; liminal zone</td></tr>
+                                <tr><td>Miluo River</td><td class="ch-cell">汨羅江</td><td>Where Qu Yuan drowned himself</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">THE THREE ZONES OF CHU</div>
+                <div class="card-body">
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Zone</th><th>Characteristics</th><th>In the Poems</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Northern Chu</strong> (Civilization)</td><td>River valleys, cities, courts</td><td>Home; where soul should return</td></tr>
+                                <tr><td><strong>Central Chu</strong> (Transition)</td><td>Lakes, marshes, shamans</td><td>Liminal space of wandering</td></tr>
+                                <tr><td><strong>Southern Chu</strong> (Wilderness)</td><td>Mountains, forests, "tattooed peoples"</td><td>Dangerous; unknown</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </main>
+    <!-- ==================== AUTHORS ==================== -->
+    <section class="content-section alt" id="authors">
+        <div class="section-label"><span class="chinese">作者</span> AUTHORS OF THE CHUCI</div>
+        <div class="content-grid tri">
+            <div class="card">
+                <div class="card-head"><span class="chinese">屈原</span> QU YUAN (c. 340-278 BCE)</div>
+                <div class="card-body">
+                    <p><strong>Life:</strong> Born into Chu aristocracy. Served as Left Minister (左徒) under King Huai of Chu. Advocated alliance with Qi against Qin. Slandered by rivals and exiled twice. Witnessed the fall of Ying from exile. Drowned himself in the Miluo River.</p>
+                    <p><strong>Works:</strong> <em>Li Sao</em> (離騷), <em>Jiu Ge</em> (九歌), <em>Jiu Zhang</em> (九章), <em>Tian Wen</em> (天問)</p>
+                    <p><strong>Legacy:</strong> Considered China's first great individual poet. Model of the loyal minister. Dragon Boat Festival commemorates his death.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">宋玉</span> SONG YU (c. 319-298 BCE)</div>
+                <div class="card-body">
+                    <p><strong>Life:</strong> Disciple or younger contemporary of Qu Yuan. Lower-ranking court position. Known for sensuous, elaborate descriptions.</p>
+                    <p><strong>Works:</strong> <em>Jiu Bian</em> (九辯) and several <em>fu</em> rhapsodies.</p>
+                    <p><strong>Legacy:</strong> Established the autumn melancholy tradition. Pioneer of the <em>fu</em> genre. Model of the talented but unrecognized poet.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">劉安</span> LIU AN (179-122 BCE)</div>
+                <div class="card-body">
+                    <p><strong>Life:</strong> Han Dynasty prince, grandson of the founder. Patron of scholars and Daoists. Compiled the <em>Huainanzi</em>. Executed for alleged rebellion.</p>
+                    <p><strong>Works:</strong> <em>Zhao Yin Shi</em> (招隱士) and <em>Huainanzi</em> philosophical compilation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== STUDY QUESTIONS ==================== -->
+    <section class="content-section" id="questions">
+        <div class="section-label"><span class="chinese">問題</span> STUDY QUESTIONS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head">DISCUSSION & ANALYSIS</div>
+                <div class="card-body">
+                    <ol>
+                        <li>How does Qu Yuan's political situation shape the imagery and themes of "A Lament for Ying"?</li>
+                        <li>Compare the use of nature symbolism in "In Praise of the Orange Tree" and "From the Nine Arguments." How do natural objects represent human virtues?</li>
+                        <li>What does "The Summons of the Soul" reveal about Chu religious beliefs and cosmology?</li>
+                        <li>How does the "Summons for a Recluse" complicate the Daoist ideal of withdrawal from society?</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">COMPARATIVE & THEMATIC</div>
+                <div class="card-body">
+                    <ol start="5">
+                        <li>Trace the theme of loyalty and betrayal across the five poems. How is the relationship between minister and ruler portrayed?</li>
+                        <li>What role does geography play in the <em>Chuci</em>? How do the rivers, lakes, and mountains of Chu shape the poetry?</li>
+                        <li>Compare the two "summons" poems. What different purposes does the summoning serve in each?</li>
+                        <li>How do these poems establish emotional and thematic patterns that influenced later Chinese poetry?</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources">
+        <div class="section-label">SOURCE</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Birch, Cyril. 2008. <em>Anthology of Chinese Literature</em>. Vol. 1. New York: Grove Press.</p>
+            </div>
+            <div class="source-card">
+                <h4>Navigation</h4>
+                <a href="songs-of-chu-day1.html">&larr; Back to Day 1</a>
+                <a href="../index.html">&larr; Course Home</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="foot-chinese">中國文學與思想</div>
-        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
         <div class="foot-term">WINTER 2026</div>
     </footer>
 
