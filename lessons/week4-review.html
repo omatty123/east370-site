@@ -17,17 +17,22 @@
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            --border: #e0e0e0;
+            --teal: #2d5a5a;
+            --ru: #2D7D7D;
+            --mo: #A67C52;
+            --dao: #3D8B4D;
+            --fa: #B54545;
+            --fo: #7B5EA7;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.6;
         }
 
         /* Page Header */
@@ -47,6 +52,7 @@
         .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
         .page-title .meta { font-size: 0.7rem; color: #888; }
 
+        /* Nav - sticky like index.html */
         .nav {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
@@ -54,8 +60,10 @@
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
         .nav a {
             font-size: 0.7rem;
             color: #aaa;
@@ -63,235 +71,211 @@
             letter-spacing: 0.03em;
             transition: color 0.2s;
         }
+        .nav a:hover { color: var(--gold-light); }
 
-        .nav a:hover {
-            color: var(--gold-light);
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        h2 {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
-            margin-bottom: 0.5rem;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--ink);
-            margin-bottom: 1rem;
-        }
-
-        h3 .ch {
-            font-family: 'Noto Sans SC', sans-serif;
-            color: var(--gold);
-            margin-right: 0.4rem;
-        }
-
-        p {
-            font-size: 0.92rem;
-            color: var(--ink-light);
-            margin-bottom: 1rem;
-        }
-
-        .section {
-            margin-bottom: 2.5rem;
-        }
-
-        .theme-box {
-            background: var(--ink);
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-        }
-
-        .theme-box h4 {
+        /* Section labels */
+        .section-label {
             font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gold-light);
-            margin-bottom: 0.4rem;
-        }
-
-        .theme-box p {
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 0;
-            font-size: 1rem;
-        }
-
-        .contrast {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        @media (max-width: 600px) {
-            .contrast { grid-template-columns: 1fr; }
-        }
-
-        .contrast-box {
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 1.25rem;
-        }
-
-        .contrast-box h4 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
+            font-weight: 700;
+            color: #999;
             letter-spacing: 0.08em;
-            color: var(--ink-faint);
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
         }
 
-        .contrast-box p {
-            font-size: 0.85rem;
-            margin-bottom: 0;
+        /* Full-width sections */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
         }
-
-        .contrast-box.before { border-left: 3px solid var(--ink-faint); }
-        .contrast-box.after { border-left: 3px solid var(--gold); }
-
-        .text-list {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .text-list li {
-            padding: 0.75rem 1rem;
+        .content-section.alt {
             background: var(--paper-dark);
+        }
+        .content-section.dark {
+            background: #f5f5f3;
+        }
+
+        /* Content grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-body {
+            padding: 0.75rem;
+        }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
             margin-bottom: 0.5rem;
-            border-radius: 4px;
-            font-size: 0.88rem;
-            border-left: 3px solid var(--border);
         }
-
-        .text-list li strong {
-            color: var(--ink);
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
         }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        .text-list li .source {
-            font-size: 0.75rem;
+        /* Text items inside cards */
+        .text-item {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+        .text-item:last-child { border-bottom: none; }
+        .text-item strong { color: var(--ink); }
+        .text-item .source {
+            font-size: 0.65rem;
             color: var(--ink-faint);
-            display: block;
-            margin-top: 0.2rem;
+            display: inline;
+            margin-left: 0.3rem;
         }
 
-        .takeaway {
+        /* Blockquote */
+        blockquote {
             background: var(--paper-dark);
             border-left: 3px solid var(--gold);
-            padding: 1rem 1.25rem;
-            margin: 1.5rem 0;
-        }
-
-        .takeaway h4 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .takeaway ul {
-            margin: 0;
-            padding-left: 1.2rem;
-        }
-
-        .takeaway li {
-            font-size: 0.88rem;
-            color: var(--ink-light);
-            margin-bottom: 0.3rem;
-        }
-
-        .preview-box {
-            background: var(--paper-dark);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 1.5rem;
-        }
-
-        .preview-box h4 {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.75rem;
-        }
-
-        .preview-box ul {
-            margin: 0;
-            padding-left: 1.2rem;
-        }
-
-        .preview-box li {
-            font-size: 0.88rem;
-            color: var(--ink-light);
-            margin-bottom: 0.4rem;
-        }
-
-        .discussion {
-            border: 2px solid var(--ink);
-            border-radius: 4px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .discussion h4 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-
-        .discussion p {
-            font-size: 0.9rem;
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
             font-style: italic;
-            margin-bottom: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
         }
 
-        .discussion img {
+        /* Discussion image */
+        .card-body img {
             max-width: 100%;
             border-radius: 4px;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
+        /* Sources section */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
         footer {
             background: var(--ink);
             padding: 1.25rem 1.5rem;
             text-align: center;
         }
-
         footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
             color: var(--gold-light);
             margin-bottom: 0.2rem;
         }
-
         footer .foot-title {
             font-size: 0.7rem;
             color: #aaa;
             margin-bottom: 0.3rem;
         }
-
         footer .foot-term {
             font-size: 0.6rem;
             font-weight: 600;
             color: var(--gold);
             letter-spacing: 0.08em;
         }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid.three-col { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- Page Header -->
     <header class="page-header">
         <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
@@ -301,98 +285,124 @@
         </div>
     </header>
 
+    <!-- Nav - sticky -->
     <nav class="nav">
         <a href="zhuangzi-framing.html">Apophatic Framing</a>
         <a href="zhuangzi.html">Zhuangzi Guide</a>
     </nav>
 
-    <div class="container">
-
-        <!-- TODAY'S REVIEW -->
-        <section class="section">
-            <h2>Wednesday Review</h2>
-            <h3><span class="ch">死</span> Death: Holding On vs. Letting Go</h3>
-
-            <div class="theme-box">
-                <h4>The Shift</h4>
-                <p>From "calling back the soul" (desperate to hold on) to treating death lightly, gently, with humility about what it even is.</p>
-            </div>
-
-            <div class="contrast">
-                <div class="contrast-box before">
+    <!-- Wednesday Review: Death -->
+    <section class="content-section">
+        <div class="section-label"><span class="chinese">死</span> Wednesday Review — Death: Holding On vs. Letting Go</div>
+        <div class="content-grid">
+            <!-- The Shift -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">轉</span> THE SHIFT</div>
+                <div class="card-body">
+                    <p>From "calling back the soul" (desperate to hold on) to treating death lightly, gently, with humility about what it even is.</p>
                     <h4>Before: Calling Back the Soul</h4>
                     <p>Ritual intervention. Trying to reverse death. Grief as action. The soul might return if we do the right things.</p>
-                </div>
-                <div class="contrast-box after">
                     <h4>Today: Letting Go</h4>
                     <p>Acceptance. Death as transformation, not ending. Grief as attachment to be released. Humility about what we can know.</p>
                 </div>
             </div>
-
-            <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin: 1.5rem 0 0.75rem;">Texts on Death</h4>
-            <ul class="text-list">
-                <li><strong>Zhuangzi's wife dies</strong>: He drums on a pot and sings. Transformation, not loss. <span class="source">Zhuangzi</span></li>
-                <li><strong>The skull speaks</strong>: Tells Zhuangzi the truth about death. Would not return to life if given the choice. <span class="source">Zhuangzi</span></li>
-                <li><strong>Four friends</strong>: Accept whatever the Creator makes of them. Illness, deformity, death: all just transformation. <span class="source">Zhuangzi</span></li>
-                <li><strong>Emperor Wen of Han</strong>: Generously tells his people to mourn only 3 days. Don't let grief consume life. <span class="source">Historical</span></li>
-                <li><strong>Wang Chong</strong>: Rationalist critique. Death is a process. Souls aren't real. None of this makes sense, and making sense is important. <span class="source">Lunheng</span></li>
-            </ul>
-        </section>
-
-        <!-- ZHUANGZI REVIEW -->
-        <section class="section">
-            <h2>Reviewing Zhuangzi Books 1 & 2</h2>
-            <h3><span class="ch">莊子</span> What Zhuangzi Actually Says</h3>
-
-            <p><strong>Realms matter.</strong> Dream and waking are different realms. Which realm you're in changes what counts as real. The butterfly dream isn't saying "nothing is real." It's saying: reality is realm-dependent.</p>
-
-            <p><strong>Frugal living, small desires.</strong> This makes you a clearer thinker. Not asceticism for its own sake, but because wanting less frees the mind.</p>
-
-            <p><strong>Big and Small are relative, but...</strong> Within a context, the relative difference is very important. The Peng bird and the cicada both "go their full distance," but one sees far and one sees near. Perspective matters.</p>
-
-            <p><strong>Words are not truth.</strong> Definitions, cognitive assertions about reality: these are not the same as reality. BUT when words and truth do mesh, it's often at words' most slippery. This is the enigmatic power of language as both philosophy and literature.</p>
-
-            <div class="takeaway">
-                <h4>Not Relativism: Real Directives</h4>
-                <ul>
-                    <li><strong>Big Mindedness > Small Mindedness.</strong> This is emphatic, not relative.</li>
-                    <li><strong>Live out your years.</strong> Concrete instruction.</li>
-                    <li><strong>Avoid ruin.</strong> This is your DUTY. Parallel to filial piety for Kongzi.</li>
-                </ul>
+            <!-- Texts on Death -->
+            <div class="card">
+                <div class="card-head">TEXTS ON DEATH</div>
+                <div class="card-body">
+                    <div class="text-item"><strong>Zhuangzi's wife dies</strong>: He drums on a pot and sings. Transformation, not loss. <span class="source">Zhuangzi</span></div>
+                    <div class="text-item"><strong>The skull speaks</strong>: Tells Zhuangzi the truth about death. Would not return to life if given the choice. <span class="source">Zhuangzi</span></div>
+                    <div class="text-item"><strong>Four friends</strong>: Accept whatever the Creator makes of them. Illness, deformity, death: all just transformation. <span class="source">Zhuangzi</span></div>
+                    <div class="text-item"><strong>Emperor Wen of Han</strong>: Generously tells his people to mourn only 3 days. Don't let grief consume life. <span class="source">Historical</span></div>
+                    <div class="text-item"><strong>Wang Chong</strong>: Rationalist critique. Death is a process. Souls aren't real. None of this makes sense, and making sense is important. <span class="source">Lunheng</span></div>
+                </div>
             </div>
-
-            <p>Zhuangzi is not saying "do whatever you want." He's saying: don't get trapped in small-minded distinctions, don't invite destruction through ego, find the way to survive and flourish. These are demands.</p>
-        </section>
-
-        <!-- FRIDAY PREVIEW -->
-        <section class="section">
-            <h2>Friday Preview</h2>
-            <h3><span class="ch">史記</span> Biographies, Masters, and Mastery</h3>
-
-            <div class="preview-box">
-                <h4>Readings for Friday</h4>
-                <ul>
-                    <li><strong>Shiji</strong> (Records of the Grand Historian): Biographies. Learn about Sima Qian, the historian as author and moral witness.</li>
-                    <li><strong>More Zhuangzi</strong>: The masters and mastery. Cook Ding, the wheelwright, skilled action as Daoist practice.</li>
-                    <li><strong>Anti-relativism of the Dao school</strong>: More evidence that Daoism has standards, not just "whatever."</li>
-                </ul>
-            </div>
-
-            <p style="margin-top: 1rem;">The Shiji gives us biography as a philosophical form. Lives as arguments. Sima Qian himself suffered castration rather than abandon his work. What does it mean to write history under those conditions?</p>
-
-            <p>The mastery passages in Zhuangzi show us another face of Daoism: not withdrawal, but perfect skill. The cook's knife never dulls because he cuts through the spaces. The wheelwright can't teach what his hands know. This is knowledge that can't be spoken. Apophatic in practice.</p>
-        </section>
-
-        <!-- DISCUSSION -->
-        <div class="discussion">
-            <h4>For Discussion: Applying the Frameworks</h4>
-            <p>How would RU 儒 (Confucian), MO 墨 (Mohist), and DAO 道 (Daoist) perspectives respond to this action?</p>
-            <img src="../images/ice-out-mke.png" alt="ICE OUT Milwaukee protest flyer - Stand with Minnesota, MKE Shut It Down, No Work No School No Shopping, Fri January 30">
-            <p style="margin-top: 1rem;">Consider: roles and relationships, impartial care vs. partial care, strategic calculation, avoiding ruin, the ego of the activist, working within vs. outside systems.</p>
         </div>
+    </section>
 
-    </div>
+    <!-- Reviewing Zhuangzi Books 1 & 2 -->
+    <section class="content-section alt">
+        <div class="section-label"><span class="chinese">莊子</span> Reviewing Zhuangzi Books 1 &amp; 2 — What Zhuangzi Actually Says</div>
+        <div class="content-grid three-col">
+            <!-- Realms & Living -->
+            <div class="card">
+                <div class="card-head">REALMS &amp; LIVING</div>
+                <div class="card-body">
+                    <p><strong>Realms matter.</strong> Dream and waking are different realms. Which realm you're in changes what counts as real. The butterfly dream isn't saying "nothing is real." It's saying: reality is realm-dependent.</p>
+                    <p><strong>Frugal living, small desires.</strong> This makes you a clearer thinker. Not asceticism for its own sake, but because wanting less frees the mind.</p>
+                </div>
+            </div>
+            <!-- Perspective & Language -->
+            <div class="card">
+                <div class="card-head">PERSPECTIVE &amp; LANGUAGE</div>
+                <div class="card-body">
+                    <p><strong>Big and Small are relative, but...</strong> Within a context, the relative difference is very important. The Peng bird and the cicada both "go their full distance," but one sees far and one sees near. Perspective matters.</p>
+                    <p><strong>Words are not truth.</strong> Definitions, cognitive assertions about reality: these are not the same as reality. BUT when words and truth do mesh, it's often at words' most slippery. This is the enigmatic power of language as both philosophy and literature.</p>
+                </div>
+            </div>
+            <!-- Not Relativism -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">非</span> NOT RELATIVISM: REAL DIRECTIVES</div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Big Mindedness > Small Mindedness.</strong> This is emphatic, not relative.</li>
+                        <li><strong>Live out your years.</strong> Concrete instruction.</li>
+                        <li><strong>Avoid ruin.</strong> This is your DUTY. Parallel to filial piety for Kongzi.</li>
+                    </ul>
+                    <h4>The Bottom Line</h4>
+                    <p>Zhuangzi is not saying "do whatever you want." He's saying: don't get trapped in small-minded distinctions, don't invite destruction through ego, find the way to survive and flourish. These are demands.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Friday Preview -->
+    <section class="content-section">
+        <div class="section-label"><span class="chinese">史記</span> Friday Preview — Biographies, Masters, and Mastery</div>
+        <div class="content-grid">
+            <!-- Readings for Friday -->
+            <div class="card">
+                <div class="card-head">READINGS FOR FRIDAY</div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Shiji</strong> (Records of the Grand Historian): Biographies. Learn about Sima Qian, the historian as author and moral witness.</li>
+                        <li><strong>More Zhuangzi</strong>: The masters and mastery. Cook Ding, the wheelwright, skilled action as Daoist practice.</li>
+                        <li><strong>Anti-relativism of the Dao school</strong>: More evidence that Daoism has standards, not just "whatever."</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- What to Expect -->
+            <div class="card">
+                <div class="card-head">WHAT TO EXPECT</div>
+                <div class="card-body">
+                    <p>The Shiji gives us biography as a philosophical form. Lives as arguments. Sima Qian himself suffered castration rather than abandon his work. What does it mean to write history under those conditions?</p>
+                    <p>The mastery passages in Zhuangzi show us another face of Daoism: not withdrawal, but perfect skill. The cook's knife never dulls because he cuts through the spaces. The wheelwright can't teach what his hands know. This is knowledge that can't be spoken. Apophatic in practice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion -->
+    <section class="content-section alt">
+        <div class="section-label"><span class="chinese">論</span> For Discussion — Applying the Frameworks</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head">THE QUESTION</div>
+                <div class="card-body">
+                    <p>How would RU 儒 (Confucian), MO 墨 (Mohist), and DAO 道 (Daoist) perspectives respond to this action?</p>
+                    <img src="../images/ice-out-mke.png" alt="ICE OUT Milwaukee protest flyer - Stand with Minnesota, MKE Shut It Down, No Work No School No Shopping, Fri January 30">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">CONSIDER</div>
+                <div class="card-body">
+                    <p>Consider: roles and relationships, impartial care vs. partial care, strategic calculation, avoiding ruin, the ego of the activist, working within vs. outside systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="foot-chinese">中國文學與思想</div>
         <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
@@ -400,4 +410,5 @@
     </footer>
 
 </body>
+
 </html>
