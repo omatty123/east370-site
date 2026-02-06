@@ -18,8 +18,7 @@
             --gold: #b8860b;
             --gold-light: #daa520;
             --ru: #2D7D7D;
-            /* Section colors */
-            --section-1: #2D7D7D;
+            --teal: #2d5a5a;
             --section-2: #2f4f4f;
             --section-3: #3d3d6b;
         }
@@ -30,8 +29,7 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.8;
-            font-size: 17px;
+            line-height: 1.6;
         }
 
         /* Compact Header */
@@ -86,167 +84,17 @@
             color: #888;
         }
 
-        /* RU Evolution */
-        .ru-evolution {
-            background: var(--paper-dark);
-            padding: 1.5rem;
-        }
-
-        .ru-evolution h2 {
-            text-align: center;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-faint);
-            margin-bottom: 1rem;
-        }
-
-        .ru-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .ru-card {
-            background: #fff;
-            border-radius: 6px;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .ru-card.current {
-            border: 2px solid var(--ru);
-            background: linear-gradient(180deg, #e8f4f4 0%, #fff 100%);
-        }
-
-        .ru-card .version {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--ru);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .ru-card .name-ch {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.5rem;
-            color: var(--ink);
-            margin: 0.3rem 0;
-        }
-
-        .ru-card .name-en {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-        }
-
-        .ru-card .key-idea {
-            font-size: 0.7rem;
-            color: var(--ink-light);
-            line-height: 1.5;
-            padding: 0.5rem;
-            background: var(--paper);
-            border-radius: 4px;
-        }
-
-        .ru-card .key-idea strong {
-            color: var(--ru);
-        }
-
-        /* Comparison Section */
-        .comparison-section {
-            background: #fff;
-            padding: 2rem 1.5rem;
-        }
-
-        .comparison-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow-x: auto;
-        }
-
-        .evolution-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-
-        .evolution-table th {
-            background: var(--ink);
-            color: #fff;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .evolution-table th.highlight {
-            background: var(--ru);
-        }
-
-        .evolution-table td {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-        }
-
-        .evolution-table td.highlight {
-            background: rgba(45, 125, 125, 0.06);
-        }
-
-        .evolution-table .question-cell {
-            font-weight: 600;
-            color: var(--ink-light);
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
-
-        .evolution-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Multi-Column Layout */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .two-col-wide-left {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
-        .two-col-wide-right {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .two-col, .two-col-wide-left, .two-col-wide-right {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-        /* Navigation */
+        /* Nav - matches index.html */
         .nav {
-            position: sticky;
-            top: 0;
             background: var(--ink);
-            z-index: 1000;
             padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav a {
@@ -257,63 +105,283 @@
             transition: color 0.2s;
         }
 
-        .nav a:hover {
-            color: var(--gold-light);
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section labels - matches index.html */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
 
-        /* Container */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
         }
 
-        /* Reading Info */
-        .reading-info {
-            background: linear-gradient(180deg, rgba(45, 125, 125, 0.08) 0%, var(--paper) 100%);
-            padding: 2rem 1.5rem;
+        /* Content sections - full width, padded */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
         }
 
-        .reading-box {
-            max-width: 900px;
-            margin: 0 auto;
+        .content-section.alt {
+            background: var(--paper-dark);
+        }
+
+        .content-section.white {
+            background: #fff;
+        }
+
+        /* Content grid - multi-column cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .content-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        /* Cards - matches lit-col from index.html */
+        .card {
             background: #fff;
             border-radius: 6px;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--gold);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
-        .reading-box h2 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--gold);
-            margin-bottom: 0.75rem;
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
 
-        .reading-box p {
-            font-size: 0.95rem;
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 0.75rem;
+        }
+
+        .card-body p {
+            font-size: 0.8rem;
             color: var(--ink-light);
+            line-height: 1.65;
             margin-bottom: 0.5rem;
         }
 
-        .chapter-list {
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* RU Evolution cards */
+        .ru-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .ru-card .ru-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--ru);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ru-card.current .ru-head {
+            background: var(--ru);
+            color: #fff;
+        }
+
+        .ru-card .ru-body {
+            padding: 0.75rem;
+        }
+
+        .ru-card .name-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.3rem;
+            color: var(--ink);
+            margin: 0.2rem 0;
+        }
+
+        .ru-card .name-en {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.4rem;
+        }
+
+        .ru-card .key-idea {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+            padding: 0.4rem;
+            background: var(--paper);
+            border-radius: 4px;
+        }
+
+        .ru-card .key-idea strong { color: var(--ru); }
+
+        /* Evolution table */
+        .evo-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 0.6rem;
+        }
+
+        .evo-table th {
+            background: var(--ink);
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .evo-table th.highlight { background: var(--ru); }
+
+        .evo-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .evo-table td.highlight { background: rgba(45, 125, 125, 0.06); }
+
+        .evo-table .question-cell {
+            font-weight: 600;
+            color: var(--ink-light);
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .evo-table tr:last-child td { border-bottom: none; }
+
+        /* Terms table */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .terms-table th {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            text-align: left;
+            padding: 0.4rem 0.6rem;
+            background: var(--paper-dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        .terms-table td {
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .terms-table .chinese-cell {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .terms-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        /* Comparison table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 0.8rem;
+            margin-top: 0.6rem;
+        }
+
+        .comparison-table th {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: var(--ink);
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+
+        /* Reading chips */
+        .chapter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.5rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.4rem;
+            margin-top: 0.5rem;
         }
 
         .chapter-item {
-            font-size: 0.85rem;
-            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.6rem;
             background: var(--paper);
             border-radius: 3px;
         }
 
         .chapter-item .ch-num {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--ink-faint);
             text-transform: uppercase;
         }
@@ -323,253 +391,122 @@
             color: var(--ru);
         }
 
-        /* Section Headers */
-        .section-header {
-            padding: 3rem 1.5rem 2rem;
-            text-align: center;
-        }
-
-        
-        
-        
-
-        .section-number {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #fff;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.3rem;
-        }
-
-        .section-header .chinese-title {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Content Sections */
-        .content-section { margin-bottom: 2.5rem; }
-
-        .content-section h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--ru);
-            margin-bottom: 1rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--ru);
-            display: inline-block;
-        }
-
-        .content-section.teal h3 { color: var(--section-2); border-color: var(--section-2); }
-        .content-section.purple h3 { color: var(--section-3); border-color: var(--section-3); }
-
-        /* Key Terms */
-        .terms-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        .terms-table th {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--ink-faint);
-            text-align: left;
-            padding: 0.6rem 0.75rem;
+        /* Blockquotes */
+        blockquote {
             background: var(--paper-dark);
-            border-bottom: 2px solid #ddd;
-        }
-
-        .terms-table td {
-            padding: 0.6rem 0.75rem;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-        }
-
-        .terms-table .chinese-cell {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
-        }
-
-        .terms-table .pinyin-cell {
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
             font-style: italic;
+            font-size: 0.8rem;
             color: var(--ink-light);
         }
 
-        /* Synopsis */
-        .synopsis {
-            background: #fff;
-            border-radius: 6px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-        }
-
-        .synopsis p {
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .synopsis p:last-child { margin-bottom: 0; }
-
-        /* Quote Block */
-        .quote-block {
-            background: var(--paper-dark);
-            padding: 1.25rem 1.5rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid var(--gold);
-            font-style: italic;
-        }
-
-        .quote-block cite {
+        blockquote cite {
             display: block;
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
             font-style: normal;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--ink-faint);
         }
 
-        /* Famous Saying - Left-aligned, elegant */
-        .saying-box {
+        /* Saying box */
+        .saying-card {
             background: #fff;
-            padding: 1.5rem 1.5rem 1.5rem 2rem;
             border-radius: 6px;
-            margin: 2rem 0;
-            border-left: 4px solid var(--ru);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 3px solid var(--ru);
         }
 
-        .saying-box .saying-chinese {
+        .saying-card .saying-body {
+            padding: 0.75rem;
+        }
+
+        .saying-card .saying-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             color: var(--ru);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             letter-spacing: 0.05em;
         }
 
-        .saying-box .saying-meaning {
-            font-size: 1rem;
+        .saying-card .saying-meaning {
+            font-size: 0.8rem;
             color: var(--ink);
-            margin-bottom: 0.5rem;
             font-style: italic;
-        }
-
-        .saying-box .saying-note {
-            font-size: 0.75rem;
-            color: var(--ink-faint);
-        }
-
-        /* Themes Grid */
-        .themes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .theme-card {
-            background: #fff;
-            padding: 1.25rem;
-            border-radius: 6px;
-            border: 1px solid #e5e5e5;
-        }
-
-        .theme-card h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.4rem;
-        }
-
-        .theme-card p {
-            font-size: 0.85rem;
-            color: var(--ink-light);
-            line-height: 1.6;
-        }
-
-        /* Comparison Table */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border-radius: 6px;
-            overflow: hidden;
-            margin: 1rem 0;
-        }
-
-        .comparison-table th {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            background: var(--ink);
-            color: #fff;
-            padding: 0.75rem 1rem;
-            text-align: left;
-        }
-
-        .comparison-table td {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85rem;
-            vertical-align: top;
-        }
-
-        .comparison-table tr:last-child td { border-bottom: none; }
-
-        /* Questions */
-        .questions-section {
-            background: #fff;
-            padding: 3rem 1.5rem;
-        }
-
-        .questions-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .questions-container h2 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .question-item {
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .question-item:last-child { border-bottom: none; }
-
-        .question-item .q-num {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--ru);
             margin-bottom: 0.3rem;
         }
 
-        .question-item p {
-            font-size: 0.95rem;
-            color: var(--ink);
-            line-height: 1.7;
+        .saying-card .saying-note {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
         }
 
-        /* Footer */
+        /* Sources section - matches res-grid from index.html */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+
+        .source-card p:last-child { border-bottom: none; }
+
+        /* Questions grid */
+        .question-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .question-card .q-head {
+            background: #2a2a2a;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--ru);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .question-card .q-body {
+            padding: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* Footer - matches index.html */
         footer {
             background: var(--ink);
             padding: 1.25rem 1.5rem;
@@ -597,10 +534,12 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero-chinese { letter-spacing: 0.15em; }
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid-3 { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
             .nav { gap: 1rem; }
-            .container { padding: 2rem 1rem; }
+            .chapter-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -627,464 +566,466 @@
         <a href="#questions">Questions</a>
     </nav>
 
-    <!-- RU Evolution: The Main Event -->
-    <section class="ru-evolution" id="evolution">
-        <h2>The Evolution of the Ru Tradition</h2>
-        <div class="ru-grid">
+    <!-- RU Evolution -->
+    <section class="content-section alt" id="evolution">
+        <div class="section-label"><span class="chinese">儒</span> The Evolution of the Ru Tradition</div>
+        <div class="content-grid-3">
             <div class="ru-card">
-                <div class="version">RU 1.0</div>
-                <div class="name-ch">孔子</div>
-                <div class="name-en">Kongzi (~551-479 BCE)</div>
-                <div class="key-idea">
-                    <strong>Ren 仁</strong> — Benevolence through self-cultivation. Learn from the ancients. Character built through ritual practice.
+                <div class="ru-head">RU 1.0</div>
+                <div class="ru-body">
+                    <div class="name-ch">孔子</div>
+                    <div class="name-en">Kongzi (~551-479 BCE)</div>
+                    <div class="key-idea">
+                        <strong>Ren 仁</strong> — Benevolence through self-cultivation. Learn from the ancients. Character built through ritual practice.
+                    </div>
                 </div>
             </div>
             <div class="ru-card">
-                <div class="version">RU 2.0</div>
-                <div class="name-ch">孟子</div>
-                <div class="name-en">Mengzi (~372-289 BCE)</div>
-                <div class="key-idea">
-                    <strong>Four Sprouts</strong> — Human nature is good. Virtue is innate, requiring only cultivation of what's already there.
+                <div class="ru-head">RU 2.0</div>
+                <div class="ru-body">
+                    <div class="name-ch">孟子</div>
+                    <div class="name-en">Mengzi (~372-289 BCE)</div>
+                    <div class="key-idea">
+                        <strong>Four Sprouts</strong> — Human nature is good. Virtue is innate, requiring only cultivation of what's already there.
+                    </div>
                 </div>
             </div>
             <div class="ru-card current">
-                <div class="version">RU 3.0</div>
-                <div class="name-ch">荀子</div>
-                <div class="name-en">Xunzi (~310-235 BCE)</div>
-                <div class="key-idea">
-                    <strong>Wei 偽</strong> — Deliberate effort. Human nature is problematic. Goodness must be constructed through learning and ritual.
+                <div class="ru-head">RU 3.0</div>
+                <div class="ru-body">
+                    <div class="name-ch">荀子</div>
+                    <div class="name-en">Xunzi (~310-235 BCE)</div>
+                    <div class="key-idea">
+                        <strong>Wei 偽</strong> — Deliberate effort. Human nature is problematic. Goodness must be constructed through learning and ritual.
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Detailed Comparison Table -->
-    <section class="comparison-section">
-        <div class="comparison-wrapper">
-            <table class="evolution-table">
-                <thead>
-                    <tr>
-                        <th>Question</th>
-                        <th>Kongzi 孔子</th>
-                        <th>Mengzi 孟子</th>
-                        <th class="highlight">Xunzi 荀子</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="question-cell">Human Nature</td>
-                        <td>Not directly addressed; focus on cultivation</td>
-                        <td><strong>Good</strong> — innate "sprouts" of virtue</td>
-                        <td class="highlight"><strong>Problematic</strong> — desires lead to conflict without shaping</td>
-                    </tr>
-                    <tr>
-                        <td class="question-cell">Source of Virtue</td>
-                        <td>Learning from ancients and self-reflection</td>
-                        <td><strong>Internal</strong> — extend what's already there</td>
-                        <td class="highlight"><strong>External</strong> — constructed through deliberate effort (偽)</td>
-                    </tr>
-                    <tr>
-                        <td class="question-cell">Role of Learning</td>
-                        <td>Essential: "study as if you'll never catch up"</td>
-                        <td>Important but secondary to extending innate goodness</td>
-                        <td class="highlight"><strong>Foundational</strong> — "blue dye from indigo" transformation</td>
-                    </tr>
-                    <tr>
-                        <td class="question-cell">Role of Ritual (禮)</td>
-                        <td>Shapes character, expresses respect</td>
-                        <td>Expression of inner moral sense</td>
-                        <td class="highlight"><strong>Structures desire</strong> — "ritual is nurture" (養)</td>
-                    </tr>
-                    <tr>
-                        <td class="question-cell">View of Heaven (天)</td>
-                        <td>Moral force; source of Mandate</td>
-                        <td>Moral source; humans share Heaven's nature</td>
-                        <td class="highlight"><strong>Naturalistic</strong> — constant patterns, no moral will</td>
-                    </tr>
-                    <tr>
-                        <td class="question-cell">Social Order</td>
-                        <td>Rectification of names; proper roles</td>
-                        <td>Humane government based on moral power</td>
-                        <td class="highlight"><strong>Distinctions (分)</strong> — hierarchy enables cooperation</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <section class="content-section white">
+        <div class="section-label">Ru Comparison</div>
+        <table class="evo-table">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Kongzi 孔子</th>
+                    <th>Mengzi 孟子</th>
+                    <th class="highlight">Xunzi 荀子</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="question-cell">Human Nature</td>
+                    <td>Not directly addressed; focus on cultivation</td>
+                    <td><strong>Good</strong> — innate "sprouts" of virtue</td>
+                    <td class="highlight"><strong>Problematic</strong> — desires lead to conflict without shaping</td>
+                </tr>
+                <tr>
+                    <td class="question-cell">Source of Virtue</td>
+                    <td>Learning from ancients and self-reflection</td>
+                    <td><strong>Internal</strong> — extend what's already there</td>
+                    <td class="highlight"><strong>External</strong> — constructed through deliberate effort (偽)</td>
+                </tr>
+                <tr>
+                    <td class="question-cell">Role of Learning</td>
+                    <td>Essential: "study as if you'll never catch up"</td>
+                    <td>Important but secondary to extending innate goodness</td>
+                    <td class="highlight"><strong>Foundational</strong> — "blue dye from indigo" transformation</td>
+                </tr>
+                <tr>
+                    <td class="question-cell">Role of Ritual (禮)</td>
+                    <td>Shapes character, expresses respect</td>
+                    <td>Expression of inner moral sense</td>
+                    <td class="highlight"><strong>Structures desire</strong> — "ritual is nurture" (養)</td>
+                </tr>
+                <tr>
+                    <td class="question-cell">View of Heaven (天)</td>
+                    <td>Moral force; source of Mandate</td>
+                    <td>Moral source; humans share Heaven's nature</td>
+                    <td class="highlight"><strong>Naturalistic</strong> — constant patterns, no moral will</td>
+                </tr>
+                <tr>
+                    <td class="question-cell">Social Order</td>
+                    <td>Rectification of names; proper roles</td>
+                    <td>Humane government based on moral power</td>
+                    <td class="highlight"><strong>Distinctions (分)</strong> — hierarchy enables cooperation</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
     <!-- Reading Info -->
-    <section class="reading-info" id="reading">
-        <div class="reading-box">
-            <h2>Assigned Reading</h2>
-            <p><strong>Ivanhoe & Van Norden, pp. 255–299</strong> — Introduction and selections from eight chapters</p>
-            <div class="chapter-list">
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 1</span>
-                    <span class="ch-chinese">勸學</span> An Exhortation to Learning
+    <section class="content-section" id="reading">
+        <div class="section-label"><span class="chinese">讀</span> Assigned Reading</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">荀子</span> Ivanhoe &amp; Van Norden, pp. 255-299</div>
+                <div class="card-body">
+                    <p><strong>Introduction and selections from eight chapters</strong></p>
                 </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 2</span>
-                    <span class="ch-chinese">修身</span> Cultivating Oneself
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 5</span>
-                    <span class="ch-chinese">非相</span> Against Physiognomy
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 8</span>
-                    <span class="ch-chinese">儒效</span> The Achievements of the Ru
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 9</span>
-                    <span class="ch-chinese">王制</span> Regulations of a True King
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 12</span>
-                    <span class="ch-chinese">君道</span> The Way to Be a Lord
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 17</span>
-                    <span class="ch-chinese">天論</span> Discourse on Heaven
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 19</span>
-                    <span class="ch-chinese">禮論</span> Discourse on Ritual
-                </div>
+            </div>
+        </div>
+        <div class="chapter-grid">
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 1</span>
+                <span class="ch-chinese">勸學</span> An Exhortation to Learning
+            </div>
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 2</span>
+                <span class="ch-chinese">修身</span> Cultivating Oneself
+            </div>
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 5</span>
+                <span class="ch-chinese">非相</span> Against Physiognomy
+            </div>
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 8</span>
+                <span class="ch-chinese">儒效</span> The Achievements of the Ru
+            </div>
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 9</span>
+                <span class="ch-chinese">王制</span> Regulations of a True King
+            </div>
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 12</span>
+                <span class="ch-chinese">君道</span> The Way to Be a Lord
+            </div>
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 17</span>
+                <span class="ch-chinese">天論</span> Discourse on Heaven
+            </div>
+            <div class="chapter-item">
+                <span class="ch-num">Ch. 19</span>
+                <span class="ch-chinese">禮論</span> Discourse on Ritual
             </div>
         </div>
     </section>
 
     <!-- Part 1: Learning and Self-Cultivation -->
-    <div class="section-header" id="learning">
-        <div class="section-number">Part One</div>
-        <div class="chinese-title">學與修身</div>
-        <h2>Learning and Self-Cultivation</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section">
-                <h3>Key Terms</h3>
-                <table class="terms-table">
-                    <thead>
-                        <tr>
-                            <th>Chinese</th>
-                            <th>Pinyin</th>
-                            <th>Meaning</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="chinese-cell">學</td>
-                            <td class="pinyin-cell">xué</td>
-                            <td>Learning; foundation of all moral cultivation</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">積</td>
-                            <td class="pinyin-cell">jī</td>
-                            <td>Accumulation; virtue built through sustained effort</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">偽</td>
-                            <td class="pinyin-cell">wěi</td>
-                            <td>Deliberate effort; source of goodness</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">師</td>
-                            <td class="pinyin-cell">shī</td>
-                            <td>Teacher; essential guide for learning</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">禮</td>
-                            <td class="pinyin-cell">lǐ</td>
-                            <td>Ritual; measure and standard</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="content-section">
-                <h3>Chapter 1: Exhortation to Learning</h3>
-                <div class="synopsis">
+    <section class="content-section alt" id="learning">
+        <div class="section-label"><span class="chinese">學與修身</span> Part One &middot; Learning and Self-Cultivation</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">學</span> Key Terms</div>
+                <div class="card-body">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">學</td>
+                                <td class="pinyin-cell">xue</td>
+                                <td>Learning; foundation of all moral cultivation</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">積</td>
+                                <td class="pinyin-cell">ji</td>
+                                <td>Accumulation; virtue built through sustained effort</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">偽</td>
+                                <td class="pinyin-cell">wei</td>
+                                <td>Deliberate effort; source of goodness</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">師</td>
+                                <td class="pinyin-cell">shi</td>
+                                <td>Teacher; essential guide for learning</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">禮</td>
+                                <td class="pinyin-cell">li</td>
+                                <td>Ritual; measure and standard</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">勸學</span> Chapter 1: Exhortation to Learning</div>
+                <div class="card-body">
                     <p><strong>Blue Dye Metaphor:</strong> "Blue dye is gotten from the indigo plant, yet it is bluer than the plant." The student can surpass his sources—through the transformative process of learning.</p>
                     <p><strong>Accumulation:</strong> "Without accumulating tiny steps, you have no way to go a thousand <em>li</em>." Virtue is not innate but built gradually through sustained effort.</p>
                     <p><strong>Necessity of Teachers:</strong> "In learning, nothing is more expedient than to draw near to the right person." Without a teacher, one learns haphazardly.</p>
                     <p><strong>Ritual as Endpoint:</strong> "Learning comes to ritual and then stops." Ritual makes all knowledge coherent and actionable.</p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="saying-box">
-            <div class="saying-chinese">青出於藍而青於藍</div>
-            <div class="saying-meaning">"Blue dye comes from the indigo plant, yet is bluer than the plant."</div>
-            <div class="saying-note">Chapter 1 — The student can surpass the source</div>
+        <!-- Saying inline -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">青出於藍而青於藍</div>
+                    <div class="saying-meaning">"Blue dye comes from the indigo plant, yet is bluer than the plant."</div>
+                    <div class="saying-note">Chapter 1 — The student can surpass the source</div>
+                </div>
+            </div>
         </div>
 
-        <div class="two-col">
-            <section class="content-section">
-                <h3>Chapter 2: Cultivating Oneself</h3>
-                <div class="synopsis">
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">修身</span> Chapter 2: Cultivating Oneself</div>
+                <div class="card-body">
                     <p><strong>Self-Examination:</strong> "When you observe goodness in others, inspect yourself. When you observe badness in others, examine yourself, fearful." The gentleman uses others as mirrors.</p>
                     <p><strong>Ritual as Measure:</strong> "Ritual is that by which to correct your person. The teacher is that by which to correct your practice of ritual."</p>
                     <p><strong>Controlling Qi:</strong> For unyielding blood-qi, soften with harmony. For deep thinking, simplify with goodness. Each imbalance requires its specific corrective.</p>
                 </div>
-            </section>
-
-            <section class="content-section">
-                <h3>Learning vs. Innate Nature</h3>
-                <div class="synopsis">
+            </div>
+            <div class="card">
+                <div class="card-head">Learning vs. Innate Nature</div>
+                <div class="card-body">
                     <p><strong>Earthworm vs. Crab:</strong> The earthworm thrives through single-mindedness. The crab, with six legs and pincers, must borrow holes because it is frenetic. <em>Focus beats natural gifts.</em></p>
                     <p><strong>Crooked Wood:</strong> Needs the press frame. Blunt metal needs the grindstone. Human nature requires external shaping through ritual.</p>
                     <p><strong>Old Nags vs. Swift Horses:</strong> "Qi Ji takes a single leap—no farther than ten strides. Yet old nags ridden ten days equal him." <em>Persistence outweighs talent.</em></p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="quote-block">
+        <blockquote style="margin-top: 0.75rem;">
             "If your bearing is reverent and your heart loyal, if your method is ritual and your disposition concern for others, then you may wander the whole world—even trapped among barbarians, no one will fail to value you."
             <cite>— Xunzi, Chapter 2</cite>
-        </div>
-    </div>
+        </blockquote>
+    </section>
 
     <!-- Part 2: Society and Government -->
-    <div class="section-header" id="society">
-        <div class="section-number">Part Two</div>
-        <div class="chinese-title">社會與禮</div>
-        <h2>Society, Distinctions, and Ritual</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section teal">
-                <h3>Key Terms</h3>
-                <table class="terms-table">
-                    <thead>
-                        <tr>
-                            <th>Chinese</th>
-                            <th>Pinyin</th>
-                            <th>Meaning</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="chinese-cell">分</td>
-                            <td class="pinyin-cell">fèn</td>
-                            <td>Distinctions; makes civilization possible</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">義</td>
-                            <td class="pinyin-cell">yì</td>
-                            <td>Righteousness; norms that structure society</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">群</td>
-                            <td class="pinyin-cell">qún</td>
-                            <td>Community; humans' distinctive capacity</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">養</td>
-                            <td class="pinyin-cell">yǎng</td>
-                            <td>Nourishment; ritual satisfies desires</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="content-section teal">
-                <h3>Ch. 5: Against Physiognomy</h3>
-                <div class="synopsis">
+    <section class="content-section" id="society">
+        <div class="section-label"><span class="chinese">社會與禮</span> Part Two &middot; Society, Distinctions, and Ritual</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">分</span> Key Terms</div>
+                <div class="card-body">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">分</td>
+                                <td class="pinyin-cell">fen</td>
+                                <td>Distinctions; makes civilization possible</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">義</td>
+                                <td class="pinyin-cell">yi</td>
+                                <td>Righteousness; norms that structure society</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">群</td>
+                                <td class="pinyin-cell">qun</td>
+                                <td>Community; humans' distinctive capacity</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">養</td>
+                                <td class="pinyin-cell">yang</td>
+                                <td>Nourishment; ritual satisfies desires</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">非相</span> Ch. 5: Against Physiognomy</div>
+                <div class="card-body">
                     <p><strong>What Makes Humans Human?</strong> "It is because they have distinctions." Birds have male/female but not father/son relationships. Animals lack role differentiation.</p>
                     <p><strong>Distinctions Enable Community:</strong> "Of distinctions, none are greater than social divisions, and of social divisions, none are greater than rituals." Hierarchy enables flourishing.</p>
                     <p><strong>Don't Judge by Appearances:</strong> What matters is conduct, not face. Cultivated virtue, not inborn traits.</p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="two-col">
-            <section class="content-section teal">
-                <h3>Ch. 9: Regulations of a True King</h3>
-                <div class="synopsis">
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">王制</span> Ch. 9: Regulations of a True King</div>
+                <div class="card-body">
                     <p><strong>Human Uniqueness:</strong> "Water and fire have qi but no life. Grasses have life but no awareness. Beasts have awareness but no righteousness. Humans have all—so they are most precious."</p>
                     <p><strong>Social Divisions Prevent Chaos:</strong> "Why can humans form communities? Because of social divisions." Without ranks and limits, desires clash endlessly.</p>
                 </div>
-            </section>
-
-            <section class="content-section teal">
-                <h3>Ch. 19: Discourse on Ritual</h3>
-                <div class="synopsis">
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">禮論</span> Ch. 19: Discourse on Ritual</div>
+                <div class="card-body">
                     <p><strong>Why Ritual Arose:</strong> "Humans are born having desires. When they have desires but do not get objects of desire, they cannot but seek. Seeking without limit leads to struggle and chaos."</p>
                     <p><strong>Ritual = Nourishment:</strong> Ritual doesn't suppress desire—it <em>cultivates</em> it. "禮者，養也" — Ritual nurtures properly.</p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="quote-block">
+        <blockquote style="margin-top: 0.75rem;">
             "Humans cannot be without community. If they form communities but are without social divisions, then they will struggle. If they struggle, then there will be chaos. If there is chaos, then there will be poverty."
             <cite>— Xunzi, Chapter 9</cite>
-        </div>
+        </blockquote>
 
-        <section class="content-section teal">
-            <h3>Chapter 19: Discourse on Ritual</h3>
-            <div class="synopsis">
-                <p><strong>Why Ritual Arose:</strong> "From what did ritual arise? I say: Humans are born having desires. When they have desires but do not get the objects of their desires, then they cannot but seek. When they seek but have no measure or limit, then they cannot but struggle. When they struggle, there is chaos."</p>
-
-                <p><strong>The Sage Kings' Solution:</strong> "The former kings hated such chaos, and so they established rituals and standards of righteousness in order to divide things among people, to nourish their desires, and to satisfy their seeking."</p>
-
-                <p><strong>Ritual as Nourishment:</strong> Ritual doesn't suppress desire—it <em>cultivates</em> it. "Ritual is a means of nurture." Meats and grains nurture the mouth; fragrances and perfumes nurture the nose; bells and drums nurture the ears. Ritual ensures desires are satisfied properly, neither too much nor too little.</p>
-
-                <p><strong>Proper Distinctions:</strong> "What is meant by 'differentiations'? I say: It is for noble and lowly to have their proper ranking, for elder and youth to have their proper distance, for poor and rich, humble and eminent each to have their proper weights."</p>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">禮論</span> Chapter 19: Discourse on Ritual (Expanded)</div>
+                <div class="card-body">
+                    <p><strong>Why Ritual Arose:</strong> "From what did ritual arise? I say: Humans are born having desires. When they have desires but do not get the objects of their desires, then they cannot but seek. When they seek but have no measure or limit, then they cannot but struggle. When they struggle, there is chaos."</p>
+                    <p><strong>The Sage Kings' Solution:</strong> "The former kings hated such chaos, and so they established rituals and standards of righteousness in order to divide things among people, to nourish their desires, and to satisfy their seeking."</p>
+                    <p><strong>Ritual as Nourishment:</strong> Ritual doesn't suppress desire—it <em>cultivates</em> it. "Ritual is a means of nurture." Meats and grains nurture the mouth; fragrances and perfumes nurture the nose; bells and drums nurture the ears. Ritual ensures desires are satisfied properly, neither too much nor too little.</p>
+                    <p><strong>Proper Distinctions:</strong> "What is meant by 'differentiations'? I say: It is for noble and lowly to have their proper ranking, for elder and youth to have their proper distance, for poor and rich, humble and eminent each to have their proper weights."</p>
+                </div>
             </div>
-        </section>
-
-        <div class="saying-box">
-            <div class="saying-chinese">禮者，養也</div>
-            <div class="saying-meaning">"Ritual is a means of nurture."</div>
-            <div class="saying-note">Chapter 19 — Ritual cultivates, not suppresses, desire</div>
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">禮者，養也</div>
+                    <div class="saying-meaning">"Ritual is a means of nurture."</div>
+                    <div class="saying-note">Chapter 19 — Ritual cultivates, not suppresses, desire</div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Part 3: Heaven -->
-    <div class="section-header" id="heaven">
-        <div class="section-number">Part Three</div>
-        <div class="chinese-title">天論</div>
-        <h2>Discourse on Heaven</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section purple">
-                <h3>Key Terms</h3>
-                <table class="terms-table">
-                    <thead>
-                        <tr>
-                            <th>Chinese</th>
-                            <th>Pinyin</th>
-                            <th>Meaning</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="chinese-cell">天</td>
-                            <td class="pinyin-cell">tiān</td>
-                            <td>Heaven; nature's constant patterns</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">常</td>
-                            <td class="pinyin-cell">cháng</td>
-                            <td>Constancy; regular operations</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">人妖</td>
-                            <td class="pinyin-cell">rén yāo</td>
-                            <td>"Human ill omens"; misgovernment disasters</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="content-section purple">
-                <h3>Ch. 17: Heaven's Constancy</h3>
-                <div class="synopsis">
+    <section class="content-section alt" id="heaven">
+        <div class="section-label"><span class="chinese">天論</span> Part Three &middot; Discourse on Heaven</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">天</span> Key Terms</div>
+                <div class="card-body">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">天</td>
+                                <td class="pinyin-cell">tian</td>
+                                <td>Heaven; nature's constant patterns</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">常</td>
+                                <td class="pinyin-cell">chang</td>
+                                <td>Constancy; regular operations</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">人妖</td>
+                                <td class="pinyin-cell">ren yao</td>
+                                <td>"Human ill omens"; misgovernment disasters</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">天論</span> Ch. 17: Heaven's Constancy</div>
+                <div class="card-body">
                     <p><strong>No Moral Will:</strong> "Heaven's activities are constant. They do not persist because of Yao. They do not perish because of Jie." Heaven doesn't reward virtue or punish vice.</p>
                     <p><strong>Respond Correctly:</strong> "Respond with order → good fortune. Respond with chaos → misfortune." Success comes from alignment, not pleasing Heaven.</p>
                     <p><strong>Against Superstition:</strong> "If stars fall, people fear. I say: It is nothing. Simply rare phenomena." Eclipses are not omens.</p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="saying-box">
-            <div class="saying-chinese">天行有常，不為堯存，不為桀亡</div>
-            <div class="saying-meaning">"Heaven operates with constancy—it does not exist for Yao, nor perish for Jie."</div>
-            <div class="saying-note">Chapter 17 — Xunzi's naturalistic manifesto</div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">天行有常，不為堯存，不為桀亡</div>
+                    <div class="saying-meaning">"Heaven operates with constancy—it does not exist for Yao, nor perish for Jie."</div>
+                    <div class="saying-note">Chapter 17 — Xunzi's naturalistic manifesto</div>
+                </div>
+            </div>
         </div>
 
-        <div class="two-col">
-            <section class="content-section purple">
-                <h3>"Human Ill Omens" 人妖</h3>
-                <div class="synopsis">
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">人妖</span> "Human Ill Omens"</div>
+                <div class="card-body">
                     <p><strong>What to Really Fear:</strong> While people fear cosmic omens, the real disasters are <strong>human ill omens</strong>: poor plowing, unstable government, loss of control over the people—these cause famine, not falling stars.</p>
                     <p><strong>True Disasters:</strong> "When ritual is not cultivated, when men and women engage in disorderly conduct, then fathers and sons are suspicious, superiors and inferiors desert one another."</p>
                 </div>
-            </section>
-
-            <section class="content-section purple">
-                <h3>Rain Sacrifice</h3>
-                <div class="synopsis">
+            </div>
+            <div class="card">
+                <div class="card-head">Rain Sacrifice</div>
+                <div class="card-body">
                     <p><strong>No Supernatural Efficacy:</strong> "One performs the rain sacrifice and it rains. Why? There is no special reason. Same as when one doesn't sacrifice and it rains."</p>
                     <p><strong>Different Meanings:</strong> "The gentleman regards this as proper form. The common people regard it as connecting with spirits." Xunzi keeps ritual but strips it of magic.</p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <section class="content-section purple">
-            <h3>Xunzi vs. Earlier Views of Heaven</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Question</th>
-                        <th>Earlier Tradition</th>
-                        <th>Xunzi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Nature of Heaven</strong></td>
-                        <td>Moral force; bestows Mandate</td>
-                        <td>Natural processes with constant patterns</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Omens</strong></td>
-                        <td>Signs of Heaven's approval</td>
-                        <td>Natural phenomena, no moral meaning</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ritual Efficacy</strong></td>
-                        <td>Influences Heaven</td>
-                        <td>"Proper form"—psychological only</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">Xunzi vs. Earlier Views of Heaven</div>
+                <div class="card-body">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Earlier Tradition</th>
+                                <th>Xunzi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Nature of Heaven</strong></td>
+                                <td>Moral force; bestows Mandate</td>
+                                <td>Natural processes with constant patterns</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Omens</strong></td>
+                                <td>Signs of Heaven's approval</td>
+                                <td>Natural phenomena, no moral meaning</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ritual Efficacy</strong></td>
+                                <td>Influences Heaven</td>
+                                <td>"Proper form"—psychological only</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-        <div class="quote-block">
+        <blockquote style="margin-top: 0.75rem;">
             "To exalt Heaven and long for it—how can this compare to nourishing things and overseeing them? To obey Heaven and praise it—how can this compare to regulating what Heaven has mandated and using it?"
             <cite>— Xunzi, Chapter 17</cite>
-        </div>
-    </div>
+        </blockquote>
+    </section>
 
     <!-- Discussion Questions -->
-    <section class="questions-section" id="questions">
-        <div class="questions-container">
-            <h2>Discussion Questions</h2>
-
-            <div class="question-item">
-                <div class="q-num">Question 1</div>
-                <p>Xunzi says the student can become "bluer than the indigo plant." If goodness is not innate, where does the first teacher get their knowledge? How does Xunzi escape an infinite regress?</p>
+    <section class="content-section white" id="questions">
+        <div class="section-label"><span class="chinese">問</span> Discussion Questions</div>
+        <div class="content-grid">
+            <div class="question-card">
+                <div class="q-head">Question 1</div>
+                <div class="q-body">Xunzi says the student can become "bluer than the indigo plant." If goodness is not innate, where does the first teacher get their knowledge? How does Xunzi escape an infinite regress?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 2</div>
-                <p>Compare Xunzi's emphasis on <strong>accumulation</strong> (積) with Mencius's "sprouts" of virtue. What are the practical implications of each view for moral education?</p>
+            <div class="question-card">
+                <div class="q-head">Question 2</div>
+                <div class="q-body">Compare Xunzi's emphasis on <strong>accumulation</strong> (積) with Mencius's "sprouts" of virtue. What are the practical implications of each view for moral education?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 3</div>
-                <p>Xunzi says humans are human because they have <strong>distinctions</strong> (分). Is this a defense of hierarchy or something more subtle? How does it compare to modern ideas about social roles?</p>
+            <div class="question-card">
+                <div class="q-head">Question 3</div>
+                <div class="q-body">Xunzi says humans are human because they have <strong>distinctions</strong> (分). Is this a defense of hierarchy or something more subtle? How does it compare to modern ideas about social roles?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 4</div>
-                <p>Xunzi claims ritual <strong>nourishes</strong> desire rather than suppressing it. How does this work? Is he right that proper ritual satisfies rather than frustrates human wants?</p>
+            <div class="question-card">
+                <div class="q-head">Question 4</div>
+                <div class="q-body">Xunzi claims ritual <strong>nourishes</strong> desire rather than suppressing it. How does this work? Is he right that proper ritual satisfies rather than frustrates human wants?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 5</div>
-                <p>Xunzi strips Heaven of moral agency but still endorses ritual. He says the gentleman regards rain sacrifice as "proper form" while commoners think it connects with spirits. Is Xunzi recommending noble lies?</p>
+            <div class="question-card">
+                <div class="q-head">Question 5</div>
+                <div class="q-body">Xunzi strips Heaven of moral agency but still endorses ritual. He says the gentleman regards rain sacrifice as "proper form" while commoners think it connects with spirits. Is Xunzi recommending noble lies?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 6</div>
-                <p>Xunzi's students included Han Feizi (Legalism) and Li Si (Qin unification). What in these chapters might lead toward authoritarian politics? What might resist it?</p>
+            <div class="question-card">
+                <div class="q-head">Question 6</div>
+                <div class="q-body">Xunzi's students included Han Feizi (Legalism) and Li Si (Qin unification). What in these chapters might lead toward authoritarian politics? What might resist it?</div>
             </div>
         </div>
     </section>
