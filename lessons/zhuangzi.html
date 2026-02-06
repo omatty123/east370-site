@@ -17,12 +17,8 @@
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
+            --teal: #2d5a5a;
             --dao: #3D8B4D;
-            --dao-dark: #2d6b3f;
-            /* Section colors */
-            --section-1: #3D8B4D;
-            --section-2: #2d6b3f;
-            --section-3: #1a5540;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,8 +27,7 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.8;
-            font-size: 17px;
+            line-height: 1.6;
         }
 
         /* Compact Header */
@@ -87,17 +82,17 @@
             color: #888;
         }
 
-        /* Navigation */
+        /* Nav - matches index.html */
         .nav {
-            position: sticky;
-            top: 0;
             background: var(--ink);
-            z-index: 1000;
             padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav a {
@@ -108,171 +103,245 @@
             transition: color 0.2s;
         }
 
-        .nav a:hover {
-            color: var(--gold-light);
-        }
+        .nav a:hover { color: var(--gold-light); }
 
-        /* Dao Evolution */
-        .dao-evolution {
-            background: var(--paper-dark);
-            padding: 1.5rem;
-        }
-
-        .dao-evolution h2 {
-            text-align: center;
-            font-size: 0.65rem;
+        /* Section Labels - matches index.html */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-faint);
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
 
-        .dao-grid {
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections - full width, alternating bg */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .content-section.alt {
+            background: var(--paper-dark);
+        }
+
+        .content-section.white {
+            background: #fff;
+        }
+
+        /* Content Grid - multi-column cards */
+        .content-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 700px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
 
-        @media (max-width: 600px) {
-            .dao-grid { grid-template-columns: 1fr; }
+        .content-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
 
-        .dao-card {
+        /* Cards - matches lit-col pattern */
+        .card {
             background: #fff;
             border-radius: 6px;
-            padding: 1.25rem;
+            overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .alt .card {
+            background: #fff;
+        }
+
+        .white .card {
+            background: var(--paper);
+        }
+
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .card-head.dao {
+            background: var(--dao);
+        }
+
+        .card-body {
+            padding: 0.75rem;
+        }
+
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Dao evolution cards */
+        .dao-card-link {
             text-decoration: none;
             color: inherit;
             display: block;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        a.dao-card:hover {
+        .dao-card-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.1);
         }
 
-        .dao-card.current {
+        .card.current {
             border: 2px solid var(--dao);
-            background: linear-gradient(180deg, #e8f4eb 0%, #fff 100%);
         }
 
-        .dao-card .label {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--dao);
+        .card.current .card-head {
+            background: var(--dao);
+        }
+
+        /* Terms table */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .terms-table th {
+            font-size: 0.55rem;
             text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            text-align: left;
+            padding: 0.4rem 0.5rem;
+            background: var(--paper-dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        .terms-table td {
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .terms-table .chinese-cell {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+        }
+
+        .terms-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Saying inline */
+        .saying-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 3px solid var(--dao);
+        }
+
+        .saying-card .card-body .saying-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--dao);
+            margin-bottom: 0.3rem;
             letter-spacing: 0.05em;
         }
 
-        .dao-card .name-ch {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.5rem;
+        .saying-card .card-body .saying-meaning {
+            font-size: 0.8rem;
             color: var(--ink);
-            margin: 0.3rem 0;
+            font-style: italic;
+            margin-bottom: 0.3rem;
         }
 
-        .dao-card .name-en {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-        }
-
-        .dao-card .key-idea {
-            font-size: 0.75rem;
-            color: var(--ink-light);
-            line-height: 1.5;
-            padding: 0.5rem;
-            background: var(--paper);
-            border-radius: 4px;
-        }
-
-        .dao-card .key-idea strong {
-            color: var(--dao);
-        }
-
-        /* Multi-Column Layout */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .two-col-wide-left {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
-        .two-col-wide-right {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .two-col, .two-col-wide-left, .two-col-wide-right {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Container */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-
-        /* Reading Info */
-        .reading-info {
-            background: linear-gradient(180deg, rgba(61, 139, 77, 0.08) 0%, var(--paper) 100%);
-            padding: 2rem 1.5rem;
-        }
-
-        .reading-box {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 6px;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--gold);
-        }
-
-        .reading-box h2 {
+        .saying-card .card-body .saying-note {
             font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--gold);
-            margin-bottom: 0.75rem;
+            color: var(--ink-faint);
         }
 
-        .reading-box p {
-            font-size: 0.95rem;
-            color: var(--ink-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .chapter-list {
+        /* Chapter items in reading info */
+        .chapter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.5rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.4rem;
+            margin-top: 0.5rem;
         }
 
         .chapter-item {
-            font-size: 0.85rem;
-            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.5rem;
             background: var(--paper);
             border-radius: 3px;
         }
 
         .chapter-item .ch-num {
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             color: var(--ink-faint);
             text-transform: uppercase;
         }
@@ -282,276 +351,76 @@
             color: var(--dao);
         }
 
-        /* Section Headers */
-        .section-header {
-            padding: 3rem 1.5rem 2rem;
-            text-align: center;
-        }
-
-        
-        
-        
-
-        .section-number {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #fff;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.3rem;
-        }
-
-        .section-header .chinese-title {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Content Sections */
-        .content-section { margin-bottom: 2.5rem; }
-
-        .content-section h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--dao);
-            margin-bottom: 1rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--dao);
-            display: inline-block;
-        }
-
-        .content-section.teal h3 { color: var(--section-2); border-color: var(--section-2); }
-        .content-section.dark h3 { color: var(--section-3); border-color: var(--section-3); }
-
-        /* Key Terms */
-        .terms-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        .terms-table th {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--ink-faint);
-            text-align: left;
-            padding: 0.6rem 0.75rem;
-            background: var(--paper-dark);
-            border-bottom: 2px solid #ddd;
-        }
-
-        .terms-table td {
-            padding: 0.6rem 0.75rem;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-        }
-
-        .terms-table .chinese-cell {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
-        }
-
-        .terms-table .pinyin-cell {
-            font-style: italic;
-            color: var(--ink-light);
-        }
-
-        /* Synopsis */
-        .synopsis {
+        /* Questions grid */
+        .question-card {
             background: #fff;
             border-radius: 6px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
-        .synopsis p {
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .synopsis p:last-child { margin-bottom: 0; }
-
-        /* Quote Block */
-        .quote-block {
-            background: var(--paper-dark);
-            padding: 1.25rem 1.5rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid var(--gold);
-            font-style: italic;
-        }
-
-        .quote-block cite {
-            display: block;
-            margin-top: 0.5rem;
-            font-style: normal;
-            font-size: 0.75rem;
-            color: var(--ink-faint);
-        }
-
-        /* Famous Saying - Left-aligned, elegant */
-        .saying-box {
-            background: #fff;
-            padding: 1.5rem 1.5rem 1.5rem 2rem;
-            border-radius: 6px;
-            margin: 2rem 0;
-            border-left: 4px solid var(--dao);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-
-        .saying-box .saying-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.4rem;
+        .question-card .q-head {
+            background: #2a2a2a;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.6rem;
+            font-weight: 600;
             color: var(--dao);
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        .saying-box .saying-meaning {
-            font-size: 1rem;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-            font-style: italic;
-        }
-
-        .saying-box .saying-note {
-            font-size: 0.75rem;
-            color: var(--ink-faint);
-        }
-
-        /* Themes Grid */
-        .themes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .theme-card {
-            background: #fff;
-            padding: 1.25rem;
-            border-radius: 6px;
-            border: 1px solid #e5e5e5;
-        }
-
-        .theme-card h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.4rem;
-        }
-
-        .theme-card p {
-            font-size: 0.85rem;
+        .question-card .q-body {
+            padding: 0.75rem;
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.6;
         }
 
-        /* Structure Grid */
-        .structure-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .structure-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .structure-card {
-            background: #fff;
-            border-radius: 6px;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .structure-card .version {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--dao);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .structure-card .name-ch {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.5rem;
+        .question-card .q-body strong {
             color: var(--ink);
-            margin: 0.3rem 0;
         }
 
-        .structure-card .name-en {
-            font-size: 0.75rem;
-            color: var(--ink-faint);
+        /* Sources - matches res-grid */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
             margin-bottom: 0.5rem;
         }
 
-        .structure-card .key-idea {
-            font-size: 0.7rem;
-            color: var(--ink-light);
-            line-height: 1.5;
-            padding: 0.5rem;
-            background: var(--paper);
-            border-radius: 4px;
-        }
-
-        /* Questions */
-        .questions-section {
-            background: #fff;
-            padding: 3rem 1.5rem;
-        }
-
-        .questions-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .questions-container h2 {
+        .source-card a, .source-card p {
+            display: block;
             font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .question-item {
-            padding: 1rem 0;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
             border-bottom: 1px solid #eee;
+            line-height: 1.5;
         }
 
-        .question-item:last-child { border-bottom: none; }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
 
-        .question-item .q-num {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--dao);
-            margin-bottom: 0.3rem;
-        }
-
-        .question-item p {
-            font-size: 0.95rem;
-            color: var(--ink);
-            line-height: 1.7;
-        }
-
-        /* Footer */
+        /* Footer - matches index.html */
         footer {
             background: var(--ink);
             padding: 1.25rem 1.5rem;
@@ -579,9 +448,12 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid-3 { grid-template-columns: 1fr; }
+            .chapter-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
             .nav { gap: 1rem; }
-            .container { padding: 2rem 1rem; }
         }
     </style>
 </head>
@@ -594,6 +466,7 @@
         <div class="page-title">
             <span class="ch">莊子</span>
             <span class="en">The Zhuangzi</span>
+            <span class="tag">DAO</span>
             <span class="meta">Zhuangzi (~369-286 BCE)<span>·</span>Ivanhoe pp. 207-232</span>
         </div>
     </header>
@@ -608,314 +481,338 @@
         <a href="#questions">Questions</a>
     </nav>
 
-    <!-- Dao Evolution -->
-    <section class="dao-evolution" id="evolution">
-        <h2>Two Voices of Daoism</h2>
-        <div class="dao-grid">
-            <a href="laozi.html" class="dao-card">
-                <div class="label">The Daodejing</div>
-                <div class="name-ch">老子</div>
-                <div class="name-en">Laozi (traditional 6th c. BCE)</div>
-                <div class="key-idea">
-                    <strong>Wu wei 無為</strong> — Non-action, effortless action. Return to simplicity. Cryptic, poetic, political.
+    <!-- Two Voices of Daoism -->
+    <section class="content-section alt" id="evolution">
+        <div class="section-label"><span class="chinese">道家</span> Two Voices of Daoism</div>
+        <div class="content-grid">
+            <a href="laozi.html" class="dao-card-link">
+                <div class="card">
+                    <div class="card-head"><span class="chinese">老子</span> The Daodejing</div>
+                    <div class="card-body">
+                        <p><strong>Laozi</strong> (traditional 6th c. BCE)</p>
+                        <h4>Key Concept</h4>
+                        <p><strong style="color:var(--dao)">Wu wei 無為</strong> — Non-action, effortless action. Return to simplicity. Cryptic, poetic, political.</p>
+                    </div>
                 </div>
             </a>
-            <div class="dao-card current">
-                <div class="label">The Zhuangzi</div>
-                <div class="name-ch">莊子</div>
-                <div class="name-en">Zhuangzi (~369-286 BCE)</div>
-                <div class="key-idea">
-                    <strong>Transformation 化</strong> — Perspectival relativism, spontaneous freedom. Playful, paradoxical, personal.
+            <div class="card current">
+                <div class="card-head dao"><span class="chinese">莊子</span> The Zhuangzi</div>
+                <div class="card-body">
+                    <p><strong>Zhuangzi</strong> (~369-286 BCE)</p>
+                    <h4>Key Concept</h4>
+                    <p><strong style="color:var(--dao)">Transformation 化</strong> — Perspectival relativism, spontaneous freedom. Playful, paradoxical, personal.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reading Info -->
-    <section class="reading-info" id="reading">
-        <div class="reading-box">
-            <h2>Assigned Reading</h2>
-            <p><strong>Ivanhoe & Van Norden, pp. 207-232</strong> — Introduction and selections from Inner & Outer Chapters</p>
-            <div class="chapter-list">
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 1</span>
-                    <span class="ch-chinese">逍遙遊</span> Free and Easy Wandering
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 2</span>
-                    <span class="ch-chinese">齊物論</span> On the Equality of Things
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 3</span>
-                    <span class="ch-chinese">養生主</span> The Essentials of Nurturing Life
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 4</span>
-                    <span class="ch-chinese">人間世</span> In the Human World
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 6</span>
-                    <span class="ch-chinese">大宗師</span> The Great Ancestral Teacher
-                </div>
-                <div class="chapter-item">
-                    <span class="ch-num">Ch. 17</span>
-                    <span class="ch-chinese">秋水</span> Autumn Floods
+    <!-- Assigned Reading -->
+    <section class="content-section" id="reading">
+        <div class="section-label"><span class="chinese">讀物</span> Assigned Reading</div>
+        <div class="card" style="border-left: 3px solid var(--gold);">
+            <div class="card-body">
+                <p><strong>Ivanhoe & Van Norden, pp. 207-232</strong> — Introduction and selections from Inner & Outer Chapters</p>
+                <div class="chapter-grid">
+                    <div class="chapter-item">
+                        <span class="ch-num">Ch. 1</span>
+                        <span class="ch-chinese">逍遙遊</span> Free and Easy Wandering
+                    </div>
+                    <div class="chapter-item">
+                        <span class="ch-num">Ch. 2</span>
+                        <span class="ch-chinese">齊物論</span> On the Equality of Things
+                    </div>
+                    <div class="chapter-item">
+                        <span class="ch-num">Ch. 3</span>
+                        <span class="ch-chinese">養生主</span> The Essentials of Nurturing Life
+                    </div>
+                    <div class="chapter-item">
+                        <span class="ch-num">Ch. 4</span>
+                        <span class="ch-chinese">人間世</span> In the Human World
+                    </div>
+                    <div class="chapter-item">
+                        <span class="ch-num">Ch. 6</span>
+                        <span class="ch-chinese">大宗師</span> The Great Ancestral Teacher
+                    </div>
+                    <div class="chapter-item">
+                        <span class="ch-num">Ch. 17</span>
+                        <span class="ch-chinese">秋水</span> Autumn Floods
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Text Structure -->
-    <section class="reading-info" id="structure">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <div class="structure-grid">
-                <div class="structure-card">
-                    <div class="version">Chs. 1-7</div>
-                    <div class="name-ch">內篇</div>
-                    <div class="name-en">Inner Chapters</div>
-                    <div class="key-idea">Possibly from Zhuangzi himself. Most philosophically rich. Includes butterfly dream, Cook Ding, Peng bird.</div>
+    <section class="content-section alt" id="structure">
+        <div class="section-label"><span class="chinese">結構</span> Text Structure</div>
+        <div class="content-grid-3">
+            <div class="card">
+                <div class="card-head"><span class="chinese">內篇</span> Inner Chapters</div>
+                <div class="card-body">
+                    <p><strong>Chs. 1-7</strong></p>
+                    <p>Possibly from Zhuangzi himself. Most philosophically rich. Includes butterfly dream, Cook Ding, Peng bird.</p>
                 </div>
-                <div class="structure-card">
-                    <div class="version">Chs. 8-22</div>
-                    <div class="name-ch">外篇</div>
-                    <div class="name-en">Outer Chapters</div>
-                    <div class="key-idea">Likely from students. Develops Inner Chapters' ideas. More didactic, less playful.</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">外篇</span> Outer Chapters</div>
+                <div class="card-body">
+                    <p><strong>Chs. 8-22</strong></p>
+                    <p>Likely from students. Develops Inner Chapters' ideas. More didactic, less playful.</p>
                 </div>
-                <div class="structure-card">
-                    <div class="version">Chs. 23-33</div>
-                    <div class="name-ch">雜篇</div>
-                    <div class="name-en">Miscellaneous</div>
-                    <div class="key-idea">Various influences—primitivists, egoists, syncretists. Less coherent.</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">雜篇</span> Miscellaneous</div>
+                <div class="card-body">
+                    <p><strong>Chs. 23-33</strong></p>
+                    <p>Various influences—primitivists, egoists, syncretists. Less coherent.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Part 1: Famous Stories -->
-    <div class="section-header" id="stories">
-        <div class="section-number">Part One</div>
-        <div class="chinese-title">寓言</div>
-        <h2>Famous Stories & Parables</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section">
-                <h3>Key Terms</h3>
-                <table class="terms-table">
-                    <thead>
-                        <tr>
-                            <th>Chinese</th>
-                            <th>Pinyin</th>
-                            <th>Meaning</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="chinese-cell">道</td>
-                            <td class="pinyin-cell">dào</td>
-                            <td>The Way; each creature's natural course</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">化</td>
-                            <td class="pinyin-cell">huà</td>
-                            <td>Transformation; identities are fluid</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">德</td>
-                            <td class="pinyin-cell">dé</td>
-                            <td>Virtuosity; embodied mastery, not moral virtue</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">遊</td>
-                            <td class="pinyin-cell">yóu</td>
-                            <td>Wandering; carefree, purposeless movement</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">自然</td>
-                            <td class="pinyin-cell">zìrán</td>
-                            <td>"Self-so"; acting according to nature</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="content-section">
-                <h3>The Butterfly Dream (Ch. 2)</h3>
-                <div class="synopsis">
-                    <p><strong>The Dream:</strong> Zhuang Zhou dreams he's a butterfly, flitting happily about. He wakes—but is he Zhou who dreamed of being a butterfly, or a butterfly now dreaming it's Zhou?</p>
-                    <p><strong>Transformation of Things:</strong> Identity is fluid. The dreamer and dreamed are both "transformations"—phases in the endless flux of reality. No fixed self to cling to.</p>
+    <!-- Famous Stories & Parables -->
+    <section class="content-section" id="stories">
+        <div class="section-label"><span class="chinese">寓言</span> Famous Stories & Parables</div>
+        <div class="content-grid">
+            <!-- Key Terms -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">詞彙</span> Key Terms</div>
+                <div class="card-body">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">道</td>
+                                <td class="pinyin-cell">dào</td>
+                                <td>The Way; each creature's natural course</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">化</td>
+                                <td class="pinyin-cell">huà</td>
+                                <td>Transformation; identities are fluid</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">德</td>
+                                <td class="pinyin-cell">dé</td>
+                                <td>Virtuosity; embodied mastery, not moral virtue</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">遊</td>
+                                <td class="pinyin-cell">yóu</td>
+                                <td>Wandering; carefree, purposeless movement</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">自然</td>
+                                <td class="pinyin-cell">zìrán</td>
+                                <td>"Self-so"; acting according to nature</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </section>
+            </div>
+            <!-- Butterfly Dream -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">蝴蝶夢</span> The Butterfly Dream (Ch. 2)</div>
+                <div class="card-body">
+                    <h4>The Dream</h4>
+                    <p>Zhuang Zhou dreams he's a butterfly, flitting happily about. He wakes—but is he Zhou who dreamed of being a butterfly, or a butterfly now dreaming it's Zhou?</p>
+                    <h4>Transformation of Things</h4>
+                    <p>Identity is fluid. The dreamer and dreamed are both "transformations"—phases in the endless flux of reality. No fixed self to cling to.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="saying-box">
-            <div class="saying-chinese">莊周夢蝴蝶，蝴蝶夢莊周</div>
-            <div class="saying-meaning">"Did Zhuang Zhou dream of being a butterfly, or is the butterfly dreaming of being Zhou?"</div>
-            <div class="saying-note">Chapter 2 — The transformation of things</div>
+        <!-- Saying -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="card-body">
+                    <div class="saying-chinese">莊周夢蝴蝶，蝴蝶夢莊周</div>
+                    <div class="saying-meaning">"Did Zhuang Zhou dream of being a butterfly, or is the butterfly dreaming of being Zhou?"</div>
+                    <div class="saying-note">Chapter 2 — The transformation of things</div>
+                </div>
+            </div>
         </div>
 
-        <div class="two-col">
-            <section class="content-section">
-                <h3>Cook Ding (Ch. 3)</h3>
-                <div class="synopsis">
-                    <p><strong>Effortless Mastery:</strong> Cook Ding carves oxen with supernatural grace. His blade glides through joints "as if dancing"—same knife for 19 years, never sharpened.</p>
-                    <p><strong>Beyond Skill:</strong> "What I love is the Way, which goes beyond skill. I meet it with my spirit, don't look with my eyes." Perfect skill becomes unconscious, responding to the situation with the whole being.</p>
+        <!-- More stories -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">庖丁</span> Cook Ding (Ch. 3)</div>
+                <div class="card-body">
+                    <h4>Effortless Mastery</h4>
+                    <p>Cook Ding carves oxen with supernatural grace. His blade glides through joints "as if dancing"—same knife for 19 years, never sharpened.</p>
+                    <h4>Beyond Skill</h4>
+                    <p>"What I love is the Way, which goes beyond skill. I meet it with my spirit, don't look with my eyes." Perfect skill becomes unconscious, responding to the situation with the whole being.</p>
                 </div>
-            </section>
-
-            <section class="content-section">
-                <h3>The Great Peng Bird (Ch. 1)</h3>
-                <div class="synopsis">
-                    <p><strong>Scale:</strong> A fish called Kun transforms into the Peng bird—wings like clouds, rising ninety thousand miles. A cicada and dove laugh: "What's the point?"</p>
-                    <p><strong>Perspective:</strong> Small creatures can't comprehend the Peng's journey—but neither can the Peng understand flitting among branches. Neither is wrong, just limited.</p>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">大鵬</span> The Great Peng Bird (Ch. 1)</div>
+                <div class="card-body">
+                    <h4>Scale</h4>
+                    <p>A fish called Kun transforms into the Peng bird—wings like clouds, rising ninety thousand miles. A cicada and dove laugh: "What's the point?"</p>
+                    <h4>Perspective</h4>
+                    <p>Small creatures can't comprehend the Peng's journey—but neither can the Peng understand flitting among branches. Neither is wrong, just limited.</p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="two-col">
-            <section class="content-section">
-                <h3>The Useless Tree (Ch. 4)</h3>
-                <div class="synopsis">
-                    <p><strong>The Carpenter's Dismissal:</strong> Carpenter Shi sees a giant oak: "Worthless! Make a boat and it sinks. It's useless timber."</p>
-                    <p><strong>The Tree's Reply:</strong> In a dream the tree says: "Useful trees get cut down young. I've spent my life trying to be useless. If I'd been useful, I'd never have grown so large."</p>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">散木</span> The Useless Tree (Ch. 4)</div>
+                <div class="card-body">
+                    <h4>The Carpenter's Dismissal</h4>
+                    <p>Carpenter Shi sees a giant oak: "Worthless! Make a boat and it sinks. It's useless timber."</p>
+                    <h4>The Tree's Reply</h4>
+                    <p>In a dream the tree says: "Useful trees get cut down young. I've spent my life trying to be useless. If I'd been useful, I'd never have grown so large."</p>
                 </div>
-            </section>
-
-            <section class="content-section">
-                <h3>The Happiness of Fish (Ch. 17)</h3>
-                <div class="synopsis">
-                    <p><strong>The Debate:</strong> Zhuangzi: "See how the minnows dart—that's fish happiness." Hui Shi: "You're not a fish—how do you know?" Zhuangzi: "You're not me—how do you know I don't know?"</p>
-                    <p><strong>Beyond Logic:</strong> Hui Shi uses rigorous deduction; Zhuangzi slips the trap. Can we ever know another's experience? Does logical knowing matter vs. intuitive connection?</p>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">魚樂</span> The Happiness of Fish (Ch. 17)</div>
+                <div class="card-body">
+                    <h4>The Debate</h4>
+                    <p>Zhuangzi: "See how the minnows dart—that's fish happiness." Hui Shi: "You're not a fish—how do you know?" Zhuangzi: "You're not me—how do you know I don't know?"</p>
+                    <h4>Beyond Logic</h4>
+                    <p>Hui Shi uses rigorous deduction; Zhuangzi slips the trap. Can we ever know another's experience? Does logical knowing matter vs. intuitive connection?</p>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <div class="quote-block">
+        <!-- Quote -->
+        <blockquote style="margin-top: 0.75rem;">
             "A good cook changes his knife once a year because he cuts; a mediocre cook changes his knife once a month because he hacks. I've had this knife for nineteen years and it's still as sharp as if fresh from the grindstone."
             <cite>— Zhuangzi, Chapter 3 (Cook Ding)</cite>
-        </div>
-    </div>
+        </blockquote>
+    </section>
 
-    <!-- Part 2: Key Themes -->
-    <div class="section-header" id="themes">
-        <div class="section-number">Part Two</div>
-        <div class="chinese-title">主題</div>
-        <h2>Major Themes</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section teal">
-                <h3>Additional Terms</h3>
-                <table class="terms-table">
-                    <thead>
-                        <tr>
-                            <th>Chinese</th>
-                            <th>Pinyin</th>
-                            <th>Meaning</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="chinese-cell">是非</td>
-                            <td class="pinyin-cell">shì-fēi</td>
-                            <td>"This/that" or "right/wrong"; judgment that creates distinctions</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">明</td>
-                            <td class="pinyin-cell">míng</td>
-                            <td>Illumination; seeing multiple perspectives</td>
-                        </tr>
-                        <tr>
-                            <td class="chinese-cell">心齋</td>
-                            <td class="pinyin-cell">xīn zhāi</td>
-                            <td>"Fasting of the heart-mind"; emptying preconceptions</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="content-section teal">
-                <h3>Perspectival Relativism</h3>
-                <div class="synopsis">
-                    <p><strong>No View from Nowhere:</strong> Every judgment of "this" vs. "that" depends on perspective. From where I stand, I'm "this" and you're "that"—but from where you stand, it's reversed.</p>
-                    <p><strong>The Sage's Vision:</strong> Sees all perspectives without privileging any single one. Not relativism about truth, but recognition that all standpoints are partial.</p>
+    <!-- Major Themes -->
+    <section class="content-section alt" id="themes">
+        <div class="section-label"><span class="chinese">主題</span> Major Themes</div>
+        <div class="content-grid">
+            <!-- Additional Terms -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">詞彙</span> Additional Terms</div>
+                <div class="card-body">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">是非</td>
+                                <td class="pinyin-cell">shì-fēi</td>
+                                <td>"This/that" or "right/wrong"; judgment that creates distinctions</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">明</td>
+                                <td class="pinyin-cell">míng</td>
+                                <td>Illumination; seeing multiple perspectives</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">心齋</td>
+                                <td class="pinyin-cell">xīn zhāi</td>
+                                <td>"Fasting of the heart-mind"; emptying preconceptions</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </section>
-        </div>
-
-        <div class="two-col">
-            <section class="content-section teal">
-                <h3>Skill and Flow</h3>
-                <div class="synopsis">
-                    <p><strong>Embodied Mastery:</strong> Cook, swimmer, wheelwright—all demonstrate skill transcending conscious thought. Perfect action operates without deliberation.</p>
-                    <p><strong>The Daoist Ideal:</strong> Acting so naturally you don't notice you're acting. Not "trying" to be good—just being good, like water flowing downhill.</p>
-                </div>
-            </section>
-
-            <section class="content-section teal">
-                <h3>Death as Transformation</h3>
-                <div class="synopsis">
-                    <p><strong>Zhuangzi's Wife:</strong> When she dies, he drums on a pot and sings. Life and death are phases in endless transformation—why mourn the shift?</p>
-                    <p><strong>The Question:</strong> "How do I know that hating death is not like a man who left home as a youth and has forgotten the way back?"</p>
-                </div>
-            </section>
-        </div>
-
-        <div class="saying-box">
-            <div class="saying-chinese">方生方死，方死方生</div>
-            <div class="saying-meaning">"At the moment of arising there is dying; at the moment of dying there is arising."</div>
-            <div class="saying-note">Chapter 2 — Constant transformation</div>
-        </div>
-
-        <section class="content-section teal">
-            <h3>Carefree Wandering (逍遙遊)</h3>
-            <div class="synopsis">
-                <p><strong>Purposeless Purposefulness:</strong> The ideal life is like aimless wandering—no fixed goals, no striving toward achievement. The Peng bird doesn't fly south to accomplish something; flying south is just what it does.</p>
-                <p><strong>True Freedom:</strong> Not freedom <em>to</em> do something, but freedom <em>from</em> the need to do anything in particular. The "useless" tree flourishes precisely because it has no use to be exploited.</p>
             </div>
-        </section>
+            <!-- Perspectival Relativism -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">齊物</span> Perspectival Relativism</div>
+                <div class="card-body">
+                    <h4>No View from Nowhere</h4>
+                    <p>Every judgment of "this" vs. "that" depends on perspective. From where I stand, I'm "this" and you're "that"—but from where you stand, it's reversed.</p>
+                    <h4>The Sage's Vision</h4>
+                    <p>Sees all perspectives without privileging any single one. Not relativism about truth, but recognition that all standpoints are partial.</p>
+                </div>
+            </div>
+        </div>
 
-        <div class="quote-block">
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">技</span> Skill and Flow</div>
+                <div class="card-body">
+                    <h4>Embodied Mastery</h4>
+                    <p>Cook, swimmer, wheelwright—all demonstrate skill transcending conscious thought. Perfect action operates without deliberation.</p>
+                    <h4>The Daoist Ideal</h4>
+                    <p>Acting so naturally you don't notice you're acting. Not "trying" to be good—just being good, like water flowing downhill.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">死生</span> Death as Transformation</div>
+                <div class="card-body">
+                    <h4>Zhuangzi's Wife</h4>
+                    <p>When she dies, he drums on a pot and sings. Life and death are phases in endless transformation—why mourn the shift?</p>
+                    <h4>The Question</h4>
+                    <p>"How do I know that hating death is not like a man who left home as a youth and has forgotten the way back?"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saying -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="card-body">
+                    <div class="saying-chinese">方生方死，方死方生</div>
+                    <div class="saying-meaning">"At the moment of arising there is dying; at the moment of dying there is arising."</div>
+                    <div class="saying-note">Chapter 2 — Constant transformation</div>
+                </div>
+            </div>
+            <!-- Carefree Wandering -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">逍遙遊</span> Carefree Wandering</div>
+                <div class="card-body">
+                    <h4>Purposeless Purposefulness</h4>
+                    <p>The ideal life is like aimless wandering—no fixed goals, no striving toward achievement. The Peng bird doesn't fly south to accomplish something; flying south is just what it does.</p>
+                    <h4>True Freedom</h4>
+                    <p>Not freedom <em>to</em> do something, but freedom <em>from</em> the need to do anything in particular. The "useless" tree flourishes precisely because it has no use to be exploited.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote -->
+        <blockquote style="margin-top: 0.75rem;">
             "The fish trap exists because of the fish; once you've gotten the fish, you can forget the trap. The rabbit snare exists because of the rabbit; once you've gotten the rabbit, you can forget the snare. Words exist because of meaning; once you've gotten the meaning, you can forget the words."
             <cite>— Zhuangzi, Chapter 26</cite>
-        </div>
-    </div>
+        </blockquote>
+    </section>
 
     <!-- Discussion Questions -->
-    <section class="questions-section" id="questions">
-        <div class="questions-container">
-            <h2>Discussion Questions</h2>
-
-            <div class="question-item">
-                <div class="q-num">Question 1</div>
-                <p><strong>The Butterfly Dream:</strong> Is this just a puzzle about dreams, or does it say something deeper about personal identity? What would it mean to take seriously the idea that you might be "dreaming" right now?</p>
+    <section class="content-section white" id="questions">
+        <div class="section-label"><span class="chinese">問題</span> Discussion Questions</div>
+        <div class="content-grid">
+            <div class="question-card">
+                <div class="q-head">Question 1</div>
+                <div class="q-body"><strong>The Butterfly Dream:</strong> Is this just a puzzle about dreams, or does it say something deeper about personal identity? What would it mean to take seriously the idea that you might be "dreaming" right now?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 2</div>
-                <p><strong>Cook Ding's Skill:</strong> Can you think of activities where you've experienced effortless mastery? How is this different from just being on autopilot?</p>
+            <div class="question-card">
+                <div class="q-head">Question 2</div>
+                <div class="q-body"><strong>Cook Ding's Skill:</strong> Can you think of activities where you've experienced effortless mastery? How is this different from just being on autopilot?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 3</div>
-                <p><strong>The Useless Tree:</strong> Is Zhuangzi's praise of "uselessness" serious or ironic? After all, the tree is useful to him as an example! Can being "useless" in conventional terms actually be valuable?</p>
+            <div class="question-card">
+                <div class="q-head">Question 3</div>
+                <div class="q-body"><strong>The Useless Tree:</strong> Is Zhuangzi's praise of "uselessness" serious or ironic? After all, the tree is useful to him as an example! Can being "useless" in conventional terms actually be valuable?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 4</div>
-                <p><strong>Death:</strong> Zhuangzi's response to his wife's death strikes most readers as cold. Is he heartless, or has he achieved a wisdom we lack? Can you imagine genuinely not mourning?</p>
+            <div class="question-card">
+                <div class="q-head">Question 4</div>
+                <div class="q-body"><strong>Death:</strong> Zhuangzi's response to his wife's death strikes most readers as cold. Is he heartless, or has he achieved a wisdom we lack? Can you imagine genuinely not mourning?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 5</div>
-                <p><strong>Relativism:</strong> If all perspectives are equal, does that mean anything goes? Is Zhuangzi a relativist about morality? How might he respond to someone doing something clearly harmful?</p>
+            <div class="question-card">
+                <div class="q-head">Question 5</div>
+                <div class="q-body"><strong>Relativism:</strong> If all perspectives are equal, does that mean anything goes? Is Zhuangzi a relativist about morality? How might he respond to someone doing something clearly harmful?</div>
             </div>
-
-            <div class="question-item">
-                <div class="q-num">Question 6</div>
-                <p><strong>Fish Happiness:</strong> Who wins the argument between Zhuangzi and Hui Shi? Does it matter? What's Zhuangzi suggesting about the limits of logical reasoning?</p>
+            <div class="question-card">
+                <div class="q-head">Question 6</div>
+                <div class="q-body"><strong>Fish Happiness:</strong> Who wins the argument between Zhuangzi and Hui Shi? Does it matter? What's Zhuangzi suggesting about the limits of logical reasoning?</div>
             </div>
         </div>
     </section>
