@@ -18,6 +18,7 @@
             --gold: #b8860b;
             --gold-light: #daa520;
             --dao: #3D8B4D;
+            --teal: #2d5a5a;
             --border: #e0e0e0;
         }
 
@@ -35,8 +36,7 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.75;
-            font-size: 16px;
+            line-height: 1.6;
         }
 
         /* Page Header */
@@ -58,495 +58,333 @@
 
         /* Nav */
         .nav {
-            position: sticky;
-            top: 0;
             background: var(--ink);
-            z-index: 1000;
             padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+        .nav a.portal-link { color: var(--gold-light); font-weight: 600; }
 
-        .nav a {
-            font-size: 0.7rem;
-            color: #aaa;
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-        }
-
-        .nav a:hover {
-            color: var(--gold-light);
-        }
-
-        .nav a.portal-link {
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-
-        /* Content */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2.5rem 1.5rem;
-        }
-
-        .container.alt {
-            background: var(--paper-dark);
-        }
-
-        .full-width {
-            background: var(--paper-dark);
-        }
-
-        .full-width .container {
-            background: transparent;
-        }
-
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .section-header h2 {
-            font-size: 0.65rem;
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
-
-        .section-header .subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
-            color: var(--ink);
-        }
-
-        .section-header .chinese {
+        .section-label .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.4rem;
-            color: var(--dao);
-            margin-right: 0.4rem;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
         }
 
-        /* Prose */
-        p {
-            font-size: 0.95rem;
-            line-height: 1.85;
-            color: var(--ink-light);
-            margin-bottom: 1.25rem;
+        /* Content Sections */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
         }
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-
-        p strong {
-            color: var(--ink);
-        }
-
-        em.term {
-            color: var(--dao);
-            font-style: normal;
-            font-weight: 600;
-        }
-
-        /* Opening Box */
-        .opening-box {
-            background: var(--ink);
-            border-radius: 4px;
-            padding: 2rem;
-            color: #fff;
-            margin-bottom: 2.5rem;
-        }
-
-        .opening-box p {
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 0.75rem;
-        }
-
-        .opening-box .kicker {
-            color: var(--gold-light);
-            font-style: italic;
-            font-size: 1.05rem;
-            margin-top: 1rem;
-        }
-
-        /* Quote Block */
-        .quote-block {
-            border-left: 3px solid var(--dao);
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
+        .content-section.alt {
             background: var(--paper-dark);
         }
-
-        .quote-block p {
-            font-style: italic;
-            color: var(--ink);
-            margin-bottom: 0.3rem;
+        .content-section.dark {
+            background: #f5f5f3;
         }
 
-        .quote-block .src {
-            font-size: 0.8rem;
-            color: var(--ink-faint);
-            font-style: normal;
-        }
-
-        /* Tradition Cards */
-        .trad-grid {
+        /* Content Grid */
+        .content-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.25rem;
-            margin: 1.5rem 0;
+        }
+        .content-grid.four-col {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
 
-        .trad-card {
-            border: 1px solid var(--border);
-            border-radius: 4px;
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-
-        .trad-card-head {
-            background: var(--ink);
-            padding: 1rem 1.25rem;
-        }
-
-        .trad-card-head h3 {
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
             color: #fff;
-            font-size: 0.95rem;
-            font-weight: 500;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
-
-        .trad-card-head .sub {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.7rem;
-        }
-
-        .trad-card-body {
-            padding: 1.25rem;
-        }
-
-        .trad-card-body p {
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
             font-size: 0.85rem;
-            line-height: 1.7;
+            color: var(--gold-light);
+            font-weight: 400;
         }
+        .card-head .dao-accent {
+            color: var(--dao);
+        }
+        .card-body {
+            padding: 0.75rem;
+        }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+        .card-body strong { color: var(--ink); }
+        .card-body em.term { color: var(--dao); font-style: normal; font-weight: 600; }
 
-        .trad-card-body .tq {
-            border-left: 2px solid var(--dao);
-            padding-left: 0.75rem;
+        /* Card-body blockquote */
+        .card-body blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
             font-style: italic;
-            color: var(--ink);
-            margin: 0.75rem 0;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
         }
+        .card-body blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        .card-body blockquote.dao-border {
+            border-left-color: var(--dao);
+        }
+
+        /* Two-column comparison */
+        .two-col-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .compare-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .compare-card .cmp-head {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .compare-card .cmp-head.dark { background: #2a2a2a; }
+        .compare-card .cmp-head.light { background: var(--paper-dark); color: var(--ink); border-bottom: 1px solid var(--border); }
+        .compare-card .cmp-head .greek { font-weight: 400; font-style: italic; color: #aaa; margin-left: 0.5rem; font-size: 0.6rem; }
+        .compare-card .cmp-head.light .greek { color: var(--ink-faint); }
+        .compare-card .cmp-head .defn { font-weight: 400; color: #ccc; margin-left: 0.5rem; }
+        .compare-card .cmp-head.light .defn { color: var(--ink-faint); }
+        .compare-card .cmp-body {
+            padding: 0.5rem 0.75rem;
+        }
+        .compare-card .cmp-body .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .compare-card .cmp-body .row:last-child { border-bottom: none; }
+        .compare-card .cmp-body .trad { font-weight: 500; color: var(--ink); }
+        .compare-card .cmp-body .trad.dao-c { color: var(--dao); }
+        .compare-card .cmp-body .names { font-size: 0.65rem; color: var(--ink-faint); }
 
         /* Contrast Table */
         .contrast-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
+            margin-top: 0.6rem;
             border: 1px solid var(--border);
             border-radius: 4px;
             overflow: hidden;
         }
-
-        .contrast-table thead {
-            background: var(--ink);
-        }
-
+        .contrast-table thead { background: #2a2a2a; }
         .contrast-table th {
             color: #fff;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            padding: 0.75rem 1rem;
+            padding: 0.5rem 0.75rem;
             text-align: left;
             font-weight: 600;
         }
-
         .contrast-table td {
-            padding: 0.75rem 1rem;
-            font-size: 0.82rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
             color: var(--ink-light);
             border-bottom: 1px solid var(--border);
             line-height: 1.5;
             vertical-align: top;
         }
+        .contrast-table tr:last-child td { border-bottom: none; }
+        .contrast-table .label-cell { font-weight: 600; color: var(--ink); width: 14%; }
+        .contrast-table .miss { background: #fdf5f5; }
+        .contrast-table .hit { background: #f5f8f5; }
 
-        .contrast-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .contrast-table .label-cell {
-            font-weight: 600;
-            color: var(--ink);
-            width: 22%;
-        }
-
-        .contrast-table .miss {
-            background: #fdf5f5;
-        }
-
-        .contrast-table .hit {
-            background: #f5f8f5;
-        }
-
-        /* Two Ways Chart */
-        .two-ways {
+        /* Ladder Grid */
+        .ladder-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
-
-        @media (max-width: 600px) {
-            .two-ways { grid-template-columns: 1fr; }
-        }
-
-        .way-col {
-            border: 1px solid var(--border);
-            border-radius: 4px;
+        .ladder-card {
+            background: #fff;
+            border-radius: 6px;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-top: 3px solid var(--border);
         }
-
-        .way-col.apo .way-head { background: var(--ink); }
-        .way-col.cata .way-head { background: var(--paper-dark); border-bottom: 1px solid var(--border); }
-        .way-col.cata .way-head h3 { color: var(--ink); }
-        .way-col.cata .way-head .way-greek { color: var(--ink-faint); }
-
-        .way-head {
-            padding: 1rem 1.25rem;
-            text-align: center;
-        }
-
-        .way-head h3 {
-            font-size: 1.1rem;
+        .ladder-card.final { border-top-color: var(--dao); }
+        .ladder-card .lc-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
             font-weight: 600;
             color: #fff;
-            margin-bottom: 0.15rem;
-        }
-
-        .way-head .way-greek {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.5);
-            font-style: italic;
-        }
-
-        .way-head .way-def {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
-            margin-top: 0.4rem;
-        }
-
-        .way-col.cata .way-head .way-def { color: var(--ink-light); }
-
-        .way-body {
-            padding: 1rem 1.25rem;
-        }
-
-        .way-body ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .way-body li {
-            font-size: 0.82rem;
-            color: var(--ink-light);
-            padding: 0.4rem 0;
-            border-bottom: 1px solid var(--border);
             display: flex;
-            justify-content: space-between;
             align-items: baseline;
+            gap: 0.4rem;
         }
-
-        .way-body li:last-child { border-bottom: none; }
-
-        .way-body .trad { font-weight: 500; color: var(--ink); }
-        .way-body .names { font-size: 0.75rem; color: var(--ink-faint); }
-
-        .way-col.apo .way-body .trad { color: var(--dao); }
-
-        /* Ladder */
-        .ladder {
-            max-width: 650px;
-            margin: 1.5rem auto;
-            padding-left: 36px;
-            position: relative;
-        }
-
-        .ladder::before {
-            content: '';
-            position: absolute;
-            left: 12px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent 0%, var(--border) 10%, var(--dao) 90%, transparent 100%);
-        }
-
-        .ladder-step {
-            position: relative;
-            margin-bottom: 1.25rem;
-            padding-left: 1.25rem;
-        }
-
-        .ladder-step::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            background: var(--paper);
-        }
-
-        .ladder-step.final::before {
-            background: var(--dao);
-            border-color: var(--dao);
-        }
-
-        .ladder-step h4 {
-            font-size: 0.9rem;
-            color: var(--ink);
-            margin-bottom: 0.2rem;
-        }
-
-        .ladder-step h4 .chinese {
+        .ladder-card .lc-head .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--dao);
-            margin-right: 0.3rem;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
         }
-
-        .ladder-step p {
-            font-size: 0.82rem;
+        .ladder-card .lc-body {
+            padding: 0.75rem;
         }
-
-        .ladder-step .verdict {
-            font-size: 0.7rem;
+        .ladder-card .lc-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            font-style: italic;
+            margin-bottom: 0.4rem;
+        }
+        .ladder-card .lc-body .verdict {
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--ink-faint);
             font-weight: 600;
-            margin-top: 0.2rem;
         }
+        .ladder-card.final .lc-body .verdict { color: var(--dao); }
 
-        .ladder-step.final .verdict {
-            color: var(--dao);
+        /* Discussion list */
+        .disc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
-
-        /* Accent Box */
-        .accent-box {
-            background: var(--ink);
-            border-radius: 4px;
-            padding: 1.5rem 1.75rem;
-            margin: 1.5rem 0;
-            color: #fff;
-        }
-
-        .accent-box h4 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gold-light);
-            margin-bottom: 0.6rem;
-        }
-
-        .accent-box p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.9rem;
-        }
-
-        /* Discussion */
-        .disc-list {
-            list-style: none;
-            counter-reset: disc;
-        }
-
-        .disc-list li {
-            counter-increment: disc;
-            padding: 0.9rem 1rem 0.9rem 3rem;
+        .disc-card {
             background: #fff;
-            margin-bottom: 0.6rem;
-            border-radius: 4px;
-            position: relative;
-            font-size: 0.88rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .disc-card .dc-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+        .disc-card .dc-head .num {
+            color: var(--gold-light);
+        }
+        .disc-card .dc-body {
+            padding: 0.75rem;
+        }
+        .disc-card .dc-body p {
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.65;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
+        .disc-card .dc-body strong { color: var(--dao); }
 
-        .disc-list li::before {
-            content: counter(disc);
-            position: absolute;
-            left: 0.9rem;
-            top: 0.9rem;
-            width: 24px;
-            height: 24px;
-            background: var(--ink);
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.75rem;
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
         }
-
-        .disc-list li strong {
-            color: var(--dao);
-        }
-
-        /* Resources */
-        .resources-grid {
+        .sources-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
-
-        .res-card {
+        .source-card {
             background: #fff;
             border-radius: 4px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 0.75rem 1rem;
         }
-
-        .res-card h4 {
-            font-size: 0.6rem;
+        .source-card h4 {
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--ink-faint);
-            margin-bottom: 0.6rem;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
         }
-
-        .res-card a {
+        .source-card a {
             display: block;
-            color: var(--ink);
+            font-size: 0.75rem;
+            color: #333;
             text-decoration: none;
-            padding: 0.3rem 0;
-            font-size: 0.82rem;
-            border-bottom: 1px solid var(--border);
-            transition: color 0.2s ease;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
         }
-
-        .res-card a:last-child {
-            border-bottom: none;
-        }
-
-        .res-card a:hover {
-            color: var(--gold);
-        }
-
-        .res-card .desc {
-            font-size: 0.72rem;
-            color: var(--ink-faint);
-        }
+        .source-card a:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+        .source-card .desc { font-size: 0.65rem; color: var(--ink-faint); }
 
         /* Footer */
         footer {
@@ -554,40 +392,22 @@
             padding: 1.25rem 1.5rem;
             text-align: center;
         }
+        footer .foot-chinese { font-family: 'Noto Sans SC', sans-serif; font-size: 1rem; color: var(--gold-light); margin-bottom: 0.2rem; }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term { font-size: 0.6rem; font-weight: 600; color: var(--gold); letter-spacing: 0.08em; }
+        footer a { color: var(--gold-light); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        footer .back-link { font-size: 0.7rem; margin-bottom: 0.4rem; }
 
-        footer .foot-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--gold-light);
-            margin-bottom: 0.2rem;
-        }
-
-        footer .foot-title {
-            font-size: 0.7rem;
-            color: #aaa;
-            margin-bottom: 0.3rem;
-        }
-
-        footer .foot-term {
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--gold);
-            letter-spacing: 0.08em;
-        }
-
-        footer a {
-            color: var(--gold-light);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 2rem 1rem; }
-            .trad-grid { grid-template-columns: 1fr; }
-            .contrast-table th, .contrast-table td { padding: 0.5rem 0.6rem; font-size: 0.75rem; }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid.three-col { grid-template-columns: 1fr; }
+            .content-grid.four-col { grid-template-columns: 1fr 1fr; }
+            .two-col-compare { grid-template-columns: 1fr; }
+            .ladder-grid { grid-template-columns: 1fr 1fr; }
+            .disc-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
             .nav { gap: 1rem; }
         }
     </style>
@@ -595,6 +415,7 @@
 
 <body>
 
+    <!-- Page Header -->
     <header class="page-header">
         <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
@@ -616,312 +437,344 @@
     </nav>
 
     <!-- Opening -->
-    <div class="container">
-        <div class="opening-box">
-            <p>You pick up the Zhuangzi. It tells you there is no fixed right or wrong. It tells you to "just go along with things." A man dreamed he was a butterfly and couldn't tell the difference.</p>
-            <p>It sounds like freedom. It sounds easy. It sounds like permission to stop worrying.</p>
-            <p class="kicker">It is none of those things.</p>
-        </div>
-
-        <!-- Two Ways Chart -->
-        <div class="two-ways">
-            <div class="way-col apo">
-                <div class="way-head">
-                    <h3>Apophatic</h3>
-                    <div class="way-greek">apophasis: "to un-say"</div>
-                    <div class="way-def">Truth by negation</div>
-                </div>
-                <div class="way-body">
-                    <ul>
-                        <li><span class="trad">Christian <em>Via Negativa</em></span> <span class="names">Desert Fathers, Pseudo-Dionysius</span></li>
-                        <li><span class="trad">Madhyamaka Buddhism</span> <span class="names">Nagarjuna</span></li>
-                        <li><span class="trad">Daoism</span> <span class="names">Laozi, Zhuangzi</span></li>
-                        <li><span class="trad">Kabbalah</span> <span class="names">Ein Sof, Maimonides</span></li>
-                    </ul>
+    <section class="content-section">
+        <div class="section-label"><span class="chinese">引</span> OPENING</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head">The Setup</div>
+                <div class="card-body">
+                    <p>You pick up the Zhuangzi. It tells you there is no fixed right or wrong. It tells you to "just go along with things." A man dreamed he was a butterfly and couldn't tell the difference.</p>
+                    <p>It sounds like freedom. It sounds easy. It sounds like permission to stop worrying.</p>
+                    <p><strong style="color: var(--gold);">It is none of those things.</strong></p>
                 </div>
             </div>
-            <div class="way-col cata">
-                <div class="way-head">
-                    <h3>Cataphatic</h3>
-                    <div class="way-greek">kataphasis: "to affirm"</div>
-                    <div class="way-def">Truth by assertion</div>
-                </div>
-                <div class="way-body">
-                    <ul>
-                        <li><span class="trad">Scholastic Theology</span> <span class="names">Aquinas</span></li>
-                        <li><span class="trad">Confucianism</span> <span class="names">Kongzi, Mengzi</span></li>
-                        <li><span class="trad">Mohism</span> <span class="names">Mozi</span></li>
-                        <li><span class="trad">Systematic Philosophy</span> <span class="names">Aristotle, Hegel</span></li>
-                    </ul>
+            <div class="card">
+                <div class="card-head">Two Approaches to Truth</div>
+                <div class="card-body">
+                    <h4>Apophatic &mdash; "to un-say"</h4>
+                    <p><strong>Truth by negation.</strong> Christian <em>Via Negativa</em> (Desert Fathers, Pseudo-Dionysius) &middot; Madhyamaka Buddhism (Nagarjuna) &middot; Daoism (Laozi, Zhuangzi) &middot; Kabbalah (Ein Sof, Maimonides)</p>
+                    <h4>Cataphatic &mdash; "to affirm"</h4>
+                    <p><strong>Truth by assertion.</strong> Scholastic Theology (Aquinas) &middot; Confucianism (Kongzi, Mengzi) &middot; Mohism (Mozi) &middot; Systematic Philosophy (Aristotle, Hegel)</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- What Is Apophatic? -->
-    <section id="what">
-        <div class="container">
-            <div class="section-header">
-                <h2>A Word You Need</h2>
-                <div class="subtitle">What Is the Apophatic?</div>
+    <section id="what" class="content-section alt">
+        <div class="section-label">A WORD YOU NEED</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head">What Is the Apophatic?</div>
+                <div class="card-body">
+                    <p><em class="term">Apophatic</em> comes from the Greek <em>apophasis</em>: "to say away," "to un-say." It names a way of approaching the deepest truths by <strong>saying what they are not</strong> rather than what they are.</p>
+                    <p>The opposite is <em class="term">cataphatic</em> ("to say toward"): positive statement. "God is good." "The Dao is the origin of all things." These are cataphatic claims. They say what something <em>is</em>.</p>
+                </div>
             </div>
-
-            <p><em class="term">Apophatic</em> comes from the Greek <em>apophasis</em>: "to say away," "to un-say." It names a way of approaching the deepest truths by <strong>saying what they are not</strong> rather than what they are.</p>
-
-            <p>The opposite is <em class="term">cataphatic</em> ("to say toward"): positive statement. "God is good." "The Dao is the origin of all things." These are cataphatic claims. They say what something <em>is</em>.</p>
-
-            <p>The apophatic turn happens when a thinker concludes that the most important reality <strong>cannot be captured in positive statements</strong>. Not because we haven't found the right words yet, but because language itself, the act of defining and categorizing, distorts the thing it tries to describe. To say what it is would be to make it smaller than it is.</p>
-
-            <p>So you work by negation. You strip away. You say what the thing is <em>not</em>, and what remains, the silence after you've stopped talking, is closer to the truth than anything you could have said.</p>
-
-            <div class="quote-block">
-                <p>The Dao that can be spoken is not the enduring Dao.<br>
-                    The name that can be named is not the enduring name.</p>
-                <div class="src">Daodejing, Chapter 1</div>
+            <div class="card">
+                <div class="card-head">The Apophatic Turn</div>
+                <div class="card-body">
+                    <p>The apophatic turn happens when a thinker concludes that the most important reality <strong>cannot be captured in positive statements</strong>. Not because we haven't found the right words yet, but because language itself, the act of defining and categorizing, distorts the thing it tries to describe. To say what it is would be to make it smaller than it is.</p>
+                    <p>So you work by negation. You strip away. You say what the thing is <em>not</em>, and what remains, the silence after you've stopped talking, is closer to the truth than anything you could have said.</p>
+                </div>
             </div>
-
-            <p>If you've already read the Laozi, you've encountered this. The opening line of the Daodejing is one of the most famous apophatic statements in world literature. The Zhuangzi takes this impulse much further, and in a direction that is easy to misread.</p>
+            <div class="card">
+                <div class="card-head"><span class="chinese">道</span> The Daodejing Connection</div>
+                <div class="card-body">
+                    <blockquote class="dao-border">
+                        <p>The Dao that can be spoken is not the enduring Dao.<br>
+                            The name that can be named is not the enduring name.</p>
+                        <cite>Daodejing, Chapter 1</cite>
+                    </blockquote>
+                    <p>If you've already read the Laozi, you've encountered this. The opening line of the Daodejing is one of the most famous apophatic statements in world literature. The Zhuangzi takes this impulse much further, and in a direction that is easy to misread.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Across Traditions -->
-    <section id="traditions" class="full-width">
-        <div class="container">
-            <div class="section-header">
-                <h2>This Is Not Only Daoist</h2>
-                <div class="subtitle">The Apophatic Across Traditions</div>
+    <section id="traditions" class="content-section dark">
+        <div class="section-label">THIS IS NOT ONLY DAOIST</div>
+        <div class="content-grid three-col">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head">The Apophatic Across Traditions</div>
+                <div class="card-body">
+                    <p>The apophatic impulse shows up independently in many traditions. In every case, notice the pattern: <strong>the thing that cannot be said is treated as the most important thing, and getting to it requires discipline, not relaxation.</strong></p>
+                </div>
             </div>
-
-            <p>The apophatic impulse shows up independently in many traditions. In every case, notice the pattern: <strong>the thing that cannot be said is treated as the most important thing, and getting to it requires discipline, not relaxation.</strong></p>
-
-            <div class="trad-grid">
-                <div class="trad-card">
-                    <div class="trad-card-head">
-                        <h3>Christian <em>Via Negativa</em></h3>
-                        <div class="sub">Desert Fathers, Pseudo-Dionysius, 3rd-6th c. CE</div>
-                    </div>
-                    <div class="trad-card-body">
-                        <p>The <em>via negativa</em> ("negative way") holds that God cannot be grasped by the mind. Every concept, image, or name we apply to God falls short. Even calling God "good" or "powerful" limits the limitless. The only adequate response is <strong>silence</strong>.</p>
-                        <div class="tq">"The most godly knowledge of God is that which is known by unknowing." (Pseudo-Dionysius, 5th c.)</div>
-                        <p>The Desert Fathers practiced this as radical silence. Pseudo-Dionysius systematized it: God is beyond being, beyond goodness, beyond all categories. You approach the divine by stripping away every attribute until you enter what he called "the divine darkness."</p>
-                    </div>
+            <div class="card">
+                <div class="card-head">Christian <em>Via Negativa</em></div>
+                <div class="card-body">
+                    <h4>Desert Fathers, Pseudo-Dionysius, 3rd-6th c. CE</h4>
+                    <p>The <em>via negativa</em> ("negative way") holds that God cannot be grasped by the mind. Every concept, image, or name we apply to God falls short. Even calling God "good" or "powerful" limits the limitless. The only adequate response is <strong>silence</strong>.</p>
+                    <blockquote class="dao-border">
+                        "The most godly knowledge of God is that which is known by unknowing."
+                        <cite>Pseudo-Dionysius, 5th c.</cite>
+                    </blockquote>
+                    <p>The Desert Fathers practiced this as radical silence. Pseudo-Dionysius systematized it: God is beyond being, beyond goodness, beyond all categories. You approach the divine by stripping away every attribute until you enter what he called "the divine darkness."</p>
                 </div>
-
-                <div class="trad-card">
-                    <div class="trad-card-head">
-                        <h3>Madhyamaka Buddhism</h3>
-                        <div class="sub">Nagarjuna, 2nd c. CE</div>
-                    </div>
-                    <div class="trad-card-body">
-                        <p>All phenomena are <strong>empty</strong> (sunyata) of inherent existence. Every concept we use to grasp reality, including "emptiness" itself, must be negated.</p>
-                        <div class="tq">"Emptiness wrongly grasped is like picking up a poisonous snake by the wrong end." (Nagarjuna)</div>
-                        <p>If you turn emptiness into a position, saying "I believe everything is empty," you've missed it entirely. The negation must negate itself.</p>
-                    </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Madhyamaka Buddhism</div>
+                <div class="card-body">
+                    <h4>Nagarjuna, 2nd c. CE</h4>
+                    <p>All phenomena are <strong>empty</strong> (sunyata) of inherent existence. Every concept we use to grasp reality, including "emptiness" itself, must be negated.</p>
+                    <blockquote class="dao-border">
+                        "Emptiness wrongly grasped is like picking up a poisonous snake by the wrong end."
+                        <cite>Nagarjuna</cite>
+                    </blockquote>
+                    <p>If you turn emptiness into a position, saying "I believe everything is empty," you've missed it entirely. The negation must negate itself.</p>
                 </div>
-
-                <div class="trad-card">
-                    <div class="trad-card-head">
-                        <h3>Daoist Tradition</h3>
-                        <div class="sub">Laozi, Zhuangzi, 4th c. BCE</div>
-                    </div>
-                    <div class="trad-card-body">
-                        <p>The Dao cannot be named, defined, or grasped through deliberate effort. The sage acts through <strong>non-action</strong> (wu wei): not passivity, but action so aligned with the natural order that it leaves no trace.</p>
-                        <div class="tq">"The Way is obscured by small completions. Words are obscured by glory and show." (Zhuangzi, Ch. 2)</div>
-                        <p>Zhuangzi's version is unique: he uses humor, paradox, and literary absurdity as apophatic tools. The jokes aren't decoration. They're the method.</p>
-                    </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">道</span> Daoist Tradition</div>
+                <div class="card-body">
+                    <h4>Laozi, Zhuangzi, 4th c. BCE</h4>
+                    <p>The Dao cannot be named, defined, or grasped through deliberate effort. The sage acts through <strong>non-action</strong> (wu wei): not passivity, but action so aligned with the natural order that it leaves no trace.</p>
+                    <blockquote class="dao-border">
+                        "The Way is obscured by small completions. Words are obscured by glory and show."
+                        <cite>Zhuangzi, Ch. 2</cite>
+                    </blockquote>
+                    <p>Zhuangzi's version is unique: he uses humor, paradox, and literary absurdity as apophatic tools. The jokes aren't decoration. They're the method.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Zhuangzi's Method -->
-    <section id="zhuangzi">
-        <div class="container">
-            <div class="section-header">
-                <h2>Reading Today</h2>
-                <div class="subtitle"><span class="chinese">&#33674;&#23376;</span> Zhuangzi's Apophatic Method</div>
+    <section id="zhuangzi" class="content-section">
+        <div class="section-label"><span class="chinese">莊子</span> ZHUANGZI'S APOPHATIC METHOD</div>
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head"><span class="chinese">法</span> Reading Today</div>
+                <div class="card-body">
+                    <p>Zhuangzi doesn't just <em>argue</em> that language can't capture the Dao. He <em>performs</em> it. His entire literary strategy is apophatic:</p>
+                </div>
             </div>
-
-            <p>Zhuangzi doesn't just <em>argue</em> that language can't capture the Dao. He <em>performs</em> it. His entire literary strategy is apophatic:</p>
-
-            <p><strong>1. Stories that refuse to deliver a moral.</strong> The Kun/Peng fable opens Chapter 1 with cosmic grandeur, then the text immediately retells the same story from a different source, slightly differently. Which version is right? The question is the point.</p>
-
-            <p><strong>2. Self-undermining arguments.</strong> Chapter 2 argues that all distinctions between "right" and "wrong" are perspectival. But this argument is itself a distinction. Zhuangzi knows this: "If we're already one, can I say it?" The argument eats itself. On purpose.</p>
-
-            <p><strong>3. Humor as negation.</strong> The monkey trainer gives 3 in the morning and 4 at night; the monkeys are furious. He switches to 4 and 3; they're delighted. Nothing changed. You laugh, and in laughing you've already felt, before you could articulate it, that our distinctions might be equally empty.</p>
-
-            <p><strong>4. Reductio on rival positions.</strong> Confucians say X is right, Mohists say X is wrong. Zhuangzi doesn't pick a side: "if you want to right their wrongs and wrong their rights, it's better to throw them open to the light." Not neutrality. A refusal of the entire game.</p>
-
-            <div class="accent-box">
-                <h4>The Method Is the Message</h4>
-                <p>A cataphatic philosopher gives you a thesis and defends it. Zhuangzi gives you a fish that becomes a bird, a man who becomes a butterfly, a tree that wins by losing. None of these can be reduced to a propositional claim. That irreducibility is the point.</p>
+            <div class="card">
+                <div class="card-head">1. Stories Without Morals</div>
+                <div class="card-body">
+                    <p>The Kun/Peng fable opens Chapter 1 with cosmic grandeur, then the text immediately retells the same story from a different source, slightly differently. Which version is right? The question is the point.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">2. Self-Undermining Arguments</div>
+                <div class="card-body">
+                    <p>Chapter 2 argues that all distinctions between "right" and "wrong" are perspectival. But this argument is itself a distinction. Zhuangzi knows this: "If we're already one, can I say it?" The argument eats itself. On purpose.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">3. Humor as Negation</div>
+                <div class="card-body">
+                    <p>The monkey trainer gives 3 in the morning and 4 at night; the monkeys are furious. He switches to 4 and 3; they're delighted. Nothing changed. You laugh, and in laughing you've already felt, before you could articulate it, that our distinctions might be equally empty.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">4. Reductio on Rival Positions</div>
+                <div class="card-body">
+                    <p>Confucians say X is right, Mohists say X is wrong. Zhuangzi doesn't pick a side: "if you want to right their wrongs and wrong their rights, it's better to throw them open to the light." Not neutrality. A refusal of the entire game.</p>
+                </div>
+            </div>
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head" style="background: var(--ink);"><span class="dao-accent" style="color: var(--gold-light);">&#9670;</span> THE METHOD IS THE MESSAGE</div>
+                <div class="card-body" style="background: var(--ink); color: rgba(255,255,255,0.85);">
+                    <p style="color: rgba(255,255,255,0.85);">A cataphatic philosopher gives you a thesis and defends it. Zhuangzi gives you a fish that becomes a bird, a man who becomes a butterfly, a tree that wins by losing. None of these can be reduced to a propositional claim. That irreducibility is the point.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- The Trap -->
-    <section id="trap" class="full-width">
-        <div class="container">
-            <div class="section-header">
-                <h2>Read Carefully</h2>
-                <div class="subtitle">The Trap for Western Readers</div>
+    <section id="trap" class="content-section alt">
+        <div class="section-label">THE TRAP FOR WESTERN READERS</div>
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head">Read Carefully</div>
+                <div class="card-body">
+                    <p>Western students read the Zhuangzi and immediately think they recognize it:</p>
+                </div>
             </div>
-
-            <p>Western students read the Zhuangzi and immediately think they recognize it:</p>
-
-            <table class="contrast-table">
-                <thead>
-                    <tr>
-                        <th>The Label</th>
-                        <th>What Students Think</th>
-                        <th>What Zhuangzi Actually Does</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="label-cell">Relativism</td>
-                        <td class="miss">No right or wrong, so anything goes.</td>
-                        <td class="hit">There IS a Way. There ARE perfected people. But the Way cannot be reached through the activity of asserting right and wrong.</td>
-                    </tr>
-                    <tr>
-                        <td class="label-cell">Anarchism</td>
-                        <td class="miss">The individual should be free from social constraint.</td>
-                        <td class="hit">The self must be <em>dissolved</em>, not liberated. "Perfect people have no self." Freedom comes from having no one left to be free.</td>
-                    </tr>
-                    <tr>
-                        <td class="label-cell">Skepticism</td>
-                        <td class="miss">We can't know anything, so why bother?</td>
-                        <td class="hit">Rational argument is limited, but intuition, skill, and experience give real access to the Way. The cook's knife knows the ox.</td>
-                    </tr>
-                    <tr>
-                        <td class="label-cell">Postmodernism</td>
-                        <td class="miss">All meaning is constructed and unstable.</td>
-                        <td class="hit">Language is limited, but there is a reality beyond it. The Dao is real. The problem is our tools, not the world.</td>
-                    </tr>
-                    <tr>
-                        <td class="label-cell">"Chill Out"</td>
-                        <td class="miss">Stop worrying, go with the flow.</td>
-                        <td class="hit">"Going along with things" requires the total dissolution of ego, preference, and self-identity. Closer to monastic discipline than to relaxation.</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p>Every one of these misreadings turns Zhuangzi into a version of a familiar Western idea, usually one that flatters the reader. But Zhuangzi isn't telling you that your opinions are fine. He's telling you that <strong>having opinions, the very structure of opinionating, is the problem</strong>. The solution is not more comfortable than the problem. It is harder.</p>
+        </div>
+        <table class="contrast-table" style="margin-top: 0.6rem;">
+            <thead>
+                <tr>
+                    <th>The Label</th>
+                    <th>What Students Think</th>
+                    <th>What Zhuangzi Actually Does</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="label-cell">Relativism</td>
+                    <td class="miss">No right or wrong, so anything goes.</td>
+                    <td class="hit">There IS a Way. There ARE perfected people. But the Way cannot be reached through the activity of asserting right and wrong.</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Anarchism</td>
+                    <td class="miss">The individual should be free from social constraint.</td>
+                    <td class="hit">The self must be <em>dissolved</em>, not liberated. "Perfect people have no self." Freedom comes from having no one left to be free.</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Skepticism</td>
+                    <td class="miss">We can't know anything, so why bother?</td>
+                    <td class="hit">Rational argument is limited, but intuition, skill, and experience give real access to the Way. The cook's knife knows the ox.</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Postmodernism</td>
+                    <td class="miss">All meaning is constructed and unstable.</td>
+                    <td class="hit">Language is limited, but there is a reality beyond it. The Dao is real. The problem is our tools, not the world.</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">"Chill Out"</td>
+                    <td class="miss">Stop worrying, go with the flow.</td>
+                    <td class="hit">"Going along with things" requires the total dissolution of ego, preference, and self-identity. Closer to monastic discipline than to relaxation.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-body">
+                    <p>Every one of these misreadings turns Zhuangzi into a version of a familiar Western idea, usually one that flatters the reader. But Zhuangzi isn't telling you that your opinions are fine. He's telling you that <strong>having opinions, the very structure of opinionating, is the problem</strong>. The solution is not more comfortable than the problem. It is harder.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- What It Demands -->
-    <section id="demands">
-        <div class="container">
-            <div class="section-header">
-                <h2>The Hard Part</h2>
-                <div class="subtitle"><span class="chinese">&#28961;&#24049;</span> What the Text Actually Demands</div>
+    <section id="demands" class="content-section">
+        <div class="section-label"><span class="chinese">無己</span> WHAT THE TEXT ACTUALLY DEMANDS</div>
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head">The Hard Part</div>
+                <div class="card-body">
+                    <p>Look at the hierarchy in Chapter 1. It <em>is</em> a hierarchy, not a leveling. Zhuangzi ranks different ways of being and judges most of them insufficient:</p>
+                </div>
             </div>
-
-            <p>Look at the hierarchy in Chapter 1. It <em>is</em> a hierarchy, not a leveling. Zhuangzi ranks different ways of being and judges most of them insufficient:</p>
         </div>
-
-        <div class="container" style="padding-top: 0;">
-            <div class="ladder">
-                <div class="ladder-step">
-                    <h4>Petty Officials</h4>
+        <div class="ladder-grid" style="margin-top: 0.75rem;">
+            <div class="ladder-card">
+                <div class="lc-head">Petty Officials</div>
+                <div class="lc-body">
                     <p>"People who know how to do one job, handle a small town, or impress a ruler."</p>
                     <div class="verdict">Trapped in ego and worldly ambition</div>
                 </div>
-                <div class="ladder-step">
-                    <h4><span class="chinese">&#23435;&#23376;</span> Songzi</h4>
+            </div>
+            <div class="ladder-card">
+                <div class="lc-head"><span class="chinese">宋子</span> Songzi</div>
+                <div class="lc-body">
                     <p>"The whole world could praise him and he would not be encouraged."</p>
                     <div class="verdict">Impressive, but "he stops there"</div>
                 </div>
-                <div class="ladder-step">
-                    <h4><span class="chinese">&#21015;&#23376;</span> Liezi</h4>
+            </div>
+            <div class="ladder-card">
+                <div class="lc-head"><span class="chinese">列子</span> Liezi</div>
+                <div class="lc-body">
                     <p>"Liezi rides about on the wind. It's wonderful!"</p>
                     <div class="verdict">Transcends ordinary limits, but "he still relies on something"</div>
                 </div>
-                <div class="ladder-step final">
-                    <h4><span class="chinese">&#33267;&#20154;</span> The Perfected Person</h4>
+            </div>
+            <div class="ladder-card final">
+                <div class="lc-head"><span class="chinese">至人</span> The Perfected Person</div>
+                <div class="lc-body">
                     <p>"What would there be to rely on?"</p>
                     <div class="verdict">No self. No accomplishment. No name.</div>
                 </div>
             </div>
         </div>
-
-        <div class="container" style="padding-top: 0;">
-            <p>Each level is judged <em>not good enough</em>. Songzi is indifferent to praise and blame, yet he still draws a line between inner and outer. Liezi rides the wind, yet the wind is still something he depends on. The standard is <strong>total non-dependence</strong>.</p>
-
-            <p>The thesis statement: <em class="term">"Perfect people have no self (wu ji &#28961;&#24049;), spiritual people have no accomplishment (wu gong &#28961;&#21151;), sagely people have no name (wu ming &#28961;&#21517;)."</em></p>
-
-            <p>This is not "be yourself." This is <strong>ego annihilation</strong>. The word is <em class="term">wu</em> &#28961;, meaning "without," "non-," "nothingness." No self. No achievement. No reputation. Everything that makes you <em>you</em>, your preferences, your judgments, your identity, is what must be dissolved.</p>
-
-            <div class="accent-box">
-                <h4>The Paradox at the Heart</h4>
-                <p>The highest attainment is described by negation. Not by what the perfected person <em>has</em>, but by what they <em>lack</em>. No self. No accomplishment. No name. This is not "anything goes." It is the most demanding standard imaginable: a standard defined by what you must give up, not what you get to keep.</p>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head">The Standard</div>
+                <div class="card-body">
+                    <p>Each level is judged <em>not good enough</em>. Songzi is indifferent to praise and blame, yet he still draws a line between inner and outer. Liezi rides the wind, yet the wind is still something he depends on. The standard is <strong>total non-dependence</strong>.</p>
+                    <p>The thesis statement: <em class="term">"Perfect people have no self (wu ji &#28961;&#24049;), spiritual people have no accomplishment (wu gong &#28961;&#21151;), sagely people have no name (wu ming &#28961;&#21517;)."</em></p>
+                </div>
             </div>
-
-            <p>The "free and easy wandering" of Chapter 1? That's the name for what it looks like <em>from the outside</em> once you've done this impossible work. From the inside, there's no one left to experience it as freedom.</p>
+            <div class="card">
+                <div class="card-head"><span class="chinese">無</span> Ego Annihilation</div>
+                <div class="card-body">
+                    <p>This is not "be yourself." This is <strong>ego annihilation</strong>. The word is <em class="term">wu</em> &#28961;, meaning "without," "non-," "nothingness." No self. No achievement. No reputation. Everything that makes you <em>you</em>, your preferences, your judgments, your identity, is what must be dissolved.</p>
+                    <p>The "free and easy wandering" of Chapter 1? That's the name for what it looks like <em>from the outside</em> once you've done this impossible work. From the inside, there's no one left to experience it as freedom.</p>
+                </div>
+            </div>
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head" style="background: var(--ink);"><span style="color: var(--gold-light);">&#9670;</span> THE PARADOX AT THE HEART</div>
+                <div class="card-body" style="background: var(--ink); color: rgba(255,255,255,0.85);">
+                    <p style="color: rgba(255,255,255,0.85);">The highest attainment is described by negation. Not by what the perfected person <em>has</em>, but by what they <em>lack</em>. No self. No accomplishment. No name. This is not "anything goes." It is the most demanding standard imaginable: a standard defined by what you must give up, not what you get to keep.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Discussion -->
-    <section id="discussion" class="full-width">
-        <div class="container">
-            <div class="section-header">
-                <h2>For Discussion</h2>
-                <div class="subtitle"><span class="chinese">&#35342;&#35542;</span> Today's Questions</div>
+    <section id="discussion" class="content-section dark">
+        <div class="section-label"><span class="chinese">討論</span> TODAY'S QUESTIONS</div>
+        <div class="disc-grid">
+            <div class="disc-card">
+                <div class="dc-head"><span class="num">1</span> The Ladder</div>
+                <div class="dc-body">
+                    <p>What is Songzi still "relying on"? What about Liezi? Can you imagine what it would mean to rely on nothing at all?</p>
+                </div>
             </div>
-
-            <ol class="disc-list">
-                <li><strong>The Ladder:</strong> What is Songzi still "relying on"? What about Liezi? Can you imagine what it would mean to rely on nothing at all?</li>
-                <li><strong>Humor as Method:</strong> Could you state the monkey trainer's "lesson" in a sentence? If you could, would that sentence do the same work as the story?</li>
-                <li><strong>Self-Undermining:</strong> Chapter 2 argues that all positions are perspectival, but that's itself a position. Flaw or method?</li>
-                <li><strong>Against Mengzi:</strong> Zhuangzi says "the sprouts of benevolence and righteousness are all snarled and jumbled." Compare this to Mengzi's confidence in innate moral sprouts. Who is more persuasive?</li>
-                <li><strong>The Big One:</strong> If "perfect people have no self," then who is doing the wandering?</li>
-            </ol>
+            <div class="disc-card">
+                <div class="dc-head"><span class="num">2</span> Humor as Method</div>
+                <div class="dc-body">
+                    <p>Could you state the monkey trainer's "lesson" in a sentence? If you could, would that sentence do the same work as the story?</p>
+                </div>
+            </div>
+            <div class="disc-card">
+                <div class="dc-head"><span class="num">3</span> Self-Undermining</div>
+                <div class="dc-body">
+                    <p>Chapter 2 argues that all positions are perspectival, but that's itself a position. Flaw or method?</p>
+                </div>
+            </div>
+            <div class="disc-card">
+                <div class="dc-head"><span class="num">4</span> Against Mengzi</div>
+                <div class="dc-body">
+                    <p>Zhuangzi says "the sprouts of benevolence and righteousness are all snarled and jumbled." Compare this to Mengzi's confidence in innate moral sprouts. Who is more persuasive?</p>
+                </div>
+            </div>
+            <div class="disc-card">
+                <div class="dc-head"><span class="num">5</span> The Big One</div>
+                <div class="dc-body">
+                    <p>If "perfect people have no self," then who is doing the wandering?</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Further Reading -->
-    <section id="reading">
-        <div class="container">
-            <div class="section-header">
-                <h2>Further Reading</h2>
-                <div class="subtitle">Scholars on These Questions</div>
+    <section id="reading" class="sources">
+        <div class="section-label">FURTHER READING</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Zhuangzi Translations</h4>
+                <a href="https://hackettpublishing.com/zhuangzi-the-complete-writings" target="_blank" rel="noopener">Ziporyn, <em>Zhuangzi: Complete Writings</em> (2020) <span class="desc">Best annotated English translation</span></a>
+                <a href="https://www.amazon.com/Chuang-Tzu-Inner-Chapters/dp/0872205819" target="_blank" rel="noopener">Graham, <em>The Inner Chapters</em> (1981) <span class="desc">Landmark scholarly translation</span></a>
+                <a href="https://ctext.org/zhuangzi" target="_blank" rel="noopener">Full text at ctext.org <span class="desc">Chinese with English</span></a>
             </div>
-
-            <div class="resources-grid">
-                <div class="res-card">
-                    <h4>Zhuangzi Translations</h4>
-                    <a href="https://hackettpublishing.com/zhuangzi-the-complete-writings" target="_blank" rel="noopener">Ziporyn, <em>Zhuangzi: Complete Writings</em> (2020) <span class="desc">Best annotated English translation</span></a>
-                    <a href="https://www.amazon.com/Chuang-Tzu-Inner-Chapters/dp/0872205819" target="_blank" rel="noopener">Graham, <em>The Inner Chapters</em> (1981) <span class="desc">Landmark scholarly translation</span></a>
-                    <a href="https://ctext.org/zhuangzi" target="_blank" rel="noopener">Full text at ctext.org <span class="desc">Chinese with English</span></a>
-                </div>
-
-                <div class="res-card">
-                    <h4>Wu Wei &amp; Cultivation</h4>
-                    <a href="https://www.amazon.com/Effortless-Action-Conceptual-Metaphor-Spiritual/dp/0195314875" target="_blank" rel="noopener">Slingerland, <em>Effortless Action</em> (2003) <span class="desc">The paradox of wu wei</span></a>
-                    <a href="https://www.amazon.com/Ambivalence-Creation-Concerning-Innovation-Artifice/dp/0804736235" target="_blank" rel="noopener">Puett, <em>The Ambivalence of Creation</em> (2001) <span class="desc">Self-cultivation in Warring States thought</span></a>
-                </div>
-
-                <div class="res-card">
-                    <h4>Apophatic Traditions</h4>
-                    <a href="https://www.cambridge.org/core/books/darkness-of-god/42ED3E86F1B94AC5DABFAEC727BEE85C" target="_blank" rel="noopener">Turner, <em>The Darkness of God</em> (1995) <span class="desc">Clearest intro to apophatic theology</span></a>
-                    <a href="https://www.amazon.com/Fundamental-Wisdom-Middle-Way-M%C5%ABlamadhyamakak%C4%81rik%C4%81/dp/0195093364" target="_blank" rel="noopener">Garfield, <em>Fundamental Wisdom of the Middle Way</em> (1995) <span class="desc">Nagarjuna translated with commentary</span></a>
-                </div>
-
-                <div class="res-card">
-                    <h4>Course Materials</h4>
-                    <a href="zhuangzi.html">Zhuangzi Study Guide</a>
-                    <a href="laozi.html">Laozi Study Guide</a>
-                    <a href="mengzi.html">Mengzi Study Guide</a>
-                    <a href="../index.html">Course Portal</a>
-                </div>
+            <div class="source-card">
+                <h4>Wu Wei &amp; Cultivation</h4>
+                <a href="https://www.amazon.com/Effortless-Action-Conceptual-Metaphor-Spiritual/dp/0195314875" target="_blank" rel="noopener">Slingerland, <em>Effortless Action</em> (2003) <span class="desc">The paradox of wu wei</span></a>
+                <a href="https://www.amazon.com/Ambivalence-Creation-Concerning-Innovation-Artifice/dp/0804736235" target="_blank" rel="noopener">Puett, <em>The Ambivalence of Creation</em> (2001) <span class="desc">Self-cultivation in Warring States thought</span></a>
+            </div>
+            <div class="source-card">
+                <h4>Apophatic Traditions</h4>
+                <a href="https://www.cambridge.org/core/books/darkness-of-god/42ED3E86F1B94AC5DABFAEC727BEE85C" target="_blank" rel="noopener">Turner, <em>The Darkness of God</em> (1995) <span class="desc">Clearest intro to apophatic theology</span></a>
+                <a href="https://www.amazon.com/Fundamental-Wisdom-Middle-Way-M%C5%ABlamadhyamakak%C4%81rik%C4%81/dp/0195093364" target="_blank" rel="noopener">Garfield, <em>Fundamental Wisdom of the Middle Way</em> (1995) <span class="desc">Nagarjuna translated with commentary</span></a>
+            </div>
+            <div class="source-card">
+                <h4>Course Materials</h4>
+                <a href="zhuangzi.html">Zhuangzi Study Guide</a>
+                <a href="laozi.html">Laozi Study Guide</a>
+                <a href="mengzi.html">Mengzi Study Guide</a>
+                <a href="../index.html">Course Portal</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p style="margin-bottom: 8px;"><a href="../index.html">&larr; Course Portal</a></p>
+        <div class="back-link"><a href="../index.html">&larr; Course Portal</a></div>
         <div class="foot-chinese">中國文學與思想</div>
         <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
         <div class="foot-term">WINTER 2026</div>
