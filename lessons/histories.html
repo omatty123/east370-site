@@ -17,11 +17,7 @@
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
-            --vermillion: #c73e3a;
             --teal: #2d5a5a;
-            --section-1: #8b0000;
-            --section-2: #1a4a1a;
-            --section-3: #1a1a4a;
         }
 
         * {
@@ -38,8 +34,7 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 16px;
+            line-height: 1.6;
         }
 
         /* Page Header */
@@ -59,18 +54,17 @@
         .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
         .page-title .meta { font-size: 0.7rem; color: #888; }
 
-        /* Navigation */
+        /* Nav */
         .nav {
-            position: sticky;
-            top: 0;
             background: var(--ink);
-            z-index: 1000;
             padding: 0.6rem 1.5rem;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav a {
@@ -85,185 +79,204 @@
             color: var(--gold-light);
         }
 
-        .nav a.portal-link {
-            background: var(--gold);
-            color: #fff;
-            padding: 0.3rem 0.6rem;
-            border-radius: 2px;
-        }
-
-        .nav a.portal-link:hover {
-            background: var(--gold-light);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        /* Overview Section */
-        .overview {
-            background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
-            padding: 2.5rem 1.5rem;
-        }
-
-        .overview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .overview-card {
-            background: #fff;
-            border-radius: 4px;
-            padding: 1.25rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--gold);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .overview-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            border-left-width: 6px;
-        }
-
-        .overview-card h3 {
-            font-size: 0.65rem;
-            text-transform: uppercase;
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
             letter-spacing: 0.08em;
-            color: var(--ink-faint);
-            margin-bottom: 0.3rem;
-        }
-
-        .overview-card .chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            color: var(--ink);
-            margin-bottom: 0.15rem;
-        }
-
-        .overview-card .pinyin {
-            font-style: italic;
-            color: var(--ink-light);
+            text-transform: uppercase;
             margin-bottom: 0.6rem;
-            font-size: 0.85rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
 
-        .overview-card p {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            color: var(--ink-light);
-        }
-
-        .overview-card .period {
-            font-size: 0.75rem;
-            color: var(--ink-faint);
-            padding-top: 0.6rem;
-            border-top: 1px solid #eee;
-            margin-top: 0.6rem;
-        }
-
-        /* Section Headers */
-        .section-header {
-            max-width: 900px;
-            margin: 2rem auto 0;
-            padding: 1.5rem 1.5rem 0.5rem;
-            border-top: 1px solid #ddd;
-        }
-
-        .section-number {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--ink-faint);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--ink);
-            letter-spacing: 0.08em;
-            margin-bottom: 0.3rem;
-        }
-
-        .section-header .chinese-title {
+        .section-label .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            color: var(--ink-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header .source {
-            font-style: italic;
-            color: var(--ink-faint);
-            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 400;
         }
 
         /* Content Sections */
         .content-section {
-            padding: 1.5rem 0;
+            padding: 1rem 1.5rem 1.5rem;
         }
 
-        .content-section h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
+        .content-section.alt {
+            background: var(--paper-dark);
+        }
+
+        .content-section.white {
+            background: #fff;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .alt .card {
+            background: #fff;
+        }
+
+        .white .card {
+            background: var(--paper);
+        }
+
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 0.75rem;
+        }
+
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .card-body h4 {
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--section-1);
-            margin-bottom: 1rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--section-1);
-            display: inline-block;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
         }
 
-        .content-section.green h3 {
-            color: var(--section-2);
-            border-color: var(--section-2);
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Overview cards (3-col) */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
 
-        .content-section.blue h3 {
-            color: var(--section-3);
-            border-color: var(--section-3);
+        .overview-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .overview-card .ov-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .overview-card .ov-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .overview-card .ov-body {
+            padding: 0.75rem;
+        }
+
+        .overview-card .ov-body .pinyin {
+            font-style: italic;
+            color: var(--ink-faint);
+            font-size: 0.7rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .overview-card .ov-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.4rem;
+        }
+
+        .overview-card .ov-body .period {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            padding-top: 0.4rem;
+            border-top: 1px solid var(--paper-dark);
+            margin-top: 0.4rem;
         }
 
         /* Tables */
         .terms-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0 1.5rem;
-            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            font-size: 0.8rem;
         }
 
         .terms-table th {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
             color: #fff;
             text-align: left;
-            padding: 0.6rem 0.75rem;
+            padding: 0.5rem 0.6rem;
             background: var(--ink);
         }
 
         .terms-table td {
-            padding: 12px 14px;
+            padding: 0.4rem 0.6rem;
             border-bottom: 1px solid #eee;
             vertical-align: top;
             line-height: 1.5;
+            font-size: 0.8rem;
         }
 
         .terms-table .chinese-cell {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .terms-table .pinyin-cell {
@@ -273,257 +286,35 @@
 
         .terms-table tr:hover {
             background: rgba(184, 134, 11, 0.06);
-            transition: background 0.2s ease;
         }
 
-        /* Synopsis */
-        .synopsis {
-            background: #fff;
-            border-radius: 4px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            position: relative;
-        }
-
-        .synopsis::before {
-            content: '"';
-            font-family: Georgia, serif;
-            font-size: 4rem;
-            color: var(--paper-dark);
-            position: absolute;
-            top: 0;
-            left: 0.5rem;
-            line-height: 1;
-        }
-
-        .synopsis-part {
-            margin-bottom: 1rem;
-            padding-left: 0.75rem;
-            border-left: 2px solid var(--paper-dark);
-        }
-
-        .synopsis-part:last-child {
-            margin-bottom: 0;
-        }
-
-        .synopsis-part strong {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gold);
-            margin-bottom: 0.3rem;
-        }
-
-        .synopsis-part p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-
-        /* Themes Grid */
-        .themes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .theme-card {
-            background: #fff;
-            padding: 1rem;
-            border-radius: 4px;
-            border: 1px solid #e5e5e5;
-            border-left: 3px solid var(--gold);
-        }
-
-        .theme-card .number {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--paper-dark);
-            float: left;
-            margin-right: 0.75rem;
-            line-height: 1;
-        }
-
-        .theme-card h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.3rem;
-        }
-
-        .theme-card p {
-            font-size: 0.8rem;
-            color: var(--ink-light);
-            line-height: 1.5;
-        }
-
-        /* Idiom Box - Left-aligned, elegant */
-        .idiom-box {
-            background: #fff;
-            padding: 1.5rem 1.5rem 1.5rem 2rem;
-            border-radius: 6px;
-            margin: 1.5rem 0;
-            border-left: 4px solid var(--gold);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-
-        .idiom-box .idiom-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.2rem;
-            color: var(--gold);
-            margin-bottom: 0.3rem;
-        }
-
-        .idiom-box .idiom-pinyin {
-            font-style: italic;
-            color: var(--ink-faint);
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .idiom-box .idiom-meaning {
-            font-size: 1rem;
-            color: var(--ink);
-            margin-bottom: 0.75rem;
-            font-style: italic;
-        }
-
-        .idiom-box .idiom-note {
-            font-size: 0.8rem;
-            color: var(--ink-light);
-            max-width: 450px;
-        }
-
-        /* Quote Block */
-        .quote-block {
-            background: var(--paper-dark);
-            padding: 1rem 1.25rem;
-            margin: 1rem 0;
-            border-left: 3px solid var(--gold);
-            font-style: italic;
-            font-size: 0.9rem;
-        }
-
-        .quote-block cite {
-            display: block;
-            margin-top: 0.5rem;
-            font-style: normal;
-            font-size: 0.75rem;
-            color: var(--ink-faint);
-        }
-
-        /* Historical Note */
-        .historical-note {
-            background: linear-gradient(135deg, var(--teal) 0%, #3d7a7a 100%);
-            color: #fff;
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin: 1.5rem 0;
-        }
-
-        .historical-note h4 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.75rem;
-        }
-
-        .historical-note p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-
-        /* Persuasion Sections */
-        .persuasion-section {
-            background: #fff;
-            border-radius: 4px;
-            margin: 1.5rem 0;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .persuasion-header {
-            background: linear-gradient(90deg, var(--section-3) 0%, #2a2a5a 100%);
-            color: #fff;
-            padding: 1rem 1.25rem;
-        }
-
-        .persuasion-header h4 {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 0.15rem;
-        }
-
-        .persuasion-header h3 {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #fff;
-        }
-
-        .persuasion-body {
-            padding: 1.25rem;
-        }
-
-        .persuasion-body h4 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--section-3);
-            margin: 1.25rem 0 0.6rem;
-        }
-
-        .persuasion-body p {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-        }
-
-        .persuasion-body ul {
-            margin-left: 1.25rem;
-            font-size: 0.85rem;
-        }
-
-        .persuasion-body ul li {
-            margin-bottom: 0.3rem;
-        }
-
-        /* Comparison Section */
-        .comparison-section {
-            background: var(--paper-dark);
-            padding: 2rem 1.5rem;
-        }
-
+        /* Comparison Table */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             border-radius: 4px;
             overflow: hidden;
-            max-width: 900px;
-            margin: 1rem auto 0;
+            margin-top: 0.6rem;
         }
 
         .comparison-table th {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             background: var(--ink);
             color: #fff;
-            padding: 0.6rem 0.5rem;
+            padding: 0.5rem 0.5rem;
             text-align: left;
         }
 
         .comparison-table td {
-            padding: 0.6rem 0.5rem;
+            padding: 0.5rem 0.5rem;
             border-bottom: 1px solid #eee;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             vertical-align: top;
+            color: var(--ink-light);
         }
 
         .comparison-table tr:last-child td {
@@ -534,109 +325,125 @@
             background: rgba(184, 134, 11, 0.03);
         }
 
-        /* Questions Section */
-        .questions-section {
-            padding: 2rem 1.5rem;
-            background: #fff;
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
         }
 
-        .questions-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .questions-container h2 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
             color: var(--ink-faint);
-            text-align: center;
-            margin-bottom: 1.5rem;
         }
 
-        .question-item {
-            padding: 0.875rem 1rem 0.875rem 3rem;
+        /* Idiom highlight */
+        .idiom-inline {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .idiom-inline .idiom-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+        }
+
+        .idiom-inline .idiom-py {
+            font-style: italic;
+            color: var(--ink-faint);
+            font-size: 0.75rem;
+        }
+
+        .idiom-inline .idiom-en {
+            font-size: 0.8rem;
+            color: var(--ink);
+            font-style: italic;
+            margin: 0.2rem 0;
+        }
+
+        .idiom-inline .idiom-note {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .source-card a {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .source-card a:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Discussion questions */
+        .question-list {
+            list-style: none;
+            counter-reset: questions;
+            margin-top: 0.6rem;
+        }
+
+        .question-list li {
+            counter-increment: questions;
+            padding: 0.5rem 0 0.5rem 2rem;
             border-bottom: 1px solid #eee;
             position: relative;
-            counter-increment: questions;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.5;
         }
 
-        .question-item::before {
+        .question-list li::before {
             content: counter(questions);
             position: absolute;
-            left: 1rem;
-            top: 0.875rem;
-            font-size: 1.25rem;
+            left: 0.5rem;
+            top: 0.5rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: var(--paper-dark);
         }
 
-        .question-item:last-child {
+        .question-list li:last-child {
             border-bottom: none;
-        }
-
-        .question-item p {
-            font-size: 0.9rem;
-            color: var(--ink);
-            line-height: 1.5;
-        }
-
-        .questions-list {
-            list-style: none;
-            counter-reset: questions;
-        }
-
-        /* Resources */
-        .resources-section {
-            background: var(--ink);
-            color: #fff;
-            padding: 2rem 1.5rem;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .resource-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .resource-card h4 {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gold);
-            margin-bottom: 0.6rem;
-        }
-
-        .resource-card a {
-            display: block;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 0.8rem;
-            padding: 0.35rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: color 0.2s ease;
-        }
-
-        .resource-card a:last-child {
-            border-bottom: none;
-        }
-
-        .resource-card a:hover {
-            color: var(--gold-light);
-        }
-
-        .resource-card a::before {
-            content: '-> ';
-            color: var(--gold);
         }
 
         /* Footer */
@@ -667,24 +474,19 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .nav {
-                gap: 1rem;
-            }
-
-            .nav a {
-                font-size: 0.65rem;
-            }
-
-            .container {
-                padding: 1.5rem 1rem;
-            }
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid.three-col { grid-template-columns: 1fr; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Page Header -->
     <header class="page-header">
         <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
@@ -694,9 +496,9 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav class="nav">
-        <a href="../index.html" class="portal-link">Course Portal</a>
+        <a href="../index.html">Course Portal</a>
         <a href="#overview">Overview</a>
         <a href="#text-1">Zuo Zhuan</a>
         <a href="#text-2">Guoyu</a>
@@ -705,383 +507,287 @@
         <a href="#questions">Discussion</a>
     </nav>
 
-    <!-- Overview Section -->
-    <section class="overview" id="overview">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <h2
-                style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--ink-faint); margin-bottom: 0.3rem;">
-                Collection Overview</h2>
-            <p style="font-size: 1.4rem; font-weight: 300;">Three texts that shaped the Chinese historical tradition</p>
-        </div>
-
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">總覽</span> Collection Overview</div>
         <div class="overview-grid">
             <div class="overview-card">
-                <h3>Zuo Commentary</h3>
-                <div class="chinese">左傳</div>
-                <div class="pinyin">Zuo zhuan</div>
-                <p>Narrative history arranged as commentary on the <em>Spring and Autumn Annals</em>. The richest source
-                    of idioms in classical Chinese.</p>
-                <div class="period">Covers 722-468 BCE</div>
+                <div class="ov-head"><span class="chinese">左傳</span> Zuo Commentary</div>
+                <div class="ov-body">
+                    <div class="pinyin">Zuo zhuan</div>
+                    <p>Narrative history arranged as commentary on the <em>Spring and Autumn Annals</em>. The richest source of idioms in classical Chinese.</p>
+                    <div class="period">Covers 722-468 BCE</div>
+                </div>
             </div>
-
             <div class="overview-card">
-                <h3>Conversations from the States</h3>
-                <div class="chinese">國語</div>
-                <div class="pinyin">Guo yu</div>
-                <p>Speeches and dialogues from eight states, organized geographically. Sometimes called the "outer
-                    commentary" to the Spring and Autumn Annals.</p>
-                <div class="period">Covers ~1000-453 BCE</div>
+                <div class="ov-head"><span class="chinese">國語</span> Conversations from the States</div>
+                <div class="ov-body">
+                    <div class="pinyin">Guo yu</div>
+                    <p>Speeches and dialogues from eight states, organized geographically. Sometimes called the "outer commentary" to the Spring and Autumn Annals.</p>
+                    <div class="period">Covers ~1000-453 BCE</div>
+                </div>
             </div>
-
             <div class="overview-card">
-                <h3>Intrigues of the Warring States</h3>
-                <div class="chinese">戰國策</div>
-                <div class="pinyin">Zhanguo ce</div>
-                <p>Rhetorical set-pieces showcasing persuasion, cunning, and political manipulation. Less "history" than
-                    a handbook of statecraft.</p>
-                <div class="period">Covers ~490-221 BCE</div>
+                <div class="ov-head"><span class="chinese">戰國策</span> Intrigues of the Warring States</div>
+                <div class="ov-body">
+                    <div class="pinyin">Zhanguo ce</div>
+                    <p>Rhetorical set-pieces showcasing persuasion, cunning, and political manipulation. Less "history" than a handbook of statecraft.</p>
+                    <div class="period">Covers ~490-221 BCE</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Text 1: Zuo Commentary -->
-    <div class="section-header section-1" id="text-1">
-        <div class="section-number">Reading One</div>
-        <div class="chinese-title">晉景公之死</div>
-        <h2>The Death of Duke Jing of Jin</h2>
-        <div class="source">from the Zuo Commentary (左傳) - Translated by Burton Watson</div>
-    </div>
-
-    <div class="container">
-        <section class="content-section">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">晉景公</td>
-                        <td class="pinyin-cell">Jin Jing Gong</td>
-                        <td>Ruler of Jin, r. 599-581 BCE</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">巫</td>
-                        <td class="pinyin-cell">wu</td>
-                        <td>Shaman / diviner</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">膏肓</td>
-                        <td class="pinyin-cell">gao huang</td>
-                        <td>Region between heart and diaphragm (medically inaccessible)</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">病入膏肓</td>
-                        <td class="pinyin-cell">bing ru gao huang</td>
-                        <td>Idiom: "disease has entered the vitals" = beyond cure</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="content-section">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-part">
-                    <strong>The First Dream</strong>
-                    <p>Duke Jing has a prophetic nightmare: a vengeful ogre with disheveled hair - the spirit of someone
-                        the duke had killed - breaks through the palace gates, demanding retribution promised by Heaven.
-                    </p>
-                </div>
-                <div class="synopsis-part">
-                    <strong>The Prophecy</strong>
-                    <p>A sorcerer from Mulberry Field describes the dream without being told, then delivers his verdict:
-                        "You will not live to eat the new grain."</p>
-                </div>
-                <div class="synopsis-part">
-                    <strong>The Second Dream</strong>
-                    <p>The duke falls gravely ill. Before the physician Huan arrives from Qin, the duke dreams his
-                        illness appears as two little boys who plan to hide "above the diaphragm and below the heart"
-                        where medicine cannot reach.</p>
-                </div>
-                <div class="synopsis-part">
-                    <strong>The Ironic Death</strong>
-                    <p>When the new grain arrives, the duke summons the sorcerer, shows him the wheat as proof his
-                        prophecy failed, and has him executed. The duke then begins to eat - his stomach swells, he
-                        rushes to the privy, falls into the pit, and dies.</p>
+    <section class="content-section alt" id="text-1">
+        <div class="section-label"><span class="chinese">左傳</span> Reading One &mdash; The Death of Duke Jing of Jin</div>
+        <p style="font-size: 0.7rem; color: var(--ink-faint); font-style: italic; margin-bottom: 0.6rem;">from the Zuo Commentary (左傳) &mdash; Translated by Burton Watson</p>
+        <div class="content-grid">
+            <!-- Key Terms -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">詞</span> Key Terms</div>
+                <div class="card-body" style="padding: 0;">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">晉景公</td>
+                                <td class="pinyin-cell">Jin Jing Gong</td>
+                                <td>Ruler of Jin, r. 599-581 BCE</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">巫</td>
+                                <td class="pinyin-cell">wu</td>
+                                <td>Shaman / diviner</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">膏肓</td>
+                                <td class="pinyin-cell">gao huang</td>
+                                <td>Region between heart and diaphragm (medically inaccessible)</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">病入膏肓</td>
+                                <td class="pinyin-cell">bing ru gao huang</td>
+                                <td>Idiom: "disease has entered the vitals" = beyond cure</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
 
-        <div class="idiom-box">
-            <div class="idiom-chinese">病入膏肓</div>
-            <div class="idiom-pinyin">bing ru gao huang</div>
-            <div class="idiom-meaning">"The disease has entered the vitals"</div>
-            <div class="idiom-note">This story is the origin of this famous Chinese idiom, meaning "beyond cure" or "a
-                hopeless situation."</div>
-        </div>
-
-        <section class="content-section">
-            <h3>Major Themes</h3>
-            <div class="themes-grid">
-                <div class="theme-card">
-                    <span class="number">1</span>
+            <!-- Themes -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">題</span> Major Themes</div>
+                <div class="card-body">
                     <h4>Fate vs. Human Agency</h4>
                     <p>The prophecy is fulfilled precisely <em>through</em> attempts to defy it.</p>
-                </div>
-                <div class="theme-card">
-                    <span class="number">2</span>
                     <h4>Ironic Justice</h4>
-                    <p>The duke dies exactly as predicted - before eating the new grain - but not in any way he could
-                        have anticipated.</p>
-                </div>
-                <div class="theme-card">
-                    <span class="number">3</span>
+                    <p>The duke dies exactly as predicted - before eating the new grain - but not in any way he could have anticipated.</p>
                     <h4>Dreams as Omens</h4>
-                    <p>Three dreams structure the narrative: the vengeful ogre, the cunning illness-boys, and the
-                        servant's ascent to heaven.</p>
+                    <p>Three dreams structure the narrative: the vengeful ogre, the cunning illness-boys, and the servant's ascent to heaven.</p>
                 </div>
             </div>
-        </section>
-    </div>
+
+            <!-- Synopsis -->
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head"><span class="chinese">概</span> Synopsis</div>
+                <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+                    <div>
+                        <h4>The First Dream</h4>
+                        <p>Duke Jing has a prophetic nightmare: a vengeful ogre with disheveled hair - the spirit of someone the duke had killed - breaks through the palace gates, demanding retribution promised by Heaven.</p>
+                    </div>
+                    <div>
+                        <h4>The Prophecy</h4>
+                        <p>A sorcerer from Mulberry Field describes the dream without being told, then delivers his verdict: "You will not live to eat the new grain."</p>
+                    </div>
+                    <div>
+                        <h4>The Second Dream</h4>
+                        <p>The duke falls gravely ill. Before the physician Huan arrives from Qin, the duke dreams his illness appears as two little boys who plan to hide "above the diaphragm and below the heart" where medicine cannot reach.</p>
+                    </div>
+                    <div>
+                        <h4>The Ironic Death</h4>
+                        <p>When the new grain arrives, the duke summons the sorcerer, shows him the wheat as proof his prophecy failed, and has him executed. The duke then begins to eat - his stomach swells, he rushes to the privy, falls into the pit, and dies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Idiom -->
+        <div class="idiom-inline" style="margin-top: 0.75rem;">
+            <div class="idiom-ch">病入膏肓</div>
+            <div class="idiom-py">bing ru gao huang</div>
+            <div class="idiom-en">"The disease has entered the vitals"</div>
+            <div class="idiom-note">This story is the origin of this famous Chinese idiom, meaning "beyond cure" or "a hopeless situation."</div>
+        </div>
+    </section>
 
     <!-- Text 2: Guoyu -->
-    <div class="section-header section-2" id="text-2">
-        <div class="section-number">Reading Two</div>
-        <div class="chinese-title">申生之難</div>
-        <h2>The Downfall of Prince Shensheng</h2>
-        <div class="source">from the Conversations from the States (國語) - Translated by Burton Watson</div>
-    </div>
-
-    <div class="container">
-        <section class="content-section green">
-            <h3>Key Terms</h3>
-            <table class="terms-table">
-                <thead>
-                    <tr>
-                        <th>Chinese</th>
-                        <th>Pinyin</th>
-                        <th>Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="chinese-cell">申生</td>
-                        <td class="pinyin-cell">Shen Sheng</td>
-                        <td>Crown prince of Jin, d. 655 BCE</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">驪姬</td>
-                        <td class="pinyin-cell">Li Ji</td>
-                        <td>Concubine from the Rong tribes; the schemer</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">孝</td>
-                        <td class="pinyin-cell">xiao</td>
-                        <td>Filial piety; the virtue that paralyzes Shensheng</td>
-                    </tr>
-                    <tr>
-                        <td class="chinese-cell">優</td>
-                        <td class="pinyin-cell">you</td>
-                        <td>Court entertainer; moves between factions</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="content-section green">
-            <h3>Synopsis</h3>
-            <div class="synopsis">
-                <div class="synopsis-part">
-                    <strong>Part 1: The Omen</strong>
-                    <p>Duke Xian divines whether to attack the Li Rong barbarians. The historian predicts: "Victory, but
-                        bad luck." The duke attacks anyway, wins, and brings back Lady Li as a captive-turned-consort.
-                    </p>
-                </div>
-                <div class="synopsis-part">
-                    <strong>Part 2: The Ministers' Debate</strong>
-                    <p>Lady Li bears a son. The duke considers replacing Crown Prince Shensheng. Three ministers
-                        respond: blind obedience, principled resistance, and strategic silence.</p>
-                </div>
-                <div class="synopsis-part">
-                    <strong>Part 3: The Poison Plot</strong>
-                    <p>Lady Li orders Shensheng to sacrifice to his dead mother and bring the offerings to the duke.
-                        While the duke is hunting, she poisons the food. When tested, the wine makes the ground boil;
-                        the meat kills a dog.</p>
-                </div>
-                <div class="synopsis-part">
-                    <strong>Part 4: The Suicide</strong>
-                    <p>Advisors urge Shensheng to flee. He refuses on grounds of filial piety: if he flees, blame falls
-                        on his father. "I cannot sacrifice my father to curry favor with others." Shensheng hangs
-                        himself in the ancestral temple.</p>
+    <section class="content-section" id="text-2">
+        <div class="section-label"><span class="chinese">國語</span> Reading Two &mdash; The Downfall of Prince Shensheng</div>
+        <p style="font-size: 0.7rem; color: var(--ink-faint); font-style: italic; margin-bottom: 0.6rem;">from the Conversations from the States (國語) &mdash; Translated by Burton Watson</p>
+        <div class="content-grid">
+            <!-- Key Terms -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">詞</span> Key Terms</div>
+                <div class="card-body" style="padding: 0;">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">申生</td>
+                                <td class="pinyin-cell">Shen Sheng</td>
+                                <td>Crown prince of Jin, d. 655 BCE</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">驪姬</td>
+                                <td class="pinyin-cell">Li Ji</td>
+                                <td>Concubine from the Rong tribes; the schemer</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">孝</td>
+                                <td class="pinyin-cell">xiao</td>
+                                <td>Filial piety; the virtue that paralyzes Shensheng</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">優</td>
+                                <td class="pinyin-cell">you</td>
+                                <td>Court entertainer; moves between factions</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
 
-        <div class="historical-note">
-            <h4>Historical Aftermath</h4>
-            <p>Li Ji's machinations - the <strong>Li Ji zhi luan</strong> (驪姬之亂) - destabilized Jin for decades.
-                Eventually, Shensheng's brother <strong>Chong'er</strong> returned from nineteen years of exile to
-                become the famous <strong>Duke Wen of Jin</strong>, one of the Five Hegemons.</p>
-        </div>
-
-        <section class="content-section green">
-            <h3>Major Themes</h3>
-            <div class="themes-grid">
-                <div class="theme-card">
-                    <span class="number">1</span>
+            <!-- Themes -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">題</span> Major Themes</div>
+                <div class="card-body">
                     <h4>Filial Piety as Tragic Flaw</h4>
-                    <p>Shensheng's virtue (孝 xiao) paralyzes him. He chooses death over exposing his father's
-                        manipulation.</p>
-                </div>
-                <div class="theme-card">
-                    <span class="number">2</span>
+                    <p>Shensheng's virtue (孝 xiao) paralyzes him. He chooses death over exposing his father's manipulation.</p>
                     <h4>The Femme Fatale Trope</h4>
                     <p>Li Ji is the archetypal "wicked consort" who destroys a state through seduction and cunning.</p>
-                </div>
-                <div class="theme-card">
-                    <span class="number">3</span>
                     <h4>Political Loyalty Dilemmas</h4>
-                    <p>The three ministers represent three models: blind obedience, principled resistance, and strategic
-                        silence.</p>
+                    <p>The three ministers represent three models: blind obedience, principled resistance, and strategic silence.</p>
                 </div>
             </div>
-        </section>
-    </div>
+
+            <!-- Synopsis -->
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head"><span class="chinese">概</span> Synopsis</div>
+                <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+                    <div>
+                        <h4>Part 1: The Omen</h4>
+                        <p>Duke Xian divines whether to attack the Li Rong barbarians. The historian predicts: "Victory, but bad luck." The duke attacks anyway, wins, and brings back Lady Li as a captive-turned-consort.</p>
+                    </div>
+                    <div>
+                        <h4>Part 2: The Ministers' Debate</h4>
+                        <p>Lady Li bears a son. The duke considers replacing Crown Prince Shensheng. Three ministers respond: blind obedience, principled resistance, and strategic silence.</p>
+                    </div>
+                    <div>
+                        <h4>Part 3: The Poison Plot</h4>
+                        <p>Lady Li orders Shensheng to sacrifice to his dead mother and bring the offerings to the duke. While the duke is hunting, she poisons the food. When tested, the wine makes the ground boil; the meat kills a dog.</p>
+                    </div>
+                    <div>
+                        <h4>Part 4: The Suicide</h4>
+                        <p>Advisors urge Shensheng to flee. He refuses on grounds of filial piety: if he flees, blame falls on his father. "I cannot sacrifice my father to curry favor with others." Shensheng hangs himself in the ancestral temple.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historical Note -->
+        <div class="card" style="margin-top: 0.75rem;">
+            <div class="card-head"><span class="chinese">史</span> Historical Aftermath</div>
+            <div class="card-body">
+                <p>Li Ji's machinations - the <strong>Li Ji zhi luan</strong> (驪姬之亂) - destabilized Jin for decades. Eventually, Shensheng's brother <strong>Chong'er</strong> returned from nineteen years of exile to become the famous <strong>Duke Wen of Jin</strong>, one of the Five Hegemons.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Text 3: Zhanguoce -->
-    <div class="section-header section-3" id="text-3">
-        <div class="section-number">Reading Three</div>
-        <div class="chinese-title">三說</div>
-        <h2>Three Persuasions</h2>
-        <div class="source">from the Intrigues of the Warring States (戰國策) - Translated by J.I. Crump</div>
-    </div>
+    <section class="content-section alt" id="text-3">
+        <div class="section-label"><span class="chinese">戰國策</span> Reading Three &mdash; Three Persuasions</div>
+        <p style="font-size: 0.7rem; color: var(--ink-faint); font-style: italic; margin-bottom: 0.6rem;">from the Intrigues of the Warring States (戰國策) &mdash; Translated by J.I. Crump</p>
 
-    <div class="container">
-        <section class="content-section blue">
-            <h3>About the Zhanguoce</h3>
-            <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">The <em>Zhanguo ce</em> differs fundamentally from the
-                previous texts: it is less "history" than a collection of rhetorical set-pieces, showcasing the arts of
-                persuasion practiced by itinerant advisors (<strong>shuike</strong> 說客) in the cutthroat world of
-                Warring States diplomacy.</p>
-        </section>
-
-        <!-- Persuasion I -->
-        <div class="persuasion-section">
-            <div class="persuasion-header">
-                <h4>Persuasion I</h4>
-                <h3>Ying-hou Warns King Zhao of Qin</h3>
-            </div>
-            <div class="persuasion-body">
-                <p>Fan Sui (speaking as Ying-hou) warns King Zhao that power has slipped from the throne to the Queen
-                    Mother, Lord Hua-yang, and Jang-hou. He uses three parables:</p>
-
-                <div class="quote-block">
-                    <strong>The Spirit of the Grove:</strong> A rash youth gambled with a sacred spirit and won its
-                    genie for three days. When the spirit tried to reclaim it, the youth refused. The grove rotted and
-                    died. <em>Moral: Don't lend out your power.</em>
-                </div>
-
-                <div class="quote-block">
-                    <strong>The Heavy Fruit:</strong> "When the fruit is heavy, the bough is strained; when the bough is
-                    strained, the trunk is harmed." <em>Moral: Overmighty subjects endanger the ruler.</em>
-                </div>
-
-                <h4>Themes</h4>
-                <ul>
-                    <li><strong>Centralization of Power</strong> - Legalist argument against feudal fragmentation</li>
-                    <li><strong>The Persuader's Art</strong> - Indirect criticism through parable</li>
-                </ul>
+        <div class="card" style="margin-bottom: 0.75rem;">
+            <div class="card-head"><span class="chinese">策</span> About the Zhanguoce</div>
+            <div class="card-body">
+                <p>The <em>Zhanguo ce</em> differs fundamentally from the previous texts: it is less "history" than a collection of rhetorical set-pieces, showcasing the arts of persuasion practiced by itinerant advisors (<strong>shuike</strong> 說客) in the cutthroat world of Warring States diplomacy.</p>
             </div>
         </div>
 
-        <!-- Persuasion II -->
-        <div class="persuasion-section">
-            <div class="persuasion-header">
-                <h4>Persuasion II</h4>
-                <h3>Sable Po and Tian Dan</h3>
-            </div>
-            <div class="persuasion-body">
-                <p>Sable Po repeatedly slanders Tian Dan at court. Tian Tan invites him to dinner and asks why. Sable Po
-                    responds with a famous parable:</p>
-
-                <div class="quote-block">
-                    "When robber Chih's dog barked at the sage Yao, it wasn't judging character - a dog barks at whoever
-                    isn't its master."
+        <div class="content-grid three-col">
+            <!-- Persuasion I -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> Ying-hou Warns King Zhao of Qin</div>
+                <div class="card-body">
+                    <p>Fan Sui (speaking as Ying-hou) warns King Zhao that power has slipped from the throne to the Queen Mother, Lord Hua-yang, and Jang-hou. He uses three parables:</p>
+                    <blockquote>
+                        <strong>The Spirit of the Grove:</strong> A rash youth gambled with a sacred spirit and won its genie for three days. When the spirit tried to reclaim it, the youth refused. The grove rotted and died. <em>Moral: Don't lend out your power.</em>
+                    </blockquote>
+                    <blockquote>
+                        <strong>The Heavy Fruit:</strong> "When the fruit is heavy, the bough is strained; when the bough is strained, the trunk is harmed." <em>Moral: Overmighty subjects endanger the ruler.</em>
+                    </blockquote>
+                    <h4>Themes</h4>
+                    <ul>
+                        <li><strong>Centralization of Power</strong> - Legalist argument against feudal fragmentation</li>
+                        <li><strong>The Persuader's Art</strong> - Indirect criticism through parable</li>
+                    </ul>
                 </div>
+            </div>
 
-                <p>Sable Po then saves Tian Tan from court intrigue, dramatically intervening when the king disrespects
-                    his faithful minister. The king executes all nine slanderous ministers.</p>
-
-                <div class="historical-note">
+            <!-- Persuasion II -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">二</span> Sable Po and Tian Dan</div>
+                <div class="card-body">
+                    <p>Sable Po repeatedly slanders Tian Dan at court. Tian Tan invites him to dinner and asks why. Sable Po responds with a famous parable:</p>
+                    <blockquote>
+                        "When robber Chih's dog barked at the sage Yao, it wasn't judging character - a dog barks at whoever isn't its master."
+                    </blockquote>
+                    <p>Sable Po then saves Tian Tan from court intrigue, dramatically intervening when the king disrespects his faithful minister. The king executes all nine slanderous ministers.</p>
                     <h4>Historical Background: The Fire Oxen of Jimo (279 BCE)</h4>
-                    <p>Tian Tan's famous defense of Jimo is one of the most celebrated military actions in Chinese
-                        history. He collected 1,000+ oxen, tied daggers to their horns and burning straw to their tails,
-                        and drove them into the enemy camp at night.</p>
+                    <p>Tian Tan's famous defense of Jimo is one of the most celebrated military actions in Chinese history. He collected 1,000+ oxen, tied daggers to their horns and burning straw to their tails, and drove them into the enemy camp at night.</p>
+                </div>
+            </div>
+
+            <!-- Persuasion III -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">三</span> The Queen of Zhao and Prince Chang-an</div>
+                <div class="card-body">
+                    <p>Qin attacks Zhao. Zhao seeks military aid from Qi, but Qi demands Prince Chang-an as a <strong>hostage</strong> (質子 zhizi) before sending troops. The Queen Dowager refuses and threatens:</p>
+                    <blockquote>
+                        "Whosoever again urges that Prince Chang-an be a hostage, I will spit in his face!"
+                    </blockquote>
+                    <p>The elderly commander Chu Che approaches her indirectly - commiserating about aging and aching feet. Then he asks about her daughter, the Queen of Yen. When she left for Yen, the Queen wept but prayed "let her not return!" Why? Because she hoped her sons would succeed as kings.</p>
+                    <blockquote>
+                        "Looking back three generations in Zhao, and in all the other states - have the sons and grandsons of kings continued to succeed to the throne? Your majesty has given Prince Chang-an rich lands and great wealth, but you have not ordered him to show mettle for his country. When you die, what will he have done to prove himself worthy?"
+                        <cite>- Chu Che to the Queen Dowager</cite>
+                    </blockquote>
+                    <p><strong>The queen relents. Prince Chang-an goes to Qi as hostage. The troops of Qi march forth.</strong></p>
+                    <h4>Indirect Persuasion</h4>
+                    <p>Chu Che never directly argues; he leads the queen to conclude it herself.</p>
+                    <h4>True vs. False Love</h4>
+                    <p>"Loving" a child by spoiling them vs. preparing them for challenges.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Persuasion III -->
-        <div class="persuasion-section">
-            <div class="persuasion-header">
-                <h4>Persuasion III</h4>
-                <h3>The Queen of Zhao and Prince Chang-an</h3>
-            </div>
-            <div class="persuasion-body">
-                <p>Qin attacks Zhao. Zhao seeks military aid from Qi, but Qi demands Prince Chang-an as a
-                    <strong>hostage</strong> (質子 zhizi) before sending troops. The Queen Dowager refuses and threatens:
-                </p>
-
-                <div class="quote-block">
-                    "Whosoever again urges that Prince Chang-an be a hostage, I will spit in his face!"
-                </div>
-
-                <p>The elderly commander Chu Che approaches her indirectly - commiserating about aging and aching feet.
-                    Then he asks about her daughter, the Queen of Yen. When she left for Yen, the Queen wept but prayed
-                    "let her not return!" Why? Because she hoped her sons would succeed as kings.</p>
-
-                <div class="quote-block">
-                    "Looking back three generations in Zhao, and in all the other states - have the sons and grandsons
-                    of kings continued to succeed to the throne? Your majesty has given Prince Chang-an rich lands and
-                    great wealth, but you have not ordered him to show mettle for his country. When you die, what will
-                    he have done to prove himself worthy?"
-                    <cite>- Chu Che to the Queen Dowager</cite>
-                </div>
-
-                <p><strong>The queen relents. Prince Chang-an goes to Qi as hostage. The troops of Qi march
-                        forth.</strong></p>
-
-                <h4>Themes</h4>
-                <div class="themes-grid">
-                    <div class="theme-card">
-                        <span class="number">1</span>
-                        <h4>Indirect Persuasion</h4>
-                        <p>Chu Che never directly argues; he leads the queen to conclude it herself.</p>
-                    </div>
-                    <div class="theme-card">
-                        <span class="number">2</span>
-                        <h4>True vs. False Love</h4>
-                        <p>"Loving" a child by spoiling them vs. preparing them for challenges.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Comparison Section -->
-    <section class="comparison-section" id="comparison">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <h2
-                style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--ink-faint); margin-bottom: 0.3rem;">
-                Comparative Analysis</h2>
-            <p style="font-size: 1.4rem; font-weight: 300;">Three texts, three approaches to power and virtue</p>
-        </div>
-
+    <!-- Comparison -->
+    <section class="content-section" id="comparison">
+        <div class="section-label"><span class="chinese">比較</span> Comparative Analysis</div>
         <table class="comparison-table">
             <thead>
                 <tr>
@@ -1133,63 +839,34 @@
     </section>
 
     <!-- Discussion Questions -->
-    <section class="questions-section" id="questions">
-        <div class="questions-container">
-            <h2>Discussion Questions</h2>
-
-            <ol class="questions-list">
-                <li class="question-item">
-                    <p>In the Duke Jing story, is the sorcerer's prophecy truly fulfilled? How does the narrative play
-                        with the idea of fate?</p>
-                </li>
-                <li class="question-item">
-                    <p>Compare the three ministers' responses to the Li Ji crisis (obedience, resistance, silence).
-                        Which position do you find most defensible?</p>
-                </li>
-                <li class="question-item">
-                    <p>Shensheng's choice to die rather than expose his father's manipulation is presented
-                        sympathetically. How should we evaluate "filial piety" when it enables injustice?</p>
-                </li>
-                <li class="question-item">
-                    <p>What makes Chu Che's persuasion of the Queen of Zhao successful where direct arguments failed?
-                        Identify his specific rhetorical techniques.</p>
-                </li>
-                <li class="question-item">
-                    <p>Lady Li and the Queen of Zhao are both powerful women in these texts. How do the narratives treat
-                        female political agency differently?</p>
-                </li>
-            </ol>
-        </div>
+    <section class="content-section white" id="questions">
+        <div class="section-label"><span class="chinese">討論</span> Discussion Questions</div>
+        <ol class="question-list">
+            <li>In the Duke Jing story, is the sorcerer's prophecy truly fulfilled? How does the narrative play with the idea of fate?</li>
+            <li>Compare the three ministers' responses to the Li Ji crisis (obedience, resistance, silence). Which position do you find most defensible?</li>
+            <li>Shensheng's choice to die rather than expose his father's manipulation is presented sympathetically. How should we evaluate "filial piety" when it enables injustice?</li>
+            <li>What makes Chu Che's persuasion of the Queen of Zhao successful where direct arguments failed? Identify his specific rhetorical techniques.</li>
+            <li>Lady Li and the Queen of Zhao are both powerful women in these texts. How do the narratives treat female political agency differently?</li>
+        </ol>
     </section>
 
     <!-- Resources -->
-    <section class="resources-section">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <h2
-                style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 1.5rem;">
-                Scholarly Resources</h2>
-        </div>
-
-        <div class="resources-grid">
-            <div class="resource-card">
+    <section class="sources">
+        <div class="section-label"><span class="chinese">資料</span> Scholarly Resources</div>
+        <div class="sources-grid">
+            <div class="source-card">
                 <h4>Primary Texts</h4>
-                <a href="https://en.wikipedia.org/wiki/Zuo_Zhuan" target="_blank" rel="noopener">Zuo Zhuan -
-                    Wikipedia</a>
-                <a href="https://en.wikipedia.org/wiki/Guoyu_(book)" target="_blank" rel="noopener">Guoyu -
-                    Wikipedia</a>
-                <a href="https://en.wikipedia.org/wiki/Zhan_Guo_Ce" target="_blank" rel="noopener">Zhan Guo Ce -
-                    Wikipedia</a>
+                <a href="https://en.wikipedia.org/wiki/Zuo_Zhuan" target="_blank" rel="noopener">Zuo Zhuan - Wikipedia</a>
+                <a href="https://en.wikipedia.org/wiki/Guoyu_(book)" target="_blank" rel="noopener">Guoyu - Wikipedia</a>
+                <a href="https://en.wikipedia.org/wiki/Zhan_Guo_Ce" target="_blank" rel="noopener">Zhan Guo Ce - Wikipedia</a>
             </div>
-
-            <div class="resource-card">
+            <div class="source-card">
                 <h4>Historical Figures</h4>
-                <a href="https://en.wikipedia.org/wiki/Duke_Jing_of_Jin_(Ju)" target="_blank" rel="noopener">Duke Jing
-                    of Jin</a>
+                <a href="https://en.wikipedia.org/wiki/Duke_Jing_of_Jin_(Ju)" target="_blank" rel="noopener">Duke Jing of Jin</a>
                 <a href="https://en.wikipedia.org/wiki/Shensheng" target="_blank" rel="noopener">Prince Shensheng</a>
                 <a href="https://en.wikipedia.org/wiki/Tian_Dan" target="_blank" rel="noopener">Tian Dan</a>
             </div>
-
-            <div class="resource-card">
+            <div class="source-card">
                 <h4>Original Chinese</h4>
                 <a href="https://ctext.org/chun-qiu-zuo-zhuan" target="_blank" rel="noopener">Zuo Zhuan - ctext.org</a>
                 <a href="https://ctext.org/guo-yu" target="_blank" rel="noopener">Guoyu - ctext.org</a>
@@ -1201,7 +878,7 @@
     <!-- Footer -->
     <footer>
         <div class="foot-chinese">中國文學與思想</div>
-        <div class="foot-title">EAST 370 - Chinese Traditional Literature and Thought</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
         <div class="foot-term">WINTER 2026</div>
     </footer>
 
