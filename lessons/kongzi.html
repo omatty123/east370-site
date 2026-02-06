@@ -18,7 +18,7 @@
             --gold: #b8860b;
             --gold-light: #daa520;
             --ru: #2D7D7D;
-            --text: #333;
+            --teal: #2d5a5a;
         }
 
         * {
@@ -27,16 +27,13 @@
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             line-height: 1.6;
             color: var(--ink);
             background: var(--paper);
-            font-size: 17px;
         }
 
         /* Compact Header */
@@ -82,7 +79,7 @@
             color: #888;
         }
 
-        /* Navigation */
+        /* Nav - matches index.html */
         .nav {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
@@ -103,499 +100,131 @@
             transition: color 0.2s;
         }
 
-        .nav a:hover {
-            color: var(--gold-light);
-        }
+        .nav a:hover { color: var(--gold-light); }
 
-        /* Container */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        /* Multi-Column Layout */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .two-col-wide-left {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
-        .two-col-wide-right {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .two-col, .two-col-wide-left, .two-col-wide-right {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Section Headers */
-        .section-header {
-            padding: 2rem 1.5rem 1.5rem;
-            text-align: center;
-        }
-
-        
-        
-        
-        
-        
-        
-        
-
-        .section-number {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.3rem;
-        }
-
-        .section-header h2 {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #fff;
+        /* Section labels - matches index.html */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
             letter-spacing: 0.08em;
-            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
 
-        .section-header .chinese-title {
+        .section-label .chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--gold);
+            font-weight: 400;
         }
 
-        /* Content Sections */
-        .content-section { margin-bottom: 1.5rem; }
+        /* Full-width content sections */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
+        }
 
-        .content-section h3 {
-            font-size: 0.75rem;
+        .content-section.alt {
+            background: var(--paper-dark);
+        }
+
+        /* Content grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .content-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        /* Cards - matches index.html lit-col pattern */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 0.75rem;
+        }
+
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .card-body h4 {
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--ru);
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--ru);
-            display: inline-block;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
         }
 
-        /* Tables */
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Tables inside cards */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0.5rem 0;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         th {
             background: var(--ru);
             color: white;
-            padding: 0.5rem 0.6rem;
+            padding: 0.4rem 0.5rem;
             text-align: left;
             font-weight: 600;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
 
         td {
-            padding: 0.5rem 0.6rem;
-            border-bottom: 1px solid #ddd;
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid #eee;
             vertical-align: top;
-        }
-
-        tr:nth-child(even) {
-            background: var(--paper-dark);
-        }
-
-        .chinese-cell {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
-            text-align: center;
-            width: 50px;
-        }
-
-        /* Character profiles */
-        .character-profile {
-            display: flex;
-            gap: 0.75rem;
-            padding: 0.6rem;
-            background: var(--paper-dark);
-            border-radius: 6px;
-            margin: 0.5rem 0;
-        }
-
-        .character-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--ru);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .character-info h4 {
-            color: var(--ink);
-            margin-bottom: 0.15rem;
-            font-size: 0.85rem;
-        }
-
-        .character-info p {
-            font-size: 0.75rem;
-            color: var(--ink-light);
-            line-height: 1.5;
-        }
-
-        /* Quote boxes */
-        .quote-box {
-            background: linear-gradient(135deg, var(--paper-dark) 0%, #fff 100%);
-            border-left: 4px solid var(--ru);
-            padding: 0.75rem 1rem;
-            margin: 0.75rem 0;
-            position: relative;
-        }
-
-        .quote-box::before {
-            content: '"';
-            font-family: 'Noto Sans SC', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            position: absolute;
-            top: -3px;
-            left: 8px;
-            opacity: 0.5;
-        }
-
-        .quote-text {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: var(--ink-light);
-            padding-left: 1rem;
-            line-height: 1.6;
-        }
-
-        .quote-ref {
-            text-align: right;
-            font-size: 0.7rem;
-            color: var(--ru);
-            font-weight: 600;
-            margin-top: 0.4rem;
-        }
-
-        /* Keyword grid */
-        .keyword-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-            margin: 0.5rem 0;
-        }
-
-        @media (max-width: 600px) {
-            .keyword-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .keyword-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 0.5rem;
-            text-align: center;
-        }
-
-        .keyword-card.essential {
-            border-left: 4px solid var(--ru);
-        }
-
-        .keyword-card.important {
-            border-left: 4px solid var(--gold);
-        }
-
-        .keyword-chinese {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.4rem;
-            color: var(--ru);
-        }
-
-        .keyword-pinyin {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--ink);
-        }
-
-        .keyword-meaning {
-            font-size: 0.65rem;
-            color: var(--ink-faint);
-            margin-top: 0.1rem;
-        }
-
-        /* Tier labels */
-        .tier-label {
-            display: inline-block;
-            padding: 1px 6px;
-            border-radius: 3px;
-            font-size: 0.55rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.2rem;
-        }
-
-        .tier-1 { background: var(--ru); color: white; }
-        .tier-2 { background: var(--gold); color: white; }
-        .tier-3 { background: var(--ink-faint); color: white; }
-
-        /* Modern connections */
-        .modern-box {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 0.75rem;
-            margin: 0.5rem 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-        }
-
-        .modern-box h4 {
-            color: var(--ru);
-            font-size: 0.85rem;
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .modern-box .passage-ref {
-            background: var(--ru);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.65rem;
-        }
-
-        .modern-box blockquote {
-            font-style: italic;
-            color: var(--ink-light);
-            padding: 0.5rem 0.75rem;
-            background: var(--paper-dark);
-            border-radius: 4px;
-            margin: 0.5rem 0;
-            font-size: 0.8rem;
-        }
-
-        .modern-connection {
             font-size: 0.75rem;
             color: var(--ink-light);
         }
 
-        .modern-connection strong {
-            color: var(--ru);
-        }
-
-        /* Hit List Styles */
-        .hit-list-intro {
-            background: var(--ink);
-            color: #ccc;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            font-style: italic;
-            font-size: 0.8rem;
-        }
-
-        .hit-list-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-
-        @media (max-width: 600px) {
-            .hit-list-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .villain-card {
-            background: linear-gradient(145deg, #2C3E50 0%, #1a252f 100%);
-            border-radius: 6px;
-            padding: 0.75rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .villain-card::before {
-            content: '\2715';
-            position: absolute;
-            top: -15px;
-            right: -8px;
-            font-size: 4rem;
-            color: rgba(139, 0, 0, 0.15);
-            font-weight: bold;
-        }
-
-        .villain-card h4 {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .villain-card .offense {
-            font-size: 0.7rem;
-            color: #bbb;
-            margin-bottom: 0.4rem;
-        }
-
-        .villain-card .evidence {
-            font-style: italic;
-            font-size: 0.75rem;
-            color: #ddd;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 0.6rem;
-            border-radius: 4px;
-            border-left: 3px solid #e74c3c;
-        }
-
-        .villain-card .passage-num {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            margin-top: 0.4rem;
-        }
-
-        .severity {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.55rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .severity.high { background: #e74c3c; }
-        .severity.medium { background: #f39c12; }
-        .severity.low { background: #3498db; }
-
-        /* Self-reflection grid */
-        .self-reflection-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-
-        @media (max-width: 600px) {
-            .self-reflection-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .self-card {
-            background: linear-gradient(145deg, #1a4d2e 0%, #0d2818 100%);
-            border-radius: 6px;
-            padding: 0.75rem;
-            color: white;
-        }
-
-        .self-card.humble { background: linear-gradient(145deg, #2C3E50 0%, #1a252f 100%); }
-        .self-card.worried { background: linear-gradient(145deg, #5D4037 0%, #3E2723 100%); }
-        .self-card.proud { background: linear-gradient(145deg, #1a4d2e 0%, #0d2818 100%); }
-
-        .self-card h4 {
-            color: var(--gold-light);
-            font-size: 0.85rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .self-card .self-quote {
-            font-style: italic;
-            font-size: 0.75rem;
-            color: #eee;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 0.6rem;
-            border-radius: 4px;
-            border-left: 3px solid var(--gold-light);
-            margin-bottom: 0.4rem;
-        }
-
-        .self-card .interpretation {
-            font-size: 0.65rem;
-            color: #bbb;
-        }
-
-        .self-card .passage-num {
-            display: inline-block;
-            background: var(--gold-light);
-            color: var(--ink);
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            margin-top: 0.3rem;
-        }
-
-        .category-label {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.55rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.3rem;
-        }
-
-        .category-label.humble { background: #3498db; color: white; }
-        .category-label.worried { background: #e67e22; color: white; }
-        .category-label.proud { background: #27ae60; color: white; }
-
-        /* Discussion questions */
-        .discussion-list {
-            list-style: none;
-            counter-reset: discussion;
-        }
-
-        .discussion-list li {
-            counter-increment: discussion;
-            padding: 0.7rem 0.75rem 0.7rem 2.5rem;
-            background: var(--paper-dark);
-            margin: 0.5rem 0;
-            border-radius: 6px;
-            position: relative;
-            font-size: 0.8rem;
-        }
-
-        .discussion-list li::before {
-            content: counter(discussion);
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1.25rem;
-            height: 1.25rem;
-            background: var(--ru);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.7rem;
-        }
+        tr:nth-child(even) { background: var(--paper-dark); }
 
         /* ctext links */
         a.ctext {
@@ -610,26 +239,6 @@
             border-bottom-style: solid;
         }
 
-        .quote-ref a.ctext,
-        .passage-num a.ctext,
-        .passage-ref a.ctext {
-            color: inherit;
-        }
-
-        .villain-card .passage-num a.ctext {
-            color: white;
-            border-bottom-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .self-card .passage-num a.ctext {
-            color: var(--ink);
-            border-bottom-color: rgba(0, 0, 0, 0.3);
-        }
-
-        .modern-box .passage-ref a.ctext {
-            color: white;
-        }
-
         td a.ctext {
             color: var(--ru);
             font-weight: 600;
@@ -637,7 +246,7 @@
             padding: 2px 5px;
             border-radius: 3px;
             white-space: nowrap;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
         td a.ctext:hover {
@@ -646,7 +255,379 @@
             text-decoration: none;
         }
 
-        /* Footer */
+        /* Character profiles */
+        .character-profile {
+            display: flex;
+            gap: 0.6rem;
+            padding: 0.5rem;
+            background: var(--paper-dark);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--ru);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .character-info h4 {
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+            font-size: 0.75rem;
+        }
+
+        .character-info p {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+
+        /* Keyword cards */
+        .keyword-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.4rem;
+            margin-top: 0.4rem;
+        }
+
+        .keyword-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 0.4rem;
+            text-align: center;
+        }
+
+        .keyword-card.essential { border-left: 3px solid var(--ru); }
+        .keyword-card.important { border-left: 3px solid var(--gold); }
+
+        .keyword-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--ru);
+        }
+
+        .keyword-pinyin {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+
+        .keyword-meaning {
+            font-size: 0.6rem;
+            color: var(--ink-faint);
+        }
+
+        .tier-label {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
+        }
+
+        .tier-1 { background: var(--ru); color: white; }
+        .tier-2 { background: var(--gold); color: white; }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Quote ref badges */
+        .quote-ref {
+            text-align: right;
+            font-size: 0.65rem;
+            color: var(--ru);
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        .quote-ref a.ctext { color: var(--ru); }
+
+        /* Modern connection boxes */
+        .modern-box {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .modern-box h4 {
+            color: var(--ru);
+            font-size: 0.75rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .modern-box .passage-ref {
+            background: var(--ru);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.6rem;
+        }
+
+        .modern-box .passage-ref a.ctext { color: white; }
+
+        .modern-box blockquote {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.6rem;
+            margin: 0.3rem 0;
+        }
+
+        .modern-connection {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+        }
+
+        .modern-connection strong { color: var(--ru); }
+
+        /* Hit List */
+        .hit-list-intro {
+            background: var(--ink);
+            color: #ccc;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 0.6rem;
+            font-style: italic;
+            font-size: 0.75rem;
+        }
+
+        .villain-card {
+            background: linear-gradient(145deg, #2C3E50 0%, #1a252f 100%);
+            border-radius: 4px;
+            padding: 0.6rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .villain-card::before {
+            content: '\2715';
+            position: absolute;
+            top: -15px;
+            right: -8px;
+            font-size: 3.5rem;
+            color: rgba(139, 0, 0, 0.15);
+            font-weight: bold;
+        }
+
+        .villain-card h4 {
+            color: #e74c3c;
+            font-size: 0.75rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .villain-card .offense {
+            font-size: 0.65rem;
+            color: #bbb;
+            margin-bottom: 0.3rem;
+        }
+
+        .villain-card .evidence {
+            font-style: italic;
+            font-size: 0.7rem;
+            color: #ddd;
+            background: rgba(0,0,0,0.3);
+            padding: 0.4rem 0.5rem;
+            border-radius: 3px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .villain-card .passage-num {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            margin-top: 0.3rem;
+        }
+
+        .villain-card .passage-num a.ctext { color: white; border-bottom-color: rgba(255,255,255,0.5); }
+
+        .severity {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .severity.high { background: #e74c3c; }
+        .severity.medium { background: #f39c12; }
+        .severity.low { background: #3498db; }
+
+        /* Self-reflection cards */
+        .self-card {
+            border-radius: 4px;
+            padding: 0.6rem;
+            color: white;
+        }
+
+        .self-card.humble { background: linear-gradient(145deg, #2C3E50 0%, #1a252f 100%); }
+        .self-card.worried { background: linear-gradient(145deg, #5D4037 0%, #3E2723 100%); }
+        .self-card.proud { background: linear-gradient(145deg, #1a4d2e 0%, #0d2818 100%); }
+
+        .self-card h4 {
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .self-card .self-quote {
+            font-style: italic;
+            font-size: 0.7rem;
+            color: #eee;
+            background: rgba(0,0,0,0.3);
+            padding: 0.4rem 0.5rem;
+            border-radius: 3px;
+            border-left: 3px solid var(--gold-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .self-card .interpretation {
+            font-size: 0.6rem;
+            color: #bbb;
+        }
+
+        .self-card .passage-num {
+            display: inline-block;
+            background: var(--gold-light);
+            color: var(--ink);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+        }
+
+        .self-card .passage-num a.ctext { color: var(--ink); border-bottom-color: rgba(0,0,0,0.3); }
+
+        .category-label {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .category-label.humble { background: #3498db; color: white; }
+        .category-label.worried { background: #e67e22; color: white; }
+        .category-label.proud { background: #27ae60; color: white; }
+
+        /* Discussion list */
+        .discussion-list {
+            list-style: none;
+            counter-reset: discussion;
+        }
+
+        .discussion-list li {
+            counter-increment: discussion;
+            padding: 0.5rem 0.6rem 0.5rem 2.2rem;
+            background: #fff;
+            margin: 0.4rem 0;
+            border-radius: 4px;
+            position: relative;
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .discussion-list li::before {
+            content: counter(discussion);
+            position: absolute;
+            left: 0.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.1rem;
+            height: 1.1rem;
+            background: var(--ru);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.6rem;
+        }
+
+        .discussion-list li a.ctext { color: var(--ru); }
+        .discussion-list li strong { color: var(--ink); }
+
+        /* Sources section - matches index.html resources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer - matches index.html */
         footer {
             background: var(--ink);
             padding: 1.25rem 1.5rem;
@@ -673,22 +654,11 @@
             letter-spacing: 0.08em;
         }
 
-        footer a {
-            color: var(--gold-light);
-            text-decoration: none;
-        }
+        footer a { color: var(--gold-light); text-decoration: none; }
+        footer a:hover { color: var(--gold); }
+        footer p { font-size: 0.7rem; color: #888; margin-top: 0.4rem; }
 
-        footer a:hover {
-            color: var(--gold);
-        }
-
-        footer p {
-            font-size: 0.7rem;
-            color: #888;
-            margin-top: 0.4rem;
-        }
-
-        /* Print styles */
+        /* Print */
         @media print {
             .page-header, .nav { display: none; }
             section { page-break-inside: avoid; }
@@ -697,6 +667,9 @@
 
         /* Responsive */
         @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid-3 { grid-template-columns: 1fr; }
+            .keyword-grid { grid-template-columns: repeat(3, 1fr); }
             .nav { gap: 1rem; }
         }
     </style>
@@ -726,477 +699,443 @@
     </nav>
 
     <!-- CAST OF CHARACTERS -->
-    <div class="section-header" id="characters">
-        <div class="section-number">Section One</div>
-        <div class="chinese-title">人物</div>
-        <h2>Cast of Characters</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section">
-                <h3>The Master</h3>
-                <div class="character-profile">
-                    <div class="character-icon">孔</div>
-                    <div class="character-info">
-                        <h4>Kongzi 孔子 (Confucius)</h4>
-                        <p>551-479 BCE. Teacher, ritual specialist, failed politician, cultural transmitter. Believed Zhou's Golden Age could be restored through ritual practice and moral cultivation.</p>
+    <section class="content-section" id="characters">
+        <div class="section-label"><span class="chinese">人物</span> Cast of Characters</div>
+        <div class="content-grid">
+            <!-- The Master + Key Disciples -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">孔</span> The Master & Key Disciples</div>
+                <div class="card-body">
+                    <div class="character-profile">
+                        <div class="character-icon">孔</div>
+                        <div class="character-info">
+                            <h4>Kongzi 孔子 (Confucius)</h4>
+                            <p>551-479 BCE. Teacher, ritual specialist, failed politician, cultural transmitter. Believed Zhou's Golden Age could be restored through ritual practice and moral cultivation.</p>
+                        </div>
                     </div>
+                    <table>
+                        <thead>
+                            <tr><th>Name</th><th>Character</th><th>Passages</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Yan Hui 顏回</strong></td>
+                                <td>Favorite. Brilliant, poor, joyful, died young.</td>
+                                <td><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank">2.9</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.7</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.11</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zigong 子貢</strong></td>
+                                <td>Clever but rigid. A "ritual vessel."</td>
+                                <td><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank">1.15</a>, <a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.4</a>, <a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.12</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zilu 子路</strong></td>
+                                <td>Bold, reckless, impetuous.</td>
+                                <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.8</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.28</a>, <a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.35</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zengzi 曾子</strong></td>
+                                <td>Explains the "one thread."</td>
+                                <td><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank">1.9</a>, <a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.15</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <h3>Key Disciples</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Character</th>
-                            <th>Passages</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Yan Hui 顏回</strong></td>
-                            <td>Favorite. Brilliant, poor, joyful, died young.</td>
-                            <td><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank">2.9</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.7</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.11</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zigong 子貢</strong></td>
-                            <td>Clever but rigid. A "ritual vessel."</td>
-                            <td><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank">1.15</a>, <a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.4</a>, <a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.12</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zilu 子路</strong></td>
-                            <td>Bold, reckless, impetuous.</td>
-                            <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.8</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.28</a>, <a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.35</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zengzi 曾子</strong></td>
-                            <td>Explains the "one thread."</td>
-                            <td><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank">1.9</a>, <a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.15</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="content-section">
-                <h3>More Disciples</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Character</th>
-                            <th>Passages</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Zaiyu 宰予</strong></td>
-                            <td>Lazy. Sleeps during day. "Rotten wood."</td>
-                            <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.10</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ranyou 冉有</strong></td>
-                            <td>Overly cautious. Makes excuses.</td>
-                            <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.8</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.12</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Zixia 子夏</strong></td>
-                            <td>Good at interpreting the Odes.</td>
-                            <td><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.8</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.13</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>Other Figures</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Duke of Zhou 周公</strong></td>
-                            <td>Kongzi's hero; model regent (<a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.5</a>).</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ji Clan 季氏</strong></td>
-                            <td>Ritual violator—8 rows of dancers (<a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.1</a>).</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Nanzi 南子</strong></td>
-                            <td>Notorious wife of Lord Ling (<a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.28</a>).</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            <!-- More Disciples + Other Figures -->
+            <div class="card">
+                <div class="card-head"><span class="chinese">門人</span> More Disciples & Other Figures</div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr><th>Name</th><th>Character</th><th>Passages</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Zaiyu 宰予</strong></td>
+                                <td>Lazy. Sleeps during day. "Rotten wood."</td>
+                                <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.10</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ranyou 冉有</strong></td>
+                                <td>Overly cautious. Makes excuses.</td>
+                                <td><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.8</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.12</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zixia 子夏</strong></td>
+                                <td>Good at interpreting the Odes.</td>
+                                <td><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.8</a>, <a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.13</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>Other Figures</h4>
+                    <table>
+                        <thead>
+                            <tr><th>Name</th><th>Role</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Duke of Zhou 周公</strong></td>
+                                <td>Kongzi's hero; model regent (<a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.5</a>).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ji Clan 季氏</strong></td>
+                                <td>Ritual violator—8 rows of dancers (<a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.1</a>).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nanzi 南子</strong></td>
+                                <td>Notorious wife of Lord Ling (<a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.28</a>).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- KEYWORDS -->
-    <div class="section-header" id="keywords">
-        <div class="section-number">Section Two</div>
-        <div class="chinese-title">關鍵詞</div>
-        <h2>Key Terms</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section">
-                <h3>Tier 1: Essential</h3>
-                <div class="keyword-grid">
-                    <div class="keyword-card essential">
-                        <span class="tier-label tier-1">Essential</span>
-                        <div class="keyword-chinese">仁</div>
-                        <div class="keyword-pinyin">Ren</div>
-                        <div class="keyword-meaning">Humaneness, benevolence</div>
-                    </div>
-                    <div class="keyword-card essential">
-                        <span class="tier-label tier-1">Essential</span>
-                        <div class="keyword-chinese">禮</div>
-                        <div class="keyword-pinyin">Li</div>
-                        <div class="keyword-meaning">Rites, ritual propriety</div>
-                    </div>
-                    <div class="keyword-card essential">
-                        <span class="tier-label tier-1">Essential</span>
-                        <div class="keyword-chinese">君子</div>
-                        <div class="keyword-pinyin">Junzi</div>
-                        <div class="keyword-meaning">Gentleman, exemplary person</div>
-                    </div>
-                    <div class="keyword-card essential">
-                        <span class="tier-label tier-1">Essential</span>
-                        <div class="keyword-chinese">道</div>
-                        <div class="keyword-pinyin">Dao</div>
-                        <div class="keyword-meaning">The Way</div>
-                    </div>
-                    <div class="keyword-card essential">
-                        <span class="tier-label tier-1">Essential</span>
-                        <div class="keyword-chinese">德</div>
-                        <div class="keyword-pinyin">De</div>
-                        <div class="keyword-meaning">Virtue, moral power</div>
-                    </div>
-                    <div class="keyword-card essential">
-                        <span class="tier-label tier-1">Essential</span>
-                        <div class="keyword-chinese">天</div>
-                        <div class="keyword-pinyin">Tian</div>
-                        <div class="keyword-meaning">Heaven</div>
+    <!-- KEY TERMS -->
+    <section class="content-section alt" id="keywords">
+        <div class="section-label"><span class="chinese">關鍵詞</span> Key Terms</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> Tier 1: Essential</div>
+                <div class="card-body">
+                    <div class="keyword-grid">
+                        <div class="keyword-card essential">
+                            <span class="tier-label tier-1">Essential</span>
+                            <div class="keyword-chinese">仁</div>
+                            <div class="keyword-pinyin">Ren</div>
+                            <div class="keyword-meaning">Humaneness, benevolence</div>
+                        </div>
+                        <div class="keyword-card essential">
+                            <span class="tier-label tier-1">Essential</span>
+                            <div class="keyword-chinese">禮</div>
+                            <div class="keyword-pinyin">Li</div>
+                            <div class="keyword-meaning">Rites, ritual propriety</div>
+                        </div>
+                        <div class="keyword-card essential">
+                            <span class="tier-label tier-1">Essential</span>
+                            <div class="keyword-chinese">君子</div>
+                            <div class="keyword-pinyin">Junzi</div>
+                            <div class="keyword-meaning">Gentleman, exemplary person</div>
+                        </div>
+                        <div class="keyword-card essential">
+                            <span class="tier-label tier-1">Essential</span>
+                            <div class="keyword-chinese">道</div>
+                            <div class="keyword-pinyin">Dao</div>
+                            <div class="keyword-meaning">The Way</div>
+                        </div>
+                        <div class="keyword-card essential">
+                            <span class="tier-label tier-1">Essential</span>
+                            <div class="keyword-chinese">德</div>
+                            <div class="keyword-pinyin">De</div>
+                            <div class="keyword-meaning">Virtue, moral power</div>
+                        </div>
+                        <div class="keyword-card essential">
+                            <span class="tier-label tier-1">Essential</span>
+                            <div class="keyword-chinese">天</div>
+                            <div class="keyword-pinyin">Tian</div>
+                            <div class="keyword-meaning">Heaven</div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section class="content-section">
-                <h3>Tier 2: Important</h3>
-                <div class="keyword-grid">
-                    <div class="keyword-card important">
-                        <span class="tier-label tier-2">Important</span>
-                        <div class="keyword-chinese">學</div>
-                        <div class="keyword-pinyin">Xue</div>
-                        <div class="keyword-meaning">Learning</div>
-                    </div>
-                    <div class="keyword-card important">
-                        <span class="tier-label tier-2">Important</span>
-                        <div class="keyword-chinese">忠</div>
-                        <div class="keyword-pinyin">Zhong</div>
-                        <div class="keyword-meaning">Loyalty</div>
-                    </div>
-                    <div class="keyword-card important">
-                        <span class="tier-label tier-2">Important</span>
-                        <div class="keyword-chinese">恕</div>
-                        <div class="keyword-pinyin">Shu</div>
-                        <div class="keyword-meaning">Sympathetic understanding</div>
-                    </div>
-                    <div class="keyword-card important">
-                        <span class="tier-label tier-2">Important</span>
-                        <div class="keyword-chinese">孝</div>
-                        <div class="keyword-pinyin">Xiao</div>
-                        <div class="keyword-meaning">Filial piety</div>
-                    </div>
-                    <div class="keyword-card important">
-                        <span class="tier-label tier-2">Important</span>
-                        <div class="keyword-chinese">義</div>
-                        <div class="keyword-pinyin">Yi</div>
-                        <div class="keyword-meaning">Rightness</div>
-                    </div>
-                    <div class="keyword-card important">
-                        <span class="tier-label tier-2">Important</span>
-                        <div class="keyword-chinese">文</div>
-                        <div class="keyword-pinyin">Wen</div>
-                        <div class="keyword-meaning">Culture, refinement</div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">二</span> Tier 2: Important</div>
+                <div class="card-body">
+                    <div class="keyword-grid">
+                        <div class="keyword-card important">
+                            <span class="tier-label tier-2">Important</span>
+                            <div class="keyword-chinese">學</div>
+                            <div class="keyword-pinyin">Xue</div>
+                            <div class="keyword-meaning">Learning</div>
+                        </div>
+                        <div class="keyword-card important">
+                            <span class="tier-label tier-2">Important</span>
+                            <div class="keyword-chinese">忠</div>
+                            <div class="keyword-pinyin">Zhong</div>
+                            <div class="keyword-meaning">Loyalty</div>
+                        </div>
+                        <div class="keyword-card important">
+                            <span class="tier-label tier-2">Important</span>
+                            <div class="keyword-chinese">恕</div>
+                            <div class="keyword-pinyin">Shu</div>
+                            <div class="keyword-meaning">Sympathetic understanding</div>
+                        </div>
+                        <div class="keyword-card important">
+                            <span class="tier-label tier-2">Important</span>
+                            <div class="keyword-chinese">孝</div>
+                            <div class="keyword-pinyin">Xiao</div>
+                            <div class="keyword-meaning">Filial piety</div>
+                        </div>
+                        <div class="keyword-card important">
+                            <span class="tier-label tier-2">Important</span>
+                            <div class="keyword-chinese">義</div>
+                            <div class="keyword-pinyin">Yi</div>
+                            <div class="keyword-meaning">Rightness</div>
+                        </div>
+                        <div class="keyword-card important">
+                            <span class="tier-label tier-2">Important</span>
+                            <div class="keyword-chinese">文</div>
+                            <div class="keyword-pinyin">Wen</div>
+                            <div class="keyword-meaning">Culture, refinement</div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- FAMOUS PASSAGES -->
-    <div class="section-header" id="passages">
-        <div class="section-number">Section Three</div>
-        <div class="chinese-title">名句</div>
-        <h2>Most Famous Passages</h2>
-    </div>
-
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section">
-                <div class="quote-box">
-                    <div class="quote-text">To study, and then in a timely fashion to practice what you have learned—is this not satisfying? To have companions arrive from afar—is this not a joy?</div>
+    <section class="content-section" id="passages">
+        <div class="section-label"><span class="chinese">名句</span> Most Famous Passages</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head">Books 1-4</div>
+                <div class="card-body">
+                    <blockquote>To study, and then in a timely fashion to practice what you have learned—is this not satisfying? To have companions arrive from afar—is this not a joy?</blockquote>
                     <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank">1.1</a> - The Opening</div>
-                </div>
 
-                <div class="quote-box">
-                    <div class="quote-text">At fifteen I set my heart upon learning; at thirty I took my stand; at forty I became free of doubts; at fifty I understood the Heavenly Mandate; at sixty my ear was attuned; at seventy I could follow my heart's desire without overstepping propriety.</div>
+                    <blockquote>At fifteen I set my heart upon learning; at thirty I took my stand; at forty I became free of doubts; at fifty I understood the Heavenly Mandate; at sixty my ear was attuned; at seventy I could follow my heart's desire without overstepping propriety.</blockquote>
                     <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank">2.4</a> - Spiritual Autobiography</div>
-                </div>
 
-                <div class="quote-box">
-                    <div class="quote-text">To learn without thinking leads to confusion. To think without learning leads to fruitless exhaustion.</div>
+                    <blockquote>To learn without thinking leads to confusion. To think without learning leads to fruitless exhaustion.</blockquote>
                     <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank">2.15</a> - Learning and Thinking</div>
-                </div>
 
-                <div class="quote-box">
-                    <div class="quote-text">Having in the morning learned the Way, one could die that evening without regret.</div>
+                    <blockquote>Having in the morning learned the Way, one could die that evening without regret.</blockquote>
                     <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.8</a> - Ultimate Commitment</div>
                 </div>
-            </section>
+            </div>
 
-            <section class="content-section">
-                <div class="quote-box">
-                    <div class="quote-text">All of what the Master teaches amounts to nothing more than <em>zhong</em>, 'loyalty,' tempered by <em>shu</em>, 'sympathetic understanding.'</div>
+            <div class="card">
+                <div class="card-head">Books 4-7</div>
+                <div class="card-body">
+                    <blockquote>All of what the Master teaches amounts to nothing more than <em>zhong</em>, 'loyalty,' tempered by <em>shu</em>, 'sympathetic understanding.'</blockquote>
                     <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.15</a> - The "One Thread"</div>
-                </div>
 
-                <div class="quote-box">
-                    <div class="quote-text">One who knows it is not the equal of one who loves it, and one who loves it is not the equal of one who takes joy in it.</div>
-                    <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.20</a> - Knowing → Loving → Joy</div>
-                </div>
+                    <blockquote>One who knows it is not the equal of one who loves it, and one who loves it is not the equal of one who takes joy in it.</blockquote>
+                    <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.20</a> - Knowing &rarr; Loving &rarr; Joy</div>
 
-                <div class="quote-box">
-                    <div class="quote-text">I transmit rather than innovate. I trust in and have a love for antiquity.</div>
+                    <blockquote>I transmit rather than innovate. I trust in and have a love for antiquity.</blockquote>
                     <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.1</a> - The Transmitter</div>
-                </div>
 
-                <div class="quote-box">
-                    <div class="quote-text">When walking with two other people, I will always find a teacher among them. Those who are good I seek to emulate; those who are bad provide reminders of what needs to be changed in myself.</div>
+                    <blockquote>When walking with two other people, I will always find a teacher among them. Those who are good I seek to emulate; those who are bad provide reminders of what needs to be changed in myself.</blockquote>
                     <div class="quote-ref"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.22</a> - Learning from Everyone</div>
                 </div>
-            </section>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- MODERN CONNECTIONS -->
-    <div class="section-header" id="modern">
-        <div class="section-number">Section Four</div>
-        <div class="chinese-title">今昔</div>
-        <h2>Connections to Modern Life</h2>
-    </div>
+    <section class="content-section alt" id="modern">
+        <div class="section-label"><span class="chinese">今昔</span> Connections to Modern Life</div>
+        <div class="content-grid-3">
+            <div class="modern-box">
+                <h4><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"><span class="passage-ref">2.15</span></a> On Education</h4>
+                <blockquote>"To learn without thinking leads to confusion. To think without learning leads to exhaustion."</blockquote>
+                <p class="modern-connection"><strong>Modern:</strong> Rote memorization vs. critical thinking. AI/ChatGPT debates—using AI without understanding vs. figuring everything out alone.</p>
+            </div>
 
-    <div class="container">
-        <div class="two-col">
-            <section class="content-section">
-                <div class="modern-box">
-                    <h4><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"><span class="passage-ref">2.15</span></a> On Education</h4>
-                    <blockquote>"To learn without thinking leads to confusion. To think without learning leads to exhaustion."</blockquote>
-                    <p class="modern-connection"><strong>Modern:</strong> Rote memorization vs. critical thinking. AI/ChatGPT debates—using AI without understanding vs. figuring everything out alone.</p>
-                </div>
+            <div class="modern-box">
+                <h4><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"><span class="passage-ref">6.12</span></a> On Excuses vs. Real Limits</h4>
+                <blockquote>Ranyou: "My strength is insufficient." Kongzi: "Those for whom it is genuinely a problem collapse somewhere along the Way. As for you, you deliberately draw the line."</blockquote>
+                <p class="modern-connection"><strong>Modern:</strong> Self-limiting beliefs, imposter syndrome. Growth mindset before the term existed.</p>
+            </div>
 
-                <div class="modern-box">
-                    <h4><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"><span class="passage-ref">6.12</span></a> On Excuses vs. Real Limits</h4>
-                    <blockquote>Ranyou: "My strength is insufficient." Kongzi: "Those for whom it is genuinely a problem collapse somewhere along the Way. As for you, you deliberately draw the line."</blockquote>
-                    <p class="modern-connection"><strong>Modern:</strong> Self-limiting beliefs, imposter syndrome. Growth mindset before the term existed.</p>
-                </div>
+            <div class="modern-box">
+                <h4><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"><span class="passage-ref">6.20</span></a> On Intrinsic Motivation</h4>
+                <blockquote>"One who knows it is not the equal of one who loves it, and one who loves it is not the equal of one who takes joy in it."</blockquote>
+                <p class="modern-connection"><strong>Modern:</strong> Why some people excel—they find joy in work itself. Athletes who "love the game."</p>
+            </div>
 
-                <div class="modern-box">
-                    <h4><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank"><span class="passage-ref">6.20</span></a> On Intrinsic Motivation</h4>
-                    <blockquote>"One who knows it is not the equal of one who loves it, and one who loves it is not the equal of one who takes joy in it."</blockquote>
-                    <p class="modern-connection"><strong>Modern:</strong> Why some people excel—they find joy in work itself. Athletes who "love the game."</p>
-                </div>
-            </section>
+            <div class="modern-box">
+                <h4><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"><span class="passage-ref">2.3</span></a> On Leadership & Justice</h4>
+                <blockquote>"If you lead with regulations and punishments, people will evade laws with no shame. If you guide with Virtue, they will reform themselves."</blockquote>
+                <p class="modern-connection"><strong>Modern:</strong> Criminal justice reform debates—punitive vs. restorative. Corporate compliance vs. values-based leadership.</p>
+            </div>
 
-            <section class="content-section">
-                <div class="modern-box">
-                    <h4><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank"><span class="passage-ref">2.3</span></a> On Leadership & Justice</h4>
-                    <blockquote>"If you lead with regulations and punishments, people will evade laws with no shame. If you guide with Virtue, they will reform themselves."</blockquote>
-                    <p class="modern-connection"><strong>Modern:</strong> Criminal justice reform debates—punitive vs. restorative. Corporate compliance vs. values-based leadership.</p>
-                </div>
+            <div class="modern-box">
+                <h4><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank"><span class="passage-ref">3.12</span></a> On Being Present</h4>
+                <blockquote>"If I am not fully present at the sacrifice, it is as if I did not sacrifice at all."</blockquote>
+                <p class="modern-connection"><strong>Modern:</strong> Mindfulness culture. "Phoning it in." The difference between attending a meeting and being at one.</p>
+            </div>
 
-                <div class="modern-box">
-                    <h4><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank"><span class="passage-ref">3.12</span></a> On Being Present</h4>
-                    <blockquote>"If I am not fully present at the sacrifice, it is as if I did not sacrifice at all."</blockquote>
-                    <p class="modern-connection"><strong>Modern:</strong> Mindfulness culture. "Phoning it in." The difference between attending a meeting and being at one.</p>
-                </div>
-
-                <div class="modern-box">
-                    <h4><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank"><span class="passage-ref">1.3</span></a> On Authenticity</h4>
-                    <blockquote>"A glib tongue and an ingratiating manner are rarely signs of <em>ren</em>."</blockquote>
-                    <p class="modern-connection"><strong>Modern:</strong> Distrust of influencer culture, slick politicians. "Authenticity" as a brand vs. actual authenticity.</p>
-                </div>
-            </section>
+            <div class="modern-box">
+                <h4><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank"><span class="passage-ref">1.3</span></a> On Authenticity</h4>
+                <blockquote>"A glib tongue and an ingratiating manner are rarely signs of <em>ren</em>."</blockquote>
+                <p class="modern-connection"><strong>Modern:</strong> Distrust of influencer culture, slick politicians. "Authenticity" as a brand vs. actual authenticity.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- KONGZI ON HIMSELF -->
-    <div class="section-header" id="self">
-        <div class="section-number">Section Five</div>
-        <div class="chinese-title">自述</div>
-        <h2>Kongzi on Himself</h2>
-    </div>
+    <section class="content-section" id="self">
+        <div class="section-label"><span class="chinese">自述</span> Kongzi on Himself</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head">Humble</div>
+                <div class="card-body" style="padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="self-card humble">
+                        <span class="category-label humble">Humble</span>
+                        <h4>"I Transmit, Not Innovate"</h4>
+                        <div class="self-quote">"I transmit rather than innovate. I trust in and have a love for antiquity."</div>
+                        <p class="interpretation">He's a curator of ancient wisdom, not a revolutionary.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.1</a></span>
+                    </div>
 
-    <div class="container">
-        <div class="self-reflection-grid">
-            <div class="self-card humble">
-                <span class="category-label humble">Humble</span>
-                <h4>"I Transmit, Not Innovate"</h4>
-                <div class="self-quote">"I transmit rather than innovate. I trust in and have a love for antiquity."</div>
-                <p class="interpretation">He's a curator of ancient wisdom, not a revolutionary.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.1</a></span>
+                    <div class="self-card humble">
+                        <span class="category-label humble">Humble</span>
+                        <h4>"Not Born Knowing"</h4>
+                        <div class="self-quote">"I am not one who was born with knowledge. I simply love antiquity and diligently seek it there."</div>
+                        <p class="interpretation">Wisdom from hard work and love of learning, not innate brilliance.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.20</a></span>
+                    </div>
+
+                    <div class="self-card humble">
+                        <span class="category-label humble">Humble</span>
+                        <h4>His Spiritual Autobiography</h4>
+                        <div class="self-quote">"At fifteen I set my heart on learning; at thirty I took my stand; at forty I was free of doubts; at fifty I understood Heaven's Mandate; at sixty my ear was attuned; at seventy I could follow my heart without overstepping."</div>
+                        <p class="interpretation">Mastery took a lifetime. He became so through decades of cultivation.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank">2.4</a></span>
+                    </div>
+                </div>
             </div>
 
-            <div class="self-card humble">
-                <span class="category-label humble">Humble</span>
-                <h4>"Not Born Knowing"</h4>
-                <div class="self-quote">"I am not one who was born with knowledge. I simply love antiquity and diligently seek it there."</div>
-                <p class="interpretation">Wisdom from hard work and love of learning, not innate brilliance.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.20</a></span>
-            </div>
+            <div class="card">
+                <div class="card-head">Worried & Strengths</div>
+                <div class="card-body" style="padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="self-card worried">
+                        <span class="category-label worried">Worried</span>
+                        <h4>His Four Anxieties</h4>
+                        <div class="self-quote">"That I have left my Virtue uncultivated, that I have not explored what I have learned, that upon hearing what is right I cannot move toward it, that I cannot reform when wrong—these trouble me."</div>
+                        <p class="interpretation">His anxieties reveal his values: virtue, understanding, action, self-correction.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.3</a></span>
+                    </div>
 
-            <div class="self-card worried">
-                <span class="category-label worried">Worried</span>
-                <h4>His Four Anxieties</h4>
-                <div class="self-quote">"That I have left my Virtue uncultivated, that I have not explored what I have learned, that upon hearing what is right I cannot move toward it, that I cannot reform when wrong—these trouble me."</div>
-                <p class="interpretation">His anxieties reveal his values: virtue, understanding, action, self-correction.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.3</a></span>
-            </div>
+                    <div class="self-card worried">
+                        <span class="category-label worried">Worried</span>
+                        <h4>No Longer Dreams of Zhou</h4>
+                        <div class="self-quote">"How seriously I have declined! It has been so long since I dreamt of the Duke of Zhou."</div>
+                        <p class="interpretation">His sense of age, decline, or lost connection to the ideal.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.5</a></span>
+                    </div>
 
-            <div class="self-card worried">
-                <span class="category-label worried">Worried</span>
-                <h4>No Longer Dreams of Zhou</h4>
-                <div class="self-quote">"How seriously I have declined! It has been so long since I dreamt of the Duke of Zhou."</div>
-                <p class="interpretation">His sense of age, decline, or lost connection to the ideal.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.5</a></span>
-            </div>
+                    <div class="self-card worried">
+                        <span class="category-label worried">Worried</span>
+                        <h4>The Way Is Not Practiced</h4>
+                        <div class="self-quote">"I understand why the Way is not practiced: the wise overshoot it while the foolish fall short."</div>
+                        <p class="interpretation">Caught between extremes—the clever who overcomplicate and the simple who can't grasp it.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.21</a></span>
+                    </div>
 
-            <div class="self-card proud">
-                <span class="category-label proud">Strengths</span>
-                <h4>Never Tired of Learning or Teaching</h4>
-                <div class="self-quote">"How would I dare to consider myself a sage? What can be said of me is merely that I never tire of learning nor grow weary of teaching."</div>
-                <p class="interpretation">Inexhaustible energy for the path itself.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.34</a></span>
-            </div>
+                    <div class="self-card proud">
+                        <span class="category-label proud">Strengths</span>
+                        <h4>Never Tired of Learning or Teaching</h4>
+                        <div class="self-quote">"How would I dare to consider myself a sage? What can be said of me is merely that I never tire of learning nor grow weary of teaching."</div>
+                        <p class="interpretation">Inexhaustible energy for the path itself.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.34</a></span>
+                    </div>
 
-            <div class="self-card proud">
-                <span class="category-label proud">Strengths</span>
-                <h4>Silent Learning, Tireless Teaching</h4>
-                <div class="self-quote">"Remaining silent and comprehending, learning without becoming sated, teaching and never growing weary—these come to me without effort."</div>
-                <p class="interpretation">Learning and teaching as effortless joy. This is 6.20 embodied.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.2</a></span>
-            </div>
-
-            <div class="self-card humble">
-                <span class="category-label humble">Humble</span>
-                <h4>His Spiritual Autobiography</h4>
-                <div class="self-quote">"At fifteen I set my heart on learning; at thirty I took my stand; at forty I was free of doubts; at fifty I understood Heaven's Mandate; at sixty my ear was attuned; at seventy I could follow my heart without overstepping."</div>
-                <p class="interpretation">Mastery took a lifetime. He became so through decades of cultivation.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank">2.4</a></span>
-            </div>
-
-            <div class="self-card worried">
-                <span class="category-label worried">Worried</span>
-                <h4>The Way Is Not Practiced</h4>
-                <div class="self-quote">"I understand why the Way is not practiced: the wise overshoot it while the foolish fall short."</div>
-                <p class="interpretation">Caught between extremes—the clever who overcomplicate and the simple who can't grasp it.</p>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.21</a></span>
+                    <div class="self-card proud">
+                        <span class="category-label proud">Strengths</span>
+                        <h4>Silent Learning, Tireless Teaching</h4>
+                        <div class="self-quote">"Remaining silent and comprehending, learning without becoming sated, teaching and never growing weary—these come to me without effort."</div>
+                        <p class="interpretation">Learning and teaching as effortless joy. This is 6.20 embodied.</p>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/shu-er" target="_blank">7.2</a></span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- KONGZI'S HIT LIST -->
-    <div class="section-header" id="hitlist">
-        <div class="section-number">Section Six</div>
-        <div class="chinese-title">黑名單</div>
-        <h2>Kongzi's Hit List</h2>
-    </div>
-
-    <div class="container">
+    <section class="content-section alt" id="hitlist">
+        <div class="section-label"><span class="chinese">黑名單</span> Kongzi's Hit List</div>
         <div class="hit-list-intro">
             "The Master had strong opinions. Here are the types who drew his sharpest criticism."
         </div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head" style="background: #1a252f;">Severe Offenses</div>
+                <div class="card-body" style="padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="villain-card">
+                        <span class="severity high">Severe</span>
+                        <h4>The Glib Talker</h4>
+                        <p class="offense">Smooth words, slick presentation, no substance.</p>
+                        <div class="evidence">"A glib tongue and an ingratiating manner are rarely signs of ren."</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank">1.3</a></span>
+                    </div>
 
-        <div class="hit-list-grid">
-            <div class="villain-card">
-                <span class="severity high">Severe</span>
-                <h4>The Glib Talker</h4>
-                <p class="offense">Smooth words, slick presentation, no substance.</p>
-                <div class="evidence">"A glib tongue and an ingratiating manner are rarely signs of ren."</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/xue-er" target="_blank">1.3</a></span>
+                    <div class="villain-card">
+                        <span class="severity high">Severe</span>
+                        <h4>The Ritual Violator</h4>
+                        <p class="offense">Uses royal ritual for personal display.</p>
+                        <div class="evidence">"The Ji Clan had eight rows of dancers. If he is capable of this, what is he not capable of?"</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.1</a></span>
+                    </div>
+
+                    <div class="villain-card">
+                        <span class="severity high">Severe</span>
+                        <h4>The Lazy Student (Zaiyu)</h4>
+                        <p class="offense">Sleeps during day. Makes excuses.</p>
+                        <div class="evidence">"Rotten wood cannot be carved; a wall of dried dung cannot be troweled."</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.10</a></span>
+                    </div>
+
+                    <div class="villain-card">
+                        <span class="severity high">Severe</span>
+                        <h4>The Petty Person (Xiaoren)</h4>
+                        <p class="offense">Profit over rightness. Only personal gain.</p>
+                        <div class="evidence">"The gentleman understands rightness; the petty person understands profit."</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.16</a></span>
+                    </div>
+                </div>
             </div>
 
-            <div class="villain-card">
-                <span class="severity high">Severe</span>
-                <h4>The Ritual Violator</h4>
-                <p class="offense">Uses royal ritual for personal display.</p>
-                <div class="evidence">"The Ji Clan had eight rows of dancers. If he is capable of this, what is he not capable of?"</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.1</a></span>
-            </div>
+            <div class="card">
+                <div class="card-head" style="background: #1a252f;">Warnings & Concerns</div>
+                <div class="card-body" style="padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="villain-card">
+                        <span class="severity medium">Warning</span>
+                        <h4>The Excuse-Maker (Ranyou)</h4>
+                        <p class="offense">Claims inability, but doesn't try.</p>
+                        <div class="evidence">"Those for whom it is genuinely insufficient collapse along the Way. You deliberately draw the line."</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.12</a></span>
+                    </div>
 
-            <div class="villain-card">
-                <span class="severity high">Severe</span>
-                <h4>The Lazy Student (Zaiyu)</h4>
-                <p class="offense">Sleeps during day. Makes excuses.</p>
-                <div class="evidence">"Rotten wood cannot be carved; a wall of dried dung cannot be troweled."</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.10</a></span>
-            </div>
+                    <div class="villain-card">
+                        <span class="severity medium">Warning</span>
+                        <h4>The Empty Ritualist</h4>
+                        <p class="offense">Goes through motions without inner feeling.</p>
+                        <div class="evidence">"A person who is not ren—what has he to do with rites? What has he to do with music?"</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.3</a></span>
+                    </div>
 
-            <div class="villain-card">
-                <span class="severity high">Severe</span>
-                <h4>The Petty Person (Xiaoren)</h4>
-                <p class="offense">Profit over rightness. Only personal gain.</p>
-                <div class="evidence">"The gentleman understands rightness; the petty person understands profit."</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.16</a></span>
-            </div>
+                    <div class="villain-card">
+                        <span class="severity medium">Warning</span>
+                        <h4>The All-Talk Type</h4>
+                        <p class="offense">Big promises, no follow-through.</p>
+                        <div class="evidence">"The gentleman is ashamed to have his words outpace his actions."</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.22</a></span>
+                    </div>
 
-            <div class="villain-card">
-                <span class="severity medium">Warning</span>
-                <h4>The Excuse-Maker (Ranyou)</h4>
-                <p class="offense">Claims inability, but doesn't try.</p>
-                <div class="evidence">"Those for whom it is genuinely insufficient collapse along the Way. You deliberately draw the line."</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/yong-ye" target="_blank">6.12</a></span>
-            </div>
-
-            <div class="villain-card">
-                <span class="severity medium">Warning</span>
-                <h4>The Empty Ritualist</h4>
-                <p class="offense">Goes through motions without inner feeling.</p>
-                <div class="evidence">"A person who is not ren—what has he to do with rites? What has he to do with music?"</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/ba-yi" target="_blank">3.3</a></span>
-            </div>
-
-            <div class="villain-card">
-                <span class="severity medium">Warning</span>
-                <h4>The All-Talk Type</h4>
-                <p class="offense">Big promises, no follow-through.</p>
-                <div class="evidence">"The gentleman is ashamed to have his words outpace his actions."</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/li-ren" target="_blank">4.22</a></span>
-            </div>
-
-            <div class="villain-card">
-                <span class="severity low">Concern</span>
-                <h4>The Unexamined Life</h4>
-                <p class="offense">Never reflects on own faults.</p>
-                <div class="evidence">"I have yet to meet someone who can perceive his own faults and take himself to task inwardly."</div>
-                <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.27</a></span>
+                    <div class="villain-card">
+                        <span class="severity low">Concern</span>
+                        <h4>The Unexamined Life</h4>
+                        <p class="offense">Never reflects on own faults.</p>
+                        <div class="evidence">"I have yet to meet someone who can perceive his own faults and take himself to task inwardly."</div>
+                        <span class="passage-num"><a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.27</a></span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- DISCUSSION QUESTIONS -->
-    <div class="section-header" id="discussion">
-        <div class="section-number">Section Seven</div>
-        <div class="chinese-title">討論</div>
-        <h2>Discussion Questions</h2>
-    </div>
-
-    <div class="container">
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> Discussion Questions</div>
         <ol class="discussion-list">
             <li><strong>The Zigong Problem:</strong> Zigong articulates the "negative Golden Rule" (<a class="ctext" href="https://ctext.org/analects/gong-ye-chang" target="_blank">5.12</a>), but Kongzi says achieving this is "beyond him." Why is <em>knowing</em> the right thing different from <em>doing</em> it?</li>
 
@@ -1208,15 +1147,31 @@
 
             <li><strong>Age 70:</strong> Kongzi says at 70 he could "follow his heart's desire without overstepping propriety" (<a class="ctext" href="https://ctext.org/analects/wei-zheng" target="_blank">2.4</a>). Is this freedom or total conformity?</li>
         </ol>
-    </div>
+    </section>
 
-    <!-- Footer -->
+    <!-- Sources -->
+    <section class="sources">
+        <div class="section-label">Sources & References</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Ivanhoe translation, pp. 1-36</p>
+                <a href="https://ctext.org/analects" target="_blank">ctext.org - Full Analects (Chinese)</a>
+            </div>
+            <div class="source-card">
+                <h4>Navigation</h4>
+                <a href="../index.html">&larr; Course Portal</a>
+                <a href="mengzi.html">Mengzi &rarr;</a>
+                <a href="xunzi.html">Xunzi &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - matches index.html -->
     <footer>
         <div class="foot-chinese">中國文學與思想</div>
         <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
         <div class="foot-term">WINTER 2026</div>
-        <p style="margin-top: 0.5rem;"><a href="../index.html">&larr; Course Portal</a></p>
-        <p>Text: Ivanhoe translation &middot; Passage numbers link to <a href="https://ctext.org/analects" target="_blank">ctext.org</a></p>
     </footer>
 
 </body>
