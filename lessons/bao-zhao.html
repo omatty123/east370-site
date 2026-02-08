@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bao Zhao: Deep Dive | EAST 370 Study Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #888;
+            --recluse: #5C6B73;
+            --recluse-dark: #3d4a50;
+            --recluse-light: #7a8b93;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --paper: #fafaf8;
+            --paper-warm: #faf6f0;
+            --paper-dark: #f0ede8;
+            --teal: #2d5a5a;
+            --poem-bg: #faf8f2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* ===== COMPACT HEADER ===== */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .page-header .back:hover { color: var(--gold-light); }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--recluse);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* ===== STICKY NAV ===== */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover { color: var(--gold-light); }
+
+        /* ===== WIKI / BIO LINKS ===== */
+        .wiki-link {
+            font-size: 0.72rem;
+            color: var(--recluse-light);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--recluse-light);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .wiki-link:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+
+        .intro-text {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            max-width: 720px;
+            margin-bottom: 1.25rem;
+        }
+
+        /* ===== SECTION LABELS ===== */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section {
+            padding: 1.75rem 2rem 2rem;
+        }
+
+        .content-section.alt {
+            background: var(--paper-dark);
+        }
+
+        .content-section.warm {
+            background: var(--paper-warm);
+        }
+
+        .content-section.white {
+            background: #fff;
+        }
+
+        .content-section.dark {
+            background: #2a2e32;
+            color: #ddd;
+        }
+
+        /* ===== CONTENT GRIDS ===== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.25rem;
+            margin-top: 0.75rem;
+        }
+
+        .content-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .content-grid-full {
+            margin-top: 1.25rem;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+        }
+
+        .card-body p {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .card-body h4 {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--recluse);
+            margin: 1rem 0 0.5rem;
+            padding-top: 0.65rem;
+            border-top: 1px solid var(--paper-dark);
+            font-weight: 600;
+        }
+
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .card-body ul { font-size: 0.92rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.4rem; line-height: 1.65; }
+
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        .card-body strong { color: var(--ink); }
+
+        /* ===== VOICE CARDS ===== */
+        .voice-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .voice-card .voice-head {
+            background: var(--recluse-dark);
+            padding: 0.6rem 1.25rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .voice-card .voice-body {
+            padding: 1.25rem;
+        }
+
+        .voice-card .name-en {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .voice-card .dates {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.6rem;
+        }
+
+        .voice-card .key-idea {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* ===== GLOSSARY TABS ===== */
+        .glossary-section {
+            background: var(--paper-dark);
+            padding: 1.75rem 2rem 2rem;
+        }
+
+        .glossary-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .glossary-section .glossary-sub {
+            font-size: 0.88rem;
+            color: var(--ink-faint);
+            margin-bottom: 1.25rem;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 1.25rem;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--ink-faint);
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: color 0.2s, border-color 0.2s;
+            letter-spacing: 0.03em;
+        }
+
+        .tab-btn:hover {
+            color: var(--ink-light);
+        }
+
+        .tab-btn.active {
+            color: var(--recluse-dark);
+            border-bottom-color: var(--gold);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .gloss-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .gloss-item {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .gloss-item .gloss-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.15rem;
+        }
+
+        .gloss-item .gloss-name .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 400;
+            color: var(--recluse);
+        }
+
+        .gloss-item .gloss-dates {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.6rem;
+        }
+
+        .gloss-item .gloss-text {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        /* ===== READING CARDS ===== */
+        .reading-card {
+            background: var(--paper-warm);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+        }
+
+        .reading-card .reading-head {
+            background: #2a2a2a;
+            padding: 0.65rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .reading-card .reading-head .reading-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .reading-card .reading-head .reading-source {
+            font-size: 0.72rem;
+            color: var(--recluse-light);
+        }
+
+        .reading-card .reading-body {
+            padding: 1.25rem;
+        }
+
+        .reading-card .reading-body p {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .reading-card .reading-body p:last-child { margin-bottom: 0; }
+
+        .reading-card .reading-body h4 {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--recluse);
+            margin: 1rem 0 0.5rem;
+            padding-top: 0.65rem;
+            border-top: 1px solid #ede9e0;
+            font-weight: 600;
+        }
+
+        .reading-card .reading-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .reading-card .reading-body ul {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            padding-left: 1.2rem;
+        }
+
+        .reading-card .reading-body li {
+            margin-bottom: 0.4rem;
+            line-height: 1.65;
+        }
+
+        .reading-card .reading-body strong { color: var(--ink); }
+
+        .notice-box {
+            background: #fff;
+            border-left: 3px solid var(--recluse);
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .notice-box .notice-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--recluse);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .notice-box p {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        /* ===== POEM CARDS ===== */
+        .poem-card {
+            background: var(--poem-bg);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+        }
+
+        .poem-card .poem-head {
+            background: #2a2a2a;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--recluse-light);
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .poem-card .poem-head .poem-title {
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        .poem-card .poem-body {
+            padding: 1.5rem 1.25rem;
+        }
+
+        .poem-card .poem-body .poem-context {
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #ede9e0;
+        }
+
+        .poem {
+            white-space: pre-line;
+            line-height: 2.0;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--ink-light);
+            letter-spacing: 0.01em;
+            padding: 0.5rem 0;
+        }
+
+        .poem-annotation {
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            line-height: 1.65;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #ede9e0;
+            font-style: italic;
+        }
+
+        .poem-credit {
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #ede9e0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== POET SECTION HEADERS ===== */
+        .part-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--recluse);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .poet-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.25rem;
+        }
+
+        .poet-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .period-note {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== SAYING BOX ===== */
+        .saying-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+        }
+
+        .saying-card .saying-body {
+            padding: 1.25rem 1.5rem;
+        }
+
+        .saying-card .saying-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.3rem;
+            color: var(--recluse);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.05em;
+        }
+
+        .saying-card .saying-meaning {
+            font-size: 0.95rem;
+            color: var(--ink);
+            font-style: italic;
+            margin-bottom: 0.4rem;
+            line-height: 1.6;
+        }
+
+        .saying-card .saying-note {
+            font-size: 0.82rem;
+            color: var(--ink-faint);
+        }
+
+        /* ===== BLOCKQUOTES ===== */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--recluse);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+        }
+
+        /* ===== ANALYSIS SECTION (DARK) ===== */
+        .analysis-section {
+            background: #2a2e32;
+            padding: 1.75rem 2rem 2rem;
+        }
+
+        .analysis-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .analysis-section .section-label {
+            color: var(--recluse-light);
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .analysis-card {
+            background: #353a3f;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .analysis-card .a-head {
+            background: #1e2225;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        .analysis-card .a-body {
+            padding: 1.25rem;
+        }
+
+        .analysis-card .a-body p {
+            font-size: 0.92rem;
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .analysis-card .a-body p:last-child { margin-bottom: 0; }
+        .analysis-card .a-body strong { color: #ddd; }
+
+        .analysis-full {
+            background: #353a3f;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .analysis-full .a-head {
+            background: #1e2225;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        .analysis-full .a-body {
+            padding: 1.25rem;
+        }
+
+        .analysis-full .a-body p {
+            font-size: 0.92rem;
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .analysis-full .a-body p:last-child { margin-bottom: 0; }
+        .analysis-full .a-body ul {
+            font-size: 0.92rem;
+            color: #bbb;
+            padding-left: 1.2rem;
+        }
+        .analysis-full .a-body li {
+            margin-bottom: 0.4rem;
+            line-height: 1.65;
+        }
+        .analysis-full .a-body strong { color: #ddd; }
+
+        /* ===== QUESTION CARDS ===== */
+        .question-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .question-card .q-head {
+            background: #2a2a2a;
+            padding: 0.55rem 1.25rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--recluse-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .question-card .q-body {
+            padding: 1.25rem;
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--ink);
+            padding: 1.5rem 2rem;
+            text-align: left;
+        }
+
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 0.35rem;
+        }
+
+        footer .foot-term {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .content-section { padding: 1.5rem 1.25rem; }
+            .glossary-section { padding: 1.5rem 1.25rem; }
+            .analysis-section { padding: 1.5rem 1.25rem; }
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid-3 { grid-template-columns: 1fr; }
+            .gloss-grid { grid-template-columns: 1fr; }
+            .analysis-grid { grid-template-columns: 1fr; }
+            .nav { gap: 0.5rem; padding: 0.65rem 1.25rem; }
+            .tab-btn { padding: 0.5rem 0.75rem; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">鮑照</span>
+            <span class="en">Bao Zhao: Deep Dive</span>
+            <span class="tag">RECLUSE</span>
+            <span class="meta">Birch pp. 189&ndash;193 &middot; Period of Division (420&ndash;589 CE)</span>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
+    <nav class="nav">
+        <a href="#biography">Biography</a>
+        <a href="#glossary">Glossary</a>
+        <a href="#tedious-ways">Tedious Ways</a>
+        <a href="#ruined-city">The Ruined City</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#questions">Questions</a>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- BIOGRAPHY -->
+    <!-- ============================================================ -->
+    <section class="content-section warm" id="biography">
+        <div class="section-label"><span class="chinese">鮑照</span> Bao Zhao</div>
+        <p class="intro-text">A poet of ferocious talent born into the wrong family. Bao Zhao (c. 414&ndash;466 CE) lived and died in the Liu Song dynasty, an era when aristocratic birth determined everything: your rank, your career, your access to power. Bao Zhao came from a declined scholar family and probably worked as a farmer before entering government service. His poetry burns with the awareness that merit means nothing in a system that rewards bloodline. Where Tao Yuanming chose withdrawal, Bao Zhao had no such luxury. He was never fully inside the system to begin with.</p>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">生平</span> Life</div>
+                <div class="card-body">
+                    <h4>Origins</h4>
+                    <p>Born around 414 CE, possibly in Jingkou (modern Zhenjiang, Jiangsu). His family had declined from the scholar class. He likely worked the land before entering official service. His younger sister Bao Linghui (<span style="font-family: 'Noto Sans SC', sans-serif;">鮑令暉</span>) was also a poet; seven of her poems survive in the "boudoir lament" genre.</p>
+                    <h4>Career</h4>
+                    <p>Around 438 CE, he joined the staff of Liu Yiqing, Prince of Linchuan (the same prince who compiled the famous <em>Shishuo xinyu</em>, "A New Account of Tales of the World"). Later served Liu Jun, who became Emperor Xiaowu, and accompanied him on a military campaign against the Northern Wei in 451. Spent twelve years in various local government positions, including a stint as professor at the Imperial Academy.</p>
+                    <h4>Death</h4>
+                    <p>In 464, he joined the staff of the young prince Liu Zixu, governor of Jingzhou. When a rival prince rebelled in 466 and Liu Zixu joined the insurrection, the rebellion was crushed by imperial forces. The nine-year-old prince was forced to commit suicide. <strong>All staff members, including Bao Zhao, were executed.</strong> He was approximately fifty-two years old.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">文學地位</span> Literary Standing</div>
+                <div class="card-body">
+                    <h4>The Three Masters of Yuanjia</h4>
+                    <p>Bao Zhao is one of the "Three Masters of the Yuanjia Period" (424&ndash;453), alongside Xie Lingyun (<span style="font-family: 'Noto Sans SC', sans-serif;">謝靈運</span>, the landscape poet) and Yan Yanzhi (<span style="font-family: 'Noto Sans SC', sans-serif;">顏延之</span>, the stylist). Each had a distinct voice: Xie Lingyun brought descriptive mountain landscapes, Yan Yanzhi brought elegant diction, and Bao Zhao brought unconventional imagery and mastery of the <em>yuefu</em> (music bureau) folk-song tradition.</p>
+                    <h4>Why He Matters</h4>
+                    <p>He is considered the most important <em>yuefu</em> poet of the Six Dynasties. About 200 of his poems survive. His "Tedious Ways" (<span style="font-family: 'Noto Sans SC', sans-serif;">行路難</span>) sequence became one of the most imitated titles in Chinese poetry. Li Bai wrote his own "Hard Traveling" poems directly in Bao Zhao's wake. Eleven of his poems appear in the <em>Wen xuan</em> (<span style="font-family: 'Noto Sans SC', sans-serif;">文選</span>), the most influential literary anthology of the era.</p>
+                    <h4>Class and Poetry</h4>
+                    <p>His poetry is saturated with anxiety over time, the passage of youth, and blocked ambition. Unlike the aristocratic recluses who <em>chose</em> to leave the system, Bao Zhao writes as someone the system never fully admitted. The road is "tedious" not because he philosophically rejects it, but because it is genuinely harder for someone born without rank.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Voices -->
+        <div class="content-grid" style="margin-top: 1.25rem;">
+            <div class="voice-card">
+                <div class="voice-head">The Yuefu Poet</div>
+                <div class="voice-body">
+                    <div class="name-en">"Tedious Ways" (<span style="font-family: 'Noto Sans SC', sans-serif;">行路難</span>)</div>
+                    <div class="dates">Hsing lu nan in Birch &middot; pp. 189&ndash;190</div>
+                    <div class="key-idea">Three poems on the hardness of life's road. A fallen king reduced to a worm-eating bird. An abandoned wife pacing till midnight. A direct challenge: enjoy what you have, because death is absolute.</div>
+                </div>
+            </div>
+            <div class="voice-card">
+                <div class="voice-head">The Fu Master</div>
+                <div class="voice-body">
+                    <div class="name-en">"The Ruined City" (<span style="font-family: 'Noto Sans SC', sans-serif;">蕪城賦</span>)</div>
+                    <div class="dates">Wu ch'eng fu in Birch &middot; pp. 190&ndash;193</div>
+                    <div class="key-idea">A rhapsody on the ruins of Guangling (modern Yangzhou). Grand civilization reduced to duckweed and brambles. Tigers prowl where courtiers feasted. One of the most powerful meditations on impermanence in all of Chinese literature.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- REFERENCE GLOSSARY -->
+    <!-- ============================================================ -->
+    <section class="glossary-section" id="glossary">
+        <h2>Reference Glossary</h2>
+        <p class="glossary-sub">Names, allusions, and concepts for the Bao Zhao reading.</p>
+
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="people">People</button>
+            <button class="tab-btn" data-tab="allusions">Allusions</button>
+            <button class="tab-btn" data-tab="concepts">Key Concepts</button>
+        </div>
+
+        <!-- People Tab -->
+        <div class="tab-panel active" id="tab-people">
+            <div class="gloss-grid">
+                <div class="gloss-item">
+                    <div class="gloss-name">Bao Zhao <span class="chinese">鮑照</span> <a href="https://en.wikipedia.org/wiki/Bao_Zhao" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
+                    <div class="gloss-dates">c. 414&ndash;466 CE &middot; courtesy name Mingyuan 明遠 &middot; Pao Chao in Birch</div>
+                    <div class="gloss-text">Liu Song dynasty poet from a declined scholar family. One of the "Three Masters of the Yuanjia Period." The most important <em>yuefu</em> poet of the Six Dynasties. Served under multiple princes, executed in 466 when his patron's rebellion failed. His work pulses with blocked ambition, the passage of time, and the injustice of a system that rewards birth over talent.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Bao Linghui <span class="chinese">鮑令暉</span> <a href="https://en.wikipedia.org/wiki/Bao_Linghui" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
+                    <div class="gloss-dates">fl. 5th century CE</div>
+                    <div class="gloss-text">Bao Zhao's younger sister. One of the few named female poets of the Southern Dynasties. Seven of her poems survive, mostly in the "boudoir lament" (<em>guiyuan</em>) genre. The abandoned wife in Bao Zhao's Poem 2 echoes themes his sister also wrote about.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Xie Lingyun <span class="chinese">謝靈運</span> <a href="https://en.wikipedia.org/wiki/Xie_Lingyun" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
+                    <div class="gloss-dates">385&ndash;433 CE</div>
+                    <div class="gloss-text">Fellow "Master of the Yuanjia Period." Invented <em>shanshui</em> (landscape) poetry. A powerful aristocrat who was eventually executed after political intrigues. Contrast with Bao Zhao: Xie Lingyun had every advantage of birth and still died violently. Bao Zhao had none and died the same way.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Yan Yanzhi <span class="chinese">顏延之</span></div>
+                    <div class="gloss-dates">384&ndash;456 CE</div>
+                    <div class="gloss-text">The third "Master of the Yuanjia Period." Known for elegant, ornate diction. A close friend of Tao Yuanming (who was a generation older). His fortunes were tied to court politics and Song princes.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">C. J. Chen &amp; Michael Bullock</div>
+                    <div class="gloss-dates">Translators</div>
+                    <div class="gloss-text">Translated the Bao Zhao poems in the Birch anthology. Also translated the Ruan Ji poems in the same volume. Their translation style is direct and unadorned, preserving the rhythmic punch of the <em>yuefu</em> originals.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Allusions Tab -->
+        <div class="tab-panel" id="tab-allusions">
+            <div class="gloss-grid">
+                <div class="gloss-item">
+                    <div class="gloss-name">The Nightjar / Spirit of an Ancient King <span class="chinese">杜鵑</span></div>
+                    <div class="gloss-dates">Referenced in "Tedious Ways" Poem 1</div>
+                    <div class="gloss-text">The legend of Du Yu (<span style="font-family: 'Noto Sans SC', sans-serif;">杜宇</span>), ancient King of Shu (in modern Sichuan). After losing his throne, his spirit transformed into a cuckoo (or nightjar). The bird's plaintive cry is heard as a lament for lost power. In Chinese poetry, the cuckoo is nearly always a symbol of sorrow. Bao Zhao takes this further: the royal spirit now "searches for worms and ants." The degradation is total. Has it forgotten its majesty? The poem's devastating question.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Northern Gate</div>
+                    <div class="gloss-dates">Referenced in "Tedious Ways" Poem 1</div>
+                    <div class="gloss-text">In Chinese geomancy, north is associated with winter, darkness, and death. Riding out through the northern gate means heading toward the graveyard. The journey immediately turns from a physical road into a meditation on mortality.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Lonely Mistress / Abandoned Wife</div>
+                    <div class="gloss-dates">Referenced in "Tedious Ways" Poem 2</div>
+                    <div class="gloss-text">One of the oldest tropes in Chinese poetry, going back to the <em>Book of Songs</em>. The abandoned wife stands in for anyone whose loyalty goes unrewarded: the faithful minister ignored by the ruler, the talented man passed over for promotion. For Bao Zhao, born outside the aristocratic system, the abandoned wife's "pacing to and fro till midnight" resonates as a figure for blocked ambition, not just romantic loss.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Guangling <span class="chinese">廣陵</span></div>
+                    <div class="gloss-dates">The "Ruined City" &middot; modern Yangzhou, Jiangsu</div>
+                    <div class="gloss-text">The city described in "The Ruined City." Guangling was a major commercial center, strategically located on the Grand Canal. It was destroyed during the civil conflicts of the Liu Song dynasty, likely during or after the Northern Wei invasion of 451 CE. Bao Zhao's <em>fu</em> was written from recent memory. This was not an ancient ruin poeticized at safe distance; it was a city destroyed within his own lifetime.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Magnets at Mountain Passes</div>
+                    <div class="gloss-dates">Referenced in "The Ruined City"</div>
+                    <div class="gloss-text">The Birch footnote explains: magnets were installed at mountain passes to attract enemy arrows (which had iron tips). A detail of ingenious military engineering, placed here to emphasize how sophisticated and defended the city was. Even this was not enough to prevent its fall.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">"Divided like a melon, or shared like beans"</div>
+                    <div class="gloss-dates">Referenced in "The Ruined City"</div>
+                    <div class="gloss-text">A proverbial expression for the partition of territory. The great city that was supposed to endure "for a myriad generations" was carved up. The metaphor is deliberately humble: the grandest political ambitions reduced to kitchen imagery. Melons and beans.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Concepts Tab -->
+        <div class="tab-panel" id="tab-concepts">
+            <div class="gloss-grid">
+                <div class="gloss-item">
+                    <div class="gloss-name">Yuefu <span class="chinese">樂府</span></div>
+                    <div class="gloss-dates">Music Bureau poetry</div>
+                    <div class="gloss-text">Originally songs collected by the Han dynasty Music Bureau (established 120 BCE). By Bao Zhao's era, <em>yuefu</em> had become a literary genre: poets composed new works using old titles and conventions but with personal content. "Tedious Ways" (<em>Xing lu nan</em>) is a <em>yuefu</em> title that Bao Zhao made famous. The genre allowed rawer, more direct emotional expression than the refined <em>shi</em> poetry of the aristocratic tradition.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Fu <span class="chinese">賦</span></div>
+                    <div class="gloss-dates">Rhapsody / Prose-poem</div>
+                    <div class="gloss-text">The genre of "The Ruined City." A <em>fu</em> is a sustained, typically descriptive prose-poem. Think of it as the literary equivalent of a panoramic painting: it surveys a scene in elaborate detail, building toward a philosophical reflection. Bao Zhao's <em>fu</em> begins with the city at its height and moves systematically through its destruction. The genre demands grandeur, and Bao Zhao delivers it.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Nine-Rank System <span class="chinese">九品中正制</span></div>
+                    <div class="gloss-dates">jiǔ pǐn zhōng zhèng zhì</div>
+                    <div class="gloss-text">The civil service classification system that dominated Southern Dynasties politics. Candidates were ranked 1&ndash;9, but in practice the system was captured by aristocratic families. By the Liu Song dynasty, the top ranks were monopolized by a handful of great clans. For someone like Bao Zhao, born outside this network, advancement was blocked regardless of talent. His poetry's anger about the "tedious road" is rooted in this structural injustice.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Impermanence <span class="chinese">無常</span></div>
+                    <div class="gloss-dates">wúcháng</div>
+                    <div class="gloss-text">The central theme of both works. In "Tedious Ways," impermanence operates at the personal level: youth fades, beauty withers, life "passes like lightning." In "The Ruined City," impermanence operates at the civilizational level: empires built for "a myriad generations" crumble within centuries. Neither poem offers transcendence or consolation. Bao Zhao's impermanence is bleaker than Tao Yuanming's because it carries no promise that withdrawal will make it bearable.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Abandoned Wife Trope <span class="chinese">棄婦</span></div>
+                    <div class="gloss-dates">qì fù</div>
+                    <div class="gloss-text">A convention going back to the <em>Book of Songs</em>. The woman whose husband has left and does not return. In the Chinese allegorical tradition, the abandoned wife routinely stands for the loyal minister whose ruler has forgotten him. For Bao Zhao, the trope carries an additional class dimension: the abandoned wife does not merely wait for her husband. She waits for a world that has structurally excluded her from participation.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Ruined City Tradition</div>
+                    <div class="gloss-dates">Literary genre</div>
+                    <div class="gloss-text">Bao Zhao's "Wu cheng fu" belongs to a tradition of poems and <em>fu</em> that meditate on ruined capitals. The genre goes back at least to the <em>Book of Songs</em> poem "Millet" (<em>Shu li</em>), where a traveler weeps at the site of a former palace now overgrown with grain. But Bao Zhao's version is distinctive for its visceral detail. Where other ruined-city poems gesture toward loss, Bao Zhao fills the ruins with specific creatures: skunks, snakes, hawks, leopards, rats. The ruin is not abstract. It crawls with life.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TEDIOUS WAYS -->
+    <!-- ============================================================ -->
+    <section class="content-section" id="tedious-ways">
+        <div class="part-label">Part I</div>
+        <div class="poet-header">
+            <h2>Three Poems from "Tedious Ways"</h2>
+        </div>
+        <div class="period-note"><span style="font-family: 'Noto Sans SC', sans-serif;">行路難</span> &middot; Hsing lu nan in Birch &middot; pp. 189&ndash;190 &middot; tr. C. J. Chen &amp; Michael Bullock</div>
+
+        <!-- Reading Card -->
+        <div class="reading-card">
+            <div class="reading-head">
+                <span class="reading-title">"Tedious Ways" (Xing lu nan, 行路難)</span>
+                <span class="reading-source">Yuefu sequence</span>
+            </div>
+            <div class="reading-body">
+                <h4>What It Is</h4>
+                <p>"Xing lu nan" literally means "The Road is Hard" or "Hard Traveling." It is a <em>yuefu</em> title that existed before Bao Zhao, but his poems under this heading became the most famous versions. The sequence runs to at least six poems; Birch selects three. Each takes a different angle on the same theme: life is brief, the road is hard, and nothing endures.</p>
+
+                <h4>The Three Poems</h4>
+                <ul>
+                    <li><strong>Poem 1:</strong> Mortality and degradation. A king's spirit reduced to a nightjar searching for worms. Glory is impermanent, and even majesty forgets itself.</li>
+                    <li><strong>Poem 2:</strong> Absence and longing. The abandoned wife, her dusty mirror, her loose robes. Time passes without the expected reunion. A human-scale meditation on loss.</li>
+                    <li><strong>Poem 3:</strong> The direct address. "Do you not see?" Fallen leaves, sacrificial offerings no spirit drinks. Life passes like lightning. Enjoy what you have. Then the sly final question: "Do you not like my 'Tedious Ways'?"</li>
+                </ul>
+
+                <h4>What Makes Bao Zhao Different</h4>
+                <p>Compare him to the other poets in this unit. Zhang Heng philosophizes about death from the safety of the Han court. Ruan Ji encodes his anguish in deliberate opacity. Tao Yuanming walks away with dignity. Bao Zhao does none of these things. He stares directly at impermanence without consolation, without escape, without the social cushion of aristocratic birth. His poems are blunt where the others are careful. The <em>yuefu</em> tradition gives him permission to be raw.</p>
+
+                <div class="notice-box">
+                    <div class="notice-label">What to Notice</div>
+                    <p>The emotional register shifts sharply across the three poems. Poem 1 is haunted and philosophical. Poem 2 is intimate and domestic. Poem 3 is almost belligerent, ending with a direct challenge to the listener. This range within a single sequence is characteristic of Bao Zhao: he does not settle into one mood. He argues, he mourns, he provokes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Poems -->
+        <div class="content-grid" style="margin-top: 1.25rem;">
+            <div class="poem-card">
+                <div class="poem-head">Poem 1 &middot; <span class="poem-title">The Nightjar</span></div>
+                <div class="poem-body">
+                    <div class="poem-context">Mortality rides out through the northern gate.</div>
+                    <div class="poem">Riding through the northern gate
+Sorrow suddenly seizes me.
+On looking around, I can only see
+Pines and cypresses growing on desolate tombs.
+In their blue gloom
+A nightjar perches.
+It is said to be the spirit of an ancient king.
+Its dirge never ceases
+And its dishevelled feathers
+Bristle like the hair of a convict.
+It flies from branch to branch
+Searching for worms and ants.
+Has it forgotten its majesty?
+Many changes are not to be expected.
+My heart, overladen with grief,
+                    knows no answer.</div>
+                    <div class="poem-annotation">The nightjar is the spirit of Du Yu, King of Shu, transformed after losing his throne. The image is brutal in its specificity: not a ghostly presence but a dishevelled bird with convict-hair, hunting insects. Majesty reduced to scavenging. "Has it forgotten its majesty?" is the poem's central question, and the answer ("My heart, overladen with grief, knows no answer") refuses closure. There is no Daoist transcendence here, no Buddhist acceptance. Only grief without resolution.</div>
+                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
+                </div>
+            </div>
+            <div class="poem-card">
+                <div class="poem-head">Poem 2 &middot; <span class="poem-title">The Lonely Mistress</span></div>
+                <div class="poem-body">
+                    <div class="poem-context">The abandoned wife: a portrait of time passing without return.</div>
+                    <div class="poem">Five peach trees grow in my garden.
+One of them has begun to bloom.
+It is now the charming third moon
+And the wind blows the petals
+                    to a neighbour's home
+Where the lonely mistress weeps
+With a hand on her bosom and her lapel wet.
+When her husband left,
+There was no thought of a long parting.
+Yet now dust covers the couch
+                    and the mirror no longer reflects.
+Her robes are growing loose, her hair untidy.
+Can she be happy again?
+        Can she stop pacing to and fro till midnight?</div>
+                    <div class="poem-annotation">The poem moves from natural beauty (peach blossoms in the third month) to human desolation in a single breath. The wind carries petals to the neighbor's house; inside that house, a woman weeps. The details are physical and precise: the dusty couch, the dimmed mirror, the loosening robes. She has grown thin from grief. "Can she stop pacing to and fro till midnight?" is not a rhetorical question. The answer is no. In the allegorical tradition, the abandoned wife stands for any loyal person whose devotion goes unrecognized. For Bao Zhao, that resonance is personal.</div>
+                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 1.25rem;">
+            <div class="poem-card" style="grid-column: 1 / -1;">
+                <div class="poem-head">Poem 3 &middot; <span class="poem-title">Do You Not See</span></div>
+                <div class="poem-body">
+                    <div class="poem-context">A direct challenge: life is short, death is absolute, and the speaker knows you don't want to hear it.</div>
+                    <div class="poem">Do you not see the fallen leaves
+        that rustle on the pavings and steps;
+Will they become green again?
+Do you not see the sacrificial food and wine
+        that are laid out for the spirits
+Who have never once raised the cups?
+To you, this should be a loud warning
+That life passes like lightning;
+Youthful days never return;
+And there cannot be time to compete against anyone.
+Retain your noble aims;
+Enjoy your food and friends.
+For they alone can repel
+Your worries and fear.
+Yet you still look unhappy.
+Do you not like my "Tedious Ways"?</div>
+                    <div class="poem-annotation">The most aggressive poem in the sequence. It begins with two unanswerable questions (fallen leaves will not become green; the dead will not drink). The advice that follows sounds like carpe diem: enjoy your food and friends. But the final two lines undercut everything. "Yet you still look unhappy. Do you not like my 'Tedious Ways'?" The speaker knows his message is unwelcome. He names the poem's own title, breaking the frame. This is not gentle philosophical counsel. It is a provocation from someone who knows the truth is uncomfortable and delivers it anyway.</div>
+                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- THE RUINED CITY -->
+    <!-- ============================================================ -->
+    <section class="content-section alt" id="ruined-city">
+        <div class="part-label">Part II</div>
+        <div class="poet-header">
+            <h2>"The Ruined City"</h2>
+        </div>
+        <div class="period-note"><span style="font-family: 'Noto Sans SC', sans-serif;">蕪城賦</span> &middot; Wu ch'eng fu in Birch &middot; pp. 190&ndash;193 &middot; tr. C. J. Chen &amp; Michael Bullock</div>
+
+        <!-- Reading Card -->
+        <div class="reading-card">
+            <div class="reading-head">
+                <span class="reading-title">"The Ruined City" (Wu cheng fu, 蕪城賦)</span>
+                <span class="reading-source">Fu (rhapsody)</span>
+            </div>
+            <div class="reading-body">
+                <h4>What It Is</h4>
+                <p>A <em>fu</em> (rhapsody) on the ruins of Guangling (<span style="font-family: 'Noto Sans SC', sans-serif;">廣陵</span>, modern Yangzhou). Bao Zhao's most famous single work. The poem surveys a once-great city now reduced to rubble, weeds, and predatory animals. It belongs to the "ruined city" genre in Chinese literature but surpasses its predecessors in visceral detail and emotional force.</p>
+
+                <h4>The City</h4>
+                <p>Guangling was a major commercial and strategic center on the Yangzi River. It was destroyed during the civil conflicts of the Liu Song dynasty, likely connected to the Northern Wei invasion of 451 CE. This was not an ancient ruin observed from historical distance. Bao Zhao was writing about destruction within living memory. The ruins were fresh.</p>
+
+                <h4>Structure</h4>
+                <ul>
+                    <li><strong>Part 1 (The City at Its Height):</strong> Geography, commerce, military strength, walls and moats, confidence that "for a myriad generations the family's rule should last."</li>
+                    <li><strong>Part 2 (The Fall):</strong> "But after five centuries or three dynasties / The land was divided like a melon." The pivot. Everything that follows is ruin.</li>
+                    <li><strong>Part 3 (The Ruin in Detail):</strong> Nature reclaims the city. Animals colonize the sacred spaces. The detail is specific and crawling with life: skunks on altars, muskdeer on marble steps, hawks and leopards, rats and foxes.</li>
+                    <li><strong>Part 4 (The Meditation):</strong> Memory of what was. Music, dancing, hunting parties, young women now buried. "The greatest displeasure of the largest number / Is the law of nature."</li>
+                    <li><strong>Part 5 (The Closing Song):</strong> "I shall watch you to the end in silence."</li>
+                </ul>
+
+                <div class="notice-box">
+                    <div class="notice-label">What to Notice</div>
+                    <p>The <em>fu</em> does not moralize in the conventional way. There is no "learn from the past" lesson. The closing promise is simply to <strong>watch in silence</strong>, for "a thousand years and a myriad generations." The poet positions himself not as a teacher but as a witness. The ruins will outlast any commentary on them. That commitment to silent witness, rather than philosophical extraction of meaning, is what makes this <em>fu</em> different from the standard ruined-city poem.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Fu: full text -->
+        <div style="margin-top: 1.25rem;">
+            <div class="poem-card" style="grid-column: 1 / -1;">
+                <div class="poem-head"><span class="poem-title">The Ruined City</span> &middot; <span style="font-family: 'Noto Sans SC', sans-serif; color: var(--gold-light);">蕪城賦</span></div>
+                <div class="poem-body">
+                    <div class="poem-context">Guangling at its height, and after. A fu in five movements.</div>
+                    <div class="poem">The immense plain
+    runs south to the foamy waves of the sea
+    and north to the purple passes of the Great Wall.
+In it
+    canals are cut through the valleys;
+    and rivers and roads
+    lead to every corner.
+In its golden past,
+    axles of chariots and carts
+    often rubbed against each other
+    like men's shoulders.
+Shops and houses stood row upon row
+And laughter and songs rose up from them.
+Glittering and white were the salt fields;
+Gloomy and blue were the copper mines.
+Wealth and talents
+And cavalry and infantry
+Reinforced the strict and elaborate
+Regulations and laws.
+Winding moats and lofty walls
+Were dug and built, to ensure
+That prosperity would long endure.
+People were busy working
+On palaces and battlements
+And ships and beacon stations
+Up and down, far and wide
+At all places.
+Magnets were installed at mountain passes;
+Red lacquer was applied on doors and gates.
+The strongholds and fortresses
+    would see to it
+That for a myriad generations
+    the family's rule should last.
+
+But after five centuries or three dynasties
+The land was divided like a melon,
+Or shared like beans.
+
+Duckweed flourishes in the wells
+And brambles block the roads.
+Skunks and snakes dwell on sacred altars
+While muskdeer and squirrels quarrel on marble steps.
+In rain and wind,
+Wood elves, mountain ghosts,
+Wild rats and foxes
+    Yawp and scream from dusk to dawn.
+Hungry hawks clash their beaks
+As cold owls frighten the chicks in their nests.
+Tigers and leopards hide and wait
+    for a draught of blood
+    and a feast of flesh.
+Fallen tree-trunks lie lifelessly across
+Those once busy highways.
+Aspens have long ceased to rustle
+And grass dies yellow
+In this harsh frosty air
+Which grows into a cruelly cold wind.
+A solitary reed shakes and twists,
+And grains of sand, like startled birds,
+    are looking for a safe place to settle.
+Bushes and creepers, confused and tangled,
+    seem to know no boundaries.
+They pull down walls
+And fill up moats.
+And beyond a thousand miles
+Only brown dust flies.
+
+Deep in my thoughts, I sit down and listen
+To this awesome silence.
+Behind the painted doors and embroidered curtains
+There used to be music and dancing.
+Hunting or fishing parties were held
+In the emerald forests or beside the marble pools.
+The melodies from various states
+And works of art and rare fish and horses
+Are all now dead and buried.
+The young girls from east and south
+Smooth as silk, fragrant as orchids
+White as jade with their lips red,
+Now lie beneath the dreary stones and barren earth.
+The greatest displeasure of the largest number
+Is the law of nature.
+
+For this ruined city,
+I play the lute and sing:
+"As the north wind hurries on,
+    the battlements freeze.
+They tower over the plain
+    where there are neither roads nor field-paths.
+For a thousand years and a myriad generations,
+I shall watch you to the end in silence."</div>
+                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Annotation cards for the fu -->
+        <div class="content-grid" style="margin-top: 1.25rem;">
+            <div class="card">
+                <div class="card-head">The Rise</div>
+                <div class="card-body">
+                    <p>The opening movement catalogs everything that made Guangling powerful: its geography ("south to the sea, north to the Great Wall"), its commerce ("axles rubbed against each other like men's shoulders"), its military defenses (magnets at the passes, red-lacquered gates). The catalog form is deliberate. It creates a sense of accumulation, of wealth and power piling up. The reader is meant to feel the weight of the city's confidence: "for a myriad generations the family's rule should last."</p>
+                    <p>That confidence is the setup for the destruction.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">The Fall</div>
+                <div class="card-body">
+                    <p>Two lines. "But after five centuries or three dynasties / The land was divided like a melon, or shared like beans." All that accumulation collapses into a couplet. The brevity is the point. Everything the city built, everything the first movement labored to describe, is dispatched in a sentence. The speed of the reversal mimics the historical reality: it took centuries to build and very little time to destroy.</p>
+                    <p>The kitchen metaphors (melon, beans) are deliberately deflating. The grandest political ambitions measured in produce.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">The Ruin</div>
+                <div class="card-body">
+                    <p>The longest section, and the most original. Where other ruined-city poems gesture vaguely toward "weeds and silence," Bao Zhao fills his ruins with specific, named creatures. Skunks on sacred altars. Muskdeer quarreling on marble steps. Hawks clashing beaks. Tigers waiting for blood. The ruin is not empty; it is teeming. Nature has not merely reclaimed the city. It has repopulated it with a grotesque mirror of the human hierarchy: predators at the top, vermin everywhere.</p>
+                    <p>The image of sand grains "like startled birds, looking for a safe place to settle" is a perfect miniature. Even the inanimate world is displaced and anxious.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">The Witness</div>
+                <div class="card-body">
+                    <p>"Deep in my thoughts, I sit down and listen to this awesome silence." The poet enters his own poem. He remembers what was (music, dancing, young women "smooth as silk, fragrant as orchids") and names what is (dreary stones, barren earth). The closing song commits to watching in silence "for a thousand years and a myriad generations."</p>
+                    <p>The promise to watch <em>in silence</em> is significant. He will not try to extract a moral. He will not console. He will bear witness. The ruins speak for themselves.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ANALYSIS (DARK SECTION) -->
+    <!-- ============================================================ -->
+    <section class="analysis-section" id="analysis">
+        <div class="section-label"><span class="chinese" style="color: var(--gold-light);">分析</span> <span style="color: var(--recluse-light);">Scholarly Analysis</span></div>
+        <h2>The Outsider's Reclusion</h2>
+
+        <div class="analysis-grid">
+            <div class="analysis-card">
+                <div class="a-head">Not a Recluse by Choice</div>
+                <div class="a-body">
+                    <p>Place Bao Zhao next to the other poets in this unit. Zhang Heng was the Han court's chief astronomer. Ruan Ji was a member of the Seven Sages. Tao Yuanming was the great-grandson of a Grand Marshal. All three had positions to withdraw FROM.</p>
+                    <p>Bao Zhao came from a declined family and probably worked as a farmer. His "reclusion" was not a philosophical choice but a structural condition. The Nine-Rank System blocked him before he could choose to reject it. When he writes about the "tedious road," the tedium is not existential. It is material. The road is hard because the system makes it hard for people like him.</p>
+                </div>
+            </div>
+            <div class="analysis-card">
+                <div class="a-head">Impermanence Without Consolation</div>
+                <div class="a-body">
+                    <p>Tao Yuanming's impermanence comes with chrysanthemums and wine. Ruan Ji's comes with the hope of "ancient immortals." Zhang Heng's dead man finds peace in cosmic dissolution.</p>
+                    <p>Bao Zhao offers nothing. The nightjar has forgotten its majesty. The wife paces till midnight. The leaves will not become green again. The dead do not drink. The great city is dust, and the poet can only sit in silence. His impermanence is the bleakest in this unit because it admits no transcendence, no consolation, and no escape. The road is hard, and it stays hard.</p>
+                </div>
+            </div>
+            <div class="analysis-card">
+                <div class="a-head">The Yuefu Advantage</div>
+                <div class="a-body">
+                    <p>Bao Zhao's choice of the <em>yuefu</em> tradition is not accidental. The aristocratic <em>shi</em> poetry tradition demanded refinement, allusiveness, and emotional restraint. The <em>yuefu</em> tradition, rooted in folk song, permitted directness, repetition, and raw feeling.</p>
+                    <p>"Do you not see?" is a <em>yuefu</em> formula. It is confrontational in a way that polite <em>shi</em> poetry avoids. Bao Zhao uses the folk tradition to say what the aristocratic tradition would not let him say. His form matches his social position: outside the elite, and therefore freed from elite conventions.</p>
+                </div>
+            </div>
+            <div class="analysis-card">
+                <div class="a-head">Watching in Silence</div>
+                <div class="a-body">
+                    <p>The closing of "The Ruined City" is one of the most remarkable endings in Chinese poetry. The poet does not moralize. He does not promise renewal. He does not even grieve explicitly. He promises only to <strong>watch</strong>.</p>
+                    <p>"For a thousand years and a myriad generations, I shall watch you to the end in silence." This is a poet positioning himself as a permanent witness to impermanence. The commitment is strange and powerful: he will outlast the ruins by watching them. In a reading unit full of philosophical stances toward the world (engage, hide, withdraw), Bao Zhao adds a fourth: <strong>bear witness</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-full">
+            <div class="a-head">Connections to the Larger Unit</div>
+            <div class="a-body">
+                <ul>
+                    <li><strong>Zhang Heng's dead man and Bao Zhao's nightjar occupy the same position</strong>: both are former rulers reduced to a condition below human dignity. But Zhang Heng's dead man is at peace. Bao Zhao's nightjar is not. It has simply been degraded.</li>
+                    <li><strong>Ruan Ji hides in opacity; Bao Zhao hides in convention.</strong> Both use form as a survival strategy. Ruan Ji makes his poems deliberately unreadable. Bao Zhao uses the <em>yuefu</em> tradition as a shield: these are "just folk songs," not political statements. The strategy is different, but the danger is the same.</li>
+                    <li><strong>Tao Yuanming's withdrawal is individual; Bao Zhao's "Ruined City" is collective.</strong> Tao Yuanming walks away from office, plants chrysanthemums, drinks wine. Bao Zhao surveys the destruction of an entire civilization. The scale is different. Tao Yuanming can find peace in a garden. Bao Zhao cannot find peace anywhere, because the destruction he describes is not personal but total.</li>
+                    <li><strong>Li Bai wrote "Hard Traveling" poems in direct response to Bao Zhao.</strong> Three centuries later, the Tang dynasty's greatest poet picked up Bao Zhao's title and made it his own. The road, for Li Bai, was still hard. Bao Zhao's complaint outlived the dynasty that produced it.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DISCUSSION QUESTIONS -->
+    <!-- ============================================================ -->
+    <section class="content-section white" id="questions">
+        <div class="section-label"><span class="chinese">問</span> Discussion Questions</div>
+        <div class="content-grid">
+            <div class="question-card">
+                <div class="q-head">Question 1</div>
+                <div class="q-body">Poem 1 asks: "Has it forgotten its majesty?" The nightjar is the spirit of King Du Yu, but it now searches for worms and ants. Is the poem arguing that all glory is eventually forgotten, or that degradation is the natural condition and glory the exception? What is the difference between these two readings?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 2</div>
+                <div class="q-body">In Poem 2, the abandoned wife's "mirror no longer reflects" and her "robes are growing loose." These are physical details, but they also function as metaphors. What do the dimmed mirror and the loosening robes represent beyond the literal? Compare this to Tao Yuanming's physical descriptions in "Returning to Dwell in the Country." What is the difference in how these two poets use concrete detail?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 3</div>
+                <div class="q-body">Poem 3 ends: "Yet you still look unhappy. Do you not like my 'Tedious Ways'?" Why does the speaker name his own poem? What does it mean for a poem to acknowledge that its message is unwelcome? Is this a moment of honesty or hostility?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 4</div>
+                <div class="q-body">"The Ruined City" says Guangling was built to last "for a myriad generations" but fell after "five centuries or three dynasties." The gap between confidence and reality is enormous. What role does <strong>time</strong> play in this fu? Is Bao Zhao criticizing the ambition of city-builders, or does he respect what they built and mourn its loss?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 5</div>
+                <div class="q-body">In the ruined city, "Skunks and snakes dwell on sacred altars / While muskdeer and squirrels quarrel on marble steps." The animals have replaced the humans. Is nature's reclamation of the city presented as horrifying, natural, or both? Compare this to Tao Yuanming's relationship with nature in his garden poems. Is nature the same force in both poets?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 6</div>
+                <div class="q-body">The fu ends: "I shall watch you to the end in silence." Consider the other responses to impermanence in this unit: Zhang Heng's dead man dissolves into the cosmos; Ruan Ji drinks; Tao Yuanming farms. Bao Zhao watches in silence. Is witnessing a form of action, or a surrender? What does it mean to commit to watching something decay for "a thousand years"?</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+    <!-- Tab switching script -->
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
