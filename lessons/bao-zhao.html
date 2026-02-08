@@ -608,6 +608,69 @@
             color: var(--ink-faint);
         }
 
+        /* ===== VIDEO CARDS ===== */
+        .video-card {
+            background: #1a1a1a;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 1.25rem;
+        }
+
+        .video-card .video-head {
+            background: #111;
+            padding: 0.6rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .video-card .video-head .video-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .video-card .video-head .video-title {
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        .video-card .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-card .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-card .video-fallback {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.78rem;
+            color: #888;
+        }
+
+        .video-card .video-fallback a {
+            color: var(--gold-light);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--gold-light);
+        }
+
+        .video-card .video-fallback a:hover {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
         /* ===== BLOCKQUOTES ===== */
         blockquote {
             background: var(--paper-dark);
@@ -1016,6 +1079,20 @@
             </div>
         </div>
 
+        <!-- Listen -->
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">鲍照《拟行路难》朗诵 (text + translation)</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1Mt4y1F7yb&page=20&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV1Mt4y1F7yb/?p=20" target="_blank" rel="noopener">watch on Bilibili &rarr;</a>
+            </div>
+        </div>
+
         <!-- Poems -->
         <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
@@ -1130,6 +1207,20 @@ Do you not like my "Tedious Ways"?</div>
                     <div class="notice-label">What to Notice</div>
                     <p>The <em>fu</em> does not moralize in the conventional way. There is no "learn from the past" lesson. The closing promise is simply to <strong>watch in silence</strong>, for "a thousand years and a myriad generations." The poet positions himself not as a teacher but as a witness. The ruins will outlast any commentary on them. That commitment to silent witness, rather than philosophical extraction of meaning, is what makes this <em>fu</em> different from the standard ruined-city poem.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Listen -->
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">阿摩朗读《芜城赋》&mdash; 雄迈苍凉之气，惊心动魄之词</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1Lm4y1C7PP&page=1&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV1Lm4y1C7PP/" target="_blank" rel="noopener">watch on Bilibili &rarr;</a> &middot; 22K+ views &middot; 3:34
             </div>
         </div>
 
