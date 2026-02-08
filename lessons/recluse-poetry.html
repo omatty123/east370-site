@@ -12,14 +12,15 @@
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
-            --ink-faint: #8a8a8a;
-            --paper: #fafaf8;
-            --paper-dark: #f0ede8;
+            --ink-faint: #888;
+            --recluse: #5C6B73;
+            --recluse-dark: #3d4a50;
+            --recluse-light: #7a8b93;
             --gold: #b8860b;
             --gold-light: #daa520;
-            --recluse: #5C6B73;
-            --recluse-light: #7a8b93;
-            --recluse-dark: #3d4a50;
+            --paper: #fafaf8;
+            --paper-warm: #faf6f0;
+            --paper-dark: #f0ede8;
             --teal: #2d5a5a;
             --poem-bg: #faf8f2;
         }
@@ -34,62 +35,13 @@
             font-size: 1rem;
         }
 
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, var(--recluse-dark) 0%, var(--recluse) 60%, var(--recluse-light) 100%);
-            padding: 3rem 2.5rem 2.5rem;
-            position: relative;
-        }
-
-        .hero .breadcrumb {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            transition: color 0.2s;
-        }
-
-        .hero .breadcrumb:hover { color: var(--gold-light); }
-
-        .hero-content {
-            max-width: 680px;
-        }
-
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        .hero .deck {
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.65;
-            margin-bottom: 1.25rem;
-            max-width: 600px;
-        }
-
-        .hero .source-ref {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.45);
-            letter-spacing: 0.04em;
-        }
-
-        .hero .source-ref strong {
-            color: rgba(255,255,255,0.6);
-            font-weight: 500;
-        }
-
         /* ===== STICKY NAV ===== */
         .nav {
             background: var(--ink);
             padding: 0.75rem 2rem;
             display: flex;
-            gap: 2rem;
+            align-items: center;
+            gap: 0.75rem;
             flex-wrap: wrap;
             position: sticky;
             top: 0;
@@ -105,6 +57,67 @@
         }
 
         .nav a:hover { color: var(--gold-light); }
+
+        .nav .breadcrumb { color: var(--gold-light); }
+        .nav .breadcrumb:hover { color: var(--gold); }
+
+        .nav .sep {
+            color: #555;
+            font-size: 0.7rem;
+        }
+
+        .nav .page-label {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #2d3a40 0%, #4a5960 50%, #5C6B73 100%);
+            padding: 3.5rem 2.5rem 3rem;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero .label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero .deck {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            max-width: 660px;
+        }
+
+        .hero .source-ref {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.04em;
+        }
+
+        .hero .source-ref strong {
+            color: rgba(255,255,255,0.55);
+            font-weight: 500;
+        }
 
         /* ===== SECTION LABELS ===== */
         .section-label {
@@ -135,8 +148,17 @@
             background: var(--paper-dark);
         }
 
+        .content-section.warm {
+            background: var(--paper-warm);
+        }
+
         .content-section.white {
             background: #fff;
+        }
+
+        .content-section.dark {
+            background: #2a2e32;
+            color: #ddd;
         }
 
         /* ===== CONTENT GRIDS ===== */
@@ -154,6 +176,52 @@
             margin-top: 1rem;
         }
 
+        .content-grid-full {
+            margin-top: 1.25rem;
+        }
+
+        /* ===== TOC ===== */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 0.75rem;
+        }
+
+        .toc-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .toc-card .toc-head {
+            background: #2a2a2a;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--recluse-light);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .toc-card .toc-body {
+            padding: 1rem 1.25rem;
+        }
+
+        .toc-card .toc-body a {
+            display: block;
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            text-decoration: none;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--paper-dark);
+            transition: color 0.2s;
+        }
+
+        .toc-card .toc-body a:last-child { border-bottom: none; }
+        .toc-card .toc-body a:hover { color: var(--gold); }
+
         /* ===== CARDS ===== */
         .card {
             background: #fff;
@@ -164,7 +232,7 @@
 
         .card-head {
             background: #2a2a2a;
-            padding: 0.65rem 1rem;
+            padding: 0.65rem 1.25rem;
             font-size: 0.8rem;
             font-weight: 600;
             color: #fff;
@@ -201,34 +269,348 @@
             margin: 1rem 0 0.5rem;
             padding-top: 0.65rem;
             border-top: 1px solid var(--paper-dark);
+            font-weight: 600;
         }
 
         .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
 
         .card-body ul { font-size: 0.92rem; color: var(--ink-light); padding-left: 1.2rem; }
-        .card-body li { margin-bottom: 0.35rem; line-height: 1.6; }
+        .card-body li { margin-bottom: 0.4rem; line-height: 1.65; }
 
         .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
         .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        /* ===== BLOCKQUOTES ===== */
-        blockquote {
-            background: var(--paper-dark);
-            border-left: 3px solid var(--recluse);
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            font-style: italic;
+        .card-body strong { color: var(--ink); }
+
+        /* ===== VOICE CARDS ===== */
+        .voice-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .voice-card .voice-head {
+            background: var(--recluse-dark);
+            padding: 0.6rem 1.25rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .voice-card .voice-body {
+            padding: 1.25rem;
+        }
+
+        .voice-card .name-en {
             font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .voice-card .dates {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.6rem;
+        }
+
+        .voice-card .key-idea {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* ===== GLOSSARY TABS ===== */
+        .glossary-section {
+            background: var(--paper-dark);
+            padding: 1.75rem 2rem 2rem;
+        }
+
+        .glossary-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .glossary-section .glossary-sub {
+            font-size: 0.88rem;
+            color: var(--ink-faint);
+            margin-bottom: 1.25rem;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 1.25rem;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--ink-faint);
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: color 0.2s, border-color 0.2s;
+            letter-spacing: 0.03em;
+        }
+
+        .tab-btn:hover {
+            color: var(--ink-light);
+        }
+
+        .tab-btn.active {
+            color: var(--recluse-dark);
+            border-bottom-color: var(--gold);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* Glossary items */
+        .gloss-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .gloss-item {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .gloss-item .gloss-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.15rem;
+        }
+
+        .gloss-item .gloss-name .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 400;
+            color: var(--recluse);
+        }
+
+        .gloss-item .gloss-dates {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.6rem;
+        }
+
+        .gloss-item .gloss-text {
+            font-size: 0.88rem;
             color: var(--ink-light);
             line-height: 1.7;
         }
 
-        blockquote cite {
-            display: block;
-            margin-top: 0.5rem;
-            font-style: normal;
+        /* ===== READING CARDS ===== */
+        .reading-card {
+            background: var(--paper-warm);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+        }
+
+        .reading-card .reading-head {
+            background: #2a2a2a;
+            padding: 0.65rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .reading-card .reading-head .reading-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .reading-card .reading-head .reading-source {
+            font-size: 0.72rem;
+            color: var(--recluse-light);
+        }
+
+        .reading-card .reading-body {
+            padding: 1.25rem;
+        }
+
+        .reading-card .reading-body p {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .reading-card .reading-body p:last-child { margin-bottom: 0; }
+
+        .reading-card .reading-body h4 {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--recluse);
+            margin: 1rem 0 0.5rem;
+            padding-top: 0.65rem;
+            border-top: 1px solid #ede9e0;
+            font-weight: 600;
+        }
+
+        .reading-card .reading-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .reading-card .reading-body ul {
+            font-size: 0.92rem;
+            color: var(--ink-light);
+            padding-left: 1.2rem;
+        }
+
+        .reading-card .reading-body li {
+            margin-bottom: 0.4rem;
+            line-height: 1.65;
+        }
+
+        .reading-card .reading-body strong { color: var(--ink); }
+
+        /* Notice box inside reading cards */
+        .notice-box {
+            background: #fff;
+            border-left: 3px solid var(--recluse);
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .notice-box .notice-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--recluse);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .notice-box p {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        /* ===== POEM CARDS ===== */
+        .poem-card {
+            background: var(--poem-bg);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+        }
+
+        .poem-card .poem-head {
+            background: #2a2a2a;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--recluse-light);
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .poem-card .poem-head .poem-title {
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        .poem-card .poem-body {
+            padding: 1.5rem 1.25rem;
+        }
+
+        .poem-card .poem-body .poem-context {
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #ede9e0;
+        }
+
+        .poem {
+            white-space: pre-line;
+            line-height: 2.0;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--ink-light);
+            letter-spacing: 0.01em;
+            padding: 0.5rem 0;
+        }
+
+        .poem-annotation {
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            line-height: 1.65;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #ede9e0;
+            font-style: italic;
+        }
+
+        .poem-credit {
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #ede9e0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== POET SECTION HEADERS ===== */
+        .part-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--recluse);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .poet-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.25rem;
+        }
+
+        .poet-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .poet-header .poet-ref {
+            font-size: 0.82rem;
+            color: var(--ink-faint);
+        }
+
+        .period-note {
             font-size: 0.78rem;
             color: var(--ink-faint);
+            margin-bottom: 1rem;
         }
 
         /* ===== SAYING BOX ===== */
@@ -265,105 +647,116 @@
             color: var(--ink-faint);
         }
 
-        /* ===== POEM FORMATTING ===== */
-        .poem {
-            white-space: pre-line;
-            line-height: 2.0;
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--ink-light);
-            letter-spacing: 0.01em;
-            padding: 0.5rem 0;
-        }
-
-        .poem-card {
-            background: var(--poem-bg);
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-left: 4px solid var(--gold);
-        }
-
-        .poem-card .poem-head {
-            background: #2a2a2a;
-            padding: 0.6rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--recluse-light);
-            display: flex;
-            align-items: baseline;
-            gap: 0.5rem;
-        }
-
-        .poem-card .poem-head .poem-title {
-            color: #fff;
-            font-size: 0.85rem;
-        }
-
-        .poem-card .poem-body {
-            padding: 1.5rem;
-        }
-
-        .poem-card .poem-body .poem-context {
-            font-size: 0.85rem;
-            color: var(--ink-faint);
+        /* ===== BLOCKQUOTES ===== */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--recluse);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
             font-style: italic;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid #ede9e0;
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            line-height: 1.7;
         }
 
-        .poem-credit {
-            font-size: 0.72rem;
+        blockquote cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.78rem;
             color: var(--ink-faint);
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #ede9e0;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
-        /* ===== THREE VOICES CARDS ===== */
-        .voice-card {
-            background: #fff;
+        /* ===== ANALYSIS SECTION (DARK) ===== */
+        .analysis-section {
+            background: #2a2e32;
+            padding: 1.75rem 2rem 2rem;
+        }
+
+        .analysis-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .analysis-section .section-label {
+            color: var(--recluse-light);
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .analysis-card {
+            background: #353a3f;
             border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        .voice-card .voice-head {
-            background: var(--recluse-dark);
-            padding: 0.6rem 1rem;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.7);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+        .analysis-card .a-head {
+            background: #1e2225;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--gold-light);
         }
 
-        .voice-card .voice-body {
+        .analysis-card .a-body {
             padding: 1.25rem;
         }
 
-        .voice-card .name-en {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.25rem;
+        .analysis-card .a-body p {
+            font-size: 0.92rem;
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
         }
 
-        .voice-card .dates {
+        .analysis-card .a-body p:last-child { margin-bottom: 0; }
+        .analysis-card .a-body strong { color: #ddd; }
+
+        .analysis-full {
+            background: #353a3f;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .analysis-full .a-head {
+            background: #1e2225;
+            padding: 0.65rem 1.25rem;
             font-size: 0.78rem;
-            color: var(--ink-faint);
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--gold-light);
         }
 
-        .voice-card .key-idea {
-            font-size: 0.88rem;
-            color: var(--ink-light);
-            line-height: 1.6;
+        .analysis-full .a-body {
+            padding: 1.25rem;
         }
+
+        .analysis-full .a-body p {
+            font-size: 0.92rem;
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .analysis-full .a-body p:last-child { margin-bottom: 0; }
+        .analysis-full .a-body ul {
+            font-size: 0.92rem;
+            color: #bbb;
+            padding-left: 1.2rem;
+        }
+        .analysis-full .a-body li {
+            margin-bottom: 0.4rem;
+            line-height: 1.65;
+        }
+        .analysis-full .a-body strong { color: #ddd; }
 
         /* ===== QUESTION CARDS ===== */
         .question-card {
@@ -375,7 +768,7 @@
 
         .question-card .q-head {
             background: #2a2a2a;
-            padding: 0.55rem 1rem;
+            padding: 0.55rem 1.25rem;
             font-size: 0.7rem;
             font-weight: 700;
             color: var(--recluse-light);
@@ -388,26 +781,6 @@
             font-size: 0.92rem;
             color: var(--ink-light);
             line-height: 1.7;
-        }
-
-        /* ===== POET SECTION HEADERS ===== */
-        .poet-header {
-            display: flex;
-            align-items: baseline;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 0.25rem;
-        }
-
-        .poet-header .poet-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--ink);
-        }
-
-        .poet-header .poet-ref {
-            font-size: 0.82rem;
-            color: var(--ink-faint);
         }
 
         /* ===== FOOTER ===== */
@@ -439,131 +812,354 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .hero { padding: 2rem 1.5rem; }
+            .hero { padding: 2.5rem 1.5rem 2rem; }
             .hero h1 { font-size: 1.6rem; }
             .hero .deck { font-size: 0.95rem; }
             .content-section { padding: 1.5rem 1.25rem; }
+            .glossary-section { padding: 1.5rem 1.25rem; }
+            .analysis-section { padding: 1.5rem 1.25rem; }
             .content-grid { grid-template-columns: 1fr; }
             .content-grid-3 { grid-template-columns: 1fr; }
-            .nav { gap: 1.25rem; padding: 0.65rem 1.25rem; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .gloss-grid { grid-template-columns: 1fr; }
+            .analysis-grid { grid-template-columns: 1fr; }
+            .nav { gap: 0.5rem; padding: 0.65rem 1.25rem; }
+            .tab-btn { padding: 0.5rem 0.75rem; font-size: 0.7rem; }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="../index.html" class="breadcrumb">&larr; EAST 370</a>
+        <span class="sep">|</span>
+        <span class="page-label">Recluse Poetry Study Guide</span>
+    </nav>
+
     <!-- Hero -->
     <section class="hero">
-        <a href="../index.html" class="breadcrumb">&larr; EAST 370</a>
         <div class="hero-content">
+            <div class="label">EAST 370 &middot; Study Guide</div>
             <h1>The Poetry of the Recluse</h1>
-            <p class="deck">Three poets across centuries of political collapse choose withdrawal over service. From Chang Heng's dialogue with death to T'ao Ch'ien's chrysanthemums at the eastern hedge, the recluse tradition offers a counter-voice to Confucian duty: sometimes the only honest response to a broken world is to leave it.</p>
-            <p class="source-ref"><strong>Birch, pp. 174-188</strong> &middot; Period of Division (220-589 CE)</p>
+            <p class="deck">Three poets across three centuries of political collapse. When the Han dynasty falls and China fragments into warring kingdoms, the question becomes urgent: if the court is a killing ground, what does an honest person do? Chang Heng talks to the dead. Juan Chi hides behind wine and silence. T'ao Ch'ien walks away and never looks back.</p>
+            <p class="source-ref"><strong>Birch, Anthology of Chinese Literature</strong> &middot; pp. 174&ndash;188 &middot; Period of Division (220&ndash;589 CE)</p>
         </div>
     </section>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <a href="#context">Context</a>
-        <a href="#chang-heng">Chang Heng</a>
-        <a href="#juan-chi">Juan Chi</a>
-        <a href="#tao-chien">T'ao Ch'ien</a>
-        <a href="#questions">Questions</a>
-    </nav>
+    <!-- Table of Contents -->
+    <section class="content-section">
+        <div class="section-label"><span class="chinese">目錄</span> Contents</div>
+        <div class="toc-grid">
+            <div class="toc-card">
+                <div class="toc-head">The Reading</div>
+                <div class="toc-body">
+                    <a href="#tradition">The Recluse Tradition</a>
+                    <a href="#chang-heng">Voice I: Chang Heng (78&ndash;139 CE)</a>
+                    <a href="#juan-chi">Voice II: Juan Chi (210&ndash;263 CE)</a>
+                    <a href="#tao-chien">Voice III: T'ao Ch'ien (365&ndash;427 CE)</a>
+                </div>
+            </div>
+            <div class="toc-card">
+                <div class="toc-head">Reference &amp; Analysis</div>
+                <div class="toc-body">
+                    <a href="#glossary">Reference Glossary</a>
+                    <a href="#analysis">Scholarly Analysis</a>
+                    <a href="#questions">Discussion Questions</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Context: The Recluse Tradition -->
-    <section class="content-section alt" id="context">
-        <div class="section-label">The Recluse Tradition</div>
+    <!-- The Recluse Tradition -->
+    <section class="content-section warm" id="tradition">
+        <div class="section-label"><span class="chinese">隱逸</span> The Recluse Tradition</div>
         <div class="content-grid">
             <div class="card">
-                <div class="card-head">Historical Context</div>
+                <div class="card-head">The Foundational Tension</div>
                 <div class="card-body">
-                    <p><strong>Centuries of division and turmoil</strong> between the close of the Han dynasty (219) and the foundation of the Sui (589). The T'ang (618) would bring stability, but these poets lived in the "years of darkness" in between.</p>
-                    <p><strong>Political chaos drove many intellectuals to retreat,</strong> whether physical (rural withdrawal) or spiritual (Daoist/Buddhist mystique). The court was dangerous; serving the wrong faction could mean death.</p>
-                    <p>This poetry offered <strong>"spiritual sustenance to all for whom the times were out of joint."</strong></p>
+                    <p><em>Analects</em> 18.5&ndash;18.6 stages the debate that every recluse poet is answering. The Madman of Chu mocks Confucius for trying to reform a corrupt world. Changju and Jieni challenge Zilu: why bother cleaning up the mess of human politics when you could simply withdraw?</p>
+                    <p>Confucius's response defines the opposing pole: <strong>"I cannot herd with birds and beasts. If I do not associate with the people of this world, with whom shall I associate?"</strong> For Confucius, withdrawal is not an option. The world is broken, and that is precisely why you must engage with it.</p>
+                    <p>Every poem in this reading is positioned somewhere on the spectrum between these two commitments. Chang Heng questions the value of engagement. Juan Chi refuses to commit either way. T'ao Ch'ien finally walks out the door.</p>
                 </div>
             </div>
             <div class="card">
-                <div class="card-head">The Three Voices</div>
+                <div class="card-head">The Period of Division (220&ndash;589 CE)</div>
                 <div class="card-body">
-                    <h4>Chang Heng (78-139 CE)</h4>
-                    <p>Earliest voice. His "Bones of Chuang Tzu" is a dialogue with death itself, a noble ode inspired by Daoist mystique.</p>
-                    <h4>Juan Chi (210-263 CE)</h4>
-                    <p>Two centuries between their lifetimes. Juan Chi and Pao Chao (414-466) share <strong>"the profound melancholy of the years of darkness, and a taste for the macabre."</strong></p>
-                    <h4>T'ao Ch'ien (365-427 CE)</h4>
-                    <p>The defining recluse. Also known as Tao Y&uuml;an-ming. Served briefly in the Chin (Tsin) bureaucracy, withdrew at 33, never returned. His poetry of <strong>"shadow-play"</strong> has come to seem most characteristically Chinese to many Western readers. Translated by William Acker.</p>
+                    <p>Three centuries of fragmentation after the fall of the Han. The unified empire shattered into competing kingdoms. Political chaos drove intellectuals to retreat. The court was dangerous; serving the wrong faction meant execution, often alongside your entire extended family.</p>
+                    <p>Orthodox Confucianism, which had served as state ideology under the Han, lost its hold on intellectual life. Daoism and Buddhism offered alternatives. The Confucian confidence that moral cultivation and public service could fix the world looked naive in an era when the world kept killing those who tried.</p>
+                    <p>This poetry offered, as the Birch anthology notes, "spiritual sustenance to all for whom the times were out of joint."</p>
                 </div>
             </div>
         </div>
 
-        <!-- Three Voices cards -->
+        <!-- Three Voices -->
         <div class="content-grid-3">
             <div class="voice-card">
                 <div class="voice-head">Voice I</div>
                 <div class="voice-body">
                     <div class="name-en">Chang Heng</div>
-                    <div class="dates">78-139 CE &middot; Eastern Han</div>
-                    <div class="key-idea">A dialogue with death. The dead man <em>refuses</em> resurrection, preferring oblivion to life's suffering.</div>
+                    <div class="dates">78&ndash;139 CE &middot; Eastern Han</div>
+                    <div class="key-idea">Dialogue with death. A Han court polymath writes a Daoist meditation. The question BEFORE the answer.</div>
                 </div>
             </div>
             <div class="voice-card">
                 <div class="voice-head">Voice II</div>
                 <div class="voice-body">
                     <div class="name-en">Juan Chi</div>
-                    <div class="dates">210-263 CE &middot; Wei-Jin Transition</div>
-                    <div class="key-idea">Escalating withdrawal. Six poems trace a mind retreating from a world ruled by terror and injustice.</div>
+                    <div class="dates">210&ndash;263 CE &middot; Wei-Jin Transition</div>
+                    <div class="key-idea">Present but illegible. Strategic drunkenness, coded allegory, the art of saying everything by saying nothing clearly.</div>
                 </div>
             </div>
             <div class="voice-card">
                 <div class="voice-head">Voice III</div>
                 <div class="voice-body">
                     <div class="name-en">T'ao Ch'ien</div>
-                    <div class="dates">365-427 CE &middot; Eastern Jin</div>
-                    <div class="key-idea">The master recluse. Chrysanthemums and southern mountains. Life as shadow-play: beautiful, brief, sufficient.</div>
+                    <div class="dates">365&ndash;427 CE &middot; Eastern Jin</div>
+                    <div class="key-idea">Genuine withdrawal. Quits office for "five pecks of rice," farms, drinks, writes. The defining recluse.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chang Heng -->
-    <section class="content-section" id="chang-heng">
-        <div class="poet-header">
-            <span class="poet-name">Chang Heng</span>
-            <span class="poet-ref">"The Bones of Chuang Tzu" &middot; pp. 176-178</span>
+    <!-- Reference Glossary -->
+    <section class="glossary-section" id="glossary">
+        <h2>Reference Glossary</h2>
+        <p class="glossary-sub">Names, allusions, and concepts the reading assumes you know.</p>
+
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="people">People</button>
+            <button class="tab-btn" data-tab="allusions">Allusions in the Poems</button>
+            <button class="tab-btn" data-tab="concepts">Key Concepts</button>
+            <button class="tab-btn" data-tab="sources">Scholarly Sources</button>
         </div>
-        <div class="section-label">Voice I</div>
-        <div class="content-grid">
-            <div class="card">
-                <div class="card-head">Context</div>
-                <div class="card-body">
-                    <p>Chang Heng encounters bones by the roadside and addresses the dead man, offering to restore him to life through divine intervention. The dead man <strong>refuses</strong>, preferring death's peace to life's suffering.</p>
-                    <p>The poem echoes the famous skull passage in the <em>Zhuangzi</em>, where Zhuang Zhou encounters a skull that likewise refuses resurrection. Chang Heng turns this philosophical parable into a sustained lyric meditation.</p>
+
+        <!-- People Tab -->
+        <div class="tab-panel active" id="tab-people">
+            <div class="gloss-grid">
+                <div class="gloss-item">
+                    <div class="gloss-name">Chang Heng <span class="chinese">張衡</span></div>
+                    <div class="gloss-dates">78&ndash;139 CE</div>
+                    <div class="gloss-text">Eastern Han polymath: court astronomer, mathematician, cartographer, poet. Invented the world's first seismograph and a water-powered armillary sphere. Catalogued 2,500 stars. Not a Daoist dropout but a man at the center of imperial power who questioned whether all human striving is worth anything at all.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Juan Chi / Ruan Ji <span class="chinese">阮籍</span></div>
+                    <div class="gloss-dates">210&ndash;263 CE</div>
+                    <div class="gloss-text">Most prominent member of the Seven Sages of the Bamboo Grove. Lived during the Sima clan's violent takeover of the Cao Wei dynasty. His closest friend Ji Kang was executed for principled resistance. Juan Chi chose survival through strategic drunkenness and deliberately opaque poetry. When Sima Zhao proposed a marriage alliance, Juan Chi stayed drunk for sixty consecutive days until the proposal was dropped. Famous for greeting people he respected with the dark of his pupils ("blue eyes") and those he despised with only the whites.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Ji Kang / Xi Kang <span class="chinese">嵇康</span></div>
+                    <div class="gloss-dates">223&ndash;262 CE</div>
+                    <div class="gloss-text">Juan Chi's closest friend and fellow member of the Seven Sages. Refused to submit to the Sima government. Before his execution, he asked for his qin (zither) and played a final piece, lamenting only that the music would die with him. His death was a message: cooperate or die.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Seven Sages of the Bamboo Grove <span class="chinese">竹林七賢</span></div>
+                    <div class="gloss-dates">3rd century CE</div>
+                    <div class="gloss-text">Seven intellectuals who gathered in a bamboo grove: Ruan Ji, Ji Kang, Liu Ling, Ruan Xian, Xiang Xiu, Wang Rong, Shan Tao. They celebrated wine, spontaneity, and personal freedom. A deliberate rejection of the hypocrisy of a court that murdered its way to power while insisting on Confucian propriety.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">T'ao Ch'ien / Tao Yuanming <span class="chinese">陶淵明</span></div>
+                    <div class="gloss-dates">365&ndash;427 CE</div>
+                    <div class="gloss-text">The defining recluse poet. Great-grandson of Tao Kan, one of the most powerful military figures of the Eastern Jin. By Tao Yuanming's generation, the family had fallen into genteel poverty. Held minor government posts for thirteen years. As magistrate of Pengze, was told to dress formally to receive an inspector. His response: "I will not bow to a petty village boy for the sake of five pecks of rice." Resigned after eighty days. Spent the remaining twenty-two years farming, drinking, writing poetry. Married three times, had five sons. Lived in genuine poverty, not merely simplicity. Apologized to his sons in a letter for the hunger they endured because of his principles.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Tao Kan <span class="chinese">陶侃</span></div>
+                    <div class="gloss-dates">259&ndash;334 CE</div>
+                    <div class="gloss-text">T'ao Ch'ien's great-grandfather. Rose from humble origins to become Grand Marshal and governor of Jing Province. Famous for his discipline: reportedly moved bricks from one side of a courtyard to the other each day to maintain the habit of labor. His martial prominence makes his great-grandson's rejection of office all the more striking.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Arthur Waley</div>
+                    <div class="gloss-dates">Translator of Chang Heng</div>
+                    <div class="gloss-text">His <em>A Hundred and Seventy Chinese Poems</em> (1918) was one of the first major English translations of Chinese poetry. Used free verse rather than rhymed couplets, aiming to capture imagery and philosophical weight.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">William Acker</div>
+                    <div class="gloss-dates">Translator of T'ao Ch'ien</div>
+                    <div class="gloss-text">Translated the T'ao Ch'ien poems in the Birch anthology.</div>
                 </div>
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="poem-card">
-                <div class="poem-head"><span class="poem-title">The Traveler's Discovery</span></div>
-                <div class="poem-body">
-                    <div class="poem">I, Chang P'ing-tzu, had traversed the Nine Wilds and seen their wonders,
-In the eight continents and their outlying islands
-And in all the corners of the inhabited earth,
-I had admired all that was beautiful and had tasted all that was savorous.
-I had done, indeed, everything that heart could wish;
-And wherever I had been, I had noted what was said.
-Suddenly I looked and by the road-side
-I saw a man's bones lying in the squelchy earth,
-Black rime-Loss of putrefying flesh still hung upon him;
-His bald ribs stared like rafters of a roof.
-I took a twig of plain-tree and struck the bones, saying:
-"Dead man, in life you set your cap at careerism and greedily pursued
-    fame and power,
-Or else, perhaps, you were a fellow of no importance,
-Who hugged your hoe and rod and held the furrow-Loss?"</div>
-                    <div class="poem-credit">Translated by Arthur Waley</div>
+        <!-- Allusions Tab -->
+        <div class="tab-panel" id="tab-allusions">
+            <div class="gloss-grid">
+                <div class="gloss-item">
+                    <div class="gloss-name">Ch'ao Fu and Hs&uuml; Yu <span class="chinese">巢父 · 許由</span></div>
+                    <div class="gloss-dates">Referenced in Chang Heng's poem</div>
+                    <div class="gloss-text">Legendary recluses from the age of the sage-king Yao. When Yao offered Hs&uuml; Yu the throne, Hs&uuml; Yu washed his ears in a stream to cleanse himself of the insult. Ch'ao Fu, who was watering his ox downstream, moved his ox to avoid the polluted water. Both refused kingship as contamination. They represent the most extreme form of reclusion: rejecting supreme power itself.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Po-ch'eng Tzu-kao <span class="chinese">伯成子高</span></div>
+                    <div class="gloss-dates">Referenced in Chang Heng's poem</div>
+                    <div class="gloss-text">A feudal lord during the time of the sage-kings. When the transition from Yao to Shun to Yu took place, Po-ch'eng gave up his fief and returned to farming, believing that the shift from rule by virtue (Yao/Shun) to rule by practical management (Yu) represented moral decline. Rather than participate in a diminished system, he withdrew.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Pien-sui <span class="chinese">卞隨</span></div>
+                    <div class="gloss-dates">Referenced in Chang Heng's poem</div>
+                    <div class="gloss-text">When T'ang of Shang overthrew the Xia dynasty and offered Pien-sui the throne, Pien-sui drowned himself rather than accept. For the dead man in Chang Heng's poem, Pien-sui proves that the greatest honor the living world can offer is worse than oblivion.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Yao and Shun <span class="chinese">堯 · 舜</span></div>
+                    <div class="gloss-dates">Referenced in Chang Heng's poem</div>
+                    <div class="gloss-text">The sage-kings. In Confucian tradition, they represent the golden age of perfect governance. The dead man says: "Where neither Yao nor Shun can praise me, nor wolf nor tiger harm me." He is beyond ALL human hierarchies, good and evil alike.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Zhuangzi Skull (Chapter 18)</div>
+                    <div class="gloss-dates">Source for Chang Heng's poem</div>
+                    <div class="gloss-text">Zhuangzi encounters a skull by the roadside, interrogates it, then uses it as a pillow. The skull appears in a dream and delivers the argument: "Among the dead, there are no rulers above, no subjects below, and no chores of the four seasons. Our springs and autumns are as endless as heaven and earth." When offered resurrection, the skull refuses: "Why would I throw away more happiness than that of a king on a throne and take on the troubles of a human being again?"</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Zhuangzi Fish (Chapter 6)</div>
+                    <div class="gloss-dates">Source for Juan Chi's Poem 6</div>
+                    <div class="gloss-text">Source for "better to forget in a river or a lake / Than to wet one another with bubbles on stony dry land." The original: "When the springs dry up and the fish are left stranded on the ground, they spew one another with moisture and wet one another down with spit. But it would be much better if they could forget one another in the rivers and lakes." Juan Chi is saying: the forced alliances and loyalties of his political era are like fish spitting on each other on dry ground. True freedom is the condition where such desperate clinging is unnecessary.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Hsien-yang / Xianyang <span class="chinese">咸陽</span></div>
+                    <div class="gloss-dates">Referenced in Juan Chi's Poem 2</div>
+                    <div class="gloss-text">Former capital of the Qin dynasty (221&ndash;206 BCE). After the Qin fell, the city was destroyed and abandoned. For a reader in the 3rd century, the resonance is devastating: the Cao Wei dynasty under which Juan Chi lived was itself collapsing. A past fallen capital comments obliquely on the present disintegration.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Classic of the Hills and Seas <span class="chinese">山海經</span></div>
+                    <div class="gloss-dates">Referenced in T'ao Ch'ien's poem</div>
+                    <div class="gloss-text">One of the strangest and most ancient Chinese texts: descriptions of 550+ mountains, 300+ waterways, fantastical animals, mythical beings, and deities. Simultaneously geography, mythology, natural history, and pharmacopoeia. T'ao Ch'ien reading it in his garden is a perfect recluse image: he cannot travel the world (he chose poverty) but through reading he ranges across the cosmos. The book has no practical use whatsoever, the opposite of the official documents a magistrate would read.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The King of Chou (King Mu of Zhou) <span class="chinese">穆王</span></div>
+                    <div class="gloss-dates">Referenced in T'ao Ch'ien's poem</div>
+                    <div class="gloss-text">Legendary ruler who traveled westward to the mythical Kunlun Mountains, met the Queen Mother of the West (Xi Wangmu), but could not achieve immortality. The story reinforces T'ao Ch'ien's theme: power and ambition cannot give you what retreat and acceptance can. King Mu's grand adventure ended in return and mortality. T'ao Ch'ien in his garden arguably has more peace than the king ever did.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">The Double Ninth Festival <span class="chinese">重陽節</span></div>
+                    <div class="gloss-dates">Context for T'ao Ch'ien's final poem</div>
+                    <div class="gloss-text">Falls on the ninth day of the ninth month. Nine is yang; double nine is "double yang." Traditions: climbing heights, drinking chrysanthemum wine, wearing dogwood sprigs. Chrysanthemums bloom when other flowers have died. For T'ao Ch'ien, this festival crystallizes everything about the recluse life: finding beauty in the season of decline, accepting the passage of time, choosing contemplation over ambition.</div>
                 </div>
             </div>
+        </div>
+
+        <!-- Key Concepts Tab -->
+        <div class="tab-panel" id="tab-concepts">
+            <div class="gloss-grid">
+                <div class="gloss-item">
+                    <div class="gloss-name">The Dusty Net <span class="chinese">塵網</span></div>
+                    <div class="gloss-dates">ch&eacute;n w&#462;ng</div>
+                    <div class="gloss-text">T'ao Ch'ien's metaphor for official life. "Dust" (Buddhist/Daoist): sensory attachments that obscure one's true nature. Court life was specifically called "the life of dust and dirt." "Net": the web of obligations, hierarchies, and compromises that trap an official. Together: the whole system of bureaucratic life. T'ao Ch'ien says he fell into it "inadvertently," not by choice but by social expectation. Returning to the fields is not exile; it is returning to one's natural condition.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Shadow-play <span class="chinese">影</span></div>
+                    <div class="gloss-dates">y&#464;ng</div>
+                    <div class="gloss-text">From <em>Zhuangzi</em> Chapter 2. The Penumbra questions the Shadow about why it has no settled control. The Shadow answers: it depends on something that itself depends on something else. No entity has independent, self-caused existence. For T'ao Ch'ien: the social roles we play (official, magistrate, subject) are shadows, not substance. "The life of man is like a shadow-play / Which must in the end return to nothingness."</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Tianyuan shi <span class="chinese">田園詩</span></div>
+                    <div class="gloss-dates">"Fields and Gardens Poetry"</div>
+                    <div class="gloss-text">The genre T'ao Ch'ien invented. Previous nature poets focused on grand mountain landscapes (<em>shanshui</em>, "mountains and waters"). T'ao wrote about the domestic, the ordinary: his garden, his chrysanthemums, his wine, his neighbors, his chickens. This was revolutionary. It shaped Chinese literature for the next 1,500 years.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Xian <span class="chinese">仙</span></div>
+                    <div class="gloss-dates">Immortals</div>
+                    <div class="gloss-text">Daoist beings who transcend death through cultivation. Depicted with wings, associated with sacred mountains. When Juan Chi invokes "the ancient immortals" in Poem 6, he is not expressing sincere belief. He is expressing the wish to escape the world entirely, to transcend the political nightmare. The ultimate extension of the recluse impulse: not just retirement to the countryside but departure from the human realm altogether.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">F&#275;ng Tradition <span class="chinese">風</span></div>
+                    <div class="gloss-dates">"Wind" tradition of political allegory</div>
+                    <div class="gloss-text">The tradition of political allegory in Chinese poetry, from the "Great Preface" to the <em>Book of Songs</em>. Poetry "blows" truth upward toward power. Juan Chi drew on this tradition but made the allegory so opaque that no one could pin specific accusations on him. That opacity kept him alive.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Wuwei <span class="chinese">無為</span></div>
+                    <div class="gloss-dates">Non-action</div>
+                    <div class="gloss-text">The Daoist ideal of effortless action, acting in harmony with nature rather than forcing outcomes. T'ao Ch'ien's "Written While Drunk" enacts wuwei: "I pluck chrysanthemums under the eastern hedge, / And gaze afar towards the southern mountains." The perception of the mountains is effortless, accidental. He is not studying them. He simply sees.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scholarly Sources Tab -->
+        <div class="tab-panel" id="tab-sources">
+            <div class="gloss-grid">
+                <div class="gloss-item">
+                    <div class="gloss-name">Aat Vervoorn, <em>Men of the Cliffs and Caves</em></div>
+                    <div class="gloss-dates">1990</div>
+                    <div class="gloss-text">"Eremitism was fundamentally about personal integrity manifest in the unflinching avoidance of official positions." It was conduct, not philosophy, that earned public acclaim.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Alan Berkowitz, <em>Patterns of Disengagement</em></div>
+                    <div class="gloss-dates">2000</div>
+                    <div class="gloss-text">Distinguishes substantive reclusion from rhetorical posturing. The "practitioners of reclusion" were nonconformist men from the educated elite whose actual nonparticipation in office differentiated them from literati who merely voiced desires for retreat.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Donald Holzman, <em>Poetry and Politics: The Life and Works of Juan Chi</em></div>
+                    <div class="gloss-dates">1976</div>
+                    <div class="gloss-text">"His attachment to traditional Confucian values kept him in the centre of political and social life, but eventually his disgust with the disloyalty and self-seeking he saw in Wei society made him attempt to find purity through Taoism." Juan Chi was torn between Confucian duty and Daoist purity.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Stephen Owen &amp; Xiaofei Tian, <em>The Poetry of Ruan Ji and Xi Kang</em></div>
+                    <div class="gloss-dates">2017</div>
+                    <div class="gloss-text">Challenges the centuries-old assumption that Juan Chi's poems are coded political allegories. The allegorical reading that has dominated for centuries may itself be a later construction.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">James Hightower, <em>The Poetry of T'ao Ch'ien</em></div>
+                    <div class="gloss-dates">1970</div>
+                    <div class="gloss-text">The definitive translation and commentary. "The touchstone and major contribution to our knowledge of Tao Qian's poetry and the persona that it reveals." Each translation followed by explanatory material.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">A.R. Davis, <em>T'ao Y&uuml;an-ming: His Works and Their Meaning</em></div>
+                    <div class="gloss-dates">1984</div>
+                    <div class="gloss-text">Two-volume study. Key contribution: the "remarkable difference between Tao's works and biography," the gap between literary persona and documentary evidence.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Wendy Swartz, <em>Reading Tao Yuanming</em></div>
+                    <div class="gloss-dates">2008</div>
+                    <div class="gloss-text">"Changes in his reception often have less to do with the works themselves than with changes in the motivations and needs of anthologists and critics of different periods." The Tao Yuanming we know is a construction built over fifteen centuries.</div>
+                </div>
+                <div class="gloss-item">
+                    <div class="gloss-name">Wilt Idema, <em>The Resurrected Skeleton</em></div>
+                    <div class="gloss-dates">2014</div>
+                    <div class="gloss-text">Traces the skull dialogue tradition from the <em>Zhuangzi</em> through Zhang Heng to Lu Xun. Zhang Heng's version is "the most original" of the early rhapsodies.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHANG HENG -->
+    <!-- ============================================================ -->
+    <section class="content-section" id="chang-heng">
+        <div class="part-label">Voice I</div>
+        <div class="poet-header">
+            <h2>Chang Heng: Dialogue with Death</h2>
+        </div>
+        <div class="period-note">78&ndash;139 CE &middot; Eastern Han &middot; pp. 176&ndash;178</div>
+
+        <!-- Reading Card -->
+        <div class="reading-card">
+            <div class="reading-head">
+                <span class="reading-title">"The Bones of Chuang Tzu"</span>
+                <span class="reading-source">tr. Arthur Waley</span>
+            </div>
+            <div class="reading-body">
+                <h4>What It Is</h4>
+                <p>Chang Heng encounters bones by the roadside and offers to restore the dead man to life through divine intervention. The dead man refuses, preferring death's peace to life's suffering. The poem adapts a famous passage from <em>Zhuangzi</em> Chapter 18.</p>
+
+                <h4>What Chang Heng Does With the Source</h4>
+                <p>The original <em>Zhuangzi</em> passage is a brief anecdote. Chang Heng transforms it into a sustained lyric meditation, a full-length <em>fu</em> (rhapsody). Wilt Idema calls this "the most original" of the early rhapsodies on the skull theme.</p>
+
+                <h4>Key Arguments of the Dead Man</h4>
+                <ul>
+                    <li>Names three legendary recluses (Ch'ao Fu, Hs&uuml; Yu, Po-ch'eng, Pien-sui) who rejected worldly power, and says even their sacrifices were "in vain." Death surpasses even the most principled withdrawal.</li>
+                    <li>"In death there are no morning bells / To rouse me to cross my hands on breast." No hierarchy, no obligations.</li>
+                    <li>Claims cosmic unity: "Of the Primal Spirit is my substance; I am a wave / In the river of Darkness and Light."</li>
+                    <li>Declares himself beyond Yao and Shun's praise AND beyond wolf and tiger's harm. Beyond all human categories.</li>
+                </ul>
+
+                <div class="notice-box">
+                    <div class="notice-label">What to Notice</div>
+                    <p>This is NOT a Daoist dropout writing. Chang Heng was the Han court's chief astronomer, a man at the absolute center of imperial power and knowledge. His poem asks: if the dead are happier than kings, what is all this striving for? He went on striving anyway. The poem is the question before the answer.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Poems -->
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">The Dead Man's Response</span></div>
                 <div class="poem-body">
@@ -586,12 +1182,10 @@ By the preparation of Yin and Yang
 I was shaped and given my span of years;
 Formless and without substance,
 Earth was the bed on which I lay.</div>
+                    <div class="poem-annotation">Every name here is a famous recluse who rejected supreme power. The dead man's argument: even their principled refusals were still within the game. Only death transcends it entirely.</div>
                     <div class="poem-credit">Translated by Arthur Waley</div>
                 </div>
             </div>
-        </div>
-
-        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">The Dead Man's Conclusion</span></div>
                 <div class="poem-body">
@@ -611,48 +1205,51 @@ Wash me and I shall be no whiter,
 Foul me and I shall yet be clean.
 I come not, yet am here;
 Hasten not, yet am swift.</div>
-                    <div class="poem-credit">Translated by Arthur Waley</div>
-                </div>
-            </div>
-            <div class="poem-card">
-                <div class="poem-head"><span class="poem-title">The Traveler's Compassion</span></div>
-                <div class="poem-body">
-                    <div class="poem">The voice stopped, there was silence.
-A ghostly light
-Flickered and soon went out.
-Stiff stems of thorn
-In endless lines
-Stretch to the empty horizon.
-I gazed upon the dead, stared in sorrow and compassion.
-Then I called my servant and together we went on our way.</div>
+                    <div class="poem-annotation">The dead man claims identification with the cosmos itself: beyond praise, beyond harm, beyond moral categories. "Wash me and I shall be no whiter" echoes the Daoist dissolution of all distinctions. This is reclusion taken to its logical extreme, not withdrawal from the world but dissolution into it.</div>
                     <div class="poem-credit">Translated by Arthur Waley</div>
                 </div>
             </div>
         </div>
-
-        <blockquote style="margin-top: 1.25rem;">
-            "In death I rest and am at peace; in life I toiled and strove. Is the hardness of the winter stream better than the melting of spring?"
-            <cite>&mdash; Chang Heng, "The Bones of Chuang Tzu" (tr. Waley)</cite>
-        </blockquote>
     </section>
 
-    <!-- Juan Chi -->
+    <!-- ============================================================ -->
+    <!-- JUAN CHI -->
+    <!-- ============================================================ -->
     <section class="content-section alt" id="juan-chi">
+        <div class="part-label">Voice II</div>
         <div class="poet-header">
-            <span class="poet-name">Juan Chi</span>
-            <span class="poet-ref">"Poems of My Heart" &middot; pp. 179-181</span>
+            <h2>Juan Chi: The Art of Saying Nothing Clearly</h2>
         </div>
-        <div class="section-label">Voice II</div>
-        <div class="content-grid">
-            <div class="card">
-                <div class="card-head">Context</div>
-                <div class="card-body">
-                    <p><strong>Juan Chi</strong> (Ruan Ji, 210-263) lived during the violent transition from Wei to Jin. The Ssu-ma clan was consolidating power through assassination and intimidation. Speaking freely could cost your life.</p>
-                    <p>Six poems selected, showing <strong>escalating withdrawal</strong> from political life. The arc moves from sleepless loneliness to the final plea for immortals to help him survive "this long and fearful night."</p>
+        <div class="period-note">210&ndash;263 CE &middot; Wei-Jin Transition &middot; pp. 179&ndash;181</div>
+
+        <!-- Reading Card -->
+        <div class="reading-card">
+            <div class="reading-head">
+                <span class="reading-title">"Poems of My Heart" (Yonghuai shi, 詠懷詩)</span>
+                <span class="reading-source">tr. C.J. Chen &amp; Michael Bullock</span>
+            </div>
+            <div class="reading-body">
+                <h4>Context</h4>
+                <p>Six poems selected from a cycle of 82. Juan Chi lived during the Sima clan's violent takeover of the Cao Wei dynasty. After the Incident at the Gaoping Tombs (249 CE), when Sima Yi executed the regent Cao Shuang and his entire extended family, anyone suspected of opposition was in mortal danger. Juan Chi's closest friend Ji Kang chose principled resistance and was executed. Juan Chi chose survival through strategic drunkenness and deliberately opaque poetry.</p>
+
+                <h4>The Central Scholarly Problem</h4>
+                <p>The speaker is clearly in anguish, but he never says what, specifically, he is worried about. Donald Holzman's foundational study argues Juan Chi was torn between Confucian duty and Daoist purity. Stephen Owen's 2017 revision challenges the assumption that these poems are coded political allegories at all, arguing that the allegorical reading is a later construction.</p>
+
+                <h4>Key Techniques</h4>
+                <ul>
+                    <li><strong>Bird allegory:</strong> noble birds (storks, swans) represent the morally superior person; common birds (crows, sparrows) represent petty courtiers. Goes back to Qu Yuan's <em>Chuci</em>.</li>
+                    <li><strong>Historical reference as veiled commentary:</strong> mentioning the fallen Qin capital Xianyang to comment obliquely on the collapsing Cao Wei dynasty.</li>
+                    <li><strong>Zhuangzi allusion:</strong> the stranded fish passage. Forced political alliances are like fish spitting on each other on dry ground. True freedom is the condition where such desperation is unnecessary.</li>
+                </ul>
+
+                <div class="notice-box">
+                    <div class="notice-label">What to Notice</div>
+                    <p>Juan Chi invented a third option beyond cooperation and resistance. He was present but illegible. His poetry communicates overwhelming emotional distress while making it impossible for anyone to prove what it is about. This is not "coded protest" in the sense of a cipher. It is something more radical: the expression of a condition that cannot safely be expressed.</p>
                 </div>
             </div>
         </div>
 
+        <!-- Selected Poems -->
         <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head">Poem 1 &middot; <span class="poem-title">The Sleepless Night</span></div>
@@ -665,32 +1262,14 @@ A wild goose cries among the clouds on the moor,
 The birds of passage twitter in the woods of the southern marsh.
 As I pace to and fro, what is it in my mind?
 &mdash; My solitary sadness makes me wretched.</div>
+                    <div class="poem-annotation">The opening poem of the cycle sets the tone. Notice what is missing: any explanation of WHY he is sleepless, WHAT makes him sad. The poem is all surface, all image, all feeling, with no identifiable cause. This absence IS the technique.</div>
                     <div class="poem-credit">Translated by C.J. Chen and Michael Bullock</div>
                 </div>
             </div>
-            <div class="poem-card">
-                <div class="poem-head">Poem 2 &middot; <span class="poem-title">Wasted Youth</span></div>
-                <div class="poem-body">
-                    <div class="poem">In my youth,
-I too was fond of singing and dancing
-And went west to stay in the capital of Hsien-yang.
-But all the people I knew there were shallow
-With nothing constant but their love of wine.
-Before I knew it my money was gone,
-And this year I am thinking of the return journey.
-My beautiful green coat with the red satin lining&mdash;
-I cannot get it clean again, for long is the road
-    and deep the dust upon it.</div>
-                    <div class="poem-credit">Translated by C.J. Chen and Michael Bullock</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head">Poem 3 &middot; <span class="poem-title">The Dark Stork</span></div>
                 <div class="poem-body">
-                    <div class="poem-context">The stork vanishes upward; the crows circle the court</div>
+                    <div class="poem-context">The stork vanishes upward; the crows circle the court.</div>
                     <div class="poem">Inscribe on your heart
 Every inch of the time at sunset.
 When the cock has crowed at the top of the mulberry tree,
@@ -706,58 +1285,17 @@ The cuckoos and the crows
 That circle round the Court,
 Fly in and fly out of the rooms,
 And peck for grain in the inner halls.</div>
-                    <div class="poem-credit">Translated by C.J. Chen and Michael Bullock</div>
-                </div>
-            </div>
-            <div class="poem-card">
-                <div class="poem-head">Poem 4 &middot; <span class="poem-title">Treading on Thin Ice</span></div>
-                <div class="poem-body">
-                    <div class="poem">Day and night
-Revolve
-Like a turning wheel.
-Ten thousand generations
-Succeed one another
-Like morning and evening.
-The spring winds blow
-And the fragrant plants begin to grow.
-Trees are full of flowers,
-There are crickets in the garden.
-The cold dew freezes them.
-The autumn cicada utters a long cry.
-Swallows and sparrows
-Fly in flocks to the south,
-The soaring hawk swiftly pursues them.
-How can there be righteousness
-In a world like this?
-In constant fear
-I have trodden on thin ice.</div>
+                    <div class="poem-annotation">The bird allegory from the Chuci tradition. The stork (the person of integrity) vanishes beyond reach. The crows and cuckoos (political opportunists) "peck for grain in the inner halls" of the court. If you read this as political allegory, it is devastating. If you do not, it is still a poem about the irreconcilable difference between freedom and servility. Either way, no one can convict him.</div>
                     <div class="poem-credit">Translated by C.J. Chen and Michael Bullock</div>
                 </div>
             </div>
         </div>
 
         <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="poem-card">
-                <div class="poem-head">Poem 5 &middot; <span class="poem-title">The Wise Recluse</span></div>
-                <div class="poem-body">
-                    <div class="poem">His influence&mdash;
-the scorching sun or a torrential river,
-His servants numerous as clouds,
-His power shakes the four seas.
-But in the eyes of a wise recluse,
-Size is of the least importance.
-Not that one covets a rare jewel
-Or clings to jade.
-But is it not better
-To retire in time
-Than to cover the whole earth with one's fame?</div>
-                    <div class="poem-credit">Translated by C.J. Chen and Michael Bullock</div>
-                </div>
-            </div>
-            <div class="poem-card">
+            <div class="poem-card" style="grid-column: 1 / -1;">
                 <div class="poem-head">Poem 6 &middot; <span class="poem-title">The Long and Fearful Night</span></div>
                 <div class="poem-body">
-                    <div class="poem-context">The final poem. A plea for survival through withdrawal.</div>
+                    <div class="poem-context">The final poem in the selection. A plea for survival through withdrawal.</div>
                     <div class="poem">I will not learn to ride a winged horse
 In order to travel for ten thousand miles;
 It is better to forget in a river or a lake
@@ -765,40 +1303,66 @@ Than to wet one another with bubbles on stony dry land.
 The ancient immortals
 Will help me
 To survive this long and fearful night.</div>
+                    <div class="poem-annotation">The <em>Zhuangzi</em> fish passage, condensed into two lines. "It is better to forget in a river or a lake" means: genuine freedom is when you do not need political alliances at all. The "long and fearful night" is the entire political era. "The ancient immortals" are not literal Daoist spirits; they represent the wish for escape from a world that kills anyone who speaks clearly.</div>
                     <div class="poem-credit">Translated by C.J. Chen and Michael Bullock</div>
                 </div>
             </div>
         </div>
-
-        <blockquote style="margin-top: 1.25rem;">
-            "It is better to forget in a river or a lake / Than to wet one another with bubbles on stony dry land." A direct echo of the <em>Zhuangzi</em>: fish stranded on dry ground keep each other alive with spittle, but would they not prefer to be swimming free in the rivers and lakes, having forgotten each other entirely?
-            <cite>&mdash; Juan Chi, Poem 6 (tr. Chen &amp; Bullock)</cite>
-        </blockquote>
     </section>
 
-    <!-- T'ao Ch'ien -->
+    <!-- ============================================================ -->
+    <!-- T'AO CH'IEN -->
+    <!-- ============================================================ -->
     <section class="content-section" id="tao-chien">
+        <div class="part-label">Voice III</div>
         <div class="poet-header">
-            <span class="poet-name">T'ao Ch'ien</span>
-            <span class="poet-ref">The Master Recluse &middot; pp. 182-188</span>
+            <h2>T'ao Ch'ien: The Master Recluse</h2>
         </div>
-        <div class="section-label">Voice III</div>
-        <div class="content-grid">
-            <div class="card">
-                <div class="card-head">Context</div>
-                <div class="card-body">
-                    <p><strong>T'ao Ch'ien</strong> (Tao Y&uuml;an-ming, 365-427) is the most celebrated recluse poet in Chinese literature. After serving briefly as a bureaucrat under the Eastern Jin, he withdrew at age 33 to farm and write. He never returned to official life.</p>
-                    <p>His poetry extols rustic joys and reflects on the <strong>"shadow-play"</strong> of life, the interplay of substance and illusion that runs through all human experience. "The life of man is like a shadow-play / Which must in the end return to nothingness."</p>
+        <div class="period-note">365&ndash;427 CE &middot; Eastern Jin &middot; pp. 182&ndash;188</div>
+
+        <!-- Reading Card -->
+        <div class="reading-card">
+            <div class="reading-head">
+                <span class="reading-title">"Poems of Withdrawal"</span>
+                <span class="reading-source">tr. William Acker</span>
+            </div>
+            <div class="reading-body">
+                <h4>Context</h4>
+                <p>T'ao Ch'ien (Tao Yuanming, 365&ndash;427) is the most celebrated recluse poet in Chinese literature. Great-grandson of Tao Kan, a Grand Marshal. By T'ao Ch'ien's generation, the family had declined. He held minor government posts for thirteen years. As magistrate of Pengze, was told to dress formally to receive an inspector. His response: "I will not bow to a petty village boy for the sake of five pecks of rice." Resigned after eighty days. Spent the remaining twenty-two years farming, drinking, writing poetry. Married three times, had five sons. Lived in genuine poverty. Apologized to his sons for the hunger they endured because of his principles.</p>
+
+                <h4>What He Invented</h4>
+                <p>The <em>tianyuan shi</em> ("fields and gardens poetry") genre. Previous nature poets focused on grand mountain landscapes. T'ao wrote about the domestic and ordinary: his garden, his wine, his neighbors, his children. This was revolutionary.</p>
+
+                <h4>The Chrysanthemum</h4>
+                <p>The single most famous image in Chinese recluse literature: "I pluck chrysanthemums under the eastern hedge, / And gaze afar towards the southern mountains." (<span style="font-family: 'Noto Sans SC', sans-serif;">采菊東籬下，悠然見南山</span>). You do not even need to mention his name. Simply depicting chrysanthemums near an eastern fence immediately evokes his entire life and philosophy. Su Shi (Su Dongpo, 1037&ndash;1101) placed T'ao Ch'ien above ALL other Chinese poets, including Li Bai and Du Fu.</p>
+
+                <h4>Wine: Real or Pose?</h4>
+                <p>Stephen Owen argues T'ao Ch'ien "is not the naive and straightforward poet that he claims to be." Historical accounts indicate he genuinely drank heavily. The truth involves both: the drunkenness was real, but its function in the poetry is crafted and deliberate.</p>
+
+                <div class="notice-box">
+                    <div class="notice-label">What to Notice</div>
+                    <p>T'ao Ch'ien did what the others could not or would not: he actually left. But his withdrawal was not escapism. His children went hungry. His farming failed some years. The chrysanthemums and the wine were not decorations on a comfortable retirement. They were the hard-won consolations of a man who gave up security for integrity.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Returning to Dwell in the Country -->
+        <!-- Saying card -->
+        <div style="margin-top: 1.25rem;">
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">採菊東籬下，悠然見南山</div>
+                    <div class="saying-meaning">"I pluck chrysanthemums under the eastern hedge, and gaze afar towards the southern mountains."</div>
+                    <div class="saying-note">T'ao Ch'ien. The iconic image of the Chinese recluse.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Poems -->
         <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
-                <div class="poem-head"><span class="poem-title">Returning to Dwell in the Country &mdash; I</span> &middot; pp. 182-183</div>
+                <div class="poem-head"><span class="poem-title">Returning to Dwell in the Country &mdash; I</span> &middot; pp. 182&ndash;183</div>
                 <div class="poem-body">
-                    <div class="poem-context">The Dusty Net: escape from official life</div>
+                    <div class="poem-context">The Dusty Net: escape from official life.</div>
                     <div class="poem">In youth I had nothing
 that matched the vulgar tone,
 My nature of itself
@@ -809,13 +1373,13 @@ Once having gone
 it was more than thirteen years.
 The tame bird
 longs for its old forest&mdash;
-The fish in the house-Loss pond
+The fish in the house-pond
 thinks of its ancient pool.
 I too will break the soil
 at the edge of the southern moor,
 I will guard simplicity
 and return to my fields and garden.
-My house-Loss plot
+My house-plot
 amounts to some ten acres,
 My thatched dwelling
 has eight or nine rooms.
@@ -839,42 +1403,14 @@ Too long I was held
 within the barred cage.
 Now I am able
 to return again to Nature.</div>
+                    <div class="poem-annotation">"Inadvertently I fell into the Dusty Net" is the key line. He did not choose official life; social expectation pushed him into it. "Thirteen years" is precise autobiography. The "barred cage" and the "Dusty Net" are the same image: bureaucratic life as imprisonment. The last line, "return again to Nature," uses the character 自然 (ziran), which means both "nature" and "naturalness," one's original condition.</div>
                     <div class="poem-credit">Translated by William Acker</div>
                 </div>
             </div>
-            <div class="poem-card">
-                <div class="poem-head"><span class="poem-title">Returning to Dwell in the Country &mdash; II</span> &middot; pp. 182-183</div>
-                <div class="poem-body">
-                    <div class="poem-context">Shadow-play: the ruined dwellings</div>
-                    <div class="poem">Long have I loved to stroll among the hills and marshes,
-And take my pleasure roaming the woods and fields.
-Now I hold hands with a troop of nieces and nephews,
-Parting the hazel growth we tread the untilled wastes&mdash;
-Wandering to and fro amidst the hills and mounds
-Everywhere around us we see dwellings of ancient men.
-Here are vestiges of their wells and hearthstones,
-There the rotted stumps of bamboo and mulberry groves.
-I stop and ask a firewood-gatherer:
-"These men&mdash;what has become of them?"
-The firewood-gatherer turns to me and says:
-"Once they were dead that was the end of them."
-In one generation the friends of court and market
-Are utterly gone&mdash;nothing is left!
-In very truth
-the life of man is like a shadow-play
-Which must in the end
-return to nothingness.</div>
-                    <div class="poem-credit">Translated by William Acker</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Written While Drunk -->
-        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">Written While Drunk</span> &middot; p. 184</div>
                 <div class="poem-body">
-                    <div class="poem-context">Perhaps the most famous recluse poem in Chinese literature</div>
+                    <div class="poem-context">Perhaps the most famous recluse poem in Chinese literature.</div>
                     <div class="poem">I built my house near where others dwell,
 And yet there is no clamour of carriages and horses.
 You ask of me "How can this be so?"
@@ -885,53 +1421,17 @@ The mountain air is fine at evening of the day
 And flying birds return together homewards.
 Within these things there is a hint of Truth,
 But when I start to tell it, I cannot find the words.</div>
+                    <div class="poem-annotation">"When the heart is far the place of itself is distant": seclusion is a state of mind, not a geographic location. This is wuwei in practice. He does not seek the mountains; he simply sees them. The final couplet is the poem's philosophical center: truth is present in experience but cannot survive translation into language. This is a Daoist insight embedded in a poem that nonetheless exists as language, a paradox the poem knowingly inhabits.</div>
                     <div class="poem-credit">Translated by William Acker</div>
                 </div>
             </div>
         </div>
 
         <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="saying-card">
-                <div class="saying-body">
-                    <div class="saying-chinese">採菊東籬下，悠然見南山</div>
-                    <div class="saying-meaning">"I pluck chrysanthemums under the eastern hedge, and gaze afar towards the southern mountains."</div>
-                    <div class="saying-note">T'ao Ch'ien. The iconic image of the Chinese recluse.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- On Reading / Poor Scholars / Blame / Bearers' Song / Ninth Day -->
-        <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="poem-card">
-                <div class="poem-head"><span class="poem-title">On Reading the Classic of the Hills and Seas</span> &middot; pp. 184-185</div>
-                <div class="poem-body">
-                    <div class="poem-context">Rural contentment: ploughing done, time for books</div>
-                    <div class="poem">In the month of June the grass grows high
-And round my cottage thick-leaved branches sway.
-There is not a bird but delights in its place of rest
-And I too love my thatched cottage.
-I have done my ploughing;
-I have sown my seed.
-Again I have time to sit and read my books.
-The narrow lane&mdash;
-deep ruts on either side&mdash;
-Rather deters
-the carriages of friends!
-In high content I pour the spring wine
-And pick the lettuce in my garden.
-A fine rain comes from the east
-And a fresh wind bears it company.
-My thoughts float idly over the story of the King of Chou,
-My eyes wander over the pictures of Hills and Seas.
-At a single glance I survey the whole Universe.
-He will never be happy, whom such pleasures fail to please.</div>
-                    <div class="poem-credit">Translated by William Acker</div>
-                </div>
-            </div>
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">A Song of Poor Scholars</span> &middot; p. 185</div>
                 <div class="poem-body">
-                    <div class="poem-context">The "real pain" is that the Way does not prevail</div>
+                    <div class="poem-context">The real pain of the recluse life.</div>
                     <div class="poem">They had not trodden the paths of power,
 Nor had the world flocked to their doors.
 A bed of straw
@@ -942,35 +1442,14 @@ What they suffered
 was the real pain,
 Hunger and cold
 they did not feel at all.</div>
-                    <div class="poem-credit">Translated by William Acker</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="poem-card">
-                <div class="poem-head"><span class="poem-title">Written in Imitation of an Ancient Bearers' Song</span> &middot; p. 186</div>
-                <div class="poem-body">
-                    <div class="poem-context">A funeral meditation</div>
-                    <div class="poem">We try to speak
-but cannot utter words,
-We try to see
-but our eyes are dim.
-Once he used to sleep
-in a high-roofed house;
-Now he sleeps
-in the wilds among the grasses.
-Each morning he steps forth
-from the house gate&mdash;
-But the day of his return&mdash;
-when will it be?</div>
+                    <div class="poem-annotation">"What they suffered was the real pain." The "real pain" is not poverty or hunger. It is that the Way does not prevail in the world. The recluses endured physical deprivation without complaint; what tormented them was the moral failure of their era. This distinction separates genuine reclusion from comfortable retirement. They did not leave because they preferred leisure. They left because they could not participate in injustice.</div>
                     <div class="poem-credit">Translated by William Acker</div>
                 </div>
             </div>
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">Putting the Blame on His Sons</span> &middot; p. 187</div>
                 <div class="poem-body">
-                    <div class="poem-context">Humorous: the great recluse's lazy children</div>
+                    <div class="poem-context">The great recluse's lazy children.</div>
                     <div class="poem">White hair shrouds both my temples,
 My skin and flesh have lost their fullness.
 Although I have five sons,
@@ -987,68 +1466,92 @@ If such was Heaven's decree
 In spite of all that I could do,
 Bring on, bring on
 "the thing within the cup."</div>
+                    <div class="poem-annotation">This is T'ao Ch'ien at his most human. The great poet-philosopher has five sons and none of them can add six to seven. His response to this domestic catastrophe: "Bring on the wine." The humor is real, but so is the pathos. He chose poverty for the sake of principle, and his children inherited the poverty without inheriting the principle. The poem quietly acknowledges the cost of integrity.</div>
                     <div class="poem-credit">Translated by William Acker</div>
                 </div>
             </div>
         </div>
-
-        <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="poem-card">
-                <div class="poem-head"><span class="poem-title">Written on the Ninth Day of the Ninth Month of the Year Yi-yu</span> &middot; pp. 187-188</div>
-                <div class="poem-body">
-                    <div class="poem-context">Autumn elegy: the Double Ninth Festival</div>
-                    <div class="poem">Slowly, slowly, the autumn draws to its close,
-Cruelly cold the wind congeals the dew.
-Vines and grasses will not be green again&mdash;
-The trees in my garden are withering.
-The pure air is cleansed of lingering lees
-And mysteriously, Heaven's realms are high.
-Nothing is left of the spent cicada's song,
-A flock of geese goes crying down the sky.
-The Myriad Transformations open and shut by turns,
-And Man's life, how should it not be hard?
-From ancient times
-there was none but had to die,
-Remembering this
-scorches my very heart.</div>
-                    <div class="poem-credit">Translated by William Acker</div>
-                </div>
-            </div>
-        </div>
-
-        <blockquote style="margin-top: 1.25rem;">
-            "The life of man is like a shadow-play / Which must in the end return to nothingness."
-            <cite>&mdash; T'ao Ch'ien, "Returning to Dwell in the Country" (tr. Acker)</cite>
-        </blockquote>
     </section>
 
-    <!-- Discussion Questions -->
+    <!-- ============================================================ -->
+    <!-- ANALYSIS (DARK SECTION) -->
+    <!-- ============================================================ -->
+    <section class="analysis-section" id="analysis">
+        <div class="section-label"><span class="chinese" style="color: var(--gold-light);">分析</span> <span style="color: var(--recluse-light);">Scholarly Analysis</span></div>
+        <h2>Three Strategies for Surviving Chaos</h2>
+
+        <div class="analysis-grid">
+            <div class="analysis-card">
+                <div class="a-head">The Question Before the Answer</div>
+                <div class="a-body">
+                    <p>Chang Heng asks from WITHIN the system whether all striving is an illusion. He was the Han court's chief astronomer. He catalogued stars, invented instruments, served the emperor. His Daoist poem is not a renunciation of that life. It is a thought experiment conducted by a man who continued to live it.</p>
+                    <p>He did not resign. The poem is the question before the answer.</p>
+                </div>
+            </div>
+            <div class="analysis-card">
+                <div class="a-head">Present but Illegible</div>
+                <div class="a-body">
+                    <p>Juan Chi neither withdrew nor cooperated. His drunkenness, his eye-rolling, and his opaque poetry are techniques for remaining in the world without being consumed by it. He watched his closest friend executed for principled resistance and chose a different path: strategic illegibility.</p>
+                    <p>Donald Holzman reads him as torn between duty and purity. Stephen Owen wonders if the "political allegory" reading is a later projection. Either way, Juan Chi survived.</p>
+                </div>
+            </div>
+            <div class="analysis-card">
+                <div class="a-head">Genuine Withdrawal</div>
+                <div class="a-body">
+                    <p>T'ao Ch'ien made withdrawal into a complete and coherent way of life, then wrote about it with such clarity that every subsequent generation could recognize the choice. He invented a genre (fields and gardens poetry), created an icon (the chrysanthemum), and became the archetype against which all later recluses are measured.</p>
+                    <p>But his clarity is deceptive. Wendy Swartz argues the T'ao Ch'ien we know is a construction, rebuilt by each successive era's needs.</p>
+                </div>
+            </div>
+            <div class="analysis-card">
+                <div class="a-head">The Enduring Question</div>
+                <div class="a-body">
+                    <p>When the political world is corrupt, what does an honest person do? Engage from within and risk complicity? Hide in plain sight and risk illegibility? Walk away and risk irrelevance?</p>
+                    <p>None of these three has the complete answer. That is why all three remain essential.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-full">
+            <div class="a-head">What the Reading Doesn't Say (But You Should Think About)</div>
+            <div class="a-body">
+                <ul>
+                    <li><strong>Confucianism is not the enemy of the recluse tradition; it is its other half.</strong> Without the expectation of service, withdrawal would mean nothing. The recluse poet defines himself against the Confucian obligation to serve. Remove that obligation, and "withdrawal" is just living in the country.</li>
+                    <li><strong>The recluse tradition later becomes deeply intertwined with Chan (Zen) Buddhism.</strong> The monastery offered an institutional home for withdrawal that individual farming could not. Wang Wei (701&ndash;761), the great Tang dynasty poet-painter, fused recluse aesthetics with Buddhist meditation into something new.</li>
+                    <li><strong>T'ao Ch'ien's "simplicity" is one of the most densely allusive textures in the entire tradition.</strong> What looks transparent to Western readers is, for Chinese readers, layered with fifteen centuries of accumulated commentary, imitation, and quotation. Tao Yuanming BECAME an allusion himself. Every chrysanthemum, every eastern fence, every cup of wine is a citation.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DISCUSSION QUESTIONS -->
+    <!-- ============================================================ -->
     <section class="content-section white" id="questions">
-        <div class="section-label">Discussion Questions</div>
+        <div class="section-label"><span class="chinese">問</span> Discussion Questions</div>
         <div class="content-grid">
             <div class="question-card">
                 <div class="q-head">Question 1</div>
-                <div class="q-body">Chang Heng's dead man prefers death to life. Compare this with the <em>Zhuangzi</em>'s "skull" passage (which it directly echoes). Is this Daoist philosophy or something darker, a poetry of despair born from political chaos?</div>
+                <div class="q-body">Chang Heng's dead man claims that even the legendary recluses (Ch'ao Fu, Hs&uuml; Yu, Pien-sui) were "in vain." If death surpasses even the most principled withdrawal from the world, what is the point of reclusion at all? Is Chang Heng undermining the recluse tradition or radicalizing it?</div>
             </div>
             <div class="question-card">
                 <div class="q-head">Question 2</div>
-                <div class="q-body">Juan Chi's Poem 3 contrasts the dark stork (which "vanishes into the sky") with "the cuckoos and the crows that circle round the Court." What political allegory is at work? Why does the stork's disappearance feel like triumph?</div>
+                <div class="q-body">Juan Chi's Poem 3 contrasts the dark stork (which "vanishes into the sky") with "the cuckoos and the crows that circle round the Court." Stephen Owen argues these poems may not be political allegories at all. Does it matter whether Juan Chi intended political commentary? Can a poem about birds in a time of political terror avoid being political?</div>
             </div>
             <div class="question-card">
                 <div class="q-head">Question 3</div>
-                <div class="q-body">T'ao Ch'ien calls official life "the Dusty Net" and "the barred cage." Is his withdrawal an act of freedom or privilege? Could a farmer or soldier make the same choice?</div>
+                <div class="q-body">T'ao Ch'ien calls official life "the Dusty Net" and "the barred cage." Is his withdrawal an act of freedom or privilege? He was the great-grandson of a Grand Marshal with enough social capital to quit. Could a farmer or soldier make the same choice?</div>
             </div>
             <div class="question-card">
                 <div class="q-head">Question 4</div>
-                <div class="q-body">"Written While Drunk" says "When the heart is far the place of itself is distant." What does this mean? Is seclusion a physical state or a mental one?</div>
+                <div class="q-body">"When the heart is far the place of itself is distant." T'ao Ch'ien builds his house "near where others dwell" but hears no clamor. Is seclusion a physical state or a mental one? If it is purely mental, does physical withdrawal become unnecessary?</div>
             </div>
             <div class="question-card">
                 <div class="q-head">Question 5</div>
-                <div class="q-body">The recluse tradition runs directly counter to the Confucian mandate of public service. How would Kongzi or Mengzi respond to T'ao Ch'ien? Is withdrawal ever justified in Confucian thought?</div>
+                <div class="q-body">The recluse tradition runs directly counter to the Confucian mandate of public service. But Confucius himself acknowledged the recluse position in <em>Analects</em> 18.5&ndash;18.6 without dismissing it entirely. Is withdrawal ever justified in Confucian thought, or is it always a failure of nerve?</div>
             </div>
             <div class="question-card">
                 <div class="q-head">Question 6</div>
-                <div class="q-body">These poets write during centuries of political collapse. Compare the recluse response to chaos with Han Feizi's Legalist response. Both diagnose the same problem (disorder), but the solutions are opposite (withdraw vs. control). Which is more honest about human nature?</div>
+                <div class="q-body">Compare the recluse response to political chaos with Han Feizi's Legalist response. Both diagnose the same problem (disorder). The recluse withdraws. The Legalist tightens control. Which is more honest about human nature? Which has aged better?</div>
             </div>
         </div>
     </section>
@@ -1059,6 +1562,18 @@ scorches my very heart.</div>
         <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
         <div class="foot-term">WINTER 2026</div>
     </footer>
+
+    <!-- Tab switching script -->
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
 
 </body>
 
