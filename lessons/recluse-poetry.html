@@ -616,6 +616,69 @@
             color: var(--ink-faint);
         }
 
+        /* ===== VIDEO CARDS ===== */
+        .video-card {
+            background: #1a1a1a;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 1.25rem;
+        }
+
+        .video-card .video-head {
+            background: #111;
+            padding: 0.6rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .video-card .video-head .video-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .video-card .video-head .video-title {
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        .video-card .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-card .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-card .video-fallback {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.78rem;
+            color: #888;
+        }
+
+        .video-card .video-fallback a {
+            color: var(--gold-light);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--gold-light);
+        }
+
+        .video-card .video-fallback a:hover {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
         /* ===== BLOCKQUOTES ===== */
         blockquote {
             background: var(--paper-dark);
@@ -1200,6 +1263,20 @@ Hasten not, yet am swift.</div>
             </div>
         </div>
 
+        <!-- Listen -->
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">咏怀诗·其一 recited by Prof. Liu Qiang (CCTV Baijia Jiangtan)</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV12b411M7o8&page=1&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV12b411M7o8/" target="_blank" rel="noopener">watch on Bilibili &rarr;</a> &middot; 1:03
+            </div>
+        </div>
+
         <!-- Selected Poems -->
         <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
@@ -1294,6 +1371,33 @@ To survive this long and fearful night.</div>
                     <div class="notice-label">What to Notice</div>
                     <p>Tao Yuanming did what the others could not or would not: he actually left. But his withdrawal was not escapism. His children went hungry. His farming failed some years. The chrysanthemums and the wine were not decorations on a comfortable retirement. They were the hard-won consolations of a man who gave up security for integrity.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Listen -->
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">《归园田居·其一》朗诵 (Returning to Dwell in the Country)</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1ZC4y1p7na&page=1&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV1ZC4y1p7na/" target="_blank" rel="noopener">watch on Bilibili &rarr;</a> &middot; 29K views &middot; 1:21
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">《饮酒·其五》语文大师 (Drinking Wine #5, with analysis)</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1eK4y1r79X&page=1&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV1eK4y1r79X/" target="_blank" rel="noopener">watch on Bilibili &rarr;</a> &middot; 117K views &middot; 6:04
             </div>
         </div>
 
