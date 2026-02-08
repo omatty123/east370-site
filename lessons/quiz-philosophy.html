@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Quiz | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #888;
+            --recluse: #5C6B73;
+            --recluse-dark: #3d4a50;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --paper: #fafaf8;
+            --paper-warm: #faf6f0;
+            --paper-dark: #f0ede8;
+            --teal: #2d5a5a;
+            --correct: #2e7d32;
+            --correct-bg: #e8f5e9;
+            --wrong: #c62828;
+            --wrong-bg: #ffebee;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* ===== HEADER ===== */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--teal);
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== QUIZ LAYOUT ===== */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .quiz-intro {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--paper-dark);
+        }
+        .quiz-intro h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .quiz-intro p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1rem;
+            background: var(--paper-warm);
+            border-radius: 6px;
+            border: 1px solid var(--paper-dark);
+        }
+        .score-bar .score-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ink-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .score-bar .score-num {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        .score-bar .progress {
+            flex: 1;
+            height: 6px;
+            background: var(--paper-dark);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .score-bar .progress-fill {
+            height: 100%;
+            background: var(--teal);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        /* ===== QUESTION CARDS ===== */
+        .question-card {
+            background: #fff;
+            border: 1px solid var(--paper-dark);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: border-color 0.3s;
+        }
+        .question-card.answered-correct {
+            border-color: var(--correct);
+            background: var(--correct-bg);
+        }
+        .question-card.answered-wrong {
+            border-color: var(--wrong);
+            background: var(--wrong-bg);
+        }
+
+        .q-number {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.4rem;
+        }
+        .q-thinker {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--teal);
+            background: #e8f0f0;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+        }
+
+        .q-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid var(--paper-dark);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .option:hover:not(.locked) {
+            border-color: var(--teal);
+            background: #f5f9f9;
+        }
+        .option.selected {
+            border-color: var(--teal);
+            background: #eaf2f2;
+        }
+        .option.locked { cursor: default; }
+        .option.correct-answer {
+            border-color: var(--correct);
+            background: var(--correct-bg);
+        }
+        .option.wrong-answer {
+            border-color: var(--wrong);
+            background: var(--wrong-bg);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .option input[type="radio"] {
+            margin-top: 0.2rem;
+            accent-color: var(--teal);
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--paper-warm);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 4px 4px 0;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+        .explanation.show { display: block; }
+
+        /* ===== BUTTONS ===== */
+        .btn-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--teal);
+            color: #fff;
+        }
+        .btn-primary:hover { background: #1e4a4a; }
+        .btn-secondary {
+            background: var(--paper-dark);
+            color: var(--ink-light);
+        }
+        .btn-secondary:hover { background: #e0ddd8; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .quiz-container { padding: 1.25rem 1rem 3rem; }
+            .question-card { padding: 1.15rem; }
+            .score-bar { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="page-header">
+        <div class="page-title">
+            <span class="ch">哲學</span>
+            <span class="en">Philosophy Quiz: Kongzi to Han Feizi</span>
+            <span class="tag">Quiz</span>
+        </div>
+        <a href="../index.html" class="back">← EAST 370 Home</a>
+    </header>
+
+    <div class="quiz-container">
+        <div class="quiz-intro">
+            <h2>Philosophers and Philosophy</h2>
+            <p>Ten questions covering the seven thinkers we have studied so far: Kongzi, Mengzi, Xunzi, Laozi, Zhuangzi, Mozi, and Han Feizi. Select an answer for each question, then check your results.</p>
+        </div>
+
+        <div class="score-bar">
+            <span class="score-label">Score</span>
+            <span class="score-num" id="score">0 / 10</span>
+            <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="question-card" data-correct="b" id="q1">
+            <div class="q-number">Question 1 <span class="q-thinker">Kongzi</span></div>
+            <div class="q-text">In Analects 4.15, Zengzi explains that the "one thread" (一以貫之) unifying Kongzi's Way consists of:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q1" value="a">
+                    <span>Ren 仁 and li 禮 (humaneness and ritual)</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q1" value="b">
+                    <span>Zhong 忠 and shu 恕 (loyalty and sympathetic understanding)</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q1" value="c">
+                    <span>Xiao 孝 and yi 義 (filial piety and rightness)</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q1" value="d">
+                    <span>Wen 文 and zhi 質 (culture and substance)</span>
+                </label>
+            </div>
+            <div class="explanation">Zengzi glosses the Master's "one thread" as <strong>zhong 忠</strong> (doing one's best for others) and <strong>shu 恕</strong> (sympathetic understanding, or not imposing on others what you would not want yourself). This pair captures both the active and restraining sides of ren.</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card" data-correct="b" id="q2">
+            <div class="q-number">Question 2 <span class="q-thinker">Mengzi</span></div>
+            <div class="q-text">Mengzi uses the parable of Ox Mountain (Niu Shan 牛山) to illustrate that:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q2" value="a">
+                    <span>Human nature is evil but can be corrected through ritual</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q2" value="b">
+                    <span>Moral goodness keeps regrowing even after being repeatedly cut down</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q2" value="c">
+                    <span>The sage-ruler should protect forests from overuse</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q2" value="d">
+                    <span>People in the state of nature are inherently violent</span>
+                </label>
+            </div>
+            <div class="explanation">The mountain was once lush, then stripped bare by axes and grazing cattle. People see it barren and assume it was always that way. Mengzi's point: human goodness is like the trees. It keeps trying to grow back (the "night qi" nourishes new sprouts), but constant assault makes people conclude the goodness was never there. The barren surface is not the nature.</div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card" data-correct="a" id="q3">
+            <div class="q-number">Question 3 <span class="q-thinker">Xunzi</span></div>
+            <div class="q-text">"Blue comes from indigo, yet is bluer than indigo" (青出於藍而勝於藍). Xunzi uses this metaphor to argue that:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q3" value="a">
+                    <span>Students can surpass their teachers through accumulated learning</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q3" value="b">
+                    <span>Human nature is inherently good but needs refinement</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q3" value="c">
+                    <span>The Dao transcends the things that emerge from it</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q3" value="d">
+                    <span>Artificial colors are superior to natural ones</span>
+                </label>
+            </div>
+            <div class="explanation">This appears in Chapter 1, "Exhortation to Learning." The dye is extracted from indigo but surpasses its source. Xunzi's point is about <strong>accumulation</strong> (積): sustained effort in learning produces results that go beyond the raw material. Learning transforms, and the student can exceed the teacher.</div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card" data-correct="b" id="q4">
+            <div class="q-number">Question 4 <span class="q-thinker">Laozi</span></div>
+            <div class="q-text">Chapter 18 of the Daodejing argues that when people praise ren 仁 and yi 義, this actually shows that:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q4" value="a">
+                    <span>Confucius successfully taught the world these virtues</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q4" value="b">
+                    <span>The Dao has already been lost; naming these virtues is a symptom, not a cure</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q4" value="c">
+                    <span>Ren and yi are the highest expression of the Dao</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q4" value="d">
+                    <span>Confucian virtues and Daoist virtues are ultimately identical</span>
+                </label>
+            </div>
+            <div class="explanation">Laozi's logic: "When the great Dao declined, humaneness and rightness appeared." You only need to <em>name</em> a virtue when it has already disappeared from practice. A truly good society would not need the concept of "goodness" because it would simply be how people live. Confucian virtue-talk is a symptom of the Dao's decline, not evidence of moral progress.</div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card" data-correct="c" id="q5">
+            <div class="q-number">Question 5 <span class="q-thinker">Zhuangzi</span></div>
+            <div class="q-text">The story of Cook Ding (庖丁) butchering an ox illustrates:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q5" value="a">
+                    <span>The superiority of manual labor over scholarship</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q5" value="b">
+                    <span>That repetitive practice is the only path to excellence</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q5" value="c">
+                    <span>Mastery that transcends conscious technique, guided by spirit rather than senses</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q5" value="d">
+                    <span>That even lowly butchers can learn Confucian virtue</span>
+                </label>
+            </div>
+            <div class="explanation">Cook Ding says he no longer sees with his eyes or knows with his mind: "I go at it by spirit." His blade has lasted nineteen years without sharpening because he follows the natural structure rather than forcing. This is Zhuangzi's vision of <strong>de 德</strong> as embodied mastery: skill so deep it operates without deliberation, finding the spaces that are already there.</div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-card" data-correct="a" id="q6">
+            <div class="q-number">Question 6 <span class="q-thinker">Mozi</span></div>
+            <div class="q-text">Mozi's "Three Standards" (san biao 三標) for evaluating any claim are:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q6" value="a">
+                    <span>Root (accord with sage-kings), Source (verifiable by the people), Use (practical benefit to the state)</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q6" value="b">
+                    <span>Heaven's will, human nature, ritual propriety</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q6" value="c">
+                    <span>Logic, evidence, tradition</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q6" value="d">
+                    <span>Intent of the ruler, action of the minister, welfare of the people</span>
+                </label>
+            </div>
+            <div class="explanation">The Three Standards are Mozi's test for any doctrine: (1) Does it have a <strong>root</strong> in the practice of the ancient sage-kings? (2) Does it have a <strong>source</strong> that ordinary people can verify with their own ears and eyes? (3) Does it have <strong>use</strong>, meaning practical benefit for the state and people? If a claim fails any of these, it should be rejected. This makes Mozi arguably the most empirical of the classical thinkers.</div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-card" data-correct="b" id="q7">
+            <div class="q-number">Question 7 <span class="q-thinker">Han Feizi</span></div>
+            <div class="q-text">The story of Mi Zixia and the half-eaten peach illustrates Han Feizi's point that:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q7" value="a">
+                    <span>Ministers should never share food with the ruler</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q7" value="b">
+                    <span>The exact same action is praised when the ruler loves you and condemned when he does not</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q7" value="c">
+                    <span>Peaches symbolize immortality in Chinese culture</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q7" value="d">
+                    <span>Confucian reciprocity (shu) governs court relationships</span>
+                </label>
+            </div>
+            <div class="explanation">When the Duke loved Mi Zixia, sharing a half-eaten peach was praised as an act of devotion ("He forgot his own appetite to share with me!"). When the Duke's love faded, the same story was cited as evidence of disrespect ("He dared feed me his leftovers!"). Han Feizi's lesson: morality is not objective. What counts as virtue or crime depends entirely on the ruler's feelings. This is why systems (fa 法) must replace personal judgment.</div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-card" data-correct="c" id="q8">
+            <div class="q-number">Question 8 <span class="q-thinker">Cross-tradition</span></div>
+            <div class="q-text">Which thinker adopted the Daoist concept of wu wei (無為) but repurposed it for a radically different political vision?</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q8" value="a">
+                    <span>Mengzi</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q8" value="b">
+                    <span>Mozi</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q8" value="c">
+                    <span>Han Feizi</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q8" value="d">
+                    <span>Xunzi</span>
+                </label>
+            </div>
+            <div class="explanation">Han Feizi borrows wu wei from Daoism but gives it a completely different meaning. For Laozi, the ruler does not act because action disturbs the natural order. For Han Feizi, the ruler does not act <em>personally</em> because the system of law (fa), techniques (shu), and positional power (shi) does the work. The ruler stays "empty and still" (虛靜) not out of spiritual wisdom but to remain inscrutable and prevent ministers from manipulating him.</div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-card" data-correct="a" id="q9">
+            <div class="q-number">Question 9 <span class="q-thinker">Mengzi vs. Xunzi</span></div>
+            <div class="q-text">Mengzi and Xunzi disagree about whether human nature is good or problematic. However, they <strong>agree</strong> that:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q9" value="a">
+                    <span>Sustained moral cultivation is necessary; goodness does not happen on its own</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q9" value="b">
+                    <span>Heaven has an active moral will that rewards the virtuous</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q9" value="c">
+                    <span>The Four Sprouts are innate in all people</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q9" value="d">
+                    <span>Law (fa) is more effective than ritual (li)</span>
+                </label>
+            </div>
+            <div class="explanation">Despite their famous disagreement about human nature, both Mengzi and Xunzi insist that moral development requires <strong>effort over time</strong>. Mengzi says the sprouts must be cultivated (like watering seedlings, not pulling them). Xunzi says nature must be reshaped through deliberate effort (wei 偽) and ritual. Neither believes goodness happens automatically. The disagreement is about the <em>starting material</em>, not about whether cultivation is necessary.</div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-card" data-correct="b" id="q10">
+            <div class="q-number">Question 10 <span class="q-thinker">Mozi vs. Kongzi</span></div>
+            <div class="q-text">Mozi's most direct critique of Confucianism targeted:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q10" value="a">
+                    <span>The concept of ren 仁 (humaneness)</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q10" value="b">
+                    <span>Elaborate funerals and music as wasteful practices that harm the state</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q10" value="c">
+                    <span>The idea of the junzi 君子 (exemplary person)</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q10" value="d">
+                    <span>The use of Zhou Dynasty models as political ideals</span>
+                </label>
+            </div>
+            <div class="explanation">Mozi's doctrines of <strong>Moderation in Burial</strong> (節葬) and <strong>Against Music</strong> (非樂) are directly aimed at Confucian ritual culture. The Confucians emphasized elaborate mourning rites (three-year mourning, expensive funerals) and court music as expressions of li 禮. Mozi argued these drain the state's resources, keep people from productive labor, and serve only the elite. His test: does it benefit the people? If not, eliminate it.</div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-primary" id="checkBtn" onclick="checkAnswers()">Check Answers</button>
+            <button class="btn btn-secondary" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        let answered = false;
+
+        function checkAnswers() {
+            if (answered) return;
+            answered = true;
+
+            let correct = 0;
+            const cards = document.querySelectorAll('.question-card');
+
+            cards.forEach(card => {
+                const correctVal = card.dataset.correct;
+                const selected = card.querySelector('input[type="radio"]:checked');
+                const options = card.querySelectorAll('.option');
+                const explanation = card.querySelector('.explanation');
+
+                options.forEach(opt => opt.classList.add('locked'));
+
+                if (selected) {
+                    const selectedVal = selected.value;
+                    if (selectedVal === correctVal) {
+                        correct++;
+                        card.classList.add('answered-correct');
+                        selected.closest('.option').classList.add('correct-answer');
+                    } else {
+                        card.classList.add('answered-wrong');
+                        selected.closest('.option').classList.add('wrong-answer');
+                        options.forEach(opt => {
+                            if (opt.dataset.val === correctVal) {
+                                opt.classList.add('correct-answer');
+                            }
+                        });
+                    }
+                } else {
+                    card.classList.add('answered-wrong');
+                    options.forEach(opt => {
+                        if (opt.dataset.val === correctVal) {
+                            opt.classList.add('correct-answer');
+                        }
+                    });
+                }
+
+                explanation.classList.add('show');
+            });
+
+            document.getElementById('score').textContent = correct + ' / 10';
+            document.getElementById('progressFill').style.width = (correct * 10) + '%';
+            document.getElementById('checkBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'inline-block';
+        }
+
+        function resetQuiz() {
+            answered = false;
+            const cards = document.querySelectorAll('.question-card');
+            cards.forEach(card => {
+                card.classList.remove('answered-correct', 'answered-wrong');
+                card.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('locked', 'correct-answer', 'wrong-answer', 'selected');
+                });
+                card.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                card.querySelector('.explanation').classList.remove('show');
+            });
+            document.getElementById('score').textContent = '0 / 10';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('resetBtn').style.display = 'none';
+        }
+
+        // Option selection highlight
+        document.querySelectorAll('.option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (answered) return;
+                const card = this.closest('.question-card');
+                card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

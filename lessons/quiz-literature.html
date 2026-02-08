@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literature Quiz | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #888;
+            --recluse: #5C6B73;
+            --recluse-dark: #3d4a50;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --paper: #fafaf8;
+            --paper-warm: #faf6f0;
+            --paper-dark: #f0ede8;
+            --teal: #2d5a5a;
+            --correct: #2e7d32;
+            --correct-bg: #e8f5e9;
+            --wrong: #c62828;
+            --wrong-bg: #ffebee;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* ===== HEADER ===== */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--teal);
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== QUIZ LAYOUT ===== */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .quiz-intro {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--paper-dark);
+        }
+        .quiz-intro h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .quiz-intro p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+        }
+
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1rem;
+            background: var(--paper-warm);
+            border-radius: 6px;
+            border: 1px solid var(--paper-dark);
+        }
+        .score-bar .score-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ink-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .score-bar .score-num {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        .score-bar .progress {
+            flex: 1;
+            height: 6px;
+            background: var(--paper-dark);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .score-bar .progress-fill {
+            height: 100%;
+            background: var(--teal);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        /* ===== QUESTION CARDS ===== */
+        .question-card {
+            background: #fff;
+            border: 1px solid var(--paper-dark);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: border-color 0.3s;
+        }
+        .question-card.answered-correct {
+            border-color: var(--correct);
+            background: var(--correct-bg);
+        }
+        .question-card.answered-wrong {
+            border-color: var(--wrong);
+            background: var(--wrong-bg);
+        }
+
+        .q-number {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.4rem;
+        }
+        .q-thinker {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--teal);
+            background: #e8f0f0;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+        }
+
+        .q-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid var(--paper-dark);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .option:hover:not(.locked) {
+            border-color: var(--teal);
+            background: #f5f9f9;
+        }
+        .option.selected {
+            border-color: var(--teal);
+            background: #eaf2f2;
+        }
+        .option.locked { cursor: default; }
+        .option.correct-answer {
+            border-color: var(--correct);
+            background: var(--correct-bg);
+        }
+        .option.wrong-answer {
+            border-color: var(--wrong);
+            background: var(--wrong-bg);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .option input[type="radio"] {
+            margin-top: 0.2rem;
+            accent-color: var(--teal);
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--paper-warm);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 4px 4px 0;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+        .explanation.show { display: block; }
+
+        /* ===== BUTTONS ===== */
+        .btn-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--teal);
+            color: #fff;
+        }
+        .btn-primary:hover { background: #1e4a4a; }
+        .btn-secondary {
+            background: var(--paper-dark);
+            color: var(--ink-light);
+        }
+        .btn-secondary:hover { background: #e0ddd8; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .quiz-container { padding: 1.25rem 1rem 3rem; }
+            .question-card { padding: 1.15rem; }
+            .score-bar { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="page-header">
+        <div class="page-title">
+            <span class="ch">文學</span>
+            <span class="en">Literature Quiz: Chuci to Bao Zhao</span>
+            <span class="tag">Quiz</span>
+        </div>
+        <a href="../index.html" class="back">← EAST 370 Home</a>
+    </header>
+
+    <div class="quiz-container">
+        <div class="quiz-intro">
+            <h2>Literature and Literary Works</h2>
+            <p>Ten questions covering the literary tradition from the Songs of Chu through the Six Dynasties: Qu Yuan, Song Yu, Jia Yi, Sima Xiangru, Ji Kang, Tao Yuanming, Kong Zhigui, Bao Zhao, and the recluse-poetry tradition.</p>
+        </div>
+
+        <div class="score-bar">
+            <span class="score-label">Score</span>
+            <span class="score-num" id="score">0 / 10</span>
+            <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="question-card" data-correct="a" id="q1">
+            <div class="q-number">Question 1 <span class="q-thinker">Qu Yuan</span></div>
+            <div class="q-text">Qu Yuan's Li Sao (離騷) is primarily a poem about:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q1" value="a">
+                    <span>A loyal minister's anguish at exile, cast as a cosmic journey seeking a worthy ruler</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q1" value="b">
+                    <span>The natural beauty of the Chu landscape and its sacred rivers</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q1" value="c">
+                    <span>A philosophical debate between Confucianism and Daoism</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q1" value="d">
+                    <span>Instructions for performing shamanic rituals at court</span>
+                </label>
+            </div>
+            <div class="explanation">The Li Sao ("Encountering Sorrow") is the founding poem of the Chinese lyric tradition. Qu Yuan, a minister of the state of Chu, was slandered and banished. The poem stages his grief as a visionary journey through the heavens, seeking a ruler who will recognize his loyalty and virtue. It established the template of the wronged loyal minister that echoed through Chinese literature for two millennia.</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card" data-correct="b" id="q2">
+            <div class="q-number">Question 2 <span class="q-thinker">Song Yu</span></div>
+            <div class="q-text">Song Yu's Gaotang Fu (高唐賦) is significant in literary history because it:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q2" value="a">
+                    <span>Was the first poem to use a five-character line</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q2" value="b">
+                    <span>Created the goddess dream-encounter motif that shaped centuries of Chinese love poetry</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q2" value="c">
+                    <span>Was the first direct critique of the Confucian tradition in literary form</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q2" value="d">
+                    <span>Introduced the concept of parallel prose (pianwen) to Chinese writing</span>
+                </label>
+            </div>
+            <div class="explanation">In the Gaotang Fu, the King of Chu dreams of a goddess at Gaotang who says she is "the morning cloud and evening rain" on Mt. Wu. This <strong>dream-encounter with a divine woman</strong> became one of the most enduring motifs in Chinese literature, recurring across poetry, fiction, and drama for centuries. Song Yu bridges the shamanic world of the Chuci and the literary world of the Han fu.</div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card" data-correct="b" id="q3">
+            <div class="q-number">Question 3 <span class="q-thinker">Jia Yi</span></div>
+            <div class="q-text">Jia Yi's "Faults of Qin" (過秦論) argues that the Qin dynasty collapsed because:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q3" value="a">
+                    <span>Its armies were too weak to defend against the Xiongnu</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q3" value="b">
+                    <span>It relied on conquest and coercion without practicing humaneness (ren)</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q3" value="c">
+                    <span>Heaven withdrew its mandate due to natural disasters</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q3" value="d">
+                    <span>The First Emperor abandoned Legalist principles too quickly</span>
+                </label>
+            </div>
+            <div class="explanation">Jia Yi wrote this essay early in the Han dynasty as a warning to his own rulers. His argument: Qin conquered all six states through military force but failed to transition from "attacking" to "preserving." It never adopted humaneness (ren) and rightness (yi) as governing principles. The same methods that won the empire could not hold it. The essay is both political analysis and rhetorical masterpiece.</div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card" data-correct="c" id="q4">
+            <div class="q-number">Question 4 <span class="q-thinker">Han Fu</span></div>
+            <div class="q-text">Sima Xiangru's Shanglin Fu (上林賦) depicts the emperor's hunting park primarily to:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q4" value="a">
+                    <span>Criticize imperial excess and advocate for peasant welfare</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q4" value="b">
+                    <span>Record the actual geography and wildlife of the Western Han capital</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q4" value="c">
+                    <span>Display imperial grandeur through spectacular cataloguing, while ending with a moral turn</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q4" value="d">
+                    <span>Compare Daoist simplicity to Confucian excess</span>
+                </label>
+            </div>
+            <div class="explanation">The Shanglin Fu is the supreme example of Han epideictic fu. It catalogues the imperial park's rivers, mountains, animals, hunts, and entertainments in dizzying abundance. At the end, the emperor renounces excess and turns to virtue. This structure (spectacular display + moral correction) is the signature move of court fu. Whether the moral turn is genuine critique or ritual cover for the spectacle itself is a question the genre never resolves.</div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card" data-correct="b" id="q5">
+            <div class="q-number">Question 5 <span class="q-thinker">Ji Kang</span></div>
+            <div class="q-text">Ji Kang's "Letter to Shan Tao" (與山巨源絕交書) is a paradigmatic text in the Chinese tradition because it:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q5" value="a">
+                    <span>Outlines the ideal conduct for Confucian officials at court</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q5" value="b">
+                    <span>Articulates the ethics of refusing office and choosing personal freedom over political service</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q5" value="c">
+                    <span>Describes the Seven Sages of the Bamboo Grove and their drinking sessions</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q5" value="d">
+                    <span>Proposes a new theory of music as moral cultivation</span>
+                </label>
+            </div>
+            <div class="explanation">Shan Tao recommended Ji Kang for an official post. Ji Kang responded with this letter declaring their friendship over and listing "seven things I cannot stand and two things I cannot do" about office life. It became the defining statement of the recluse ethic: that personal integrity and freedom of spirit are more valuable than political success. Ji Kang was later executed, which gave the letter an even sharper edge.</div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-card" data-correct="c" id="q6">
+            <div class="q-number">Question 6 <span class="q-thinker">Kong Zhigui</span></div>
+            <div class="q-text">"Proclamation on North Mountain" (北山移文) by Kong Zhigui satirizes:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q6" value="a">
+                    <span>Government corruption and bribery at the Southern dynasties court</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q6" value="b">
+                    <span>Buddhist monks who meditate in the mountains instead of serving society</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q6" value="c">
+                    <span>Recluses who use withdrawal as a performance to build a reputation and then take office</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q6" value="d">
+                    <span>Poets who write about nature without ever leaving the city</span>
+                </label>
+            </div>
+            <div class="explanation">The text imagines the mountain spirits themselves issuing a proclamation against a certain "recluse" (likely Zhou Yong) who made a grand show of retreating to the mountains, then promptly accepted an official post when offered. The mountain is humiliated: its mists and peaks were used as props for a career strategy. The satire cuts at the gap between performed withdrawal and genuine conviction.</div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-card" data-correct="b" id="q7">
+            <div class="q-number">Question 7 <span class="q-thinker">Tao Yuanming</span></div>
+            <div class="q-text">In "Peach Blossom Spring" (桃花源記), the hidden community is composed of people who:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q7" value="a">
+                    <span>Practice Daoist alchemy and seek physical immortality</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q7" value="b">
+                    <span>Fled the chaos of the Qin dynasty and have lived in isolation ever since, unaware of later history</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q7" value="c">
+                    <span>Were banished by the emperor and forced to live in the wilderness</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q7" value="d">
+                    <span>Are spirits of the dead living in an afterlife realm</span>
+                </label>
+            </div>
+            <div class="explanation">The fisherman discovers a community whose ancestors entered the valley during the turmoil of the Qin dynasty. They have lived there for generations in self-sufficient simplicity. They do not know the Qin fell, let alone that the Han and Wei followed. When the fisherman leaves and tries to find the place again, he cannot. The story is Tao Yuanming's vision of a world that chose to exit history, a quiet refusal of the entire political order.</div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-card" data-correct="c" id="q8">
+            <div class="q-number">Question 8 <span class="q-thinker">Bao Zhao</span></div>
+            <div class="q-text">Bao Zhao's "Tedious Ways" (拟行路难) poems are driven by the poet's frustration that:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q8" value="a">
+                    <span>The roads between cities are poorly maintained and dangerous</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q8" value="b">
+                    <span>He was exiled to a remote province for criticizing the emperor</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q8" value="c">
+                    <span>His literary talent could not overcome the class barriers of the aristocratic system</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q8" value="d">
+                    <span>His teacher refused to acknowledge him as a serious poet</span>
+                </label>
+            </div>
+            <div class="explanation">Bao Zhao was born into a humble family during the Liu Song dynasty, when the Nine Ranks system reserved high office for aristocratic clans. Despite being recognized as one of the finest poets of his generation (one of the "Three Masters of Yuanjia"), his low birth blocked real advancement. "The road is hard" is a metaphor for a system where talent alone cannot secure its deserved place.</div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-card" data-correct="d" id="q9">
+            <div class="q-number">Question 9 <span class="q-thinker">Bao Zhao</span></div>
+            <div class="q-text">"The Ruined City" (蕪城賦) by Bao Zhao meditates on the ruins of Guangling to express:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q9" value="a">
+                    <span>Nostalgia for the beauties of court life before his exile</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q9" value="b">
+                    <span>A Confucian argument that good government prevents urban decay</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q9" value="c">
+                    <span>A Buddhist meditation on impermanence and reincarnation</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q9" value="d">
+                    <span>The inevitable destruction that political ambition and warfare bring to even the most splendid cities</span>
+                </label>
+            </div>
+            <div class="explanation">Guangling (modern Yangzhou) was once a thriving city, then devastated by the rebellion of Liu Jun. Bao Zhao contrasts its former grandeur (walls, markets, music, wealth) with its present desolation (thorns, foxes, ghosts, silence). The fu works on multiple levels: a lament for a specific place, a meditation on the vanity of political ambition, and a reflection on how quickly power and beauty dissolve into nothing.</div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-card" data-correct="b" id="q10">
+            <div class="q-number">Question 10 <span class="q-thinker">Seclusion Tradition</span></div>
+            <div class="q-text">The three texts in the "On Seclusion" unit (Yang Yun's letter, Ji Kang's letter, Kong Zhigui's proclamation) collectively explore:</div>
+            <div class="options">
+                <label class="option" data-val="a">
+                    <input type="radio" name="q10" value="a">
+                    <span>How to practice Buddhist meditation in mountain retreats</span>
+                </label>
+                <label class="option" data-val="b">
+                    <input type="radio" name="q10" value="b">
+                    <span>The tension between genuine withdrawal and the social performance of reclusion</span>
+                </label>
+                <label class="option" data-val="c">
+                    <input type="radio" name="q10" value="c">
+                    <span>Military strategy for defending mountainous terrain against invaders</span>
+                </label>
+                <label class="option" data-val="d">
+                    <input type="radio" name="q10" value="d">
+                    <span>The economic advantages of farming over court service</span>
+                </label>
+            </div>
+            <div class="explanation">Read together, the three texts map the full spectrum of withdrawal. Yang Yun defends his retreat as forced upon him by political persecution. Ji Kang declares withdrawal as a principled ethical choice, breaking with a friend over it. Kong Zhigui exposes the cynical version, where "reclusion" is performed for social capital and then cashed in for an appointment. The unit asks: when is retreat authentic, and when is it theater?</div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn btn-primary" id="checkBtn" onclick="checkAnswers()">Check Answers</button>
+            <button class="btn btn-secondary" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        let answered = false;
+
+        function checkAnswers() {
+            if (answered) return;
+            answered = true;
+
+            let correct = 0;
+            const cards = document.querySelectorAll('.question-card');
+
+            cards.forEach(card => {
+                const correctVal = card.dataset.correct;
+                const selected = card.querySelector('input[type="radio"]:checked');
+                const options = card.querySelectorAll('.option');
+                const explanation = card.querySelector('.explanation');
+
+                options.forEach(opt => opt.classList.add('locked'));
+
+                if (selected) {
+                    const selectedVal = selected.value;
+                    if (selectedVal === correctVal) {
+                        correct++;
+                        card.classList.add('answered-correct');
+                        selected.closest('.option').classList.add('correct-answer');
+                    } else {
+                        card.classList.add('answered-wrong');
+                        selected.closest('.option').classList.add('wrong-answer');
+                        options.forEach(opt => {
+                            if (opt.dataset.val === correctVal) {
+                                opt.classList.add('correct-answer');
+                            }
+                        });
+                    }
+                } else {
+                    card.classList.add('answered-wrong');
+                    options.forEach(opt => {
+                        if (opt.dataset.val === correctVal) {
+                            opt.classList.add('correct-answer');
+                        }
+                    });
+                }
+
+                explanation.classList.add('show');
+            });
+
+            document.getElementById('score').textContent = correct + ' / 10';
+            document.getElementById('progressFill').style.width = (correct * 10) + '%';
+            document.getElementById('checkBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'inline-block';
+        }
+
+        function resetQuiz() {
+            answered = false;
+            const cards = document.querySelectorAll('.question-card');
+            cards.forEach(card => {
+                card.classList.remove('answered-correct', 'answered-wrong');
+                card.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('locked', 'correct-answer', 'wrong-answer', 'selected');
+                });
+                card.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                card.querySelector('.explanation').classList.remove('show');
+            });
+            document.getElementById('score').textContent = '0 / 10';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('resetBtn').style.display = 'none';
+        }
+
+        document.querySelectorAll('.option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (answered) return;
+                const card = this.closest('.question-card');
+                card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>
