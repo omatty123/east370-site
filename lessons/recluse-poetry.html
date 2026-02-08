@@ -35,13 +35,65 @@
             font-size: 1rem;
         }
 
-        /* ===== STICKY NAV ===== */
-        .nav {
+        /* ===== COMPACT HEADER ===== */
+        .page-header {
             background: var(--ink);
-            padding: 0.75rem 2rem;
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .page-header .back:hover { color: var(--gold-light); }
+
+        .page-title {
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--recluse);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* ===== STICKY NAV ===== */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
             flex-wrap: wrap;
             position: sticky;
             top: 0;
@@ -49,7 +101,7 @@
         }
 
         .nav a {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #aaa;
             text-decoration: none;
             letter-spacing: 0.03em;
@@ -58,65 +110,23 @@
 
         .nav a:hover { color: var(--gold-light); }
 
-        .nav .breadcrumb { color: var(--gold-light); }
-        .nav .breadcrumb:hover { color: var(--gold); }
-
-        .nav .sep {
-            color: #555;
-            font-size: 0.7rem;
-        }
-
-        .nav .page-label {
-            font-size: 0.8rem;
-            color: #888;
-            font-weight: 500;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, #2d3a40 0%, #4a5960 50%, #5C6B73 100%);
-            padding: 3.5rem 2.5rem 3rem;
-        }
-
-        .hero-content {
-            max-width: 720px;
-        }
-
-        .hero .label {
+        /* ===== WIKI / BIO LINKS ===== */
+        .wiki-link {
             font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--gold-light);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
+            color: var(--recluse-light);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--recluse-light);
+            transition: color 0.2s, border-color 0.2s;
         }
 
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.2;
-            margin-bottom: 1.25rem;
-        }
+        .wiki-link:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
 
-        .hero .deck {
-            font-size: 1.05rem;
-            font-weight: 300;
-            color: rgba(255,255,255,0.75);
+        .intro-text {
+            font-size: 0.92rem;
+            color: var(--ink-light);
             line-height: 1.7;
-            margin-bottom: 1.5rem;
-            max-width: 660px;
-        }
-
-        .hero .source-ref {
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 0.04em;
-        }
-
-        .hero .source-ref strong {
-            color: rgba(255,255,255,0.55);
-            font-weight: 500;
+            max-width: 720px;
+            margin-bottom: 1.25rem;
         }
 
         /* ===== SECTION LABELS ===== */
@@ -180,47 +190,6 @@
             margin-top: 1.25rem;
         }
 
-        /* ===== TOC ===== */
-        .toc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-            margin-top: 0.75rem;
-        }
-
-        .toc-card {
-            background: #fff;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .toc-card .toc-head {
-            background: #2a2a2a;
-            padding: 0.6rem 1.25rem;
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--recluse-light);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .toc-card .toc-body {
-            padding: 1rem 1.25rem;
-        }
-
-        .toc-card .toc-body a {
-            display: block;
-            font-size: 0.92rem;
-            color: var(--ink-light);
-            text-decoration: none;
-            padding: 0.3rem 0;
-            border-bottom: 1px solid var(--paper-dark);
-            transition: color 0.2s;
-        }
-
-        .toc-card .toc-body a:last-child { border-bottom: none; }
-        .toc-card .toc-body a:hover { color: var(--gold); }
 
         /* ===== CARDS ===== */
         .card {
@@ -831,50 +800,32 @@
 
 <body>
 
-    <!-- Nav -->
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">隱逸詩</span>
+            <span class="en">The Poetry of the Recluse</span>
+            <span class="tag">RECLUSE</span>
+            <span class="meta">Birch pp. 174&ndash;188 &middot; Period of Division (220&ndash;589 CE)</span>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
     <nav class="nav">
-        <a href="../index.html" class="breadcrumb">&larr; EAST 370</a>
-        <span class="sep">|</span>
-        <span class="page-label">Recluse Poetry Study Guide</span>
+        <a href="#tradition">Tradition</a>
+        <a href="#glossary">Glossary</a>
+        <a href="#zhang-heng">Zhang Heng</a>
+        <a href="#ruan-ji">Ruan Ji</a>
+        <a href="#tao-yuanming">Tao Yuanming</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#questions">Questions</a>
     </nav>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="label">EAST 370 &middot; Study Guide</div>
-            <h1>The Poetry of the Recluse</h1>
-            <p class="deck">Three poets across three centuries of political collapse. When the Han dynasty falls and China fragments into warring kingdoms, the question becomes urgent: if the court is a killing ground, what does an honest person do? Zhang Heng talks to the dead. Ruan Ji hides behind wine and silence. Tao Yuanming walks away and never looks back.</p>
-            <p class="source-ref"><strong>Birch, Anthology of Chinese Literature</strong> &middot; pp. 174&ndash;188 &middot; Period of Division (220&ndash;589 CE)</p>
-        </div>
-    </section>
-
-    <!-- Table of Contents -->
-    <section class="content-section">
-        <div class="section-label"><span class="chinese">目錄</span> Contents</div>
-        <div class="toc-grid">
-            <div class="toc-card">
-                <div class="toc-head">The Reading</div>
-                <div class="toc-body">
-                    <a href="#tradition">The Recluse Tradition</a>
-                    <a href="#zhang-heng">Voice I: Zhang Heng (78&ndash;139 CE)</a>
-                    <a href="#ruan-ji">Voice II: Ruan Ji (210&ndash;263 CE)</a>
-                    <a href="#tao-yuanming">Voice III: Tao Yuanming (365&ndash;427 CE)</a>
-                </div>
-            </div>
-            <div class="toc-card">
-                <div class="toc-head">Reference &amp; Analysis</div>
-                <div class="toc-body">
-                    <a href="#glossary">Reference Glossary</a>
-                    <a href="#analysis">Scholarly Analysis</a>
-                    <a href="#questions">Discussion Questions</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- The Recluse Tradition -->
     <section class="content-section warm" id="tradition">
         <div class="section-label"><span class="chinese">隱逸</span> The Recluse Tradition</div>
+        <p class="intro-text">Three poets across three centuries of political collapse. When the Han dynasty falls and China fragments into warring kingdoms, the question becomes urgent: if the court is a killing ground, what does an honest person do? Zhang Heng talks to the dead. Ruan Ji hides behind wine and silence. Tao Yuanming walks away and never looks back.</p>
         <div class="content-grid">
             <div class="card">
                 <div class="card-head">The Foundational Tension</div>
@@ -900,7 +851,7 @@
                 <div class="voice-head">Voice I</div>
                 <div class="voice-body">
                     <div class="name-en">Zhang Heng</div>
-                    <div class="dates">78&ndash;139 CE &middot; Eastern Han</div>
+                    <div class="dates">78&ndash;139 CE &middot; Eastern Han &middot; <a href="https://en.wikipedia.org/wiki/Zhang_Heng" target="_blank" rel="noopener" class="wiki-link">bio</a></div>
                     <div class="key-idea">Dialogue with death. A Han court polymath writes a Daoist meditation. The question BEFORE the answer.</div>
                 </div>
             </div>
@@ -908,7 +859,7 @@
                 <div class="voice-head">Voice II</div>
                 <div class="voice-body">
                     <div class="name-en">Ruan Ji</div>
-                    <div class="dates">210&ndash;263 CE &middot; Wei-Jin Transition</div>
+                    <div class="dates">210&ndash;263 CE &middot; Wei-Jin Transition &middot; <a href="https://en.wikipedia.org/wiki/Ruan_Ji" target="_blank" rel="noopener" class="wiki-link">bio</a></div>
                     <div class="key-idea">Present but illegible. Strategic drunkenness, coded allegory, the art of saying everything by saying nothing clearly.</div>
                 </div>
             </div>
@@ -916,7 +867,7 @@
                 <div class="voice-head">Voice III</div>
                 <div class="voice-body">
                     <div class="name-en">Tao Yuanming</div>
-                    <div class="dates">365&ndash;427 CE &middot; Eastern Jin</div>
+                    <div class="dates">365&ndash;427 CE &middot; Eastern Jin &middot; <a href="https://en.wikipedia.org/wiki/Tao_Yuanming" target="_blank" rel="noopener" class="wiki-link">bio</a></div>
                     <div class="key-idea">Genuine withdrawal. Quits office for "five pecks of rice," farms, drinks, writes. The defining recluse.</div>
                 </div>
             </div>
@@ -939,27 +890,27 @@
         <div class="tab-panel active" id="tab-people">
             <div class="gloss-grid">
                 <div class="gloss-item">
-                    <div class="gloss-name">Zhang Heng <span class="chinese">張衡</span></div>
+                    <div class="gloss-name">Zhang Heng <span class="chinese">張衡</span> <a href="https://en.wikipedia.org/wiki/Zhang_Heng" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
                     <div class="gloss-dates">78&ndash;139 CE</div>
                     <div class="gloss-text">Eastern Han polymath: court astronomer, mathematician, cartographer, poet. Invented the world's first seismograph and a water-powered armillary sphere. Catalogued 2,500 stars. Not a Daoist dropout but a man at the center of imperial power who questioned whether all human striving is worth anything at all.</div>
                 </div>
                 <div class="gloss-item">
-                    <div class="gloss-name">Ruan Ji <span class="chinese">阮籍</span></div>
+                    <div class="gloss-name">Ruan Ji <span class="chinese">阮籍</span> <a href="https://en.wikipedia.org/wiki/Ruan_Ji" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
                     <div class="gloss-dates">210&ndash;263 CE &middot; Juan Chi in Birch</div>
                     <div class="gloss-text">Most prominent member of the Seven Sages of the Bamboo Grove. Lived during the Sima clan's violent takeover of the Cao Wei dynasty. His closest friend Ji Kang was executed for principled resistance. Ruan Ji chose survival through strategic drunkenness and deliberately opaque poetry. When Sima Zhao proposed a marriage alliance, Ruan Ji stayed drunk for sixty consecutive days until the proposal was dropped. Famous for greeting people he respected with the dark of his pupils ("blue eyes") and those he despised with only the whites.</div>
                 </div>
                 <div class="gloss-item">
-                    <div class="gloss-name">Ji Kang <span class="chinese">嵇康</span></div>
+                    <div class="gloss-name">Ji Kang <span class="chinese">嵇康</span> <a href="https://en.wikipedia.org/wiki/Ji_Kang" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
                     <div class="gloss-dates">223&ndash;262 CE &middot; Hsi K'ang in Wade-Giles</div>
                     <div class="gloss-text">Ruan Ji's closest friend and fellow member of the Seven Sages. Refused to submit to the Sima government. Before his execution, he asked for his qin (zither) and played a final piece, lamenting only that the music would die with him. His death was a message: cooperate or die.</div>
                 </div>
                 <div class="gloss-item">
-                    <div class="gloss-name">The Seven Sages of the Bamboo Grove <span class="chinese">竹林七賢</span></div>
+                    <div class="gloss-name">The Seven Sages of the Bamboo Grove <span class="chinese">竹林七賢</span> <a href="https://en.wikipedia.org/wiki/Seven_Sages_of_the_Bamboo_Grove" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
                     <div class="gloss-dates">3rd century CE</div>
                     <div class="gloss-text">Seven intellectuals who gathered in a bamboo grove: Ruan Ji, Ji Kang, Liu Ling, Ruan Xian, Xiang Xiu, Wang Rong, Shan Tao. They celebrated wine, spontaneity, and personal freedom. A deliberate rejection of the hypocrisy of a court that murdered its way to power while insisting on Confucian propriety.</div>
                 </div>
                 <div class="gloss-item">
-                    <div class="gloss-name">Tao Yuanming <span class="chinese">陶淵明</span></div>
+                    <div class="gloss-name">Tao Yuanming <span class="chinese">陶淵明</span> <a href="https://en.wikipedia.org/wiki/Tao_Yuanming" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
                     <div class="gloss-dates">365&ndash;427 CE &middot; T'ao Ch'ien in Birch</div>
                     <div class="gloss-text">The defining recluse poet. Great-grandson of Tao Kan, one of the most powerful military figures of the Eastern Jin. By Tao Yuanming's generation, the family had fallen into genteel poverty. Held minor government posts for thirteen years. As magistrate of Pengze, was told to dress formally to receive an inspector. His response: "I will not bow to a petty village boy for the sake of five pecks of rice." Resigned after eighty days. Spent the remaining twenty-two years farming, drinking, writing poetry. Married three times, had five sons. Lived in genuine poverty, not merely simplicity. Apologized to his sons in a letter for the hunger they endured because of his principles.</div>
                 </div>
@@ -1128,7 +1079,7 @@
         <div class="poet-header">
             <h2>Zhang Heng: Dialogue with Death</h2>
         </div>
-        <div class="period-note">78&ndash;139 CE &middot; Eastern Han &middot; pp. 176&ndash;178</div>
+        <div class="period-note">78&ndash;139 CE &middot; Eastern Han &middot; pp. 176&ndash;178 &middot; <a href="https://en.wikipedia.org/wiki/Zhang_Heng" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
 
         <!-- Reading Card -->
         <div class="reading-card">
@@ -1220,7 +1171,7 @@ Hasten not, yet am swift.</div>
         <div class="poet-header">
             <h2>Ruan Ji: The Art of Saying Nothing Clearly</h2>
         </div>
-        <div class="period-note">210&ndash;263 CE &middot; Wei-Jin Transition &middot; pp. 179&ndash;181</div>
+        <div class="period-note">210&ndash;263 CE &middot; Wei-Jin Transition &middot; pp. 179&ndash;181 &middot; <a href="https://en.wikipedia.org/wiki/Ruan_Ji" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
 
         <!-- Reading Card -->
         <div class="reading-card">
@@ -1318,7 +1269,7 @@ To survive this long and fearful night.</div>
         <div class="poet-header">
             <h2>Tao Yuanming: The Master Recluse</h2>
         </div>
-        <div class="period-note">365&ndash;427 CE &middot; Eastern Jin &middot; pp. 182&ndash;188</div>
+        <div class="period-note">365&ndash;427 CE &middot; Eastern Jin &middot; pp. 182&ndash;188 &middot; <a href="https://en.wikipedia.org/wiki/Tao_Yuanming" target="_blank" rel="noopener" class="wiki-link">Wikipedia</a></div>
 
         <!-- Reading Card -->
         <div class="reading-card">
