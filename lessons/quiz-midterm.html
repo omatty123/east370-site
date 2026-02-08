@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midterm Review Quiz | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #888;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --paper-warm: #faf6f0;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --ru: #2D7D7D;
+            --mo: #A67C52;
+            --dao: #3D8B4D;
+            --fa: #B54545;
+            --chu: #7B5EA7;
+            --fu: #4a6fa5;
+            --recluse: #5C6B73;
+            --correct: #2D7D3D;
+            --wrong: #B54545;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Compact Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .page-header .back:hover { color: var(--gold-light); }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* Score Bar */
+        .score-bar {
+            background: #2a2e32;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .score-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .score-display {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .score-num {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .score-total {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .score-dots {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #444;
+            transition: background 0.3s;
+        }
+
+        .dot.correct { background: var(--correct); }
+        .dot.wrong { background: var(--wrong); }
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-intro {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--paper-dark);
+        }
+
+        /* Question Card */
+        .q-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            margin-bottom: 1.25rem;
+            transition: box-shadow 0.3s;
+        }
+
+        .q-card.answered-correct {
+            box-shadow: 0 0 0 2px var(--correct), 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .q-card.answered-wrong {
+            box-shadow: 0 0 0 2px var(--wrong), 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .q-header {
+            background: #2a2a2a;
+            padding: 0.6rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .q-number {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #999;
+        }
+
+        .q-tag {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #fff;
+            padding: 0.15rem 0.45rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .q-tag.ru { background: var(--ru); }
+        .q-tag.mo { background: var(--mo); }
+        .q-tag.dao { background: var(--dao); }
+        .q-tag.fa { background: var(--fa); }
+        .q-tag.chu { background: var(--chu); }
+        .q-tag.fu { background: var(--fu); }
+        .q-tag.recluse { background: var(--recluse); }
+
+        .q-topic {
+            font-size: 0.72rem;
+            color: #aaa;
+        }
+
+        .q-body {
+            padding: 1.25rem;
+        }
+
+        .q-text {
+            font-size: 0.92rem;
+            color: var(--ink);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #e8e6e2;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .option:hover:not(.locked) {
+            border-color: var(--gold);
+            background: var(--paper-warm);
+        }
+
+        .option.selected {
+            border-color: var(--gold);
+            background: var(--paper-warm);
+        }
+
+        .option.locked { cursor: default; }
+
+        .option.is-correct.revealed {
+            border-color: var(--correct);
+            background: #f0f8f0;
+        }
+
+        .option.is-wrong.revealed {
+            border-color: var(--wrong);
+            background: #fdf0f0;
+        }
+
+        .option-letter {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--paper-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--ink-light);
+            flex-shrink: 0;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .option.is-correct.revealed .option-letter {
+            background: var(--correct);
+            color: #fff;
+        }
+
+        .option.is-wrong.revealed .option-letter {
+            background: var(--wrong);
+            color: #fff;
+        }
+
+        .option-text {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.55;
+        }
+
+        /* Reveal Button */
+        .reveal-btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1.25rem;
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.03em;
+            transition: background 0.2s;
+        }
+
+        .reveal-btn:hover { background: #333; }
+        .reveal-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Explanation */
+        .explanation {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--paper-warm);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .explanation.visible { display: block; }
+
+        .explanation .exp-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.4rem;
+        }
+
+        .explanation p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* Results */
+        .results-section {
+            background: var(--ink);
+            padding: 2rem 1.5rem;
+            text-align: left;
+            display: none;
+        }
+
+        .results-section.visible { display: block; }
+
+        .results-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .results-score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .results-msg {
+            font-size: 0.92rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .reset-btn {
+            padding: 0.6rem 1.5rem;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.03em;
+        }
+
+        .reset-btn:hover { background: var(--gold-light); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-section { padding: 1rem; }
+            .q-body { padding: 1rem; }
+            .score-bar { flex-wrap: wrap; gap: 0.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">測驗</span>
+            <span class="en">Midterm Review Quiz</span>
+            <span class="meta">Kongzi through Recluse Poetry &middot; 10 Questions</span>
+        </div>
+    </header>
+
+    <!-- Score Bar -->
+    <div class="score-bar">
+        <div>
+            <span class="score-label">Score</span>
+        </div>
+        <div class="score-display">
+            <span class="score-num" id="score">0</span>
+            <span class="score-total">/ 10</span>
+            <div class="score-dots">
+                <div class="dot" id="dot-0"></div>
+                <div class="dot" id="dot-1"></div>
+                <div class="dot" id="dot-2"></div>
+                <div class="dot" id="dot-3"></div>
+                <div class="dot" id="dot-4"></div>
+                <div class="dot" id="dot-5"></div>
+                <div class="dot" id="dot-6"></div>
+                <div class="dot" id="dot-7"></div>
+                <div class="dot" id="dot-8"></div>
+                <div class="dot" id="dot-9"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz -->
+    <div class="quiz-section">
+        <p class="quiz-intro">Everything from Kongzi to the Poetry of the Recluse. Pick the best answer, then reveal to check. No time limit. No peeking at your notes (or do, I'm a webpage, not a cop).</p>
+
+        <!-- Q1: Kongzi -->
+        <div class="q-card" id="q0">
+            <div class="q-header">
+                <span class="q-number">01</span>
+                <span class="q-tag ru">Ru</span>
+                <span class="q-topic">Kongzi &middot; Analects 18.5&ndash;18.6</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">"I cannot herd with birds and beasts. If I do not associate with the people of this world, with whom shall I associate?" Kongzi is responding to:</div>
+                <div class="options" data-correct="1">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Mozi's argument that concern for all people must replace family loyalty</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Recluses who argue that withdrawal from a corrupt world is the only honest choice</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Laozi's claim that the Dao that can be spoken is not the true Dao</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Mengzi's four sprouts theory of innate moral goodness</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>In Analects 18.5&ndash;18.6, the Madman of Chu and the hermit-farmers Changju and Jieni challenge Kongzi: why engage with a world this broken? His answer defines the Confucian position for the next two millennia. The world is broken, and that is precisely why you must stay in it. Every recluse poet from Zhang Heng to Tao Yuanming is answering this same challenge.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q2: Mozi -->
+        <div class="q-card" id="q1">
+            <div class="q-header">
+                <span class="q-number">02</span>
+                <span class="q-tag mo">Mo</span>
+                <span class="q-topic">Mozi &middot; Mohism</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">What makes Mozi arguably China's first true philosopher, rather than Kongzi?</div>
+                <div class="options" data-correct="2">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">He founded a school with more students than Kongzi's</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">He rejected all earlier tradition and started from scratch</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">He was the first to construct explicit arguments rather than rely on received wisdom and personal cultivation</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">He wrote in classical Chinese rather than speaking in dialogue form</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>Kongzi teaches through example, dialogue, and personal cultivation. He rarely argues. Mozi systematically constructs arguments with premises, evidence, and conclusions. His "three tests" (san biao) for evaluating claims represent the first explicit methodology for philosophical reasoning in the Chinese tradition. He doesn't say "the ancients did it this way." He says "here's why this is right, and here's how you can verify it."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3: Mengzi -->
+        <div class="q-card" id="q2">
+            <div class="q-header">
+                <span class="q-number">03</span>
+                <span class="q-tag ru">Ru</span>
+                <span class="q-topic">Mengzi &middot; Four Sprouts</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">A child falls into a well. You feel alarm and distress. According to Mengzi, this reaction proves:</div>
+                <div class="options" data-correct="1">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">That humans are fully virtuous at birth and need no further cultivation</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">That humans have innate moral tendencies ("sprouts") which require cultivation to develop into full virtue</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">That compassion is a learned social behavior reinforced by Confucian ritual</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">That fear of social judgment drives all seemingly moral behavior</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>The child-in-the-well is Mengzi's most famous argument. You don't feel alarm because you want the parents' gratitude, or village praise, or to avoid a bad reputation. The feeling is spontaneous, prior to calculation. But it is a <em>sprout</em> (duan 端), not a finished plant. Without cultivation, the sprout dies. This is RU 2.0: human nature is good, but goodness still requires effort.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4: Laozi vs. Kongzi -->
+        <div class="q-card" id="q3">
+            <div class="q-header">
+                <span class="q-number">04</span>
+                <span class="q-tag dao">Dao</span>
+                <span class="q-topic">Laozi &middot; Daodejing</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">Laozi and Kongzi diagnose the same crisis (the collapse of Zhou order). Their prescriptions are opposite. How?</div>
+                <div class="options" data-correct="0">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Kongzi says restore ritual and culture; Laozi says ritual and culture are themselves the disease</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Kongzi advocates military strength; Laozi advocates diplomacy</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Both agree the solution is less government intervention, but differ on how to achieve it</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Kongzi rejects the Zhou model entirely; Laozi wants to restore it</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>"When the great Dao declined, benevolence and righteousness appeared" (Daodejing 18). For Laozi, Kongzi's virtues (ren, yi, li) are symptoms of the illness, not the cure. The very fact that you need to <em>name</em> benevolence proves it is no longer natural. A truly good society wouldn't need the word "good." Kongzi sees culture as the solution; Laozi sees it as the problem.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q5: Zhuangzi -->
+        <div class="q-card" id="q4">
+            <div class="q-header">
+                <span class="q-number">05</span>
+                <span class="q-tag dao">Dao</span>
+                <span class="q-topic">Zhuangzi &middot; Cook Ding</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">Cook Ding's knife has stayed sharp for nineteen years of butchering oxen. Why?</div>
+                <div class="options" data-correct="2">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">He sharpens it daily, demonstrating Xunzi's principle of accumulated effort</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">He uses it only on ceremonial occasions, preserving the blade through infrequent use</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">He follows the natural structure of the ox, guiding the blade through gaps rather than cutting through bone</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">He replaced the original blade with one forged from superior Chu metal</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>"A good cook changes his knife once a year, because he cuts. An ordinary cook changes his every month, because he hacks." Cook Ding does neither. He perceives the natural spaces in the ox and follows them. The blade passes through gaps where there is no resistance. This is Zhuangzi's image of wuwei in action: mastery that looks effortless because it works <em>with</em> the grain of things, not against it. Lord Wen-hui gets the message: "I have learned how to nurture life."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q6: Xunzi -->
+        <div class="q-card" id="q5">
+            <div class="q-header">
+                <span class="q-number">06</span>
+                <span class="q-tag ru">Ru</span>
+                <span class="q-topic">Xunzi &middot; Human Nature</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">Xunzi uses the metaphor "blue dye comes from the indigo plant, yet it is bluer than indigo." What is he arguing?</div>
+                <div class="options" data-correct="3">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">That human nature is good and naturally develops beyond its origins</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">That only people born with natural talent can become virtuous</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">That law is superior to ritual for transforming behavior</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">That learning and deliberate effort can transform raw human nature into something better than the starting material</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>This is RU 3.0. Where Mengzi says virtue is innate (just cultivate the sprouts), Xunzi says human nature tends toward disorder. But unlike Han Feizi, who will abandon ritual for law, Xunzi insists that <em>deliberate effort</em> (wei 偽) through learning and ritual can produce something genuinely better than raw nature. The blue dye surpasses the plant it came from. The student surpasses the teacher. Goodness is constructed, not discovered.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q7: Han Feizi -->
+        <div class="q-card" id="q6">
+            <div class="q-header">
+                <span class="q-number">07</span>
+                <span class="q-tag fa">Fa</span>
+                <span class="q-topic">Han Feizi &middot; Legalism</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">Han Feizi studied under Xunzi but reached a radically different conclusion. What was the pivot?</div>
+                <div class="options" data-correct="1">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">He rejected the idea that human nature was problematic and returned to Mengzi's optimism</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">He agreed human nature is problematic but replaced ritual (li) with law (fa) as the instrument of order</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">He combined Confucian virtue ethics with Daoist wuwei into a new synthesis</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">He abandoned philosophy entirely in favor of military strategy</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>Xunzi and Han Feizi share the diagnosis: human nature left unchecked leads to disorder. The treatment is where they split. Xunzi prescribes ritual, learning, and accumulated moral effort. Han Feizi says that's too slow, too dependent on rare sages, and too easy to fake. His solution: clear, public laws enforced without exception, plus the "two handles" of punishment and reward. The ruler doesn't need to be virtuous. He needs to be systematic.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q8: Songs of Chu -->
+        <div class="q-card" id="q7">
+            <div class="q-header">
+                <span class="q-number">08</span>
+                <span class="q-tag chu">Chu</span>
+                <span class="q-topic">Qu Yuan &middot; Li Sao</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">In the "Li Sao," Qu Yuan uses elaborate imagery of fragrant plants (orchids, melilotus) and foul weeds (mugwort). What do they represent?</div>
+                <div class="options" data-correct="0">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Virtuous people and corrupt courtiers, respectively. The moral and the rotten.</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">The state of Chu and the state of Qin, as rival civilizations</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Daoist naturalism versus Confucian artifice</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">The poet's youth and old age, marking the passage of time</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>Fragrant plants (xiangcao 香草) represent moral worth throughout the Chuci tradition. Qu Yuan adorns himself with orchids, angelica, and melilotus to signify his virtue. When the plants wither or change nature, it means the good people have been corrupted. The foul weeds are the slanderers who turned the king against him. This botanical allegory became foundational for Chinese political poetry: if you describe plants, you might be describing the court.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q9: Shanglin Fu -->
+        <div class="q-card" id="q8">
+            <div class="q-header">
+                <span class="q-number">09</span>
+                <span class="q-tag fu">Fu</span>
+                <span class="q-topic">Sima Xiangru &middot; Shanglin Fu</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">The Shanglin fu spends hundreds of lines cataloguing the emperor's hunting park in dazzling detail, then abruptly turns to moral critique. What is this rhetorical strategy called, and why is it a paradox?</div>
+                <div class="options" data-correct="2">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Straightforward satire: the excess is presented negatively from the start</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Historical documentation: Sima Xiangru is recording the park accurately before critiquing it</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">The fu's power to dazzle undermines its own moral message. The description is so seductive that the reader enjoys the very excess being condemned.</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">There is no paradox: the moral conclusion was added later by Confucian editors, not by Sima Xiangru</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>This is the central problem of the Han fu genre. Emperor Wu reportedly said: "If I could get a writer like this to serve me, I would not regret dying." He wasn't reacting to the moral lesson at the end. He was seduced by the magnificence of the description. The fu critiques imperial excess by first performing it so brilliantly that the critique becomes secondary. Ban Gu later complained that the genre "persuades a hundred while dissuading one." The dazzle wins.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q10: Recluse Poetry -->
+        <div class="q-card" id="q9">
+            <div class="q-header">
+                <span class="q-number">10</span>
+                <span class="q-tag recluse">Recluse</span>
+                <span class="q-topic">Ruan Ji &middot; Strategic Illegibility</span>
+            </div>
+            <div class="q-body">
+                <div class="q-text">Ruan Ji's 82 "Poems of My Heart" express overwhelming anguish but never name what he is anguished about. How did this save his life?</div>
+                <div class="options" data-correct="3">
+                    <div class="option" data-idx="0">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">The poems were written in a private code that only his friends could decipher</div>
+                    </div>
+                    <div class="option" data-idx="1">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">He published them anonymously, so the Sima government never traced them to him</div>
+                    </div>
+                    <div class="option" data-idx="2">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">The poems praised the Sima clan while hiding criticism in obscure allusions only scholars could detect</div>
+                    </div>
+                    <div class="option" data-idx="3">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">The poems were so deliberately opaque that no one could prove they contained political criticism, even though everyone could feel the distress</div>
+                    </div>
+                </div>
+                <button class="reveal-btn" disabled>Select an answer first</button>
+                <div class="explanation">
+                    <div class="exp-label">Why</div>
+                    <p>His closest friend Ji Kang chose principled clarity and was executed. Ruan Ji chose opacity. He stayed drunk for sixty days to avoid a marriage alliance with the Sima clan. He greeted people he respected with the dark of his pupils and those he despised with only the whites. His poetry communicates genuine suffering while making it impossible to prove what, specifically, the suffering is about. This is not coded protest. It is something more radical: the expression of a condition that cannot safely be named.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div class="results-section" id="results">
+        <div class="results-inner">
+            <div class="results-score" id="final-score"></div>
+            <div class="results-msg" id="final-msg"></div>
+            <button class="reset-btn" onclick="location.reload()">Take It Again</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+    <script>
+        let score = 0;
+        let answered = 0;
+
+        document.querySelectorAll('.q-card').forEach((card, qIdx) => {
+            const options = card.querySelectorAll('.option');
+            const btn = card.querySelector('.reveal-btn');
+            const explanation = card.querySelector('.explanation');
+            const correctIdx = parseInt(card.querySelector('.options').dataset.correct);
+            let selectedIdx = null;
+
+            options.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    if (opt.classList.contains('locked')) return;
+                    options.forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    selectedIdx = parseInt(opt.dataset.idx);
+                    btn.disabled = false;
+                    btn.textContent = 'Check Answer';
+                });
+            });
+
+            btn.addEventListener('click', () => {
+                if (selectedIdx === null) return;
+
+                // Lock all options
+                options.forEach(o => o.classList.add('locked'));
+
+                // Mark correct and wrong
+                options[correctIdx].classList.add('is-correct', 'revealed');
+                if (selectedIdx !== correctIdx) {
+                    options[selectedIdx].classList.add('is-wrong', 'revealed');
+                    card.classList.add('answered-wrong');
+                    document.getElementById('dot-' + qIdx).classList.add('wrong');
+                } else {
+                    score++;
+                    document.getElementById('score').textContent = score;
+                    card.classList.add('answered-correct');
+                    document.getElementById('dot-' + qIdx).classList.add('correct');
+                }
+
+                answered++;
+                btn.style.display = 'none';
+                explanation.classList.add('visible');
+
+                // Check if quiz is complete
+                if (answered === 10) {
+                    setTimeout(() => {
+                        const results = document.getElementById('results');
+                        results.classList.add('visible');
+                        document.getElementById('final-score').textContent = score + ' / 10';
+                        const msgs = [
+                            [0, 3, "The Warring States are still warring. Try the study guides."],
+                            [4, 5, "You've read some of it. Now read the rest."],
+                            [6, 7, "Solid. A few gaps to close before the exam."],
+                            [8, 9, "Strong. Kongzi would nod approvingly."],
+                            [10, 10, "Perfect. Zhuangzi would say you've forgotten the quiz entirely."]
+                        ];
+                        for (const [lo, hi, msg] of msgs) {
+                            if (score >= lo && score <= hi) {
+                                document.getElementById('final-msg').textContent = msg;
+                                break;
+                            }
+                        }
+                        results.scrollIntoView({ behavior: 'smooth' });
+                    }, 800);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
