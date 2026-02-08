@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Han Feizi 韓非子 | EAST 370 Study Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --fa: #B54545;
+            --teal: #2d5a5a;
+            --section-2: #2f4f4f;
+            --section-3: #3d3d6b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Compact Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .page-header .back:hover { color: var(--gold-light); }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--fa);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section labels */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content sections */
+        .content-section {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .content-section.alt {
+            background: var(--paper-dark);
+        }
+
+        .content-section.white {
+            background: #fff;
+        }
+
+        /* Content grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .content-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 0.75rem;
+        }
+
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Terms table */
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .terms-table th {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            text-align: left;
+            padding: 0.4rem 0.6rem;
+            background: var(--paper-dark);
+            border-bottom: 2px solid #ddd;
+        }
+
+        .terms-table td {
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .terms-table .chinese-cell {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .terms-table .pinyin-cell {
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Saying box */
+        .saying-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 3px solid var(--fa);
+        }
+
+        .saying-card .saying-body {
+            padding: 0.75rem;
+        }
+
+        .saying-card .saying-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--fa);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .saying-card .saying-meaning {
+            font-size: 0.8rem;
+            color: var(--ink);
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+
+        .saying-card .saying-note {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Questions grid */
+        .question-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .question-card .q-head {
+            background: #2a2a2a;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--fa);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .question-card .q-body {
+            padding: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* Progression cards for Xunzi → Han Feizi */
+        .progression-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .progression-card .prog-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .progression-card .prog-head.ru {
+            color: #2D7D7D;
+        }
+
+        .progression-card .prog-head.fa {
+            background: var(--fa);
+            color: #fff;
+        }
+
+        .progression-card .prog-body {
+            padding: 0.75rem;
+        }
+
+        .progression-card .name-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.3rem;
+            color: var(--ink);
+            margin: 0.2rem 0;
+        }
+
+        .progression-card .name-en {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.4rem;
+        }
+
+        .progression-card .key-idea {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+            padding: 0.4rem;
+            background: var(--paper);
+            border-radius: 4px;
+        }
+
+        .progression-card .key-idea strong { color: var(--fa); }
+        .progression-card .key-idea strong.ru-color { color: #2D7D7D; }
+
+        .progression-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--ink-faint);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid-3 { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .progression-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Compact Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">韓非子</span>
+            <span class="en">The Han Feizi</span>
+            <span class="tag">FA</span>
+            <span class="meta">H&aacute;n F&#275;iz&#464; (ca. 280-233 BCE)<span>·</span>Ivanhoe pp. 323-353</span>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#context">Context</a>
+        <a href="#ruler">Way of Ruler</a>
+        <a href="#standards">Standards</a>
+        <a href="#handles">Two Handles</a>
+        <a href="#persuasion">Persuasion</a>
+        <a href="#questions">Questions</a>
+    </nav>
+
+    <!-- Section 1: Context — From Ru to Fa -->
+    <section class="content-section alt" id="context">
+        <div class="section-label"><span class="chinese">法</span> Context &mdash; From Ru to Fa</div>
+
+        <div class="content-grid-3">
+            <div class="progression-card">
+                <div class="prog-head ru">RU 3.0</div>
+                <div class="prog-body">
+                    <div class="name-ch">荀子</div>
+                    <div class="name-en">Xunzi (~310-235 BCE)</div>
+                    <div class="key-idea">
+                        <strong class="ru-color">Ritual 禮</strong> shapes problematic human nature. Educated rulers and moral cultivation are the path to order.
+                    </div>
+                </div>
+            </div>
+            <div class="progression-arrow">&rarr;</div>
+            <div class="progression-card">
+                <div class="prog-head fa">FA 法</div>
+                <div class="prog-body">
+                    <div class="name-ch">韓非子</div>
+                    <div class="name-en">Han Feizi (~280-233 BCE)</div>
+                    <div class="key-idea">
+                        <strong>Law 法</strong> controls problematic human nature. Only systems, not virtue, can produce order.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">師</span> From Teacher to Student</div>
+                <div class="card-body">
+                    <p><strong>The Xunzi Connection:</strong> Han Feizi was reputedly a student of Xunzi. While never mentioning Xunzi by name, the <em>Han Feizi</em> clearly shows familiarity with Xunzi's ideas.</p>
+                    <p><strong>The Key Pivot:</strong> Xunzi said human nature is problematic and needs <strong>ritual (禮)</strong> to shape it. Han Feizi agrees nature is problematic&mdash;but replaces ritual with <strong>law (法)</strong>. Where Xunzi trusted educated rulers and moral cultivation, Han Feizi trusts only systems.</p>
+                    <p><strong>Biography:</strong> Han Feizi was from the ruling house of H&aacute;n 韓. According to the <em>Shiji</em>, he was a stutterer who turned to writing. He was dispatched as envoy to Qin around 234 BCE; Li Si&mdash;a fellow Xunzi student&mdash;had him imprisoned and poisoned.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">法術勢</span> The Legalist Framework</div>
+                <div class="card-body">
+                    <p><strong>Three Pillars:</strong></p>
+                    <ul>
+                        <li><strong>法 f&#462; (law/standards)</strong> &mdash; clear, public, consistently enforced rules</li>
+                        <li><strong>術 sh&ugrave; (techniques)</strong> &mdash; methods of bureaucratic control to prevent ministers from usurping power</li>
+                        <li><strong>勢 sh&igrave; (positional power)</strong> &mdash; the ruler's position itself is the source of authority, not personal virtue</li>
+                    </ul>
+                    <h4>What sets Legalism apart</h4>
+                    <p>Unlike Confucians and Mohists: no belief in changing people's fundamental desires or interests. Unlike Daoists: doesn't seek to reduce desires through simplicity. Instead: <strong>channel self-interest</strong> through a system of rewards and punishments.</p>
+                    <p>Laws must be clear, public, and consistently enforced. The ruler's position itself (勢) is the source of authority&mdash;not personal virtue.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Chapter 5 — The Way of the Ruler -->
+    <section class="content-section" id="ruler">
+        <div class="section-label"><span class="chinese">主道</span> Chapter 5 &mdash; The Way of the Ruler (pp. 324-327)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">道</span> Key Terms</div>
+                <div class="card-body">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">道</td>
+                                <td class="pinyin-cell">d&agrave;o</td>
+                                <td>The Way; here, the ruler's method of governing</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">形名</td>
+                                <td class="pinyin-cell">x&iacute;ng m&iacute;ng</td>
+                                <td>Form and name; matching results to proposals</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">無為</td>
+                                <td class="pinyin-cell">w&uacute; w&eacute;i</td>
+                                <td>Nonaction; the ruler does not act personally</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">虛靜</td>
+                                <td class="pinyin-cell">x&#363; j&igrave;ng</td>
+                                <td>Empty and still; the ruler's proper disposition</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">虛</span> The Empty Ruler</div>
+                <div class="card-body">
+                    <p>The ruler must not reveal desires, intentions, or preferences. <strong>"A ruler must not reveal his desires, for if he does so, his ministers will carve and polish themselves accordingly."</strong></p>
+                    <p>If the ruler shows likes or dislikes, ministers will manipulate him. The ruler should be "empty and still," causing others to exhaust themselves while he remains inscrutable.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">形名</span> Form and Name</div>
+                <div class="card-body">
+                    <p><strong>The ruler's key technique:</strong> When ministers make proposals (名 name), hold them to their results (形 form).</p>
+                    <ul>
+                        <li>If results <strong>match</strong> proposals &rarr; <strong>reward</strong></li>
+                        <li>If results <strong>don't match</strong> proposals &rarr; <strong>punish</strong></li>
+                        <li>This applies even when results <strong>exceed</strong> the proposal</li>
+                    </ul>
+                    <h4>The Keeper of Caps</h4>
+                    <p>A keeper who placed clothing on a sleeping ruler was <strong>punished for overstepping his role</strong>, even though the action was kind. Accountability requires staying within bounds.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">蔽</span> Five Obstructions</div>
+                <div class="card-body">
+                    <p>The five ways ministers block the ruler:</p>
+                    <ul>
+                        <li>Ministers blocking the ruler's access to information</li>
+                        <li>Controlling wealth and profits</li>
+                        <li>Exceeding their authority</li>
+                        <li>Doing what they think is right (bypassing the ruler's judgment)</li>
+                        <li>Cultivating their own disciples and factions</li>
+                    </ul>
+                    <p>The ruler must monopolize power; ministers must not be allowed to grasp hold of it.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">虛靜無為而無不為</div>
+                    <div class="saying-meaning">"Empty, still, doing nothing&mdash;yet nothing left undone."</div>
+                    <div class="saying-note">Chapter 5 &mdash; Han Feizi adapts Daoist language for authoritarian ends</div>
+                </div>
+            </div>
+        </div>
+
+        <blockquote style="margin-top: 0.75rem;">
+            "Be so great that you cannot be measured, so deep that you cannot be fathomed. Ensure the correspondence between achievements and claims, examine laws and rules, execute those who act without authorization."
+            <cite>&mdash; Han Feizi, Chapter 5</cite>
+        </blockquote>
+    </section>
+
+    <!-- Section 3: Chapter 6 — Having Standards -->
+    <section class="content-section alt" id="standards">
+        <div class="section-label"><span class="chinese">有度</span> Chapter 6 &mdash; Having Standards (pp. 328-333)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">強弱</span> No Eternal Strength</div>
+                <div class="card-body">
+                    <p><strong>"No state is eternally strong; no state is eternally weak. When those who uphold the law are strong, the state is strong."</strong></p>
+                    <p>Historical examples: King Zhuang of Chu, Duke Huan of Qi, King Zhao of Yan, King Anxi of Wei&mdash;all rose through law, all fell when law was abandoned.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">公私</span> Public Law vs. Private Interest</div>
+                <div class="card-body">
+                    <p><strong>The fundamental problem:</strong> ministers pursue private gain at the state's expense. <strong>"This is like trying to put out a fire while carrying kindling on one's back."</strong></p>
+                    <p><strong>Solution:</strong> eliminate private crookedness, attend to public laws. If promotion is based on public acclaim, factionalism results. If based on law, capable people rise.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">繩墨</span> The Carpenter's Standard</div>
+                <div class="card-body">
+                    <p><strong>"So long as the ink line is straight, warped wood can be cut straight; so long as the steelyard is properly hung, what is heavy will be seen to be greater than what is light."</strong></p>
+                    <p>Law is the objective standard&mdash;like the carpenter's tools, it doesn't bend for the noble or the base. The law treats all equally: punishments for transgressions do not bypass great ministers, while rewards for goodness do not leave common people behind.</p>
+                </div>
+            </div>
+        </div>
+
+        <blockquote style="margin-top: 0.75rem;">
+            "As for what the law confers, even the wise cannot shirk from it and even the brave do not dare to dispute it. Punishments for transgressions do not bypass great ministers, while rewards for goodness do not leave the common people behind."
+            <cite>&mdash; Han Feizi, Chapter 6</cite>
+        </blockquote>
+    </section>
+
+    <!-- Section 4: Chapter 7 — The Two Handles -->
+    <section class="content-section" id="handles">
+        <div class="section-label"><span class="chinese">二柄</span> Chapter 7 &mdash; The Two Handles (pp. 333-336)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">刑德</span> Key Terms</div>
+                <div class="card-body">
+                    <table class="terms-table">
+                        <thead>
+                            <tr>
+                                <th>Chinese</th>
+                                <th>Pinyin</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chinese-cell">刑</td>
+                                <td class="pinyin-cell">x&iacute;ng</td>
+                                <td>Punishment; killing, executing</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">德</td>
+                                <td class="pinyin-cell">d&eacute;</td>
+                                <td>Favor/reward (NOT moral virtue here)</td>
+                            </tr>
+                            <tr>
+                                <td class="chinese-cell">二柄</td>
+                                <td class="pinyin-cell">&egrave;r b&#464;ng</td>
+                                <td>The Two Handles of governance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">刑</span> Punishment and Favor</div>
+                <div class="card-body">
+                    <p><strong>"The two handles are punishment and favor. What is meant by 'punishment' and 'favor'? Killing and executing are cases of 'punishment.' Venerating and rewarding are cases of 'favor.'"</strong></p>
+                    <p>The ruler <strong>must</strong> monopolize both handles. If ministers control rewards, people follow ministers. If ministers control punishments, people fear ministers.</p>
+                    <h4>Historical warnings</h4>
+                    <p>Tian Chang seized favor and murdered Duke Jian of Qi. Zi Han seized punishments and robbed the ruler of Song.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">虎</span> The Tiger's Claws</div>
+                <div class="card-body">
+                    <p><strong>"The reason the tiger can subdue the dog is because of its claws and fangs. If the tiger were to cast aside its claws and fangs and allow the dog to use them, then the tiger would instead be subdued by the dog."</strong></p>
+                    <p>The ruler's power <em>is</em> the two handles&mdash;lose them, and you're controlled by those who were supposed to serve you.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">冠</span> The Keeper of Caps</div>
+                <div class="card-body">
+                    <p>Marquis Zhao of Han fell asleep; the Keeper of Caps saw he was cold and placed clothing over him.</p>
+                    <p>The ruler punished <strong>both</strong> the Keeper of Caps (overstepping) <strong>and</strong> the Keeper of Clothing (negligence). The harm of intruding on others' offices was considered greater than the harm of cold.</p>
+                    <p><em>This is the system working as designed.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">明主之所導制其臣者，二柄而已矣</div>
+                    <div class="saying-meaning">"The means by which the clear-sighted ruler guides and controls his ministers are the two handles and that is all."</div>
+                    <div class="saying-note">Chapter 7 &mdash; Governance reduced to its mechanical essence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Chapter 12 — The Difficulty of Persuasion -->
+    <section class="content-section alt" id="persuasion">
+        <div class="section-label"><span class="chinese">說難</span> Chapter 12 &mdash; The Difficulty of Persuasion (pp. 336-340)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">難</span> The Real Difficulty</div>
+                <div class="card-body">
+                    <p><strong>"The difficulty of persuasion is not the difficulty of gaining knowledge... The difficulty lies in understanding the heart of the person being persuaded such that you can ensure your persuasion matches it."</strong></p>
+                    <p>You must read the ruler's psychology&mdash;what they actually want vs. what they pretend to want.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">危</span> The Minefield</div>
+                <div class="card-body">
+                    <p>Even knowing the truth, danger is everywhere:</p>
+                    <ul>
+                        <li>If the ruler's secret affairs are divulged, <strong>you are endangered</strong></li>
+                        <li>If the ruler accepts your advice but a clever outsider takes credit, <strong>you are endangered</strong></li>
+                        <li>If your connection is not yet intimate but your discussions are brilliant, you get no credit for success but <strong>full blame for failure</strong></li>
+                        <li>If the ruler makes a mistake and you speak of "propriety and righteousness," <strong>you are endangered</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">桃</span> Mi Zixia and the Half-Eaten Peach</div>
+                <div class="card-body">
+                    <p>Mi Zixia was favored by the ruler of Wey. He once faked an order to use the ruler's carriage (to visit his sick mother)&mdash;the ruler <strong>praised his filial piety</strong>. He gave the ruler a half-eaten peach&mdash;the ruler <strong>praised his love</strong>.</p>
+                    <p>Later, when Mi Zixia's beauty faded and the ruler's love cooled, <strong>the same actions were cited as crimes</strong>. "Love had turned to hate."</p>
+                    <p><strong>The lesson:</strong> persuasion depends on the ruler's feelings toward you, not on the quality of your argument.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">龍</span> The Inverted Scales</div>
+                <div class="card-body">
+                    <p><strong>"The dragon is a creature that can become accustomed to being ridden. However, on the underside of its throat is a square foot of inverted scales. If someone brushes against them, the dragon will certainly kill them."</strong></p>
+                    <p>The ruler has "inverted scales" too&mdash;if you can avoid brushing against them, "that is a success."</p>
+                </div>
+            </div>
+        </div>
+
+        <blockquote style="margin-top: 0.75rem;">
+            "Therefore, if one is loved by their ruler, one's wisdom will be deemed appropriate and the two will become increasingly close. If one is hated by one's ruler, one's knowledge will be deemed inappropriate and one will be accused of crimes."
+            <cite>&mdash; Han Feizi, Chapter 12</cite>
+        </blockquote>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section white" id="questions">
+        <div class="section-label"><span class="chinese">問</span> Discussion Questions</div>
+        <div class="content-grid">
+            <div class="question-card">
+                <div class="q-head">Question 1</div>
+                <div class="q-body">Han Feizi was Xunzi's student. How does Legalism grow from Xunzi's premises? Where exactly does the break occur&mdash;at what point does "human nature needs shaping" become "human nature needs controlling"?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 2</div>
+                <div class="q-body">Han Feizi adapts Daoist language (無為, 虛靜) for the ruler. Compare his "nonaction" with the <em>Daodejing</em>'s. Is this a genuine philosophical development or a cynical appropriation?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 3</div>
+                <div class="q-body">The Keeper of Caps is punished for a kind act. Is this justice or absurdity? What does this story reveal about the difference between Legalist and Confucian views of governance?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 4</div>
+                <div class="q-body">"The Difficulty of Persuasion" reads like a survival manual for court life. How does this chapter complicate the image of Han Feizi as a cold theorist? What does it reveal about the human cost of autocratic systems?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 5</div>
+                <div class="q-body">The story of Mi Zixia shows that the same action can be praised or condemned depending on the ruler's feelings. What does this imply about the gap between Han Feizi's theory (objective law) and his reality (arbitrary power)?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 6</div>
+                <div class="q-body">Han Feizi was imprisoned and poisoned by Li Si&mdash;a fellow student of Xunzi&mdash;in the very Qin state that adopted Legalist principles. Is there something self-defeating about a system built on distrust? Does the theory contain the seeds of its own destruction?</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
