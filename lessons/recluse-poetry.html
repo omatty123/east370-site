@@ -19,7 +19,9 @@
             --gold-light: #daa520;
             --recluse: #5C6B73;
             --recluse-light: #7a8b93;
+            --recluse-dark: #3d4a50;
             --teal: #2d5a5a;
+            --poem-bg: #faf8f2;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,53 +30,66 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
-        /* Compact Header */
-        .page-header {
-            background: var(--ink);
-            padding: 0.6rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--recluse-dark) 0%, var(--recluse) 60%, var(--recluse-light) 100%);
+            padding: 3rem 2.5rem 2.5rem;
+            position: relative;
         }
 
-        .page-header .back {
-            font-size: 0.7rem;
-            color: #888;
+        .hero .breadcrumb {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
             text-decoration: none;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
         }
 
-        .page-header .back:hover { color: var(--gold-light); }
+        .hero .breadcrumb:hover { color: var(--gold-light); }
 
-        .page-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
+        .hero-content {
+            max-width: 680px;
         }
 
-        .page-title .en {
-            font-size: 0.85rem;
-            font-weight: 500;
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
             color: #fff;
+            line-height: 1.2;
+            margin-bottom: 1rem;
         }
 
-        .page-title .meta {
-            font-size: 0.7rem;
-            color: #888;
+        .hero .deck {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+            max-width: 600px;
         }
 
-        /* Nav */
+        .hero .source-ref {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.04em;
+        }
+
+        .hero .source-ref strong {
+            color: rgba(255,255,255,0.6);
+            font-weight: 500;
+        }
+
+        /* ===== STICKY NAV ===== */
         .nav {
             background: var(--ink);
-            padding: 0.6rem 1.5rem;
+            padding: 0.75rem 2rem;
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
             position: sticky;
             top: 0;
@@ -82,7 +97,7 @@
         }
 
         .nav a {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: #aaa;
             text-decoration: none;
             letter-spacing: 0.03em;
@@ -91,14 +106,14 @@
 
         .nav a:hover { color: var(--gold-light); }
 
-        /* Section labels */
+        /* ===== SECTION LABELS ===== */
         .section-label {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: #999;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: baseline;
             gap: 0.5rem;
@@ -106,14 +121,14 @@
 
         .section-label .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--gold);
             font-weight: 400;
         }
 
-        /* Content sections */
+        /* ===== CONTENT SECTIONS ===== */
         .content-section {
-            padding: 1rem 1.5rem 1.5rem;
+            padding: 1.75rem 2rem 2rem;
         }
 
         .content-section.alt {
@@ -124,22 +139,22 @@
             background: #fff;
         }
 
-        /* Content grid */
+        /* ===== CONTENT GRIDS ===== */
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 0.75rem;
-            margin-top: 0.6rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.25rem;
+            margin-top: 0.75rem;
         }
 
         .content-grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            margin-top: 0.6rem;
+            gap: 1.25rem;
+            margin-top: 1rem;
         }
 
-        /* Cards */
+        /* ===== CARDS ===== */
         .card {
             background: #fff;
             border-radius: 6px;
@@ -149,8 +164,8 @@
 
         .card-head {
             background: #2a2a2a;
-            padding: 0.5rem 0.75rem;
-            font-size: 0.65rem;
+            padding: 0.65rem 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #fff;
             display: flex;
@@ -160,99 +175,101 @@
 
         .card-head .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: var(--gold-light);
             font-weight: 400;
         }
 
         .card-body {
-            padding: 0.75rem;
+            padding: 1.25rem;
         }
 
         .card-body p {
-            font-size: 0.8rem;
+            font-size: 0.92rem;
             color: var(--ink-light);
-            line-height: 1.65;
-            margin-bottom: 0.5rem;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
         }
 
         .card-body p:last-child { margin-bottom: 0; }
 
         .card-body h4 {
-            font-size: 0.55rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--recluse);
-            margin: 0.75rem 0 0.4rem;
-            padding-top: 0.5rem;
+            margin: 1rem 0 0.5rem;
+            padding-top: 0.65rem;
             border-top: 1px solid var(--paper-dark);
         }
 
         .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
 
-        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
-        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body ul { font-size: 0.92rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.35rem; line-height: 1.6; }
 
         .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
         .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        /* Blockquotes */
+        /* ===== BLOCKQUOTES ===== */
         blockquote {
             background: var(--paper-dark);
             border-left: 3px solid var(--recluse);
-            padding: 0.6rem 1rem;
-            margin: 0.5rem 0;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
             font-style: italic;
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             color: var(--ink-light);
+            line-height: 1.7;
         }
 
         blockquote cite {
             display: block;
-            margin-top: 0.3rem;
+            margin-top: 0.5rem;
             font-style: normal;
-            font-size: 0.7rem;
+            font-size: 0.78rem;
             color: var(--ink-faint);
         }
 
-        /* Saying box */
+        /* ===== SAYING BOX ===== */
         .saying-card {
             background: #fff;
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-left: 3px solid var(--recluse);
+            border-left: 4px solid var(--gold);
         }
 
         .saying-card .saying-body {
-            padding: 0.75rem;
+            padding: 1.25rem 1.5rem;
         }
 
         .saying-card .saying-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: var(--recluse);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             letter-spacing: 0.05em;
         }
 
         .saying-card .saying-meaning {
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             color: var(--ink);
             font-style: italic;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
+            line-height: 1.6;
         }
 
         .saying-card .saying-note {
-            font-size: 0.7rem;
+            font-size: 0.82rem;
             color: var(--ink-faint);
         }
 
-        /* Poem formatting */
+        /* ===== POEM FORMATTING ===== */
         .poem {
             white-space: pre-line;
-            line-height: 1.8;
-            font-size: 0.85rem;
+            line-height: 2.0;
+            font-size: 1rem;
             font-weight: 300;
             color: var(--ink-light);
             letter-spacing: 0.01em;
@@ -260,17 +277,17 @@
         }
 
         .poem-card {
-            background: #fff;
+            background: var(--poem-bg);
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-left: 3px solid var(--recluse);
+            border-left: 4px solid var(--gold);
         }
 
         .poem-card .poem-head {
             background: #2a2a2a;
-            padding: 0.5rem 0.75rem;
-            font-size: 0.65rem;
+            padding: 0.6rem 1rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: var(--recluse-light);
             display: flex;
@@ -280,57 +297,33 @@
 
         .poem-card .poem-head .poem-title {
             color: #fff;
+            font-size: 0.85rem;
         }
 
         .poem-card .poem-body {
-            padding: 0.75rem 1rem;
+            padding: 1.5rem;
         }
 
         .poem-card .poem-body .poem-context {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: var(--ink-faint);
             font-style: italic;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--paper-dark);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #ede9e0;
         }
 
         .poem-credit {
-            font-size: 0.65rem;
+            font-size: 0.72rem;
             color: var(--ink-faint);
-            margin-top: 0.5rem;
-            padding-top: 0.5rem;
-            border-top: 1px solid var(--paper-dark);
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #ede9e0;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        /* Question cards */
-        .question-card {
-            background: #fff;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .question-card .q-head {
-            background: #2a2a2a;
-            padding: 0.4rem 0.75rem;
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--recluse-light);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .question-card .q-body {
-            padding: 0.75rem;
-            font-size: 0.8rem;
-            color: var(--ink-light);
-            line-height: 1.65;
-        }
-
-        /* Three Voices cards */
+        /* ===== THREE VOICES CARDS ===== */
         .voice-card {
             background: #fff;
             border-radius: 6px;
@@ -340,84 +333,134 @@
         }
 
         .voice-card .voice-head {
+            background: var(--recluse-dark);
+            padding: 0.6rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .voice-card .voice-body {
+            padding: 1.25rem;
+        }
+
+        .voice-card .name-en {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.25rem;
+        }
+
+        .voice-card .dates {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.5rem;
+        }
+
+        .voice-card .key-idea {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+
+        /* ===== QUESTION CARDS ===== */
+        .question-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .question-card .q-head {
             background: #2a2a2a;
-            padding: 0.5rem 0.75rem;
-            font-size: 0.6rem;
+            padding: 0.55rem 1rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: var(--recluse-light);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        .voice-card .voice-body {
-            padding: 0.75rem;
-        }
-
-        .voice-card .name-en {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.2rem;
-        }
-
-        .voice-card .dates {
-            font-size: 0.7rem;
-            color: var(--ink-faint);
-            margin-bottom: 0.4rem;
-        }
-
-        .voice-card .key-idea {
-            font-size: 0.75rem;
+        .question-card .q-body {
+            padding: 1.25rem;
+            font-size: 0.92rem;
             color: var(--ink-light);
-            line-height: 1.55;
+            line-height: 1.7;
         }
 
-        /* Footer */
+        /* ===== POET SECTION HEADERS ===== */
+        .poet-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.25rem;
+        }
+
+        .poet-header .poet-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .poet-header .poet-ref {
+            font-size: 0.82rem;
+            color: var(--ink-faint);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
             background: var(--ink);
-            padding: 1.25rem 1.5rem;
-            text-align: center;
+            padding: 1.5rem 2rem;
+            text-align: left;
         }
 
         footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--gold-light);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.25rem;
         }
 
         footer .foot-title {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: #aaa;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.35rem;
         }
 
         footer .foot-term {
-            font-size: 0.6rem;
+            font-size: 0.68rem;
             font-weight: 600;
             color: var(--gold);
             letter-spacing: 0.08em;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero { padding: 2rem 1.5rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero .deck { font-size: 0.95rem; }
+            .content-section { padding: 1.5rem 1.25rem; }
             .content-grid { grid-template-columns: 1fr; }
             .content-grid-3 { grid-template-columns: 1fr; }
-            .nav { gap: 1rem; }
+            .nav { gap: 1.25rem; padding: 0.65rem 1.25rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Compact Header -->
-    <header class="page-header">
-        <a href="../index.html" class="back">&larr; EAST 370</a>
-        <div class="page-title">
-            <span class="en">The Poetry of the Recluse</span>
-            <span class="meta">Birch, pp. 174-188 &middot; Period of Division (220-589 CE)</span>
+    <!-- Hero -->
+    <section class="hero">
+        <a href="../index.html" class="breadcrumb">&larr; EAST 370</a>
+        <div class="hero-content">
+            <h1>The Poetry of the Recluse</h1>
+            <p class="deck">Three poets across centuries of political collapse choose withdrawal over service. From Chang Heng's dialogue with death to T'ao Ch'ien's chrysanthemums at the eastern hedge, the recluse tradition offers a counter-voice to Confucian duty: sometimes the only honest response to a broken world is to leave it.</p>
+            <p class="source-ref"><strong>Birch, pp. 174-188</strong> &middot; Period of Division (220-589 CE)</p>
         </div>
-    </header>
+    </section>
 
     <!-- Navigation -->
     <nav class="nav">
@@ -454,7 +497,7 @@
         </div>
 
         <!-- Three Voices cards -->
-        <div class="content-grid-3" style="margin-top: 0.75rem;">
+        <div class="content-grid-3">
             <div class="voice-card">
                 <div class="voice-head">Voice I</div>
                 <div class="voice-body">
@@ -484,7 +527,11 @@
 
     <!-- Chang Heng -->
     <section class="content-section" id="chang-heng">
-        <div class="section-label">Chang Heng &middot; "The Bones of Chuang Tzu" (pp. 176-178)</div>
+        <div class="poet-header">
+            <span class="poet-name">Chang Heng</span>
+            <span class="poet-ref">"The Bones of Chuang Tzu" &middot; pp. 176-178</span>
+        </div>
+        <div class="section-label">Voice I</div>
         <div class="content-grid">
             <div class="card">
                 <div class="card-head">Context</div>
@@ -495,7 +542,7 @@
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">The Traveler's Discovery</span></div>
                 <div class="poem-body">
@@ -544,7 +591,7 @@ Earth was the bed on which I lay.</div>
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">The Dead Man's Conclusion</span></div>
                 <div class="poem-body">
@@ -583,7 +630,7 @@ Then I called my servant and together we went on our way.</div>
             </div>
         </div>
 
-        <blockquote style="margin-top: 0.75rem;">
+        <blockquote style="margin-top: 1.25rem;">
             "In death I rest and am at peace; in life I toiled and strove. Is the hardness of the winter stream better than the melting of spring?"
             <cite>&mdash; Chang Heng, "The Bones of Chuang Tzu" (tr. Waley)</cite>
         </blockquote>
@@ -591,18 +638,22 @@ Then I called my servant and together we went on our way.</div>
 
     <!-- Juan Chi -->
     <section class="content-section alt" id="juan-chi">
-        <div class="section-label">Juan Chi &middot; "Poems of My Heart" (pp. 179-181)</div>
+        <div class="poet-header">
+            <span class="poet-name">Juan Chi</span>
+            <span class="poet-ref">"Poems of My Heart" &middot; pp. 179-181</span>
+        </div>
+        <div class="section-label">Voice II</div>
         <div class="content-grid">
             <div class="card">
                 <div class="card-head">Context</div>
                 <div class="card-body">
                     <p><strong>Juan Chi</strong> (Ruan Ji, 210-263) lived during the violent transition from Wei to Jin. The Ssu-ma clan was consolidating power through assassination and intimidation. Speaking freely could cost your life.</p>
-                    <p>Six poems selected, showing <strong>escalating withdrawal</strong> from political life, from sleepless loneliness to the final plea for immortals to help him survive "this long and fearful night."</p>
+                    <p>Six poems selected, showing <strong>escalating withdrawal</strong> from political life. The arc moves from sleepless loneliness to the final plea for immortals to help him survive "this long and fearful night."</p>
                 </div>
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head">Poem 1 &middot; <span class="poem-title">The Sleepless Night</span></div>
                 <div class="poem-body">
@@ -635,7 +686,7 @@ I cannot get it clean again, for long is the road
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head">Poem 3 &middot; <span class="poem-title">The Dark Stork</span></div>
                 <div class="poem-body">
@@ -685,7 +736,7 @@ I have trodden on thin ice.</div>
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head">Poem 5 &middot; <span class="poem-title">The Wise Recluse</span></div>
                 <div class="poem-body">
@@ -719,15 +770,19 @@ To survive this long and fearful night.</div>
             </div>
         </div>
 
-        <blockquote style="margin-top: 0.75rem;">
-            "It is better to forget in a river or a lake / Than to wet one another with bubbles on stony dry land." &mdash; A direct echo of the <em>Zhuangzi</em>: fish stranded on dry ground keep each other alive with spittle, but would they not prefer to be swimming free in the rivers and lakes, having forgotten each other entirely?
+        <blockquote style="margin-top: 1.25rem;">
+            "It is better to forget in a river or a lake / Than to wet one another with bubbles on stony dry land." A direct echo of the <em>Zhuangzi</em>: fish stranded on dry ground keep each other alive with spittle, but would they not prefer to be swimming free in the rivers and lakes, having forgotten each other entirely?
             <cite>&mdash; Juan Chi, Poem 6 (tr. Chen &amp; Bullock)</cite>
         </blockquote>
     </section>
 
     <!-- T'ao Ch'ien -->
     <section class="content-section" id="tao-chien">
-        <div class="section-label">T'ao Ch'ien &middot; The Master Recluse (pp. 182-188)</div>
+        <div class="poet-header">
+            <span class="poet-name">T'ao Ch'ien</span>
+            <span class="poet-ref">The Master Recluse &middot; pp. 182-188</span>
+        </div>
+        <div class="section-label">Voice III</div>
         <div class="content-grid">
             <div class="card">
                 <div class="card-head">Context</div>
@@ -739,7 +794,7 @@ To survive this long and fearful night.</div>
         </div>
 
         <!-- Returning to Dwell in the Country -->
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">Returning to Dwell in the Country &mdash; I</span> &middot; pp. 182-183</div>
                 <div class="poem-body">
@@ -815,7 +870,7 @@ return to nothingness.</div>
         </div>
 
         <!-- Written While Drunk -->
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">Written While Drunk</span> &middot; p. 184</div>
                 <div class="poem-body">
@@ -835,7 +890,7 @@ But when I start to tell it, I cannot find the words.</div>
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="saying-card">
                 <div class="saying-body">
                     <div class="saying-chinese">採菊東籬下，悠然見南山</div>
@@ -846,7 +901,7 @@ But when I start to tell it, I cannot find the words.</div>
         </div>
 
         <!-- On Reading / Poor Scholars / Blame / Bearers' Song / Ninth Day -->
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">On Reading the Classic of the Hills and Seas</span> &middot; pp. 184-185</div>
                 <div class="poem-body">
@@ -892,7 +947,7 @@ they did not feel at all.</div>
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">Written in Imitation of an Ancient Bearers' Song</span> &middot; p. 186</div>
                 <div class="poem-body">
@@ -937,7 +992,7 @@ Bring on, bring on
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 0.75rem;">
+        <div class="content-grid" style="margin-top: 1.25rem;">
             <div class="poem-card">
                 <div class="poem-head"><span class="poem-title">Written on the Ninth Day of the Ninth Month of the Year Yi-yu</span> &middot; pp. 187-188</div>
                 <div class="poem-body">
@@ -961,7 +1016,7 @@ scorches my very heart.</div>
             </div>
         </div>
 
-        <blockquote style="margin-top: 0.75rem;">
+        <blockquote style="margin-top: 1.25rem;">
             "The life of man is like a shadow-play / Which must in the end return to nothingness."
             <cite>&mdash; T'ao Ch'ien, "Returning to Dwell in the Country" (tr. Acker)</cite>
         </blockquote>
