@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingual Texts: Recluse Poetry | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #888;
+            --recluse: #5C6B73;
+            --recluse-dark: #3d4a50;
+            --recluse-light: #7a8b93;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --paper: #fafaf8;
+            --paper-warm: #faf6f0;
+            --paper-dark: #f0ede8;
+            --teal: #2d5a5a;
+            --poem-bg: #faf8f2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* ===== HEADER ===== */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--recluse);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+        .page-title .meta {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* ===== NAV ===== */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* ===== SECTIONS ===== */
+        .poet-section {
+            padding: 2rem 2rem 2.5rem;
+        }
+        .poet-section.alt { background: var(--paper-dark); }
+        .poet-section.warm { background: var(--paper-warm); }
+
+        .part-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--recluse);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+        .poet-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.25rem;
+        }
+        .poet-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .period-note {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            margin-bottom: 1.25rem;
+        }
+
+        /* ===== BILINGUAL POEM CARDS ===== */
+        .bi-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .bi-card.zh-only {
+            border-left-color: var(--recluse-light);
+        }
+
+        .bi-head {
+            background: #2a2a2a;
+            padding: 0.65rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .bi-head .title-en {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .bi-head .title-zh {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold-light);
+        }
+        .bi-head .page-ref {
+            font-size: 0.68rem;
+            color: var(--recluse-light);
+            margin-left: auto;
+        }
+
+        .bi-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .bi-body.single-col {
+            grid-template-columns: 1fr;
+        }
+
+        .en-col {
+            padding: 1.25rem;
+            border-right: 1px solid var(--paper-dark);
+        }
+        .zh-col {
+            padding: 1.25rem;
+            background: var(--poem-bg);
+        }
+        .bi-body.single-col .zh-col {
+            border-top: 1px solid var(--paper-dark);
+        }
+
+        .col-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.6rem;
+        }
+
+        .en-text {
+            white-space: pre-line;
+            line-height: 2.0;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--ink-light);
+            letter-spacing: 0.01em;
+        }
+
+        .zh-text {
+            font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+            white-space: pre-line;
+            line-height: 2.2;
+            font-size: 1.05rem;
+            color: var(--ink);
+            letter-spacing: 0.08em;
+        }
+
+        .zh-prose {
+            font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+            line-height: 2.0;
+            font-size: 1rem;
+            color: var(--ink);
+            letter-spacing: 0.05em;
+        }
+        .zh-prose p { margin-bottom: 0.75rem; }
+        .zh-prose p:last-child { margin-bottom: 0; }
+
+        .bi-foot {
+            padding: 0.6rem 1.25rem;
+            border-top: 1px solid var(--paper-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .bi-foot .translator {
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .bi-foot .birch-ref {
+            font-size: 0.72rem;
+            color: var(--recluse);
+            font-weight: 600;
+        }
+
+        /* ===== FU (PROSE-POEM) LAYOUT ===== */
+        .fu-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        .fu-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .fu-en {
+            padding: 1.25rem;
+            border-right: 1px solid var(--paper-dark);
+        }
+        .fu-zh {
+            padding: 1.25rem;
+            background: var(--poem-bg);
+        }
+        .fu-en p, .fu-zh p {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+        .fu-en p:last-child, .fu-zh p:last-child { margin-bottom: 0; }
+        .fu-en {
+            font-size: 0.92rem;
+            font-weight: 300;
+            color: var(--ink-light);
+        }
+        .fu-zh {
+            font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+            font-size: 1rem;
+            color: var(--ink);
+            letter-spacing: 0.05em;
+        }
+        .fu-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--recluse);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.6rem;
+        }
+
+        /* ===== RECITATION LINKS ===== */
+        .recitation {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            background: #1a1a1a;
+            color: var(--gold-light);
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            letter-spacing: 0.03em;
+            transition: background 0.2s;
+            margin-top: 0.75rem;
+            display: inline-block;
+        }
+        .recitation:hover { background: #333; }
+
+        /* ===== VIDEO CARDS ===== */
+        .video-card {
+            background: #1a1a1a;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        .video-card .video-head {
+            background: #111;
+            padding: 0.6rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+        .video-card .video-head .video-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .video-card .video-head .video-title {
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+        .video-card .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+        .video-card .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .video-card .video-fallback {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.78rem;
+            color: #888;
+        }
+        .video-card .video-fallback a {
+            color: var(--gold-light);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--gold-light);
+        }
+        .video-card .video-fallback a:hover {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .section-note {
+            font-size: 0.82rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem 1rem;
+            background: var(--paper-warm);
+            border-radius: 4px;
+            border-left: 3px solid var(--recluse-light);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--ink);
+            padding: 1.5rem 2rem;
+            text-align: left;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+        }
+        footer .foot-title {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 0.35rem;
+        }
+        footer .foot-term {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .poet-section { padding: 1.5rem 1.25rem; }
+            .bi-body { grid-template-columns: 1fr; }
+            .en-col { border-right: none; border-bottom: 1px solid var(--paper-dark); }
+            .fu-body { grid-template-columns: 1fr; }
+            .fu-en { border-right: none; border-bottom: 1px solid var(--paper-dark); }
+            .nav { gap: 0.5rem; padding: 0.65rem 1.25rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">雙語詩文</span>
+            <span class="en">Bilingual Texts: Recluse Poetry</span>
+            <span class="tag">BILINGUAL</span>
+            <span class="meta">Birch pp. 176&ndash;188</span>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <a href="#zhang-heng">Zhang Heng</a>
+        <a href="#ruan-ji">Ruan Ji</a>
+        <a href="#tao-yuanming">Tao Yuanming</a>
+        <a href="recluse-poetry.html">Study Guide &rarr;</a>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- ZHANG HENG -->
+    <!-- ============================================================ -->
+    <section class="poet-section warm" id="zhang-heng">
+        <div class="part-label">Voice I</div>
+        <div class="poet-header"><h2>Zhang Heng 張衡</h2></div>
+        <div class="period-note">78&ndash;139 CE &middot; Eastern Han &middot; Translated by Arthur Waley</div>
+
+        <div class="fu-card">
+            <div class="bi-head">
+                <span class="title-en">The Bones of Chuang Tzu</span>
+                <span class="title-zh">髑髏賦</span>
+                <span class="page-ref">Birch pp. 176&ndash;178</span>
+            </div>
+            <div class="fu-body">
+                <div class="fu-en">
+                    <div class="fu-label">English (Waley)</div>
+
+                    <p><em>Zhang Heng encounters bones by the roadside and offers to restore the dead man to life. The dead man refuses.</em></p>
+
+                    <p>O Friend, how strange and unacceptable your words!
+In death I rest and am at peace; in life I toiled and strove.
+Is the hardness of the winter stream
+Better than the melting of spring?
+All pride that the body knew,
+Was it not lighter than dust?</p>
+
+                    <p>What Ch'ao and Hs&uuml; despised,
+What Po-ch'eng gave up and left,
+Where Pien-sui drowned himself,
+All was in vain.
+In death there are no morning bells
+To rouse me to cross my hands on breast.
+In death there are no friends and no enemies,
+No High Court and no thieves.</p>
+
+                    <p>By the preparation of Yin and Yang
+I was shaped and given my span of years;
+Formless and without substance,
+Earth was the bed on which I lay.</p>
+
+                    <p>Where neither Yao nor Shun can praise me,
+Nor wolf nor tiger harm me,
+Lance prick me nor sword wound me?
+Of the Primal Spirit is my substance; I am a wave
+In the river of Darkness and Light.
+The Maker of All Things is my Father and Mother,
+Heaven is my bed and earth my cushion,
+The thunder and lightning are my drum and fan,
+The sun and moon my candle and my torch,
+The Milky Way my moat, the stars my jewels.
+With Nature my substance is joined.
+I have no passion, no desire,
+Wash me and I shall be no whiter,
+Foul me and I shall yet be clean.
+I come not, yet am here;
+Hasten not, yet am swift.</p>
+                </div>
+                <div class="fu-zh">
+                    <div class="fu-label">原文</div>
+
+                    <p>張平子將遊目於九野，觀化乎八方。星回日運，鳳舉龍驤。南遊赤岸，北陟幽鄉。西經昧谷，東極扶桑。於是季秋之辰，微風起涼。聊回軒駕，左翔右昂。步馬於疇阜，逍遙乎陵岡。顧見髑髏，委於路旁。下居淤壤，上負玄霜。</p>
+
+                    <p>平子悵然而問之曰：「子將並糧推命，以夭逝乎？本喪此土，流遷來乎？為是上智，為是下愚？為是女人，為是丈夫？」</p>
+
+                    <p>於是肅然有靈，但聞神響，不見其形。答曰：「吾，宋人也，姓莊名周。遊心方外，不能自修。壽命終極，來此玄幽。公子何以問之？」</p>
+
+                    <p>對曰：「我欲告之於五嶽，禱之於神祇。起子素骨，反子四支。取耳北坎，求目南離；使東震獻足，西坤受腹。五內皆還，六神盡復。子欲之不乎？」</p>
+
+                    <p>髑髏曰：「公子之言殊難也。死為休息，生為役勞。冬水之凝，何如春冰之消？榮位在身，不亦輕於塵毛？飛鋒曜景，秉尺持刀。巢許所恥，伯成所逃。況我已化，與道逍遙。離朱不能見，子野不能聽。堯舜不能賞，桀紂不能刑。虎豹不能害，劍戟不能傷。與陰陽同其流，與元氣合其樸。以造化為父母，以天地為床褥。以雷電為鼓扇，以日月為燈燭。以雲漢為川池，以星宿為珠玉。合體自然，無情無欲。澄之不清，渾之不濁。不行而至，不疾而速。」</p>
+
+                    <p>於是言卒響絕，神光除滅。顧盼發軫，乃命僕夫，假之以縞巾，衾之以玄塵，為之傷涕，酹於路濱。</p>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. Arthur Waley</span>
+                <span class="birch-ref">English above is the skull's response. Full poem including Zhang Heng's opening: Birch pp. 176&ndash;178</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- RUAN JI -->
+    <!-- ============================================================ -->
+    <section class="poet-section" id="ruan-ji">
+        <div class="part-label">Voice II</div>
+        <div class="poet-header"><h2>Ruan Ji 阮籍</h2></div>
+        <div class="period-note">210&ndash;263 CE &middot; Wei-Jin Transition &middot; Translated by C.J. Chen &amp; Michael Bullock</div>
+
+        <div class="section-note">Six poems from the 82-poem <em>Yonghuai</em> cycle appear in Birch pp. 179&ndash;181. Three are shown here with their Chinese originals.</div>
+
+        <!-- Ruan Ji - Poem 1 (BILINGUAL) -->
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">Poem 1: The Sleepless Night</span>
+                <span class="title-zh">詠懷詩 其一</span>
+                <span class="page-ref">p. 179</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">Being sleepless at midnight,
+I rise and play upon my lute.
+Thin curtains reflect the bright moon
+And a light breeze fans my robe.
+A wild goose cries among the clouds on the moor,
+The birds of passage twitter in the woods of the southern marsh.
+As I pace to and fro, what is it in my mind?
+&mdash; My solitary sadness makes me wretched.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">夜中不能寐，
+起坐彈鳴琴。
+薄帷鑒明月，
+清風吹我襟。
+孤鴻號外野，
+翔鳥鳴北林。
+徘徊將何見？
+憂思獨傷心。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. C.J. Chen &amp; Michael Bullock</span>
+            </div>
+        </div>
+
+        <!-- Listen: Ruan Ji -->
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">咏怀诗·其一 recited by Prof. Liu Qiang (CCTV Baijia Jiangtan)</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV12b411M7o8&page=1&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV12b411M7o8/" target="_blank" rel="noopener">watch on Bilibili &rarr;</a> &middot; 1:03
+            </div>
+        </div>
+
+        <!-- Ruan Ji - Poem 3 (from Birch selection) -->
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">The Dark Stork</span>
+                <span class="title-zh">詠懷詩</span>
+                <span class="page-ref">p. 180</span>
+            </div>
+            <div class="bi-body single-col">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">Inscribe on your heart
+Every inch of the time at sunset.
+When the cock has crowed at the top of the mulberry tree,
+When the dog has barked at the rising moon,
+Then the dark stork
+Vanishes into the sky,
+Flies swiftly and without return.
+When you look for it,
+You cannot even find its shadow.
+The glorious sky is cold and stern.
+It is not like
+The cuckoos and the crows
+That circle round the Court,
+Fly in and fly out of the rooms,
+And peck for grain in the inner halls.</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. C.J. Chen &amp; Michael Bullock</span>
+            </div>
+        </div>
+
+        <!-- Ruan Ji - Poem 6 (from Birch selection) -->
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">The Long and Fearful Night</span>
+                <span class="title-zh">詠懷詩</span>
+                <span class="page-ref">p. 181</span>
+            </div>
+            <div class="bi-body single-col">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">I will not learn to ride a winged horse
+In order to travel for ten thousand miles;
+It is better to forget in a river or a lake
+Than to wet one another with bubbles on stony dry land.
+The ancient immortals
+Will help me
+To survive this long and fearful night.</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. C.J. Chen &amp; Michael Bullock</span>
+                <span class="birch-ref">Three additional Ruan Ji poems in Birch pp. 179&ndash;181</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TAO YUANMING -->
+    <!-- ============================================================ -->
+    <section class="poet-section alt" id="tao-yuanming">
+        <div class="part-label">Voice III</div>
+        <div class="poet-header"><h2>Tao Yuanming 陶淵明</h2></div>
+        <div class="period-note">365&ndash;427 CE &middot; Eastern Jin &middot; Translated by William Acker</div>
+
+        <!-- RETURNING I (BILINGUAL) -->
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">Returning to Dwell in the Country &mdash; I</span>
+                <span class="title-zh">歸園田居 其一</span>
+                <span class="page-ref">p. 182</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">In youth I had nothing
+that matched the vulgar tone,
+My nature of itself
+hankered for the hills and mountains.
+Inadvertently I fell
+into the Dusty Net,
+Once having gone
+it was more than thirteen years.
+The tame bird
+longs for its old forest&mdash;
+The fish in the house-pond
+thinks of its ancient pool.
+I too will break the soil
+at the edge of the southern moor,
+I will guard simplicity
+and return to my fields and garden.
+My house-plot
+amounts to some ten acres,
+My thatched dwelling
+has eight or nine rooms.
+Elms and willows
+shade my back veranda,
+Peach and plum trees
+in rows before the hall.
+Hazy and dim
+the distant hamlet of men,
+Drifting the smoke
+above the houses.
+A dog barks
+in the deep lanes,
+A cock is crowing
+atop a mulberry tree.
+No dust and confusion
+within my doors and courtyard,
+In my empty rooms,
+more than sufficient leisure.
+Too long I was held
+within the barred cage.
+Now I am able
+to return again to Nature.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">少無適俗韻，
+性本愛丘山。
+誤落塵網中，
+一去三十年。
+羈鳥戀舊林，
+池魚思故淵。
+開荒南野際，
+守拙歸園田。
+方宅十餘畝，
+草屋八九間。
+榆柳蔭後檐，
+桃李羅堂前。
+曖曖遠人村，
+依依墟里煙。
+狗吠深巷中，
+雞鳴桑樹顛。
+戶庭無塵雜，
+虛室有餘閒。
+久在樊籠裏，
+復得返自然。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+        <!-- Listen: Tao Yuanming Returning -->
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">《归园田居·其一》朗诵 (Returning to Dwell in the Country)</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1ZC4y1p7na&page=1&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV1ZC4y1p7na/" target="_blank" rel="noopener">watch on Bilibili &rarr;</a> &middot; 29K views
+            </div>
+        </div>
+
+        <!-- RETURNING III (BILINGUAL - Chinese only, short poem) -->
+        <div class="bi-card zh-only">
+            <div class="bi-head">
+                <span class="title-en">Returning to Dwell in the Country &mdash; II</span>
+                <span class="title-zh">歸園田居 其三</span>
+                <span class="page-ref">p. 183</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English &mdash; See Birch p. 183</div>
+                    <div class="en-text" style="color: var(--ink-faint); font-style: italic;">Open your Birch anthology to page 183 and read alongside the Chinese.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">種豆南山下，
+草盛豆苗稀。
+晨興理荒穢，
+帶月荷鋤歸。
+道狹草木長，
+夕露沾我衣。
+衣沾不足惜，
+但使願無違。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+        <!-- WRITTEN WHILE DRUNK (BILINGUAL) -->
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">Written While Drunk</span>
+                <span class="title-zh">飲酒 其五</span>
+                <span class="page-ref">p. 184</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">I built my house near where others dwell,
+And yet there is no clamour of carriages and horses.
+You ask of me "How can this be so?"
+"When the heart is far the place of itself is distant."
+I pluck chrysanthemums under the eastern hedge,
+And gaze afar towards the southern mountains.
+The mountain air is fine at evening of the day
+And flying birds return together homewards.
+Within these things there is a hint of Truth,
+But when I start to tell it, I cannot find the words.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">結廬在人境，
+而無車馬喧。
+問君何能爾？
+心遠地自偏。
+採菊東籬下，
+悠然見南山。
+山氣日夕佳，
+飛鳥相與還。
+此中有真意，
+欲辨已忘言。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+        <!-- Listen: Tao Yuanming Drinking -->
+        <div class="video-card">
+            <div class="video-head">
+                <span class="video-label">Listen</span>
+                <span class="video-title">《饮酒·其五》语文大师 (Drinking Wine #5, with analysis)</span>
+            </div>
+            <div class="video-embed">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1eK4y1r79X&page=1&high_quality=1&danmaku=0" allowfullscreen></iframe>
+            </div>
+            <div class="video-fallback">
+                If the player doesn't load: <a href="https://www.bilibili.com/video/BV1eK4y1r79X/" target="_blank" rel="noopener">watch on Bilibili &rarr;</a> &middot; 117K views
+            </div>
+        </div>
+
+        <!-- ON READING HILLS AND SEAS (Chinese + Birch ref) -->
+        <div class="bi-card zh-only">
+            <div class="bi-head">
+                <span class="title-en">On Reading the Classic of the Hills and Seas</span>
+                <span class="title-zh">讀山海經 其一</span>
+                <span class="page-ref">p. 185</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English &mdash; See Birch p. 185</div>
+                    <div class="en-text" style="color: var(--ink-faint); font-style: italic;">Open your Birch anthology to page 185 and read alongside the Chinese.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">孟夏草木長，
+繞屋樹扶疏。
+衆鳥欣有託，
+吾亦愛吾廬。
+既耕亦已種，
+時還讀我書。
+窮巷隔深轍，
+頗回故人車。
+歡言酌春酒，
+摘我園中蔬。
+微雨從東來，
+好風與之俱。
+泛覽周王傳，
+流觀山海圖。
+俯仰終宇宙，
+不樂復何如？</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+        <!-- A SONG OF POOR SCHOLARS (BILINGUAL) -->
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">A Song of Poor Scholars</span>
+                <span class="title-zh">詠貧士 其一</span>
+                <span class="page-ref">p. 185</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">They had not trodden the paths of power,
+Nor had the world flocked to their doors.
+A bed of straw
+was always warm enough,
+And fresh-gathered yams
+were good enough for breakfast.
+What they suffered
+was the real pain,
+Hunger and cold
+they did not feel at all.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">萬族各有託，
+孤雲獨無依。
+曖曖空中滅，
+何時見餘暉。
+朝霞開宿霧，
+衆鳥相與飛。
+遲遲出林翮，
+未夕復來歸。
+量力守故轍，
+豈不寒與饑。
+知音苟不存，
+已矣何所悲。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+        <!-- BEARERS' SONG (Chinese + Birch ref) -->
+        <div class="bi-card zh-only">
+            <div class="bi-head">
+                <span class="title-en">Written in Imitation of an Ancient Bearers' Song</span>
+                <span class="title-zh">擬輓歌辭 其三</span>
+                <span class="page-ref">p. 186</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English &mdash; See Birch p. 186</div>
+                    <div class="en-text" style="color: var(--ink-faint); font-style: italic;">Open your Birch anthology to page 186 and read alongside the Chinese.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">荒草何茫茫，
+白楊亦蕭蕭。
+嚴霜九月中，
+送我出遠郊。
+四面無人居，
+高墳正嶕嶢。
+馬為仰天鳴，
+風為自蕭條。
+幽室一已閉，
+千年不復朝。
+千年不復朝，
+賢達無奈何。
+向來相送人，
+各自還其家。
+親戚或餘悲，
+他人亦已歌。
+死去何所道，
+托體同山阿。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+        <!-- PUTTING THE BLAME ON HIS SONS (BILINGUAL) -->
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">Putting the Blame on His Sons</span>
+                <span class="title-zh">責子</span>
+                <span class="page-ref">p. 187</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">White hair shrouds both my temples,
+My skin and flesh have lost their fullness.
+Although I have five sons,
+Not a single one of them loves brush and paper.
+A-shu is twice times eight&mdash;
+In laziness he has no equal.
+A-hsuan is just fifteen,
+But cares for nothing in the world.
+Yung and Tuan are thirteen,
+And cannot add six to seven.
+T'ung-tzu is nearly nine,
+But only hunts for pear-trees and chestnut-trees.
+If such was Heaven's decree
+In spite of all that I could do,
+Bring on, bring on
+"the thing within the cup."</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">白髮被兩鬢，
+肌膚不復實。
+雖有五男兒，
+總不好紙筆。
+阿舒已二八，
+懶惰故無匹。
+阿宣行志學，
+而不愛文術。
+雍端年十三，
+不識六與七。
+通子垂九齡，
+但覓梨與栗。
+天運苟如此，
+且進杯中物。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+        <!-- NINTH DAY (Chinese + Birch ref) -->
+        <div class="bi-card zh-only">
+            <div class="bi-head">
+                <span class="title-en">Written on the Ninth Day of the Ninth Month of the Year yi-yu (A.D. 409)</span>
+                <span class="title-zh">己酉歲九月九日</span>
+                <span class="page-ref">p. 188</span>
+            </div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English &mdash; See Birch p. 188</div>
+                    <div class="en-text" style="color: var(--ink-faint); font-style: italic;">Open your Birch anthology to page 188 and read alongside the Chinese.</div>
+                </div>
+                <div class="zh-col">
+                    <div class="col-label">原文</div>
+                    <div class="zh-text">靡靡秋已夕，
+淒淒風露交。
+蔓草不復榮，
+園木空自凋。
+清氣澄餘滓，
+杳然天界高。
+哀蟬無留響，
+叢雁鳴雲霄。
+萬化相尋繹，
+人生豈不勞？
+從古皆有沒，
+念之中心焦。
+何以稱我情？
+濁酒且自陶。
+千載非所知，
+聊以永今朝。</div>
+                </div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Tr. William Acker</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
