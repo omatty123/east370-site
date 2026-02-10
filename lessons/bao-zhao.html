@@ -7,7 +7,7 @@
     <title>Bao Zhao: Deep Dive | EAST 370 Study Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
@@ -544,6 +544,121 @@
             letter-spacing: 0.05em;
         }
 
+        /* ===== BILINGUAL POEM CARDS ===== */
+        .bi-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .bi-head {
+            background: #2a2a2a;
+            padding: 0.65rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .bi-head .title-en {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .bi-head .title-zh {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold-light);
+        }
+
+        .bi-context {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            border-bottom: 1px solid var(--paper-dark);
+        }
+
+        .bi-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .en-col {
+            padding: 1.25rem;
+            border-right: 1px solid var(--paper-dark);
+        }
+        .zh-col {
+            padding: 1.25rem;
+            background: var(--poem-bg);
+        }
+
+        .col-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.6rem;
+        }
+
+        .en-text {
+            white-space: pre-line;
+            line-height: 2.0;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--ink-light);
+            letter-spacing: 0.01em;
+        }
+
+        .zh-text {
+            font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+            white-space: pre-line;
+            line-height: 2.2;
+            font-size: 1.05rem;
+            color: var(--ink);
+            letter-spacing: 0.08em;
+        }
+
+        .zh-prose {
+            font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+            line-height: 2.0;
+            font-size: 1rem;
+            color: var(--ink);
+            letter-spacing: 0.05em;
+        }
+        .zh-prose p { margin-bottom: 0.75rem; }
+        .zh-prose p:last-child { margin-bottom: 0; }
+
+        .bi-annotation {
+            padding: 1rem 1.25rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+
+        .bi-foot {
+            padding: 0.6rem 1.25rem;
+            border-top: 1px solid var(--paper-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .bi-foot .translator {
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .bi-foot .birch-ref {
+            font-size: 0.72rem;
+            color: var(--recluse);
+            font-weight: 600;
+        }
+
         /* ===== POET SECTION HEADERS ===== */
         .part-label {
             font-size: 0.68rem;
@@ -847,6 +962,8 @@
             .nav { gap: 0.5rem; padding: 0.65rem 1.25rem; }
             .tab-btn { padding: 0.5rem 0.75rem; font-size: 0.7rem; }
             .bio-grid { grid-template-columns: 1fr !important; }
+            .bi-body { grid-template-columns: 1fr; }
+            .en-col { border-right: none; border-bottom: 1px solid var(--paper-dark); }
         }
     </style>
 </head>
@@ -1103,12 +1220,17 @@
         </div>
 
         <!-- Poems -->
-        <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="poem-card">
-                <div class="poem-head">Poem 1 &middot; <span class="poem-title">The Nightjar</span></div>
-                <div class="poem-body">
-                    <div class="poem-context">Mortality rides out through the northern gate.</div>
-                    <div class="poem">Riding through the northern gate
+        <div style="margin-top: 1.25rem;">
+            <div class="bi-card">
+                <div class="bi-head">
+                    <span class="title-en">Poem 1 &middot; The Nightjar</span>
+                    <span class="title-zh">行路難 其七</span>
+                </div>
+                <div class="bi-context">Mortality rides out through the northern gate.</div>
+                <div class="bi-body">
+                    <div class="en-col">
+                        <div class="col-label">English</div>
+                        <div class="en-text">Riding through the northern gate
 Sorrow suddenly seizes me.
 On looking around, I can only see
 Pines and cypresses growing on desolate tombs.
@@ -1123,45 +1245,95 @@ Searching for worms and ants.
 Has it forgotten its majesty?
 Many changes are not to be expected.
 My heart, overladen with grief,
-                    knows no answer.</div>
-                    <div class="poem-annotation">The nightjar is the spirit of Du Yu, King of Shu, transformed after losing his throne. The image is brutal in its specificity: not a ghostly presence but a dishevelled bird with convict-hair, hunting insects. Majesty reduced to scavenging. "Has it forgotten its majesty?" is the poem's central question, and the answer ("My heart, overladen with grief, knows no answer") refuses closure. There is no Daoist transcendence here, no Buddhist acceptance. Only grief without resolution.</div>
-                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
+    knows no answer.</div>
+                    </div>
+                    <div class="zh-col">
+                        <div class="col-label">中文原文</div>
+                        <div class="zh-text">愁思忽而至，跨馬出北門。
+舉頭四顧望，
+但見松柏荊棘鬱樽樽。
+中有一鳥名杜鵑，
+言是古時蜀帝魂。
+聲音哀苦鳴不息，
+羽毛憔悴似人髠。
+飛走樹間啄蟲蟻，
+豈憶往日天子尊。
+念此死生變化非常理，
+中心惻愴不能言。</div>
+                    </div>
+                </div>
+                <div class="bi-annotation">
+                    <div class="poem-annotation" style="margin-top: 0; padding-top: 0; border-top: none;">The nightjar is the spirit of Du Yu, King of Shu, transformed after losing his throne. The image is brutal in its specificity: not a ghostly presence but a dishevelled bird with convict-hair, hunting insects. Majesty reduced to scavenging. "Has it forgotten its majesty?" is the poem's central question, and the answer ("My heart, overladen with grief, knows no answer") refuses closure. There is no Daoist transcendence here, no Buddhist acceptance. Only grief without resolution.</div>
+                </div>
+                <div class="bi-foot">
+                    <span class="translator">Translated by C. J. Chen and Michael Bullock</span>
+                    <span class="birch-ref">Birch pp. 189&ndash;190</span>
                 </div>
             </div>
-            <div class="poem-card">
-                <div class="poem-head">Poem 2 &middot; <span class="poem-title">The Lonely Mistress</span></div>
-                <div class="poem-body">
-                    <div class="poem-context">The abandoned wife: a portrait of time passing without return.</div>
-                    <div class="poem">Five peach trees grow in my garden.
+
+            <div class="bi-card">
+                <div class="bi-head">
+                    <span class="title-en">Poem 2 &middot; The Lonely Mistress</span>
+                    <span class="title-zh">行路難 其四</span>
+                </div>
+                <div class="bi-context">The abandoned wife: a portrait of time passing without return.</div>
+                <div class="bi-body">
+                    <div class="en-col">
+                        <div class="col-label">English</div>
+                        <div class="en-text">Five peach trees grow in my garden.
 One of them has begun to bloom.
 It is now the charming third moon
 And the wind blows the petals
-                    to a neighbour's home
+    to a neighbour's home
 Where the lonely mistress weeps
 With a hand on her bosom and her lapel wet.
 When her husband left,
 There was no thought of a long parting.
 Yet now dust covers the couch
-                    and the mirror no longer reflects.
+    and the mirror no longer reflects.
 Her robes are growing loose, her hair untidy.
 Can she be happy again?
-        Can she stop pacing to and fro till midnight?</div>
-                    <div class="poem-annotation">The poem moves from natural beauty (peach blossoms in the third month) to human desolation in a single breath. The wind carries petals to the neighbor's house; inside that house, a woman weeps. The details are physical and precise: the dusty couch, the dimmed mirror, the loosening robes. She has grown thin from grief. "Can she stop pacing to and fro till midnight?" is not a rhetorical question. The answer is no. In the allegorical tradition, the abandoned wife stands for any loyal person whose devotion goes unrecognized. For Bao Zhao, that resonance is personal.</div>
-                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
+    Can she stop pacing to and fro till midnight?</div>
+                    </div>
+                    <div class="zh-col">
+                        <div class="col-label">中文原文</div>
+                        <div class="zh-text">中庭五株桃，一株先作花。
+陽春妖冶二三月，
+從風簸蕩落西家。
+西家思婦見悲惋，
+零淚霑衣撫心嘆。
+初送我君出戶時，
+何言淹留節回換？
+床蓆生塵明鏡垢，
+纖腰瘦削髮蓬亂。
+人生不得恆稱悲，
+惆悵徙倚至夜半。</div>
+                    </div>
+                </div>
+                <div class="bi-annotation">
+                    <div class="poem-annotation" style="margin-top: 0; padding-top: 0; border-top: none;">The poem moves from natural beauty (peach blossoms in the third month) to human desolation in a single breath. The wind carries petals to the neighbor's house; inside that house, a woman weeps. The details are physical and precise: the dusty couch, the dimmed mirror, the loosening robes. She has grown thin from grief. "Can she stop pacing to and fro till midnight?" is not a rhetorical question. The answer is no. In the allegorical tradition, the abandoned wife stands for any loyal person whose devotion goes unrecognized. For Bao Zhao, that resonance is personal.</div>
+                </div>
+                <div class="bi-foot">
+                    <span class="translator">Translated by C. J. Chen and Michael Bullock</span>
+                    <span class="birch-ref">Birch pp. 189&ndash;190</span>
                 </div>
             </div>
         </div>
 
-        <div class="content-grid" style="margin-top: 1.25rem;">
-            <div class="poem-card" style="grid-column: 1 / -1;">
-                <div class="poem-head">Poem 3 &middot; <span class="poem-title">Do You Not See</span></div>
-                <div class="poem-body">
-                    <div class="poem-context">A direct challenge: life is short, death is absolute, and the speaker knows you don't want to hear it.</div>
-                    <div class="poem">Do you not see the fallen leaves
-        that rustle on the pavings and steps;
+        <div class="bi-card">
+            <div class="bi-head">
+                <span class="title-en">Poem 3 &middot; Do You Not See</span>
+                <span class="title-zh">行路難 其六</span>
+            </div>
+            <div class="bi-context">A direct challenge: life is short, death is absolute, and the speaker knows you don't want to hear it.</div>
+            <div class="bi-body">
+                <div class="en-col">
+                    <div class="col-label">English</div>
+                    <div class="en-text">Do you not see the fallen leaves
+    that rustle on the pavings and steps;
 Will they become green again?
 Do you not see the sacrificial food and wine
-        that are laid out for the spirits
+    that are laid out for the spirits
 Who have never once raised the cups?
 To you, this should be a loud warning
 That life passes like lightning;
@@ -1173,9 +1345,31 @@ For they alone can repel
 Your worries and fear.
 Yet you still look unhappy.
 Do you not like my "Tedious Ways"?</div>
-                    <div class="poem-annotation">The most aggressive poem in the sequence. It begins with two unanswerable questions (fallen leaves will not become green; the dead will not drink). The advice that follows sounds like carpe diem: enjoy your food and friends. But the final two lines undercut everything. "Yet you still look unhappy. Do you not like my 'Tedious Ways'?" The speaker knows his message is unwelcome. He names the poem's own title, breaking the frame. This is not gentle philosophical counsel. It is a provocation from someone who knows the truth is uncomfortable and delivers it anyway.</div>
-                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
                 </div>
+                <div class="zh-col">
+                    <div class="col-label">中文原文</div>
+                    <div class="zh-text">君不見枯籜走階庭，
+何時復青著故莖。
+君不見亡靈蒙享祀，
+何時傾杯竭壺罌。
+君當見此起憂思，
+寧及得與時人爭。
+人生倐忽如絕電，
+華年盛德幾時見？
+但令縱意存高尙，
+旨酒嘉肴相胥讌。
+持此從朝竟夕暮，
+差得亡憂消愁怖。
+胡為惆悵不得已，
+難盡此曲令君忤。</div>
+                </div>
+            </div>
+            <div class="bi-annotation">
+                <div class="poem-annotation" style="margin-top: 0; padding-top: 0; border-top: none;">The most aggressive poem in the sequence. It begins with two unanswerable questions (fallen leaves will not become green; the dead will not drink). The advice that follows sounds like carpe diem: enjoy your food and friends. But the final two lines undercut everything. "Yet you still look unhappy. Do you not like my 'Tedious Ways'?" The speaker knows his message is unwelcome. He names the poem's own title, breaking the frame. This is not gentle philosophical counsel. It is a provocation from someone who knows the truth is uncomfortable and delivers it anyway.</div>
+            </div>
+            <div class="bi-foot">
+                <span class="translator">Translated by C. J. Chen and Michael Bullock</span>
+                <span class="birch-ref">Birch pp. 189&ndash;190</span>
             </div>
         </div>
     </section>
@@ -1235,11 +1429,16 @@ Do you not like my "Tedious Ways"?</div>
 
         <!-- The Fu: full text -->
         <div style="margin-top: 1.25rem;">
-            <div class="poem-card" style="grid-column: 1 / -1;">
-                <div class="poem-head"><span class="poem-title">The Ruined City</span> &middot; <span style="font-family: 'Noto Sans SC', sans-serif; color: var(--gold-light);">蕪城賦</span></div>
-                <div class="poem-body">
-                    <div class="poem-context">Guangling at its height, and after. A fu in five movements.</div>
-                    <div class="poem">The immense plain
+            <div class="bi-card">
+                <div class="bi-head">
+                    <span class="title-en">The Ruined City</span>
+                    <span class="title-zh">蕪城賦</span>
+                </div>
+                <div class="bi-context">Guangling at its height, and after. A fu in five movements.</div>
+                <div class="bi-body">
+                    <div class="en-col">
+                        <div class="col-label">English</div>
+                        <div class="en-text">The immense plain
     runs south to the foamy waves of the sea
     and north to the purple passes of the Great Wall.
 In it
@@ -1330,7 +1529,21 @@ They tower over the plain
     where there are neither roads nor field-paths.
 For a thousand years and a myriad generations,
 I shall watch you to the end in silence."</div>
-                    <div class="poem-credit">Translated by C. J. Chen and Michael Bullock</div>
+                    </div>
+                    <div class="zh-col">
+                        <div class="col-label">中文原文</div>
+                        <div class="zh-prose">
+                            <p>沵迤平原，南馳蒼梧漲海，北走紫塞雁門。柂以漕渠，軸以昆崗。重江復關之隩，四會五達之莊。當昔全盛之時，車掛轊，人架肩，廛閈撲地，歌吹沸天。孽貨鹽田，鏟利銅山。才力雄富，士馬精妍。故能侈秦法，佚周令，劃崇墉，刳浚洫，圖修世以休命。是以板築雉堞之殷，井幹烽櫓之勤，格高五嶽，袤廣三墳，崪若斷岸，矗似長雲。制磁石以御衝，糊赬壤以飛文。觀基扃之固護，將萬祀而一君。</p>
+                            <p>出入三代，五百餘載，竟瓜剖而豆分。</p>
+                            <p>澤葵依井，荒葛罥塗。壇羅虺蜮，階鬥麏鼯。木魅山鬼，野鼠城狐。風嗥雨嘯，昏見晨趨。飢鷹厲吻，寒鴟嚇雛。伏虣藏虎，乳血飧膚。崩榛塞路，崢嶸古馗。白楊早落，塞草前衰。稜稜霜氣，蔌蔌風威。孤蓬自振，驚沙坐飛。灌莽杳而無際，叢薄紛其相依。通池既已夷，峻隅又以頹。直視千里外，唯見起黃埃。</p>
+                            <p>凝思寂聽，心傷已摧。若夫藻扃黼帳，歌堂舞閣之基；璇淵碧樹，弋林釣渚之館；吳蔡齊秦之聲，魚龍爵馬之玩；皆薰歇燼滅，光沉響絕。東都妙姬，南國麗人，蕙心紈質，玉貌絳脣，莫不埋魂幽石，委骨窮塵，豈憶同輿之愉樂，離宮之苦辛哉？</p>
+                            <p>天道如何，吞恨者多，抽琴命操，為蕪城之歌。歌曰：邊風急兮城上寒，井徑滅兮丘隴殘。千齡兮萬代，共盡兮何言！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bi-foot">
+                    <span class="translator">Translated by C. J. Chen and Michael Bullock</span>
+                    <span class="birch-ref">Birch pp. 190&ndash;193</span>
                 </div>
             </div>
         </div>
