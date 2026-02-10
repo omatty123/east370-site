@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Han Feizi Part 2 韓非子 | EAST 370 Study Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --fa: #B54545;
+            --teal: #2d5a5a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .tag { font-size: 0.6rem; font-weight: 700; color: #fff; background: var(--fa); padding: 0.2rem 0.5rem; border-radius: 3px; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        .section-label {
+            font-size: 0.6rem; font-weight: 700; color: #999; letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 0.6rem;
+            display: flex; align-items: baseline; gap: 0.5rem;
+        }
+        .section-label .chinese { font-family: 'Noto Sans SC', sans-serif; font-size: 1rem; color: var(--gold); font-weight: 400; }
+
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: var(--paper-dark); }
+        .content-section.white { background: #fff; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a; padding: 0.5rem 0.75rem;
+            font-size: 0.65rem; font-weight: 600; color: #fff;
+            display: flex; align-items: baseline; gap: 0.5rem;
+        }
+        .card-head .chinese { font-family: 'Noto Sans SC', sans-serif; font-size: 0.85rem; color: var(--gold-light); font-weight: 400; }
+        .card-body { padding: 0.75rem; }
+        .card-body p { font-size: 0.8rem; color: var(--ink-light); line-height: 1.65; margin-bottom: 0.5rem; }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em;
+            color: var(--gold); margin: 0.75rem 0 0.4rem; padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        blockquote {
+            background: var(--paper-dark); border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem; margin: 0.5rem 0;
+            font-style: italic; font-size: 0.8rem; color: var(--ink-light);
+        }
+        blockquote cite { display: block; margin-top: 0.3rem; font-style: normal; font-size: 0.7rem; color: var(--ink-faint); }
+
+        .saying-card {
+            background: #fff; border-radius: 6px; overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-left: 3px solid var(--fa);
+        }
+        .saying-card .saying-body { padding: 0.75rem; }
+        .saying-card .saying-chinese { font-family: 'Noto Sans SC', sans-serif; font-size: 1.1rem; color: var(--fa); margin-bottom: 0.3rem; letter-spacing: 0.05em; }
+        .saying-card .saying-meaning { font-size: 0.8rem; color: var(--ink); font-style: italic; margin-bottom: 0.3rem; }
+        .saying-card .saying-note { font-size: 0.7rem; color: var(--ink-faint); }
+
+        .question-card { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .question-card .q-head { background: #2a2a2a; padding: 0.4rem 0.75rem; font-size: 0.6rem; font-weight: 700; color: var(--fa); text-transform: uppercase; letter-spacing: 0.05em; }
+        .question-card .q-body { padding: 0.75rem; font-size: 0.8rem; color: var(--ink-light); line-height: 1.65; }
+
+        /* Chapter map table */
+        .chapter-map {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.78rem;
+        }
+        .chapter-map th {
+            font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em;
+            color: #fff; text-align: left; padding: 0.4rem 0.6rem;
+            background: var(--fa);
+        }
+        .chapter-map td {
+            padding: 0.4rem 0.6rem; border-bottom: 1px solid #eee;
+            vertical-align: top; color: var(--ink-light);
+        }
+        .chapter-map tr.current td { background: rgba(181,69,69,0.06); font-weight: 500; color: var(--ink); }
+        .chapter-map .ch-num { font-weight: 700; color: var(--fa); white-space: nowrap; }
+        .chapter-map .ch-num.muted { color: var(--ink-faint); font-weight: 400; }
+
+        /* Five vermin grid */
+        .vermin-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+        }
+        .vermin-card {
+            background: #2a2e32; border-radius: 6px; padding: 0.6rem;
+            text-align: left; color: #ddd;
+        }
+        .vermin-card .v-num { font-size: 0.5rem; font-weight: 700; color: var(--fa); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+        .vermin-card .v-name { font-size: 0.78rem; font-weight: 600; color: #fff; margin-bottom: 0.25rem; }
+        .vermin-card .v-desc { font-size: 0.68rem; color: #aaa; line-height: 1.45; }
+
+        footer {
+            background: var(--ink); padding: 1.25rem 1.5rem; text-align: center;
+        }
+        footer .foot-chinese { font-family: 'Noto Sans SC', sans-serif; font-size: 1rem; color: var(--gold-light); margin-bottom: 0.2rem; }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term { font-size: 0.6rem; font-weight: 600; color: var(--gold); letter-spacing: 0.08em; }
+
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .vermin-grid { grid-template-columns: 1fr 1fr; }
+            .nav { gap: 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">韓非子</span>
+            <span class="en">The Han Feizi, Part 2</span>
+            <span class="tag">FA</span>
+            <span class="meta">Ivanhoe pp. 353&ndash;379</span>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <a href="#map">Chapter Map</a>
+        <a href="#ch43">Ch. 43: Methods</a>
+        <a href="#ch47">Ch. 47: Eight Explanations</a>
+        <a href="#ch49">Ch. 49: Five Vermin</a>
+        <a href="#ch50">Ch. 50: Schools</a>
+        <a href="#questions">Questions</a>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER MAP -->
+    <!-- ============================================================ -->
+    <section class="content-section" id="map">
+        <div class="section-label"><span class="chinese">目錄</span> Chapter Map</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">韓非子</span> What We Read &amp; When</div>
+                <div class="card-body" style="padding: 0;">
+                    <table class="chapter-map">
+                        <thead>
+                            <tr><th>Ch.</th><th>Title</th><th>Pages</th><th>Coverage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="ch-num muted">5</td>
+                                <td>The Way of the Ruler (主道)</td>
+                                <td>324&ndash;327</td>
+                                <td><a href="hanfeizi.html" style="color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal);">Part 1</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ch-num muted">6</td>
+                                <td>Having Standards (有度)</td>
+                                <td>328&ndash;333</td>
+                                <td><a href="hanfeizi.html" style="color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal);">Part 1</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ch-num muted">7</td>
+                                <td>The Two Handles (二柄)</td>
+                                <td>333&ndash;336</td>
+                                <td><a href="hanfeizi.html" style="color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal);">Part 1</a></td>
+                            </tr>
+                            <tr>
+                                <td class="ch-num muted">12</td>
+                                <td>The Difficulty of Persuasion (說難)</td>
+                                <td>336&ndash;340</td>
+                                <td><a href="hanfeizi.html" style="color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal);">Part 1</a></td>
+                            </tr>
+                            <tr class="current">
+                                <td class="ch-num">43</td>
+                                <td>Establishing Methods of Government (定法)</td>
+                                <td>353&ndash;356</td>
+                                <td><strong>This page</strong></td>
+                            </tr>
+                            <tr class="current">
+                                <td class="ch-num">47</td>
+                                <td>Eight Explanations (八說)</td>
+                                <td>356&ndash;357</td>
+                                <td><strong>This page</strong></td>
+                            </tr>
+                            <tr class="current">
+                                <td class="ch-num">49</td>
+                                <td>The Five Vermin (五蠹)</td>
+                                <td>357&ndash;379</td>
+                                <td><strong>This page</strong></td>
+                            </tr>
+                            <tr class="current">
+                                <td class="ch-num">50</td>
+                                <td>On the Illustrious Schools (顯學)</td>
+                                <td>371&ndash;379</td>
+                                <td><strong>This page</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">要</span> What Part 2 Is About</div>
+                <div class="card-body">
+                    <p>Part 1 laid out the machinery: the empty ruler, form-and-name accountability, the two handles, the danger of persuasion. <strong>Part 2 is the argument.</strong></p>
+                    <p>These chapters are where Han Feizi makes his case against Confucianism, against benevolence as a governing principle, and against the entire project of imitating antiquity. Chapter 49 ("The Five Vermin") is the longest and most famous, a systematic demolition of every alternative to Legalism.</p>
+                    <h4>The Core Claim</h4>
+                    <p>Circumstances change. What worked in one age fails in the next. Anyone who governs the present by the standards of the past is "watching over the tree stump, waiting for a rabbit." Governance must respond to material conditions, not moral ideals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 43 -->
+    <!-- ============================================================ -->
+    <section class="content-section alt" id="ch43">
+        <div class="section-label"><span class="chinese">定法</span> Chapter 43 &mdash; Establishing Methods of Government (pp. 353&ndash;356)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">申韓</span> Shen Buhai vs. Gongsun Yang</div>
+                <div class="card-body">
+                    <p>Someone asks: which is more important for the state, the methods of <strong>Shen Buhai</strong> or the methods of <strong>Gongsun Yang</strong>?</p>
+                    <p>Han Feizi's answer: you cannot compare them, because they address different problems. They are like food and clothing. You die without either one.</p>
+                    <h4>Shen Buhai (申不害)</h4>
+                    <p>Focused on <strong>shu 術 (administrative techniques)</strong>: awarding offices based on qualifications, matching proposals to results, examining ministers' abilities. This is what the ruler controls.</p>
+                    <h4>Gongsun Yang (商鞅 / Shang Yang)</h4>
+                    <p>Focused on <strong>fa 法 (laws)</strong>: statutes promulgated through government offices, punishments and fines felt in people's hearts, rewards for the scrupulous, punishments for violators. This is what provides models for the ministers.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">偏</span> What Happens with Only One</div>
+                <div class="card-body">
+                    <h4>Shen Buhai alone (techniques without law)</h4>
+                    <p>Shen Buhai served Marquis Zhao of Han for 17 years. He used administrative techniques, but <strong>old laws and new decrees contradicted each other</strong>. Unscrupulous ministers could still deceive with words. Result: Han never became a lord protector despite 10,000 war chariots.</p>
+                    <h4>Gongsun Yang alone (law without techniques)</h4>
+                    <p>Gongsun Yang governed Qin with clear laws. The state became rich and the army strong. But <strong>without techniques to control ministers</strong>, after his death, power simply passed to self-interested officials (Zhang Yi, Gan Mao, the Marquis of Rang). They enriched themselves; Qin gained nothing for decades.</p>
+                    <h4>The Synthesis</h4>
+                    <p>"With regard to laws and administrative techniques, neither of these two were fully competent." The clear-sighted ruler needs both: <strong>techniques to see through ministers, laws to constrain behavior</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">不可一無　皆帝王之具也</div>
+                    <div class="saying-meaning">"There cannot be a lack of either one. They are the tools of emperors and kings."</div>
+                    <div class="saying-note">Chapter 43 &mdash; Law and techniques are complementary, not competing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 47 -->
+    <!-- ============================================================ -->
+    <section class="content-section" id="ch47">
+        <div class="section-label"><span class="chinese">八說</span> Chapter 47 &mdash; Eight Explanations (pp. 356&ndash;357)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">母</span> The Mother's Love Analogy</div>
+                <div class="card-body">
+                    <p>A caring mother loves her infant son. Nothing surpasses that love. And yet: if the child is sick, she sends him to a doctor. If he misbehaves, she sends him to a teacher. If he refuses the doctor, he may die. If he refuses the teacher, he will be punished.</p>
+                    <p><strong>"If even a caring mother's love is of no help in avoiding punishment or saving one who is dying, that which preserves the child is not love."</strong></p>
+                    <h4>The Political Application</h4>
+                    <p>The relationship between a mother and son is love. The relationship between a ruler and minister is <strong>power and strategy</strong>. If a mother cannot preserve her family through love alone, how can a ruler preserve the state through love?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">仁暴</span> Neither Benevolent Nor Cruel</div>
+                <div class="card-body">
+                    <p>Han Feizi considers both extremes and rejects them:</p>
+                    <h4>The Benevolent Ruler</h4>
+                    <p>Caring, compassionate, takes wealth lightly, fond of giving. Result: people below become unrestrained, violate laws, "look to luck and be lazy." Punishments are waived. Rewards don't match achievements.</p>
+                    <h4>The Cruel Ruler</h4>
+                    <p>Harsh, easily punishes, hate-filled toward subordinates. Result: rash executions, people resent superiors, the relationship is one of opposition.</p>
+                    <h4>The Conclusion</h4>
+                    <p><strong>"Both those who are benevolent and those who are cruel will ruin the state."</strong> What preserves the state is neither benevolence nor cruelty but law: clear prohibitions, certain punishments, reliable rewards.</p>
+                </div>
+            </div>
+        </div>
+
+        <blockquote style="margin-top: 0.75rem;">
+            "The clear-sighted ruler understands how to achieve wealth and power, and thus he can attain his desires. He makes laws and prohibitions clear and examines his schemes and plans. If laws are clear, then within the state there will not be the calamity of disorder."
+            <cite>&mdash; Han Feizi, Chapter 47</cite>
+        </blockquote>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 49: THE FIVE VERMIN -->
+    <!-- ============================================================ -->
+    <section class="content-section alt" id="ch49">
+        <div class="section-label"><span class="chinese">五蠹</span> Chapter 49 &mdash; The Five Vermin (pp. 357&ndash;379)</div>
+
+        <p style="font-size: 0.85rem; color: var(--ink-light); line-height: 1.65; max-width: 720px; margin-bottom: 1rem;">The longest and most famous chapter in the <em>Han Feizi</em>. A systematic demolition of Confucian governance, the cult of antiquity, and every alternative to Legalism. This is where Han Feizi names his enemies.</p>
+
+        <!-- Waiting for Rabbits -->
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">兔</span> Waiting for Rabbits</div>
+                <div class="card-body">
+                    <p>A man in the state of Song was plowing his field. A rabbit ran through, hit a tree stump, broke its neck, and died. The man laid down his plow, sat by the stump, and waited for another rabbit.</p>
+                    <p><strong>"However, getting another rabbit in this manner was impossible, and so this man was laughed at by all within the state of Song."</strong></p>
+                    <h4>The Point</h4>
+                    <p>Anyone who governs the present by the methods of the former kings is doing the same thing: waiting by a tree stump for a lucky accident that will never repeat. <strong>Circumstances change. Methods must change with them.</strong></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">時</span> The Argument from Changing Circumstances</div>
+                <div class="card-body">
+                    <p>Han Feizi traces three ages of human history, each requiring different methods:</p>
+                    <h4>Upper Antiquity</h4>
+                    <p>Few people, many resources. A sage taught people to build nests ("The Nester"). Another taught them to use fire ("The Kindler"). People followed them voluntarily. No need for rewards or punishments.</p>
+                    <h4>Middle Antiquity</h4>
+                    <p>Floods required Gun and Yu to dig drainage ditches. Problems were solved by clever stratagems, not virtue.</p>
+                    <h4>The Present</h4>
+                    <p>Population has grown. Resources are scarce. People fight. "The number of people increases while goods and material resources grow scarce." Even doubling rewards and punishments cannot prevent chaos in these conditions.</p>
+                    <h4>The Devastating Conclusion</h4>
+                    <p>If someone used fire drills in the age of flood control, they would be laughed at. <strong>"If one desires to bring order to the people of the present age by means of the ordering methods of the former kings, this is in the same category as keeping watch over the tree stump."</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scarcity, not wickedness -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">利</span> Scarcity, Not Wickedness</div>
+                <div class="card-body">
+                    <p>This is Han Feizi's most radical move. He reinterprets the entire moral framework:</p>
+                    <p><strong>Ancient benevolence wasn't virtue. It was abundance.</strong> When people were few and resources plentiful, nobody fought. Yao and Shun didn't need rewards or punishments because there was nothing to fight over.</p>
+                    <p><strong>Modern conflict isn't wickedness. It's scarcity.</strong> When population grows and resources shrink, people compete. That competition is rational, not immoral.</p>
+                    <h4>The Abdication Myth</h4>
+                    <p>Ancient rulers who "abdicated the throne" were discarding the life of a gatekeeper. Today's district magistrates hold power their grandchildren will inherit. Nobody abdicates anymore, not because people are worse, but because <strong>the benefits of the position are different</strong>.</p>
+                    <p>"Those who live in the mountains who must descend into the valleys to gather water give one another gifts of water during the festivals. Those who live in swamplands hire laborers to dig ditches to drain away the water." Same people, different circumstances.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">勢</span> Positional Power vs. Virtue</div>
+                <div class="card-body">
+                    <p>Han Feizi's attack on Kongzi is methodical:</p>
+                    <p><strong>Kongzi was the greatest sage in the world.</strong> He traveled everywhere. He cultivated his actions and clarified the Way. People praised his benevolence and righteousness. <strong>And yet his disciples numbered only seventy.</strong> Among them, "only one was fully benevolent and righteous" (Yan Hui).</p>
+                    <p><strong>Duke Ai of Lu was an inferior ruler.</strong> He simply faced south and governed. Nobody within his borders dared disobey.</p>
+                    <p>The difference? <strong>Positional power (勢 shi).</strong> Kongzi, despite his benevolence, was a subject. Duke Ai, despite his mediocrity, was a ruler. "Since he relied on positional power, Duke Ai was able to make Kongzi his subject."</p>
+                    <h4>The Implication</h4>
+                    <p>To demand that a ruler rise to the level of Kongzi and that all people become like his disciples is "a technique certain not to succeed." Build on power, not on moral exceptionalism.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- The no-account child -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">棍</span> The No-Account Child</div>
+                <div class="card-body">
+                    <p>A delinquent child. His parents scold him: he doesn't reform. His neighbors reprimand him: nothing. His teachers instruct him: nothing. "The love of his parents, the actions of his neighbors, and the wisdom of his teachers and elders, these three excellent influences, are brought to bear upon him. In the end he will not change even a hair on his shin."</p>
+                    <p><strong>But when the local magistrate enforces the law</strong>, the same child "becomes terrified and filled with dread, transforming his character and changing his actions."</p>
+                    <p>"The love of parents is insufficient to reform their children's behavior, and it is necessary to await the strict punishments of the local magistrate, since people naturally become arrogant from love but listen to awe-inspiring might."</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">公私</span> Public vs. Private</div>
+                <div class="card-body">
+                    <p>Han Feizi makes an etymological argument. When Cang Jie invented writing, he used the character 私 (<em>si</em>, "private") for what revolves around the self, and 公 (<em>gong</em>, "public") for what opposes the private.</p>
+                    <p><strong>"The mutual opposition between public and private benefit is thus something that Cang Jie certainly already understood."</strong></p>
+                    <h4>The Upright Gong Problem</h4>
+                    <p>In Chu, a man called "Upright Gong" reported his father for stealing a sheep. The magistrate said: "Execute him!" Why? Because being upright toward the lord meant being crooked toward the father. One who is a filial son to his father can be a disloyal subject to his ruler.</p>
+                    <p>Kongzi praised a man who ran from battle three times because he had an elderly father. The magistrate in Chu executed a man for being too loyal to the state. <strong>"What benefits superiors and subordinates are different."</strong> The state's interests and the family's interests cannot both be served.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Five Vermin themselves -->
+        <div style="margin-top: 1rem;">
+            <div class="section-label"><span class="chinese">蠹</span> The Five Vermin</div>
+            <p style="font-size: 0.8rem; color: var(--ink-light); margin-bottom: 0.6rem;">"If the ruler does not eliminate these five vermin, and does not nourish dedicated and upright officials, then even if the states within the Four Seas are broken and extinguished, their ruling houses cut away and destroyed, this certainly should not be seen as strange!"</p>
+        </div>
+
+        <div class="vermin-grid">
+            <div class="vermin-card">
+                <div class="v-num">Vermin 1</div>
+                <div class="v-name">Scholars</div>
+                <div class="v-desc">Confucians who praise the Way of the former kings, dress up their speech, and "cast suspicion on the laws of the present age."</div>
+            </div>
+            <div class="vermin-card">
+                <div class="v-num">Vermin 2</div>
+                <div class="v-name">Persuaders</div>
+                <div class="v-desc">Diplomats and orators who fabricate claims, borrow foreign power for private goals. The Vertical and Horizontal Alliance schemers.</div>
+            </div>
+            <div class="vermin-card">
+                <div class="v-num">Vermin 3</div>
+                <div class="v-name">Knights-errant</div>
+                <div class="v-desc">Swordsmen who gather followers, establish codes of honor, and "violate the laws with their weapons."</div>
+            </div>
+            <div class="vermin-card">
+                <div class="v-num">Vermin 4</div>
+                <div class="v-name">Draft dodgers</div>
+                <div class="v-desc">Those who serve at the gates of influential officials to buy exemptions from military service. They "avoid danger and poverty."</div>
+            </div>
+            <div class="vermin-card">
+                <div class="v-num">Vermin 5</div>
+                <div class="v-name">Merchants</div>
+                <div class="v-desc">Merchants and artisans who "accumulate wealth, hoard shoddy goods, and wait for the best time to sell, taking advantage of farmers."</div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="saying-card">
+                <div class="saying-body">
+                    <div class="saying-chinese">儒以文亂法　俠以武犯禁</div>
+                    <div class="saying-meaning">"Confucians bring disorder to the law with their culture; knights-errant violate the laws with their weapons."</div>
+                    <div class="saying-note">Chapter 49 &mdash; Han Feizi's most famous line. The two-pronged threat to the state.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Makeup analogy and law of certain success -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">治</span> The Makeup Analogy</div>
+                <div class="card-body">
+                    <p>"Praising the beauty of Mao Qiang and Xi Shi will do nothing to improve your own looks, while if you use makeup, polish, powder, and eyeliner, you can double your attractiveness."</p>
+                    <p><strong>"Talking about the benevolence and righteousness of the former kings will do nothing to improve your governance, while making clear your system of laws and making certain your rewards and punishments, this is the makeup, polish, powder, and eyeliner of the state."</strong></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">必</span> The Way of Certain Success</div>
+                <div class="card-body">
+                    <p>"If one waits for arrow shafts that are naturally straight, in a hundred generations there will not be a single arrow. If one waits for a piece of wood that is naturally round, then in a thousand generations there will not be a single wheel."</p>
+                    <p>Naturally perfect people are as rare as naturally straight arrows. The ruler who relies on finding good people will fail. The ruler who <strong>employs techniques of bending and straightening</strong> (law, rewards, punishments) produces results in every generation.</p>
+                    <p>"The ruler who understands techniques does not pursue accidental goodness but rather employs the Way of certain success."</p>
+                </div>
+            </div>
+        </div>
+
+        <blockquote style="margin-top: 0.75rem;">
+            "When a sage governs a state, he does not wait for people to do good for his sake; he ensures that they can do no wrong. If he waits for people to do good for his sake, within his borders there will be fewer than ten who do so; if he ensures that people can do no wrong, the entire state can be brought into line."
+            <cite>&mdash; Han Feizi, Chapter 49</cite>
+        </blockquote>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 50 -->
+    <!-- ============================================================ -->
+    <section class="content-section" id="ch50">
+        <div class="section-label"><span class="chinese">顯學</span> Chapter 50 &mdash; On the Illustrious Schools of Thought (pp. 371&ndash;379)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">裂</span> The Fragmentation of Confucianism and Mohism</div>
+                <div class="card-body">
+                    <p>The two illustrious schools are Confucianism and Mohism. After Kongzi died, the Confucians split into <strong>eight factions</strong>. After Mozi died, the Mohists split into <strong>three factions</strong>.</p>
+                    <p>"The doctrines that each accepts and rejects are mutually contradictory and not the same, and yet each group claims that they are the true representatives of Kongzi or Mozi."</p>
+                    <h4>The Unanswerable Question</h4>
+                    <p>"Kongzi and Mozi cannot be brought back from the dead, so who should decide which of the schools of our age is correct?"</p>
+                    <p>The Yin and Zhou dynasties go back more than 700 years, the Xia more than 2,000 years. "We cannot even establish whether the Confucians or the Mohists are correct, and yet we still desire to examine the Ways of Yao and Shun from 3,000 years ago! How could we possibly be certain of their ideas?!"</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">驗</span> Judging by Results, Not Words</div>
+                <div class="card-body">
+                    <p>Han Feizi's epistemological argument: we have no way to verify what the ancient sages actually taught. The factions who claim to represent them contradict each other. <strong>"Those who claim to be certain without examining the evidence are fools. Those who base their ideas on what they cannot be certain of are frauds."</strong></p>
+                    <h4>Kongzi on Appearances</h4>
+                    <p>Kongzi himself was fooled twice. He took Tantai Ziyu as a disciple because he looked the part, but his actions didn't match. He took Zai Yu because of his elegant speech, but his wisdom didn't match.</p>
+                    <p><strong>"By choosing someone on the basis of their appearance, I made a mistake with Ziyu; by choosing someone on the basis of their words, I made a mistake with Zai Yu."</strong> Even Kongzi's judgment failed. How much worse are the rulers of today?</p>
+                    <h4>The Horse Analogy</h4>
+                    <p>By examining teeth and shape, even the great horse trainer Bo Le could not discern quality. But harness the horse and drive it to the end of the road, and a common slave knows whether it's good. <strong>Test people by placing them in office and examining results.</strong> Don't judge by words, appearance, or reputation.</p>
+                </div>
+            </div>
+        </div>
+
+        <blockquote style="margin-top: 0.75rem;">
+            "Those who base their ideas on what they cannot be certain of are frauds. The teachings of fools and frauds and confused and contradictory action, a clear-sighted ruler will never accept these."
+            <cite>&mdash; Han Feizi, Chapter 50</cite>
+        </blockquote>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DISCUSSION QUESTIONS -->
+    <!-- ============================================================ -->
+    <section class="content-section white" id="questions">
+        <div class="section-label"><span class="chinese">問</span> Discussion Questions</div>
+        <div class="content-grid">
+            <div class="question-card">
+                <div class="q-head">Question 1</div>
+                <div class="q-body">The "waiting for rabbits" story argues that the past cannot guide the present. Compare this with Kongzi's claim to "transmit rather than innovate" (<em>Analects</em> 7.1). Is Han Feizi right that material conditions determine what works? Or does Kongzi have a point that some principles transcend circumstances?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 2</div>
+                <div class="q-body">Han Feizi argues that ancient benevolence wasn't virtue but abundance. People didn't fight because there was nothing to fight over. Is this a valid materialist reading of history, or does it flatten human moral capacity? What would Mengzi say to this?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 3</div>
+                <div class="q-body">The "no-account child" passage says parental love, neighborly advice, and teacher wisdom all fail where the magistrate's law succeeds. But consider: is the child actually reformed, or just afraid? What is the difference between compliance and moral transformation? Which does a state actually need?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 4</div>
+                <div class="q-body">Han Feizi says Kongzi only had 70 disciples, while Duke Ai ruled all of Lu effortlessly through positional power. He concludes that power beats virtue as a governing tool. But Kongzi's influence lasted 2,500 years. Duke Ai is a footnote. Does long-term legacy undermine Han Feizi's argument, or is it irrelevant?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 5</div>
+                <div class="q-body">The five vermin include scholars, persuaders, knights-errant, draft dodgers, and merchants. These correspond roughly to intellectuals, diplomats, vigilantes, shirkers, and capitalists. Which of these groups do modern states still try to suppress or control? Has any state successfully eliminated all five?</div>
+            </div>
+            <div class="question-card">
+                <div class="q-head">Question 6</div>
+                <div class="q-body">"Confucians bring disorder to the law with their culture; knights-errant violate the laws with their weapons." Is this a fair characterization of Confucianism? What would Xunzi (Han Feizi's own teacher) say about his student's claim that ritual and culture are threats to order?</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
