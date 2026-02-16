@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poets of a Generation | Wang Wei, Li Bai, Du Fu | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #888;
+            --paper: #fafaf8;
+            --paper-warm: #faf6f0;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --recluse: #5C6B73;
+            --wang: #4a7c59;
+            --li: #8b5c3e;
+            --du: #5a4a7c;
+            --tang-red: #a03030;
+            --poem-bg: #faf8f2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .page-title .ch {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--tang-red);
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .page-meta {
+            font-size: 0.65rem;
+            color: #666;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1f1a 50%, #1a2520 100%);
+            padding: 3rem 5% 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '詩';
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Noto Serif SC', serif;
+            font-size: 12rem;
+            color: rgba(255,255,255,0.03);
+            pointer-events: none;
+        }
+        .hero-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1.3;
+            max-width: 700px;
+        }
+        .hero h1 strong {
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+        .hero-sub {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #aaa;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        .hero-poets {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .hero-poet {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hero-poet .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .hero-poet .name-ch {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        .hero-poet .name-en {
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+        .hero-poet .dates {
+            font-size: 0.65rem;
+            color: #777;
+        }
+
+        /* ===== NAV PILLS ===== */
+        .nav-strip {
+            background: #fff;
+            border-bottom: 1px solid var(--paper-dark);
+            padding: 0.5rem 5%;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-strip a {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--ink-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            border: 1px solid transparent;
+            transition: all 0.15s;
+        }
+        .nav-strip a:hover {
+            background: var(--paper-dark);
+            border-color: #ddd;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 2.5rem 5%;
+            border-bottom: 1px solid var(--paper-dark);
+        }
+        .section-alt {
+            background: var(--paper-warm);
+        }
+        .section-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 0.25rem;
+        }
+        .section h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        .section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== EXEC SUMMARY ===== */
+        .exec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .exec-box {
+            background: #fff;
+            border: 1px solid #e8e5e0;
+            border-radius: 6px;
+            padding: 1.25rem;
+        }
+        .exec-box h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--tang-red);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--tang-red);
+        }
+        .exec-box p, .exec-box li {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+        .exec-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .exec-box ul li {
+            padding: 0.2rem 0;
+            padding-left: 1em;
+            position: relative;
+        }
+        .exec-box ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--tang-red);
+        }
+        .exec-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 120px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ddd;
+        }
+        .tl-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .tl-year {
+            width: 110px;
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--ink-faint);
+            padding-top: 0.1rem;
+            flex-shrink: 0;
+        }
+        .tl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--tang-red);
+            flex-shrink: 0;
+            margin-top: 0.35rem;
+            position: relative;
+            z-index: 1;
+        }
+        .tl-dot.wang { background: var(--wang); }
+        .tl-dot.li { background: var(--li); }
+        .tl-dot.du { background: var(--du); }
+        .tl-dot.era { background: var(--tang-red); }
+        .tl-content {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+        .tl-content strong {
+            color: var(--ink);
+        }
+
+        /* ===== MAP ===== */
+        .map-container {
+            background: #fff;
+            border: 1px solid #e8e5e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .map-container h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+            margin-bottom: 1rem;
+        }
+        .map-svg {
+            width: 100%;
+            max-width: 750px;
+        }
+        .map-legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .map-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.7rem;
+            color: var(--ink-light);
+        }
+        .map-legend-item .swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+        }
+
+        /* ===== POET PROFILES ===== */
+        .poet-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .poet-card {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e8e5e0;
+            overflow: hidden;
+        }
+        .poet-card-head {
+            padding: 1.25rem 1.25rem 0.75rem;
+            border-bottom: 3px solid;
+        }
+        .poet-card-head.wang { border-color: var(--wang); }
+        .poet-card-head.li { border-color: var(--li); }
+        .poet-card-head.du { border-color: var(--du); }
+        .poet-card-head .poet-ch {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .poet-card-head .poet-en {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .poet-card-head .poet-dates {
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            margin-top: 0.1rem;
+        }
+        .poet-card-head .poet-epithet {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.4rem;
+        }
+        .poet-card-body {
+            padding: 1rem 1.25rem 1.25rem;
+        }
+        .poet-stat {
+            margin-bottom: 0.75rem;
+        }
+        .poet-stat-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+        }
+        .poet-stat-val {
+            font-size: 0.82rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+        .poet-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 2px;
+            margin-right: 0.25rem;
+            margin-bottom: 0.2rem;
+        }
+        .tag-wang { background: #e8f0ea; color: var(--wang); }
+        .tag-li { background: #f0e8de; color: var(--li); }
+        .tag-du { background: #eae6f0; color: var(--du); }
+
+        /* ===== COMPARISON TABLE ===== */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        .comp-table th {
+            text-align: left;
+            font-weight: 700;
+            padding: 0.6rem 0.8rem;
+            background: var(--ink);
+            color: #fff;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .comp-table th:first-child {
+            width: 140px;
+        }
+        .comp-table td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            line-height: 1.5;
+            color: var(--ink-light);
+        }
+        .comp-table tr:nth-child(even) td {
+            background: var(--paper-warm);
+        }
+        .comp-table .row-label {
+            font-weight: 700;
+            color: var(--ink);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .comp-col-wang { border-top: 3px solid var(--wang); }
+        .comp-col-li { border-top: 3px solid var(--li); }
+        .comp-col-du { border-top: 3px solid var(--du); }
+
+        /* ===== POEMS ===== */
+        .poem-section {
+            margin-bottom: 2rem;
+        }
+        .poem-section-head {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+        }
+        .poem-section-head.wang { border-color: var(--wang); }
+        .poem-section-head.li { border-color: var(--li); }
+        .poem-section-head.du { border-color: var(--du); }
+        .poem-section-head .poet-icon {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .poems-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .poem-card {
+            background: var(--poem-bg);
+            border: 1px solid #ece8df;
+            border-radius: 6px;
+            padding: 1.25rem;
+        }
+        .poem-card.full {
+            grid-column: 1 / -1;
+        }
+        .poem-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .poem-translator {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            margin-bottom: 0.75rem;
+        }
+        .poem-text {
+            font-size: 0.82rem;
+            line-height: 1.75;
+            color: var(--ink-light);
+            white-space: pre-line;
+            font-style: italic;
+        }
+        .poem-note {
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #ddd;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+            font-style: normal;
+        }
+
+        /* ===== STYLE CHART (radar-like) ===== */
+        .style-bars {
+            margin: 1.5rem 0;
+        }
+        .style-bar-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr 1fr;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .style-bar-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--ink-faint);
+            text-align: right;
+        }
+        .style-bar-cell {
+            height: 18px;
+            border-radius: 2px;
+            position: relative;
+        }
+        .style-bar-cell .bar {
+            height: 100%;
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+        .style-bar-header {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        /* ===== DISCUSSION ===== */
+        .disc-list {
+            list-style: none;
+            counter-reset: disc;
+        }
+        .disc-list li {
+            counter-increment: disc;
+            padding: 0.75rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            border-bottom: 1px solid #eee;
+            line-height: 1.6;
+        }
+        .disc-list li::before {
+            content: counter(disc);
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: var(--tang-red);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .exec-grid { grid-template-columns: 1fr; }
+            .poet-cards { grid-template-columns: 1fr; }
+            .poems-grid { grid-template-columns: 1fr; }
+            .comp-table { font-size: 0.75rem; }
+            .comp-table th:first-child { width: 90px; }
+            .style-bar-row { grid-template-columns: 80px 1fr 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.4rem; }
+            .section { padding: 1.5rem 4%; }
+            .nav-strip { padding: 0.5rem 4%; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="page-title">
+            <a href="../index.html" class="back">&larr; EAST 370</a>
+            <span class="ch">詩人世代</span>
+            <span class="en">Poets of a Generation</span>
+            <span class="tag">Tang Dynasty</span>
+        </div>
+        <span class="page-meta">Birch, pp. 217&ndash;236</span>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-label">Instructor Prep &middot; Birch Anthology, "Poets of a Generation: One"</div>
+        <h1>Three Poets Who <strong>Defined an Era</strong></h1>
+        <p class="hero-sub">Wang Wei, Li Bai, and Du Fu were born within thirteen years of each other, during the golden age of Emperor Xuanzong. Together they shaped the common vessel of Chinese poetry into an erudite and exquisite perfection.</p>
+        <div class="hero-poets">
+            <div class="hero-poet">
+                <div class="dot" style="background:var(--wang)"></div>
+                <div>
+                    <span class="name-ch">王維</span>
+                    <span class="name-en">Wang Wei</span>
+                    <span class="dates">699&ndash;759</span>
+                </div>
+            </div>
+            <div class="hero-poet">
+                <div class="dot" style="background:var(--li)"></div>
+                <div>
+                    <span class="name-ch">李白</span>
+                    <span class="name-en">Li Bai</span>
+                    <span class="dates">699&ndash;762</span>
+                </div>
+            </div>
+            <div class="hero-poet">
+                <div class="dot" style="background:var(--du)"></div>
+                <div>
+                    <span class="name-ch">杜甫</span>
+                    <span class="name-en">Du Fu</span>
+                    <span class="dates">712&ndash;770</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NAV -->
+    <nav class="nav-strip">
+        <a href="#exec">Exec Summary</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#map">Map</a>
+        <a href="#profiles">Profiles</a>
+        <a href="#compare">Comparison</a>
+        <a href="#style">Style Chart</a>
+        <a href="#poems">Key Poems</a>
+        <a href="#discuss">Discussion</a>
+    </nav>
+
+    <!-- EXEC SUMMARY -->
+    <section id="exec" class="section">
+        <div class="section-label">Executive Summary</div>
+        <h2>What You Need to Know</h2>
+        <div class="exec-grid">
+            <div class="exec-box">
+                <h3>The Reading</h3>
+                <p>Birch, <em>Anthology of Chinese Literature</em>, pp. 217&ndash;236. "Poets of a Generation: One" covers three Tang Dynasty masters. Wang Wei is represented by nature poetry and a letter to his friend Pei Di (P'ei Ti). Li Bai (Li Po in Birch) ranges from mountain mysticism to war protest to drunken celebration. Du Fu (Tu Fu in Birch) appears through his eight-poem "Autumn Meditation" sequence, written in exile.</p>
+            </div>
+            <div class="exec-box">
+                <h3>Historical Moment</h3>
+                <p>The reign of Emperor Xuanzong (Hsuan-tsung, r. 712&ndash;756), called "Ming-huang, the Illustrious." This was the golden age of <em>shi</em> poetry, the High Tang. All three poets lived through or near the An Lushan Rebellion (755), the cataclysm that ended the Tang's golden age and scattered the literati class.</p>
+            </div>
+            <div class="exec-box">
+                <h3>Core Themes</h3>
+                <ul>
+                    <li>Nature as spiritual dissolution vs. nature as backdrop for human drama</li>
+                    <li>The tension between official service and reclusion</li>
+                    <li>Wine as philosophical vehicle (Li Bai) vs. chrysanthemums as exile's emblem (Du Fu)</li>
+                    <li>Friendship poetry: Wang-Pei Di exchange, Li Bai's letters, Du Fu's longing</li>
+                    <li>War and the frontier: Li Bai's anti-war protest, Du Fu's grief for Ch'ang-an</li>
+                </ul>
+            </div>
+            <div class="exec-box">
+                <h3>Birch's Romanization</h3>
+                <ul>
+                    <li><strong>Li Po</strong> = Li Bai 李白 (Pinyin)</li>
+                    <li><strong>Tu Fu</strong> = Du Fu 杜甫 (Pinyin)</li>
+                    <li><strong>P'ei Ti</strong> = Pei Di 裴迪</li>
+                    <li><strong>Ch'ang-an</strong> = Chang'an 長安</li>
+                    <li><strong>K'uei-chou</strong> = Kuizhou 夔州</li>
+                    <li><strong>Hsuan-tsung</strong> = Xuanzong 玄宗</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" class="section section-alt">
+        <div class="section-label">Historical Context</div>
+        <h2>Timeline: Three Lives, One Rebellion</h2>
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-year">699</div>
+                <div class="tl-dot wang"></div>
+                <div class="tl-content"><strong>Wang Wei born</strong> in Qi County, Shanxi. Will become poet-painter.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">699</div>
+                <div class="tl-dot li"></div>
+                <div class="tl-content"><strong>Li Bai born</strong> in Suyab (modern Kyrgyzstan) or Sichuan. Same year as Wang Wei.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">712</div>
+                <div class="tl-dot du"></div>
+                <div class="tl-content"><strong>Du Fu born</strong> near Luoyang. Thirteen years younger than the other two.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">712</div>
+                <div class="tl-dot era"></div>
+                <div class="tl-content"><strong>Emperor Xuanzong ascends.</strong> Beginning of the High Tang golden age.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">~720s</div>
+                <div class="tl-dot wang"></div>
+                <div class="tl-content">Wang Wei passes the <em>jinshi</em> exam, enters civil service. Begins painting career.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">~740s</div>
+                <div class="tl-dot wang"></div>
+                <div class="tl-content">Wang Wei retreats to his Wang River estate (Wangchuan). Writes the <em>Wang River Collection</em> with Pei Di.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">742&ndash;744</div>
+                <div class="tl-dot li"></div>
+                <div class="tl-content"><strong>Li Bai summoned to court.</strong> Brief appointment at the Hanlin Academy. Dismissed (legend: too drunk and arrogant).</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">744</div>
+                <div class="tl-dot era"></div>
+                <div class="tl-content"><strong>Li Bai and Du Fu meet.</strong> One of the most famous encounters in Chinese literary history.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">755</div>
+                <div class="tl-dot era" style="background:#c00;width:14px;height:14px;margin-top:0.2rem"></div>
+                <div class="tl-content"><strong style="color:var(--tang-red)">AN LUSHAN REBELLION.</strong> The watershed. Chang'an falls. The golden age ends. All three poets' lives are shattered.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">757&ndash;58</div>
+                <div class="tl-dot du"></div>
+                <div class="tl-content">Du Fu serves briefly as "Reminder" at court. Loses favor for writing critical memorials.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">759</div>
+                <div class="tl-dot wang"></div>
+                <div class="tl-content"><strong>Wang Wei dies</strong> at 60. Had been captured by rebels, forced to serve them. Pardoned but broken.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">762</div>
+                <div class="tl-dot li"></div>
+                <div class="tl-content"><strong>Li Bai dies</strong> at 63. Legend: drowned reaching for the moon's reflection while drunk.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">766</div>
+                <div class="tl-dot du"></div>
+                <div class="tl-content">Du Fu writes "Autumn Meditation" at Kuizhou, in exile on the Yangtze gorges.</div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">770</div>
+                <div class="tl-dot du"></div>
+                <div class="tl-content"><strong>Du Fu dies</strong> at 58. Never returned to Chang'an. Died on a boat on the Xiang River.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section id="map" class="section">
+        <div class="section-label">Geography</div>
+        <h2>The Tang Poets' World</h2>
+        <div class="map-container">
+            <h3>Key Locations in the Reading</h3>
+            <svg class="map-svg" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background -->
+                <rect width="750" height="500" fill="#f5f0e8" rx="6"/>
+
+                <!-- Terrain shapes (simplified) -->
+                <path d="M50,100 Q150,60 250,90 Q350,40 450,80 Q500,50 550,70 L550,120 Q450,140 350,110 Q250,150 150,130 Q100,140 50,120Z" fill="#d4c9b0" opacity="0.3"/>
+
+                <!-- Yellow River -->
+                <path d="M100,150 Q200,80 320,120 Q400,90 480,140 Q520,160 560,200 Q580,260 540,320 Q500,350 480,380" stroke="#8fa9bf" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <text x="280" y="78" font-size="9" fill="#7a94a8" font-family="Inter" font-weight="600">YELLOW RIVER 黃河</text>
+
+                <!-- Yangtze River -->
+                <path d="M60,350 Q150,320 250,340 Q350,300 420,320 Q500,280 560,300 Q620,310 700,340" stroke="#8fa9bf" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <text x="300" y="295" font-size="9" fill="#7a94a8" font-family="Inter" font-weight="600">YANGTZE 長江</text>
+
+                <!-- Wu Gorges -->
+                <path d="M370,310 Q390,305 410,315" stroke="#6a8494" stroke-width="5" fill="none" opacity="0.4" stroke-linecap="round"/>
+                <text x="370" y="335" font-size="8" fill="#6a8494" font-family="Inter" font-style="italic">Wu Gorges</text>
+
+                <!-- LOCATIONS -->
+
+                <!-- Chang'an (Xi'an) - THE capital -->
+                <circle cx="340" cy="190" r="8" fill="var(--tang-red)" stroke="#fff" stroke-width="2"/>
+                <rect x="340" y="190" width="4" height="4" fill="#fff" transform="rotate(45,342,192)"/>
+                <text x="355" y="188" font-size="11" fill="var(--tang-red)" font-weight="700" font-family="Inter">Chang'an 長安</text>
+                <text x="355" y="200" font-size="8" fill="#888" font-family="Inter">Tang Capital</text>
+
+                <!-- Luoyang -->
+                <circle cx="440" cy="180" r="5" fill="#666" stroke="#fff" stroke-width="1.5"/>
+                <text x="450" y="175" font-size="9" fill="#555" font-weight="600" font-family="Inter">Luoyang 洛陽</text>
+                <text x="450" y="185" font-size="7" fill="#888" font-family="Inter">Du Fu's birthplace</text>
+
+                <!-- Wang River Estate -->
+                <circle cx="290" cy="220" r="5" fill="var(--wang)" stroke="#fff" stroke-width="1.5"/>
+                <text x="220" y="235" font-size="9" fill="var(--wang)" font-weight="600" font-family="Inter">Wang River 輞川</text>
+                <text x="220" y="245" font-size="7" fill="#888" font-family="Inter">Wang Wei's estate</text>
+
+                <!-- Kuizhou -->
+                <circle cx="390" cy="310" r="5" fill="var(--du)" stroke="#fff" stroke-width="1.5"/>
+                <text x="395" y="305" font-size="9" fill="var(--du)" font-weight="600" font-family="Inter">Kuizhou 夔州</text>
+                <text x="395" y="315" font-size="7" fill="#888" font-family="Inter">Du Fu's exile, "Autumn Meditation"</text>
+
+                <!-- Sichuan -->
+                <circle cx="280" cy="340" r="4" fill="var(--li)" stroke="#fff" stroke-width="1.5"/>
+                <text x="240" y="358" font-size="9" fill="var(--li)" font-weight="600" font-family="Inter">Sichuan 蜀</text>
+                <text x="240" y="368" font-size="7" fill="#888" font-family="Inter">Li Bai's youth</text>
+
+                <!-- Kucha (far west) -->
+                <circle cx="80" cy="140" r="4" fill="#999" stroke="#fff" stroke-width="1.5"/>
+                <text x="60" y="133" font-size="8" fill="#777" font-weight="600" font-family="Inter">Kucha 龜茲</text>
+                <text x="60" y="143" font-size="7" fill="#aaa" font-family="Inter">"Seeing Master Yuan Off"</text>
+
+                <!-- Yang Kuan / Western frontier -->
+                <path d="M150,180 L340,190" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+                <text x="200" y="175" font-size="7" fill="#aaa" font-family="Inter" font-style="italic">Silk Road West</text>
+
+                <!-- Wei City -->
+                <circle cx="330" cy="170" r="3" fill="#999" stroke="#fff" stroke-width="1"/>
+                <text x="300" y="166" font-size="7" fill="#999" font-family="Inter">Wei City</text>
+
+                <!-- Pai Ti / White Emperor City -->
+                <circle cx="410" cy="320" r="3" fill="var(--du)" stroke="#fff" stroke-width="1" opacity="0.6"/>
+                <text x="420" y="328" font-size="7" fill="#888" font-family="Inter">Pai Ti (White Emperor City)</text>
+
+                <!-- Han-tan -->
+                <circle cx="480" cy="150" r="3" fill="var(--li)" stroke="#fff" stroke-width="1" opacity="0.6"/>
+                <text x="490" y="148" font-size="7" fill="#888" font-family="Inter">Handan 邯鄲</text>
+
+                <!-- Compass -->
+                <text x="690" y="40" font-size="10" fill="#bbb" font-family="Inter" font-weight="700">N</text>
+                <line x1="695" y1="44" x2="695" y2="60" stroke="#ccc" stroke-width="1"/>
+                <polygon points="695,42 691,50 699,50" fill="#ccc"/>
+
+                <!-- Scale -->
+                <line x1="580" y1="470" x2="680" y2="470" stroke="#ccc" stroke-width="1"/>
+                <line x1="580" y1="466" x2="580" y2="474" stroke="#ccc" stroke-width="1"/>
+                <line x1="680" y1="466" x2="680" y2="474" stroke="#ccc" stroke-width="1"/>
+                <text x="610" y="464" font-size="7" fill="#bbb" font-family="Inter">~500 km</text>
+
+                <!-- Title -->
+                <text x="20" y="480" font-size="8" fill="#aaa" font-family="Inter">Tang Dynasty China, 8th century</text>
+            </svg>
+            <div class="map-legend">
+                <div class="map-legend-item"><div class="swatch" style="background:var(--tang-red)"></div> Tang Capital</div>
+                <div class="map-legend-item"><div class="swatch" style="background:var(--wang)"></div> Wang Wei</div>
+                <div class="map-legend-item"><div class="swatch" style="background:var(--li)"></div> Li Bai</div>
+                <div class="map-legend-item"><div class="swatch" style="background:var(--du)"></div> Du Fu</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POET PROFILES -->
+    <section id="profiles" class="section section-alt">
+        <div class="section-label">Vital Rundown</div>
+        <h2>The Three Masters</h2>
+        <div class="poet-cards">
+            <!-- WANG WEI -->
+            <div class="poet-card">
+                <div class="poet-card-head wang">
+                    <div class="poet-ch">王維</div>
+                    <div class="poet-en" style="color:var(--wang)">Wang Wei</div>
+                    <div class="poet-dates">699&ndash;759 (60 years)</div>
+                    <div class="poet-epithet" style="color:var(--wang)">The Poet-Painter</div>
+                </div>
+                <div class="poet-card-body">
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Philosophy</div>
+                        <div class="poet-stat-val">Chan (Zen) Buddhism. Sought dissolution of self in nature. His courtesy name "Mojie" (摩詰) references the Buddhist figure Vimalakirti.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Signature Move</div>
+                        <div class="poet-stat-val">"The closest union with the natural world that has ever been expressed." Harmony, stillness, emptiness. Painting and poetry as twin arts.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Key Location</div>
+                        <div class="poet-stat-val">Wang River estate (Wangchuan), south of Chang'an. Semi-retired retreat where he composed with friend Pei Di.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Poems in Reading</div>
+                        <div class="poet-stat-val">
+                            <span class="poet-tag tag-wang">Letter to P'ei Ti</span>
+                            <span class="poet-tag tag-wang">River Wang (6 poems)</span>
+                            <span class="poet-tag tag-wang">Seeing Master Yuan Off</span>
+                            <span class="poet-tag tag-wang">To Asst. Prefect Chang</span>
+                        </div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Translators</div>
+                        <div class="poet-stat-val">Arthur Waley, C.J. Chen & Michael Bullock, Kwock & McHugh, Cyril Birch</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LI BAI -->
+            <div class="poet-card">
+                <div class="poet-card-head li">
+                    <div class="poet-ch">李白</div>
+                    <div class="poet-en" style="color:var(--li)">Li Bai</div>
+                    <div class="poet-dates">699&ndash;762 (63 years)</div>
+                    <div class="poet-epithet" style="color:var(--li)">The Banished Immortal</div>
+                </div>
+                <div class="poet-card-body">
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Philosophy</div>
+                        <div class="poet-stat-val">Daoist eclecticism. "Now epicurean, now Taoist in characteristic admixture." Wine as gateway to transcendence. The Dao in the cup.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Signature Move</div>
+                        <div class="poet-stat-val">Grandeur, spontaneity, cosmic vision. Drinks alone with the moon. Writes begging-letters with the swagger of a prince. Anti-war fury alongside drunken ecstasy.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Key Location</div>
+                        <div class="poet-stat-val">Everywhere. Born in Central Asia or Sichuan, wandered the empire. Brief court stint 742&ndash;744. Exiled to Yelang after the rebellion.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Poems in Reading</div>
+                        <div class="poet-stat-val">
+                            <span class="poet-tag tag-li">On the Mountain</span>
+                            <span class="poet-tag tag-li">Spring Thoughts</span>
+                            <span class="poet-tag tag-li">To Someone Far Away</span>
+                            <span class="poet-tag tag-li">Night Mooring</span>
+                            <span class="poet-tag tag-li">Han-tan Dancers</span>
+                            <span class="poet-tag tag-li">To Old Friend Hsin</span>
+                            <span class="poet-tag tag-li">Fighting South</span>
+                            <span class="poet-tag tag-li">Four Poems on Wine</span>
+                            <span class="poet-tag tag-li">Letter to Han Ching-chou</span>
+                        </div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Translators</div>
+                        <div class="poet-stat-val">Kwock & McHugh, Arthur Waley, William Acker, A.C. Graham, J.R. Hightower</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DU FU -->
+            <div class="poet-card">
+                <div class="poet-card-head du">
+                    <div class="poet-ch">杜甫</div>
+                    <div class="poet-en" style="color:var(--du)">Du Fu</div>
+                    <div class="poet-dates">712&ndash;770 (58 years)</div>
+                    <div class="poet-epithet" style="color:var(--du)">The Poet-Sage</div>
+                </div>
+                <div class="poet-card-body">
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Philosophy</div>
+                        <div class="poet-stat-val">Confucian conscience. Political commitment and moral seriousness. A loyalist's grief over a broken empire. Duty to speak truth to power, even at personal cost.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Signature Move</div>
+                        <div class="poet-stat-val">"Encrusted with jewels of compressed esoteric allusion." Dense, allusive, emotionally devastating. War poems: "simple, direct, and immediate of impact."</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Key Location</div>
+                        <div class="poet-stat-val">Kuizhou (K'uei-chou), on the Yangtze gorges. Wrote "Autumn Meditation" there in 766 during his second autumn of exile, far from Chang'an.</div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Poems in Reading</div>
+                        <div class="poet-stat-val">
+                            <span class="poet-tag tag-du">Autumn Meditation 1</span>
+                            <span class="poet-tag tag-du">Autumn Meditation 2</span>
+                            <span class="poet-tag tag-du">Autumn Meditation 3</span>
+                            <span class="poet-tag tag-du">Autumn Meditation 4</span>
+                            <span class="poet-tag tag-du">Autumn Meditation 5</span>
+                        </div>
+                    </div>
+                    <div class="poet-stat">
+                        <div class="poet-stat-label">Translators</div>
+                        <div class="poet-stat-val">Not named in the excerpt for the "Autumn Meditation" sequence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section id="compare" class="section">
+        <div class="section-label">Side-by-Side</div>
+        <h2>Three Poets Compared</h2>
+        <div style="overflow-x:auto">
+        <table class="comp-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="comp-col-wang">Wang Wei 王維</th>
+                    <th class="comp-col-li">Li Bai 李白</th>
+                    <th class="comp-col-du">Du Fu 杜甫</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row-label">Core Identity</td>
+                    <td>Poet-Painter. Buddhist recluse.</td>
+                    <td>Banished Immortal. Daoist wanderer.</td>
+                    <td>Poet-Sage. Confucian conscience.</td>
+                </tr>
+                <tr>
+                    <td class="row-label">Relation to Nature</td>
+                    <td>Dissolves into it. Subject and landscape merge.</td>
+                    <td>Performs in front of it. Moon, mountain, river as cosmic audience.</td>
+                    <td>Reads history through it. Autumn, decay, seasons as political metaphor.</td>
+                </tr>
+                <tr>
+                    <td class="row-label">Relation to State</td>
+                    <td>Semi-retired. Served but retreated to Wang River.</td>
+                    <td>Wanted glory, got exile. Brief court stint, mostly outside.</td>
+                    <td>Devoted but punished. Lost favor for honesty. Died in exile.</td>
+                </tr>
+                <tr>
+                    <td class="row-label">Key Genre</td>
+                    <td>Nature quatrains. Landscape letter-poems.</td>
+                    <td>Drinking songs. Frontier ballads. Begging-letters.</td>
+                    <td>Regulated verse (<em>lushi</em>). Dense allusive sequences.</td>
+                </tr>
+                <tr>
+                    <td class="row-label">Tone</td>
+                    <td>Still. Luminous. Empty. The silence between sounds.</td>
+                    <td>Soaring. Defiant. Ecstatic. The shout across mountains.</td>
+                    <td>Heavy. Grieving. Dense. The weight of an empire's collapse.</td>
+                </tr>
+                <tr>
+                    <td class="row-label">Friendship</td>
+                    <td>Pei Di: quiet exchange of poems at Wang River.</td>
+                    <td>Yuan Tan-ch'iu, Master Ts'en: drinking companions.</td>
+                    <td>Memories of friends who've risen while he's stuck in exile.</td>
+                </tr>
+                <tr>
+                    <td class="row-label">On Wine</td>
+                    <td>"Before a cup of wine, on every side the lotus flowers will open."</td>
+                    <td>"With three cups I understand the great Way. With one jar I am at one with Nature."</td>
+                    <td>Absent. Chrysanthemums and tears, not cups.</td>
+                </tr>
+                <tr>
+                    <td class="row-label">Death</td>
+                    <td>Died 759, age 60. Captured by rebels, pardoned.</td>
+                    <td>Died 762, age 63. Legend: drowned reaching for moon.</td>
+                    <td>Died 770, age 58. On a boat. Never went home.</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- STYLE CHART -->
+    <section id="style" class="section section-alt">
+        <div class="section-label">Poetic DNA</div>
+        <h2>Style at a Glance</h2>
+        <p style="font-size:0.82rem;color:var(--ink-light);margin-bottom:1rem">Relative tendencies across key poetic dimensions. Not quantitative, but useful for quick orientation.</p>
+        <div class="style-bars">
+            <div class="style-bar-row">
+                <div class="style-bar-label"></div>
+                <div class="style-bar-header" style="color:var(--wang)">Wang Wei</div>
+                <div class="style-bar-header" style="color:var(--li)">Li Bai</div>
+                <div class="style-bar-header" style="color:var(--du)">Du Fu</div>
+            </div>
+            <div class="style-bar-row">
+                <div class="style-bar-label">Simplicity</div>
+                <div class="style-bar-cell"><div class="bar" style="width:90%;background:var(--wang)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:70%;background:var(--li)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:25%;background:var(--du)"></div></div>
+            </div>
+            <div class="style-bar-row">
+                <div class="style-bar-label">Allusion</div>
+                <div class="style-bar-cell"><div class="bar" style="width:30%;background:var(--wang)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:55%;background:var(--li)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:95%;background:var(--du)"></div></div>
+            </div>
+            <div class="style-bar-row">
+                <div class="style-bar-label">Emotion</div>
+                <div class="style-bar-cell"><div class="bar" style="width:35%;background:var(--wang)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:80%;background:var(--li)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:90%;background:var(--du)"></div></div>
+            </div>
+            <div class="style-bar-row">
+                <div class="style-bar-label">Nature</div>
+                <div class="style-bar-cell"><div class="bar" style="width:95%;background:var(--wang)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:65%;background:var(--li)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:50%;background:var(--du)"></div></div>
+            </div>
+            <div class="style-bar-row">
+                <div class="style-bar-label">Politics</div>
+                <div class="style-bar-cell"><div class="bar" style="width:15%;background:var(--wang)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:45%;background:var(--li)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:90%;background:var(--du)"></div></div>
+            </div>
+            <div class="style-bar-row">
+                <div class="style-bar-label">Ego / Self</div>
+                <div class="style-bar-cell"><div class="bar" style="width:10%;background:var(--wang)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:95%;background:var(--li)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:60%;background:var(--du)"></div></div>
+            </div>
+            <div class="style-bar-row">
+                <div class="style-bar-label">Spontaneity</div>
+                <div class="style-bar-cell"><div class="bar" style="width:60%;background:var(--wang)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:90%;background:var(--li)"></div></div>
+                <div class="style-bar-cell"><div class="bar" style="width:30%;background:var(--du)"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY POEMS -->
+    <section id="poems" class="section">
+        <div class="section-label">Selected Poems from the Reading</div>
+        <h2>Key Poems to Know</h2>
+
+        <!-- WANG WEI -->
+        <div class="poem-section">
+            <div class="poem-section-head wang">
+                <span class="poet-icon">王</span>
+                <span style="font-weight:700">Wang Wei</span>
+            </div>
+            <div class="poems-grid">
+                <div class="poem-card">
+                    <div class="poem-title">The Deer Enclosure</div>
+                    <div class="poem-translator">From "Poems of the River Wang" &middot; tr. C.J. Chen & Michael Bullock</div>
+                    <div class="poem-text">On the lonely mountain
+    I meet no one,
+I hear only the echo
+    of human voices.
+At an angle the sun's rays
+    enter the depths of the wood,
+And shine
+    upon the green moss.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> The quintessential Wang Wei poem. The self disappears. What remains: sound, light, moss. Four lines, total emptiness. This is Chan Buddhism as poetry.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">To the Assistant Prefect Chang</div>
+                    <div class="poem-translator">tr. Cyril Birch</div>
+                    <div class="poem-text">In evening years given to quietude,
+The world's worries no concern of mine,
+For my own needs making no other plan
+Than to unlearn, return to long-loved woods:
+I loosen my robe before the breeze from pines,
+My lute celebrates moonlight on mountain pass.
+You ask what laws rule "failure" or "success" --
+Songs of fishermen float to the still shore.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> The recluse ideal in miniature. "Unlearn" is the key verb. The final couplet refuses the question entirely. Compare this to Li Bai's aggressive self-promotion in the letter to Han Ching-chou.</div>
+                </div>
+                <div class="poem-card full">
+                    <div class="poem-title">Letter to the Bachelor of Arts P'ei Ti</div>
+                    <div class="poem-translator">tr. Arthur Waley (prose letter)</div>
+                    <div class="poem-text">...When night was far advanced, I mounted Hua-tzu's Hill and saw the moonlight tossed up and thrown down by the jostling waves of Wang River. On the wintry mountain distant lights twinkled and vanished; in some deep lane beyond the forest a dog barked at the cold, with a cry as fierce as a wolf's. The sound of villagers grinding their corn at night filled the gaps between the slow chimes of a distant bell.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> Birch calls this the preface to the Wang-Pei Di poem exchange. It's a prose poem disguised as a letter. Notice how it achieves the same dissolution as the verse, but in prose. The dog, the bell, the grinding corn. No commentary. Pure image.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LI BAI -->
+        <div class="poem-section">
+            <div class="poem-section-head li">
+                <span class="poet-icon">李</span>
+                <span style="font-weight:700">Li Bai</span>
+            </div>
+            <div class="poems-grid">
+                <div class="poem-card">
+                    <div class="poem-title">On the Mountain: Question and Answer</div>
+                    <div class="poem-translator">tr. Kwock & McHugh</div>
+                    <div class="poem-text">You ask me:
+        Why do I live
+on this green mountain?
+    I smile
+    No answer
+            My heart serene
+On flowing water
+                peachblow
+                quietly going
+                far away
+This is another earth
+    another sky
+No likeness
+        to that human world below</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> Birch says this is where "the unearthly beauty" begins. Compare to Wang Wei's silence: both refuse the question, but Li Bai smiles and makes it theatrical. The Daoist mountain as separate cosmos.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Four Poems on Wine, No. 1 (excerpt)</div>
+                    <div class="poem-translator">tr. William Acker</div>
+                    <div class="poem-text">Amidst the flowers
+        a jug of wine --
+I pour alone
+        lacking companionship,
+So raising the cup
+        I invite the moon,
+Then turn to my shadow
+        which makes three of us.
+...
+I start a song
+        and the moon begins to reel,
+I rise and dance
+        and the shadow moves grotesquely.
+While I'm still conscious
+        let's rejoice with one another,
+After I'm drunk
+        let each one go his way.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> The most famous Li Bai poem. Moon, shadow, self = a trinity of loneliness disguised as a party. Wine is not escape but communion with the cosmos. "Let us bind ourselves for ever / for passionless journeyings."</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Fighting South of the Ramparts</div>
+                    <div class="poem-translator">tr. Arthur Waley</div>
+                    <div class="poem-text">The King's armies have grown grey and old
+Fighting ten thousand leagues away from home.
+The Huns have no trade but battle and carnage;
+They have no fields or ploughlands...
+Crows and hawks peck for human guts,
+Carry them in their beaks and hang them on the branches
+    of withered trees...
+Know therefore that the sword is a cursed thing
+Which the wise man uses only if he must.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> Li Bai wrote this to an old anonymous folk-song tune. The final line quotes the <em>Dao De Jing</em>. This is not the drunken Li Bai. This is the political Li Bai, channeling anti-war tradition from the Warring States through the Tang frontier.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">To His Old Friend Hsin</div>
+                    <div class="poem-translator">tr. A.C. Graham</div>
+                    <div class="poem-text">Long ago, among the flowers and willows,
+We sat drinking together at Ch'ang-an.
+The Five Barons and Seven Grandees were of our company...
+We thought, you and I, that it would always be like this.
+How should we know the grass would stir and dust rise on the wind?
+Suddenly foreign horsemen were at the Hsien-ku Pass
+Just when the blossom at the Palace of Ch'in was opening
+    on the sunny boughs.
+Now I, unhappy, am on my way to banishment at Yeh-lang...</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> Before and after the An Lushan Rebellion in a single poem. The "foreign horsemen at the pass" is the exact moment the golden age ends. Li Bai is now exiled. The cherry blossoms were still opening when the world fell.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DU FU -->
+        <div class="poem-section">
+            <div class="poem-section-head du">
+                <span class="poet-icon">杜</span>
+                <span style="font-weight:700">Du Fu</span>
+            </div>
+            <div class="poems-grid">
+                <div class="poem-card full">
+                    <div class="poem-title">Autumn Meditation, No. 1</div>
+                    <div class="poem-translator">From "Ch'iu hsing" (秋興), written 766 at K'uei-chou</div>
+                    <div class="poem-text">Gems of dew wilt and wound the maple trees in the wood:
+From Wu mountains, from Wu gorges, the air blows desolate.
+The waves between the river-banks merge in the seething sky,
+Clouds in the wind above the passes meet their shadows on the ground.
+Clustered chrysanthemums have opened twice, in tears of other days;
+The forlorn boat, once and for all, tethers my homeward thoughts.
+In the houses winter clothes speed scissors and ruler;
+The washing-blocks pound, faster each evening, in Pai Ti high on the hill.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> The opening poem of the eight-poem sequence. "Chrysanthemums have opened twice" = two autumns in exile. The "forlorn boat" is tethered just as Du Fu is tethered, unable to return to Chang'an. Every line carries double meaning: landscape and political allegory fused.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Autumn Meditation, No. 4</div>
+                    <div class="poem-translator">"Ch'iu hsing" No. 4</div>
+                    <div class="poem-text">Well said, Ch'ang-an looks like a chessboard --
+Won and lost for a hundred years, sad beyond all telling.
+The mansions of princes and nobles all have new lords,
+And another generation wears the caps and robes of office.
+Due north on the mountain passes the gongs and drums shake,
+To the chariots and horses campaigning in the west the winged
+    dispatches hasten.
+While the fish and dragons fall asleep and the autumn river
+    turns cold
+My native country, untroubled times, are always in my thoughts.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> Chang'an as chessboard = the capital has been won and lost by loyalists, rebels, and Tibetan invaders in turn. "My native country, untroubled times" is the heartbreak line. He mourns not just a place but a time.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Autumn Meditation, No. 2</div>
+                    <div class="poem-translator">"Ch'iu hsing" No. 2</div>
+                    <div class="poem-text">On the solitary walls of K'uei-chou the sunset rays slant,
+Each night guided by the Dipper I gaze towards the capital.
+It is true then that tears start when we hear the gibbon cry thrice;
+Useless my mission adrift on the raft which came by this eighth month.</div>
+                    <div class="poem-note"><strong>Why it matters:</strong> The Dipper points north, toward Chang'an. Du Fu uses it as a compass of longing. The "gibbon cry thrice" is an old folk belief that three cries bring tears. The raft adrift = a legend about floating to the Milky Way, used here as an image of exile without return.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISCUSSION -->
+    <section id="discuss" class="section section-alt">
+        <div class="section-label">For the Classroom</div>
+        <h2>Discussion Questions</h2>
+        <ol class="disc-list">
+            <li>Wang Wei's "Deer Enclosure" has almost no human presence. Li Bai's "On the Mountain" is all personality. Du Fu's "Autumn Meditation" is dense with history. How does each poet's relationship to the self shape their poetry?</li>
+            <li>All three poets deal with the problem of political service vs. withdrawal. Where does each stand? Is Wang Wei's retreat to Wang River the same kind of reclusion Tao Yuanming practiced? How is it different?</li>
+            <li>Li Bai's "Four Poems on Wine" argues that drunkenness is a path to truth ("With three cups I understand the great Way"). Is this Daoist philosophy, or is he just making excuses? Compare to Ruan Ji's drinking in the previous unit.</li>
+            <li>Du Fu's "Autumn Meditation" sequence is called "encrusted with jewels of compressed esoteric allusion." What does this mean in practice? Take one couplet and unpack the layers.</li>
+            <li>The An Lushan Rebellion (755) runs through all three lives. How does each poet process catastrophe? Wang Wei was captured. Li Bai was exiled. Du Fu was broken. Which response resonates most, and why?</li>
+            <li>Birch says Wang Wei "achieved perhaps the closest union with the natural world that has ever been expressed." Is this Buddhist? Daoist? Both? Neither? What separates it from simple nature description?</li>
+            <li>Li Bai's letter to Han Ching-chou is an aggressive self-promotion piece ("the courage of ten thousand men"). Compare it to Wang Wei's "To the Assistant Prefect Chang" ("The world's worries no concern of mine"). Same genre (poem/letter to an official), opposite posture. What do these contrasts reveal about Tang literary culture?</li>
+        </ol>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding:1.5rem 5%;background:var(--ink);color:#666;font-size:0.7rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem">
+        <div>
+            <a href="../index.html" style="color:var(--gold-light);text-decoration:none">&larr; EAST 370 Home</a>
+            &nbsp;&middot;&nbsp;
+            <a href="recluse-poetry.html" style="color:#888;text-decoration:none">Recluse Poetry</a>
+            &nbsp;&middot;&nbsp;
+            <a href="bao-zhao.html" style="color:#888;text-decoration:none">Bao Zhao</a>
+        </div>
+        <div>Source: Birch, <em>Anthology of Chinese Literature</em>, pp. 217&ndash;236</div>
+    </footer>
+</body>
+</html>
