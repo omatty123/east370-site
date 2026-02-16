@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tang Poets Map | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --wang: #4a7c59;
+            --li: #8b5c3e;
+            --du: #5a4a7c;
+            --tang-red: #a03030;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .page-header a {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+        .page-header a:hover { color: var(--gold-light); }
+        .page-header .divider { color: #555; font-size: 0.7rem; }
+        .page-header .title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .page-header .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+        }
+        .page-header h1 {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+        }
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .nav a:hover { color: var(--gold-light); background: rgba(184,134,11,0.15); }
+        .nav a.portal-link { background: var(--gold); color: #fff; }
+        .nav a.portal-link:hover { background: var(--gold-light); }
+        .nav a.study-link { border: 1px solid var(--tang-red); color: rgba(255,255,255,0.9); }
+        .nav a.study-link:hover { background: var(--tang-red); color: #fff; }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            height: calc(100vh - 95px);
+        }
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; height: auto; }
+        }
+
+        .sidebar {
+            background: #fff;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+        .sidebar-section { border-bottom: 1px solid #eee; }
+        .sidebar-section-header {
+            padding: 0.75rem 1rem;
+            background: var(--paper);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sidebar-section-header h3 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-light);
+            font-weight: 600;
+        }
+        .sidebar-section-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .location-list { list-style: none; }
+        .location-item {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .location-item:hover { background: rgba(160,48,48,0.04); }
+        .location-item.active {
+            background: rgba(160,48,48,0.08);
+            border-left: 3px solid var(--tang-red);
+        }
+        .location-item .name {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.2rem;
+        }
+        .location-item .chinese-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.25rem;
+            color: var(--ink);
+        }
+        .location-item .english-name {
+            font-size: 0.85rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .location-item .description {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+        .location-item .poet-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+            margin-top: 0.4rem;
+            margin-right: 0.2rem;
+            color: #fff;
+        }
+
+        .map-container { position: relative; }
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            background: #f5f3ef;
+        }
+
+        .map-legend {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .map-legend h4 {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-light);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.7rem;
+            color: var(--ink);
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: #fff;
+            color: var(--ink);
+            border-radius: 4px;
+            padding: 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .leaflet-popup-content { margin: 0; min-width: 260px; }
+        .leaflet-popup-tip { background: #fff; }
+
+        .popup-content { padding: 1rem; }
+        .popup-content .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid #eee;
+        }
+        .popup-content .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.6rem;
+        }
+        .popup-content .names { flex: 1; }
+        .popup-content .english {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .popup-content .pinyin {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: var(--ink-faint);
+        }
+        .popup-content .popup-body {
+            font-size: 0.8rem;
+            line-height: 1.55;
+            color: var(--ink-light);
+        }
+        .popup-content .popup-body p { margin-bottom: 0.6rem; }
+        .popup-content .modern-location {
+            background: var(--paper);
+            padding: 0.4rem 0.6rem;
+            border-radius: 3px;
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--tang-red);
+        }
+        .popup-content .poet-tags {
+            margin-top: 0.6rem;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .popup-content .poet-badge {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            color: #fff;
+        }
+
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term { font-size: 0.6rem; font-weight: 600; color: var(--gold); letter-spacing: 0.08em; }
+    </style>
+</head>
+
+<body>
+    <header class="page-header">
+        <a href="../../index.html">EAST 370</a>
+        <span class="divider">/</span>
+        <a href="../tang-poets.html">Tang Poets</a>
+        <span class="divider">/</span>
+        <div class="title">
+            <span class="chinese">唐詩地圖</span>
+            <h1>Tang Poets Interactive Map</h1>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../../index.html" class="portal-link">Course Portal</a>
+            <a href="../tang-poets.html" class="study-link">Study Guide</a>
+            <a href="#map">Map</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Tang Capital</h3>
+                    <div class="dot" style="background:var(--tang-red)"></div>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-id="changan">
+                        <div class="name">
+                            <span class="chinese-name">長安</span>
+                            <span class="english-name">Chang'an</span>
+                        </div>
+                        <div class="description">Tang capital, center of all three poets' world. Du Fu longed for it from exile. Li Bai briefly served at court (742-744). Wang Wei held official posts here.</div>
+                        <span class="poet-badge" style="background:var(--tang-red)">Capital</span>
+                    </li>
+                    <li class="location-item" data-id="luoyang">
+                        <div class="name">
+                            <span class="chinese-name">洛陽</span>
+                            <span class="english-name">Luoyang</span>
+                        </div>
+                        <div class="description">Eastern capital. Du Fu born nearby.</div>
+                        <span class="poet-badge" style="background:var(--du)">Du Fu</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Wang Wei 王維</h3>
+                    <div class="dot" style="background:var(--wang)"></div>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-id="wangriver">
+                        <div class="name">
+                            <span class="chinese-name">輞川</span>
+                            <span class="english-name">Wang River Estate</span>
+                        </div>
+                        <div class="description">Wang Wei's retreat south of Chang'an. Composed the River Wang poems with friend Pei Di. "The closest union with the natural world."</div>
+                        <span class="poet-badge" style="background:var(--wang)">Wang Wei</span>
+                    </li>
+                    <li class="location-item" data-id="weicity">
+                        <div class="name">
+                            <span class="chinese-name">渭城</span>
+                            <span class="english-name">Wei City (Xianyang)</span>
+                        </div>
+                        <div class="description">Near Chang'an. Setting of Wang Wei's farewell poem "Seeing Master Yuan Off on His Mission to Kucha."</div>
+                        <span class="poet-badge" style="background:var(--wang)">Wang Wei</span>
+                    </li>
+                    <li class="location-item" data-id="kucha">
+                        <div class="name">
+                            <span class="chinese-name">龜茲</span>
+                            <span class="english-name">Kucha</span>
+                        </div>
+                        <div class="description">Far western Silk Road oasis kingdom. Destination in "Seeing Master Yuan Off." Over 2,000 km from Chang'an.</div>
+                        <span class="poet-badge" style="background:var(--wang)">Wang Wei</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Li Bai 李白</h3>
+                    <div class="dot" style="background:var(--li)"></div>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-id="sichuan">
+                        <div class="name">
+                            <span class="chinese-name">蜀 / 成都</span>
+                            <span class="english-name">Sichuan / Chengdu</span>
+                        </div>
+                        <div class="description">Li Bai's youth. Also where Du Fu spent years after the rebellion.</div>
+                        <span class="poet-badge" style="background:var(--li)">Li Bai</span>
+                        <span class="poet-badge" style="background:var(--du)">Du Fu</span>
+                    </li>
+                    <li class="location-item" data-id="handan">
+                        <div class="name">
+                            <span class="chinese-name">邯鄲</span>
+                            <span class="english-name">Handan</span>
+                        </div>
+                        <div class="description">Ancient city. Setting of Li Bai's "Visiting Han-tan: The Dancers at the Southern Pavilion."</div>
+                        <span class="poet-badge" style="background:var(--li)">Li Bai</span>
+                    </li>
+                    <li class="location-item" data-id="yelang">
+                        <div class="name">
+                            <span class="chinese-name">夜郎</span>
+                            <span class="english-name">Yelang</span>
+                        </div>
+                        <div class="description">Li Bai's place of banishment after the An Lushan Rebellion. Remote southwestern frontier.</div>
+                        <span class="poet-badge" style="background:var(--li)">Li Bai</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Du Fu 杜甫</h3>
+                    <div class="dot" style="background:var(--du)"></div>
+                </div>
+                <ul class="location-list">
+                    <li class="location-item" data-id="kuizhou">
+                        <div class="name">
+                            <span class="chinese-name">夔州</span>
+                            <span class="english-name">Kuizhou (K'uei-chou)</span>
+                        </div>
+                        <div class="description">Du Fu's exile on the Yangtze gorges. Wrote "Autumn Meditation" here in 766 during his second autumn of exile.</div>
+                        <span class="poet-badge" style="background:var(--du)">Du Fu</span>
+                    </li>
+                    <li class="location-item" data-id="paiti">
+                        <div class="name">
+                            <span class="chinese-name">白帝城</span>
+                            <span class="english-name">Pai Ti (White Emperor City)</span>
+                        </div>
+                        <div class="description">Near Kuizhou, high on the hill above the gorges. "The washing-blocks pound, faster each evening, in Pai Ti high on the hill."</div>
+                        <span class="poet-badge" style="background:var(--du)">Du Fu</span>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-legend">
+                <h4>Legend</h4>
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--tang-red)"></span>
+                    Tang Capital
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--wang)"></span>
+                    Wang Wei 王維
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--li)"></span>
+                    Li Bai 李白
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot" style="background:var(--du)"></span>
+                    Du Fu 杜甫
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+    <script>
+        const locations = [
+            {
+                id: 'changan', name: "Chang'an", chinese: '長安',
+                lat: 34.26, lng: 108.94, color: '#a03030', size: 36,
+                modern: "Xi'an, Shaanxi",
+                poets: ['Capital'],
+                description: "The Tang capital, center of all three poets' world. Population over one million at its peak. Li Bai served briefly at the Hanlin Academy here (742-744). Wang Wei held court positions. Du Fu spent years trying to gain patronage here, and later longed for it from exile at Kuizhou."
+            },
+            {
+                id: 'luoyang', name: 'Luoyang', chinese: '洛陽',
+                lat: 34.62, lng: 112.45, color: '#5a4a7c', size: 28,
+                modern: 'Luoyang, Henan',
+                poets: ['Du Fu'],
+                description: "Eastern capital of the Tang. Du Fu was born nearby. An important cultural center and secondary seat of imperial power."
+            },
+            {
+                id: 'wangriver', name: 'Wang River Estate', chinese: '輞川',
+                lat: 34.0, lng: 109.1, color: '#4a7c59', size: 28,
+                modern: 'Lantian County, south of Xi\'an',
+                poets: ['Wang Wei'],
+                description: "Wang Wei's semi-retired retreat in the Zhongnan Mountains. Here he composed the Wang River Collection (Wang chuan chi) with his friend Pei Di, exchanging poems about 20 scenic spots along the river. The site of his most famous nature poetry."
+            },
+            {
+                id: 'weicity', name: 'Wei City (Xianyang)', chinese: '渭城',
+                lat: 34.33, lng: 108.72, color: '#4a7c59', size: 22,
+                modern: 'Xianyang, Shaanxi',
+                poets: ['Wang Wei'],
+                description: "Just west of Chang'an. Setting of Wang Wei's famous farewell poem 'Seeing Master Yuan Off on His Mission to Kucha': 'I summon you: / Drink one more cup / No old friends, my friend / When you start westward / for Yang Kuan.'"
+            },
+            {
+                id: 'kucha', name: 'Kucha', chinese: '龜茲',
+                lat: 41.72, lng: 82.97, color: '#4a7c59', size: 22,
+                modern: 'Kuqa, Xinjiang',
+                poets: ['Wang Wei'],
+                description: "Ancient Silk Road oasis kingdom, over 2,000 km west of Chang'an. Destination of Master Yuan in Wang Wei's farewell poem. A major Buddhist center and hub of Central Asian culture under Tang suzerainty."
+            },
+            {
+                id: 'sichuan', name: 'Sichuan / Chengdu', chinese: '蜀',
+                lat: 30.57, lng: 104.07, color: '#8b5c3e', size: 26,
+                modern: 'Chengdu, Sichuan',
+                poets: ['Li Bai', 'Du Fu'],
+                description: "Li Bai grew up in Sichuan. Du Fu also spent significant years here after the An Lushan Rebellion, building his famous 'thatched hut' (caotang). A region of mountains and rivers, sheltered from the wars ravaging the north."
+            },
+            {
+                id: 'handan', name: 'Handan', chinese: '邯鄲',
+                lat: 36.60, lng: 114.49, color: '#8b5c3e', size: 22,
+                modern: 'Handan, Hebei',
+                poets: ['Li Bai'],
+                description: "Ancient capital of the state of Zhao. Setting of Li Bai's 'Visiting Han-tan: The Dancers at the Southern Pavilion,' which recalls the vanished glory of the Prince of Zhao and his three thousand knights."
+            },
+            {
+                id: 'yelang', name: 'Yelang', chinese: '夜郎',
+                lat: 27.0, lng: 106.7, color: '#8b5c3e', size: 22,
+                modern: 'Guizhou Province',
+                poets: ['Li Bai'],
+                description: "Li Bai's place of banishment after the An Lushan Rebellion. 'Now I, unhappy, am on my way to banishment at Yeh-lang.' A remote southwestern frontier region, considered a place of exile and hardship."
+            },
+            {
+                id: 'kuizhou', name: 'Kuizhou', chinese: '夔州',
+                lat: 31.02, lng: 109.52, color: '#5a4a7c', size: 28,
+                modern: 'Fengjie, Chongqing',
+                poets: ['Du Fu'],
+                description: "Du Fu's place of exile on the Yangtze gorges, where he wrote the eight-poem 'Autumn Meditation' (Ch'iu hsing) sequence in 766. 'Gems of dew wilt and wound the maple trees in the wood: / From Wu mountains, from Wu gorges, the air blows desolate.'"
+            },
+            {
+                id: 'paiti', name: 'Pai Ti (White Emperor City)', chinese: '白帝城',
+                lat: 31.05, lng: 109.58, color: '#5a4a7c', size: 20,
+                modern: 'Fengjie, Chongqing',
+                poets: ['Du Fu'],
+                description: "Perched on cliffs above the Yangtze gorges near Kuizhou. Mentioned in Du Fu's Autumn Meditation: 'The washing-blocks pound, faster each evening, in Pai Ti high on the hill.' The sound of women preparing winter clothes carries across the gorge."
+            }
+        ];
+
+        const map = L.map('map', { zoomControl: true }).setView([34, 105], 5);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Silk Road route (dashed line from Wei City to Kucha)
+        L.polyline([
+            [34.33, 108.72], // Wei City
+            [36.0, 103.0],   // Lanzhou area
+            [39.0, 94.0],    // Dunhuang area
+            [41.72, 82.97]   // Kucha
+        ], {
+            color: '#999',
+            weight: 2,
+            opacity: 0.5,
+            dashArray: '8, 6'
+        }).addTo(map);
+
+        // Du Fu's exile route (Chang'an to Kuizhou via Chengdu)
+        L.polyline([
+            [34.26, 108.94], // Chang'an
+            [30.57, 104.07], // Chengdu
+            [31.02, 109.52]  // Kuizhou
+        ], {
+            color: '#5a4a7c',
+            weight: 2.5,
+            opacity: 0.5,
+            dashArray: '10, 8'
+        }).addTo(map);
+
+        // Li Bai's banishment route
+        L.polyline([
+            [34.26, 108.94], // Chang'an
+            [27.0, 106.7]    // Yelang
+        ], {
+            color: '#8b5c3e',
+            weight: 2.5,
+            opacity: 0.5,
+            dashArray: '10, 8'
+        }).addTo(map);
+
+        function createIcon(loc) {
+            return L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: ${loc.size}px;
+                    height: ${loc.size}px;
+                    border-radius: 50%;
+                    background: ${loc.color};
+                    color: #fff;
+                    font-family: 'Noto Serif SC', serif;
+                    font-size: ${loc.size > 30 ? '14px' : '11px'};
+                    font-weight: bold;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+                    border: 2px solid #fff;
+                ">${loc.chinese.charAt(0)}</div>`,
+                iconSize: [loc.size, loc.size],
+                iconAnchor: [loc.size/2, loc.size/2],
+                popupAnchor: [0, -loc.size/2]
+            });
+        }
+
+        function createPopupContent(loc) {
+            const poetBadges = loc.poets.map(p => {
+                const colors = { 'Wang Wei': '#4a7c59', 'Li Bai': '#8b5c3e', 'Du Fu': '#5a4a7c', 'Capital': '#a03030' };
+                return `<span class="poet-badge" style="background:${colors[p] || '#888'}">${p}</span>`;
+            }).join('');
+
+            return `
+                <div class="popup-content">
+                    <div class="popup-header">
+                        <span class="chinese" style="color:${loc.color}">${loc.chinese}</span>
+                        <div class="names">
+                            <div class="english">${loc.name}</div>
+                        </div>
+                    </div>
+                    <div class="popup-body">
+                        <p>${loc.description}</p>
+                        <div class="modern-location">
+                            <strong>Modern:</strong> ${loc.modern}
+                        </div>
+                        <div class="poet-tags">${poetBadges}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const markers = {};
+        locations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng], {
+                icon: createIcon(loc),
+                zIndexOffset: loc.size > 30 ? 1000 : 500
+            }).addTo(map);
+            marker.bindPopup(createPopupContent(loc), { maxWidth: 320 });
+            markers[loc.id] = marker;
+        });
+
+        // Sidebar click handlers
+        document.querySelectorAll('.location-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const id = this.dataset.id;
+                document.querySelectorAll('.location-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                const loc = locations.find(l => l.id === id);
+                if (loc) {
+                    map.setView([loc.lat, loc.lng], loc.id === 'kucha' ? 5 : 8, { animate: true });
+                    if (markers[id]) markers[id].openPopup();
+                }
+            });
+        });
+
+        const bounds = L.latLngBounds(locations.map(l => [l.lat, l.lng]));
+        map.fitBounds(bounds, { padding: [50, 50] });
+    </script>
+</body>
+</html>

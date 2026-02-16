@@ -83,77 +83,38 @@
             color: #666;
         }
 
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a1f1a 50%, #1a2520 100%);
-            padding: 3rem 5% 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::after {
-            content: '詩';
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: 'Noto Serif SC', serif;
-            font-size: 12rem;
-            color: rgba(255,255,255,0.03);
-            pointer-events: none;
-        }
-        .hero-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--gold-light);
-            margin-bottom: 0.5rem;
-        }
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 300;
-            color: #fff;
-            line-height: 1.3;
-            max-width: 700px;
-        }
-        .hero h1 strong {
-            font-weight: 700;
-            color: var(--gold-light);
-        }
-        .hero-sub {
-            margin-top: 0.75rem;
-            font-size: 0.85rem;
-            color: #aaa;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-        .hero-poets {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .hero-poet {
+        /* ===== CONTEXT STRIP (replaces fat hero) ===== */
+        .context-strip {
+            background: var(--ink);
+            padding: 0.5rem 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-top: 1px solid #333;
         }
-        .hero-poet .dot {
-            width: 10px;
-            height: 10px;
+        .context-poet {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .context-poet .dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
         }
-        .hero-poet .name-ch {
+        .context-poet .name-ch {
             font-family: 'Noto Serif SC', serif;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: #fff;
         }
-        .hero-poet .name-en {
-            font-size: 0.75rem;
+        .context-poet .name-en {
+            font-size: 0.7rem;
             color: #aaa;
         }
-        .hero-poet .dates {
-            font-size: 0.65rem;
-            color: #777;
+        .context-poet .dates {
+            font-size: 0.6rem;
+            color: #666;
         }
 
         /* ===== NAV PILLS ===== */
@@ -315,37 +276,7 @@
             background: #fff;
             border: 1px solid #e8e5e0;
             border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        .map-container h3 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--ink-faint);
-            margin-bottom: 1rem;
-        }
-        .map-svg {
-            width: 100%;
-            max-width: 750px;
-        }
-        .map-legend {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        .map-legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            font-size: 0.7rem;
-            color: var(--ink-light);
-        }
-        .map-legend-item .swatch {
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
+            margin: 1rem 0;
         }
 
         /* ===== POET PROFILES ===== */
@@ -597,9 +528,9 @@
             .style-bar-row { grid-template-columns: 80px 1fr 1fr 1fr; }
         }
         @media (max-width: 600px) {
-            .hero h1 { font-size: 1.4rem; }
             .section { padding: 1.5rem 4%; }
             .nav-strip { padding: 0.5rem 4%; }
+            .context-strip { padding: 0.4rem 4%; gap: 0.75rem; }
         }
     </style>
 </head>
@@ -616,38 +547,27 @@
         <span class="page-meta">Birch, pp. 217&ndash;236</span>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-label">Instructor Prep &middot; Birch Anthology, "Poets of a Generation: One"</div>
-        <h1>Three Poets Who <strong>Defined an Era</strong></h1>
-        <p class="hero-sub">Wang Wei, Li Bai, and Du Fu were born within thirteen years of each other, during the golden age of Emperor Xuanzong. Together they shaped the common vessel of Chinese poetry into an erudite and exquisite perfection.</p>
-        <div class="hero-poets">
-            <div class="hero-poet">
-                <div class="dot" style="background:var(--wang)"></div>
-                <div>
-                    <span class="name-ch">王維</span>
-                    <span class="name-en">Wang Wei</span>
-                    <span class="dates">699&ndash;759</span>
-                </div>
-            </div>
-            <div class="hero-poet">
-                <div class="dot" style="background:var(--li)"></div>
-                <div>
-                    <span class="name-ch">李白</span>
-                    <span class="name-en">Li Bai</span>
-                    <span class="dates">699&ndash;762</span>
-                </div>
-            </div>
-            <div class="hero-poet">
-                <div class="dot" style="background:var(--du)"></div>
-                <div>
-                    <span class="name-ch">杜甫</span>
-                    <span class="name-en">Du Fu</span>
-                    <span class="dates">712&ndash;770</span>
-                </div>
-            </div>
+    <!-- CONTEXT STRIP -->
+    <div class="context-strip">
+        <div class="context-poet">
+            <div class="dot" style="background:var(--wang)"></div>
+            <span class="name-ch">王維</span>
+            <span class="name-en">Wang Wei</span>
+            <span class="dates">699&ndash;759</span>
         </div>
-    </section>
+        <div class="context-poet">
+            <div class="dot" style="background:var(--li)"></div>
+            <span class="name-ch">李白</span>
+            <span class="name-en">Li Bai</span>
+            <span class="dates">699&ndash;762</span>
+        </div>
+        <div class="context-poet">
+            <div class="dot" style="background:var(--du)"></div>
+            <span class="name-ch">杜甫</span>
+            <span class="name-en">Du Fu</span>
+            <span class="dates">712&ndash;770</span>
+        </div>
+    </div>
 
     <!-- NAV -->
     <nav class="nav-strip">
@@ -780,97 +700,10 @@
     <section id="map" class="section">
         <div class="section-label">Geography</div>
         <h2>The Tang Poets' World</h2>
-        <div class="map-container">
-            <h3>Key Locations in the Reading</h3>
-            <svg class="map-svg" viewBox="0 0 750 500" xmlns="http://www.w3.org/2000/svg">
-                <!-- Background -->
-                <rect width="750" height="500" fill="#f5f0e8" rx="6"/>
-
-                <!-- Terrain shapes (simplified) -->
-                <path d="M50,100 Q150,60 250,90 Q350,40 450,80 Q500,50 550,70 L550,120 Q450,140 350,110 Q250,150 150,130 Q100,140 50,120Z" fill="#d4c9b0" opacity="0.3"/>
-
-                <!-- Yellow River -->
-                <path d="M100,150 Q200,80 320,120 Q400,90 480,140 Q520,160 560,200 Q580,260 540,320 Q500,350 480,380" stroke="#8fa9bf" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <text x="280" y="78" font-size="9" fill="#7a94a8" font-family="Inter" font-weight="600">YELLOW RIVER 黃河</text>
-
-                <!-- Yangtze River -->
-                <path d="M60,350 Q150,320 250,340 Q350,300 420,320 Q500,280 560,300 Q620,310 700,340" stroke="#8fa9bf" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <text x="300" y="295" font-size="9" fill="#7a94a8" font-family="Inter" font-weight="600">YANGTZE 長江</text>
-
-                <!-- Wu Gorges -->
-                <path d="M370,310 Q390,305 410,315" stroke="#6a8494" stroke-width="5" fill="none" opacity="0.4" stroke-linecap="round"/>
-                <text x="370" y="335" font-size="8" fill="#6a8494" font-family="Inter" font-style="italic">Wu Gorges</text>
-
-                <!-- LOCATIONS -->
-
-                <!-- Chang'an (Xi'an) - THE capital -->
-                <circle cx="340" cy="190" r="8" fill="var(--tang-red)" stroke="#fff" stroke-width="2"/>
-                <rect x="340" y="190" width="4" height="4" fill="#fff" transform="rotate(45,342,192)"/>
-                <text x="355" y="188" font-size="11" fill="var(--tang-red)" font-weight="700" font-family="Inter">Chang'an 長安</text>
-                <text x="355" y="200" font-size="8" fill="#888" font-family="Inter">Tang Capital</text>
-
-                <!-- Luoyang -->
-                <circle cx="440" cy="180" r="5" fill="#666" stroke="#fff" stroke-width="1.5"/>
-                <text x="450" y="175" font-size="9" fill="#555" font-weight="600" font-family="Inter">Luoyang 洛陽</text>
-                <text x="450" y="185" font-size="7" fill="#888" font-family="Inter">Du Fu's birthplace</text>
-
-                <!-- Wang River Estate -->
-                <circle cx="290" cy="220" r="5" fill="var(--wang)" stroke="#fff" stroke-width="1.5"/>
-                <text x="220" y="235" font-size="9" fill="var(--wang)" font-weight="600" font-family="Inter">Wang River 輞川</text>
-                <text x="220" y="245" font-size="7" fill="#888" font-family="Inter">Wang Wei's estate</text>
-
-                <!-- Kuizhou -->
-                <circle cx="390" cy="310" r="5" fill="var(--du)" stroke="#fff" stroke-width="1.5"/>
-                <text x="395" y="305" font-size="9" fill="var(--du)" font-weight="600" font-family="Inter">Kuizhou 夔州</text>
-                <text x="395" y="315" font-size="7" fill="#888" font-family="Inter">Du Fu's exile, "Autumn Meditation"</text>
-
-                <!-- Sichuan -->
-                <circle cx="280" cy="340" r="4" fill="var(--li)" stroke="#fff" stroke-width="1.5"/>
-                <text x="240" y="358" font-size="9" fill="var(--li)" font-weight="600" font-family="Inter">Sichuan 蜀</text>
-                <text x="240" y="368" font-size="7" fill="#888" font-family="Inter">Li Bai's youth</text>
-
-                <!-- Kucha (far west) -->
-                <circle cx="80" cy="140" r="4" fill="#999" stroke="#fff" stroke-width="1.5"/>
-                <text x="60" y="133" font-size="8" fill="#777" font-weight="600" font-family="Inter">Kucha 龜茲</text>
-                <text x="60" y="143" font-size="7" fill="#aaa" font-family="Inter">"Seeing Master Yuan Off"</text>
-
-                <!-- Yang Kuan / Western frontier -->
-                <path d="M150,180 L340,190" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
-                <text x="200" y="175" font-size="7" fill="#aaa" font-family="Inter" font-style="italic">Silk Road West</text>
-
-                <!-- Wei City -->
-                <circle cx="330" cy="170" r="3" fill="#999" stroke="#fff" stroke-width="1"/>
-                <text x="300" y="166" font-size="7" fill="#999" font-family="Inter">Wei City</text>
-
-                <!-- Pai Ti / White Emperor City -->
-                <circle cx="410" cy="320" r="3" fill="var(--du)" stroke="#fff" stroke-width="1" opacity="0.6"/>
-                <text x="420" y="328" font-size="7" fill="#888" font-family="Inter">Pai Ti (White Emperor City)</text>
-
-                <!-- Han-tan -->
-                <circle cx="480" cy="150" r="3" fill="var(--li)" stroke="#fff" stroke-width="1" opacity="0.6"/>
-                <text x="490" y="148" font-size="7" fill="#888" font-family="Inter">Handan 邯鄲</text>
-
-                <!-- Compass -->
-                <text x="690" y="40" font-size="10" fill="#bbb" font-family="Inter" font-weight="700">N</text>
-                <line x1="695" y1="44" x2="695" y2="60" stroke="#ccc" stroke-width="1"/>
-                <polygon points="695,42 691,50 699,50" fill="#ccc"/>
-
-                <!-- Scale -->
-                <line x1="580" y1="470" x2="680" y2="470" stroke="#ccc" stroke-width="1"/>
-                <line x1="580" y1="466" x2="580" y2="474" stroke="#ccc" stroke-width="1"/>
-                <line x1="680" y1="466" x2="680" y2="474" stroke="#ccc" stroke-width="1"/>
-                <text x="610" y="464" font-size="7" fill="#bbb" font-family="Inter">~500 km</text>
-
-                <!-- Title -->
-                <text x="20" y="480" font-size="8" fill="#aaa" font-family="Inter">Tang Dynasty China, 8th century</text>
-            </svg>
-            <div class="map-legend">
-                <div class="map-legend-item"><div class="swatch" style="background:var(--tang-red)"></div> Tang Capital</div>
-                <div class="map-legend-item"><div class="swatch" style="background:var(--wang)"></div> Wang Wei</div>
-                <div class="map-legend-item"><div class="swatch" style="background:var(--li)"></div> Li Bai</div>
-                <div class="map-legend-item"><div class="swatch" style="background:var(--du)"></div> Du Fu</div>
-            </div>
+        <div class="map-container" style="padding:0;overflow:hidden">
+            <iframe src="maps/tang-poets-map.html" style="width:100%;height:500px;border:none;border-radius:6px" loading="lazy"></iframe>
         </div>
+        <p style="font-size:0.75rem;color:var(--ink-faint);margin-top:0.5rem"><a href="maps/tang-poets-map.html" style="color:var(--gold);text-decoration:none">Open full interactive map &rarr;</a> Click locations for details. Dashed lines show exile routes and the Silk Road.</p>
     </section>
 
     <!-- POET PROFILES -->
@@ -1122,34 +955,92 @@
         </div>
     </section>
 
-    <!-- KEY POEMS -->
+    <!-- ALL POEMS WITH ANALYSIS -->
     <section id="poems" class="section">
-        <div class="section-label">Selected Poems from the Reading</div>
-        <h2>Key Poems to Know</h2>
+        <div class="section-label">Complete Poem-by-Poem Analysis</div>
+        <h2>Every Poem in the Reading</h2>
 
         <!-- WANG WEI -->
         <div class="poem-section">
             <div class="poem-section-head wang">
                 <span class="poet-icon">王</span>
-                <span style="font-weight:700">Wang Wei</span>
+                <span style="font-weight:700">Wang Wei (pp. 219&ndash;224)</span>
             </div>
             <div class="poems-grid">
+                <div class="poem-card full">
+                    <div class="poem-title">Letter to the Bachelor of Arts P'ei Ti</div>
+                    <div class="poem-translator">tr. Arthur Waley (prose letter, p. 219)</div>
+                    <div class="poem-text">...When night was far advanced, I mounted Hua-tzu's Hill and saw the moonlight tossed up and thrown down by the jostling waves of Wang River. On the wintry mountain distant lights twinkled and vanished; in some deep lane beyond the forest a dog barked at the cold, with a cry as fierce as a wolf's. The sound of villagers grinding their corn at night filled the gaps between the slow chimes of a distant bell.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Birch calls this the preface to the Wang-Pei Di poem exchange. It is a prose poem disguised as a letter. Notice how it achieves the same dissolution as the verse: dog, bell, grinding corn. No commentary. Pure image. The invitation to Pei Di to visit in spring turns a private letter into a miniature treatise on friendship and landscape.</div>
+                </div>
                 <div class="poem-card">
-                    <div class="poem-title">The Deer Enclosure</div>
-                    <div class="poem-translator">From "Poems of the River Wang" &middot; tr. C.J. Chen & Michael Bullock</div>
-                    <div class="poem-text">On the lonely mountain
-    I meet no one,
-I hear only the echo
-    of human voices.
-At an angle the sun's rays
-    enter the depths of the wood,
-And shine
-    upon the green moss.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> The quintessential Wang Wei poem. The self disappears. What remains: sound, light, moss. Four lines, total emptiness. This is Chan Buddhism as poetry.</div>
+                    <div class="poem-title">1. The Hill of Hua-Tzu</div>
+                    <div class="poem-translator">From "Poems of the River Wang" &middot; tr. C.J. Chen & Michael Bullock (p. 220)</div>
+                    <div class="poem-text">WANG: The birds fly away / into infinite space: / Over the whole mountain / returns the splendour of autumn. / Ascending and descending / Hua-tzu hill, / I feel / unbounded bewilderment and lamentation.
+
+P'EI: The sun sets, / the wind rises among the pines. / Returning home, / there is a little dew upon the grass. / The reflection of the clouds / falls into the tracks of my shoes, / The blue of the mountains / touches my clothes.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The exchange format matters. Wang voices loss and bewilderment. Pei Di answers with quiet physical details: dew, cloud-reflection, blue touching cloth. Together they model how two minds meet the same landscape differently. Wang sees cosmic emptiness. Pei Di feels the mountain literally touching him.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">2. The Deer Enclosure</div>
+                    <div class="poem-translator">tr. C.J. Chen & Michael Bullock (pp. 220&ndash;221)</div>
+                    <div class="poem-text">WANG: On the lonely mountain / I meet no one, / I hear only the echo / of human voices. / At an angle the sun's rays / enter the depths of the wood, / And shine / upon the green moss.
+
+P'EI: At the end of day / the mountain looks cold. / But a belated wanderer / still passes on his way. / He knows nothing / of the life of the wood: / Nothing remains / but the tracks of the buck.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The quintessential Wang Wei poem. The self disappears. What remains: sound, light, moss. Four lines, total emptiness. This is Chan Buddhism as poetry. Pei Di's response reintroduces the human figure, but that figure "knows nothing." Both poets circle the same void from different angles.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">3. The Path of the Ash Trees</div>
+                    <div class="poem-translator">tr. C.J. Chen & Michael Bullock (p. 221)</div>
+                    <div class="poem-text">WANG: On the narrow path, / sheltered by the ash trees, / In the secrecy of their shade / flourishes the green moss, / Only swept / when someone answers the gate, / Fearing that the monk from the mountain / has come to call.
+
+P'EI: To the south of the gate, / along by the ash trees, / Is the path over the hillcrest, / that leads to Lake Yi. / When the autumn comes / it rains much on the mountain; / No one picks up / the falling leaves.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Wang Wei hints at Buddhist-recluse practice: the path is swept only for a visiting monk. The moss is valued, not removed. Pei Di's reply lets autumn rain accumulate. Both poems celebrate neglect as a form of attentiveness. The unswept leaves are the point.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">4. The Pavilion of the Lake</div>
+                    <div class="poem-translator">tr. C.J. Chen & Michael Bullock (pp. 221&ndash;222)</div>
+                    <div class="poem-text">WANG: Light the boat that carries me / to meet the gentle guest, / Who from a great distance / is coming over the lake. / Then, on the terrace, / before a cup of wine, / On every side / the lotus flowers will open.
+
+P'EI: In front of the balcony, / as the expanse of water / fills with ripples, / The solitary moon / goes wandering without pause. / From the depth of the valley / the cries of the monkeys rise; / Borne by the wind / they reach me in my room.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Wang Wei is surprisingly social here: wine, a guest, lotus. But it is still nature doing the welcoming (the lotuses "will open" as if on cue). Pei Di turns to solitude. The moon wanders, the monkeys cry. The contrast between friendship and loneliness within the same landscape is the point of the exchange form.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">5. The Stream at the House of the Luans</div>
+                    <div class="poem-translator">tr. C.J. Chen & Michael Bullock (p. 222)</div>
+                    <div class="poem-text">WANG: Gusts of wind / in the autumn rain; / The water falls headlong, / it spills from the rocks in torrents. / The waves leap capriciously / one on the other in flight; / The startled white heron / comes down to earth again.
+
+P'EI: The voice of the stream / resounds to the farthest bay. / I walk along the shore / towards the southern ford. / Here and there on the water / ducks and egrets glide, / Always they return, impelled / to the proximity of men.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Wang Wei captures violent motion: cascading water, leaping waves, a startled heron. Pei Di responds with calm: gliding ducks drawn toward human presence. The contrast is between nature's wildness and its domestication, wild stream vs. settled shore.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">6. The Cove of the Wall of Meng</div>
+                    <div class="poem-translator">tr. C.J. Chen & Michael Bullock (p. 223)</div>
+                    <div class="poem-text">WANG: My new house / is at the beginning of the wall of Meng, / Among old trees / and remains of decaying willows. / The other, after me, / who will he be? / Vain his grief / for this which was mine.
+
+P'EI: My new hut / is under the old wall: / Occasionally I go up / to the ancient enclosure. / There is nothing of the past now / about the old wall; / Men of today, uncaring, / come and go.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Both poets meditate on impermanence beside ruins. Wang Wei asks who will grieve for his home after he is gone. Pei Di notes that the past has already vanished from the old wall. This is the closing poem of the sequence, and it turns the entire Wang River exchange into a meditation on transience. Everything celebrated in the previous poems will pass.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Seeing Master Y&uuml;an Off on His Mission to Kucha</div>
+                    <div class="poem-translator">tr. C.H. Kw&ouml;ck & Vincent McHugh (p. 224)</div>
+                    <div class="poem-text">City on Wei
+            the morning rain
+                    wet
+                        on light dust
+Around the inn
+        green willows
+        fresh
+I summon you:
+        Drink one more cup
+No old friends, my friend
+When you start westward
+                for Yang Kuan</div>
+                    <div class="poem-note"><strong>Analysis:</strong> One of the most famous farewell poems in Chinese. The spatial layout on the page mimics the scattering of departure. "No old friends, my friend" contains the entire paradox of farewell: you are about to lose the only person who matters. The destination (Kucha, over 2000 km west on the Silk Road) makes the distance feel absolute.</div>
                 </div>
                 <div class="poem-card">
                     <div class="poem-title">To the Assistant Prefect Chang</div>
-                    <div class="poem-translator">tr. Cyril Birch</div>
+                    <div class="poem-translator">tr. Cyril Birch (p. 224)</div>
                     <div class="poem-text">In evening years given to quietude,
 The world's worries no concern of mine,
 For my own needs making no other plan
@@ -1158,13 +1049,7 @@ I loosen my robe before the breeze from pines,
 My lute celebrates moonlight on mountain pass.
 You ask what laws rule "failure" or "success" --
 Songs of fishermen float to the still shore.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> The recluse ideal in miniature. "Unlearn" is the key verb. The final couplet refuses the question entirely. Compare this to Li Bai's aggressive self-promotion in the letter to Han Ching-chou.</div>
-                </div>
-                <div class="poem-card full">
-                    <div class="poem-title">Letter to the Bachelor of Arts P'ei Ti</div>
-                    <div class="poem-translator">tr. Arthur Waley (prose letter)</div>
-                    <div class="poem-text">...When night was far advanced, I mounted Hua-tzu's Hill and saw the moonlight tossed up and thrown down by the jostling waves of Wang River. On the wintry mountain distant lights twinkled and vanished; in some deep lane beyond the forest a dog barked at the cold, with a cry as fierce as a wolf's. The sound of villagers grinding their corn at night filled the gaps between the slow chimes of a distant bell.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> Birch calls this the preface to the Wang-Pei Di poem exchange. It's a prose poem disguised as a letter. Notice how it achieves the same dissolution as the verse, but in prose. The dog, the bell, the grinding corn. No commentary. Pure image.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The recluse ideal in miniature. "Unlearn" is the key verb. The final couplet refuses the question entirely. Compare this to Li Bai's aggressive self-promotion in the letter to Han Ching-chou: same genre (poem/letter to an official), opposite posture. Wang Wei answers the question of success with fishermen who don't care about the question.</div>
                 </div>
             </div>
         </div>
@@ -1173,12 +1058,12 @@ Songs of fishermen float to the still shore.</div>
         <div class="poem-section">
             <div class="poem-section-head li">
                 <span class="poet-icon">李</span>
-                <span style="font-weight:700">Li Bai</span>
+                <span style="font-weight:700">Li Bai (pp. 225&ndash;234)</span>
             </div>
             <div class="poems-grid">
                 <div class="poem-card">
                     <div class="poem-title">On the Mountain: Question and Answer</div>
-                    <div class="poem-translator">tr. Kwock & McHugh</div>
+                    <div class="poem-translator">tr. Kw&ouml;ck & McHugh (p. 225)</div>
                     <div class="poem-text">You ask me:
         Why do I live
 on this green mountain?
@@ -1193,33 +1078,114 @@ This is another earth
     another sky
 No likeness
         to that human world below</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> Birch says this is where "the unearthly beauty" begins. Compare to Wang Wei's silence: both refuse the question, but Li Bai smiles and makes it theatrical. The Daoist mountain as separate cosmos.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Birch says this is where "the unearthly beauty" begins. Compare to Wang Wei's silence: both refuse the question, but Li Bai smiles and makes it theatrical. The Daoist mountain as separate cosmos. "No likeness to that human world below" is more defiant than Wang Wei's quiet retreat. Li Bai always performs, even in solitude.</div>
                 </div>
                 <div class="poem-card">
-                    <div class="poem-title">Four Poems on Wine, No. 1 (excerpt)</div>
-                    <div class="poem-translator">tr. William Acker</div>
-                    <div class="poem-text">Amidst the flowers
-        a jug of wine --
-I pour alone
-        lacking companionship,
-So raising the cup
-        I invite the moon,
-Then turn to my shadow
-        which makes three of us.
-...
-I start a song
-        and the moon begins to reel,
-I rise and dance
-        and the shadow moves grotesquely.
-While I'm still conscious
-        let's rejoice with one another,
-After I'm drunk
-        let each one go his way.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> The most famous Li Bai poem. Moon, shadow, self = a trinity of loneliness disguised as a party. Wine is not escape but communion with the cosmos. "Let us bind ourselves for ever / for passionless journeyings."</div>
+                    <div class="poem-title">Spring Thoughts</div>
+                    <div class="poem-translator">tr. Kw&ouml;ck & McHugh (p. 225)</div>
+                    <div class="poem-text">O grass of Yen
+                like green silk flowing
+Green boughs low
+                on mulberries of Ch'in
+All that time!
+            you've been thinking of home
+and all that time!
+                my heart breaking
+In my silk bedcurtain
+                spring wind</div>
+                    <div class="poem-note"><strong>Analysis:</strong> A wife's lament for a husband away on frontier duty. Li Bai ventriloquizes female experience. "Yen" (north, frontier) and "Ch'in" (home region) establish the geography of separation. The "spring wind" in the empty bed is both seasonal and erotic. The spatial layout on the page enacts the distance between lovers.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">To Someone Far Away</div>
+                    <div class="poem-translator">tr. Kw&ouml;ck & McHugh (p. 226)</div>
+                    <div class="poem-text">When she was here
+        pretty darling
+                flowers filled the hall
+Now she's gone
+        pretty darling
+                left her bed behind
+On her bed
+        th'embroidered coverlet
+                rolled up
+                never slept in again
+Three years to the day
+                still keeps
+                the scent of her
+Fragrance never lost
+        pretty darling
+        never came back
+Yellow leaves falling
+                when I think of her
+white dew
+        on green moss</div>
+                    <div class="poem-note"><strong>Analysis:</strong> A poem of absence and grief. The coverlet "rolled up / never slept in again" is devastating in its physical specificity. The scent lasting three years is sensory memory as a form of haunting. The closing image (yellow leaves, white dew, green moss) is pure Wang Wei territory, but Li Bai gets there through loss, not contemplation.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Night Mooring at Cow's Creek</div>
+                    <div class="poem-translator">tr. Kw&ouml;ck & McHugh (pp. 226&ndash;227)</div>
+                    <div class="poem-text">At Cow's Creek
+                on Western River
+                                the night
+Sky still blue
+            not a rag of cloud
+I go on deck
+            to look at the bright moon
+thinking of
+            the great General Hsieh of old
+I also
+        can make poetry
+but that man's like
+                will not be found again
+In the morning
+            we make sail and go
+The maple leaves
+                fall as they will</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Li Bai compares himself to the ancient poet-general Xie Tiao (Hsieh). "I also can make poetry" is Li Bai's characteristic swagger. But then the admission: "that man's like will not be found again." Even Li Bai's ego contains grief. The closing "maple leaves fall as they will" accepts transience with a shrug that is itself poetic.</div>
+                </div>
+                <div class="poem-card full">
+                    <div class="poem-title">Visiting Han-tan: The Dancers at the Southern Pavilion</div>
+                    <div class="poem-translator">tr. Kw&ouml;ck & McHugh (p. 227)</div>
+                    <div class="poem-text">They sang to me and drummed, the boys of Yen and Chao,
+Lovely girls plucked the sounding string.
+Their painted cheeks shone like dazzling suns;
+The dancers' sleeves shook out like blossoming boughs...
+Where is the Prince of Chao, what has he left
+But an old castle-moat where tadpoles breed?
+Those three thousand knights that sat at his board,
+Is there one among them whose name is still known?
+Let us make merry, get something in our own day
+To set against the pity of ages still unborn.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Li Bai's carpe diem at its most urgent. The dancers are alive now; the Prince of Chao's three thousand knights are forgotten. The "old castle-moat where tadpoles breed" is a brutal image of glory decayed. "To set against the pity of ages still unborn" is Li Bai arguing that present pleasure is the only answer to historical oblivion.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">To Y&uuml;an Tan-ch'iu</div>
+                    <div class="poem-translator">tr. Kw&ouml;ck & McHugh (pp. 227&ndash;228)</div>
+                    <div class="poem-text">My friend is lodging high in the Eastern Range,
+Dearly loving the beauty of valleys and hills.
+At green spring he lies in the empty woods,
+And is still asleep when the sun shines on high.
+A pine-tree wind dusts his sleeves and coat;
+A pebbly stream cleans his heart and ears.
+I envy you who far from strife and talk
+Are high-propped on a pillow of grey mist.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Tan-ch'iu was a Daoist adept and Li Bai's friend. The poem is an idealized portrait of the recluse life. "A pebbly stream cleans his heart and ears" is the ancient trope of the recluse who washes his ears after hearing of worldly offers. Li Bai envies what Wang Wei actually lives.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">To His Old Friend Hsin</div>
+                    <div class="poem-translator">tr. A.C. Graham (p. 228)</div>
+                    <div class="poem-text">Long ago, among the flowers and willows,
+We sat drinking together at Ch'ang-an...
+We thought, you and I, that it would always be like this.
+How should we know the grass would stir and dust rise on the wind?
+Suddenly foreign horsemen were at the Hsien-ku Pass
+Just when the blossom at the Palace of Ch'in was opening
+    on the sunny boughs.
+Now I, unhappy, am on my way to banishment at Yeh-lang...</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Before and after the An Lushan Rebellion in a single poem. "Foreign horsemen at the pass" is the exact moment the golden age ends. The blossoms were still opening when the world fell. Li Bai is now exiled. The poem's power is in the contrast: flowers and cavalry, wine and banishment, in the same breath.</div>
                 </div>
                 <div class="poem-card">
                     <div class="poem-title">Fighting South of the Ramparts</div>
-                    <div class="poem-translator">tr. Arthur Waley</div>
+                    <div class="poem-translator">tr. Arthur Waley (pp. 228&ndash;229)</div>
                     <div class="poem-text">The King's armies have grown grey and old
 Fighting ten thousand leagues away from home.
 The Huns have no trade but battle and carnage;
@@ -1229,21 +1195,46 @@ Carry them in their beaks and hang them on the branches
     of withered trees...
 Know therefore that the sword is a cursed thing
 Which the wise man uses only if he must.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> Li Bai wrote this to an old anonymous folk-song tune. The final line quotes the <em>Dao De Jing</em>. This is not the drunken Li Bai. This is the political Li Bai, channeling anti-war tradition from the Warring States through the Tang frontier.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Written to an old anonymous folk-song tune (Birch includes the original at the bottom of the page). The final line quotes the <em>Dao De Jing</em> directly. Li Bai channels the anti-war tradition from the Warring States through the Tang frontier. The image of guts hung on withered branches is among the most violent in Chinese poetry.</div>
                 </div>
                 <div class="poem-card">
-                    <div class="poem-title">To His Old Friend Hsin</div>
-                    <div class="poem-translator">tr. A.C. Graham</div>
-                    <div class="poem-text">Long ago, among the flowers and willows,
-We sat drinking together at Ch'ang-an.
-The Five Barons and Seven Grandees were of our company...
-We thought, you and I, that it would always be like this.
-How should we know the grass would stir and dust rise on the wind?
-Suddenly foreign horsemen were at the Hsien-ku Pass
-Just when the blossom at the Palace of Ch'in was opening
-    on the sunny boughs.
-Now I, unhappy, am on my way to banishment at Yeh-lang...</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> Before and after the An Lushan Rebellion in a single poem. The "foreign horsemen at the pass" is the exact moment the golden age ends. Li Bai is now exiled. The cherry blossoms were still opening when the world fell.</div>
+                    <div class="poem-title">Four Poems on Wine, No. 1</div>
+                    <div class="poem-translator">tr. William Acker (pp. 230&ndash;232)</div>
+                    <div class="poem-text">Amidst the flowers / a jug of wine -- / I pour alone / lacking companionship, / So raising the cup / I invite the moon, / Then turn to my shadow / which makes three of us. ... I start a song / and the moon begins to reel, / I rise and dance / and the shadow moves grotesquely. ... After I'm drunk / let each one go his way. / Let us bind ourselves for ever / for passionless journeyings. / Let us swear to meet again / far in the Milky Way.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The most famous Li Bai poem. Moon, shadow, self = a trinity of loneliness disguised as a party. "Passionless journeyings" (wuqing you) is a Buddhist term applied to cosmic wandering. Wine is not escape but communion with the cosmos.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Four Poems on Wine, No. 2</div>
+                    <div class="poem-translator">tr. William Acker (pp. 231&ndash;232)</div>
+                    <div class="poem-text">If Heaven itself / did not love wine, / Then no Wine Star / would shine in the sky. / And if Earth also / did not love wine, / Earth would have no such / place as Wine Fountain. ... If wise men and sages / are already drinkers / What is the use / of seeking gods and fairies? / With three cups / I understand the great Way / With one jar / I am at one with Nature.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Li Bai builds a cosmological argument for drinking. If heaven and earth love wine, who is he to refuse? The final couplet ("With three cups I understand the great Way") is the poem's thesis: wine as epistemology. This is Daoist spontaneity weaponized against Confucian sobriety.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Four Poems on Wine, No. 3</div>
+                    <div class="poem-translator">tr. William Acker (p. 231)</div>
+                    <div class="poem-text">In the third month / the city of Hsien-yang -- / Thousands of flowers / at noon like brocade. / Who is able / in spring to be sad alone? / Faced with this / to drink is the shortest way / Infinite things / as well as short and long / Alike have early been / offered us by Creation. / A single cup / may rank with life and death, / The myriad things / are truly hard to fathom.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The argument shifts from cosmology to mortality. "A single cup may rank with life and death" elevates drinking to existential philosophy. The spring brocade of flowers makes sadness feel perverse, so drink. The "myriad things" resist understanding; wine offers a shortcut that bypasses intellect.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Four Poems on Wine, No. 4</div>
+                    <div class="poem-translator">tr. A.C. Graham (pp. 232&ndash;233)</div>
+                    <div class="poem-text">Have you not seen
+How the Yellow River, which flows from heaven and hurries
+            toward the sea, never turns back?...
+At dawn black silk, by evening changed to snow?
+While there is pleasure in life, enjoy it,
+And never let your gold cup face the moon empty!
+Heaven gave me my talents, they shall be used;
+A thousand in gold scattered and gone will all come back again.
+...
+I ask only to be drunk for ever and never wake!</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The grandest of the four, and the most famous. "Heaven gave me my talents, they shall be used" is Li Bai's supreme self-confidence. The Yellow River never turning back is both natural law and carpe diem argument. The closing feast scene, with its address to Master Ts'en and Friend Tan-ch'iu, makes drinking a communal ritual against oblivion.</div>
+                </div>
+                <div class="poem-card full">
+                    <div class="poem-title">Letter to Han Ching-chou</div>
+                    <div class="poem-translator">tr. J.R. Hightower (prose, pp. 233&ndash;234)</div>
+                    <div class="poem-text">...I am a commoner from Lung-hsi. I have been a vagabond through Ch'u and Han. At fifteen, I was fond of swordplay, and went around visiting often the feudal lords. At thirty, I had perfected my literary style and was in touch with the Prime Minister. Although I am not a full six feet in height, still in my heart there is the courage of ten thousand men...</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Li Bai's begging-letter to a potential patron. The self-promotion is breathtaking: swordsman, literary genius, moral giant, all in one paragraph. Compare directly to Wang Wei's "To the Assistant Prefect Chang" where Wang refuses the question of success. Li Bai demands recognition. Same genre, opposite personality. Both are performing a role that Tang literary culture made available.</div>
                 </div>
             </div>
         </div>
@@ -1252,12 +1243,12 @@ Now I, unhappy, am on my way to banishment at Yeh-lang...</div>
         <div class="poem-section">
             <div class="poem-section-head du">
                 <span class="poet-icon">杜</span>
-                <span style="font-weight:700">Du Fu</span>
+                <span style="font-weight:700">Du Fu (pp. 235&ndash;236)</span>
             </div>
             <div class="poems-grid">
                 <div class="poem-card full">
                     <div class="poem-title">Autumn Meditation, No. 1</div>
-                    <div class="poem-translator">From "Ch'iu hsing" (秋興), written 766 at K'uei-chou</div>
+                    <div class="poem-translator">From "Ch'iu hsing" (秋興), written 766 at K'uei-chou (p. 235)</div>
                     <div class="poem-text">Gems of dew wilt and wound the maple trees in the wood:
 From Wu mountains, from Wu gorges, the air blows desolate.
 The waves between the river-banks merge in the seething sky,
@@ -1266,31 +1257,59 @@ Clustered chrysanthemums have opened twice, in tears of other days;
 The forlorn boat, once and for all, tethers my homeward thoughts.
 In the houses winter clothes speed scissors and ruler;
 The washing-blocks pound, faster each evening, in Pai Ti high on the hill.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> The opening poem of the eight-poem sequence. "Chrysanthemums have opened twice" = two autumns in exile. The "forlorn boat" is tethered just as Du Fu is tethered, unable to return to Chang'an. Every line carries double meaning: landscape and political allegory fused.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The opening of the eight-poem sequence. "Chrysanthemums have opened twice" = two autumns in exile. The "forlorn boat" is tethered just as Du Fu is tethered, unable to return to Chang'an. The closing couplet brings domestic life in: women sewing winter clothes, washing-blocks pounding. Even preparation for winter carries the weight of exile. Every line fuses landscape with political allegory.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Autumn Meditation, No. 2</div>
+                    <div class="poem-translator">"Ch'iu hsing" No. 2 (p. 235)</div>
+                    <div class="poem-text">On the solitary walls of K'uei-chou the sunset rays slant,
+Each night guided by the Dipper I gaze towards the capital.
+It is true then that tears start when we hear the gibbon cry thrice;
+Useless my mission adrift on the raft which came by this eighth month.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> The Dipper points north toward Chang'an. Du Fu uses it as a compass of longing. The "gibbon cry thrice" is an old folk belief from the Yangtze gorges that three cries bring tears. The "raft which came by this eighth month" refers to the legend of a fisherman who floated out to sea on a raft and reached the Milky Way. Du Fu sees himself adrift, carried ever farther from home.</div>
+                </div>
+                <div class="poem-card">
+                    <div class="poem-title">Autumn Meditation, No. 3</div>
+                    <div class="poem-translator">"Ch'iu hsing" No. 3 (p. 236)</div>
+                    <div class="poem-text">The thousand houses, the circling mountains, are quiet in the
+        morning light;
+Day by day in the house by the river I sit in the blue of the hills.
+Two nights gone the fisher boats once more come bobbing on
+        the waves,
+Belated swallows in cooling autumn still flutter to and fro.
+K'uang Heng writing state papers, which earned me no credit,
+Liu Hsiang editing classics, my hopes elsewhere...
+Yet many of my school friends have risen in the world.
+By the Five Tombs in light cloaks they ride their sleek horses.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Du Fu compares himself to two Han dynasty figures who served the state through writing but were not rewarded. K'uang Heng and Liu Hsiang (Kuang Heng and Liu Xiang in Pinyin) were his models for the scholar-official ideal. The bitter final couplet: his former classmates ride sleek horses at the imperial tombs, while he sits by the Yangtze. Success went to others.</div>
                 </div>
                 <div class="poem-card">
                     <div class="poem-title">Autumn Meditation, No. 4</div>
-                    <div class="poem-translator">"Ch'iu hsing" No. 4</div>
+                    <div class="poem-translator">"Ch'iu hsing" No. 4 (p. 236)</div>
                     <div class="poem-text">Well said, Ch'ang-an looks like a chessboard --
 Won and lost for a hundred years, sad beyond all telling.
 The mansions of princes and nobles all have new lords,
 And another generation wears the caps and robes of office.
 Due north on the mountain passes the gongs and drums shake,
 To the chariots and horses campaigning in the west the winged
-    dispatches hasten.
+        dispatches hasten.
 While the fish and dragons fall asleep and the autumn river
-    turns cold
+        turns cold
 My native country, untroubled times, are always in my thoughts.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> Chang'an as chessboard = the capital has been won and lost by loyalists, rebels, and Tibetan invaders in turn. "My native country, untroubled times" is the heartbreak line. He mourns not just a place but a time.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Chang'an as chessboard = the capital won and lost by loyalists, rebels, and Tibetan invaders. "New lords" in old mansions: the political class has been replaced wholesale. The "gongs and drums" north and "winged dispatches" west show the empire fighting on multiple fronts. "My native country, untroubled times" is the heartbreak line. He mourns not just a place but a time that will not return.</div>
                 </div>
-                <div class="poem-card">
-                    <div class="poem-title">Autumn Meditation, No. 2</div>
-                    <div class="poem-translator">"Ch'iu hsing" No. 2</div>
-                    <div class="poem-text">On the solitary walls of K'uei-chou the sunset rays slant,
-Each night guided by the Dipper I gaze towards the capital.
-It is true then that tears start when we hear the gibbon cry thrice;
-Useless my mission adrift on the raft which came by this eighth month.</div>
-                    <div class="poem-note"><strong>Why it matters:</strong> The Dipper points north, toward Chang'an. Du Fu uses it as a compass of longing. The "gibbon cry thrice" is an old folk belief that three cries bring tears. The raft adrift = a legend about floating to the Milky Way, used here as an image of exile without return.</div>
+                <div class="poem-card full">
+                    <div class="poem-title">Autumn Meditation, No. 5</div>
+                    <div class="poem-translator">"Ch'iu hsing" No. 5 (p. 236)</div>
+                    <div class="poem-text">The gate of P'eng-lai Palace faces the southern hills,
+Dew collects on the bronze stems high in the Misty River.
+Fumes of the censers by the pictures in the ministry elude my
+        sickbed pillow,
+The whitewashed parapets of turrets against the hills dull the
+        mournful bugles.
+        Look! On the wall, the moon in the ivy
+Already, by the shores of the isle, lights the blossoms on the reeds.</div>
+                    <div class="poem-note"><strong>Analysis:</strong> Du Fu imagines himself back at the capital, remembering his brief time as "Reminder" at court (757-58). P'eng-lai Palace was an actual court building where he served. The "sickbed pillow" places him inside the ministry, but the imagined scene dissolves into moonlight on ivy. This is memory operating as hallucination, exile longing made vivid enough to feel present.</div>
                 </div>
             </div>
         </div>
