@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lu Ji's World | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --paper: #fafaf8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --wu: #2d7d7d;
+            --jin: #8a6a30;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .page-header a {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+        .page-header a:hover { color: var(--gold-light); }
+        .page-header .divider { color: #555; font-size: 0.7rem; }
+        .page-header .title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .page-header .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+        }
+        .page-header h1 {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            height: calc(100vh - 42px);
+        }
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; height: auto; }
+        }
+
+        .sidebar {
+            background: #fff;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .sidebar-section { border-bottom: 1px solid #eee; }
+        .sidebar-section-header {
+            padding: 0.75rem 1rem;
+            background: var(--paper);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sidebar-section-header h3 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-light);
+            font-weight: 600;
+        }
+        .sidebar-section-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .location-list { list-style: none; }
+        .location-item {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .location-item:hover { background: rgba(45,125,125,0.04); }
+        .location-item.active {
+            background: rgba(45,125,125,0.08);
+            border-left: 3px solid var(--wu);
+        }
+        .location-item .name {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.2rem;
+        }
+        .location-item .chinese-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.25rem;
+            color: var(--ink);
+        }
+        .location-item .english-name {
+            font-size: 0.85rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .location-item .description {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+        .location-item .era-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+            margin-top: 0.4rem;
+            color: #fff;
+        }
+        .location-item .era-badge.wu { background: var(--wu); }
+        .location-item .era-badge.jin { background: var(--jin); }
+
+        .context-box {
+            padding: 1rem;
+            background: var(--paper);
+            border-top: 1px solid #eee;
+        }
+        .context-box h4 {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+        }
+        .context-box p {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.55;
+        }
+
+        #map { width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <a href="../lu-ji-wen-fu.html">&larr; Lu Ji: Wen Fu</a>
+        <span class="divider">/</span>
+        <div class="title">
+            <span class="chinese">陸機的世界</span>
+            <h1>Lu Ji's World: Wu to Jin</h1>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <h3>Key Locations</h3>
+                    <div class="dot" style="background: var(--wu)"></div>
+                </div>
+                <ul class="location-list" id="location-list">
+                    <li class="location-item" data-id="huating">
+                        <div class="name">
+                            <span class="chinese-name">華亭</span>
+                            <span class="english-name">Huating</span>
+                        </div>
+                        <div class="description">Lu Ji's birthplace. The Lu family were prominent in the Wu kingdom. His grandfather Lu Xun was Wu's most celebrated general.</div>
+                        <span class="era-badge wu">Wu 吳</span>
+                    </li>
+                    <li class="location-item" data-id="jianye">
+                        <div class="name">
+                            <span class="chinese-name">建鄴</span>
+                            <span class="english-name">Jianye</span>
+                        </div>
+                        <div class="description">Capital of the Wu kingdom (modern Nanjing). Political center where the Lu family held power until Wu's fall in 280 CE.</div>
+                        <span class="era-badge wu">Wu 吳</span>
+                    </li>
+                    <li class="location-item" data-id="luoyang">
+                        <div class="name">
+                            <span class="chinese-name">洛陽</span>
+                            <span class="english-name">Luoyang</span>
+                        </div>
+                        <div class="description">Capital of the Western Jin dynasty. Lu Ji traveled here after 289 CE to seek office at the conquering court. He composed the Wen Fu here, and was executed here in 303 CE.</div>
+                        <span class="era-badge jin">Jin 晉</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="context-box">
+                <h4>Historical Context</h4>
+                <p>In 280 CE, the Jin dynasty conquered Wu, ending the Three Kingdoms period. Lu Ji, grandson of Wu's great general Lu Xun, spent a decade in mourning and study before traveling north to the Jin capital of Luoyang around 289. There he gained literary fame but was eventually drawn into the War of the Eight Princes and executed on false charges of treason in 303.</p>
+            </div>
+        </aside>
+
+        <div id="map"></div>
+    </div>
+
+    <script>
+        const locations = [
+            {
+                id: 'huating',
+                name: 'Huating',
+                chinese: '華亭',
+                lat: 31.0,
+                lng: 121.23,
+                color: '#2d7d7d',
+                size: 14,
+                modern: 'Songjiang District, Shanghai',
+                description: 'Lu Ji was born here in 261 CE into the powerful Lu clan of Wu. After Wu\'s fall, he spent ten years here studying and writing before venturing to the Jin capital.'
+            },
+            {
+                id: 'jianye',
+                name: 'Jianye',
+                chinese: '建鄴',
+                lat: 32.06,
+                lng: 118.78,
+                color: '#2d7d7d',
+                size: 16,
+                modern: 'Nanjing, Jiangsu',
+                description: 'Capital of the Wu kingdom. The Lu family were among Wu\'s most powerful clans. Lu Ji\'s grandfather Lu Xun served as chancellor and supreme commander.'
+            },
+            {
+                id: 'luoyang',
+                name: 'Luoyang',
+                chinese: '洛陽',
+                lat: 34.68,
+                lng: 112.45,
+                color: '#8a6a30',
+                size: 18,
+                modern: 'Luoyang, Henan',
+                description: 'Western Jin capital. Lu Ji arrived c. 289 CE, gained literary renown, composed the Wen Fu, and was executed in 303 during the War of the Eight Princes.'
+            }
+        ];
+
+        const map = L.map('map', { zoomControl: true }).setView([32.5, 117], 6);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Route: Huating → Jianye → Luoyang (Lu Ji's journey north)
+        const journeyRoute = L.polyline([
+            [31.0, 121.23],
+            [32.06, 118.78],
+            [34.68, 112.45]
+        ], {
+            color: '#b8860b',
+            weight: 2,
+            dashArray: '8, 8',
+            opacity: 0.6
+        }).addTo(map);
+
+        // Label for route
+        const midpoint = L.latLng(33.2, 115.5);
+        L.marker(midpoint, {
+            icon: L.divIcon({
+                className: '',
+                html: '<div style="font-size:0.65rem;color:#8a6a30;white-space:nowrap;font-family:Inter,sans-serif;font-style:italic;background:rgba(255,255,255,0.85);padding:2px 6px;border-radius:3px">c. 289 CE: journey to Jin court</div>',
+                iconSize: [160, 20],
+                iconAnchor: [80, 10]
+            })
+        }).addTo(map);
+
+        function createIcon(loc) {
+            const size = loc.size * 2;
+            return L.divIcon({
+                className: '',
+                html: `<div style="
+                    width:${size}px;height:${size}px;
+                    background:${loc.color};
+                    border-radius:50%;
+                    border:2px solid #fff;
+                    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+                    display:flex;align-items:center;justify-content:center;
+                    font-family:'Noto Serif SC',serif;
+                    font-size:${size * 0.45}px;
+                    color:#fff;
+                ">${loc.chinese[0]}</div>`,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2]
+            });
+        }
+
+        function popupContent(loc) {
+            return `
+                <div style="font-family:Inter,sans-serif;max-width:260px;padding:4px">
+                    <div style="font-family:'Noto Serif SC',serif;font-size:1.4rem;color:${loc.color};margin-bottom:2px">${loc.chinese}</div>
+                    <div style="font-size:0.9rem;font-weight:600;margin-bottom:6px">${loc.name}</div>
+                    <p style="font-size:0.8rem;color:#4a4a4a;line-height:1.5;margin-bottom:8px">${loc.description}</p>
+                    <div style="font-size:0.7rem;color:#888;background:#f5f5f3;padding:4px 8px;border-radius:3px;display:inline-block">Modern: ${loc.modern}</div>
+                </div>
+            `;
+        }
+
+        const markers = {};
+        locations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng], { icon: createIcon(loc) })
+                .addTo(map)
+                .bindPopup(popupContent(loc), { maxWidth: 280 });
+            markers[loc.id] = marker;
+        });
+
+        // Sidebar interaction
+        document.querySelectorAll('.location-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const id = item.dataset.id;
+                const loc = locations.find(l => l.id === id);
+                if (!loc) return;
+
+                document.querySelectorAll('.location-item').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+
+                map.setView([loc.lat, loc.lng], 8, { animate: true });
+                markers[id].openPopup();
+            });
+        });
+
+        // Fit all markers
+        const group = new L.featureGroup(Object.values(markers));
+        map.fitBounds(group.getBounds().pad(0.3));
+    </script>
+</body>
+</html>

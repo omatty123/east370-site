@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lu Ji: Essay on Literature (Wen Fu) | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --wu: #2d7d7d;
+            --jin: #8a6a30;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Map embed */
+        .map-wrapper {
+            margin-top: 0.6rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .map-frame {
+            width: 100%;
+            height: 420px;
+            border: none;
+        }
+        .map-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .map-link:hover { color: var(--gold-light); }
+
+        /* Section structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">文賦</span>
+            <span class="en">Essay on Literature</span>
+            <span class="meta">Lu Ji (Lu Chi in Birch), 261&ndash;303 CE</span>
+        </div>
+    </header>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#author">Author</a>
+        <a href="#context">Context</a>
+        <a href="#map">Map</a>
+        <a href="#structure">Structure</a>
+        <a href="#genres">Ten Genres</a>
+        <a href="#passages">Key Passages</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- The Author -->
+    <section class="content-section" id="author">
+        <div class="section-label"><span class="chinese">作者</span> THE AUTHOR</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">陸機</span> Lu Ji <span class="meta">261&ndash;303 CE &middot; Huating, Wu</span></div>
+                <div class="card-body">
+                    <h4>Family and Origins</h4>
+                    <p>Lu Ji was born in 261 CE into <a href="https://www.britannica.com/biography/Lu-Ji" target="_blank">one of the most powerful families in the Wu kingdom</a>. His grandfather Lu Xun was Wu's most celebrated general and chancellor; his father Lu Kang served as commander of Wu's armed forces. The Lu clan of Huating (modern Songjiang, Shanghai) represented the southern aristocratic elite.</p>
+                    <h4>Fall of Wu</h4>
+                    <p>In 280 CE, the Jin dynasty conquered Wu, ending the Three Kingdoms period. Lu Ji was nineteen. <a href="https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/lu-chi" target="_blank">He spent the next decade in retirement</a>, studying and writing at the family estate in Huating. This period of enforced seclusion shaped his literary sensibility.</p>
+                    <h4>Journey to Luoyang</h4>
+                    <p>Around 289 CE, Lu Ji and his brother Lu Yun traveled to the Jin capital of Luoyang, where <a href="https://www.britannica.com/biography/Lu-Ji" target="_blank">they quickly won literary fame</a>. The literary critic Zhang Hua praised their talents, and Lu Ji was eventually <a href="https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/lu-chi" target="_blank">appointed president of the national university</a>. At Luoyang he composed the <em>Wen fu</em>, among other major works.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">亂世</span> Political Catastrophe</div>
+                <div class="card-body">
+                    <h4>War of the Eight Princes</h4>
+                    <p>Lu Ji became entangled in the Jin dynasty's internal power struggles. The <a href="https://en.wikipedia.org/wiki/Lu_Ji_(Shiheng)" target="_blank">War of the Eight Princes</a> (291&ndash;306 CE) saw imperial relatives battling for control. Lu Ji was given military command by Sima Ying, Prince of Chengdu, but suffered a devastating defeat at the Battle of Heqiao in 303 CE.</p>
+                    <h4>Execution</h4>
+                    <p>Rivals at court used the military failure to bring false charges of treason. <a href="https://www.britannica.com/biography/Lu-Ji" target="_blank">Lu Ji was executed in 303 CE</a>, along with his two sons and two brothers. He was forty-three years old. Before his death, he reportedly sighed: "I shall never again hear the cranes cry at Huating." The Birch introduction notes he was <a href="https://www.britannica.com/biography/Lu-Ji" target="_blank">"victim of a cutthroat struggle for power at the Chin court"</a> (Birch, p. 203).</p>
+                    <h4>Timeline</h4>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">261 CE</div>
+                            <div class="event">Born in Huating, Wu kingdom</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">280 CE</div>
+                            <div class="event">Jin conquers Wu; ten years of seclusion</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 289 CE</div>
+                            <div class="event">Travels to Luoyang; gains literary fame</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 290s CE</div>
+                            <div class="event">Composes the <em>Wen fu</em> (文賦)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">303 CE</div>
+                            <div class="event">Executed on false treason charges</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historical Context -->
+    <section class="content-section alt" id="context">
+        <div class="section-label"><span class="chinese">背景</span> HISTORICAL CONTEXT</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">六朝</span> The Period of Division <span class="meta">220&ndash;589 CE</span></div>
+                <div class="card-body">
+                    <h4>A Fractured World</h4>
+                    <p>Lu Ji wrote during the Western Jin dynasty (266&ndash;316 CE), a brief reunification sandwiched between centuries of division. The fall of the Han in 220 CE had shattered the old imperial order. Three kingdoms competed for legitimacy, then Jin unified them by conquest, only to collapse within decades into civil war and northern invasions.</p>
+                    <h4>Literature in an Age of Instability</h4>
+                    <p>Paradoxically, political chaos produced literary brilliance. Writers no longer assumed a stable Confucian order where literature served the state. The period saw the rise of personal lyric poetry, literary criticism as a distinct pursuit, and intense reflection on what writing was <em>for</em>. Lu Ji's <em>Wen fu</em> belongs to this moment: an age when literature had to justify itself on its own terms, not simply as a tool of governance.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">文賦</span> Why Write About Writing? <span class="meta">The Wen Fu's Innovation</span></div>
+                <div class="card-body">
+                    <h4>A Fu About Making Fu</h4>
+                    <p>The <em>Wen fu</em> is a rhyme-prose (<em>fu</em>) about the art of literary composition. <a href="https://www.britannica.com/topic/The-Art-of-Writing" target="_blank">Britannica calls it "a subtle and important work of literary criticism that defines and demonstrates the principles of composition."</a> The choice of form is deliberate: Lu Ji writes a <em>fu</em> about writing, so the essay itself is a demonstration of the craft it describes. The medium embodies the message.</p>
+                    <h4>First Systematic Literary Theory</h4>
+                    <p><a href="https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/lu-chi" target="_blank">Encyclopedia.com notes</a> that the <em>Wen fu</em> is "the most brilliant disquisition on literary creation by a Chinese up to its time." Earlier thinkers (Kongzi, Mengzi) made scattered remarks about literature. Cao Pi's "Discourse on Literature" (c. 217 CE) offered brief evaluations of contemporaries. Lu Ji went further: he analyzed the entire creative process from initial inspiration to the finished work, classified literary genres, diagnosed common failures, and reflected on the mysterious nature of artistic inspiration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map -->
+    <section class="content-section" id="map">
+        <div class="section-label"><span class="chinese">地圖</span> LU JI'S WORLD</div>
+        <div class="map-wrapper">
+            <iframe src="maps/lu-ji-map.html" class="map-frame" title="Lu Ji's World: Wu to Jin"></iframe>
+        </div>
+        <a href="maps/lu-ji-map.html" target="_blank" class="map-link">Open full interactive map &rarr;</a>
+    </section>
+
+    <!-- Structure of the Essay -->
+    <section class="content-section alt" id="structure">
+        <div class="section-label"><span class="chinese">結構</span> STRUCTURE OF THE ESSAY</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">序</span> Prefatory Remarks <span class="meta">Birch, p. 204</span></div>
+                <div class="card-body">
+                    <p>Lu Ji opens with a prose preface explaining his purpose. He has studied the great writers and gained insight into "their minds at work." But he confronts a fundamental problem: words fail to capture meaning, and meaning fails to capture reality.</p>
+                    <blockquote>
+                        "Constantly present is the feeling of regret that the meaning apprehended does not represent the objects observed; and, furthermore, words fail to convey the meaning."
+                        <cite>Birch, p. 204; trans. Shih-hsiang Chen</cite>
+                    </blockquote>
+                    <p>This gap between experience, understanding, and expression is the essay's central problem. Everything that follows is Lu Ji's attempt to bridge it.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">十一章</span> The Eleven Sections</div>
+                <div class="card-body">
+                    <div class="structure-list">
+                        <div class="structure-item">
+                            <span class="structure-num">一</span>
+                            <div class="structure-text">
+                                <div class="s-title">The Motive</div>
+                                <div class="s-desc">The poet surveys the universe and studies the ancients. Seasonal change stirs the impulse to write.</div>
+                                <div class="s-page">pp. 204&ndash;205</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">二</span>
+                            <div class="structure-text">
+                                <div class="s-title">Meditation Before Writing</div>
+                                <div class="s-desc">The mind suspends external sensation, reaches the limits of the cosmos, and dives into a "sea of words."</div>
+                                <div class="s-page">pp. 205&ndash;206</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">三</span>
+                            <div class="structure-text">
+                                <div class="s-title">The Working Process</div>
+                                <div class="s-desc">Selecting ideas, ordering material. Flow alternates with obstruction. Calm transparency enables crystallization.</div>
+                                <div class="s-page">pp. 206&ndash;207</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">四</span>
+                            <div class="structure-text">
+                                <div class="s-title">The Joy of Writing</div>
+                                <div class="s-desc">Writing is a joy. From the Great Void comes sound; from an inch-sized heart, an endless panorama.</div>
+                                <div class="s-page">p. 207</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">五</span>
+                            <div class="structure-text">
+                                <div class="s-title">On Form</div>
+                                <div class="s-desc">Taxonomy of ten literary genres, each with its own character and requirements.</div>
+                                <div class="s-page">pp. 207&ndash;209</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">六</span>
+                            <div class="structure-text">
+                                <div class="s-title">The Making of a Composition</div>
+                                <div class="s-desc">Composition as "the incarnation of many living gestures." Truth and beauty must harmonize.</div>
+                                <div class="s-page">pp. 209&ndash;210</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">七</span>
+                            <div class="structure-text">
+                                <div class="s-title">Five Shortcomings</div>
+                                <div class="s-desc">Five ways writing fails: indigent vision, languid tone, pursuit of the minuscule, empty symphony, and aerial purity without substance.</div>
+                                <div class="s-page">pp. 210&ndash;211</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">八</span>
+                            <div class="structure-text">
+                                <div class="s-title">The Secret of Artistry</div>
+                                <div class="s-desc">Style hinges on subtle feeling. The older the model, the fresher the imitation. Artistry lies beyond smoothest speech.</div>
+                                <div class="s-page">pp. 211&ndash;212</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">九</span>
+                            <div class="structure-text">
+                                <div class="s-title">The Source of Literature and Discipline</div>
+                                <div class="s-desc">Literature's source is like air from the eternal Void. Great Eloquence is hard to achieve; self-doubt haunts the writer.</div>
+                                <div class="s-page">pp. 212&ndash;213</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">十</span>
+                            <div class="structure-text">
+                                <div class="s-title">Of Inspiration</div>
+                                <div class="s-desc">Inspiration comes and goes with irresistible, ungovernable force. Even when the Secret is held within, it is beyond one's power to summon.</div>
+                                <div class="s-page">p. 213</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">末</span>
+                            <div class="structure-text">
+                                <div class="s-title">The Use of Literature</div>
+                                <div class="s-desc">Literature conveys truth, bridges time, restores the voices of the ancients, and manifests the power of transformation.</div>
+                                <div class="s-page">p. 214</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ten Genres -->
+    <section class="content-section" id="genres">
+        <div class="section-label"><span class="chinese">十體</span> THE TEN GENRES (SECTION 5)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">文類</span> Lu Ji's Taxonomy of Literary Forms <span class="meta">Birch, p. 208</span></div>
+                <div class="card-body">
+                    <p>In Section 5, Lu Ji classifies literature into ten genres, giving each a one-line characterization. This is one of the earliest systematic genre taxonomies in Chinese literary criticism. Note the Birch text uses Wade-Giles romanization for these terms.</p>
+                    <div class="genre-grid">
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">詩</span>
+                                <span class="genre-name">Lyric</span>
+                                <span class="genre-pinyin">shi (shih in Birch)</span>
+                            </div>
+                            <div class="genre-desc">"born of pure emotion, is gossamer fibre woven into the finest fabric"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">賦</span>
+                                <span class="genre-name">Exhibitory Essay</span>
+                                <span class="genre-pinyin">fu</span>
+                            </div>
+                            <div class="genre-desc">"being true to the objects, is vividness incarnate"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">碑</span>
+                                <span class="genre-name">Inscription</span>
+                                <span class="genre-pinyin">bei (pei in Birch)</span>
+                            </div>
+                            <div class="genre-desc">"rhetoric must be a foil to facts"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">誄</span>
+                                <span class="genre-name">Elegy</span>
+                                <span class="genre-pinyin">lei</span>
+                            </div>
+                            <div class="genre-desc">"tenderly spins out ceaseless heartfelt grief"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">銘</span>
+                                <span class="genre-name">Mnemonic</span>
+                                <span class="genre-pinyin">ming</span>
+                            </div>
+                            <div class="genre-desc">"a smooth flow of genial phrases, succinct but pregnant"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">箴</span>
+                                <span class="genre-name">Epigram</span>
+                                <span class="genre-pinyin">zhen (chen in Birch)</span>
+                            </div>
+                            <div class="genre-desc">"staccato cadences... all transparent force"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">頌</span>
+                                <span class="genre-name">Eulogy</span>
+                                <span class="genre-pinyin">song (sung in Birch)</span>
+                            </div>
+                            <div class="genre-desc">"enjoys the full abandon of grand style"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">論</span>
+                                <span class="genre-name">Expository</span>
+                                <span class="genre-pinyin">lun</span>
+                            </div>
+                            <div class="genre-desc">"must in exactitude and clarity excel"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">奏</span>
+                                <span class="genre-name">Memorial</span>
+                                <span class="genre-pinyin">zou (tsou in Birch)</span>
+                            </div>
+                            <div class="genre-desc">"balanced and lucid, must be worthy of the dignity of its royal audience"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">說</span>
+                                <span class="genre-name">Argument</span>
+                                <span class="genre-pinyin">shuo</span>
+                            </div>
+                            <div class="genre-desc">"with glowing words and cunning parables persuades"</div>
+                        </div>
+                    </div>
+                    <div class="key-themes">
+                        <h4>Why This Matters</h4>
+                        <ul>
+                            <li><strong>Genre determines style:</strong> Each form demands a different relationship between emotion, truth, and ornament</li>
+                            <li><strong>No single standard:</strong> "The forms of things differ in a myriad ways, / For them there is no common measure" (p. 208)</li>
+                            <li><strong>Meaning governs form:</strong> "It is the all-harmonizing force of Meaning that integrates and bodies forth features supreme" (p. 208)</li>
+                            <li><strong>Contrast with the <em>fu</em>:</strong> The <em>fu</em> prizes vividness; the <em>shi</em> prizes pure emotion. Different tools, different purposes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Passages -->
+    <section class="content-section alt" id="passages">
+        <div class="section-label"><span class="chinese">名句</span> KEY PASSAGES</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">冥想</span> The Creative Process</div>
+                <div class="card-body">
+                    <h4>Meditation (Section 2)</h4>
+                    <blockquote>
+                        "All external vision and sound are suspended,<br>
+                        Perpetual thought itself gropes in time and space;<br>
+                        Then, the spirit at full gallop reaches the eight limits of the cosmos,<br>
+                        And the mind, self-buoyant, will ever soar to new insurmountable heights."
+                        <cite>Birch, p. 205; trans. Shih-hsiang Chen</cite>
+                    </blockquote>
+                    <p>Writing begins not with pen on paper but with an interior journey. The poet must first empty the senses, then let the mind range freely across all of time and space. Only after this cosmic meditation can the work of selecting and shaping begin.</p>
+
+                    <h4>Working Process (Section 3)</h4>
+                    <blockquote>
+                        "But not until the heart attains calm transparency does thought crystallize<br>
+                        Into such words as no man before fancied or pronounced."
+                        <cite>Birch, p. 207; trans. Shih-hsiang Chen</cite>
+                    </blockquote>
+                    <p>Lu Ji describes composition as alternating between flow and obstruction. Ideas sometimes come with "sure touches and smooth rhythm"; at other moments, "as if beset by mountainous obstacles." The breakthrough requires <em>calm transparency</em>, not effort.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">靈感</span> Inspiration and Purpose</div>
+                <div class="card-body">
+                    <h4>Joy of Writing (Section 4)</h4>
+                    <blockquote>
+                        "Writing is in itself a joy,<br>
+                        Yet saints and sages have long since held it in awe.<br>
+                        For it is Being, created by tasking the Great Void,<br>
+                        And 'tis sound rung out of Profound Silence."
+                        <cite>Birch, p. 207; trans. Shih-hsiang Chen</cite>
+                    </blockquote>
+                    <p>Writing is simultaneously pleasure and cosmic act. It brings Being from Void, sound from silence. The Daoist resonance is deliberate: Lu Ji draws on the <em>Daodejing</em>'s language of emptiness and creation to frame literary work as participation in the generative force of the universe.</p>
+
+                    <h4>Of Inspiration (Section 10)</h4>
+                    <blockquote>
+                        "Such moments when Mind and Matter hold perfect communion,<br>
+                        And wide vistas open to regions hitherto entirely barred,<br>
+                        Will come with irresistible force,<br>
+                        And go, their departure none can hinder."
+                        <cite>Birch, p. 213; trans. Shih-hsiang Chen</cite>
+                    </blockquote>
+                    <p>Inspiration cannot be commanded. Lu Ji compares it to flashes of light, to sounds arising in mid-air. Even when "the Secret may be held within oneself, / It is none the less beyond one's power to sway." This honest admission of the writer's helplessness before inspiration remains one of the most striking passages in world literary criticism.</p>
+
+                    <h4>The Use of Literature (Section 11)</h4>
+                    <blockquote>
+                        "The use of literature<br>
+                        Lies in its conveyance of every truth.<br>
+                        It expands the horizon to make space infinite,<br>
+                        And serves as a bridge that spans a myriad years."
+                        <cite>Birch, p. 214; trans. Shih-hsiang Chen</cite>
+                    </blockquote>
+                    <p>The closing section elevates literature from craft to civilizational mission. Writing preserves the ancients, maps roads for posterity, and "manifests all the powers of transformation in which gods and spirits share." This is not entertainment. It is how a civilization speaks across time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Form and Self-Reference</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Lu Ji writes a <em>fu</em> about writing. How does the form of the essay demonstrate its own argument? Does the <em>Wen fu</em> succeed by its own criteria?</li>
+                        <li>Compare Lu Ji's treatment of the <em>fu</em> genre ("being true to the objects, is vividness incarnate") with the <em>fu</em> we read from Sima Xiangru. Does the <em>Shanglin fu</em> fit Lu Ji's definition?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Inspiration and Control</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Lu Ji says inspiration "will come with irresistible force, / And go, their departure none can hinder." If the writer cannot control inspiration, what <em>can</em> the writer control? What is the relationship between discipline and spontaneity in the essay?</li>
+                        <li>How does Lu Ji's description of the creative process compare to your own experience of writing? What resonates? What doesn't?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Literature's Purpose</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Lu Ji claims literature "serves as a bridge that spans a myriad years." How does this compare to the Confucian view that literature should serve moral instruction? Is Lu Ji's vision broader?</li>
+                        <li>Lu Ji was executed three years after composing this essay on the eternal power of literature. Does knowing his fate change how you read Section 11?</li>
+                        <li>How does the <em>Wen fu</em> relate to earlier texts we've read about the purpose of writing (e.g., the "Great Preface" to the <em>Book of Songs</em>)?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I: "On Literature" (Lu Chi), pp. 203&ndash;214. Translated by Shih-hsiang Chen.</p>
+            </div>
+            <div class="source-card">
+                <h4>Other English Translations</h4>
+                <a href="https://archive.org/details/essayonliteratur00luji" target="_blank" rel="noopener">Shih-hsiang Chen, <em>Essay on Literature</em> (Anthoensen Press, 1953) &mdash; the standalone Chen translation with scholarly introduction</a>
+                <a href="https://www.gpullman.com/8170/LuChi.php" target="_blank" rel="noopener">E.R. Hughes translation (1951) of the <em>Wen fu</em></a>
+                <a href="https://leonard-ng.com/wen-fu/" target="_blank" rel="noopener">Leonard Ng, modern English translation with commentary</a>
+                <p>Achilles Fang, "Rhymeprose on Literature: The Wen-Fu of Lu Chi," <em>Harvard Journal of Asiatic Studies</em> 14.3/4 (1951), pp. 527&ndash;566.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/biography/Lu-Ji" target="_blank" rel="noopener">Encyclopaedia Britannica: Lu Ji</a>
+                <a href="https://www.britannica.com/topic/The-Art-of-Writing" target="_blank" rel="noopener">Encyclopaedia Britannica: "The Art of Writing" (Wen Fu)</a>
+                <a href="https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/lu-chi" target="_blank" rel="noopener">Encyclopedia.com: Lu Chi &mdash; detailed biography and literary context</a>
+                <a href="https://en.wikipedia.org/wiki/Lu_Ji_(Shiheng)" target="_blank" rel="noopener">Wikipedia: Lu Ji (Shiheng)</a>
+                <a href="https://en.wikipedia.org/wiki/Wen_fu" target="_blank" rel="noopener">Wikipedia: Wen fu</a>
+                <a href="https://ctext.org/datawiki.pl?if=en&res=593428" target="_blank" rel="noopener">Chinese Text Project: Lu Ji &mdash; collected works</a>
+            </div>
+            <div class="source-card">
+                <h4>Scholarly Analysis</h4>
+                <a href="https://blogs.baruch.cuny.edu/wenfu/?page_id=5" target="_blank" rel="noopener">Baruch College (CUNY): Lu Chi's <em>Wen Fu</em> &mdash; synopsis, history, and context</a>
+                <a href="https://ampersunder.com/2017/lu-ji-art-of-writing/" target="_blank" rel="noopener">"New Life in the Void: Poet Lu Ji on the Art of Writing" &mdash; thematic analysis</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="shanglin-fu.html">Shanglin Fu: Sima Xiangru &mdash; the <em>fu</em> tradition</a>
+                <a href="fu-background.html">Han Fu Background: Song Yu &amp; Jia Yi</a>
+                <a href="recluse-poetry.html">Poetry of the Recluse (174&ndash;188)</a>
+                <a href="bao-zhao.html">Bao Zhao (189&ndash;193)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
