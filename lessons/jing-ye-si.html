@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>靜夜思 Quiet Night Thought | Li Bai | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #888;
+            --li: #8b5c3e;
+            --li-light: #a87d5e;
+            --li-bg: #faf5f0;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --paper: #fafaf8;
+            --paper-warm: #faf6f0;
+            --paper-dark: #f0ede8;
+            --teal: #2d5a5a;
+            --poem-bg: #faf8f2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* ===== HEADER ===== */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back {
+            font-size: 0.7rem;
+            color: #888;
+            text-decoration: none;
+        }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .page-title .ch {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .page-title .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--li);
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .page-meta {
+            font-size: 0.65rem;
+            color: #666;
+        }
+
+        /* ===== NAV ===== */
+        .nav-strip {
+            background: #fff;
+            border-bottom: 1px solid var(--paper-dark);
+            padding: 0.5rem 5%;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-strip a {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--ink-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            border: 1px solid transparent;
+            transition: all 0.15s;
+        }
+        .nav-strip a:hover {
+            background: var(--paper-dark);
+            border-color: #ddd;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 2.5rem 5%;
+            border-bottom: 1px solid var(--paper-dark);
+        }
+        .section-alt { background: var(--paper-warm); }
+        .section-dark { background: var(--ink); color: #ccc; }
+        .section-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            margin-bottom: 0.25rem;
+        }
+        .section h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        .section-dark h2 { color: #fff; }
+        .section-dark .section-label { color: var(--li-light); }
+
+        /* ===== POEM SHOWCASE ===== */
+        .poem-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border: 1px solid #e8e5e0;
+        }
+        .poem-zh-side {
+            background: var(--ink);
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .poem-zh-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+        }
+        .poem-zh-author {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+        .poem-zh-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            line-height: 2.4;
+            color: #fff;
+            letter-spacing: 0.15em;
+        }
+        .poem-en-side {
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--poem-bg);
+        }
+        .poem-en-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+        .poem-en-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.15rem;
+        }
+        .poem-en-author {
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            margin-bottom: 2rem;
+        }
+        .poem-en-text {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: var(--ink-light);
+            font-weight: 300;
+        }
+
+        /* ===== NOTE BAR ===== */
+        .note-bar {
+            background: var(--li-bg);
+            border-left: 4px solid var(--li);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+        .note-bar strong { color: var(--li); }
+
+        /* ===== CHARACTER TABLE ===== */
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .char-line {
+            background: #fff;
+            border: 1px solid #e8e5e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .char-line-num {
+            background: var(--li);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.35rem 0.75rem;
+        }
+        .char-line-body {
+            padding: 0.75rem;
+        }
+        .char-row {
+            display: grid;
+            grid-template-columns: 32px 1fr 1fr;
+            gap: 0.4rem;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f5f3ef;
+        }
+        .char-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .char-zh {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.2rem;
+            color: var(--ink);
+        }
+        .char-py {
+            font-size: 0.78rem;
+            color: var(--li);
+            font-weight: 500;
+        }
+        .char-en {
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+        }
+
+        /* ===== ANALYSIS CARDS ===== */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .a-card {
+            background: #fff;
+            border: 1px solid #e8e5e0;
+            border-radius: 6px;
+            padding: 1.25rem;
+        }
+        .a-card.full { grid-column: 1 / -1; }
+        .a-card h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--li);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--li);
+        }
+        .a-card p, .a-card li {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+        .a-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .a-card ul li {
+            padding: 0.25rem 0;
+            padding-left: 1em;
+            position: relative;
+        }
+        .a-card ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--li);
+        }
+
+        /* ===== TRANSLATION COMPARISON ===== */
+        .trans-card {
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid #e8e5e0;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+        .trans-head {
+            background: #2a2a2a;
+            padding: 0.65rem 1.25rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .trans-head .translator {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .trans-head .source {
+            font-size: 0.68rem;
+            color: var(--li-light);
+        }
+        .trans-body {
+            padding: 1.25rem;
+        }
+        .trans-text {
+            font-size: 0.95rem;
+            line-height: 2.0;
+            font-weight: 300;
+            color: var(--ink-light);
+            white-space: pre-line;
+        }
+        .trans-note {
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #ddd;
+            font-size: 0.75rem;
+            color: var(--ink-faint);
+        }
+
+        /* ===== BED DEBATE ===== */
+        .debate-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        .debate-card {
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid #e8e5e0;
+            padding: 1.25rem;
+        }
+        .debate-card h4 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .debate-card p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+        .debate-card.traditional h4 { color: var(--li); }
+        .debate-card.revisionist h4 { color: var(--teal); }
+
+        /* ===== DISCUSSION ===== */
+        .disc-list {
+            list-style: none;
+            counter-reset: disc;
+        }
+        .disc-list li {
+            counter-increment: disc;
+            padding: 0.75rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            border-bottom: 1px solid #eee;
+            line-height: 1.6;
+        }
+        .disc-list li::before {
+            content: counter(disc);
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: var(--li);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 1.5rem 5%;
+            background: var(--ink);
+            color: #666;
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        footer a {
+            text-decoration: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .poem-showcase { grid-template-columns: 1fr; }
+            .char-grid { grid-template-columns: repeat(2, 1fr); }
+            .analysis-grid { grid-template-columns: 1fr; }
+            .debate-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .section { padding: 1.5rem 4%; }
+            .nav-strip { padding: 0.5rem 4%; }
+            .char-grid { grid-template-columns: 1fr; }
+            .poem-zh-text { font-size: 1.5rem; }
+            .poem-zh-side, .poem-en-side { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="page-title">
+            <a href="tang-poets.html" class="back">&larr; Tang Poets</a>
+            <span class="ch">靜夜思</span>
+            <span class="en">Quiet Night Thought</span>
+            <span class="tag">Li Bai</span>
+        </div>
+        <span class="page-meta">Supplementary Reading</span>
+    </header>
+
+    <!-- NAV -->
+    <nav class="nav-strip">
+        <a href="#poem">The Poem</a>
+        <a href="#wordbyword">Word by Word</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#translations">Translations</a>
+        <a href="#bed-debate">The 床 Debate</a>
+        <a href="#context">Why This Poem</a>
+        <a href="#discuss">Discussion</a>
+    </nav>
+
+    <!-- NOTE -->
+    <div style="padding:0.75rem 5%;background:var(--li-bg);border-bottom:1px solid #e8e5e0">
+        <div class="note-bar" style="margin:0">
+            <strong>Supplementary.</strong> This poem is not in the Birch reading (pp. 217&ndash;236), but it is Li Bai's most famous work and probably the most memorized poem in the Chinese language. Every schoolchild in China knows it by heart. Understanding it illuminates everything else Li Bai wrote.
+        </div>
+    </div>
+
+    <!-- THE POEM -->
+    <section id="poem" class="section">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">詩</span> The Poem</div>
+        <h2>Quiet Night Thought</h2>
+        <div class="poem-showcase">
+            <div class="poem-zh-side">
+                <div class="poem-zh-title">靜夜思</div>
+                <div class="poem-zh-author">李白 Li Bai (699&ndash;762)</div>
+                <div class="poem-zh-text">床前明月光<br>疑是地上霜<br>舉頭望明月<br>低頭思故鄉</div>
+            </div>
+            <div class="poem-en-side">
+                <div class="poem-en-label">Literal Translation</div>
+                <div class="poem-en-title">Quiet Night Thought</div>
+                <div class="poem-en-author">Literal rendering</div>
+                <div class="poem-en-text">Before my bed, bright moonlight<br>I suspect it is frost on the ground<br>Raising my head, I gaze at the bright moon<br>Lowering my head, I think of my old home</div>
+            </div>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+            <div style="font-size:0.82rem;color:var(--ink-light)">
+                <strong style="color:var(--ink)">Form:</strong> Five-character quatrain (<em>wujue</em> 五絕). Four lines, five characters each. Twenty characters total.
+            </div>
+            <div style="font-size:0.82rem;color:var(--ink-light)">
+                <strong style="color:var(--ink)">Rhyme:</strong> Lines 1, 2, and 4 rhyme: 光 <em>guāng</em>, 霜 <em>shuāng</em>, 鄉 <em>xiāng</em> (all <em>-ang</em>).
+            </div>
+        </div>
+    </section>
+
+    <!-- WORD BY WORD -->
+    <section id="wordbyword" class="section section-alt">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">字</span> Word by Word</div>
+        <h2>Character-by-Character Breakdown</h2>
+        <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1rem">Each character carries its own image. Twenty characters, zero wasted.</p>
+        <div class="char-grid">
+            <!-- Line 1 -->
+            <div class="char-line">
+                <div class="char-line-num">Line 1: 床前明月光</div>
+                <div class="char-line-body">
+                    <div class="char-row">
+                        <span class="char-zh">床</span>
+                        <span class="char-py">chu&aacute;ng</span>
+                        <span class="char-en">bed</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">前</span>
+                        <span class="char-py">qi&aacute;n</span>
+                        <span class="char-en">before, in front of</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">明</span>
+                        <span class="char-py">m&iacute;ng</span>
+                        <span class="char-en">bright, clear</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">月</span>
+                        <span class="char-py">yu&egrave;</span>
+                        <span class="char-en">moon</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">光</span>
+                        <span class="char-py">guāng</span>
+                        <span class="char-en">light, brightness</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Line 2 -->
+            <div class="char-line">
+                <div class="char-line-num">Line 2: 疑是地上霜</div>
+                <div class="char-line-body">
+                    <div class="char-row">
+                        <span class="char-zh">疑</span>
+                        <span class="char-py">y&iacute;</span>
+                        <span class="char-en">suspect, doubt</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">是</span>
+                        <span class="char-py">sh&igrave;</span>
+                        <span class="char-en">is, to be</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">地</span>
+                        <span class="char-py">d&igrave;</span>
+                        <span class="char-en">ground, earth</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">上</span>
+                        <span class="char-py">sh&agrave;ng</span>
+                        <span class="char-en">upon, on top of</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">霜</span>
+                        <span class="char-py">shuāng</span>
+                        <span class="char-en">frost</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Line 3 -->
+            <div class="char-line">
+                <div class="char-line-num">Line 3: 舉頭望明月</div>
+                <div class="char-line-body">
+                    <div class="char-row">
+                        <span class="char-zh">舉</span>
+                        <span class="char-py">j&#468;</span>
+                        <span class="char-en">raise, lift</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">頭</span>
+                        <span class="char-py">t&oacute;u</span>
+                        <span class="char-en">head</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">望</span>
+                        <span class="char-py">w&agrave;ng</span>
+                        <span class="char-en">gaze at, look toward</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">明</span>
+                        <span class="char-py">m&iacute;ng</span>
+                        <span class="char-en">bright</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">月</span>
+                        <span class="char-py">yu&egrave;</span>
+                        <span class="char-en">moon</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Line 4 -->
+            <div class="char-line">
+                <div class="char-line-num">Line 4: 低頭思故鄉</div>
+                <div class="char-line-body">
+                    <div class="char-row">
+                        <span class="char-zh">低</span>
+                        <span class="char-py">dī</span>
+                        <span class="char-en">lower, bow</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">頭</span>
+                        <span class="char-py">t&oacute;u</span>
+                        <span class="char-en">head</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">思</span>
+                        <span class="char-py">sī</span>
+                        <span class="char-en">think of, long for</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">故</span>
+                        <span class="char-py">g&ugrave;</span>
+                        <span class="char-en">old, former</span>
+                    </div>
+                    <div class="char-row">
+                        <span class="char-zh">鄉</span>
+                        <span class="char-py">xiāng</span>
+                        <span class="char-en">hometown, homeland</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANALYSIS -->
+    <section id="analysis" class="section">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">析</span> Analysis</div>
+        <h2>How Twenty Characters Do Everything</h2>
+        <div class="analysis-grid">
+            <div class="a-card">
+                <h3>Structure: The Head Pivot</h3>
+                <p>The poem pivots on the body. Lines 3 and 4 form a perfect physical antithesis: 舉頭 (raise head) / 低頭 (lower head). The same head, the same person, two directions. Up toward the moon, down toward memory. The entire emotional architecture of the poem hangs on this single gesture. You look up and see beauty. You look down and feel loss. That's it. That's the whole poem.</p>
+            </div>
+            <div class="a-card">
+                <h3>Imagery: Moon = Home</h3>
+                <p>The moon is the oldest symbol of separation in Chinese poetry. Everyone under the same sky sees the same moon, so the moon becomes the thing shared between people who are apart. Li Bai sees the moonlight on the floor, mistakes it for frost, then looks up and realizes: that is the same moon shining on my hometown right now. The realization triggers homesickness. The moon does not comfort. It reminds.</p>
+            </div>
+            <div class="a-card">
+                <h3>Time: The Sleepless Moment</h3>
+                <p>The title says 靜夜 (quiet night). The speaker is awake when he shouldn't be. Moonlight on the floor means the moon is high, the hour is late. This is the insomniac's poem. The moment between sleep and waking, where the rational mind (it's moonlight) briefly fails and the emotional mind takes over (it looks like frost, like cold, like being far from home in winter).</p>
+            </div>
+            <div class="a-card">
+                <h3>Language: Radical Simplicity</h3>
+                <p>No allusion. No mythology. No historical reference. No rare characters. A child can read every word. This is the opposite of Du Fu's "jewels of compressed esoteric allusion." Li Bai proves that the most powerful poetry can be the simplest. The vocabulary is first-grade. The emotion is universal. This is why it endures: no education required, only a body and a memory of home.</p>
+            </div>
+            <div class="a-card full">
+                <h3>Sensation to Emotion: The Four-Step Movement</h3>
+                <ul>
+                    <li><strong>Line 1: Sensation.</strong> Pure visual data. Light on the floor. No feeling yet.</li>
+                    <li><strong>Line 2: Confusion.</strong> The mind misreads the data. Moonlight becomes frost. A micro-hallucination. This is the crack where emotion enters.</li>
+                    <li><strong>Line 3: Recognition.</strong> The head rises, the eyes find the source. It's the moon. Clarity returns.</li>
+                    <li><strong>Line 4: Emotion.</strong> The head drops. Clarity is worse than confusion. Knowing it's moonlight (not frost) doesn't help. The knowledge triggers longing. 思故鄉 (think of homeland) is the poem's destination, prepared by three lines of physical movement.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSLATIONS COMPARED -->
+    <section id="translations" class="section section-alt">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">譯</span> Translations Compared</div>
+        <h2>The Same Twenty Characters, Different English</h2>
+        <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1.5rem">Translating this poem is a famous challenge. Every choice (rhythm, register, fidelity) reveals what the translator values. Compare what each version keeps and what it loses.</p>
+
+        <div class="trans-card">
+            <div class="trans-head">
+                <span class="translator">Witter Bynner</span>
+                <span class="source"><em>The Jade Mountain</em> (Alfred A. Knopf, 1929)</span>
+            </div>
+            <div class="trans-body">
+                <div class="trans-text">So bright a gleam on the foot of my bed --
+Could there have been a frost already?
+Lifting myself to look, I found that it was moonlight.
+Sinking back again, I thought suddenly of home.</div>
+                <div class="trans-note"><strong>Note:</strong> Bynner adds "suddenly" and "sinking back" for dramatic pacing. The original has no adverbs. "Lifting myself" implies the whole body, not just the head. His version reads like a short story: setup, question, discovery, emotional turn. Smooth, but it fills in what Li Bai left empty.</div>
+            </div>
+        </div>
+
+        <div class="trans-card">
+            <div class="trans-head">
+                <span class="translator">Attributed to Yang Xianyi &amp; Dai Naidie</span>
+                <span class="source">Widely anthologized; commonly cited but exact source debated</span>
+            </div>
+            <div class="trans-body">
+                <div class="trans-text">Before my bed a pool of light --
+Is it hoarfrost on the ground?
+I lift my eyes and see the moon,
+I bend my head and think of home.</div>
+                <div class="trans-note"><strong>Note:</strong> This terse, balanced version is the most widely circulated in English. "Pool of light" and "hoarfrost" are interpretive additions. The four lines map one-to-one onto the Chinese. A very similar version is sometimes attributed to Burton Watson (<em>The Columbia Book of Chinese Poetry</em>, 1984). The misattribution problem is itself revealing: when a translation is this clean, it becomes proverbial, detaching from its translator.</div>
+            </div>
+        </div>
+
+        <div class="trans-card">
+            <div class="trans-head">
+                <span class="translator">Literal / Word-Order</span>
+                <span class="source">For study purposes</span>
+            </div>
+            <div class="trans-body">
+                <div class="trans-text">Bed-before bright-moon light
+Suspect is ground-upon frost
+Raise head gaze bright moon
+Lower head think old home</div>
+                <div class="trans-note"><strong>Note:</strong> This is what the Chinese actually says, word for word, in English word order. No articles, no pronouns, no verbs of being. The original poem has no "I," no "my," no "it was." The subject is implied. The grammar is pure image.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE 床 DEBATE -->
+    <section id="bed-debate" class="section">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">辨</span> Scholarly Controversy</div>
+        <h2>The 床 Debate: Bed or Well-Curb?</h2>
+        <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1rem">The first character of the poem, 床 (<em>chu&aacute;ng</em>), has sparked a debate among scholars. Everyone agrees on the translation "bed" as the standard reading, but some have proposed an alternative.</p>
+
+        <div class="debate-grid">
+            <div class="debate-card traditional">
+                <h4>Traditional Reading: Bed</h4>
+                <p>床 means "bed." The speaker lies in bed, sees moonlight on the floor, sits up, looks at the moon through the window, then thinks of home. This is the reading every Chinese schoolchild learns. It places the poem indoors, in a bedroom, in the intimate space of sleeplessness. The frost-confusion works because moonlight on a bedroom floor at night could plausibly look like frost.</p>
+            </div>
+            <div class="debate-card revisionist">
+                <h4>Alternative Reading: Well-Curb</h4>
+                <p>Some scholars (notably Ma Weiqi in a widely discussed 2008 essay) argue that 床 in Tang usage could refer to a low railing or bench around a courtyard well (井欄). This places the speaker outdoors, standing by a well at night, seeing moonlight on the ground. Proponents note that 地上 (on the ground) fits better outdoors than inside a bedroom. Critics counter that the "bed" reading is overwhelmingly attested in Tang poetry and the alternative rests on slender evidence.</p>
+            </div>
+        </div>
+
+        <div class="note-bar">
+            <strong>Teaching note:</strong> The debate matters less for its answer than for what it reveals about reading classical Chinese. A single character can rewrite the entire scene. Is the speaker alone in a room or alone in a courtyard? Both readings produce the same emotion (homesickness), but the physical space changes entirely. This is the interpretive instability that makes classical Chinese poetry endlessly generative.
+        </div>
+    </section>
+
+    <!-- CULTURAL CONTEXT -->
+    <section id="context" class="section section-alt">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">意</span> Cultural Significance</div>
+        <h2>Why This Is the Most Famous Chinese Poem</h2>
+        <div class="analysis-grid">
+            <div class="a-card">
+                <h3>Universal Accessibility</h3>
+                <p>Every Chinese student memorizes this poem in elementary school. It is often the first poem a child learns. The language is simple enough for a six-year-old, the emotion deep enough for an eighty-year-old. No other poem in the language occupies this position: simultaneously the easiest and one of the most profound.</p>
+            </div>
+            <div class="a-card">
+                <h3>The Diaspora Poem</h3>
+                <p>For the Chinese diaspora worldwide, this poem carries a specific weight. It is the poem of being away from home. Overseas Chinese communities recite it at Mid-Autumn Festival (中秋節), the moon-gazing holiday when families are supposed to be together. For anyone living away from their homeland, 低頭思故鄉 (lowering my head, I think of home) is not literary analysis. It is lived experience.</p>
+            </div>
+            <div class="a-card">
+                <h3>Li Bai's Range</h3>
+                <p>In the Birch reading, Li Bai is a drinker, a brawler, a cosmic egotist ("Heaven gave me my talents, they shall be used"). In 靜夜思, he is none of those things. He is a person awake at night, far from home, looking at the moon. This is the other Li Bai: not the Banished Immortal, but the homesick wanderer. Both are real. The contrast is what makes him irreducible to a single label.</p>
+            </div>
+            <div class="a-card">
+                <h3>Connection to the Reading</h3>
+                <p>Compare this poem to "To His Old Friend Hsin" (Birch p. 228), where Li Bai writes: "Long ago, among the flowers and willows, / We sat drinking together at Ch'ang-an." Both poems are about what was lost. In 靜夜思 the loss is abstract (homeland). In the letter to Hsin, it is specific (a drinking session destroyed by the An Lushan Rebellion). Same poet, same longing, different scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTUAL NOTE -->
+    <section class="section">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">版</span> Textual Variant</div>
+        <h2>Which Version?</h2>
+        <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1rem">The version above is the one universally memorized today. But an earlier version of the poem, recorded in Song dynasty anthologies, has different wording for lines 1 and 3:</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1rem 0">
+            <div style="background:var(--poem-bg);padding:1.25rem;border-radius:6px;border:1px solid #e8e5e0">
+                <div style="font-size:0.68rem;font-weight:700;color:var(--li);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem">Standard Version (Ming dynasty onward)</div>
+                <div style="font-family:'Noto Serif SC',serif;font-size:1.1rem;line-height:2.2;letter-spacing:0.1em">床前<strong>明月</strong>光<br>疑是地上霜<br><strong>舉</strong>頭望<strong>明月</strong><br>低頭思故鄉</div>
+            </div>
+            <div style="background:#fff;padding:1.25rem;border-radius:6px;border:1px solid #e8e5e0">
+                <div style="font-size:0.68rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem">Earlier Version (Song dynasty sources)</div>
+                <div style="font-family:'Noto Serif SC',serif;font-size:1.1rem;line-height:2.2;letter-spacing:0.1em">床前<strong>看月</strong>光<br>疑是地上霜<br><strong>擡</strong>頭望<strong>山月</strong><br>低頭思故鄉</div>
+            </div>
+        </div>
+
+        <div style="font-size:0.85rem;color:var(--ink-light);line-height:1.65;margin-top:1rem">
+            <p>Key differences: The earlier version uses 看月光 (<em>k&agrave;n yu&egrave; guāng</em>, "looking at moonlight") instead of 明月光 (<em>m&iacute;ng yu&egrave; guāng</em>, "bright moonlight"), and 山月 (<em>shān yu&egrave;</em>, "mountain moon") instead of 明月 (<em>m&iacute;ng yu&egrave;</em>, "bright moon"). It also uses 擡 (<em>t&aacute;i</em>) instead of 舉 (<em>j&#468;</em>) for "raise."</p>
+            <p style="margin-top:0.5rem">The standard version is considered more polished. "Bright moon" (明月) repeating in lines 1 and 3 creates a deliberate echo. The earlier version avoids repetition (看月 / 山月) but loses the hypnotic effect. Most scholars treat the standard version as the definitive text, though neither can be attributed to Li Bai's own hand with certainty.</p>
+        </div>
+    </section>
+
+    <!-- DISCUSSION -->
+    <section id="discuss" class="section section-alt">
+        <div class="section-label"><span style="font-family:'Noto Sans SC',sans-serif">討論</span> Discussion Questions</div>
+        <h2>For the Classroom</h2>
+        <ol class="disc-list">
+            <li>The literal translation has no "I" or "my." The Chinese original uses no pronouns. How does the absence of an explicit subject change the poem's effect? Does it make the experience more personal or more universal?</li>
+            <li>Compare this poem's simplicity to Du Fu's "Autumn Meditation" (Birch pp. 235&ndash;236), which Birch describes as "encrusted with jewels of compressed esoteric allusion." Both poets write about homesickness. Which approach is more effective, and for whom? What does "effective" even mean for a poem?</li>
+            <li>In the Birch reading, Li Bai drinks with the moon, writes to it, performs in front of it. In 靜夜思, the moon is not a companion but a reminder of distance. How does the moon function differently here than in "Four Poems on Wine, No. 1" (Birch pp. 230&ndash;232)?</li>
+            <li>Witter Bynner adds "suddenly" to his translation. Arthur Waley adds "mountain." The literal Chinese has neither. What do these additions reveal about what each translator thinks the poem needs? What does the original gain by leaving those slots empty?</li>
+            <li>The 床 debate (bed vs. well-curb) changes the physical scene entirely. Does it change the poem's meaning? If both readings produce the same emotion, does it matter which one is "correct"?</li>
+        </ol>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <a href="tang-poets.html" style="color:var(--gold-light)">&larr; Tang Poets</a>
+            &nbsp;&middot;&nbsp;
+            <a href="../index.html" style="color:#888">EAST 370 Home</a>
+        </div>
+        <div>EAST 370 &middot; Chinese Traditional Literature and Thought &middot; Winter 2026</div>
+    </footer>
+</body>
+</html>
