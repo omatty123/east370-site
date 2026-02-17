@@ -488,21 +488,20 @@
     }
   
         /* Micro Timeline Strip */
-        .micro-tl{display:flex;height:22px;overflow:hidden;margin:0}
-        .micro-tl a{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);font-family:'Inter',-apple-system,sans-serif;font-size:0.55rem;text-decoration:none;border-right:1px solid rgba(255,255,255,0.1);transition:filter 0.15s}
-        .micro-tl a:last-child{border-right:none}
-        .micro-tl a:hover{filter:brightness(1.3)!important;color:rgba(255,255,255,0.9)!important;opacity:1!important}
-        .micro-tl a[data-d="zhou"]{background:#7A6B50;flex:1.2}
-        .micro-tl a[data-d="warring"]{background:#5C4A2E;flex:2}
-        .micro-tl a[data-d="qin"]{background:#8B3A3A;flex:0.7}
-        .micro-tl a[data-d="han"]{background:#4A6741;flex:1.2}
-        .micro-tl a[data-d="six-dyn"]{background:#5B7080;flex:1.5}
-        .micro-tl a[data-d="tang"]{background:#A03030;flex:1.4}
-        .micro-tl a[data-d="song"]{background:#2D5A7A;flex:1.2}
-        .micro-tl a[data-d="yuan"]{background:#6D5B2E;flex:0.8}
-        .micro-tl a.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700;opacity:1;filter:none}
-        .micro-tl a:not(.active){filter:brightness(0.55);opacity:0.55}
-        .micro-tl.neutral a{filter:none;opacity:1}
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
     </style>
 </head>
 <body>
@@ -518,15 +517,15 @@
   </header>
 
 
-    <div class="micro-tl">
-        <a href="timeline.html" data-d="zhou">Zhou</a>
-        <a href="timeline.html" data-d="warring">Warring States</a>
-        <a href="timeline.html" data-d="qin">Qin</a>
-        <a href="timeline.html" data-d="han">Han</a>
-        <a href="timeline.html" data-d="six-dyn" class="active">Six Dyn.</a>
-        <a href="timeline.html" data-d="tang">Tang</a>
-        <a href="timeline.html" data-d="song">Song</a>
-        <a href="timeline.html" data-d="yuan">Yuan</a>
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block active" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
     </div>
 
   <!-- Sticky Nav -->
