@@ -7,7 +7,7 @@
     <title>Huayan 華嚴 and Gandavyuha | EAST 370</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
@@ -18,19 +18,23 @@
             --gold: #b8860b;
             --gold-light: #daa520;
             --teal: #2d5a5a;
+            --wu: #2d7d7d;
+            --jin: #8a6a30;
             --fo: #7B5EA7;
-            --fo-dark: #5a3e87;
+            --fo-light: #9b7ec7;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
+        /* Page Header */
         .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
@@ -40,89 +44,34 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        .page-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .back {
-            font-size: 0.7rem;
-            color: #888;
-            text-decoration: none;
-        }
-        .back:hover { color: var(--gold-light); }
-        .page-title .ch {
-            font-family: 'Noto Sans SC', sans-serif;
-            font-size: 1.15rem;
-            color: var(--gold-light);
-        }
-        .page-title .en {
-            font-size: 0.85rem;
-            color: #fff;
-            font-weight: 500;
-        }
-        .page-title .tag {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: #fff;
-            background: var(--fo);
-            border-radius: 2px;
-            padding: 0.15rem 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        .page-meta {
-            font-size: 0.65rem;
-            color: #777;
-        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
 
-        .context-strip {
+        /* Sticky Nav */
+        .nav {
             background: var(--ink);
-            border-top: 1px solid #333;
             padding: 0.6rem 1.5rem;
-            font-size: 0.78rem;
-            color: #aaa;
-            line-height: 1.6;
-        }
-        .context-strip strong { color: #fff; }
-
-        .nav-strip {
-            background: #fff;
-            border-bottom: 1px solid var(--paper-dark);
-            padding: 0.5rem 5%;
             display: flex;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 1.5rem;
             flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
-        .nav-strip a {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: var(--ink-light);
-            padding: 0.25rem 0.75rem;
-            border-radius: 3px;
-            border: 1px solid transparent;
-            transition: all 0.15s;
-        }
-        .nav-strip a:hover {
-            background: var(--paper-dark);
-            border-color: #ddd;
-        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
 
-        .section {
-            padding: 2.5rem 5%;
-            border-bottom: 1px solid var(--paper-dark);
-            background: var(--paper);
-        }
-        .section.alt { background: var(--paper-dark); }
+        /* Section Label */
         .section-label {
             font-size: 0.6rem;
             font-weight: 700;
-            color: #777;
+            color: #999;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             margin-bottom: 0.6rem;
@@ -132,34 +81,32 @@
         }
         .section-label .chinese {
             font-family: 'Noto Sans SC', sans-serif;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--gold);
-            font-weight: 500;
-        }
-        .section h2 {
-            font-size: 1.35rem;
-            margin-bottom: 1rem;
-            color: var(--ink);
-        }
-        .section p {
-            font-size: 0.86rem;
-            color: var(--ink-light);
-            line-height: 1.7;
+            font-weight: 400;
         }
 
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 0.75rem;
             margin-top: 0.6rem;
         }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
 
+        /* Cards */
         .card {
             background: #fff;
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border: 1px solid #ece8df;
         }
         .card-head {
             background: #2a2a2a;
@@ -169,283 +116,476 @@
             color: #fff;
             display: flex;
             align-items: baseline;
-            gap: 0.45rem;
+            gap: 0.5rem;
         }
         .card-head .chinese {
             font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
             color: var(--gold-light);
-            font-size: 0.84rem;
-            font-weight: 500;
+            font-weight: 400;
         }
-        .card-body {
-            padding: 0.85rem 0.95rem;
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
         }
-        .card-body p,
-        .card-body li {
-            font-size: 0.82rem;
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.65;
+            margin-bottom: 0.5rem;
         }
-        .card-body ul,
-        .card-body ol {
-            margin: 0;
-            padding-left: 1.1rem;
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
         }
-        .card-body li { margin-bottom: 0.35rem; }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
+        /* Blockquotes */
         blockquote {
-            background: #f8f6fb;
-            border-left: 3px solid var(--fo);
-            padding: 0.6rem 0.8rem;
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
             margin: 0.5rem 0;
-            font-size: 0.82rem;
+            font-style: italic;
+            font-size: 0.8rem;
             color: var(--ink-light);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         blockquote cite {
             display: block;
-            margin-top: 0.25rem;
+            margin-top: 0.3rem;
             font-style: normal;
+            font-size: 0.7rem;
             color: var(--ink-faint);
-            font-size: 0.72rem;
         }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        .sources-list li {
-            list-style: none;
-            margin-bottom: 0.45rem;
-            padding-left: 0.9rem;
+        /* Timeline */
+        .mini-timeline {
             position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
         }
-        .sources-list li::before {
-            content: '•';
-            color: var(--teal);
+        .mini-timeline::before {
+            content: '';
             position: absolute;
-            left: 0;
+            left: 0.4rem;
             top: 0;
-            font-weight: 700;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
         }
-        a.link {
-            color: var(--teal);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--teal);
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
         }
-        a.link:hover {
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
             color: var(--gold);
-            border-bottom-color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
         }
 
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Map embed */
+        .map-wrapper {
+            margin-top: 0.6rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .map-frame {
+            width: 100%;
+            height: 420px;
+            border: none;
+        }
+        .map-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .map-link:hover { color: var(--gold-light); }
+
+        /* Section structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
         footer {
             background: var(--ink);
             padding: 1.25rem 1.5rem;
             text-align: center;
         }
-        .foot-chinese {
+        footer .foot-chinese {
             font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
             color: var(--gold-light);
             margin-bottom: 0.2rem;
         }
-        .foot-title {
-            font-size: 0.7rem;
-            color: #aaa;
-            margin-bottom: 0.3rem;
-        }
-        .foot-term {
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
             font-size: 0.6rem;
+            font-weight: 600;
             color: var(--gold);
             letter-spacing: 0.08em;
-            margin-bottom: 0.35rem;
-            font-weight: 600;
         }
-        .foot-back {
-            font-size: 0.68rem;
-            color: #888;
-            text-decoration: none;
-        }
-        .foot-back:hover { color: var(--gold-light); }
 
-        @media (max-width: 900px) {
-            .section { padding: 1.8rem 4%; }
-        }
+        /* Responsive */
         @media (max-width: 600px) {
-            .nav-strip { padding: 0.5rem 4%; }
-            .context-strip { padding: 0.5rem 4%; }
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Page Header -->
     <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
-            <a href="../index.html" class="back">&larr; EAST 370</a>
             <span class="ch">華嚴經・入法界品</span>
             <span class="en">Huayan and the Entry into the Dharma Realm</span>
-            <span class="tag">Tang Buddhism</span>
+            <span class="meta">Gomez, pp. 162&ndash;165 &middot; Tang Buddhism</span>
         </div>
-        <span class="page-meta">Birch [verify page range] · Supplement: Gomez pp. 162-165</span>
     </header>
 
-    <div class="context-strip">
-        This lesson page is built around your requested focus: big numbers, infinity language, and Sudhana's network of teachers.
-        Verified quotation evidence below comes from the assigned course packet chapter by <strong>Luis O. Gomez</strong>.
-    </div>
-
-    <nav class="nav-strip">
+    <!-- Sticky Nav -->
+    <nav class="nav">
         <a href="#overview">Overview</a>
         <a href="#analysis">Text Analysis</a>
-        <a href="#plan">20-Minute Plan</a>
+        <a href="#plan">Seminar Plan</a>
         <a href="#discussion">Discussion</a>
         <a href="#sources">Sources</a>
-        <a href="huiyuan.html" style="color:var(--fo)">Huiyuan &rarr;</a>
     </nav>
 
-    <section id="overview" class="section">
-        <div class="section-label"><span class="chinese">總覽</span> Executive Summary</div>
-        <h2>What This Reading Does</h2>
-        <div class="content-grid">
-            <article class="card">
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">總覽</span> EXECUTIVE SUMMARY</div>
+        <div class="content-grid three-col">
+            <div class="card">
                 <div class="card-head"><span class="chinese">讀本</span> Reading Scope</div>
                 <div class="card-body">
                     <p>Focus: <em>Ru fajie pin</em> 入法界品 (Gandavyuha), the final movement of the Huayan corpus. We read it as literary architecture, not only as doctrine.</p>
                     <p>Pinyin first use: Huayan 華嚴, Shancai tongzi 善財童子 (Sudhana), Wenshu 文殊 (Manjushri), Puxian 普賢 (Samantabhadra), Maitreya 彌勒.</p>
                 </div>
-            </article>
-            <article class="card">
+            </div>
+            <div class="card">
                 <div class="card-head"><span class="chinese">關鍵</span> Main Argument</div>
                 <div class="card-body">
                     <p>The chapter produces spiritual scale through accumulation: vast numbers, impossible simultaneity, and serial encounters with many teachers across social boundaries.</p>
                     <p>Pedagogical aim: students should see that literary form carries ethical vision.</p>
                 </div>
-            </article>
-            <article class="card">
-                <div class="card-head"><span class="chinese">主題</span> Your Class Themes</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">主題</span> Class Themes</div>
                 <div class="card-body">
                     <ul>
                         <li>Big numbers and cosmic counting</li>
-                        <li>Infinity vocabulary: “infinite,” “countless,” “inconceivable”</li>
+                        <li>Infinity vocabulary: "infinite," "countless," "inconceivable"</li>
                         <li>Many teachers: laymen, laywomen, and marginalized figures</li>
                     </ul>
                 </div>
-            </article>
+            </div>
         </div>
     </section>
 
-    <section id="analysis" class="section alt">
-        <div class="section-label"><span class="chinese">文本</span> Text Analysis</div>
-        <h2>Close Reading Cards (With Page-Cited Quotes)</h2>
-        <div class="content-grid">
-            <article class="card">
+    <!-- Text Analysis -->
+    <section class="content-section alt" id="analysis">
+        <div class="section-label"><span class="chinese">文本</span> TEXT ANALYSIS</div>
+        <div class="content-grid three-col">
+            <div class="card">
                 <div class="card-head"><span class="chinese">數量</span> Big Numbers</div>
                 <div class="card-body">
-                    <blockquote>“...the plurality of spiritual paths that lead to the awakening of Buddhas, and the infinite opportunity...”
-                        <cite>— Gomez, p. 162 (course packet translation)</cite>
+                    <blockquote>"...the plurality of spiritual paths that lead to the awakening of Buddhas, and the infinite opportunity..."
+                        <cite>Gomez, p. 162 (course packet translation)</cite>
                     </blockquote>
-                    <blockquote>“...manifestation of countless bodies, as many as all the atomic particles in the plane of dharma.”
-                        <cite>— Gomez, p. 163 (course packet translation)</cite>
+                    <blockquote>"...manifestation of countless bodies, as many as all the atomic particles in the plane of dharma."
+                        <cite>Gomez, p. 163 (course packet translation)</cite>
                     </blockquote>
-                    <p>Interpretation: number inflation is a literary strategy that dislocates ordinary scale and prepares a cosmic ethical horizon.</p>
+                    <p>Number inflation is a literary strategy that dislocates ordinary scale and prepares a cosmic ethical horizon.</p>
                 </div>
-            </article>
-
-            <article class="card">
+            </div>
+            <div class="card">
                 <div class="card-head"><span class="chinese">旅程</span> Sudhana's Teacher Network</div>
                 <div class="card-body">
-                    <blockquote>“One by one, each of fifty-two teachers refers Sudhana to another spiritual friend.”
-                        <cite>— Gomez, p. 164 (course packet translation)</cite>
+                    <blockquote>"One by one, each of fifty-two teachers refers Sudhana to another spiritual friend."
+                        <cite>Gomez, p. 164 (course packet translation)</cite>
                     </blockquote>
-                    <blockquote>“...the fifty-third teacher, whose very name, Samantabhadra, betokens the bodhisattva’s perfect conduct.”
-                        <cite>— Gomez, p. 164 (course packet translation)</cite>
+                    <blockquote>"...the fifty-third teacher, whose very name, Samantabhadra, betokens the bodhisattva's perfect conduct."
+                        <cite>Gomez, p. 164 (course packet translation)</cite>
                     </blockquote>
-                    <p>Interpretation: serial mentorship replaces single-master authority. Knowledge is distributed across encounters.</p>
+                    <p>Serial mentorship replaces single-master authority. Knowledge is distributed across encounters.</p>
                 </div>
-            </article>
-
-            <article class="card">
+            </div>
+            <div class="card">
                 <div class="card-head"><span class="chinese">包容</span> Inclusion and Social Boundaries</div>
                 <div class="card-body">
-                    <blockquote>“...his teachers... include laymen, laywomen, Brahmins, and female nightspirits.”
-                        <cite>— Gomez, p. 164 (course packet translation)</cite>
+                    <blockquote>"...his teachers... include laymen, laywomen, Brahmins, and female nightspirits."
+                        <cite>Gomez, p. 164 (course packet translation)</cite>
                     </blockquote>
-                    <blockquote>“The women among Sudhana’s teachers do not have to become men; lay persons do not have to become ascetics...”
-                        <cite>— Gomez, pp. 164-165 (course packet translation)</cite>
+                    <blockquote>"The women among Sudhana's teachers do not have to become men; lay persons do not have to become ascetics..."
+                        <cite>Gomez, pp. 164&ndash;165 (course packet translation)</cite>
                     </blockquote>
                     <p>Classroom bridge: use this frame when discussing Vasumitra (courtesan traditions in Gandavyuha materials).</p>
                 </div>
-            </article>
+            </div>
         </div>
     </section>
 
-    <section id="plan" class="section">
-        <div class="section-label"><span class="chinese">課程</span> 20-Minute Seminar Flow</div>
-        <h2>Ready-to-Teach Structure</h2>
+    <!-- 20-Minute Seminar Plan -->
+    <section class="content-section" id="plan">
+        <div class="section-label"><span class="chinese">課程</span> 20-MINUTE SEMINAR FLOW</div>
         <div class="content-grid">
-            <article class="card">
-                <div class="card-head"><span class="chinese">導入</span> 0-4 min</div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">導入</span> 0&ndash;4 min</div>
                 <div class="card-body">
-                    <p>Prompt: What effect does “countless” have that a fixed number does not?</p>
+                    <p>Prompt: What effect does "countless" have that a fixed number does not?</p>
                 </div>
-            </article>
-            <article class="card">
-                <div class="card-head"><span class="chinese">精讀</span> 4-11 min</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">精讀</span> 4&ndash;11 min</div>
                 <div class="card-body">
                     <p>Read the three quote cards aloud. Students mark one repeated rhetoric pattern (scale, list, referral, inclusion).</p>
                 </div>
-            </article>
-            <article class="card">
-                <div class="card-head"><span class="chinese">小組</span> 11-17 min</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">小組</span> 11&ndash;17 min</div>
                 <div class="card-body">
                     <p>Pairs choose one quote and produce a two-sentence claim linking literary form and ethics.</p>
                 </div>
-            </article>
-            <article class="card">
-                <div class="card-head"><span class="chinese">收束</span> 17-20 min</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">收束</span> 17&ndash;20 min</div>
                 <div class="card-body">
                     <p>Exit ticket: How do infinity language and many teachers reshape who can awaken and who can teach?</p>
                 </div>
-            </article>
-        </div>
-    </section>
-
-    <section id="discussion" class="section alt">
-        <div class="section-label"><span class="chinese">討論</span> Discussion Questions</div>
-        <h2>Text-Tied Questions</h2>
-        <div class="card">
-            <div class="card-head"><span class="chinese">問題</span> Seminar Questions</div>
-            <div class="card-body">
-                <ol>
-                    <li>Using the quote on p. 163, how does “as many as all the atomic particles” function rhetorically rather than mathematically?</li>
-                    <li>What changes when Sudhana moves through fifty-three teachers instead of receiving one final doctrinal lecture?</li>
-                    <li>How do pp. 164-165 challenge monastic and gender hierarchy through the roster of teachers?</li>
-                    <li>Where does the text frame spiritual authority as relational instead of institutional?</li>
-                </ol>
             </div>
         </div>
     </section>
 
-    <section id="sources" class="section">
-        <div class="section-label"><span class="chinese">來源</span> Sources</div>
-        <h2>Primary Citation and Verified Links</h2>
-        <div class="card">
-            <div class="card-head"><span class="chinese">書目</span> Bibliography</div>
-            <div class="card-body">
-                <ul class="sources-list">
-                    <li>Birch, Cyril, ed. <em>Anthology of Chinese Literature</em> (Grove Press, 1965), Huayan selection, pp. [verify]. Translator: [verify].</li>
-                    <li>Gomez, Luis O. “Avatamsaka Sutra,” in <em>Buddhist Spirituality</em> (Crossroad, 1993), pp. 161-165. Course packet used for quoted excerpts.</li>
-                    <li>Britannica entry: <a class="link" href="https://www.britannica.com/topic/Huayan" target="_blank">Huayan Buddhism</a> (verified).</li>
-                    <li>Chinese Text Project (search portal): <a class="link" href="https://ctext.org" target="_blank">ctext.org</a> (verified).</li>
-                    <li>Article context: <a class="link" href="https://ojs.elte.hu/tkt/article/view/4836/3797" target="_blank">Hamar 2022, Exegetical Tradition</a> (verified).</li>
-                </ul>
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Rhetoric and Scale</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Using the quote on p. 163, how does "as many as all the atomic particles" function rhetorically rather than mathematically?</li>
+                        <li>What changes when Sudhana moves through fifty-three teachers instead of receiving one final doctrinal lecture?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Authority and Inclusion</div>
+                <div class="card-body">
+                    <ul>
+                        <li>How do pp. 164&ndash;165 challenge monastic and gender hierarchy through the roster of teachers?</li>
+                        <li>Where does the text frame spiritual authority as relational instead of institutional?</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <p style="margin-top:0.8rem">Related pages: <a class="link" href="huiyuan.html">Huiyuan 慧遠</a> · <a class="link" href="prose-essays.html">Tang Prose Essays</a></p>
     </section>
 
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Texts</h4>
+                <p>Birch, Cyril, ed. <em>Anthology of Chinese Literature</em> (Grove Press, 1965), Huayan selection, pp. [verify]. Translator: [verify].</p>
+                <p>Gomez, Luis O. "Avatamsaka Sutra," in <em>Buddhist Spirituality</em> (Crossroad, 1993), pp. 161&ndash;165. Course packet used for quoted excerpts.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/topic/Huayan" target="_blank" rel="noopener">Encyclopaedia Britannica: Huayan Buddhism</a>
+                <a href="https://ctext.org" target="_blank" rel="noopener">Chinese Text Project (search portal)</a>
+                <a href="https://ojs.elte.hu/tkt/article/view/4836/3797" target="_blank" rel="noopener">Hamar 2022, Exegetical Tradition</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="huiyuan.html">Huiyuan 慧遠</a>
+                <a href="prose-essays.html">Tang Prose Essays</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="foot-chinese">華嚴</div>
-        <div class="foot-title">EAST 370 · Chinese Traditional Literature and Thought</div>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
         <div class="foot-term">WINTER 2026</div>
-        <a class="foot-back" href="../index.html">&larr; Back to EAST 370</a>
     </footer>
-</body>
 
+</body>
 </html>
