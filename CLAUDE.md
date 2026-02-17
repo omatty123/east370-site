@@ -118,6 +118,17 @@ If a new page looks different from lu-ji-wen-fu.html, it is wrong. Fix it.
 | Section label | `.section-label` > `.chinese` | Every section header |
 | Source card | `.source-card` | Bibliography/links |
 
+### Card Count Rule — NO ORPHAN CARDS
+
+**Never put an odd number of cards in a `.content-grid` or a number that doesn't divide evenly into the column count.** The default grid (`minmax(320px, 1fr)`) creates 2 or 3 columns depending on viewport width. If you have 4 cards, on a 3-column screen one card orphans on a second row with dead space beside it. This looks terrible.
+
+Rules:
+- **2 cards per grid** is the default and almost always correct. This is what lu-ji-wen-fu.html does.
+- **3 cards** only with `.content-grid.three-col` (e.g., discussion questions).
+- **4 cards?** Consolidate into 2. Combine related content using `<h4>` sub-headers within a single card-body.
+- **Never 1 card alone** in a grid. Use full-width (`grid-template-columns: 1fr`) or just skip the grid wrapper.
+- If a section has both an image card and content cards, put the image + stats in one 2-col row, then narrative in a separate full-width row below.
+
 ## Page-Building Spec (MANDATORY for all new lesson pages)
 
 Every time I'm asked to take a reading, research it, and build a webpage, I follow ALL of these rules. No exceptions, no shortcuts.

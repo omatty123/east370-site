@@ -340,6 +340,23 @@
         @media print {
             .nav, .page-header { display: none; }
         }
+    
+        /* Micro Timeline Strip */
+        .micro-tl{display:flex;height:20px;overflow:hidden;margin:0}
+        .micro-tl a{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);font-family:'Noto Sans SC',sans-serif;font-size:0.5rem;text-decoration:none;border-right:1px solid rgba(255,255,255,0.1);transition:filter 0.15s}
+        .micro-tl a:last-child{border-right:none}
+        .micro-tl a:hover{filter:brightness(1.3)!important;color:rgba(255,255,255,0.9)!important;opacity:1!important}
+        .micro-tl a[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .micro-tl a[data-d="warring"]{background:#5C4A2E;flex:2}
+        .micro-tl a[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .micro-tl a[data-d="han"]{background:#4A6741;flex:1.2}
+        .micro-tl a[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .micro-tl a[data-d="tang"]{background:#A03030;flex:1.4}
+        .micro-tl a[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .micro-tl a[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .micro-tl a.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700;opacity:1;filter:none}
+        .micro-tl a:not(.active){filter:brightness(0.55);opacity:0.55}
+        .micro-tl.neutral a{filter:none;opacity:1}
     </style>
 </head>
 
@@ -354,6 +371,18 @@
             <span class="meta">Li Sao & Nine Songs</span>
         </div>
     </header>
+
+
+    <div class="micro-tl">
+        <a href="timeline.html" data-d="zhou">周</a>
+        <a href="timeline.html" data-d="warring" class="active">戰國</a>
+        <a href="timeline.html" data-d="qin">秦</a>
+        <a href="timeline.html" data-d="han">漢</a>
+        <a href="timeline.html" data-d="six-dyn">六朝</a>
+        <a href="timeline.html" data-d="tang">唐</a>
+        <a href="timeline.html" data-d="song">宋</a>
+        <a href="timeline.html" data-d="yuan">元</a>
+    </div>
 
     <!-- Nav -->
     <nav class="nav">
