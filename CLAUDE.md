@@ -33,6 +33,91 @@ If I forget this step, the page is not done. Period.
 
 ---
 
+## CANONICAL TEMPLATE — HARD RULE
+
+**Every new lesson page MUST be built by copying the structure and CSS from `lessons/lu-ji-wen-fu.html`.** This is not a guideline. This is a template. Copy the HTML skeleton, copy the full `<style>` block, then replace the content.
+
+**The file**: `~/east370-site/lessons/lu-ji-wen-fu.html`
+**Live reference**: https://omatty123.github.io/east370-site/lessons/lu-ji-wen-fu.html
+
+If a new page looks different from lu-ji-wen-fu.html, it is wrong. Fix it.
+
+### How to Build a New Page
+
+1. **Copy the entire `<style>` block** from lu-ji-wen-fu.html verbatim. Do not rewrite CSS. Do not invent new class names. Use the existing ones.
+2. **Copy the HTML skeleton** (header, nav, sections, footer) and replace content.
+3. **Add topic-specific accent colors** to `:root` if needed (e.g., `--tang: #8a3030;`) but NEVER remove or change the base palette.
+4. **Use the existing component patterns** (cards, blockquotes, timelines, genre grids, structure lists, key-themes boxes, source cards). Do not invent new patterns when an existing one fits.
+
+### Required Page Skeleton (from lu-ji-wen-fu.html)
+
+```html
+<!-- 1. Page Header: dark bar, back link, Chinese title, English title, metadata -->
+<header class="page-header">
+    <a href="../index.html" class="back">&larr; EAST 370</a>
+    <div class="page-title">
+        <span class="ch">中文標題</span>
+        <span class="en">English Title</span>
+        <span class="meta">Author, dates</span>
+    </div>
+</header>
+
+<!-- 2. Sticky Nav: dark bar with section anchors -->
+<nav class="nav">
+    <a href="#section1">Section 1</a>
+    <a href="#section2">Section 2</a>
+    ...
+</nav>
+
+<!-- 3. Content Sections: alternating backgrounds -->
+<section class="content-section" id="section1">
+    <div class="section-label"><span class="chinese">漢字</span> SECTION TITLE</div>
+    <div class="content-grid">
+        <div class="card">
+            <div class="card-head"><span class="chinese">漢字</span> Card Title <span class="meta">dates/pages</span></div>
+            <div class="card-body">...</div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section alt" id="section2">
+    <!-- .alt gives the darker alternating background -->
+</section>
+
+<!-- 4. Sources Section -->
+<section class="sources" id="sources">
+    <div class="section-label">Sources &amp; Further Reading</div>
+    <div class="sources-grid">
+        <div class="source-card">
+            <h4>Category</h4>
+            <a href="..." target="_blank" rel="noopener">Source description</a>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Footer: dark bar, centered (only place centering is allowed) -->
+<footer>
+    <div class="foot-chinese">中國文學與思想</div>
+    <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+    <div class="foot-term">WINTER 2026</div>
+</footer>
+```
+
+### Available Component Patterns (from lu-ji-wen-fu.html)
+
+| Component | Class | Use For |
+|-----------|-------|---------|
+| Content grid | `.content-grid` | 2-column card layouts (minmax 320px) |
+| Three-col grid | `.content-grid.three-col` | 3-column layouts (minmax 240px) |
+| Card | `.card` > `.card-head` + `.card-body` | All content blocks |
+| Blockquote | `blockquote` with `cite` | Quoted passages (MUST have page number) |
+| Timeline | `.mini-timeline` > `.timeline-item` | Chronological events |
+| Genre grid | `.genre-grid` > `.genre-item` | Categorized items with Chinese + English + description |
+| Structure list | `.structure-list` > `.structure-item` | Numbered/ordered breakdowns |
+| Key themes box | `.key-themes` | Highlighted analysis boxes with gold gradient |
+| Section label | `.section-label` > `.chinese` | Every section header |
+| Source card | `.source-card` | Bibliography/links |
+
 ## Page-Building Spec (MANDATORY for all new lesson pages)
 
 Every time I'm asked to take a reading, research it, and build a webpage, I follow ALL of these rules. No exceptions, no shortcuts.

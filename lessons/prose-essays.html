@@ -7,33 +7,32 @@
     <title>Tang Prose Essays | Han Yu &amp; Liu Zongyuan | EAST 370</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
-            --ink-faint: #888;
+            --ink-faint: #8a8a8a;
             --paper: #fafaf8;
-            --paper-warm: #faf6f0;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
             --teal: #2d5a5a;
             --han: #8b3a3a;
             --liu: #3a6b5a;
-            --tang-red: #a03030;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 1rem;
+            line-height: 1.6;
         }
 
+        /* Page Header */
         .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
@@ -43,362 +42,125 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        .page-header .back {
-            font-size: 0.7rem;
-            color: #888;
-            text-decoration: none;
-        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
         .page-header .back:hover { color: var(--gold-light); }
-        .page-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .page-title .ch {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1.2rem;
-            color: var(--gold-light);
-        }
-        .page-title .en {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #fff;
-        }
-        .page-title .tag {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: #fff;
-            background: var(--tang-red);
-            padding: 0.15rem 0.5rem;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        .page-meta {
-            font-size: 0.65rem;
-            color: #666;
-        }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
 
-        /* Context strip */
-        .context-strip {
+        /* Sticky Nav */
+        .nav {
             background: var(--ink);
-            padding: 0.5rem 1.5rem;
+            padding: 0.6rem 1.5rem;
             display: flex;
-            align-items: center;
+            justify-content: center;
             gap: 1.5rem;
-            flex-wrap: wrap;
-            border-top: 1px solid #333;
-        }
-        .context-poet {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .context-poet .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-        .context-poet .name-ch {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 0.95rem;
-            color: #fff;
-        }
-        .context-poet .name-en {
-            font-size: 0.7rem;
-            color: #aaa;
-        }
-        .context-poet .dates {
-            font-size: 0.6rem;
-            color: #666;
-        }
-
-        /* Nav pills */
-        .nav-strip {
-            background: #fff;
-            border-bottom: 1px solid var(--paper-dark);
-            padding: 0.5rem 5%;
-            display: flex;
-            gap: 0.5rem;
             flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
-        .nav-strip a {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: var(--ink-light);
-            padding: 0.25rem 0.75rem;
-            border-radius: 3px;
-            border: 1px solid transparent;
-            transition: all 0.15s;
-        }
-        .nav-strip a:hover {
-            background: var(--paper-dark);
-            border-color: #ddd;
-        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
 
-        /* Sections */
-        .section {
-            padding: 2.5rem 5%;
-            border-bottom: 1px solid var(--paper-dark);
-        }
-        .section-alt {
-            background: var(--paper-warm);
-        }
+        /* Section Label */
         .section-label {
             font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
-            margin-bottom: 0.25rem;
-        }
-        .section h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 1rem;
-        }
-        .section h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Exec grid */
-        .exec-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        .exec-box {
-            background: #fff;
-            border: 1px solid #e8e5e0;
-            border-radius: 6px;
-            padding: 1.25rem;
-        }
-        .exec-box h3 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--han);
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--han);
-        }
-        .exec-box.liu h3 {
-            color: var(--liu);
-            border-bottom-color: var(--liu);
-        }
-        .exec-box p, .exec-box li {
-            font-size: 0.85rem;
-            color: var(--ink-light);
-            line-height: 1.65;
-        }
-        .exec-box ul {
-            list-style: none;
-            padding: 0;
-        }
-        .exec-box ul li {
-            padding: 0.2rem 0;
-            padding-left: 1em;
-            position: relative;
-        }
-        .exec-box ul li::before {
-            content: '·';
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-            color: var(--han);
-        }
-        .exec-full {
-            grid-column: 1 / -1;
-        }
-
-        /* Essay cards */
-        .essay-section {
-            margin-bottom: 2rem;
-        }
-        .essay-section-head {
+            margin-bottom: 0.6rem;
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid;
+            align-items: baseline;
+            gap: 0.5rem;
         }
-        .essay-section-head.han { border-color: var(--han); }
-        .essay-section-head.liu { border-color: var(--liu); }
-        .essay-section-head .author-icon {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        .essays-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        .essay-card {
-            background: #fff;
-            border: 1px solid #ece8df;
-            border-radius: 6px;
-            padding: 1.25rem;
-        }
-        .essay-card.full {
-            grid-column: 1 / -1;
-        }
-        .essay-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.1rem;
-        }
-        .essay-chinese {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 0.8rem;
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
             color: var(--gold);
-            margin-bottom: 0.1rem;
-        }
-        .essay-translator {
-            font-size: 0.65rem;
-            color: var(--ink-faint);
-            margin-bottom: 0.75rem;
-        }
-        .essay-text {
-            font-size: 0.82rem;
-            line-height: 1.75;
-            color: var(--ink-light);
-            font-style: italic;
-        }
-        .essay-note {
-            margin-top: 0.75rem;
-            padding-top: 0.5rem;
-            border-top: 1px dashed #ddd;
-            font-size: 0.78rem;
-            color: var(--ink-light);
-            font-style: normal;
-            line-height: 1.6;
+            font-weight: 400;
         }
 
-        /* Guwen box */
-        .guwen-grid {
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
         }
-        .guwen-card {
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
             background: #fff;
-            border: 1px solid #e8e5e0;
             border-radius: 6px;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        .guwen-card-head {
-            padding: 1rem 1.25rem 0.75rem;
-            border-bottom: 3px solid var(--han);
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
-        .guwen-card-head .label {
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
             font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--ink-faint);
+            color: #888;
+            margin-left: auto;
         }
-        .guwen-card-head h3 {
-            font-size: 1rem;
-            margin-bottom: 0;
-        }
-        .guwen-card-body {
-            padding: 1rem 1.25rem 1.25rem;
-        }
-        .guwen-card-body p {
-            font-size: 0.82rem;
+        .card-head.han { border-left: 3px solid var(--han); }
+        .card-head.liu { border-left: 3px solid var(--liu); }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.65;
             margin-bottom: 0.5rem;
         }
-        .guwen-card-body p:last-child { margin-bottom: 0; }
-
-        /* Comparison table */
-        .comp-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.82rem;
-        }
-        .comp-table th {
-            text-align: left;
-            font-weight: 700;
-            padding: 0.6rem 0.8rem;
-            background: var(--ink);
-            color: #fff;
-            font-size: 0.75rem;
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
         }
-        .comp-table td {
-            padding: 0.6rem 0.8rem;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-            line-height: 1.5;
-            color: var(--ink-light);
-        }
-        .comp-table tr:nth-child(even) td {
-            background: var(--paper-warm);
-        }
-        .comp-table .row-label {
-            font-weight: 700;
-            color: var(--ink);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .comp-col-han { border-top: 3px solid var(--han); }
-        .comp-col-liu { border-top: 3px solid var(--liu); }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        /* Discussion */
-        .disc-list {
-            list-style: none;
-            counter-reset: disc;
-        }
-        .disc-list li {
-            counter-increment: disc;
-            padding: 0.75rem 0;
-            padding-left: 2.5rem;
-            position: relative;
-            font-size: 0.88rem;
-            color: var(--ink-light);
-            border-bottom: 1px solid #eee;
-            line-height: 1.6;
-        }
-        .disc-list li::before {
-            content: counter(disc);
-            position: absolute;
-            left: 0;
-            top: 0.75rem;
-            width: 1.6rem;
-            height: 1.6rem;
-            background: var(--han);
-            color: #fff;
-            border-radius: 50%;
-            font-size: 0.7rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Blockquote */
+        /* Blockquotes */
         blockquote {
             background: var(--paper-dark);
             border-left: 3px solid var(--gold);
-            padding: 0.75rem 1rem;
-            margin: 0.75rem 0;
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
             font-style: italic;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.7;
         }
@@ -410,117 +172,215 @@
             color: var(--ink-faint);
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .exec-grid { grid-template-columns: 1fr; }
-            .essays-grid { grid-template-columns: 1fr; }
-            .guwen-grid { grid-template-columns: 1fr; }
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
         }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Comparison table */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 0.6rem;
+        }
+        .comp-table th {
+            text-align: left;
+            font-weight: 700;
+            padding: 0.5rem 0.75rem;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .comp-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            line-height: 1.5;
+            color: var(--ink-light);
+        }
+        .comp-table tr:nth-child(even) td { background: var(--paper-dark); }
+        .comp-table .row-label {
+            font-weight: 700;
+            color: var(--ink);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .comp-col-han { border-top: 3px solid var(--han); }
+        .comp-col-liu { border-top: 3px solid var(--liu); }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
         @media (max-width: 600px) {
-            .section { padding: 1.5rem 4%; }
-            .nav-strip { padding: 0.5rem 4%; }
-            .context-strip { padding: 0.4rem 4%; gap: 0.75rem; }
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .key-themes ul { columns: 1; }
         }
     </style>
 </head>
 
 <body>
-    <!-- HEADER -->
+
+    <!-- Page Header -->
     <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
-            <a href="../index.html" class="back">&larr; EAST 370</a>
             <span class="ch">散文</span>
             <span class="en">Tang Prose Essays</span>
-            <span class="tag">Tang Dynasty</span>
+            <span class="meta">Han Yu &amp; Liu Zongyuan &middot; Birch, pp. 242&ndash;259</span>
         </div>
-        <span class="page-meta">Birch, pp. 242&ndash;259</span>
     </header>
 
-    <!-- CONTEXT STRIP -->
-    <div class="context-strip">
-        <div class="context-poet">
-            <div class="dot" style="background:var(--han)"></div>
-            <span class="name-ch">韓愈</span>
-            <span class="name-en">Han Yu</span>
-            <span class="dates">768&ndash;824</span>
-        </div>
-        <div class="context-poet">
-            <div class="dot" style="background:var(--liu)"></div>
-            <span class="name-ch">柳宗元</span>
-            <span class="name-en">Liu Zongyuan</span>
-            <span class="dates">773&ndash;819</span>
-        </div>
-    </div>
-
-    <!-- NAV -->
-    <nav class="nav-strip">
-        <a href="#exec">Exec Summary</a>
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
         <a href="#guwen">Guwen Movement</a>
-        <a href="#han-yu">Han Yu Essays</a>
+        <a href="#han-yu">Han Yu</a>
         <a href="#liu">Liu Zongyuan</a>
         <a href="#compare">Comparison</a>
-        <a href="#discuss">Discussion</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
     </nav>
 
-    <!-- EXEC SUMMARY -->
-    <section id="exec" class="section">
-        <div class="section-label">Executive Summary</div>
-        <h2>What You Need to Know</h2>
-        <div class="exec-grid">
-            <div class="exec-box">
-                <h3>The Reading</h3>
-                <p>Birch, <em>Anthology of Chinese Literature</em>, pp. 242&ndash;259. Seven prose essays from the mid-Tang dynasty by two champions of the <em>guwen</em> 古文 (Ancient Style) movement. Han Yu (Han Y&uuml; in Birch) dominates with six pieces ranging from satirical fantasy to anti-Buddhist polemic to a raw grief letter. Liu Zongyuan (Liu Tsung-y&uuml;an in Birch) closes with a parable about trees and governance.</p>
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">讀</span> The Reading <span class="meta">Birch, pp. 242&ndash;259</span></div>
+                <div class="card-body">
+                    <p>Seven prose essays from the mid-Tang dynasty by two champions of the <em>guwen</em> 古文 (Ancient Style) movement. Han Yu (Han Y&uuml; in Birch) dominates with six pieces ranging from satirical fantasy to anti-Buddhist polemic to a raw grief letter. Liu Zongyuan (Liu Tsung-y&uuml;an in Birch) closes with a parable about trees and governance.</p>
+                    <div class="key-themes">
+                        <h4>Romanization Guide</h4>
+                        <ul>
+                            <li><strong>Han Y&uuml;</strong> = Han Yu 韓愈</li>
+                            <li><strong>Liu Tsung-y&uuml;an</strong> = Liu Zongyuan 柳宗元</li>
+                            <li><strong>Ch'ao-chou</strong> = Chaozhou 潮州</li>
+                            <li><strong>Hsien-tsung</strong> = Xianzong 憲宗</li>
+                            <li><strong>Ch'ang-an</strong> = Chang'an 長安</li>
+                            <li><strong>ku-wen</strong> = guwen 古文</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="exec-box">
-                <h3>Historical Moment</h3>
-                <p>The mid-Tang, roughly 800&ndash;820 CE. The High Tang's golden age is over. The An Lushan Rebellion (755) shattered central authority. Buddhism has become the dominant intellectual and institutional force, with enormous monasteries, tax-exempt land, and political influence. The Confucian literati feel sidelined. The <em>guwen</em> movement is their counterattack: restore simple, direct prose as a vehicle for moral argument.</p>
-            </div>
-            <div class="exec-box">
-                <h3>Core Themes</h3>
-                <ul>
-                    <li>The <em>guwen</em> revival: ancient simplicity against ornamental parallelism</li>
-                    <li>Anti-Buddhist polemic: Han Yu's frontal assault on imperial Buddhist patronage</li>
-                    <li>The scholar-official's relationship to power: begging, banishment, and defiance</li>
-                    <li>Grief, poverty, and the cost of intellectual integrity</li>
-                    <li>Governance by non-interference (Liu Zongyuan's Daoist counterpoint)</li>
-                </ul>
-            </div>
-            <div class="exec-box">
-                <h3>Birch's Romanization</h3>
-                <ul>
-                    <li><strong>Han Y&uuml;</strong> = Han Yu 韓愈 (Pinyin)</li>
-                    <li><strong>Liu Tsung-y&uuml;an</strong> = Liu Zongyuan 柳宗元</li>
-                    <li><strong>Ch'ao-chou</strong> = Chaozhou 潮州</li>
-                    <li><strong>Hsien-tsung</strong> = Xianzong 憲宗</li>
-                    <li><strong>Ch'ang-an</strong> = Chang'an 長安</li>
-                    <li><strong>ku-wen</strong> = guwen 古文 (Ancient Style)</li>
-                    <li><strong>Feng-hsiang</strong> = Fengxiang 鳳翔</li>
-                </ul>
+            <div class="card">
+                <div class="card-head"><span class="chinese">背景</span> Historical Moment <span class="meta">Mid-Tang, c. 800&ndash;820 CE</span></div>
+                <div class="card-body">
+                    <p>The High Tang's golden age is over. The An Lushan Rebellion (755) shattered central authority. Buddhism has become the dominant intellectual and institutional force, with enormous monasteries, tax-exempt land, and political influence. The Confucian literati feel sidelined. The <em>guwen</em> movement is their counterattack: restore simple, direct prose as a vehicle for moral argument.</p>
+                    <div class="key-themes">
+                        <h4>Core Themes</h4>
+                        <ul>
+                            <li><strong>Guwen revival:</strong> ancient simplicity against ornamental parallelism</li>
+                            <li><strong>Anti-Buddhist polemic:</strong> Han Yu's frontal assault on imperial Buddhist patronage</li>
+                            <li><strong>Scholar vs. power:</strong> begging, banishment, and defiance</li>
+                            <li><strong>Grief and poverty:</strong> the cost of intellectual integrity</li>
+                            <li><strong>Non-interference:</strong> Liu Zongyuan's Daoist counterpoint</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- GUWEN MOVEMENT -->
-    <section id="guwen" class="section section-alt">
-        <div class="section-label">Literary Context</div>
-        <h2>The <em>Guwen</em> 古文 Movement</h2>
-        <div class="guwen-grid">
-            <div class="guwen-card">
-                <div class="guwen-card-head">
-                    <div class="label">The Problem</div>
-                    <h3>Parallel Prose Had Won</h3>
-                </div>
-                <div class="guwen-card-body">
+    <!-- Guwen Movement -->
+    <section class="content-section alt" id="guwen">
+        <div class="section-label"><span class="chinese">古文</span> THE GUWEN MOVEMENT</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">駢文</span> The Problem: Parallel Prose Had Won</div>
+                <div class="card-body">
                     <p>By the Tang dynasty, the dominant literary prose style was <em>pianwen</em> 駢文, "parallel prose": ornamental, balanced, and decorative. Sentences came in matched pairs with strict tonal patterns. It was virtuosic and beautiful, but Han Yu and his allies saw it as hollow. Prose had become jewelry rather than argument.</p>
                     <p>The "ornamental styles (parallel prose and the like) which had been the rage" (Birch, p. 242) were the target. <em>Guwen</em> writers wanted prose that could <strong>do</strong> something: persuade, mourn, accuse, reform.</p>
                 </div>
             </div>
-            <div class="guwen-card">
-                <div class="guwen-card-head">
-                    <div class="label">The Solution</div>
-                    <h3>Ancient Style, New Weapon</h3>
-                </div>
-                <div class="guwen-card-body">
+            <div class="card">
+                <div class="card-head"><span class="chinese">復古</span> The Solution: Ancient Style, New Weapon</div>
+                <div class="card-body">
                     <p>Han Yu championed a return to the "ancient style" (<em>guwen</em>), modeling prose on the directness of pre-Han masters. This was not antiquarianism. It was a political program: "in the hands of scholar-officials no movement could remain purely literary in scope" (Birch, p. 242). Simple prose carried Confucian moral arguments that ornate parallelism could not.</p>
                     <p>The movement prized "lucidity and artful simplicity" (Birch, p. 242) while still allowing literary skill. These are not dry tracts. "Farewell to Poverty" is fantasy. "Proclamation to the Crocodile" is absurdist theater. The style is simple; the art is not.</p>
                 </div>
@@ -528,184 +388,230 @@
         </div>
     </section>
 
-    <!-- HAN YU ESSAYS -->
-    <section id="han-yu" class="section">
-        <div class="section-label">Complete Essay-by-Essay Analysis</div>
-        <h2>Han Yu 韓愈 (768&ndash;824)</h2>
-        <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1.5rem">Han Yu "stood in the front line of defence of Confucian principles against what he considered the heresies and decadence of the age" (Birch, p. 242). Orphaned young, repeatedly banished, he wrote prose that ranges from bitter satire to raw grief to political confrontation.</p>
+    <!-- Han Yu Essays -->
+    <section class="content-section" id="han-yu">
+        <div class="section-label"><span class="chinese">韓愈</span> HAN YU (768&ndash;824)</div>
+        <p style="font-size:0.8rem;color:var(--ink-light);margin-bottom:0.6rem">Han Yu "stood in the front line of defence of Confucian principles against what he considered the heresies and decadence of the age" (Birch, p. 242). Orphaned young, repeatedly banished, he wrote prose that ranges from bitter satire to raw grief to political confrontation.</p>
 
-        <div class="essay-section">
-            <div class="essay-section-head han">
-                <span class="author-icon">韓</span>
-                <span style="font-weight:700">Han Yu (pp. 244&ndash;257)</span>
+        <div class="content-grid">
+            <!-- Farewell to Poverty -->
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head han"><span class="chinese">送窮文</span> Farewell to Poverty <span class="meta">tr. J.K. Rideout &middot; pp. 244&ndash;246</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "This humble person does not venture to ask by what road, but has had a boat and a cart made ready and loaded with wet rice and with dry. The day is auspicious, the time favourable; you may profitably go to whichever of the four quarters you please."
+                        <cite>Birch, p. 244; tr. Rideout</cite>
+                    </blockquote>
+                    <p>Han Yu attempts to banish the Demon of Poverty from his household. Birch notes "it is not to be thought that Han Yu ever attempted to perform the curious ceremony here described" (p. 243). The essay is a "highly sophisticated form of begging letter, intended to attract the reader's sympathy and excite his indignation against a regime which would permit the poverty of a man of obvious literary ability and upright moral character."</p>
+                    <p>The Demon responds by naming its five companions: Poverty through Intelligence, Poverty through Learning, Poverty through Writing, Poverty through Fate, and Poverty through Friendship. Each is a virtue that makes Han Yu unemployable. In the end, the master "hung his head in dismay, raised his hands and offered his apology: and having burnt the boat and the cart, he led the demons to the place of honour." The joke lands hard: Han Yu's excellence is itself the cause of his poverty. You cannot separate the man from the curse.</p>
+                </div>
             </div>
-            <div class="essays-grid">
 
-                <!-- Farewell to Poverty -->
-                <div class="essay-card full">
-                    <div class="essay-title">Farewell to Poverty</div>
-                    <div class="essay-chinese">送窮文 Sung ch'iung wen</div>
-                    <div class="essay-translator">tr. J.K. Rideout (pp. 244&ndash;246)</div>
-                    <div class="essay-text">"This humble person does not venture to ask by what road, but has had a boat and a cart made ready and loaded with wet rice and with dry. The day is auspicious, the time favourable; you may profitably go to whichever of the four quarters you please."</div>
-                    <div class="essay-note"><strong>Analysis:</strong> Han Yu attempts to banish the Demon of Poverty from his household. Birch notes "it is not to be thought that Han Yu ever attempted to perform the curious ceremony here described" (p. 243). The essay is a "highly sophisticated form of begging letter, intended to attract the reader's sympathy and excite his indignation against a regime which would permit the poverty of a man of obvious literary ability and upright moral character." The Demon responds by naming its five companions: Poverty through Intelligence, Poverty through Learning, Poverty through Writing, Poverty through Fate, and Poverty through Friendship. Each is a virtue that makes Han Yu unemployable. In the end, the master "hung his head in dismay, raised his hands and offered his apology: and having burnt the boat and the cart, he led the demons to the place of honour." The joke lands hard: Han Yu's excellence is itself the cause of his poverty. You cannot separate the man from the curse.</div>
+            <!-- Lament for Nephew -->
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head han"><span class="chinese">祭十二郎文</span> Lament for His Nephew Shih-erh Lang <span class="meta">tr. Rideout &middot; pp. 246&ndash;249</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Alas, a little child I was left an orphan. When I grew up, I could not recall the faces of my father and mother. It was solely to my elder brother and his wife that I turned."
+                        <cite>Birch, p. 246; tr. Rideout</cite>
+                    </blockquote>
+                    <p>The most emotionally devastating piece in the selection. Han Yu writes a funeral offering (祭文 <em>jiwen</em>) for his nephew (actually his brother's son, Shih-erh Lang, "Twelfth Young Master"), who died young and unexpectedly. The letter recounts their shared orphanhood, the brother's early death, the years of separation as Han Yu pursued government appointments. "Who could have told that the younger would be taken and the elder and the sickly spared whole?"</p>
+                    <p>The grief is compounded by guilt: Han Yu chose career over family, pursued "some small salary" in the capital, and now his nephew is dead. The letter's final movement, where Han Yu vows to retire and raise both their children on a farm, reads as a repudiation of everything the examination system promised. The prose is plain and direct. No parallel ornament. This is <em>guwen</em> doing what it was designed to do: carrying emotion too raw for decoration.</p>
                 </div>
-
-                <!-- Lament for Nephew -->
-                <div class="essay-card full">
-                    <div class="essay-title">Lament for His Nephew Shih-erh Lang</div>
-                    <div class="essay-chinese">祭十二郎文 Chi Shih-erh Lang wen</div>
-                    <div class="essay-translator">tr. J.K. Rideout (pp. 246&ndash;249)</div>
-                    <div class="essay-text">"Alas, a little child I was left an orphan. When I grew up, I could not recall the faces of my father and mother. It was solely to my elder brother and his wife that I turned."</div>
-                    <div class="essay-note"><strong>Analysis:</strong> The most emotionally devastating piece in the selection. Han Yu writes a funeral offering (祭文 <em>jiwen</em>) for his nephew (actually his brother's son, Shih-erh Lang, "Twelfth Young Master"), who died young and unexpectedly. The letter recounts their shared orphanhood, the brother's early death, the years of separation as Han Yu pursued government appointments. "Who could have told that the younger would be taken and the elder and the sickly spared whole?" The grief is compounded by guilt: Han Yu chose career over family, pursued "some small salary" in the capital, and now his nephew is dead. The letter's final movement, where Han Yu vows to retire and raise both their children on a farm, reads as a repudiation of everything the examination system promised. The prose is plain and direct. No parallel ornament. This is <em>guwen</em> doing what it was designed to do: carrying emotion too raw for decoration.</div>
-                </div>
-
-                <!-- Against the God of the Wind -->
-                <div class="essay-card">
-                    <div class="essay-title">Against the God of the Wind</div>
-                    <div class="essay-chinese">送風伯 Sung Feng Po</div>
-                    <div class="essay-translator">tr. J.K. Rideout (p. 250)</div>
-                    <div class="essay-text">"Of this drought, who is the cause? I know the author: it is the God of the Wind who is to blame. The hills made the clouds to rise, the marshes sent up their vapour. The thunder whipped the chariot, the lightning shook the banner. The rain was promising, ready to fall; but the God of the Wind was angry..."</div>
-                    <div class="essay-note"><strong>Analysis:</strong> Birch identifies this as "actually 'rhyme-prose,' and a heavily veiled satire." The "God of the Wind" is the emperor (the Sun Crow), "the object of Han Yu's lampoon," who had shown readiness to remit taxes in a bad year but then "rapaciously demanded their payment" (p. 243). The Wind God scattered the rain clouds, preventing relief. Han Yu uses the ancient form of addressing a nature deity to deliver political criticism without naming names. The closing threat ("the sentence of Heaven will fall upon you") is aimed at real power.</div>
-                </div>
-
-                <!-- Memorial on the Bone of Buddha -->
-                <div class="essay-card">
-                    <div class="essay-title">Memorial on the Bone of Buddha</div>
-                    <div class="essay-chinese">論佛骨表 Lun Fo ku piao</div>
-                    <div class="essay-translator">tr. J.K. Rideout (pp. 250&ndash;253)</div>
-                    <div class="essay-text">"I humbly submit that Buddhism is but one of the religious systems obtaining among the barbarian tribes, that only during the later Han dynasty did it filter into the Middle Kingdom, and that it never existed in the golden age of the past."</div>
-                    <div class="essay-note"><strong>Analysis:</strong> Han Yu's most famous memorial, and the piece that nearly killed him. Emperor Xianzong (Hsien-tsung) had ordered Buddhist monks to escort a bone relic of the Buddha from Fengxiang (Feng-hsiang) to the Imperial Palace. Han Yu submitted this memorial to stop the procession. His arguments are relentless: (1) Buddhism is foreign and barbarian. (2) Before Buddhism, Chinese emperors lived long and ruled well. After its introduction, dynasties shortened and collapsed. (3) Emperor Wu-di of Liang, who "consecrated his life to Buddha, made no animal sacrifices in his ancestral temple, and ate but one meal a day of vegetables and fruit," was driven out by a rebel and died of starvation. (4) Confucius said of supernatural beings "I stand in awe... but keep them at a distance." (5) Even if the Buddha were alive today, Xianzong should give him "no greater reception than an interview in the Strangers' Hall, a ceremonial banquet, and the gift of a suit of clothes, after which you would have sent him under guard to the frontier." The memorial calls for the bone to be thrown into water or fire and Buddhism "destroyed root and branch for ever." Distinguished Confucians rallied behind Han Yu when the sentence provoked by the memorial was reduced from execution to banishment to Chaozhou (Ch'ao-chou) in the far south.</div>
-                </div>
-
-                <!-- Proclamation to the Crocodile -->
-                <div class="essay-card full">
-                    <div class="essay-title">Proclamation to the Crocodile</div>
-                    <div class="essay-chinese">祭鱷魚文 Chi o y&uuml; wen</div>
-                    <div class="essay-translator">tr. J.K. Rideout (pp. 253&ndash;255)</div>
-                    <div class="essay-text">"The governor has received the command of the Son of Heaven to come here as an officer, he cannot but dispute with you, crocodile: and if you have understanding, do you hearken to the governor's words."</div>
-                    <div class="essay-note"><strong>Analysis:</strong> Written during Han Yu's exile as governor of Chaozhou in the far south. A crocodile was terrorizing the local population. Han Yu had his officer Ch'in Chi throw a sheep and a pig into the creek as an offering, then addressed the crocodile in the form of an official proclamation. The essay deploys the full apparatus of bureaucratic authority: "Now a Son of Heaven has succeeded to the throne of Tang, who is godlike in his wisdom, merciful in peace and fierce in war." The crocodile is given three days to leave, then five, then seven. If it refuses, "the governor will then choose skilful officers and men, who shall take strong bows and poisoned arrows and conclude matters with you, crocodile, nor stop until they have slain you utterly." Birch records that "a violent storm which rose that same evening and lasted for several days" followed, and "it was found that the crocodile had removed to a distance of sixty li to the west; nor was Ch'ao-chou again plagued with crocodiles for several hundred years" (p. 242). The piece works on two levels: as absurdist theater (a Confucian bureaucrat negotiating with a reptile) and as a demonstration that the moral authority of the state extends to all creatures. In Han Yu's worldview, even animals should obey orders issued on the authority of the Son of Heaven.</div>
-                </div>
-
-                <!-- An Enquiry Into Slander -->
-                <div class="essay-card full">
-                    <div class="essay-title">An Enquiry Into Slander</div>
-                    <div class="essay-chinese">原毀 Y&uuml;an hui</div>
-                    <div class="essay-translator">tr. J.K. Rideout (pp. 255&ndash;257)</div>
-                    <div class="essay-text">"The demands that the great men of the past made of themselves were heavy and comprehensive. What they expected of others was light and simple. The first saved themselves from laziness; the second made men glad to do good."</div>
-                    <div class="essay-note"><strong>Analysis:</strong> Han Yu's most purely Confucian essay. The argument is structural: ancient sages demanded everything of themselves and little of others, so people were inspired to be good. Modern officials demand nothing of themselves and everything of others, so people resent and slander. "Laziness prevents their own development; jealousy makes them dread development in others." The essay diagnoses slander not as a character flaw but as a systemic consequence of moral laziness at the top. "To test my theory I have publicly pronounced this gentleman to be good... Those who have agreed have been either his associates, or persons so far removed from him that their interests could in no way clash." When Han Yu praises someone, only the uninvolved agree. The involved attack. The conclusion is bleak: "the pursuit of truth and goodness will bring in this world the glory of fame and praise is to expect the impossible." Good work provokes slander. This is the cost of the <em>guwen</em> project itself.</div>
-                </div>
-
             </div>
-        </div>
-    </section>
 
-    <!-- LIU ZONGYUAN -->
-    <section id="liu" class="section section-alt">
-        <div class="section-label">The Other Master</div>
-        <h2>Liu Zongyuan 柳宗元 (773&ndash;819)</h2>
-        <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1.5rem">Liu Zongyuan was Han Yu's ally in the <em>guwen</em> movement but a different temperament: "celebrated for his depictions of natural scenery in prose and verse," he "wrote also one of the best-loved of all the allegories" (Birch, p. 243).</p>
-
-        <div class="essay-section">
-            <div class="essay-section-head liu">
-                <span class="author-icon">柳</span>
-                <span style="font-weight:700">Liu Zongyuan (pp. 258&ndash;259)</span>
+            <!-- Against the God of the Wind -->
+            <div class="card">
+                <div class="card-head han"><span class="chinese">送風伯</span> Against the God of the Wind <span class="meta">tr. Rideout &middot; p. 250</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Of this drought, who is the cause? I know the author: it is the God of the Wind who is to blame."
+                        <cite>Birch, p. 250; tr. Rideout</cite>
+                    </blockquote>
+                    <p>Birch identifies this as "actually 'rhyme-prose,' and a heavily veiled satire." The "God of the Wind" is the emperor (the Sun Crow), "the object of Han Yu's lampoon," who had shown readiness to remit taxes in a bad year but then "rapaciously demanded their payment" (p. 243). Han Yu uses the ancient form of addressing a nature deity to deliver political criticism without naming names.</p>
+                </div>
             </div>
-            <div class="essays-grid">
-                <div class="essay-card full">
-                    <div class="essay-title">Camel Kuo the Gardener</div>
-                    <div class="essay-chinese">種樹郭橐駝傳 Chung shu Kuo T'o-t'o chuan</div>
-                    <div class="essay-translator">tr. Cyril Birch (pp. 258&ndash;259)</div>
-                    <div class="essay-text">"I cannot make a tree live for ever or flourish. What I <em>can</em> do is comply with the nature of the tree so that it takes the way of its kind. When a tree is planted its roots should have room to breathe, its base should be firmed, the soil it is in should be old and the fence around it should be close. When you have it this way, then you must neither disturb it nor worry about it, but go away and not come back."</div>
-                    <div class="essay-note"><strong>Analysis:</strong> Camel Kuo is a hunchback tree-grower in Feng-lo (Fengle), west of Chang'an. His secret: plant the tree correctly, then leave it alone. Other growers "dote too fondly and worry too anxiously. They inspect the tree every morning and cosset it every night; they cannot walk away from it without turning back for another look. The worst of them will even scrape off the bark to see if it is still living, or shake the roots to test whether they are holding fast." When asked whether his philosophy applies to government, Camel Kuo claims ignorance but then describes officials who "go to a lot of trouble issuing orders as though they were deeply concerned for the people; yet all they achieve is an increase of misfortune." The final line delivers the parable's point: "'The art I sought was of cultivating trees; the art I found was of cultivating men. Let this be passed on as a lesson to all in office!'" This is the Daoist position within the <em>guwen</em> movement. Where Han Yu advocates vigorous Confucian intervention (memorializing the emperor, proclaiming to crocodiles), Liu Zongyuan argues that the best governance is minimal governance. Plant right. Walk away.</div>
+
+            <!-- Memorial on the Bone of Buddha -->
+            <div class="card">
+                <div class="card-head han"><span class="chinese">論佛骨表</span> Memorial on the Bone of Buddha <span class="meta">tr. Rideout &middot; pp. 250&ndash;253</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "I humbly submit that Buddhism is but one of the religious systems obtaining among the barbarian tribes, that only during the later Han dynasty did it filter into the Middle Kingdom, and that it never existed in the golden age of the past."
+                        <cite>Birch, p. 250; tr. Rideout</cite>
+                    </blockquote>
+                    <p>Han Yu's most famous memorial, and the piece that nearly killed him. Emperor Xianzong (Hsien-tsung) had ordered Buddhist monks to escort a bone relic of the Buddha from Fengxiang to the Imperial Palace. Han Yu's arguments are relentless: (1) Buddhism is foreign and barbarian. (2) Before Buddhism, Chinese emperors lived long and ruled well. (3) Emperor Wu-di of Liang, who devoted his life to the Buddha, was driven out by a rebel and died of starvation. (4) Confucius said of supernatural beings "I stand in awe... but keep them at a distance."</p>
+                    <p>The memorial calls for the bone to be thrown into water or fire and Buddhism "destroyed root and branch for ever." The sentence was reduced from execution to banishment to Chaozhou in the far south.</p>
+                </div>
+            </div>
+
+            <!-- Proclamation to the Crocodile -->
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head han"><span class="chinese">祭鱷魚文</span> Proclamation to the Crocodile <span class="meta">tr. Rideout &middot; pp. 253&ndash;255</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "The governor has received the command of the Son of Heaven to come here as an officer, he cannot but dispute with you, crocodile: and if you have understanding, do you hearken to the governor's words."
+                        <cite>Birch, p. 253; tr. Rideout</cite>
+                    </blockquote>
+                    <p>Written during Han Yu's exile as governor of Chaozhou. A crocodile was terrorizing the local population. Han Yu had his officer throw a sheep and a pig into the creek as an offering, then addressed the crocodile in the form of an official proclamation. The crocodile is given three days to leave, then five, then seven. If it refuses, "the governor will then choose skilful officers and men, who shall take strong bows and poisoned arrows and conclude matters with you, crocodile, nor stop until they have slain you utterly."</p>
+                    <p>Birch records that "a violent storm which rose that same evening and lasted for several days" followed, and "it was found that the crocodile had removed to a distance of sixty li to the west" (p. 242). The piece works on two levels: as absurdist theater (a Confucian bureaucrat negotiating with a reptile) and as a demonstration that the moral authority of the state extends to all creatures.</p>
+                </div>
+            </div>
+
+            <!-- An Enquiry Into Slander -->
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head han"><span class="chinese">原毀</span> An Enquiry Into Slander <span class="meta">tr. Rideout &middot; pp. 255&ndash;257</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "The demands that the great men of the past made of themselves were heavy and comprehensive. What they expected of others was light and simple."
+                        <cite>Birch, p. 255; tr. Rideout</cite>
+                    </blockquote>
+                    <p>Han Yu's most purely Confucian essay. The argument is structural: ancient sages demanded everything of themselves and little of others, so people were inspired to be good. Modern officials demand nothing of themselves and everything of others, so people resent and slander. "Laziness prevents their own development; jealousy makes them dread development in others."</p>
+                    <p>The conclusion is bleak: "the pursuit of truth and goodness will bring in this world the glory of fame and praise is to expect the impossible." Good work provokes slander. This is the cost of the <em>guwen</em> project itself.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- COMPARISON -->
-    <section id="compare" class="section">
-        <div class="section-label">Side-by-Side</div>
-        <h2>Two Masters Compared</h2>
-        <div style="overflow-x:auto">
-        <table class="comp-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th class="comp-col-han">Han Yu 韓愈</th>
-                    <th class="comp-col-liu">Liu Zongyuan 柳宗元</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="row-label">Dates</td>
-                    <td>768&ndash;824 (56 years)</td>
-                    <td>773&ndash;819 (46 years)</td>
-                </tr>
-                <tr>
-                    <td class="row-label">Philosophy</td>
-                    <td>Militant Confucian. Buddhism is barbarism. The state must enforce orthodox values.</td>
-                    <td>Daoist-inflected Confucian. Good governance means minimal interference. Let things grow.</td>
-                </tr>
-                <tr>
-                    <td class="row-label">Relation to Power</td>
-                    <td>Confrontational. Memorializes the emperor, gets banished. Proclaims to crocodiles. Demands the burning of Buddhist relics.</td>
-                    <td>Observational. Draws political lessons from a gardener. Criticizes officials through parable rather than direct petition.</td>
-                </tr>
-                <tr>
-                    <td class="row-label">Prose Style</td>
-                    <td>Muscular, argumentative, sometimes furious. Ranges from satirical fantasy to raw grief. Always making a case.</td>
-                    <td>Gentle, scenic, allegorical. "Celebrated for his depictions of natural scenery" (Birch). The argument arrives disguised as landscape or anecdote.</td>
-                </tr>
-                <tr>
-                    <td class="row-label">Key Genre</td>
-                    <td>Memorials, satirical essays, funeral offerings, official proclamations</td>
-                    <td>Allegories, landscape prose, biographical sketches</td>
-                </tr>
-                <tr>
-                    <td class="row-label">On Buddhism</td>
-                    <td>"This decayed and rotten bone, this filthy and disgusting relic." Wants it destroyed root and branch.</td>
-                    <td>Absent from this selection. More tolerant in general.</td>
-                </tr>
-                <tr>
-                    <td class="row-label">On Governance</td>
-                    <td>The state should actively enforce Confucian morality. Officials must speak truth to power, even at the cost of exile.</td>
-                    <td>"I avoid hindering the fruiting; I have no power to bring it forward or make it more abundant." Govern by not governing.</td>
-                </tr>
-                <tr>
-                    <td class="row-label">Death</td>
-                    <td>Died 824. Eventually restored to honor. Became the model for all later <em>guwen</em> writers.</td>
-                    <td>Died 819 in exile at age 46. Never recalled from banishment.</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Liu Zongyuan -->
+    <section class="content-section alt" id="liu">
+        <div class="section-label"><span class="chinese">柳宗元</span> LIU ZONGYUAN (773&ndash;819)</div>
+        <p style="font-size:0.8rem;color:var(--ink-light);margin-bottom:0.6rem">Liu Zongyuan was Han Yu's ally in the <em>guwen</em> movement but a different temperament: "celebrated for his depictions of natural scenery in prose and verse," he "wrote also one of the best-loved of all the allegories" (Birch, p. 243).</p>
+
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head liu"><span class="chinese">種樹郭橐駝傳</span> Camel Kuo the Gardener <span class="meta">tr. Cyril Birch &middot; pp. 258&ndash;259</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "I cannot make a tree live for ever or flourish. What I <em>can</em> do is comply with the nature of the tree so that it takes the way of its kind."
+                        <cite>Birch, p. 258; tr. Birch</cite>
+                    </blockquote>
+                    <p>Camel Kuo is a hunchback tree-grower in Fengle, west of Chang'an. His secret: plant the tree correctly, then leave it alone. Other growers "dote too fondly and worry too anxiously. They inspect the tree every morning and cosset it every night; they cannot walk away from it without turning back for another look. The worst of them will even scrape off the bark to see if it is still living, or shake the roots to test whether they are holding fast."</p>
+                    <p>When asked whether his philosophy applies to government, Camel Kuo describes officials who "go to a lot of trouble issuing orders as though they were deeply concerned for the people; yet all they achieve is an increase of misfortune." The final line delivers the parable's point: "'The art I sought was of cultivating trees; the art I found was of cultivating men. Let this be passed on as a lesson to all in office!'"</p>
+                    <p>This is the Daoist position within the <em>guwen</em> movement. Where Han Yu advocates vigorous Confucian intervention (memorializing the emperor, proclaiming to crocodiles), Liu Zongyuan argues that the best governance is minimal governance. Plant right. Walk away.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- DISCUSSION -->
-    <section id="discuss" class="section section-alt">
-        <div class="section-label">For the Classroom</div>
-        <h2>Discussion Questions</h2>
-        <ol class="disc-list">
-            <li>"Farewell to Poverty" names five demons: Poverty through Intelligence, Learning, Writing, Fate, and Friendship. Each is actually a virtue. Han Yu's point is that his own excellence makes him unemployable. Is this self-pity, social criticism, or both? How does the satirical form change the argument?</li>
-            <li>The "Memorial on the Bone of Buddha" argues that Buddhism is foreign, that Buddhist emperors suffered short reigns, and that the Buddha himself deserves only a brief diplomatic reception. Which of these arguments is historical, which is rhetorical, and which is xenophobic? Can you separate them?</li>
-            <li>Han Yu's "Lament for His Nephew" is pure grief with no philosophical agenda. Why does Birch include it alongside the polemical essays? What does the lament reveal about the personal cost of the scholar-official's life that the political essays hide?</li>
-            <li>"Proclamation to the Crocodile" treats a reptile as a bureaucratic subordinate. Is this absurd comedy, a demonstration of Confucian moral cosmology (where all creatures obey Heaven's mandate), or a displaced attack on human enemies? What happens when you read the crocodile as a metaphor for the local warlords or Buddhist monasteries Han Yu could not actually proclaim against?</li>
-            <li>Liu Zongyuan's Camel Kuo argues that good governance means leaving people alone: "plant right, then walk away." How does this Daoist position sit alongside Han Yu's activist Confucianism? Could both be right? Are they arguing about the same problem from different angles, or do they disagree fundamentally?</li>
-            <li>Compare Han Yu's anti-Buddhist memorial to the Confucian critiques of Buddhism you've encountered elsewhere in the course (e.g., Xunzi's arguments against superstition, or the general Confucian emphasis on ritual propriety over metaphysical speculation). Is Han Yu extending an existing tradition, or doing something new?</li>
-            <li>"An Enquiry Into Slander" argues that ancient sages demanded much of themselves and little of others, while modern officials do the reverse. Is this observation specific to Tang China, or does it describe a universal pattern in how institutions decay?</li>
-        </ol>
+    <!-- Comparison -->
+    <section class="content-section" id="compare">
+        <div class="section-label"><span class="chinese">比較</span> TWO MASTERS COMPARED</div>
+        <div style="overflow-x:auto;margin-top:0.6rem">
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="comp-col-han">Han Yu 韓愈</th>
+                        <th class="comp-col-liu">Liu Zongyuan 柳宗元</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label">Dates</td>
+                        <td>768&ndash;824 (56 years)</td>
+                        <td>773&ndash;819 (46 years)</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Philosophy</td>
+                        <td>Militant Confucian. Buddhism is barbarism. The state must enforce orthodox values.</td>
+                        <td>Daoist-inflected Confucian. Good governance means minimal interference. Let things grow.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Relation to Power</td>
+                        <td>Confrontational. Memorializes the emperor, gets banished. Proclaims to crocodiles.</td>
+                        <td>Observational. Draws political lessons from a gardener. Criticizes officials through parable.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Prose Style</td>
+                        <td>Muscular, argumentative, sometimes furious. Ranges from satirical fantasy to raw grief.</td>
+                        <td>Gentle, scenic, allegorical. The argument arrives disguised as landscape or anecdote.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">On Buddhism</td>
+                        <td>"This decayed and rotten bone, this filthy and disgusting relic." Wants it destroyed.</td>
+                        <td>Absent from this selection. More tolerant in general.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">On Governance</td>
+                        <td>The state should actively enforce Confucian morality, even at the cost of exile.</td>
+                        <td>"I have no power to bring it forward or make it more abundant." Govern by not governing.</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Death</td>
+                        <td>Died 824. Restored to honor. Model for all later <em>guwen</em> writers.</td>
+                        <td>Died 819 in exile at age 46. Never recalled from banishment.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer style="padding:1.5rem 5%;background:var(--ink);color:#666;font-size:0.7rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem">
-        <div>
-            <a href="../index.html" style="color:var(--gold-light);text-decoration:none">&larr; EAST 370 Home</a>
-            &nbsp;&middot;&nbsp;
-            <a href="tang-poets.html" style="color:#888;text-decoration:none">Tang Poets</a>
-            &nbsp;&middot;&nbsp;
-            <a href="huiyuan.html" style="color:#888;text-decoration:none">Huiyuan 慧遠</a>
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Satire and Sincerity</div>
+                <div class="card-body">
+                    <ul>
+                        <li>"Farewell to Poverty" names five demons: Poverty through Intelligence, Learning, Writing, Fate, and Friendship. Each is actually a virtue. Is this self-pity, social criticism, or both? How does the satirical form change the argument?</li>
+                        <li>Han Yu's "Lament for His Nephew" is pure grief with no philosophical agenda. What does the lament reveal about the personal cost of the scholar-official's life that the political essays hide?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Buddhism and the State</div>
+                <div class="card-body">
+                    <ul>
+                        <li>The "Memorial on the Bone of Buddha" argues that Buddhism is foreign, that Buddhist emperors suffered short reigns, and that the Buddha deserves only a brief diplomatic reception. Which of these arguments is historical, which is rhetorical, and which is xenophobic?</li>
+                        <li>Compare Han Yu's anti-Buddhist memorial to the Confucian critiques of Buddhism elsewhere in the course (Xunzi's arguments against superstition, Huiyuan's defense of monastic autonomy). Is Han Yu extending an existing tradition, or doing something new?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Two Approaches to Governance</div>
+                <div class="card-body">
+                    <ul>
+                        <li>"Proclamation to the Crocodile" treats a reptile as a bureaucratic subordinate. Is this absurd comedy, Confucian moral cosmology, or a displaced attack on human enemies?</li>
+                        <li>Liu Zongyuan's Camel Kuo argues that good governance means leaving people alone. How does this Daoist position sit alongside Han Yu's activist Confucianism? Could both be right?</li>
+                        <li>"An Enquiry Into Slander" argues that ancient sages demanded much of themselves and little of others, while modern officials do the reverse. Is this specific to Tang China, or universal?</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div>Source: Birch, <em>Anthology of Chinese Literature</em>, pp. 242&ndash;259</div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I: "Prose Essays of the T'ang Dynasty," pp. 242&ndash;259. Translations by J.K. Rideout (Han Yu) and Cyril Birch (Liu Zongyuan).</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/biography/Han-Yu" target="_blank" rel="noopener">Britannica: Han Yu</a>
+                <a href="https://www.britannica.com/biography/Liu-Zongyuan" target="_blank" rel="noopener">Britannica: Liu Zongyuan</a>
+                <a href="https://plato.stanford.edu/entries/confucianism/" target="_blank" rel="noopener">SEP: Confucianism</a>
+                <a href="https://ctext.org/" target="_blank" rel="noopener">Chinese Text Project</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="tang-poets.html">Tang Poets (Wang Wei, Li Bai, Du Fu)</a>
+                <a href="huiyuan.html">Huiyuan 慧遠: Buddhist Monks and Kings</a>
+                <a href="lu-ji-wen-fu.html">Lu Ji: Wen Fu 文賦</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
     </footer>
+
 </body>
 </html>
