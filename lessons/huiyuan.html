@@ -7,34 +7,35 @@
     <title>Huiyuan 慧遠 | Buddhist Monks &amp; Kings | EAST 370</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
-            --ink-faint: #888;
+            --ink-faint: #8a8a8a;
             --paper: #fafaf8;
-            --paper-warm: #faf6f0;
             --paper-dark: #f0ede8;
             --gold: #b8860b;
             --gold-light: #daa520;
             --teal: #2d5a5a;
+            --wu: #2d7d7d;
+            --jin: #8a6a30;
             --fo: #7B5EA7;
             --fo-light: #9b7ec7;
-            --fo-dark: #5a3e87;
             --saffron: #c68a2e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--paper);
             color: var(--ink);
-            line-height: 1.7;
-            font-size: 1rem;
+            line-height: 1.6;
         }
 
+        /* Page Header */
         .page-header {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
@@ -44,332 +45,123 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        .page-header .back {
-            font-size: 0.7rem;
-            color: #888;
-            text-decoration: none;
-        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
         .page-header .back:hover { color: var(--gold-light); }
-        .page-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .page-title .ch {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 1.2rem;
-            color: var(--gold-light);
-        }
-        .page-title .en {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #fff;
-        }
-        .page-title .tag {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: #fff;
-            background: var(--fo);
-            padding: 0.15rem 0.5rem;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        .page-meta {
-            font-size: 0.65rem;
-            color: #666;
-        }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
 
-        /* Context strip */
-        .context-strip {
+        /* Sticky Nav */
+        .nav {
             background: var(--ink);
             padding: 0.6rem 1.5rem;
-            border-top: 1px solid #333;
-            font-size: 0.78rem;
-            color: #aaa;
-            line-height: 1.6;
-        }
-        .context-strip strong { color: #fff; }
-
-        /* Nav */
-        .nav-strip {
-            background: #fff;
-            border-bottom: 1px solid var(--paper-dark);
-            padding: 0.5rem 5%;
             display: flex;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 1.5rem;
             flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
-        .nav-strip a {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: var(--ink-light);
-            padding: 0.25rem 0.75rem;
-            border-radius: 3px;
-            border: 1px solid transparent;
-            transition: all 0.15s;
-        }
-        .nav-strip a:hover {
-            background: var(--paper-dark);
-            border-color: #ddd;
-        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
 
-        /* Sections */
-        .section {
-            padding: 2.5rem 5%;
-            border-bottom: 1px solid var(--paper-dark);
-        }
-        .section-alt { background: var(--paper-warm); }
-        .section-dark { background: #2a2a2a; color: #ddd; }
+        /* Section Label */
         .section-label {
             font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink-faint);
-            margin-bottom: 0.25rem;
-        }
-        .section-dark .section-label { color: #888; }
-        .section h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 1rem;
-        }
-        .section-dark h2 { color: #fff; }
-
-        /* Bio grid */
-        .bio-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-        }
-        .bio-sidebar {
-            background: #fff;
-            border: 1px solid #e8e5e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .bio-sidebar-head {
-            background: var(--fo);
-            padding: 1.25rem;
-        }
-        .bio-sidebar-head .bio-ch {
-            font-family: 'Noto Serif SC', serif;
-            font-size: 2.2rem;
-            color: #fff;
-        }
-        .bio-sidebar-head .bio-en {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-        }
-        .bio-sidebar-head .bio-dates {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.7);
-            margin-top: 0.1rem;
-        }
-        .bio-sidebar-body {
-            padding: 1rem 1.25rem;
-        }
-        .bio-stat {
-            margin-bottom: 0.75rem;
-        }
-        .bio-stat-label {
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--fo);
-        }
-        .bio-stat-val {
-            font-size: 0.82rem;
-            color: var(--ink-light);
-            line-height: 1.5;
-        }
-        .bio-main p {
-            font-size: 0.88rem;
-            color: var(--ink-light);
-            line-height: 1.75;
-            margin-bottom: 1rem;
-        }
-        .bio-main p:last-child { margin-bottom: 0; }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 1rem 0;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 80px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #555;
-        }
-        .tl-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .tl-year {
-            width: 70px;
-            text-align: right;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #888;
-            padding-top: 0.1rem;
-            flex-shrink: 0;
-        }
-        .section-dark .tl-year { color: var(--gold-light); }
-        .tl-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--fo);
-            flex-shrink: 0;
-            margin-top: 0.35rem;
-            position: relative;
-            z-index: 1;
-        }
-        .tl-dot.era { background: var(--saffron); }
-        .tl-dot.big { width: 14px; height: 14px; margin-top: 0.2rem; }
-        .tl-content {
-            font-size: 0.85rem;
-            color: #bbb;
-            line-height: 1.5;
-        }
-        .tl-content strong { color: #fff; }
-
-        /* Exec grid */
-        .exec-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        .exec-box {
-            background: #fff;
-            border: 1px solid #e8e5e0;
-            border-radius: 6px;
-            padding: 1.25rem;
-        }
-        .exec-box h3 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--fo);
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--fo);
-        }
-        .exec-box p, .exec-box li {
-            font-size: 0.85rem;
-            color: var(--ink-light);
-            line-height: 1.65;
-        }
-        .exec-box ul {
-            list-style: none;
-            padding: 0;
-        }
-        .exec-box ul li {
-            padding: 0.2rem 0;
-            padding-left: 1em;
-            position: relative;
-        }
-        .exec-box ul li::before {
-            content: '·';
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-            color: var(--fo);
-        }
-        .exec-full { grid-column: 1 / -1; }
-
-        /* Concept cards */
-        .concept-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-        }
-        .concept-card {
-            background: #fff;
-            border: 1px solid #e8e5e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .concept-card-head {
-            background: var(--fo);
-            padding: 0.75rem 1rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: baseline;
             gap: 0.5rem;
         }
-        .concept-card-head .concept-ch {
-            font-family: 'Noto Serif SC', serif;
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
             font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
             color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
-        .concept-card-head .concept-en {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.8);
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
         }
-        .concept-card-body {
-            padding: 1rem;
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
         }
-        .concept-card-body p {
-            font-size: 0.82rem;
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.65;
             margin-bottom: 0.5rem;
         }
-        .concept-card-body p:last-child { margin-bottom: 0; }
-
-        /* Reading sections */
-        .reading-card {
-            background: #fff;
-            border: 1px solid #e8e5e0;
-            border-radius: 6px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .reading-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.25rem;
-        }
-        .reading-card .section-num {
-            font-size: 0.65rem;
-            font-weight: 700;
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--fo);
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
         }
-        .reading-card p {
-            font-size: 0.85rem;
-            color: var(--ink-light);
-            line-height: 1.7;
-            margin-bottom: 0.75rem;
-        }
-        .reading-card p:last-child { margin-bottom: 0; }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        /* Blockquote */
+        /* Blockquotes */
         blockquote {
             background: var(--paper-dark);
-            border-left: 3px solid var(--fo);
-            padding: 0.75rem 1rem;
-            margin: 0.75rem 0;
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
             font-style: italic;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--ink-light);
             line-height: 1.7;
         }
@@ -380,409 +172,612 @@
             font-size: 0.7rem;
             color: var(--ink-faint);
         }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
-        /* Discussion */
-        .disc-list {
-            list-style: none;
-            counter-reset: disc;
-        }
-        .disc-list li {
-            counter-increment: disc;
-            padding: 0.75rem 0;
-            padding-left: 2.5rem;
+        /* Timeline */
+        .mini-timeline {
             position: relative;
-            font-size: 0.88rem;
-            color: var(--ink-light);
-            border-bottom: 1px solid #eee;
-            line-height: 1.6;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
         }
-        .disc-list li::before {
-            content: counter(disc);
+        .mini-timeline::before {
+            content: '';
             position: absolute;
-            left: 0;
-            top: 0.75rem;
-            width: 1.6rem;
-            height: 1.6rem;
-            background: var(--fo);
-            color: #fff;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
             border-radius: 50%;
-            font-size: 0.7rem;
-            font-weight: 700;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
         }
 
-        /* Flashpoint box */
-        .flashpoint {
-            background: #3a2a1a;
-            border-left: 4px solid var(--saffron);
-            padding: 1.25rem;
-            border-radius: 0 6px 6px 0;
-            margin: 1.5rem 0;
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
         }
-        .flashpoint h4 {
-            font-size: 0.7rem;
+        .key-themes h4 {
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--saffron);
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Map embed */
+        .map-wrapper {
+            margin-top: 0.6rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .map-frame {
+            width: 100%;
+            height: 420px;
+            border: none;
+        }
+        .map-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .map-link:hover { color: var(--gold-light); }
+
+        /* Section structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
             margin-bottom: 0.5rem;
         }
-        .flashpoint p {
-            font-size: 0.85rem;
-            color: #ccc;
-            line-height: 1.65;
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
         }
 
         /* Responsive */
-        @media (max-width: 900px) {
-            .exec-grid { grid-template-columns: 1fr; }
-            .bio-grid { grid-template-columns: 1fr; }
-            .concept-grid { grid-template-columns: 1fr; }
-        }
         @media (max-width: 600px) {
-            .section { padding: 1.5rem 4%; }
-            .nav-strip { padding: 0.5rem 4%; }
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
         }
     </style>
 </head>
 
 <body>
-    <!-- HEADER -->
+
+    <!-- Page Header -->
     <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
         <div class="page-title">
-            <a href="../index.html" class="back">&larr; EAST 370</a>
             <span class="ch">慧遠</span>
             <span class="en">Huiyuan: Buddhist Monks and Kings</span>
-            <span class="tag">Six Dynasties</span>
+            <span class="meta">Tiwald &amp; Van Norden, pp. 69&ndash;80 &middot; Six Dynasties</span>
         </div>
-        <span class="page-meta">Tiwald &amp; Van Norden, pp. 69&ndash;80</span>
     </header>
 
-    <!-- CONTEXT STRIP -->
-    <div class="context-strip">
-        <strong>Huiyuan 慧遠</strong> (334&ndash;416) was an influential Buddhist monk and teacher in the Six Dynasties period, a prominent early spokesperson for what many Chinese saw as an imported religion reflecting foreign values.
-    </div>
-
-    <!-- NAV -->
-    <nav class="nav-strip">
+    <!-- Sticky Nav -->
+    <nav class="nav">
         <a href="#exec">Overview</a>
-        <a href="#bio">Deep Dive: Huiyuan's Life</a>
+        <a href="#bio">Huiyuan's Life</a>
         <a href="#timeline">Timeline</a>
         <a href="#context">Buddhism in China</a>
         <a href="#concepts">Key Concepts</a>
         <a href="#reading">The Reading</a>
         <a href="#discuss">Discussion</a>
-        <a href="huayan-gandavyuha.html" style="color:var(--fo)">Huayan ↗</a>
+        <a href="#sources">Sources</a>
     </nav>
 
-    <!-- EXEC SUMMARY -->
-    <section id="exec" class="section">
-        <div class="section-label">Executive Summary</div>
-        <h2>What You Need to Know</h2>
-        <div class="exec-grid">
-            <div class="exec-box">
-                <h3>The Reading</h3>
-                <p>Tiwald &amp; Van Norden, <em>Readings in Later Chinese Philosophy</em> (Hackett, 2014), pp. 69&ndash;80. Part II: Chinese Buddhism. The introduction surveys Buddhism's arrival in China and the philosophical tensions it provoked. Selection 13 is Huiyuan's <em>On Why Buddhist Monks Do Not Bow Down before Kings</em>, a treatise defending monastic independence from state ritual authority.</p>
+    <!-- Executive Summary -->
+    <section class="content-section" id="exec">
+        <div class="section-label"><span class="chinese">概要</span> EXECUTIVE SUMMARY</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">經文</span> The Reading</div>
+                <div class="card-body">
+                    <p><strong>Huiyuan 慧遠</strong> (334&ndash;416) was an influential Buddhist monk and teacher in the Six Dynasties period, a prominent early spokesperson for what many Chinese saw as an imported religion reflecting foreign values.</p>
+                    <p>Tiwald &amp; Van Norden, <em>Readings in Later Chinese Philosophy</em> (Hackett, 2014), pp. 69&ndash;80. Part II: Chinese Buddhism. The introduction surveys Buddhism's arrival in China and the philosophical tensions it provoked. Selection 13 is Huiyuan's <em>On Why Buddhist Monks Do Not Bow Down before Kings</em>, a treatise defending monastic independence from state ritual authority.</p>
+                </div>
             </div>
-            <div class="exec-box">
-                <h3>Historical Moment</h3>
-                <p>The Six Dynasties period (220&ndash;581 CE): civil war, political fragmentation, and intellectual upheaval after the fall of the Han. Without a centralized power enforcing Confucian orthodoxy, "unorthodox" teachings like Buddhism had a chance to flourish. By Huiyuan's time, Buddhism was the de facto state religion of several competing dynasties, heavily patronized by most emperors.</p>
+            <div class="card">
+                <div class="card-head"><span class="chinese">時代</span> Historical Moment</div>
+                <div class="card-body">
+                    <p>The Six Dynasties period (220&ndash;581 CE): civil war, political fragmentation, and intellectual upheaval after the fall of the Han. Without a centralized power enforcing Confucian orthodoxy, "unorthodox" teachings like Buddhism had a chance to flourish. By Huiyuan's time, Buddhism was the de facto state religion of several competing dynasties, heavily patronized by most emperors.</p>
+                </div>
             </div>
-            <div class="exec-box">
-                <h3>The Core Problem</h3>
-                <p>Should Buddhist monks bow to the emperor? This sounds like a question of etiquette. It is actually a question about the limits of state power. Confucian ritual demands that all subjects pay formal obeisance to the ruler. Buddhist monks claim exemption: they have left the "temporal world" and answer to a higher authority. Huiyuan's treatise is the most sophisticated defense of this exemption.</p>
+            <div class="card">
+                <div class="card-head"><span class="chinese">核心</span> The Core Problem</div>
+                <div class="card-body">
+                    <p>Should Buddhist monks bow to the emperor? This sounds like a question of etiquette. It is actually a question about the limits of state power. Confucian ritual demands that all subjects pay formal obeisance to the ruler. Buddhist monks claim exemption: they have left the "temporal world" and answer to a higher authority. Huiyuan's treatise is the most sophisticated defense of this exemption.</p>
+                </div>
             </div>
-            <div class="exec-box">
-                <h3>Why It Matters</h3>
-                <ul>
-                    <li>First major Chinese Buddhist philosophical defense of monastic autonomy</li>
-                    <li>Directly addresses the Confucian critique that monks undermine filial piety and social order</li>
-                    <li>Sets up the confrontation that explodes 400 years later in Han Yu's "Memorial on the Bone of Buddha"</li>
-                    <li>Raises questions about religion, state power, and individual conscience that remain alive today</li>
-                </ul>
+            <div class="card">
+                <div class="card-head"><span class="chinese">意義</span> Why It Matters</div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>First major Chinese Buddhist philosophical defense</strong> of monastic autonomy</li>
+                        <li><strong>Directly addresses the Confucian critique</strong> that monks undermine filial piety and social order</li>
+                        <li><strong>Sets up the confrontation</strong> that explodes 400 years later in Han Yu's "Memorial on the Bone of Buddha"</li>
+                        <li><strong>Raises questions</strong> about religion, state power, and individual conscience that remain alive today</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- BIOGRAPHY DEEP DIVE -->
-    <section id="bio" class="section section-alt">
-        <div class="section-label">Deep Dive</div>
-        <h2>Huiyuan's Life and World</h2>
-        <div class="bio-grid">
-            <div class="bio-sidebar">
-                <div class="bio-sidebar-head">
-                    <div class="bio-ch">慧遠</div>
-                    <div class="bio-en">Huiyuan</div>
-                    <div class="bio-dates">334&ndash;416 CE</div>
+    <!-- Biography -->
+    <section class="content-section alt" id="bio">
+        <div class="section-label"><span class="chinese">傳記</span> HUIYUAN'S LIFE AND WORLD</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">慧遠</span> Huiyuan <span class="meta">334&ndash;416 CE</span></div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Born:</strong> 334 CE, Yanmen (modern Shanxi province)</li>
+                        <li><strong>Tradition:</strong> Chinese Buddhism, early Pure Land thought, Prajna (Wisdom) studies</li>
+                        <li><strong>Teacher:</strong> Dao'an 道安 (312&ndash;385), the leading Buddhist monk of the era</li>
+                        <li><strong>Base:</strong> Donglin Temple 東林寺 on Mount Lu (Lushan 廬山), from 386 until death</li>
+                        <li><strong>Key Legacy:</strong> Founded the White Lotus Society (Bailian she 白蓮社). Defended monastic independence from state ritual. Bridge between Indian Buddhist philosophy and Chinese intellectual culture.</li>
+                        <li><strong>Died:</strong> 416 CE, Mount Lu. Never left the mountain in his last 30 years.</li>
+                    </ul>
                 </div>
-                <div class="bio-sidebar-body">
-                    <div class="bio-stat">
-                        <div class="bio-stat-label">Born</div>
-                        <div class="bio-stat-val">334 CE, Yanmen (modern Shanxi province)</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">生平</span> Biography</div>
+                <div class="card-body">
+                    <h4>An Era of Collapse</h4>
+                    <p>Huiyuan grew up in an era of collapse. The Han dynasty had fallen in 220 CE, and China was fractured into competing kingdoms, many ruled by non-Chinese dynasties in the north. The old Confucian order, which tied scholarship, governance, and ritual propriety into a single system, was shattered. In this vacuum, Buddhism offered something Confucianism could not: a systematic account of suffering, a path to transcendence, and institutions (monasteries) that could survive the fall of any particular state.</p>
+
+                    <h4>From Confucianism and Daoism to Buddhism</h4>
+                    <p>He came to Buddhism through Confucianism and Daoism. Before encountering Buddhism, Huiyuan studied the Confucian classics and was deeply versed in the Daoist texts (Laozi, Zhuangzi). This dual training was not unusual for his era, but it shaped his distinctive approach: he could argue for Buddhist principles in language that Confucian and Daoist intellectuals understood. When his teacher Dao'an lectured on Buddhist prajna (wisdom/insight), Huiyuan reportedly used analogies from Zhuangzi to help the audience grasp the concepts. This made him a bridge figure, not just translating Indian ideas but rethinking them in Chinese philosophical terms.</p>
+
+                    <h4>Dao'an: The Master Who Shaped Him</h4>
+                    <p>Dao'an was the most prominent Buddhist monk in fourth-century China, a scholar who organized the first systematic catalog of Chinese Buddhist texts and standardized monastic rules. When the Former Qin state conquered their region, Dao'an's community was scattered. Dao'an told Huiyuan to go south. Huiyuan obeyed, eventually reaching Mount Lu (Lushan) in 386, where he would remain for the last thirty years of his life.</p>
+
+                    <h4>Mount Lu as Fortress</h4>
+                    <p>Huiyuan established Donglin Temple (East Grove Temple) on Mount Lu, and it became the most important Buddhist center in southern China. He famously never crossed the stream at the base of the mountain, a self-imposed boundary that became legendary. This was not withdrawal from the world. From Mount Lu, Huiyuan corresponded with the most powerful figures in China, mediated between northern and southern Buddhist traditions, and organized the White Lotus Society (Bailian she 白蓮社), a devotional community focused on meditation and the aspiration for rebirth in Amitabha's Pure Land.</p>
+
+                    <h4>The Bowing Controversy</h4>
+                    <p>In 402 CE, the warlord Huan Xuan 桓玄 (who would briefly usurp the Jin dynasty throne) issued an edict demanding that Buddhist monks bow before the ruler, just as all other subjects did. This was not a trivial demand. In Confucian ritual, the bow (拜 <em>bai</em>) was the fundamental act of political submission. For monks, who had symbolically "left the family" (出家 <em>chujia</em>) and renounced worldly attachments, bowing to the emperor meant re-entering the hierarchical world they had abandoned. Huiyuan wrote <em>On Why Buddhist Monks Do Not Bow Down before Kings</em> (沙門不敬王者論 <em>Shamen bu jing wangzhe lun</em>) as a systematic defense of monastic exemption. The treatise was persuasive enough that Huan Xuan withdrew the edict.</p>
+
+                    <h4>Death on the Mountain</h4>
+                    <p>He died in 416 on his mountain. Huiyuan never left Mount Lu, but his influence radiated outward. The Pure Land tradition that traces its origins to his White Lotus Society would become the most widely practiced form of Buddhism in East Asia. His arguments for monastic independence set the terms for every subsequent debate about the relationship between Buddhism and the Chinese state, including Han Yu's famous anti-Buddhist memorial four centuries later.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="content-section" id="timeline">
+        <div class="section-label"><span class="chinese">年表</span> TIMELINE: BUDDHISM AND EMPIRE</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">佛教</span> Buddhism Arrives and Grows <span class="meta">1st c. CE &ndash; 416 CE</span></div>
+                <div class="card-body">
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">~1st c. CE</div>
+                            <div class="event">Buddhism arrives in China via the Silk Road. First Buddhist missionaries in the Later Han dynasty.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">220 CE</div>
+                            <div class="event">Fall of the Han dynasty. Six Dynasties period begins. Confucian orthodoxy fractures. Buddhism grows rapidly in the political vacuum.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">312&ndash;385</div>
+                            <div class="event">Dao'an 道安 lives. The era's leading Buddhist monk. Systematizes the Chinese Buddhist canon. Huiyuan's teacher.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">334 CE</div>
+                            <div class="event">Huiyuan born in Yanmen (modern Shanxi). Studies Confucian and Daoist classics before encountering Buddhism.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">~354 CE</div>
+                            <div class="event">Huiyuan joins Dao'an's monastic community. Uses Zhuangzi to explain Buddhist <em>prajna</em> (wisdom).</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">386 CE</div>
+                            <div class="event">Huiyuan arrives at Mount Lu (Lushan). Establishes Donglin Temple. Never leaves the mountain again.</div>
+                        </div>
                     </div>
-                    <div class="bio-stat">
-                        <div class="bio-stat-label">Tradition</div>
-                        <div class="bio-stat-val">Chinese Buddhism, early Pure Land thought, Prajna (Wisdom) studies</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">危機</span> The Crisis and Aftermath <span class="meta">402&ndash;845 CE</span></div>
+                <div class="card-body">
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">402 CE</div>
+                            <div class="event">The bowing crisis. Huan Xuan demands monks bow to the ruler. Huiyuan writes <em>On Why Buddhist Monks Do Not Bow Down before Kings</em>. The edict is withdrawn.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">402 CE</div>
+                            <div class="event">Huiyuan founds the White Lotus Society on Mount Lu. 123 monks and laypeople gather for collective meditation and Pure Land devotion.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">416 CE</div>
+                            <div class="event">Huiyuan dies at Mount Lu, age 82. His community and writings shape Chinese Buddhism for centuries.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">581&ndash;618</div>
+                            <div class="event">Sui dynasty reunifies China. Buddhism is the de facto state religion, heavily patronized by the imperial court.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">618&ndash;906</div>
+                            <div class="event">Tang dynasty. Buddhism reaches peak institutional power. Monasteries are tax-exempt, enormously wealthy. Confucian backlash builds.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">819 CE</div>
+                            <div class="event">Han Yu's "Memorial on the Bone of Buddha." The Confucian counterattack to everything Huiyuan defended. Calls for Buddhism to be "destroyed root and branch."</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">845 CE</div>
+                            <div class="event">Emperor Wuzong's anti-Buddhist persecution. 4,600 monasteries destroyed, 260,000 monks and nuns forced to return to lay life. Buddhism never fully recovers its institutional dominance.</div>
+                        </div>
                     </div>
-                    <div class="bio-stat">
-                        <div class="bio-stat-label">Teacher</div>
-                        <div class="bio-stat-val">Dao'an 道安 (312&ndash;385), the leading Buddhist monk of the era</div>
-                    </div>
-                    <div class="bio-stat">
-                        <div class="bio-stat-label">Base</div>
-                        <div class="bio-stat-val">Donglin Temple 東林寺 on Mount Lu (Lushan 廬山), from 386 until death</div>
-                    </div>
-                    <div class="bio-stat">
-                        <div class="bio-stat-label">Key Legacy</div>
-                        <div class="bio-stat-val">Founded the White Lotus Society (Bailian she 白蓮社). Defended monastic independence from state ritual. Bridge between Indian Buddhist philosophy and Chinese intellectual culture.</div>
-                    </div>
-                    <div class="bio-stat">
-                        <div class="bio-stat-label">Died</div>
-                        <div class="bio-stat-val">416 CE, Mount Lu. Never left the mountain in his last 30 years.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bio-main">
-                <p><strong>Huiyuan grew up in an era of collapse.</strong> The Han dynasty had fallen in 220 CE, and China was fractured into competing kingdoms, many ruled by non-Chinese dynasties in the north. The old Confucian order, which tied scholarship, governance, and ritual propriety into a single system, was shattered. In this vacuum, Buddhism offered something Confucianism could not: a systematic account of suffering, a path to transcendence, and institutions (monasteries) that could survive the fall of any particular state.</p>
-
-                <p><strong>He came to Buddhism through Confucianism and Daoism.</strong> Before encountering Buddhism, Huiyuan studied the Confucian classics and was deeply versed in the Daoist texts (Laozi, Zhuangzi). This dual training was not unusual for his era, but it shaped his distinctive approach: he could argue for Buddhist principles in language that Confucian and Daoist intellectuals understood. When his teacher Dao'an lectured on Buddhist prajna (wisdom/insight), Huiyuan reportedly used analogies from Zhuangzi to help the audience grasp the concepts. This made him a bridge figure, not just translating Indian ideas but rethinking them in Chinese philosophical terms.</p>
-
-                <p><strong>Dao'an was the master who shaped him.</strong> Dao'an was the most prominent Buddhist monk in fourth-century China, a scholar who organized the first systematic catalog of Chinese Buddhist texts and standardized monastic rules. When the Former Qin state conquered their region, Dao'an's community was scattered. Dao'an told Huiyuan to go south. Huiyuan obeyed, eventually reaching Mount Lu (Lushan) in 386, where he would remain for the last thirty years of his life.</p>
-
-                <p><strong>Mount Lu became his fortress.</strong> Huiyuan established Donglin Temple (East Grove Temple) on Mount Lu, and it became the most important Buddhist center in southern China. He famously never crossed the stream at the base of the mountain, a self-imposed boundary that became legendary. This was not withdrawal from the world. From Mount Lu, Huiyuan corresponded with the most powerful figures in China, mediated between northern and southern Buddhist traditions, and organized the White Lotus Society (Bailian she 白蓮社), a devotional community focused on meditation and the aspiration for rebirth in Amitabha's Pure Land.</p>
-
-                <p><strong>The bowing controversy was the crisis that defined him.</strong> In 402 CE, the warlord Huan Xuan 桓玄 (who would briefly usurp the Jin dynasty throne) issued an edict demanding that Buddhist monks bow before the ruler, just as all other subjects did. This was not a trivial demand. In Confucian ritual, the bow (拜 <em>bai</em>) was the fundamental act of political submission. For monks, who had symbolically "left the family" (出家 <em>chujia</em>) and renounced worldly attachments, bowing to the emperor meant re-entering the hierarchical world they had abandoned. Huiyuan wrote <em>On Why Buddhist Monks Do Not Bow Down before Kings</em> (沙門不敬王者論 <em>Shamen bu jing wangzhe lun</em>) as a systematic defense of monastic exemption. The treatise was persuasive enough that Huan Xuan withdrew the edict.</p>
-
-                <p><strong>He died in 416 on his mountain.</strong> Huiyuan never left Mount Lu, but his influence radiated outward. The Pure Land tradition that traces its origins to his White Lotus Society would become the most widely practiced form of Buddhism in East Asia. His arguments for monastic independence set the terms for every subsequent debate about the relationship between Buddhism and the Chinese state, including Han Yu's famous anti-Buddhist memorial four centuries later.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- TIMELINE -->
-    <section id="timeline" class="section section-dark">
-        <div class="section-label">Historical Context</div>
-        <h2>Timeline: Buddhism and Empire</h2>
-        <div class="timeline">
-            <div class="tl-item">
-                <div class="tl-year">~1st c. CE</div>
-                <div class="tl-dot era"></div>
-                <div class="tl-content"><strong>Buddhism arrives in China</strong> via the Silk Road. First Buddhist missionaries in the Later Han dynasty.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">220</div>
-                <div class="tl-dot era"></div>
-                <div class="tl-content"><strong>Fall of the Han dynasty.</strong> Six Dynasties period begins. Confucian orthodoxy fractures. Buddhism grows rapidly in the political vacuum.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">312&ndash;385</div>
-                <div class="tl-dot"></div>
-                <div class="tl-content"><strong>Dao'an 道安</strong> lives. The era's leading Buddhist monk. Systematizes the Chinese Buddhist canon. Huiyuan's teacher.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">334</div>
-                <div class="tl-dot big"></div>
-                <div class="tl-content"><strong>Huiyuan born</strong> in Yanmen (modern Shanxi). Studies Confucian and Daoist classics before encountering Buddhism.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">~354</div>
-                <div class="tl-dot"></div>
-                <div class="tl-content">Huiyuan joins Dao'an's monastic community. Uses Zhuangzi to explain Buddhist <em>prajna</em> (wisdom).</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">386</div>
-                <div class="tl-dot big"></div>
-                <div class="tl-content"><strong>Huiyuan arrives at Mount Lu</strong> (Lushan). Establishes Donglin Temple. Never leaves the mountain again.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">402</div>
-                <div class="tl-dot big" style="background:var(--saffron)"></div>
-                <div class="tl-content"><strong style="color:var(--saffron)">THE BOWING CRISIS.</strong> Huan Xuan demands monks bow to the ruler. Huiyuan writes <em>On Why Buddhist Monks Do Not Bow Down before Kings</em>. The edict is withdrawn.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">402</div>
-                <div class="tl-dot"></div>
-                <div class="tl-content">Huiyuan founds the <strong>White Lotus Society</strong> on Mount Lu. 123 monks and laypeople gather for collective meditation and Pure Land devotion.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">416</div>
-                <div class="tl-dot big"></div>
-                <div class="tl-content"><strong>Huiyuan dies</strong> at Mount Lu, age 82. His community and writings shape Chinese Buddhism for centuries.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">581&ndash;618</div>
-                <div class="tl-dot era"></div>
-                <div class="tl-content"><strong>Sui dynasty</strong> reunifies China. Buddhism is the de facto state religion, heavily patronized by the imperial court.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">618&ndash;906</div>
-                <div class="tl-dot era"></div>
-                <div class="tl-content"><strong>Tang dynasty.</strong> Buddhism reaches peak institutional power. Monasteries are tax-exempt, enormously wealthy. Confucian backlash builds.</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">819</div>
-                <div class="tl-dot era" style="background:#c44"></div>
-                <div class="tl-content"><strong style="color:#e66">Han Yu's "Memorial on the Bone of Buddha."</strong> The Confucian counterattack to everything Huiyuan defended. Calls for Buddhism to be "destroyed root and branch."</div>
-            </div>
-            <div class="tl-item">
-                <div class="tl-year">845</div>
-                <div class="tl-dot era" style="background:#c44"></div>
-                <div class="tl-content"><strong>Emperor Wuzong's anti-Buddhist persecution.</strong> 4,600 monasteries destroyed, 260,000 monks and nuns forced to return to lay life. Buddhism never fully recovers its institutional dominance.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BUDDHISM IN CHINA CONTEXT -->
-    <section id="context" class="section">
-        <div class="section-label">Background</div>
-        <h2>Buddhism in China: The Collision</h2>
-        <div class="exec-grid">
-            <div class="exec-box">
-                <h3>Why Buddhism Spread</h3>
-                <p>Buddhism arrived during the Han dynasty but only gained mass following after the Han's collapse (220 CE). In an era of civil war and political fragmentation, Buddhism offered what the shattered Confucian order could not: a universal explanation of suffering, a path to individual salvation that did not depend on a functioning state, and institutions (monasteries, ordination lineages) that could survive the fall of any particular dynasty.</p>
-            </div>
-            <div class="exec-box">
-                <h3>Why Confucians Objected</h3>
-                <p>Two flashpoints dominated public discourse. First, Buddhist monks refused to participate in the Confucian ritual order: they would not bow to rulers, honor ancestors with family sacrifices, or produce heirs. For Confucians, this undermined filial piety (孝 <em>xiao</em>) and the root of social order. Second, monasteries accumulated enormous wealth, land, and tax-exempt labor. Monks left the tax rolls. In Confucian eyes, Buddhism was parasitic on the state it refused to serve.</p>
-            </div>
-            <div class="exec-box">
-                <h3>Emptiness and No-Self</h3>
-                <p>The core Buddhist philosophical claims were radical. There is no permanent self (<em>anatman</em>). All things are "empty" (空 <em>kong</em>) of independent existence, meaning everything that exists is conditionally produced by causes and relationships. Mahayana Buddhism emphasized the "emptiness of all things, not just the emptiness of the self, but the emptiness of all concrete things, like trees and wagons, as well as abstract things, like time or evil" (Tiwald, p. 70). This was philosophically challenging for both Confucians (who grounded ethics in stable human nature) and Daoists (who posited a stable "Way").</p>
-            </div>
-            <div class="exec-box">
-                <h3>Interdependence</h3>
-                <p>The Buddhist argument from interdependence was particularly influential in Chinese Mahayana. If everything is conditionally produced, then your mental state right now exists because of an unbroken chain of causes extending through the editors of this textbook, Siddhartha Gautama, and every being who ever influenced them. "Some Buddhists would argue that this web of relationships is really what defines any one element in it" (Tiwald, p. 72). This reasoning justified universal compassion: if all things are interconnected, harming any being harms the whole web.</p>
-            </div>
-        </div>
-
-        <div class="flashpoint" style="margin-top:1.5rem; background:var(--paper-dark); border-left-color:var(--fo);">
-            <h4 style="color:var(--fo)">The Two Confucian Flashpoints</h4>
-            <p style="color:var(--ink-light)">The reading emphasizes two specific Confucian objections that Huiyuan must address: (1) <strong>monks leave their families</strong>, abandoning filial piety and the obligation to produce heirs; (2) <strong>monks refuse to bow to kings</strong>, rejecting the ritual hierarchy that binds ruler and subject. Both views "ran strongly counter to largely Confucian values of loyalty and filial piety that had become thoroughly interwoven with Chinese culture by the time that Buddhism began to attract large numbers of followers" (Tiwald, p. 74).</p>
-        </div>
-    </section>
-
-    <!-- KEY CONCEPTS -->
-    <section id="concepts" class="section section-alt">
-        <div class="section-label">Vocabulary</div>
-        <h2>Key Concepts for the Reading</h2>
-        <div class="concept-grid">
-            <div class="concept-card">
-                <div class="concept-card-head">
-                    <span class="concept-ch">出家</span>
-                    <span class="concept-en">chujia, "leaving the family"</span>
-                </div>
-                <div class="concept-card-body">
-                    <p>The act of becoming a Buddhist monk or nun: shaving the head, casting off hairpins, donning monastic robes. For Confucians, this was a direct assault on 孝 <em>xiao</em> (filial piety), since it meant abandoning one's parents, producing no heirs, and severing the ancestral line.</p>
-                </div>
-            </div>
-            <div class="concept-card">
-                <div class="concept-card-head">
-                    <span class="concept-ch">化</span>
-                    <span class="concept-en">hua, "transformations"</span>
-                </div>
-                <div class="concept-card-body">
-                    <p>Throughout the essay, "comply with the transformations" means participating in the cyclical changes of the temporal world: birth, death, political cycles, seasonal rhythms. Huiyuan's argument hinges on whether monks are obligated to "comply" with these worldly processes or are exempt because they seek something beyond them.</p>
-                </div>
-            </div>
-            <div class="concept-card">
-                <div class="concept-card-head">
-                    <span class="concept-ch">生</span>
-                    <span class="concept-en">sheng, "life" / "generating life"</span>
-                </div>
-                <div class="concept-card-body">
-                    <p>Translated as "life" by Tiwald. Later Confucians insisted that <em>sheng</em> (生生 "generating life") is the core value of the cosmos. Huiyuan argues that Buddhist monks, by understanding that "generating life depends on being subject to the transformations of the temporal world," seek to escape the cycle entirely through enlightenment.</p>
-                </div>
-            </div>
-            <div class="concept-card">
-                <div class="concept-card-head">
-                    <span class="concept-ch">宗</span>
-                    <span class="concept-en">zong, "ancestral source"</span>
-                </div>
-                <div class="concept-card-body">
-                    <p>Translated ambiguously as "the First Principle." Originally Daoist, adopted by Chinese Buddhists to describe the universal ground or source of all things, from which enlightenment and ultimately salvation arise. Huiyuan uses this term to bridge Buddhist and Daoist frameworks.</p>
-                </div>
-            </div>
-            <div class="concept-card">
-                <div class="concept-card-head">
-                    <span class="concept-ch">本</span>
-                    <span class="concept-en">ben, "fundamental state"</span>
-                </div>
-                <div class="concept-card-body">
-                    <p>Also translated as "root," "origin," or "foundation." In Huiyuan's era, this was equated with "Buddha-nature": one's original state as a fully formed capacity for Buddhahood. "We don't have full access to our own Buddha-nature" (Tiwald, p. 79, n. 14), which is why practice is necessary.</p>
-                </div>
-            </div>
-            <div class="concept-card">
-                <div class="concept-card-head">
-                    <span class="concept-ch">方便</span>
-                    <span class="concept-en">fangbian, "expedient means"</span>
-                </div>
-                <div class="concept-card-body">
-                    <p>Sanskrit <em>upaya</em>. A technique of instruction based on adapting the teaching to the audience's level of understanding. The <em>Lotus Sutra</em>'s parable of the burning house illustrates this: a father lures his children from danger with promises of toys, not explanations of fire. Different Buddhist "levels" (Hinayana, Mahayana) may be expedient means aimed at different capacities.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- THE READING -->
-    <section id="reading" class="section">
-        <div class="section-label">Text Analysis</div>
-        <h2>On Why Buddhist Monks Do Not Bow Down before Kings</h2>
-        <p style="font-size:0.82rem;color:var(--ink-faint);margin-bottom:0.5rem">Selection 13 in Tiwald &amp; Van Norden. Translation by Justin Tiwald, pp. 75&ndash;80.</p>
-        <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1.5rem">Huiyuan's treatise responds to the political demand that monks show ritual obeisance to the emperor. He builds his defense in three stages, moving from the least controversial claim (Buddhist laypeople should obey the state) to the most radical (monks who have left the world need not comply with worldly authority at all).</p>
-
-        <div class="reading-card">
-            <div class="section-num">Section 1</div>
-            <h3>Buddhist Laypersons</h3>
-            <p>Huiyuan begins by conceding ground. Buddhist laypersons (those who practice Buddhism without becoming monks) "are subjects who comply with the transformations of the temporal world." Their "basic feelings remain conventional and their outward behavior conforms with what's within the bounds of the temporal world" (p. 76). They maintain family obligations, perform ritual obeisance, and fit within the Confucian social order.</p>
-            <p>This is strategically important. Huiyuan is not arguing that all Buddhists are exempt from state authority. Only monks are. By making this concession first, he narrows the field of battle.</p>
-            <blockquote>"Therefore they cannot withhold proper ritual deference [for a ruler] while receiving the benefits of his virtue, nor can they discard due reverence for him while soaking up the benefits of his kindness."<cite>Tiwald, p. 76</cite></blockquote>
+    <!-- Buddhism in China -->
+    <section class="content-section alt" id="context">
+        <div class="section-label"><span class="chinese">背景</span> BUDDHISM IN CHINA: THE COLLISION</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">傳播</span> Why Buddhism Spread</div>
+                <div class="card-body">
+                    <p>Buddhism arrived during the Han dynasty but only gained mass following after the Han's collapse (220 CE). In an era of civil war and political fragmentation, Buddhism offered what the shattered Confucian order could not: a universal explanation of suffering, a path to individual salvation that did not depend on a functioning state, and institutions (monasteries, ordination lineages) that could survive the fall of any particular dynasty.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">批評</span> Why Confucians Objected</div>
+                <div class="card-body">
+                    <p>Two flashpoints dominated public discourse. First, Buddhist monks refused to participate in the Confucian ritual order: they would not bow to rulers, honor ancestors with family sacrifices, or produce heirs. For Confucians, this undermined filial piety (孝 <em>xiao</em>) and the root of social order. Second, monasteries accumulated enormous wealth, land, and tax-exempt labor. Monks left the tax rolls. In Confucian eyes, Buddhism was parasitic on the state it refused to serve.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">空</span> Emptiness and No-Self</div>
+                <div class="card-body">
+                    <p>The core Buddhist philosophical claims were radical. There is no permanent self (<em>anatman</em>). All things are "empty" (空 <em>kong</em>) of independent existence, meaning everything that exists is conditionally produced by causes and relationships. Mahayana Buddhism emphasized the "emptiness of all things, not just the emptiness of the self, but the emptiness of all concrete things, like trees and wagons, as well as abstract things, like time or evil" (Tiwald, p. 70). This was philosophically challenging for both Confucians (who grounded ethics in stable human nature) and Daoists (who posited a stable "Way").</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">緣起</span> Interdependence</div>
+                <div class="card-body">
+                    <p>The Buddhist argument from interdependence was particularly influential in Chinese Mahayana. If everything is conditionally produced, then your mental state right now exists because of an unbroken chain of causes extending through the editors of this textbook, Siddhartha Gautama, and every being who ever influenced them. "Some Buddhists would argue that this web of relationships is really what defines any one element in it" (Tiwald, p. 72). This reasoning justified universal compassion: if all things are interconnected, harming any being harms the whole web.</p>
+                </div>
+            </div>
         </div>
-
-        <div class="reading-card">
-            <div class="section-num">Section 2</div>
-            <h3>Buddhists Who Leave the Family</h3>
-            <p>Here is where the argument becomes radical. Monks have "left the family" (出家 <em>chujia</em>). They are "guests beyond the temporal world." Their entire purpose is to recognize that "they have a body, and that they can put an end to their suffering by not preserving the body" (p. 76). In other words, monks have rejected the value system in which bowing to a king makes sense. Their goal is to escape the cycle of birth and death (轮回 <em>lunhui</em>, samsara) entirely.</p>
-            <p>The symbolic markers are deliberate: shaving the head, casting off hairpins, donning monastic robes. These are visible rejections of the Confucian ritual code. "Because they change from ordinary customs, their clothing and insignia of rank cannot conform to the same ritual standards specified by secular codes" (p. 77).</p>
-            <blockquote>"The Pattern [that they adhere to] is contrary to the needs of the physical body, and their Way is opposed to common practice."<cite>Tiwald, p. 77</cite></blockquote>
-            <p>Huiyuan argues that monks, by leaving the world, actually serve a higher purpose: they "rescue ordinary people from drowning in the flow of the temporal world and pull out the hidden roots from many eons [of past lives]" (p. 77). The monk's withdrawal is not selfishness. It is a form of service that operates on a different plane.</p>
-        </div>
-
-        <div class="reading-card">
-            <div class="section-num">Section 3</div>
-            <h3>Seeking the Ancestral Source Without Complying with the Transformations</h3>
-            <p>The final and most philosophically complex section. Huiyuan now tackles the question: if monks don't comply with the temporal world, what <em>do</em> they seek? His answer draws on Laozi's concept of "oneness" to argue that kings themselves become great by attaining harmony with the ancestral source (宗 <em>zong</em>). But the monk seeks that same source by a different path: not through participation in worldly governance, but through transcending the cycle of transformations entirely.</p>
-            <p>The key move is the argument about sentience and suffering. "Those with sentience have feelings about the transformations [of things in the world]. Those without sentience have no feelings about the transformations" (p. 79). Living beings are trapped by their attachments: "the feelings become ever more profound. Words cannot describe suffering such as this." The monk's task is to sever these attachments, reach the "fundamental state" (本 <em>ben</em>), and thereby escape the cycle.</p>
-            <blockquote>"Those who transcend this sinking and filthy enclosure do not hinder their life with feelings. As they do not hinder their life with feelings, their lives can be extinguished. As they do not hinder their mental faculties with life, their mental capacities can reach a state of profundity."<cite>Tiwald, p. 79</cite></blockquote>
-            <p>Huiyuan's conclusion is that the monk, by achieving this transcendence, actually performs a greater service than any temporal ruler could. "They convey themselves a great distance across the ford of the Three Vehicles, opening a path between Heaven and humankind" (p. 78). The monk who refuses to bow is not defying the king. The monk is operating in a realm where bowing and not bowing are equally irrelevant.</p>
+        <div class="key-themes">
+            <h4>The Two Confucian Flashpoints</h4>
+            <ul>
+                <li><strong>Monks leave their families:</strong> abandoning filial piety and the obligation to produce heirs</li>
+                <li><strong>Monks refuse to bow to kings:</strong> rejecting the ritual hierarchy that binds ruler and subject</li>
+                <li>Both views "ran strongly counter to largely Confucian values of loyalty and filial piety that had become thoroughly interwoven with Chinese culture by the time that Buddhism began to attract large numbers of followers" (Tiwald, p. 74)</li>
+            </ul>
         </div>
     </section>
 
-    <!-- DISCUSSION -->
-    <section id="discuss" class="section section-alt">
-        <div class="section-label">For the Classroom</div>
-        <h2>Discussion Questions</h2>
-        <ol class="disc-list">
-            <li>Huiyuan concedes that Buddhist <em>laypersons</em> should obey the state but claims monks are exempt. Is this a principled distinction or a political compromise? What would happen to his argument if he demanded exemption for all Buddhists?</li>
-            <li>The text uses the phrase "comply with the transformations" (顺化 <em>shunhua</em>) repeatedly. For Confucians, complying with the social order IS the path to moral cultivation. Huiyuan argues that monks seek something beyond the social order. Is this a genuine philosophical disagreement, or are they talking past each other?</li>
-            <li>Huiyuan bridges Buddhist and Daoist frameworks by using the term 宗 <em>zong</em> ("ancestral source") to describe the ultimate reality that monks seek. Is this a legitimate philosophical translation, or does it distort the Buddhist concept of <em>nirvana</em> by dressing it in Daoist clothing?</li>
-            <li>Han Yu's "Memorial on the Bone of Buddha" (written ~400 years later) calls for Buddhism to be "destroyed root and branch for ever." Compare his arguments to the Confucian objections Huiyuan was responding to. Has the debate changed in four centuries, or is Han Yu making the same arguments the Six Dynasties critics made?</li>
-            <li>Huiyuan argues that monks, by transcending the temporal world, actually perform a higher service to humanity. Is this a convincing response to the Confucian charge that monks are parasites on society? Or does it beg the question by assuming that transcendence is real and valuable?</li>
-            <li>The bowing controversy was ultimately about the limits of state power. Should any institution or individual be exempt from the authority of the ruler? Where do you draw the line? Compare to modern debates about religious exemptions from secular law.</li>
-            <li>The reading's introduction notes that Buddhist monasteries were "tax-exempt, and often became extremely wealthy through donations from the faithful, and by running their own businesses" (Tiwald, p. 73). Huiyuan's treatise makes a philosophical argument. But how much of the anti-Buddhist backlash was actually about money and institutional power rather than ideas?</li>
-        </ol>
+    <!-- Key Concepts -->
+    <section class="content-section" id="concepts">
+        <div class="section-label"><span class="chinese">詞彙</span> KEY CONCEPTS FOR THE READING</div>
+        <div class="genre-grid">
+            <div class="genre-item">
+                <div class="genre-header">
+                    <span class="genre-ch">出家</span>
+                    <span class="genre-name">chujia</span>
+                    <span class="genre-pinyin">"leaving the family"</span>
+                </div>
+                <div class="genre-desc">The act of becoming a Buddhist monk or nun: shaving the head, casting off hairpins, donning monastic robes. For Confucians, this was a direct assault on 孝 <em>xiao</em> (filial piety), since it meant abandoning one's parents, producing no heirs, and severing the ancestral line.</div>
+            </div>
+            <div class="genre-item">
+                <div class="genre-header">
+                    <span class="genre-ch">化</span>
+                    <span class="genre-name">hua</span>
+                    <span class="genre-pinyin">"transformations"</span>
+                </div>
+                <div class="genre-desc">Throughout the essay, "comply with the transformations" means participating in the cyclical changes of the temporal world: birth, death, political cycles, seasonal rhythms. Huiyuan's argument hinges on whether monks are obligated to "comply" with these worldly processes or are exempt because they seek something beyond them.</div>
+            </div>
+            <div class="genre-item">
+                <div class="genre-header">
+                    <span class="genre-ch">生</span>
+                    <span class="genre-name">sheng</span>
+                    <span class="genre-pinyin">"life" / "generating life"</span>
+                </div>
+                <div class="genre-desc">Translated as "life" by Tiwald. Later Confucians insisted that 生生 "generating life" is the core value of the cosmos. Huiyuan argues that Buddhist monks, by understanding that "generating life depends on being subject to the transformations of the temporal world," seek to escape the cycle entirely through enlightenment.</div>
+            </div>
+            <div class="genre-item">
+                <div class="genre-header">
+                    <span class="genre-ch">宗</span>
+                    <span class="genre-name">zong</span>
+                    <span class="genre-pinyin">"ancestral source"</span>
+                </div>
+                <div class="genre-desc">Translated ambiguously as "the First Principle." Originally Daoist, adopted by Chinese Buddhists to describe the universal ground or source of all things, from which enlightenment and ultimately salvation arise. Huiyuan uses this term to bridge Buddhist and Daoist frameworks.</div>
+            </div>
+            <div class="genre-item">
+                <div class="genre-header">
+                    <span class="genre-ch">本</span>
+                    <span class="genre-name">ben</span>
+                    <span class="genre-pinyin">"fundamental state"</span>
+                </div>
+                <div class="genre-desc">Also translated as "root," "origin," or "foundation." In Huiyuan's era, this was equated with "Buddha-nature": one's original state as a fully formed capacity for Buddhahood. "We don't have full access to our own Buddha-nature" (Tiwald, p. 79, n. 14), which is why practice is necessary.</div>
+            </div>
+            <div class="genre-item">
+                <div class="genre-header">
+                    <span class="genre-ch">方便</span>
+                    <span class="genre-name">fangbian</span>
+                    <span class="genre-pinyin">"expedient means"</span>
+                </div>
+                <div class="genre-desc">Sanskrit <em>upaya</em>. A technique of instruction based on adapting the teaching to the audience's level of understanding. The <em>Lotus Sutra</em>'s parable of the burning house illustrates this: a father lures his children from danger with promises of toys, not explanations of fire. Different Buddhist "levels" (Hinayana, Mahayana) may be expedient means aimed at different capacities.</div>
+            </div>
+        </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer style="padding:1.5rem 5%;background:var(--ink);color:#666;font-size:0.7rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem">
-        <div>
-            <a href="../index.html" style="color:var(--gold-light);text-decoration:none">&larr; EAST 370 Home</a>
-            &nbsp;&middot;&nbsp;
-            <a href="prose-essays.html" style="color:#888;text-decoration:none">Tang Prose Essays</a>
-            &nbsp;&middot;&nbsp;
-            <a href="on-seclusion.html" style="color:#888;text-decoration:none">On Seclusion</a>
+    <!-- The Reading: Text Analysis -->
+    <section class="content-section alt" id="reading">
+        <div class="section-label"><span class="chinese">經文</span> ON WHY BUDDHIST MONKS DO NOT BOW DOWN BEFORE KINGS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">導言</span> Introduction to the Treatise <span class="meta">Selection 13 &middot; pp. 75&ndash;80</span></div>
+                <div class="card-body">
+                    <p>Huiyuan's treatise responds to the political demand that monks show ritual obeisance to the emperor. He builds his defense in three stages, moving from the least controversial claim (Buddhist laypeople should obey the state) to the most radical (monks who have left the world need not comply with worldly authority at all). Translation by Justin Tiwald.</p>
+                </div>
+            </div>
         </div>
-        <div>Source: Tiwald &amp; Van Norden, <em>Readings in Later Chinese Philosophy</em> (Hackett, 2014), pp. 69&ndash;80</div>
+        <div class="content-grid" style="margin-top:0.75rem">
+            <div class="card">
+                <div class="card-head"><span class="chinese">第一</span> Section 1: Buddhist Laypersons <span class="meta">p. 76</span></div>
+                <div class="card-body">
+                    <p>Huiyuan begins by conceding ground. Buddhist laypersons (those who practice Buddhism without becoming monks) "are subjects who comply with the transformations of the temporal world." Their "basic feelings remain conventional and their outward behavior conforms with what's within the bounds of the temporal world" (p. 76). They maintain family obligations, perform ritual obeisance, and fit within the Confucian social order.</p>
+                    <p>This is strategically important. Huiyuan is not arguing that all Buddhists are exempt from state authority. Only monks are. By making this concession first, he narrows the field of battle.</p>
+                    <blockquote>"Therefore they cannot withhold proper ritual deference [for a ruler] while receiving the benefits of his virtue, nor can they discard due reverence for him while soaking up the benefits of his kindness."<cite>Tiwald, p. 76</cite></blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">第二</span> Section 2: Buddhists Who Leave the Family <span class="meta">pp. 76&ndash;77</span></div>
+                <div class="card-body">
+                    <p>Here is where the argument becomes radical. Monks have "left the family" (出家 <em>chujia</em>). They are "guests beyond the temporal world." Their entire purpose is to recognize that "they have a body, and that they can put an end to their suffering by not preserving the body" (p. 76). In other words, monks have rejected the value system in which bowing to a king makes sense. Their goal is to escape the cycle of birth and death (轮回 <em>lunhui</em>, samsara) entirely.</p>
+                    <p>The symbolic markers are deliberate: shaving the head, casting off hairpins, donning monastic robes. These are visible rejections of the Confucian ritual code. "Because they change from ordinary customs, their clothing and insignia of rank cannot conform to the same ritual standards specified by secular codes" (p. 77).</p>
+                    <blockquote>"The Pattern [that they adhere to] is contrary to the needs of the physical body, and their Way is opposed to common practice."<cite>Tiwald, p. 77</cite></blockquote>
+                    <p>Huiyuan argues that monks, by leaving the world, actually serve a higher purpose: they "rescue ordinary people from drowning in the flow of the temporal world and pull out the hidden roots from many eons [of past lives]" (p. 77). The monk's withdrawal is not selfishness. It is a form of service that operates on a different plane.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top:0.75rem">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head"><span class="chinese">第三</span> Section 3: Seeking the Ancestral Source Without Complying with the Transformations <span class="meta">pp. 78&ndash;80</span></div>
+                <div class="card-body">
+                    <p>The final and most philosophically complex section. Huiyuan now tackles the question: if monks don't comply with the temporal world, what <em>do</em> they seek? His answer draws on Laozi's concept of "oneness" to argue that kings themselves become great by attaining harmony with the ancestral source (宗 <em>zong</em>). But the monk seeks that same source by a different path: not through participation in worldly governance, but through transcending the cycle of transformations entirely.</p>
+                    <p>The key move is the argument about sentience and suffering. "Those with sentience have feelings about the transformations [of things in the world]. Those without sentience have no feelings about the transformations" (p. 79). Living beings are trapped by their attachments: "the feelings become ever more profound. Words cannot describe suffering such as this." The monk's task is to sever these attachments, reach the "fundamental state" (本 <em>ben</em>), and thereby escape the cycle.</p>
+                    <blockquote>"Those who transcend this sinking and filthy enclosure do not hinder their life with feelings. As they do not hinder their life with feelings, their lives can be extinguished. As they do not hinder their mental faculties with life, their mental capacities can reach a state of profundity."<cite>Tiwald, p. 79</cite></blockquote>
+                    <p>Huiyuan's conclusion is that the monk, by achieving this transcendence, actually performs a greater service than any temporal ruler could. "They convey themselves a great distance across the ford of the Three Vehicles, opening a path between Heaven and humankind" (p. 78). The monk who refuses to bow is not defying the king. The monk is operating in a realm where bowing and not bowing are equally irrelevant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discuss">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Principle vs. Compromise</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Huiyuan concedes that Buddhist <em>laypersons</em> should obey the state but claims monks are exempt. Is this a principled distinction or a political compromise? What would happen to his argument if he demanded exemption for all Buddhists?</li>
+                        <li>The text uses the phrase "comply with the transformations" (顺化 <em>shunhua</em>) repeatedly. For Confucians, complying with the social order IS the path to moral cultivation. Huiyuan argues that monks seek something beyond the social order. Is this a genuine philosophical disagreement, or are they talking past each other?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Translation and Transcendence</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Huiyuan bridges Buddhist and Daoist frameworks by using the term 宗 <em>zong</em> ("ancestral source") to describe the ultimate reality that monks seek. Is this a legitimate philosophical translation, or does it distort the Buddhist concept of <em>nirvana</em> by dressing it in Daoist clothing?</li>
+                        <li>Huiyuan argues that monks, by transcending the temporal world, actually perform a higher service to humanity. Is this a convincing response to the Confucian charge that monks are parasites on society? Or does it beg the question by assuming that transcendence is real and valuable?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">State, Power, and Legacy</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Han Yu's "Memorial on the Bone of Buddha" (written ~400 years later) calls for Buddhism to be "destroyed root and branch for ever." Compare his arguments to the Confucian objections Huiyuan was responding to. Has the debate changed in four centuries, or is Han Yu making the same arguments the Six Dynasties critics made?</li>
+                        <li>The bowing controversy was ultimately about the limits of state power. Should any institution or individual be exempt from the authority of the ruler? Where do you draw the line? Compare to modern debates about religious exemptions from secular law.</li>
+                        <li>The reading's introduction notes that Buddhist monasteries were "tax-exempt, and often became extremely wealthy through donations from the faithful, and by running their own businesses" (Tiwald, p. 73). Huiyuan's treatise makes a philosophical argument. But how much of the anti-Buddhist backlash was actually about money and institutional power rather than ideas?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Justin Tiwald &amp; Bryan W. Van Norden, eds., <em>Readings in Later Chinese Philosophy</em> (Hackett, 2014), pp. 69&ndash;80. Part II: Chinese Buddhism. Selection 13: Huiyuan, "On Why Buddhist Monks Do Not Bow Down before Kings." Translated by Justin Tiwald.</p>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="huayan-gandavyuha.html">Huayan Buddhism &amp; the Gandavyuha</a>
+                <a href="prose-essays.html">Tang Prose Essays</a>
+                <a href="on-seclusion.html">On Seclusion</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
     </footer>
+
 </body>
 </html>
