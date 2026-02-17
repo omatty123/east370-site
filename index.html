@@ -131,25 +131,39 @@
 
         .phil-tag {
             display: inline-block;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
+            padding: 0.35rem 0.7rem;
             font-size: 0.7rem;
             font-weight: 500;
             color: #fff;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: var(--ink-light);
+            transition: transform 0.2s, filter 0.2s;
         }
 
         .phil-tag:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            filter: brightness(1.3);
         }
 
-        .phil-tag.ru { background: var(--ru); }
-        .phil-tag.mo { background: var(--mo); }
-        .phil-tag.dao { background: var(--dao); }
-        .phil-tag.fa { background: var(--fa); }
-        .phil-tag.fo { background: var(--fo); }
+        /* RU 儒 = square */
+        .phil-tag.ru { border-radius: 3px; }
+
+        /* DAO 道 = round */
+        .phil-tag.dao { border-radius: 999px; padding: 0.35rem 0.9rem; }
+
+        /* MO 墨 = triangle (wider at base) */
+        .phil-tag.mo {
+            border-radius: 0;
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+            padding: 0.35rem 1rem;
+        }
+
+        /* FA 法 = trapezoid (wider at top) */
+        .phil-tag.fa {
+            border-radius: 0;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+            padding: 0.35rem 1rem;
+        }
 
         /* Literature */
         .literature {
