@@ -280,12 +280,85 @@
             letter-spacing: 0.08em;
         }
 
+        /* Dynasty Timeline Strip */
+        .timeline-strip {
+            padding: 1rem 1.5rem;
+            background: var(--paper);
+        }
+
+        .dynasty-strip {
+            display: flex;
+            align-items: stretch;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .dynasty-strip .dynasty-block {
+            position: relative;
+            padding: 0.8rem 0.7rem 0.7rem;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255,255,255,0.15);
+            text-decoration: none;
+            transition: filter 0.2s;
+        }
+
+        .dynasty-strip .dynasty-block:last-child { border-right: none; }
+        .dynasty-strip .dynasty-block:hover { filter: brightness(1.15); }
+
+        .dynasty-strip .dynasty-block .ch-name {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            opacity: 0.95;
+        }
+
+        .dynasty-strip .dynasty-block .en-name {
+            font-size: 0.55rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-top: 0.1rem;
+            opacity: 0.85;
+        }
+
+        .dynasty-strip .dynasty-block .dates {
+            font-size: 0.45rem;
+            letter-spacing: 0.02em;
+            margin-top: 0.2rem;
+            opacity: 0.55;
+        }
+
+        .dynasty-strip .dynasty-block[data-d="zhou"]     { background: #7A6B50; flex: 1.2; }
+        .dynasty-strip .dynasty-block[data-d="warring"]  { background: #5C4A2E; flex: 2.0; }
+        .dynasty-strip .dynasty-block[data-d="qin"]      { background: #8B3A3A; flex: 0.7; }
+        .dynasty-strip .dynasty-block[data-d="han"]      { background: #4A6741; flex: 1.2; }
+        .dynasty-strip .dynasty-block[data-d="six-dyn"]  { background: #5B7080; flex: 1.5; }
+        .dynasty-strip .dynasty-block[data-d="tang"]     { background: #A03030; flex: 1.4; }
+        .dynasty-strip .dynasty-block[data-d="song"]     { background: #2D5A7A; flex: 1.2; }
+        .dynasty-strip .dynasty-block[data-d="yuan"]     { background: #6D5B2E; flex: 0.8; }
+
         /* Responsive */
         @media (max-width: 600px) {
             .hero-chinese { font-size: 1.6rem; }
             .hero h1 { font-size: 0.9rem; }
             .lit-columns { grid-template-columns: repeat(2, 1fr); }
             .nav { gap: 1rem; }
+            .dynasty-strip { flex-direction: column; }
+            .dynasty-strip .dynasty-block {
+                flex: none !important;
+                flex-direction: row;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 0.8rem;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+            }
+            .dynasty-strip .dynasty-block:last-child { border-bottom: none; }
+            .dynasty-strip .dynasty-block .dates { margin-top: 0; margin-left: auto; }
         }
     </style>
 </head>
@@ -307,6 +380,52 @@
         <a href="#resources">Resources</a>
         <a href="https://lawrence.instructure.com/courses/12070" target="_blank">Canvas</a>
     </nav>
+
+    <!-- Dynasty Timeline -->
+    <section class="timeline-strip">
+        <div class="dynasty-strip">
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="zhou">
+                <span class="ch-name">周</span>
+                <span class="en-name">Zhou</span>
+                <span class="dates">c. 1046 &ndash; 256 BCE</span>
+            </a>
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="warring">
+                <span class="ch-name">戰國</span>
+                <span class="en-name">Warring States</span>
+                <span class="dates">475 &ndash; 221 BCE</span>
+            </a>
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="qin">
+                <span class="ch-name">秦</span>
+                <span class="en-name">Qin</span>
+                <span class="dates">221 &ndash; 206 BCE</span>
+            </a>
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="han">
+                <span class="ch-name">漢</span>
+                <span class="en-name">Han</span>
+                <span class="dates">206 BCE &ndash; 220 CE</span>
+            </a>
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="six-dyn">
+                <span class="ch-name">六朝</span>
+                <span class="en-name">Six Dynasties</span>
+                <span class="dates">220 &ndash; 589</span>
+            </a>
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="tang">
+                <span class="ch-name">唐</span>
+                <span class="en-name">Tang</span>
+                <span class="dates">618 &ndash; 907</span>
+            </a>
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="song">
+                <span class="ch-name">宋</span>
+                <span class="en-name">Song</span>
+                <span class="dates">960 &ndash; 1279</span>
+            </a>
+            <a href="lessons/timeline.html" class="dynasty-block" data-d="yuan">
+                <span class="ch-name">元</span>
+                <span class="en-name">Yuan</span>
+                <span class="dates">1271 &ndash; 1368</span>
+            </a>
+        </div>
+    </section>
 
     <!-- Philosophers -->
     <section class="philosophers">
