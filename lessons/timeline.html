@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Timeline | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+
+            /* Dynasty colors */
+            --zhou: #7A6B50;
+            --warring: #5C4A2E;
+            --qin: #8B3A3A;
+            --han: #4A6741;
+            --six-dyn: #5B7080;
+            --tang: #A03030;
+            --song: #2D5A7A;
+            --yuan: #6D5B2E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 1rem 1.5rem 0.8rem;
+        }
+
+        .page-header .back {
+            font-size: 0.65rem;
+            color: #888;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+        }
+
+        .page-header .back:hover { color: var(--gold-light); }
+
+        .page-title {
+            margin-top: 0.4rem;
+        }
+
+        .page-title .ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            display: block;
+        }
+
+        .page-title .en {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #fff;
+            display: block;
+            margin-top: 0.15rem;
+        }
+
+        .page-title .meta {
+            font-size: 0.65rem;
+            color: #888;
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        /* Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-top: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav a {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+        }
+
+        .nav a:hover { color: var(--gold-light); }
+
+        /* ======================== */
+        /* MASTER TIMELINE          */
+        /* ======================== */
+
+        .timeline-section {
+            padding: 2rem 1.5rem 2.5rem;
+        }
+
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.75rem;
+            color: var(--gold);
+            margin-right: 0.4rem;
+        }
+
+        /* The timeline strip */
+        .dynasty-strip {
+            display: flex;
+            align-items: stretch;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .dynasty-block {
+            position: relative;
+            padding: 1rem 0.8rem 0.9rem;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255,255,255,0.15);
+            cursor: default;
+            transition: filter 0.2s;
+        }
+
+        .dynasty-block:last-child { border-right: none; }
+
+        .dynasty-block .ch-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            opacity: 0.95;
+        }
+
+        .dynasty-block .en-name {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-top: 0.15rem;
+            opacity: 0.85;
+        }
+
+        .dynasty-block .dates {
+            font-size: 0.55rem;
+            letter-spacing: 0.02em;
+            margin-top: 0.3rem;
+            opacity: 0.6;
+        }
+
+        /* Widths - weighted by course emphasis */
+        .dynasty-block[data-dynasty="zhou"]     { background: var(--zhou);     flex: 1.2; }
+        .dynasty-block[data-dynasty="warring"]  { background: var(--warring);  flex: 2.0; }
+        .dynasty-block[data-dynasty="qin"]      { background: var(--qin);      flex: 0.7; }
+        .dynasty-block[data-dynasty="han"]      { background: var(--han);      flex: 1.2; }
+        .dynasty-block[data-dynasty="six-dyn"]  { background: var(--six-dyn);  flex: 1.5; }
+        .dynasty-block[data-dynasty="tang"]     { background: var(--tang);     flex: 1.4; }
+        .dynasty-block[data-dynasty="song"]     { background: var(--song);     flex: 1.2; }
+        .dynasty-block[data-dynasty="yuan"]     { background: var(--yuan);     flex: 0.8; }
+
+        /* Active / highlighted dynasty */
+        .dynasty-block.active {
+            box-shadow: inset 0 -4px 0 var(--gold-light);
+        }
+
+        .dynasty-block.active .ch-name {
+            color: var(--gold-light);
+        }
+
+        .dynasty-block.dimmed {
+            filter: brightness(0.6);
+            opacity: 0.7;
+        }
+
+        /* Date axis below the strip */
+        .date-axis {
+            display: flex;
+            padding: 0.4rem 0 0;
+        }
+
+        .date-axis .tick {
+            font-size: 0.5rem;
+            color: var(--ink-faint);
+            letter-spacing: 0.02em;
+        }
+
+        .date-axis .tick:first-child { text-align: left; }
+        .date-axis .tick:last-child { text-align: right; margin-left: auto; }
+
+        /* Key dates row */
+        .key-dates {
+            display: flex;
+            margin-top: 0.5rem;
+            gap: 0;
+        }
+
+        .key-dates .date-marker {
+            font-size: 0.5rem;
+            color: var(--ink-faint);
+            text-align: center;
+            position: relative;
+        }
+
+        .key-dates .date-marker::before {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 6px;
+            background: #ccc;
+            margin: 0 auto 2px;
+        }
+
+        /* Width assignments matching dynasty strip */
+        .key-dates .date-marker[data-dynasty="zhou"]     { flex: 1.2; }
+        .key-dates .date-marker[data-dynasty="warring"]  { flex: 2.0; }
+        .key-dates .date-marker[data-dynasty="qin"]      { flex: 0.7; }
+        .key-dates .date-marker[data-dynasty="han"]      { flex: 1.2; }
+        .key-dates .date-marker[data-dynasty="six-dyn"]  { flex: 1.5; }
+        .key-dates .date-marker[data-dynasty="tang"]     { flex: 1.4; }
+        .key-dates .date-marker[data-dynasty="song"]     { flex: 1.2; }
+        .key-dates .date-marker[data-dynasty="yuan"]     { flex: 0.8; }
+
+        /* ======================== */
+        /* DETAIL SECTION           */
+        /* ======================== */
+
+        .detail-section {
+            padding: 2rem 1.5rem;
+            background: var(--paper-dark);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .detail-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .detail-card .card-head {
+            padding: 0.6rem 0.8rem;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .detail-card .card-head .ch {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.9rem;
+        }
+
+        .detail-card .card-head .en {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .detail-card .card-head .period {
+            font-size: 0.55rem;
+            opacity: 0.7;
+            margin-left: auto;
+        }
+
+        .detail-card[data-dynasty="zhou"] .card-head     { background: var(--zhou); }
+        .detail-card[data-dynasty="warring"] .card-head   { background: var(--warring); }
+        .detail-card[data-dynasty="qin"] .card-head       { background: var(--qin); }
+        .detail-card[data-dynasty="han"] .card-head        { background: var(--han); }
+        .detail-card[data-dynasty="six-dyn"] .card-head    { background: var(--six-dyn); }
+        .detail-card[data-dynasty="tang"] .card-head       { background: var(--tang); }
+        .detail-card[data-dynasty="song"] .card-head       { background: var(--song); }
+        .detail-card[data-dynasty="yuan"] .card-head       { background: var(--yuan); }
+
+        .detail-card .card-body {
+            padding: 0.7rem 0.8rem;
+        }
+
+        .detail-card .card-body .figures {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-card .card-body .figures strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .detail-card .card-body .works {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .detail-card .card-body .works a {
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            text-decoration: none;
+            padding: 0.1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .detail-card .card-body .works a:last-child { border-bottom: none; }
+        .detail-card .card-body .works a:hover { color: var(--gold); }
+
+        .detail-card .card-body .works span.coming {
+            font-size: 0.7rem;
+            color: #aaa;
+            font-style: italic;
+            padding: 0.1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .detail-card .card-body .works span.coming:last-child { border-bottom: none; }
+
+        /* ======================== */
+        /* COMPACT EMBED VERSION    */
+        /* ======================== */
+
+        .embed-section {
+            padding: 2rem 1.5rem;
+        }
+
+        .embed-demo {
+            background: #fff;
+            border-radius: 6px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-top: 0.6rem;
+        }
+
+        .embed-demo .embed-label {
+            font-size: 0.55rem;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.6rem;
+        }
+
+        /* Compact strip for embedding on lesson pages */
+        .dynasty-strip-compact {
+            display: flex;
+            align-items: stretch;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 32px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+
+        .dynasty-strip-compact .d-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            border-right: 1px solid rgba(255,255,255,0.15);
+            transition: filter 0.2s;
+        }
+
+        .dynasty-strip-compact .d-block:last-child { border-right: none; }
+
+        .dynasty-strip-compact .d-block[data-d="zhou"]     { background: var(--zhou);    flex: 1.2; }
+        .dynasty-strip-compact .d-block[data-d="warring"]  { background: var(--warring); flex: 2.0; }
+        .dynasty-strip-compact .d-block[data-d="qin"]      { background: var(--qin);     flex: 0.7; }
+        .dynasty-strip-compact .d-block[data-d="han"]      { background: var(--han);     flex: 1.2; }
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]  { background: var(--six-dyn); flex: 1.5; }
+        .dynasty-strip-compact .d-block[data-d="tang"]     { background: var(--tang);    flex: 1.4; }
+        .dynasty-strip-compact .d-block[data-d="song"]     { background: var(--song);    flex: 1.2; }
+        .dynasty-strip-compact .d-block[data-d="yuan"]     { background: var(--yuan);    flex: 0.8; }
+
+        .dynasty-strip-compact .d-block.active {
+            box-shadow: inset 0 -3px 0 var(--gold-light);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .dynasty-strip-compact .d-block.dimmed {
+            filter: brightness(0.55);
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+
+        footer .foot-title {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .dynasty-block .ch-name { font-size: 0.9rem; }
+            .dynasty-block .en-name { font-size: 0.55rem; }
+            .dynasty-block { padding: 0.8rem 0.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .dynasty-strip {
+                flex-direction: column;
+            }
+
+            .dynasty-block {
+                flex: none !important;
+                flex-direction: row;
+                align-items: center;
+                gap: 0.6rem;
+                padding: 0.6rem 0.8rem;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+            }
+
+            .dynasty-block:last-child { border-bottom: none; }
+
+            .dynasty-block .ch-name { font-size: 1rem; }
+            .dynasty-block .en-name { margin-top: 0; }
+            .dynasty-block .dates { margin-top: 0; margin-left: auto; }
+
+            .key-dates { display: none; }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dynasty-strip-compact {
+                height: 24px;
+            }
+
+            .dynasty-strip-compact .d-block {
+                font-size: 0.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">歷代年表</span>
+            <span class="en">Master Timeline</span>
+            <span class="meta">Zhou through Yuan &middot; c. 1046 BCE &ndash; 1368 CE</span>
+        </div>
+    </header>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="#timeline">Timeline</a>
+        <a href="#dynasties">Dynasties</a>
+        <a href="#embed">Embed Guide</a>
+    </nav>
+
+    <!-- Main Timeline -->
+    <section class="timeline-section" id="timeline">
+        <div class="section-label"><span class="chinese">年表</span> MASTER TIMELINE</div>
+
+        <div class="dynasty-strip">
+            <div class="dynasty-block" data-dynasty="zhou">
+                <span class="ch-name">周</span>
+                <span class="en-name">Zhou</span>
+                <span class="dates">c. 1046 &ndash; 256 BCE</span>
+            </div>
+            <div class="dynasty-block" data-dynasty="warring">
+                <span class="ch-name">戰國</span>
+                <span class="en-name">Warring States</span>
+                <span class="dates">475 &ndash; 221 BCE</span>
+            </div>
+            <div class="dynasty-block" data-dynasty="qin">
+                <span class="ch-name">秦</span>
+                <span class="en-name">Qin</span>
+                <span class="dates">221 &ndash; 206 BCE</span>
+            </div>
+            <div class="dynasty-block" data-dynasty="han">
+                <span class="ch-name">漢</span>
+                <span class="en-name">Han</span>
+                <span class="dates">206 BCE &ndash; 220 CE</span>
+            </div>
+            <div class="dynasty-block" data-dynasty="six-dyn">
+                <span class="ch-name">六朝</span>
+                <span class="en-name">Six Dynasties</span>
+                <span class="dates">220 &ndash; 589</span>
+            </div>
+            <div class="dynasty-block" data-dynasty="tang">
+                <span class="ch-name">唐</span>
+                <span class="en-name">Tang</span>
+                <span class="dates">618 &ndash; 907</span>
+            </div>
+            <div class="dynasty-block" data-dynasty="song">
+                <span class="ch-name">宋</span>
+                <span class="en-name">Song</span>
+                <span class="dates">960 &ndash; 1279</span>
+            </div>
+            <div class="dynasty-block" data-dynasty="yuan">
+                <span class="ch-name">元</span>
+                <span class="en-name">Yuan</span>
+                <span class="dates">1271 &ndash; 1368</span>
+            </div>
+        </div>
+
+        <div class="key-dates">
+            <div class="date-marker" data-dynasty="zhou">1046 BCE</div>
+            <div class="date-marker" data-dynasty="warring">475 BCE</div>
+            <div class="date-marker" data-dynasty="qin">221 BCE</div>
+            <div class="date-marker" data-dynasty="han">206 BCE</div>
+            <div class="date-marker" data-dynasty="six-dyn">220 CE</div>
+            <div class="date-marker" data-dynasty="tang">618</div>
+            <div class="date-marker" data-dynasty="song">960</div>
+            <div class="date-marker" data-dynasty="yuan">1368</div>
+        </div>
+    </section>
+
+    <!-- Dynasty Detail Cards -->
+    <section class="detail-section" id="dynasties">
+        <div class="section-label"><span class="chinese">朝代</span> DYNASTY DETAILS</div>
+
+        <div class="detail-grid">
+            <!-- Zhou -->
+            <div class="detail-card" data-dynasty="zhou">
+                <div class="card-head">
+                    <span class="ch">周</span>
+                    <span class="en">Zhou</span>
+                    <span class="period">c. 1046 &ndash; 256 BCE</span>
+                </div>
+                <div class="card-body">
+                    <div class="figures"><strong>Key figures:</strong> Kongzi, Duke of Zhou</div>
+                    <div class="works">
+                        <span class="coming">Book of Songs</span>
+                        <a href="kongzi.html">Kongzi (Analects)</a>
+                        <a href="histories.html">Historical Writings</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warring States -->
+            <div class="detail-card" data-dynasty="warring">
+                <div class="card-head">
+                    <span class="ch">戰國</span>
+                    <span class="en">Warring States</span>
+                    <span class="period">475 &ndash; 221 BCE</span>
+                </div>
+                <div class="card-body">
+                    <div class="figures"><strong>Key figures:</strong> Mozi, Mengzi, Qu Yuan, Laozi, Zhuangzi, Xunzi, Han Feizi</div>
+                    <div class="works">
+                        <a href="mozi.html">Mozi</a>
+                        <a href="mengzi.html">Mengzi</a>
+                        <a href="songs-of-chu-day1.html">Songs of Chu (Day 1)</a>
+                        <a href="songs-of-chu-day2.html">Songs of Chu (Day 2)</a>
+                        <a href="laozi.html">Laozi (Daodejing)</a>
+                        <a href="zhuangzi.html">Zhuangzi</a>
+                        <a href="xunzi.html">Xunzi</a>
+                        <a href="hanfeizi.html">Han Feizi</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Qin & Han -->
+            <div class="detail-card" data-dynasty="qin">
+                <div class="card-head">
+                    <span class="ch">秦漢</span>
+                    <span class="en">Qin &amp; Han</span>
+                    <span class="period">221 BCE &ndash; 220 CE</span>
+                </div>
+                <div class="card-body">
+                    <div class="figures"><strong>Key figures:</strong> Jia Yi, Sima Qian, Sima Xiangru</div>
+                    <div class="works">
+                        <span class="coming">Faults of Qin</span>
+                        <span class="coming">Sima Qian</span>
+                        <a href="fu-background.html">Han Rhyme Prose</a>
+                        <a href="shanglin-fu.html">Shanglin Fu</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Six Dynasties -->
+            <div class="detail-card" data-dynasty="six-dyn">
+                <div class="card-head">
+                    <span class="ch">六朝</span>
+                    <span class="en">Six Dynasties</span>
+                    <span class="period">220 &ndash; 589</span>
+                </div>
+                <div class="card-body">
+                    <div class="figures"><strong>Key figures:</strong> Tao Yuanming, Ruan Ji, Xi Kang, Bao Zhao, Lu Ji, Huiyuan</div>
+                    <div class="works">
+                        <a href="on-seclusion.html">On Seclusion</a>
+                        <a href="recluse-poetry.html">Poetry of the Recluse</a>
+                        <a href="bilingual-recluse.html">Bilingual Recluse Poetry</a>
+                        <a href="bao-zhao.html">Bao Zhao</a>
+                        <a href="lu-ji-wen-fu.html">Lu Ji: Wen Fu</a>
+                        <a href="huiyuan.html">Huiyuan</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tang -->
+            <div class="detail-card" data-dynasty="tang">
+                <div class="card-head">
+                    <span class="ch">唐</span>
+                    <span class="en">Tang</span>
+                    <span class="period">618 &ndash; 907</span>
+                </div>
+                <div class="card-body">
+                    <div class="figures"><strong>Key figures:</strong> Wang Wei, Li Bai, Du Fu, Han Yu, Liu Zongyuan</div>
+                    <div class="works">
+                        <a href="tang-poets.html">Tang Poets (Wang Wei, Li Bai, Du Fu)</a>
+                        <a href="jing-ye-si.html">Quiet Night Thought</a>
+                        <a href="prose-essays.html">Tang Prose Essays</a>
+                        <span class="coming">Tang Stories</span>
+                        <a href="huayan-gandavyuha.html">Huayan Buddhism</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Song -->
+            <div class="detail-card" data-dynasty="song">
+                <div class="card-head">
+                    <span class="ch">宋</span>
+                    <span class="en">Song</span>
+                    <span class="period">960 &ndash; 1279</span>
+                </div>
+                <div class="card-body">
+                    <div class="figures"><strong>Key figures:</strong> Su Shi, Li Qingzhao, Zhu Xi</div>
+                    <div class="works">
+                        <span class="coming">Ci Poetry</span>
+                        <span class="coming">Song Prose</span>
+                        <span class="coming">Neo-Confucianism</span>
+                        <span class="coming">Chan Buddhism</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yuan -->
+            <div class="detail-card" data-dynasty="yuan">
+                <div class="card-head">
+                    <span class="ch">元</span>
+                    <span class="en">Yuan</span>
+                    <span class="period">1271 &ndash; 1368</span>
+                </div>
+                <div class="card-body">
+                    <div class="figures"><strong>Key figures:</strong> Guan Hanqing, Shi Nai'an</div>
+                    <div class="works">
+                        <span class="coming">Yuan Drama</span>
+                        <span class="coming">Water Margin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compact Embed Demos -->
+    <section class="embed-section" id="embed">
+        <div class="section-label"><span class="chinese">嵌入</span> EMBEDDABLE STRIP</div>
+
+        <div class="embed-demo">
+            <div class="embed-label">Example: Tang dynasty active</div>
+            <div class="dynasty-strip-compact">
+                <div class="d-block dimmed" data-d="zhou">Zhou</div>
+                <div class="d-block dimmed" data-d="warring">Warring States</div>
+                <div class="d-block dimmed" data-d="qin">Qin</div>
+                <div class="d-block dimmed" data-d="han">Han</div>
+                <div class="d-block dimmed" data-d="six-dyn">Six Dyn.</div>
+                <div class="d-block active" data-d="tang">Tang</div>
+                <div class="d-block dimmed" data-d="song">Song</div>
+                <div class="d-block dimmed" data-d="yuan">Yuan</div>
+            </div>
+        </div>
+
+        <div class="embed-demo" style="margin-top: 0.75rem;">
+            <div class="embed-label">Example: Warring States active</div>
+            <div class="dynasty-strip-compact">
+                <div class="d-block dimmed" data-d="zhou">Zhou</div>
+                <div class="d-block active" data-d="warring">Warring States</div>
+                <div class="d-block dimmed" data-d="qin">Qin</div>
+                <div class="d-block dimmed" data-d="han">Han</div>
+                <div class="d-block dimmed" data-d="six-dyn">Six Dyn.</div>
+                <div class="d-block dimmed" data-d="tang">Tang</div>
+                <div class="d-block dimmed" data-d="song">Song</div>
+                <div class="d-block dimmed" data-d="yuan">Yuan</div>
+            </div>
+        </div>
+
+        <div class="embed-demo" style="margin-top: 0.75rem;">
+            <div class="embed-label">Example: No dynasty active (neutral)</div>
+            <div class="dynasty-strip-compact">
+                <div class="d-block" data-d="zhou">Zhou</div>
+                <div class="d-block" data-d="warring">Warring States</div>
+                <div class="d-block" data-d="qin">Qin</div>
+                <div class="d-block" data-d="han">Han</div>
+                <div class="d-block" data-d="six-dyn">Six Dyn.</div>
+                <div class="d-block" data-d="tang">Tang</div>
+                <div class="d-block" data-d="song">Song</div>
+                <div class="d-block" data-d="yuan">Yuan</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
