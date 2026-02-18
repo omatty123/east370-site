@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Flower Ornament Scripture: Cosmic Numbers, Infinite Teachers | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --wu: #2d7d7d;
+            --jin: #8a6a30;
+            --fo: #7B5EA7;
+            --fo-light: #9b7ec7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--fo);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--fo);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--fo);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--fo); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--fo);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--fo);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(123, 94, 167, 0.1) 0%, rgba(155, 126, 199, 0.05) 100%);
+            border: 1px solid rgba(123, 94, 167, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--fo);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Structure List */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--fo);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Number cascade */
+        .number-cascade {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin: 0.5rem 0;
+        }
+        .number-step {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.35rem 0.6rem;
+            font-size: 0.7rem;
+            color: var(--ink-light);
+            border-left: 3px solid var(--fo);
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+        }
+        .number-step .step-num {
+            font-weight: 700;
+            color: var(--fo);
+            font-size: 0.65rem;
+        }
+        .number-step .step-name {
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .number-step .step-arrow {
+            color: var(--fo-light);
+            font-size: 0.8rem;
+        }
+
+        /* Teacher profile grid */
+        .teacher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.75rem;
+            margin: 0.6rem 0;
+        }
+        .teacher-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .teacher-head {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+            padding: 0.5rem 0.75rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .teacher-head .t-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .teacher-head .t-type {
+            font-size: 0.6rem;
+            color: var(--fo-light);
+            margin-left: auto;
+            font-weight: 500;
+        }
+        .teacher-body { padding: 0.75rem; }
+        .teacher-body .t-liberation {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--fo);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .teacher-body p {
+            font-size: 0.78rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+            margin-bottom: 0.4rem;
+        }
+        .teacher-body p:last-child { margin-bottom: 0; }
+
+        /* Verse block */
+        .verse-block {
+            background: linear-gradient(135deg, rgba(123, 94, 167, 0.06) 0%, rgba(184, 134, 11, 0.04) 100%);
+            border-left: 3px solid var(--fo);
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            font-family: 'Noto Serif SC', 'Inter', serif;
+            font-size: 0.85rem;
+            line-height: 1.9;
+            color: var(--ink-light);
+        }
+        .verse-block .verse-source {
+            display: block;
+            margin-top: 0.4rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            font-style: normal;
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Cross-link banner */
+        .cross-link {
+            background: linear-gradient(135deg, rgba(123, 94, 167, 0.12) 0%, rgba(123, 94, 167, 0.04) 100%);
+            border: 1px solid rgba(123, 94, 167, 0.2);
+            border-radius: 4px;
+            padding: 0.5rem 0.75rem;
+            margin: 0.5rem 0;
+            font-size: 0.78rem;
+            color: var(--ink-light);
+        }
+        .cross-link a { color: var(--fo); font-weight: 600; text-decoration: none; border-bottom: 1px dotted var(--fo); }
+        .cross-link a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+            .teacher-grid { grid-template-columns: 1fr; }
+            .number-cascade { flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">華嚴經</span>
+            <span class="en">The Flower Ornament Scripture</span>
+            <span class="meta">Cleary translation (Shambhala, 1993) &middot; Selected passages</span>
+        </div>
+    </header>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#numbers">The Incalculable</a>
+        <a href="#oneness">One is All</a>
+        <a href="#teachers">Sudhana's Teachers</a>
+        <a href="#tower">Maitreya's Tower</a>
+        <a href="#questions">Questions</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概</span> Overview</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">華嚴</span> What Is This Text? <span class="meta">39 books, 1,600+ pp.</span></div>
+                <div class="card-body">
+                    <p>The <em>Avatamsaka Sutra</em> (華嚴經, <em>Huayan jing</em>, "Flower Ornament Scripture") is the longest and most architecturally ambitious text in the entire Buddhist canon. Thomas Cleary's 1993 English translation runs over 1,600 pages. The sutra unfolds across <strong>39 books</strong>, eight assemblies, and seven cosmic locations, building a vision of reality where every atom contains every universe and every moment contains all of time.</p>
+                    <p>This page does not try to summarize the whole text. Instead, it pulls out four veins of material that are especially vivid and teachable: the cosmic number poetry, the "one is all" interpenetration passages, Sudhana's pilgrimage through wildly diverse spiritual teachers, and the climactic vision inside Maitreya's Tower.</p>
+                    <div class="cross-link">Companion page: <a href="huayan-gandavyuha.html">The Avatamsaka-sutra and Huayan Philosophy</a> covers the philosophical framework (Gomez, pp. 160-170), including Fazang, Indra's Net, and the <em>li/shi</em> distinction.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">構</span> Structure of the Sutra</div>
+                <div class="card-body">
+                    <h4>The Eight Assemblies</h4>
+                    <p>The Buddha sits in concentration at seven locations (the Bodhi tree, the Palace of Universal Light, the Heaven of the Thirty-Three, etc.) while bodhisattvas deliver the actual teachings. The Buddha barely speaks. He radiates light, enters ever-deeper concentrations, and lets the cosmos teach through him.</p>
+                    <h4>Key Books for This Page</h4>
+                    <ul>
+                        <li><strong>Book 4</strong>: Formation of Worlds (cosmic geography)</li>
+                        <li><strong>Book 5</strong>: The Flower Bank World (interpenetration)</li>
+                        <li><strong>Book 30</strong>: The Incalculable (number poetry)</li>
+                        <li><strong>Book 39</strong>: Entry into the Realm of Reality (Sudhana's pilgrimage, 400+ pages)</li>
+                    </ul>
+                    <h4>The Translator</h4>
+                    <p>Thomas Cleary (1949-2021) was one of the most prolific translators of Asian texts into English. His <em>Flower Ornament Scripture</em> was published by Shambhala in 1993 as a single-volume translation of the complete 80-fascicle Chinese version attributed to Shikshananda (實叉難陀, 695-699 CE).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Incalculable -->
+    <section class="content-section alt" id="numbers">
+        <div class="section-label"><span class="chinese">數</span> The Incalculable: Number Poetry</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">不可說</span> The Squaring Cascade <span class="meta">Book 30, pp. 889-895</span></div>
+                <div class="card-body">
+                    <p>Book 30 is titled "The Incalculable" and it does exactly what the name promises. It begins with 10<sup>10</sup> (ten billion) and then <strong>squares that number</strong>. Then squares the result. Then squares it again. It keeps squaring through ten named stages, each name more grandiose than the last:</p>
+                    <div class="number-cascade">
+                        <div class="number-step"><span class="step-num">1</span> <span class="step-name">Incalculable</span></div>
+                        <div class="number-step"><span class="step-num">2</span> <span class="step-name">Measureless</span></div>
+                        <div class="number-step"><span class="step-num">3</span> <span class="step-name">Boundless</span></div>
+                        <div class="number-step"><span class="step-num">4</span> <span class="step-name">Incomparable</span></div>
+                        <div class="number-step"><span class="step-num">5</span> <span class="step-name">Innumerable</span></div>
+                        <div class="number-step"><span class="step-num">6</span> <span class="step-name">Unaccountable</span></div>
+                        <div class="number-step"><span class="step-num">7</span> <span class="step-name">Unthinkable</span></div>
+                        <div class="number-step"><span class="step-num">8</span> <span class="step-name">Immeasurable</span></div>
+                        <div class="number-step"><span class="step-num">9</span> <span class="step-name">Unspeakable</span></div>
+                        <div class="number-step"><span class="step-num">10</span> <span class="step-name">Untold</span></div>
+                    </div>
+                    <p>After "untold," the sutra reaches "square untold" and keeps climbing. The progression is not metaphorical. The text performs its own math, each stage squaring the previous total. The numbers quickly exceed anything in modern astrophysics.</p>
+                    <blockquote>"Enlightening beings can explain them in particular,<br>While mathematicians cannot comprehend them."<cite>— Cleary, p. 895</cite></blockquote>
+                    <p>The point is not mathematical precision. It is the deliberate destruction of the assumption that reality can be contained by counting. The sutra makes you feel the failure of numbers before it offers you a vision that goes beyond them.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">詩</span> Why Numbers Become Poetry</div>
+                <div class="card-body">
+                    <p>After establishing the number cascade, the sutra pivots from arithmetic to verse. The numbers stop being abstract and start describing what the cosmos actually looks like:</p>
+                    <div class="verse-block">
+                        In one atom are untold lands,<br>
+                        And as in one,<br>
+                        So in each.
+                        <span class="verse-source">— Cleary, p. 891</span>
+                    </div>
+                    <p>This is the central move: the "incalculable" is not about bigness for its own sake. It serves the interpenetration teaching. If one atom contains untold lands, then the relationship between the one and the many is not hierarchy but mutual containment.</p>
+                    <div class="verse-block">
+                        The lands within a single atom<br>
+                        Are unspeakably many,<br>
+                        And as in one,<br>
+                        So it is in all.<br>
+                        <br>
+                        In each atom is a buddha,<br>
+                        With a congregation of enlightening beings;<br>
+                        The sphere of the enlightened is boundless,<br>
+                        Appearing to sentient beings according to their minds.
+                        <span class="verse-source">— Cleary, pp. 892-893</span>
+                    </div>
+                    <p>The number poetry functions like a training exercise: it stretches the reader's capacity for scale until the very idea of "one" versus "many" breaks down.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- One is All -->
+    <section class="content-section" id="oneness">
+        <div class="section-label"><span class="chinese">一即一切</span> One is All, All is One</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> The Interpenetration Passages <span class="meta">Books 4, 5, 30</span></div>
+                <div class="card-body">
+                    <p>Scattered across multiple books, the sutra hammers the interpenetration principle from every angle. The core claim: infinity enters into one, and one enters into infinity. This is not a clever paradox. It is what the text presents as the actual structure of reality.</p>
+                    <div class="verse-block">
+                        In each atom of the Flower Bank world<br>
+                        Is seen the universe.
+                        <span class="verse-source">— Cleary, p. 204 (Book 5)</span>
+                    </div>
+                    <div class="verse-block">
+                        In each atom are many oceans of worlds...<br>
+                        Thus does infinity enter into one.
+                        <span class="verse-source">— Cleary, p. 200 (Book 4)</span>
+                    </div>
+                    <p>This teaching stands behind the Huayan school's famous metaphors: Indra's Net (each jewel reflects all others), the golden lion (each part contains the whole), and the dust-particle scroll (a sutra the size of the cosmos hidden inside a single mote of dust). But in the original Avatamsaka, the teaching arrives not as philosophy but as poetry, with a relentlessness that philosophy alone cannot sustain.</p>
+                    <h4>The Fractal Nesting</h4>
+                    <p>The sutra describes the cosmos as self-similar at every scale. Each atom contains worlds containing atoms containing worlds. There is no bottom level and no top level. This structure anticipates what mathematicians would later call fractals by about 1,300 years.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">網</span> Indra's Net <span class="meta">帝釋天網</span></div>
+                <div class="card-body">
+                    <p>The Avatamsaka's most famous image. In the palace of Indra, king of the gods, there hangs an infinite net. At every knot of the net sits a jewel. Each jewel reflects every other jewel. Look into any one jewel and you see all the others reflected in it, each of which is itself reflecting all the others, infinitely. There is no "original" and no "copy." No jewel is more real than any other.</p>
+                    <p>This is not merely a metaphor. It is the sutra's claim about the actual structure of reality: every phenomenon contains and reflects every other phenomenon. The third patriarch of the Huayan school, Fazang (法藏, 643-712), famously demonstrated this to Empress Wu by placing a Buddha statue in a room surrounded by mirrors, each mirror reflecting the statue and all other mirrors. The infinite regress was Indra's Net made visible.</p>
+                    <p>Inside Maitreya's Tower, Sudhana sees this principle made spatial. The checkerboard lapis lazuli floor contains "inconceivable reflections in each square; here he saw the reflection of a buddha, a land, the reflection of adornments in those towers" (p. 1495). The mirrors on the walls show "measureless arrays of reflections of assemblies of buddhas, circles of enlightening beings, congregations of disciples" (p. 1494). The Tower does not illustrate Indra's Net. It <em>is</em> Indra's Net.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">一多</span> The Single Atom <span class="meta">Books 5, 30, 39</span></div>
+                <div class="card-body">
+                    <p>The sutra returns obsessively to one image: the single atom (微塵, <em>weichen</em>) that contains entire worlds. This is Indra's Net scaled down from the cosmic to the infinitesimal:</p>
+                    <div class="verse-block">
+                        I knew the number of atoms<br>
+                        In the ground where I walked,<br>
+                        And saw in each atom<br>
+                        As many lands as atoms in lands.
+                        <span class="verse-source">— Cleary, p. 1315 (Book 39)</span>
+                    </div>
+                    <div class="verse-block">
+                        In a single atom they see<br>
+                        Congregations, lands, beings, and ages,<br>
+                        As numerous as all atoms,<br>
+                        All there without obstruction.
+                        <span class="verse-source">— Cleary, p. 1462 (Sudhana's hymn)</span>
+                    </div>
+                    <p>The atom is the sutra's unit of interpenetration. Where Western atomism imagines tiny building blocks that combine into larger structures, the Avatamsaka imagines atoms that are each as vast as the whole. Scale is not real. Containment goes in both directions at once.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">不</span> What the Old Disciples Cannot See <span class="meta">Book 39, pp. 1146-1150</span></div>
+                <div class="card-body">
+                    <p>One of Book 39's most striking passages: when the Buddha enters his cosmic concentration and the entire universe transforms into an ocean of light, his senior disciples (Shariputra and the other arhats) <strong>cannot see any of it</strong>.</p>
+                    <p>This is a deliberate provocation. The sutra names the most accomplished meditators in the Buddhist tradition and says their realization is not enough. They have achieved personal liberation but cannot perceive the interpenetrating totality. Only the bodhisattvas, who have committed to universal liberation, can see the transformation.</p>
+                    <div class="key-themes">
+                        <h4>Why This Matters</h4>
+                        <ul>
+                            <li><strong>The limits of individual liberation:</strong> Personal enlightenment without universal compassion is literally blind to the full picture.</li>
+                            <li><strong>The Mahayana critique:</strong> The arhat's realization is real but partial. The bodhisattva path opens a larger field of perception.</li>
+                            <li><strong>Perception as moral:</strong> What you can see depends on what you care about. Compassion is a form of vision.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sudhana's Teachers -->
+    <section class="content-section alt" id="teachers">
+        <div class="section-label"><span class="chinese">善知識</span> Sudhana's Teachers: A Gallery of the Strange and Holy</div>
+
+        <div style="margin-bottom: 0.6rem;">
+            <p style="font-size: 0.8rem; color: var(--ink-light); line-height: 1.65; max-width: 60rem;">Book 39, "Entry into the Realm of Reality," takes up over 400 pages and tells the story of the youth Sudhana (善財, Shancai), who is sent south by the bodhisattva Manjushri to find 53 spiritual teachers. The genius of the passage is that these teachers are not all monks or nuns. They are monks, laywomen, night goddesses, earth spirits, ship captains, perfumers, a future Buddha. Each has their own distinct "liberation" (解脫, <em>jieTuo</em>): a specific method or sphere of awakened activity. Sudhana learns something different from each one, and the diversity is the point.</p>
+        </div>
+
+        <div class="teacher-grid">
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Saradhvaja</span>
+                    <span class="t-type">Monk</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: Concentration of Ultimate Nonobstruction</div>
+                    <p>Sitting in deep concentration, beings emanate from every pore of his body, appearing to sentient beings in all worlds to teach according to their capacities. He does not move, yet he is everywhere. The classic image of meditative power as cosmic activity rather than withdrawal. (pp. 1197-1207)</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Asha</span>
+                    <span class="t-type">Laywoman</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: "Sorrowless Well-Being"</div>
+                    <p>A laywoman seated on a golden throne in a great hall, surrounded by attendants. Her liberation is not the monk's withdrawal but a householder's engaged compassion. She attained realization while living in the world. (pp. 1208-1214)</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Avalokiteshvara</span>
+                    <span class="t-type">Bodhisattva</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: "Great Compassion Without Delay"</div>
+                    <p>Standing on a mountainous cliff, radiating protection in all directions. The famous bodhisattva of compassion (觀音, Guanyin in Chinese) appears not as a gentle icon but as a cosmic force of active, urgent aid. The name of the liberation says it: compassion that acts instantly, without hesitation. (pp. 1276-1280)</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Mahadeva</span>
+                    <span class="t-type">Celestial Being</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: "Cloud Net"</div>
+                    <p>A celestial standing at a crossroads, manifesting heaps of gold and jewels for anyone who needs them. His "cloud net" liberation rains material blessings as a skillful means to draw beings toward enlightenment. Liberation can look like generosity. (pp. 1281-1282)</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Sthavara</span>
+                    <span class="t-type">Earth Goddess</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: Indestructible Adamantine Basis</div>
+                    <p>When Sthavara stamps her foot, the earth reveals billions of jewel deposits beneath its surface. She is the ground itself made conscious, the stability on which everything rests. Her teaching: the earth is not inert matter but a living spiritual force. (pp. 1283-1284)</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Vasanti</span>
+                    <span class="t-type">Night Goddess</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: "Light of Truth That Dispels the Darkness of All Beings"</div>
+                    <p>A night goddess with a golden complexion, seated in a flower calyx in a circle of the Buddha. Emanations pour from her pores in all directions, each teaching according to the mentality of each being. She embodies the paradox: spiritual light that works through darkness, not against it. (pp. 1284-1300)</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Prashantarutasagaravati</span>
+                    <span class="t-type">Night Goddess</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: "Supernal Manifestations Producing Immense Joy"</div>
+                    <p>The most detailed teacher portrait. She teaches differently for <em>every type of person</em>: those obsessed with consumer goods get forbearance; those filled with anger get led toward transcendent tolerance; the lazy get purified vigor; those on wrong paths get the light of wisdom. Her method is total responsiveness. (pp. 1329-1335)</p>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-head">
+                    <span class="t-name">Maitreya</span>
+                    <span class="t-type">Future Buddha</span>
+                </div>
+                <div class="teacher-body">
+                    <div class="t-liberation">Liberation: The Great Tower of Vairocana</div>
+                    <p>The 52nd teacher and the climax of the journey. Maitreya greets Sudhana with the most extraordinary welcome speech in Buddhist literature: 15 pages of prophecy, metaphor, and praise. Then he opens his Tower. (See below.) (pp. 1456-1495)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-themes" style="margin-top: 0.75rem;">
+            <h4>What the Diversity of Teachers Teaches</h4>
+            <ul>
+                <li><strong>Wisdom is not monastic property.</strong> Laywomen, earth goddesses, celestial beings, and night spirits all possess authentic liberations.</li>
+                <li><strong>Each liberation is unique.</strong> No two teachers have the same method. The dharma is infinitely adaptable.</li>
+                <li><strong>The feminine is not peripheral.</strong> Night goddesses, earth goddesses, and laywomen are among the most powerful teachers in the text.</li>
+                <li><strong>The journey itself is the teaching.</strong> Sudhana does not arrive at truth; he walks through 53 versions of it.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Maitreya's Tower -->
+    <section class="content-section" id="tower">
+        <div class="section-label"><span class="chinese">樓閣</span> Maitreya's Tower: The Climax</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">彌勒</span> Maitreya's Welcome <span class="meta">pp. 1463-1473</span></div>
+                <div class="card-body">
+                    <p>When Sudhana finally reaches Maitreya, the future Buddha is not meditating in silence. He is outside the Tower, surrounded by a crowd. Seeing Sudhana approach, Maitreya turns to the assembly and delivers an extraordinary speech, pointing at the young pilgrim and praising his journey in verse:</p>
+                    <div class="verse-block">
+                        Look at Sudhana, pure in mind, born of enduring riches;<br>
+                        Seeking the practice of supreme enlightenment, this wise one has come to me.<br>
+                        <br>
+                        Welcome, son of compassion and love, universally kind;<br>
+                        Welcome, tranquil eyes; do not flag in practice.
+                        <span class="verse-source">— Cleary, p. 1463</span>
+                    </div>
+                    <p>The speech runs for ten full pages. Maitreya calls Sudhana a "baby buddha" growing from the "embryo of the aspiration for enlightenment, compassion, and love." He compares the determination for enlightenment to over 120 different things: a field, the earth, water, fire, wind, the sun, the moon, a lamp, an eye, a road, a door, a mansion, a park, a home.</p>
+                    <blockquote>"It is like a field, growing good qualities in all beings; it is like the earth, being a support for all beings; it is like water, washing away all afflictions; it is like fire, burning up the deadwood of clinging to views; it is like wind, unattached to all worlds."<cite>— Cleary, p. 1477</cite></blockquote>
+                    <p>The metaphor cascade accelerates: a thunderbolt, a chest of incense, cooling sandalwood, jewelry, a conflagration, medicine, a dragon pearl, a wish-fulfilling jewel, the horn of plenty, the desire-granting tree, a goose-feather robe, a plow, a warrior, an arrow, armor, a scimitar, a sword blade, a razor, a machete, an axe. Violence and tenderness sit next to each other. The point is totality: enlightenment uses whatever form works.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">塔</span> Inside the Tower <span class="meta">pp. 1489-1495</span></div>
+                <div class="card-body">
+                    <p>Maitreya walks to the door of the great tower, snaps his fingers with his right hand, and the door opens. Sudhana enters. The door shuts behind him.</p>
+                    <blockquote>"He saw the tower immensely vast and wide, hundreds of thousands of leagues wide, as measureless as the sky, as vast as all of space, adorned with countless attributes; countless canopies, banners, pennants, jewels, garlands of pearls and gems, moons and half moons, multicolored streamers, jewel nets, gold nets, strings of jewels, jewels on golden threads, sweetly ringing bells and nets of chimes, flowers showering, celestial garlands and streamers..."<cite>— Cleary, p. 1489-1490</cite></blockquote>
+                    <p>Inside this great tower, Sudhana sees <strong>hundreds of thousands of other towers</strong>, each "infinitely vast as space, evenly arrayed in all directions." The towers are not jumbled together. Each one is distinct, yet <strong>each reflects every other</strong>:</p>
+                    <blockquote>"Yet these towers were not mixed up with one another, being each mutually distinct, while appearing reflected in each and every object of all the other towers."<cite>— Cleary, p. 1490</cite></blockquote>
+                    <p>This is the architectural embodiment of Indra's Net. Each tower contains a complete vision of Maitreya's career: his family, his basic goodness, how he was inspired, what buddha he met, what land he adorned, what assembly he was in, what special vows he undertook. Sudhana perceives himself standing in all of the towers simultaneously.</p>
+                    <h4>The Tower as Interpenetration Made Spatial</h4>
+                    <p>Maitreya's Tower is the sutra's ultimate image. Everything the text has been building toward, all the number poetry and fractal nesting and "one in all, all in one," collapses into a single architectural vision: a building that contains an infinity of buildings, each one complete, each one reflecting every other, and Sudhana standing in all of them at once. It is the Avatamsaka's thesis made walkable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="questions">
+        <div class="section-label"><span class="chinese">討論</span> Discussion Questions</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> 1</div>
+                <div class="card-body">
+                    <p>The number cascade in Book 30 deliberately pushes past what the human mind can compute. What is the rhetorical purpose of this? How does overwhelming the reader with numbers prepare them for the interpenetration teaching that follows?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">二</span> 2</div>
+                <div class="card-body">
+                    <p>Sudhana's 53 teachers include monks, laywomen, night goddesses, earth spirits, and celestial beings. Why does the sutra insist on this diversity? What would be lost if all the teachers were monks?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">三</span> 3</div>
+                <div class="card-body">
+                    <p>The night goddess Prashantarutasagaravati teaches differently depending on whether someone is angry, lazy, confused, rich, poor, or on the road. Compare this to a Confucian teacher like Kongzi, who also adapts instruction to the student. What is similar? What is fundamentally different about the Buddhist version?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">四</span> 4</div>
+                <div class="card-body">
+                    <p>In Maitreya's Tower, hundreds of thousands of towers coexist "without being mixed up," each distinct yet reflected in all the others. How does this image relate to the sutra's earlier claim that "in one atom are untold lands"? Is the Tower a metaphor or a literal description of how reality works?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">五</span> 5</div>
+                <div class="card-body">
+                    <p>The senior disciples (Shariputra et al.) cannot see the Buddha's cosmic transformation. Only the bodhisattvas can. What does this say about the relationship between personal liberation and cosmic awareness? Is the sutra fair to the arhats?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">六</span> 6</div>
+                <div class="card-body">
+                    <p>Maitreya compares the determination for enlightenment to over 120 things, including "a warrior," "a scimitar," "a machete," "an axe," and also "cooling sandalwood," "a goose-feather robe," and "a park." What is the effect of placing violence and gentleness side by side in the same list?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Thomas Cleary, trans., <em>The Flower Ornament Scripture: A Translation of the Avatamsaka Sutra</em> (Boston: Shambhala, 1993).</p>
+            </div>
+            <div class="source-card">
+                <h4>Companion Lesson</h4>
+                <a href="huayan-gandavyuha.html">The Avatamsaka-sutra and Huayan Philosophy (Gomez, pp. 160-170)</a>
+            </div>
+            <div class="source-card">
+                <h4>Course Information</h4>
+                <p>EAST 370: Chinese Traditional Literature and Thought, Winter 2026</p>
+                <a href="../index.html">&larr; Back to course home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
