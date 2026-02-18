@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poets of a Generation: Two | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --bai: #6b3a3a;
+            --yuan: #4a5a3a;
+            --li-he: #3a3a5a;
+            --lu: #5a4a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-head.bai { border-left: 3px solid var(--bai); }
+        .card-head.yuan { border-left: 3px solid var(--yuan); }
+        .card-head.li-he { border-left: 3px solid var(--li-he); }
+        .card-head.lu { border-left: 3px solid var(--lu); }
+        .card-head.han { border-left: 3px solid #8b3a3a; }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .key-themes ul { columns: 1; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+
+        /* Poet verse block */
+        .verse-block {
+            font-family: 'Noto Serif SC', 'Inter', serif;
+            font-size: 0.8rem;
+            line-height: 1.9;
+            color: var(--ink-light);
+            padding: 0.5rem 0;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">同代詩人（二）</span>
+            <span class="en">Poets of a Generation: Two</span>
+            <span class="meta">Birch, pp. 260&ndash;287 &middot; Mid-Tang</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#han-yu">Han Yu</a>
+        <a href="#linked-verse">Linked Verse</a>
+        <a href="#bai-juyi">Bai Juyi</a>
+        <a href="#yuan-zhen">Yuan Zhen</a>
+        <a href="#li-he">Li He</a>
+        <a href="#lu-tong">Lu Tong</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">讀</span> The Reading <span class="meta">Birch, pp. 260&ndash;287</span></div>
+                <div class="card-body">
+                    <p>The second "Poets of a Generation" section in Birch covers the mid-Tang literary circle around Bai Juyi (Po Ch&uuml;-yi in Birch). It opens with Han Yu as poet rather than essayist, then presents a collaborative "linked verse" game, followed by the major work of Bai Juyi, the grief poetry of Yuan Zhen (Y&uuml;an Chen), the gothic nightmares of Li He (Li Ho), and the political allegory of Lu Tong (Lu T'ung).</p>
+                    <div class="key-themes">
+                        <h4>Romanization Guide</h4>
+                        <ul>
+                            <li><strong>Po Ch&uuml;-yi</strong> = Bai Juyi 白居易</li>
+                            <li><strong>Y&uuml;an Chen</strong> = Yuan Zhen 元稹</li>
+                            <li><strong>Li Ho</strong> = Li He 李賀</li>
+                            <li><strong>Lu T'ung</strong> = Lu Tong 盧仝</li>
+                            <li><strong>P'ei Tu</strong> = Pei Du 裴度</li>
+                            <li><strong>Chang Chi</strong> = Zhang Ji 張籍</li>
+                            <li><strong>Liu Y&uuml;-hsi</strong> = Liu Yuxi 劉禹錫</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">背景</span> Historical Moment <span class="meta">Mid-Tang, c. 770&ndash;840 CE</span></div>
+                <div class="card-body">
+                    <p>The An Lushan Rebellion (755) shattered the High Tang. The poets in this section write in its aftermath: an empire that survived but lost its confidence. Bai Juyi's "Song of Unending Sorrow" retells the catastrophe as a love story. Li He dies at twenty-six, writing about ghosts and arrowheads. The mood has shifted from Li Bai's cosmic exuberance to something darker, more personal, more politically fraught.</p>
+                    <div class="key-themes">
+                        <h4>Core Themes</h4>
+                        <ul>
+                            <li><strong>Narrative poetry:</strong> Bai Juyi's long ballads as political commentary</li>
+                            <li><strong>Linked verse:</strong> collaborative poetry as literati social practice</li>
+                            <li><strong>Grief and loss:</strong> Yuan Zhen's dream poems for his dead wife</li>
+                            <li><strong>Gothic imagination:</strong> Li He's ghosts, arrowheads, and graveyards</li>
+                            <li><strong>Political allegory:</strong> celestial events as coded criticism of the court</li>
+                            <li><strong>Plain style:</strong> Bai Juyi's radical accessibility vs. Li He's dense obscurity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Han Yu as Poet -->
+    <section class="content-section alt" id="han-yu">
+        <div class="section-label"><span class="chinese">韓愈</span> HAN YU AS POET (768&ndash;824)</div>
+        <p style="font-size:0.8rem;color:var(--ink-light);margin-bottom:0.6rem">We already know Han Yu as essayist and polemicist. Here he appears as poet: a Buddhist-inflected meditation and a passionate plea for the preservation of ancient stone drums.</p>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head han"><span class="chinese">枯樹</span> The Withered Tree <span class="meta">tr. A.C. Graham &middot; p. 262</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Its hollow belly has room for a man,<br>
+                        Circling ants quest under its peeling bark.<br>
+                        Its single lodger, the toadstool which lives for a morning;<br>
+                        The birds no longer visit in the evening."
+                        <cite>Birch, p. 262; tr. Graham</cite>
+                    </blockquote>
+                    <p>A nine-line poem on a dead tree. The bark peels, ants circle, birds have abandoned it. But it can still spark tinder. The final line delivers the Buddhist turn: "It does not care yet to be only the void at its heart." A footnote in Birch explains: "The phrase equates the hollow heart of the tree and the Void Mind of Buddhism, emptied of desire and illusion" (p. 262). From the arch-enemy of Buddhism, a poem that uses Buddhist metaphysics without apology.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head han"><span class="chinese">石鼓歌</span> A Poem on the Stone Drums <span class="meta">tr. Witter Bynner &middot; pp. 262&ndash;264</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Chang handed me this tracing, from the stone drums,<br>
+                        Beseeching me to write a poem on the stone drums.<br>
+                        Tu Fu has gone. Li Po is dead.<br>
+                        What can my poor talent do for the stone drums?"
+                        <cite>Birch, p. 262; tr. Bynner</cite>
+                    </blockquote>
+                    <p>The Stone Drums (<em>Shih ku</em> 石鼓) are ten granite boulders carved with ancient Chinese inscriptions, dating to the Zhou dynasty. They are among the oldest surviving examples of Chinese writing. Han Yu received rubbings of the inscriptions and composed this poem pleading for their preservation. His argument: the calligraphy is more beautiful than anything since, the script is ancient and cryptic, and government officials are too set in their ways to act. "Herdboys strike the drums for fire, cows polish horns on them, / With no one to handle them reverentially." He begs the emperor to house them properly. The poem ends in tears of frustration: "my voice has broken, in my song of the stone drums, / To a sound of supplication choked with its own tears." A scholar's passion for cultural preservation, turning antiquarian grief into genuine emotion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Linked Verse -->
+    <section class="content-section" id="linked-verse">
+        <div class="section-label"><span class="chinese">聯句</span> LINKED VERSE</div>
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head"><span class="chinese">薔薇花聯句</span> A Garland of Roses <span class="meta">tr. Donald Keene &middot; p. 265</span></div>
+                <div class="card-body">
+                    <p>Birch introduces "linked verse" as "the product of one of those games which filled the cultivated ease of the Chinese man of letters. In a garden, over wine or tea, a topic was given, a metre set, and each friend would cap another's impromptu lines" (p. 260). This collaborative poem on roses rotates through five poets: Liu Yuxi, Pei Du, Hsing-shih, Bai Juyi, and Zhang Ji. Each contributes a couplet.</p>
+                    <blockquote>
+                        "Like brocade flushed with sunset color,<br>
+                        Following the spring, they open at summer's touch."
+                        <cite>Liu Yuxi; Birch, p. 265; tr. Keene</cite>
+                    </blockquote>
+                    <p>The poem closes with Zhang Ji's couplet: "What to do? the flowers leave me no other plans; / I have only these last few cups of wine." Five different voices, one seamless poem. This was how the mid-Tang literati socialized: competitive, collaborative, and soaked in wine.</p>
+                    <div class="key-themes">
+                        <h4>The Five Poets</h4>
+                        <ul>
+                            <li><strong>Pei Du 裴度</strong> (765&ndash;839): "the most influential figure of his day," eminent statesman (p. 260)</li>
+                            <li><strong>Zhang Ji 張籍</strong> (c. 765&ndash;830): "one of the writers who most influenced Po Ch&uuml;-yi's early poetry" (p. 260)</li>
+                            <li><strong>Liu Yuxi 劉禹錫</strong>: lifelong friend of Bai Juyi, "born in the same year and predeceased him by four years" (p. 260)</li>
+                            <li><strong>Hsing-shih</strong>: a Buddhist monk who participated in the literary circle</li>
+                            <li><strong>Bai Juyi 白居易</strong> (772&ndash;846): the central figure of this generation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bai Juyi -->
+    <section class="content-section alt" id="bai-juyi">
+        <div class="section-label"><span class="chinese">白居易</span> BAI JUYI (772&ndash;846)</div>
+        <p style="font-size:0.8rem;color:var(--ink-light);margin-bottom:0.6rem">Birch notes: "Of all the many Chinese poets reborn in English from the understanding of Arthur Waley, one feels it was Po Ch&uuml;-yi whose personality most attracted his translator. Waley's biography of Po is a work of love as well as of scholarship" (p. 260). Bai Juyi championed a poetry of plain language and social conscience. He wanted poems an old woman could understand. His range here spans a 120-line narrative epic, an extended Buddhist temple pilgrimage, and short lyrics on baldness, cockatoos, and the pleasures of silence.</p>
+
+        <div class="content-grid">
+            <!-- Song of Unending Sorrow -->
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head bai"><span class="chinese">長恨歌</span> A Song of Unending Sorrow <span class="meta">tr. Witter Bynner &middot; pp. 266&ndash;269</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "China's Emperor, craving beauty that might shake an empire,<br>
+                        Was on the throne, for many years, searching, never finding,<br>
+                        Till a little child of the Yang clan, hardly even grown,<br>
+                        Bred in an inner chamber, with no one knowing her,<br>
+                        But with graces granted by heaven and not to be concealed,<br>
+                        At last one day was chosen for the imperial household."
+                        <cite>Birch, p. 266; tr. Bynner</cite>
+                    </blockquote>
+                    <h4>The Historical Story</h4>
+                    <p>Emperor Xuanzong (r. 712&ndash;756) fell in love with Yang Guifei (Yang Yuhuan), a consort of extraordinary beauty. He lavished the empire's resources on her, neglected governance, and elevated her family to enormous power. In 755, the general An Lushan launched a devastating rebellion. As Xuanzong fled the capital, his own soldiers demanded Yang Guifei's execution as the cause of the disaster. The emperor was forced to watch her strangled. He spent the rest of his life in grief.</p>
+                    <h4>The Poem</h4>
+                    <p>Bai Juyi's <em>Chang hen ge</em> 長恨歌 (written c. 806) retells this catastrophe as a love story. The first half chronicles the infatuation: "If she but turned her head and smiled, there were cast a hundred spells." The pivot is the rebellion: "Till war-drums, booming from Y&uuml;-yang, shocked the whole earth / And broke the tunes of 'The Rainbow Skirt and the Feathered Coat.'" The second half follows the emperor's desolation: "He stared at the desolate moon from his temporary palace, / He heard bell-notes in the evening rain, cutting at his breast." The poem ends with a Daoist priest finding Yang Guifei's spirit on an enchanted isle. She sends back a broken hairpin and a private vow: "On the seventh day of the Seventh-month, in the Palace of Long Life, / We told each other secretly in the quiet midnight world / That we wished to fly in heaven, two birds with the wings of one, / And to grow together on the earth, two branches of one tree."</p>
+                    <p>The final couplet became one of the most quoted lines in Chinese literature: "Earth endures, heaven endures; sometime both shall end, / While this unending sorrow goes on and on for ever." Birch calls this a poem "which in later centuries inspired much work by dramatists" (p. 260). The quatrain "The Poem on the Wall" connects to Yuan Zhen's discovery of Bai Juyi's verse while traveling (p. 278).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top:0.75rem">
+            <!-- The Temple -->
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head bai"><span class="chinese">遊悟真寺詩</span> The Temple <span class="meta">tr. Arthur Waley &middot; pp. 270&ndash;277</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Autumn: the ninth year of Y&uuml;an-ho;<br>
+                        The eighth month, and the moon swelling her arc.<br>
+                        It was then I travelled to the Temple of Wu-chen,<br>
+                        A temple terraced on Wang Shun's Hill."
+                        <cite>Birch, p. 270; tr. Waley</cite>
+                    </blockquote>
+                    <p>Birch describes this as belonging among poems whose moods range "from the sublimity of 'The Temple' to the contemplation of baldness" (p. 260). At seven pages, it is the longest poem in the selection. Bai Juyi recounts a five-day pilgrimage to Wu-chen Temple on Wang Shun's Hill. The poem is a journey inward: the climb is physical (wading streams, gripping ivy, tracking monkeys), then architectural (Treasure Towers, Jade Image Hall, Painted Dragon Hall), then spiritual (Buddhist relics, a jade flute "borne as a gift to the Garden of Jetavan," the Chamber of Guanyin). The final movement turns autobiographical: "I, that a man of the wild hills was born, / Floundering fell into the web of the World's net." He recalls his career as a hollow compromise, then declares freedom: "Like a wild deer that has torn the hunter's net / I range abroad by no halters barred." He sits with Zhuangzi's book and announces he will never return to the "marble basin" of office. From the anti-Buddhist Han Yu's ally, a poem that finds genuine transcendence in a Buddhist temple.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top:0.75rem">
+            <!-- Shorter poems -->
+            <div class="card">
+                <div class="card-head bai"><span class="chinese">短詩</span> The Shorter Poems <span class="meta">tr. Waley &amp; Birch &middot; pp. 269&ndash;270, 277&ndash;278</span></div>
+                <div class="card-body">
+                    <h4>On the Lotuses (pp. 269&ndash;270)</h4>
+                    <p>Lotuses transplanted to a government ditch lose their sweetness. "In human matters it also must be so. / It is better for a man to be utterly cast away / Than torn from his roots and put where he is not in place." A parable of exile and displacement.</p>
+                    <h4>On His Baldness (p. 278)</h4>
+                    <blockquote>
+                        "On my bald pate I trickle a ladle full.<br>
+                        Like one baptized with the Water of Buddha's Law,<br>
+                        I sit and receive this cool, cleansing joy."
+                        <cite>Birch, p. 278; tr. Waley</cite>
+                    </blockquote>
+                    <p>Bai Juyi loses his hair and decides he loves it. No more comb, no more topknot. He pours cold water on his bare head and compares himself to a Buddhist monk. Birch highlights this as exemplifying his "quiet whimsy" (p. 260).</p>
+                    <h4>The Red Cockatoo (p. 277)</h4>
+                    <p>"Sent as a present from Annam&mdash; / A red cockatoo. / Coloured like the peach-tree blossom, / Speaking with the speech of men." They caged it. A six-line parable about what happens to the eloquent: they get locked up. The parallel to Han Yu's "Farewell to Poverty" is hard to miss.</p>
+                    <h4>To a Talkative Guest (p. 278)</h4>
+                    <p>"I beg you, Sir, do not tell me about things at Ch'ang-an; / For you entered just when my lute was tuned and lying balanced on my knees." The retired poet does not want news from the capital. Five lines of perfect refusal.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head bai"><span class="chinese">題壁</span> The Poem on the Wall <span class="meta">tr. Waley &middot; p. 278</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "My clumsy poem on the inn-wall none cared to see;<br>
+                        With bird-droppings and moss's growth the letters were blotched away.<br>
+                        There came a guest with heart so full, that though a page to the Throne,<br>
+                        He did not grudge with his broidered coat to wipe off the dust, and read."
+                        <cite>Birch, p. 278; tr. Waley</cite>
+                    </blockquote>
+                    <p>Birch notes that "Y&uuml;an Chen wrote that on his way to exile he had discovered a poem inscribed by Po Ch&uuml;-yi on the wall of the Lo-k'ou Inn" (p. 278). This quatrain memorializes the moment: a forgotten poem on a wall, covered in bird droppings, and a friend in exile who stops to clean and read it. The "broidered coat" marks Yuan Zhen as an official, yet he stoops to read. This is friendship across distance and disgrace. It connects directly to Yuan Zhen's two poems that follow in the anthology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yuan Zhen -->
+    <section class="content-section" id="yuan-zhen">
+        <div class="section-label"><span class="chinese">元稹</span> YUAN ZHEN (779&ndash;831)</div>
+        <p style="font-size:0.8rem;color:var(--ink-light);margin-bottom:0.6rem">Yuan Zhen was Bai Juyi's closest literary partner. The "Yuan-Bai" friendship was legendary: they exchanged poems across distances of exile, championed each other's work, and defined a poetic movement of social realism and emotional directness. Yuan Zhen is also the author of the famous prose romance "The Story of Ts'ui Ying-ying" (鶯鶯傳, <em>Yingying zhuan</em>), one of the most influential love stories in Chinese literature (Birch, p. 260).</p>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head yuan"><span class="chinese">行宮</span> Temporary Palace <span class="meta">tr. Cyril Birch &middot; p. 279</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Palace of a few days' visit, long years crumbling,<br>
+                        The gardens blossom red into the silence.<br>
+                        And here a palace maiden, white-haired now,<br>
+                        Takes her ease and tells her tales of the emperor."
+                        <cite>Birch, p. 279; tr. Birch</cite>
+                    </blockquote>
+                    <p>Four lines. An abandoned imperial lodge, a garden still blooming, and an old woman who was once a palace maid, now telling stories about an emperor no one else remembers. The poem rhymes with Bai Juyi's "Song of Unending Sorrow" in miniature: the same ruins, the same faded glory, compressed to a single image. Where Bai Juyi takes 120 lines, Yuan Zhen needs four.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head yuan"><span class="chinese">夢井</span> The Pitcher <span class="meta">tr. Arthur Waley &middot; pp. 279&ndash;280</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "I dreamt I climbed to a high, high plain;<br>
+                        And on the plain I found a deep well.<br>
+                        My throat was dry with climbing and I longed to drink,<br>
+                        And my eyes were eager to look into the cool shaft."
+                        <cite>Birch, p. 279; tr. Waley</cite>
+                    </blockquote>
+                    <p>A dream poem (<em>Meng jing</em> 夢井). The dreamer climbs a plain, finds a well, sees a pitcher sinking into it, and runs from village to village in panic trying to save it. The men are gone. Dogs snarl. He comes back weeping. Then: "Till my own sobbing suddenly woke me up; / My room was silent, no one in the house stirred." The plain in the dream is the graveyard at Chang'an. The pitcher is his dead wife. "And to-night my love who died long ago / Came into my dream as the pitcher sunk in the well." Birch identifies this as grief poetry by the connection to Yuan Zhen's personal losses. The gap between the dream's urgency and the waking room's silence is the poem's cruelest moment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Li He -->
+    <section class="content-section alt" id="li-he">
+        <div class="section-label"><span class="chinese">李賀</span> LI HE (791&ndash;817)</div>
+        <p style="font-size:0.8rem;color:var(--ink-light);margin-bottom:0.6rem">Birch calls Li He's world "the halloween world" (p. 260). Known as 詩鬼 (<em>Shigui</em>, "Poetry Ghost"), in deliberate contrast to Li Bai's 詩仙 ("Poetry Immortal") and Du Fu's 詩聖 ("Poetry Sage"). He died at twenty-six, likely of tuberculosis. His method of composition was legendary: "He rode out each morning followed by a servant on foot. The servant carried a bag, into which Li Ho would toss scraps of paper bearing the lines which in the evening he would work into the elegant abandon of his verses" (p. 261). His mother, seeing the full bag each evening, reportedly said: "This boy will not stop until he has vomited out his heart!" Li He claimed descent from the Tang imperial Li family, but the connection was distant and the family poor. Around age twenty, Han Yu himself recommended Li He for the <em>jinshi</em> examination, but jealous rivals raised a naming taboo: Li He's father's name, Jinsu (晉肅), contained a character homophonous with <em>jin</em> (進) in <em>jinshi</em> (進士). Han Yu wrote an essay in his defense, arguing the taboo was absurd. He lost. Li He was barred from the exam, left the examination hall in fury, and never sat it. This blocked career path fed the bitterness and darkness that saturates his poetry.</p>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head li-he"><span class="chinese">蘇小小墓</span> The Grave of Little Su <span class="meta">tr. A.C. Graham &middot; p. 281</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Dew on the secret orchid<br>
+                        Like screaming eyes.<br>
+                        Nowhere, the hearts bound as one.<br>
+                        Evanescent flowers I cannot bear to cut."
+                        <cite>Birch, p. 281; tr. Graham</cite>
+                    </blockquote>
+                    <p>Su Xiaoxiao (Little Su) was a famous fifth-century courtesan of Hangzhou. The poem opens with an epigraph: a ballad attributed to her. Li He's poem visits her grave at dusk: grass like a cushion, pine like a parasol, wind as a skirt. A coach with lacquered sides waits for someone who will never come. "The cold green will-o'-the-wisp / Squanders its brightness." Ghosts, desire, and decay compressed into sixteen lines.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head li-he"><span class="chinese">苦寒行</span> The Northern Cold <span class="meta">tr. A.C. Graham &middot; pp. 281&ndash;282</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "The sky glows one side black, three sides purple.<br>
+                        The Yellow River's ice closes, fish and dragons die."
+                        <cite>Birch, p. 281; tr. Graham</cite>
+                    </blockquote>
+                    <p>A landscape of apocalyptic cold. Bark cracks, carts mount the frozen Yellow River, frost flowers are "as big as coins," swords will not pierce the fog. The images pile up like ice: each one stranger, more violent, more beautiful than the last. Seven lines. No argument, no philosophy. Pure sensory assault.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top:0.75rem">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head li-he"><span class="chinese">出門莫</span> Don't Go Out of the Door <span class="meta">tr. A.C. Graham &middot; p. 282</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Heaven is dark,<br>
+                        Earth is secret.<br>
+                        The nine-headed monster eats our souls,<br>
+                        Frosts and snows snap our bones."
+                        <cite>Birch, p. 282; tr. Graham</cite>
+                    </blockquote>
+                    <p>The poem warns against going outside into a world of monsters and death. Dogs sniff for the virtuous. Lions spit from slavering mouths. Then the historical allusions arrive: Bao Jiao (Pao Chiao) "parted the ferns and for ever closed his eyes," Yan Hui (Yen Hui) "at twenty-nine was white at the temples." Both died young and good. The conclusion: "Heaven dreaded the time when teeth would rend and gnaw them, / For this and no other reason made it so." Heaven kills the talented because it fears them. "Witness the man who raged at the wall as he carved his questions to heaven!" This is Li He's worldview in miniature: the cosmos is actively hostile to goodness, and death is not accidental but predatory.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top:0.75rem">
+            <div class="card">
+                <div class="card-head li-he"><span class="chinese">古悠悠行</span> Ancient Arrowhead <span class="meta">tr. A.C. Graham &amp; C.J. Chen/Bullock &middot; pp. 282&ndash;283</span></div>
+                <div class="card-body">
+                    <p>"Lacquer flakes, bone-dust and water / made this vermilion colour." An ancient bronze arrowhead found east of a courier station, among weeds. Ghosts sang to the left and right when he picked it up. "Its point, crimson and crooked, / once bit into flesh." Young riders ask him why he doesn't sell it for firewood. Li He keeps the arrowhead and weeps. A meditation on the persistence of violence: the arrow remembers the flesh it entered.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head li-he"><span class="chinese">銅雀臺 · 巫弦</span> Bronze Bird Platform &amp; Magic String <span class="meta">tr. C.J. Chen &amp; Michael Bullock &middot; pp. 283&ndash;284</span></div>
+                <div class="card-body">
+                    <p><strong>The Bronze Bird Platform:</strong> A young girl brings wine to an autumn scene. A stone horse in the mist. Faint singing. "Her skirt, long and heavy, presses against the floor, / And her tearful eyes are fixed on the flowers on the table." Eight lines of sadness without explanation.</p>
+                    <p><strong>Magic String:</strong> A witch summons spirits with wine and a lute of "love-sickness wood." Paper coins crackle into ash, sea-gods and mountain spirits take their seats. "Come, Stars and Ghosts, and enjoy the feast. / When spectres eat, man shivers." A shamanic séance rendered in eight stanzas, closing as "a myriad chariots make ready for their departure." Li He treats the supernatural not as metaphor but as reported fact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lu Tong -->
+    <section class="content-section" id="lu-tong">
+        <div class="section-label"><span class="chinese">盧仝</span> LU TONG (d. 835)</div>
+        <p style="font-size:0.8rem;color:var(--ink-light);margin-bottom:0.6rem">Lu Tong was a recluse poet and friend of Han Yu who never held office. He shared with Li He "an exuberance of metaphor and a talent for the grotesque" (Birch, p. 261). He is best known for "an extraordinary long poem on the lunar eclipse of 810, in which the moon serves as a symbol of the Emperor misled by wicked advisers" (p. 261). Those "wicked advisers" were almost certainly the court eunuchs, who by 810 commanded the Army of Divine Strategy and held enormous power over Emperor Xianzong. Lu Tong also wrote a famous "Seven Bowls of Tea" poem that remains a cornerstone of tea culture across East Asia. His end was grim: in 835, the Sweet Dew Incident (a failed coup against the eunuchs) turned into a massacre. Lu Tong was dining at Prime Minister Wang Ya's house when the eunuchs struck. Because he had mocked them in his poetry, they showed no mercy. He was arrested, tortured, and executed. The very targets of "The Eclipse of the Moon" killed him.</p>
+
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head lu"><span class="chinese">月蝕詩</span> Two Extracts from "The Eclipse of the Moon" <span class="meta">tr. A.C. Graham &middot; pp. 285&ndash;287</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "The fifth year of the new Son of Heaven,<br>
+                        The cyclic year <em>keng-yin</em>;<br>
+                        The season when the handle of the Dipper sticks into Aries,<br>
+                        The month when the pitch-pipe is Yellow Bell."
+                        <cite>Birch, p. 285; tr. Graham</cite>
+                    </blockquote>
+                    <h4>Extract 1: The Eclipse</h4>
+                    <p>The poem opens with precise calendrical dating, then describes the moon rising "like a glittering silver dish came up from the bottom of the sea." Then: "a strange thing came to pass: / Something began to eat into the wheel." The eclipse becomes a cosmic crime. The cassia tree is torn like a snowy peak, the mirror-bright surface goes dark. "Darkness smeared the whole sky like soot." The stars come out, confused, "disputing which could shine the brightest." The domestic lamps "lit by the servants / With a dusky glow like tortoiseshell" replace celestial light. A visual masterpiece of the natural world going wrong.</p>
+                    <h4>Extract 2: The Mythological Response</h4>
+                    <p>The second extract shifts to the myth of Emperor Yao, when ten suns burned the Nine Regions and God sent a flood to destroy them. Nine charioteers drove the nine suns away, each harnessed to "fifty-four young and scaly hornless dragons." Then, addressing the frog that swallows the moon in an eclipse: "You have fed your disobedience by eating the eye of Heaven. / How long before the God on High ordains your execution?" The political reading: the "frog" is a corrupt minister consuming the emperor's light. Lu Tong uses myth, astronomy, and grotesque violence to make a political accusation without naming anyone. The same strategy as Han Yu's "Against the God of the Wind," but louder and stranger.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Love, Power, and Catastrophe</div>
+                <div class="card-body">
+                    <ul>
+                        <li>"A Song of Unending Sorrow" tells the An Lushan Rebellion as a love story between Xuanzong and Yang Guifei. Is Bai Juyi sympathizing with the emperor, criticizing him, or both? What does the Daoist ending (the spirit on the enchanted isle) add or evade?</li>
+                        <li>Compare Yuan Zhen's "Temporary Palace" with the closing sections of "Song of Unending Sorrow." Both show the aftermath of imperial love. How does saying it in four lines change the meaning?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">The Gothic and the Plain</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Bai Juyi wanted poems an old woman could understand. Li He wrote lines like "Dew on the secret orchid / Like screaming eyes." Are these opposite poetics, or different responses to the same broken world?</li>
+                        <li>In "Don't Go Out of the Door," Li He argues that heaven actively destroys the talented: "Heaven dreaded the time when teeth would rend and gnaw them." How does this compare to Han Yu's "An Enquiry Into Slander," which blames human jealousy for the destruction of the good? Is the enemy heaven or other people?</li>
+                        <li>Li He died at twenty-six. How does knowing this change the way you read "Ancient Arrowhead," where an object remembers the flesh it entered and the poet refuses to sell it?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Political Allegory and Literary Community</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Lu Tong's "Eclipse of the Moon" uses a lunar eclipse to accuse corrupt ministers of "eating the eye of Heaven." Han Yu's "Against the God of the Wind" uses a wind deity to attack the tax collector Li Shih. Why did Tang poets code political criticism as nature allegory instead of direct accusation?</li>
+                        <li>The "Linked Verse" poem shows five poets collaborating on a single poem about roses. What does this tell us about how literature functioned socially in the Tang? Could a similar practice work today?</li>
+                        <li>"The Poem on the Wall" tells of Yuan Zhen finding Bai Juyi's poem, covered in bird droppings, at an inn. What does this image say about what happens to literature after the poet moves on?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I: "Poets of a Generation: Two," pp. 260&ndash;287. Translations by A.C. Graham, Witter Bynner, Donald Keene, Arthur Waley, Cyril Birch, and C.J. Chen &amp; Michael Bullock.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/biography/Bai-Juyi" target="_blank" rel="noopener">Britannica: Bai Juyi</a>
+                <a href="https://www.britannica.com/biography/Li-He" target="_blank" rel="noopener">Britannica: Li He</a>
+                <a href="https://www.britannica.com/biography/Yuan-Zhen" target="_blank" rel="noopener">Britannica: Yuan Zhen</a>
+                <a href="https://plato.stanford.edu/entries/confucianism/" target="_blank" rel="noopener">SEP: Confucianism</a>
+                <a href="https://ctext.org/" target="_blank" rel="noopener">Chinese Text Project</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="tang-poets.html">Tang Poets (Wang Wei, Li Bai, Du Fu)</a>
+                <a href="prose-essays.html">Tang Prose Essays (Han Yu &amp; Liu Zongyuan)</a>
+                <a href="lu-ji-wen-fu.html">Lu Ji: Wen Fu 文賦</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
