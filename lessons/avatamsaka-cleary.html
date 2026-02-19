@@ -502,6 +502,54 @@
         .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
         .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
 
+        /* Page Snapshot Gallery */
+        .page-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+        .page-gallery-label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--ink-faint);
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+        .page-snapshot {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .page-snapshot img {
+            width: 100%;
+            display: block;
+            cursor: zoom-in;
+        }
+        .page-snapshot img.zoomed {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            cursor: zoom-out;
+            border-radius: 0;
+        }
+        .page-snapshot figcaption {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.68rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .page-snapshot figcaption strong {
+            color: var(--ink);
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .content-grid { grid-template-columns: 1fr; }
@@ -512,6 +560,7 @@
             .key-themes ul { columns: 1; }
             .teacher-grid { grid-template-columns: 1fr; }
             .number-cascade { flex-direction: column; }
+            .page-gallery { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
@@ -635,6 +684,21 @@
                 </div>
             </div>
         </div>
+        <div class="page-gallery-label">From the translation — Cleary, pp. 889–891</div>
+        <div class="page-gallery">
+            <figure class="page-snapshot">
+                <img src="img/avatamsaka-incalculable-title.png" alt="Book 30, The Incalculable, title page (p. 889)" onclick="this.classList.toggle('zoomed')">
+                <figcaption><strong>p. 889</strong> — Book 30 opens. Mind King asks the Buddha: what are these numbers the buddhas speak of? The squaring cascade begins.</figcaption>
+            </figure>
+            <figure class="page-snapshot">
+                <img src="img/avatamsaka-number-wall.png" alt="Wall of squaring numbers, p. 890" onclick="this.classList.toggle('zoomed')">
+                <figcaption><strong>p. 890</strong> — The squaring continues for pages. Each number doubles the digits of the last. The text performs its own mathematics relentlessly.</figcaption>
+            </figure>
+            <figure class="page-snapshot">
+                <img src="img/avatamsaka-climactic-verse.png" alt="Climactic verse, p. 891" onclick="this.classList.toggle('zoomed')">
+                <figcaption><strong>p. 891</strong> — The cascade reaches its apex, then collapses into four lines of verse: "If untold buddha-lands are reduced to atoms, / In one atom are untold lands."</figcaption>
+            </figure>
+        </div>
     </section>
 
     <!-- One is All -->
@@ -719,6 +783,17 @@
 
         <div style="margin-bottom: 0.6rem;">
             <p style="font-size: 0.8rem; color: var(--ink-light); line-height: 1.65; max-width: 60rem;">Book 39, "Entry into the Realm of Reality," takes up over 400 pages and tells the story of the youth Sudhana (善財, Shancai), who is sent south by the bodhisattva Manjushri to find 53 spiritual teachers. The genius of the passage is that these teachers are not all monks or nuns. They are monks, laywomen, night goddesses, earth spirits, ship captains, perfumers, a future Buddha. Each has their own distinct "liberation" (解脫, <em>jieTuo</em>): a specific method or sphere of awakened activity. Sudhana learns something different from each one, and the diversity is the point.</p>
+        </div>
+
+        <div class="page-gallery" style="grid-template-columns: 260px 1fr; align-items: start; margin-bottom: 0.75rem;">
+            <figure class="page-snapshot">
+                <img src="img/avatamsaka-saradhvaja.png" alt="Saradhvaja encounter, p. 1197" onclick="this.classList.toggle('zoomed')">
+                <figcaption><strong>p. 1197</strong> — Sudhana finds the monk Saradhvaja sitting in deep concentration. Beings emanate from every pore of his body.</figcaption>
+            </figure>
+            <div style="font-size: 0.78rem; color: var(--ink-light); line-height: 1.65; padding: 0.5rem 0;">
+                <p style="margin-bottom: 0.5rem;">Each encounter in Book 39 follows the same pattern: Sudhana arrives, describes what he sees, and the teacher reveals their "liberation." But the descriptions are anything but formulaic. Cleary's translation preserves the sutra's almost hallucinatory specificity. From Saradhvaja's knees, "warrior sages, priestly sages, worldly sages, scholars versed in various crafts, humanistic scholars, scholars expert in knowledge of the sciences of mundane and transmundane activities" emanate and go throughout the ten directions (p. 1198). From his navel, "various forms of wizards, as many as there are living beings." From his shoulders, "demigods and supernatural beings as numerous as atoms in countless buddha-fields."</p>
+                <p>The body of the meditating monk becomes a universe producing beings from every surface. This is the sutra's signature move: turning a quiet scene into a vision of infinite activity.</p>
+            </div>
         </div>
 
         <div class="teacher-grid">
@@ -855,6 +930,17 @@
                     <p>Maitreya's Tower is the sutra's ultimate image. Everything the text has been building toward, all the number poetry and fractal nesting and "one in all, all in one," collapses into a single architectural vision: a building that contains an infinity of buildings, each one complete, each one reflecting every other, and Sudhana standing in all of them at once. It is the Avatamsaka's thesis made walkable.</p>
                 </div>
             </div>
+        </div>
+        <div class="page-gallery-label">From the translation — Cleary, pp. 1489–1490</div>
+        <div class="page-gallery" style="grid-template-columns: repeat(2, 1fr);">
+            <figure class="page-snapshot">
+                <img src="img/avatamsaka-tower-entry.png" alt="Maitreya's Tower entry, p. 1489" onclick="this.classList.toggle('zoomed')">
+                <figcaption><strong>p. 1489</strong> — "Maitreya went up to the door of the tower... and with his right hand snapped his fingers; the door of the tower opened." Sudhana enters. The door shuts.</figcaption>
+            </figure>
+            <figure class="page-snapshot">
+                <img src="img/avatamsaka-tower-vision.png" alt="Inside Maitreya's Tower, p. 1490" onclick="this.classList.toggle('zoomed')">
+                <figcaption><strong>p. 1490</strong> — Inside: "hundreds of thousands of other towers similarly arrayed... yet these towers were not mixed up with one another, being each mutually distinct, while appearing reflected in each and every object."</figcaption>
+            </figure>
         </div>
     </section>
 
