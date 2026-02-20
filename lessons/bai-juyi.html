@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai Juyi 白居易 | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --bai: #6b3a3a;
+            --bai-light: #8a5050;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Serif SC', serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            border-left: 3px solid var(--bai);
+        }
+        .card-head .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--bai);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(107,58,58,0.08) 0%, rgba(184,134,11,0.05) 100%);
+            border: 1px solid rgba(107,58,58,0.15);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--bai);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul { margin: 0; padding-left: 1.2rem; }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Bio layout */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 1.25rem;
+            margin-top: 0.6rem;
+        }
+        .bio-portrait {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            align-self: start;
+        }
+        .bio-portrait img {
+            width: 100%;
+            display: block;
+        }
+        .bio-portrait-cap {
+            padding: 0.5rem 0.6rem;
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            line-height: 1.4;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .bio-text p {
+            font-size: 0.82rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+        .bio-text p:last-child { margin-bottom: 0; }
+        .bio-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .bio-stat {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid var(--paper-dark);
+        }
+        .bio-stat-label {
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--bai);
+        }
+        .bio-stat-val {
+            font-size: 0.78rem;
+            color: var(--ink-light);
+            line-height: 1.4;
+            margin-top: 0.15rem;
+        }
+
+        /* Timeline */
+        .mini-timeline { margin-top: 0.5rem; }
+        .timeline-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
+        }
+        .timeline-item:last-child { border-bottom: none; }
+        .tl-date {
+            font-weight: 700;
+            color: var(--bai);
+            min-width: 55px;
+            font-size: 0.75rem;
+        }
+        .tl-desc { color: var(--ink-light); line-height: 1.5; }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Chinese original collapsible */
+        .chinese-original {
+            margin: 0.5rem 0;
+            border: 1px solid var(--paper-dark);
+            border-radius: 4px;
+        }
+        .chinese-original summary {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--ink-faint);
+            cursor: pointer;
+            background: var(--paper-dark);
+        }
+        .chinese-original summary:hover { color: var(--ink); }
+        .chinese-original .ch-label {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--gold);
+        }
+        .chinese-original .original-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.85rem;
+            line-height: 2;
+            padding: 0.6rem;
+            color: var(--ink-light);
+        }
+        .chinese-original .source-link {
+            display: block;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            border-top: 1px solid var(--paper-dark);
+        }
+        .chinese-original .source-link a { color: var(--teal); text-decoration: none; }
+
+        /* Dynasty strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .bio-grid { grid-template-columns: 1fr; }
+            .bio-portrait { max-width: 220px; }
+            .bio-stats { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">白居易</span>
+            <span class="en">Bai Juyi: The People's Poet</span>
+            <span class="meta">Birch, pp. 266&ndash;278 &middot; Mid-Tang (772&ndash;846)</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#bio">Biography</a>
+        <a href="#overview">Overview</a>
+        <a href="#changhenge">Song of Unending Sorrow</a>
+        <a href="#temple">The Temple</a>
+        <a href="#shorter">Shorter Poems</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+        <a href="poets-generation-two.html" style="color:var(--bai-light)">Full Generation &rarr;</a>
+    </nav>
+
+    <!-- Biography -->
+    <section class="content-section" id="bio">
+        <div class="section-label"><span class="chinese">傳</span> BIOGRAPHY</div>
+        <div class="bio-grid">
+            <div class="bio-portrait">
+                <img src="img/bai-juyi.jpg" alt="Portrait of Bai Juyi" loading="lazy">
+                <div class="bio-portrait-cap">Bai Juyi (白居易, 772&ndash;846). Historical portrait from the <em>Wan hsiao tang</em> collection. Public domain.</div>
+            </div>
+            <div class="bio-text">
+                <p><strong>Bai Juyi</strong> (白居易, 772&ndash;846), courtesy name <strong>Letian</strong> (樂天), was the most popular poet of the Tang dynasty in his own lifetime and arguably the most widely read Chinese poet across East Asia. He later adopted the literary name <strong>Xiangshan Jushi</strong> (香山居士, "Lay Buddhist of Fragrant Mountain"). In Birch's anthology, he appears as <strong>Po Ch&uuml;-i</strong> (Wade-Giles).</p>
+
+                <p>Born in Xinzheng, Henan, his family fled south during the aftermath of the An Lushan Rebellion. His father died in 794, leaving the family in financial difficulty. Bai showed literary talent early: the famous anecdote has him composing "Grass on an Ancient Plain" at around age sixteen, which so impressed the established poet Gu Kuang that he recommended the young man pursue the imperial examinations.</p>
+
+                <p>He passed the <em>jinshi</em> exam in 800 at age twenty-eight, a remarkable achievement given that only about 2&ndash;3% of candidates typically passed. He entered the civil service, and by 807 had been appointed "Reminder of the Left" (Zuoshiyi), a censorial post that allowed him to submit frank memorials to the throne. It was during this period that he met <strong>Yuan Zhen</strong> (元稹, 779&ndash;831), beginning the most celebrated literary friendship of the mid-Tang.</p>
+
+                <p>Bai championed a radical poetics of accessibility. He reportedly <strong>tested his poems on an illiterate old servant woman</strong> and rewrote anything she could not follow. He believed "articles should be created for the times, and poetry for current affairs." He organized his own work into four categories: satirical poems, leisure poems, sentimental poems, and unregulated verses. This "plain style" made his work enormously popular. His poems were copied on inn walls and sung by performers across the empire.</p>
+
+                <p>The turning point came in <strong>815</strong>. Chancellor Wu Yuanheng was assassinated outside his home. Bai immediately submitted a memorial demanding justice, but his rank did not entitle him to be the first to memorialize on such matters. Political enemies seized the pretext. He was demoted and <strong>exiled to Jiangzhou</strong> (modern Jiujiang) as Sub-Prefect. During this exile he wrote the <em>Pipa Xing</em> (Song of the Pipa Player), one of his masterpieces.</p>
+
+                <p>After his recall, he served as governor of Hangzhou (822&ndash;824), where he built a causeway at West Lake still called the "Bai Causeway" today. He spent his final decades in semi-retirement at Luoyang, increasingly devoted to Chan Buddhism. He died in 846 at age seventy-four, leaving approximately <strong>2,800 surviving poems</strong>, the largest corpus of any Tang poet.</p>
+
+                <div class="bio-stats">
+                    <div class="bio-stat">
+                        <div class="bio-stat-label">Surviving Poems</div>
+                        <div class="bio-stat-val">~2,800 (largest Tang corpus)</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-label">Epithet</div>
+                        <div class="bio-stat-val">詩魔 "Poetry Demon" / 詩王 "Poetry King"</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-label">Key Friendship</div>
+                        <div class="bio-stat-val">Yuan Zhen (元稹). ~900 poems exchanged.</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-label">Legacy</div>
+                        <div class="bio-stat-val">Murasaki Shikibu's <em>Genji</em> draws on his work. Required reading in Heian Japan.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="content-section alt" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> TODAY'S READING</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">讀</span> The Reading <span class="meta">Birch, pp. 266&ndash;278</span></div>
+                <div class="card-body">
+                    <p>Our selection from Birch covers Bai Juyi's major works within the "Poets of a Generation: Two" section (pp. 260&ndash;287). Bai's portion runs from page 266 through 278, containing one epic narrative (120 lines), one extended pilgrimage poem (seven pages), and a cluster of shorter lyrics. The range demonstrates what Birch calls moods "from the sublimity of 'The Temple' to the contemplation of baldness" (p. 260).</p>
+                    <div class="key-themes">
+                        <h4>Poems in Today's Reading</h4>
+                        <ul>
+                            <li><strong>A Song of Unending Sorrow</strong> (長恨歌), pp. 266&ndash;269</li>
+                            <li><strong>On the Lotuses</strong>, pp. 269&ndash;270</li>
+                            <li><strong>The Temple</strong> (遊悟真寺詩), pp. 270&ndash;277</li>
+                            <li><strong>The Red Cockatoo</strong>, p. 277</li>
+                            <li><strong>On His Baldness</strong>, p. 278</li>
+                            <li><strong>To a Talkative Guest</strong>, p. 278</li>
+                            <li><strong>The Poem on the Wall</strong>, p. 278</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">時</span> Historical Moment <span class="meta">Mid-Tang, c. 806&ndash;846</span></div>
+                <div class="card-body">
+                    <p>Bai Juyi writes in the aftermath of the An Lushan Rebellion (755). The High Tang golden age of Wang Wei, Li Bai, and Du Fu is over. The empire survived but lost its confidence. Regional military governors hold real power. Eunuchs control the palace armies. The literati class feels both responsible for the empire and excluded from it.</p>
+                    <p>Bai's response: poetry as civic duty. His "New Music Bureau Ballads" (新樂府) deliberately imitated folk song forms to reach ordinary people. "A Song of Unending Sorrow" retells the rebellion as a love story between the emperor and his consort. "The Temple" records a personal escape into Buddhism. The shorter poems practice what Birch calls Bai's "quiet whimsy" (p. 260).</p>
+                    <div class="key-themes">
+                        <h4>Core Tensions</h4>
+                        <ul>
+                            <li><strong>Accessibility vs. depth:</strong> Can plain language carry real thought?</li>
+                            <li><strong>Duty vs. withdrawal:</strong> Service leads to exile; Buddhism offers peace</li>
+                            <li><strong>History as love story:</strong> Does the Xuanzong-Yang Guifei romance obscure politics?</li>
+                            <li><strong>The exiled poet:</strong> How does demotion transform the writing?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Song of Unending Sorrow -->
+    <section class="content-section" id="changhenge">
+        <div class="section-label"><span class="chinese">長恨歌</span> A SONG OF UNENDING SORROW</div>
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head"><span class="chinese">長恨歌</span> A Song of Unending Sorrow <span class="meta">tr. Witter Bynner &middot; pp. 266&ndash;269</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "China's Emperor, craving beauty that might shake an empire,<br>
+                        Was on the throne, for many years, searching, never finding,<br>
+                        Till a little child of the Yang clan, hardly even grown,<br>
+                        Bred in an inner chamber, with no one knowing her,<br>
+                        But with graces granted by heaven and not to be concealed,<br>
+                        At last one day was chosen for the imperial household."
+                        <cite>Birch, p. 266; tr. Bynner</cite>
+                    </blockquote>
+
+                    <h4>The Historical Story</h4>
+                    <p>Emperor Xuanzong (r. 712&ndash;756) fell in love with Yang Guifei (Yang Yuhuan), a consort of extraordinary beauty. He lavished the empire's resources on her, neglected governance, and elevated her family to enormous power. In 755, the general An Lushan launched a devastating rebellion. As Xuanzong fled the capital, his own soldiers demanded Yang Guifei's execution as the cause of the disaster. The emperor was forced to watch her strangled. He spent the rest of his life in grief.</p>
+
+                    <h4>The Poem's Three Movements</h4>
+                    <p><strong>Part 1: The Infatuation (pp. 266&ndash;267).</strong> Bai catalogs the emperor's obsession: "If she but turned her head and smiled, there were cast a hundred spells, / And the powder and paint of the Six Palaces faded into nothing." The Yang family rises ("And, because she so illumined and glorified her clan, / She brought to every father, every mother through the empire, / Happiness when a girl was born rather than a boy"). Then the decay: "The Forbidden City, the nine-tiered palace, loomed in the dust / From thousands of horses and chariots headed southwest."</p>
+
+                    <p><strong>Part 2: The Catastrophe and Mourning (pp. 267&ndash;268).</strong> The pivot is brutal: "Till war-drums, booming from Y&uuml;-yang, shocked the whole earth / And broke the tunes of 'The Rainbow Skirt and the Feathered Coat.'" The soldiers demand Yang Guifei's death. "Flowery hairpins fell on the ground, no one picked them up, / And a green and white jade hair-tassel and a golden hair-bird." The emperor can do nothing. The second half tracks his desolation: "He stared at the desolate moon from his temporary palace, / He heard bell-notes in the evening rain, cutting at his breast."</p>
+
+                    <p><strong>Part 3: The Supernatural Reunion (pp. 268&ndash;269).</strong> A Daoist priest finds Yang Guifei's spirit on an enchanted isle. She sends back a broken hairpin and a private vow: "On the seventh day of the Seventh-month, in the Palace of Long Life, / We told each other secretly in the quiet midnight world / That we wished to fly in heaven, two birds with the wings of one, / And to grow together on the earth, two branches of one tree." The final couplet: "Earth endures, heaven endures; sometime both shall end, / While this unending sorrow goes on and on for ever."</p>
+
+                    <h4>Why It Matters</h4>
+                    <p>Written c. 806, this is probably the most famous narrative poem in Chinese. Bai Juyi takes a political catastrophe and recasts it as a love story. The question for discussion: is this sympathy or evasion? By giving the emperor human grief, does Bai let him off the hook for the rebellion? Or does the poem's structure (indulgence leads to war leads to death leads to fantasy) constitute its own kind of criticism? Notice that the "reunion" happens only through a medium. The emperor never actually gets Yang Guifei back. The sorrow is unending precisely because the Daoist ending is a consolation that does not console.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- On the Lotuses -->
+    <section class="content-section alt" id="lotuses">
+        <div class="section-label"><span class="chinese">蓮</span> ON THE LOTUSES</div>
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head"><span class="chinese">移根蓮</span> On the Lotuses <span class="meta">tr. Arthur Waley &middot; pp. 269&ndash;270</span></div>
+                <div class="card-body">
+                    <p>Lotuses are transplanted from their natural habitat to a government ditch. They survive, but they lose their sweetness.</p>
+                    <blockquote>
+                        "In human matters it also must be so. / It is better for a man to be utterly cast away / Than torn from his roots and put where he is not in place."
+                        <cite>Birch, pp. 269&ndash;270; tr. Waley</cite>
+                    </blockquote>
+                    <h4>Analysis</h4>
+                    <p>A parable of exile and displacement. The lotuses are Bai Juyi himself, uprooted from Chang'an and planted in a provincial post where he does not belong. "Torn from his roots" applies equally to the flower and the poet. The poem's argument is radical: better to be destroyed entirely than to survive in the wrong place. This is the voice of a man who has experienced demotion and knows that institutional survival is not the same as being alive. Compare to Tao Yuanming's decision to quit office entirely rather than bow to a petty superior. Both poets choose integrity over position, but Bai Juyi frames it as botanical fact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Temple -->
+    <section class="content-section" id="temple">
+        <div class="section-label"><span class="chinese">遊悟真寺詩</span> THE TEMPLE</div>
+        <div class="content-grid">
+            <div class="card" style="grid-column: 1 / -1">
+                <div class="card-head"><span class="chinese">遊悟真寺詩</span> The Temple <span class="meta">tr. Arthur Waley &middot; pp. 270&ndash;277</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Autumn: the ninth year of Y&uuml;an-ho;<br>
+                        The eighth month, and the moon swelling her arc.<br>
+                        It was then I travelled to the Temple of Wu-chen,<br>
+                        A temple terraced on Wang Shun's Hill."
+                        <cite>Birch, p. 270; tr. Waley</cite>
+                    </blockquote>
+
+                    <h4>Structure: A Five-Day Journey Inward</h4>
+                    <p>At seven pages, this is the longest poem in the selection. It records a five-day pilgrimage to Wu-chen Temple (Temple of Awakened Truth) on Wang Shun's Hill. The poem moves through three layers:</p>
+                    <p><strong>1. The Physical Climb.</strong> Wading streams, gripping ivy, tracking monkeys. The mountain resists the visitor. The natural world is not decorative. It is an obstacle course that strips away the traveler's urban identity.</p>
+                    <p><strong>2. The Architectural Tour.</strong> Treasure Towers, Jade Image Hall, Painted Dragon Hall. Buddhist relics, a jade flute "borne as a gift to the Garden of Jetavan," the Chamber of Guanyin. The temple is both real building and spiritual diagram.</p>
+                    <p><strong>3. The Autobiographical Turn.</strong> The poem pivots to confession:</p>
+                    <blockquote>
+                        "I, that a man of the wild hills was born, / Floundering fell into the web of the World's net."
+                        <cite>Birch, p. 276; tr. Waley</cite>
+                    </blockquote>
+                    <p>He recalls his career as a hollow compromise. Then declares freedom: "Like a wild deer that has torn the hunter's net / I range abroad by no halters barred." He sits with Zhuangzi's book and announces he will never return to the "marble basin" of office.</p>
+
+                    <h4>Why It Matters</h4>
+                    <p>Bai Juyi was the friend and ally of Han Yu, the arch-enemy of Buddhism. Yet here he writes a poem that finds genuine transcendence in a Buddhist temple. The contradiction is the point. Mid-Tang intellectuals could not be easily sorted into "pro-Buddhist" or "anti-Buddhist" camps. Bai's Buddhism was practical and personal: not doctrinal philosophy but a way of surviving political disappointment. The temple climb is a metaphor for what Buddhism offered the exiled literatus: a path that goes up and away from the court. Compare to Wang Wei's Chan Buddhism in the Wang River poems. Both poets find in Buddhism what Confucianism cannot provide: permission to stop striving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shorter Poems -->
+    <section class="content-section alt" id="shorter">
+        <div class="section-label"><span class="chinese">短詩</span> THE SHORTER POEMS</div>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">紅鸚鵡</span> The Red Cockatoo <span class="meta">tr. Waley &middot; p. 277</span></div>
+                <div class="card-body">
+                    <p>"Sent as a present from Annam &mdash; / A red cockatoo. / Coloured like the peach-tree blossom, / Speaking with the speech of men."</p>
+                    <p>They caged it. Six lines. A beautiful bird that can talk, sent from the frontier as a gift, locked in a cage for its talents. The parallel is hard to miss: the eloquent get punished for their eloquence. Bai Juyi was exiled for speaking up about a political assassination. The cockatoo is Bai Juyi. The cage is Jiangzhou.</p>
+                    <h4>Analysis</h4>
+                    <p>This is Bai's "plain style" at its sharpest. No allusion, no obscurity. A child could follow the surface story. But the political meaning is devastating. The bird's crime is "speaking with the speech of men." Bai's crime was the same. In six lines, he transforms a pet-poem into an indictment of how the Tang state treats its critics.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">沐浴</span> On His Baldness <span class="meta">tr. Waley &middot; p. 278</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "On my bald pate I trickle a ladle full.<br>
+                        Like one baptized with the Water of Buddha's Law,<br>
+                        I sit and receive this cool, cleansing joy."
+                        <cite>Birch, p. 278; tr. Waley</cite>
+                    </blockquote>
+                    <h4>Analysis</h4>
+                    <p>Bai loses his hair and decides he loves it. No more comb, no more topknot, no more fuss. He pours cold water on his bare head and compares himself to a Buddhist monk receiving baptism. What Birch calls Bai's "quiet whimsy" (p. 260) is actually a serious move: he turns a sign of aging into a sign of spiritual freedom. The topknot was a mark of the Confucian gentleman. Losing it means losing the social performance. Bai is delighted. This is retirement poetry at its most radical: the body's decay becomes liberation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem">
+            <div class="card">
+                <div class="card-head"><span class="chinese">贈客</span> To a Talkative Guest <span class="meta">tr. Waley &middot; p. 278</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "I beg you, Sir, do not tell me about things at Ch'ang-an; / For you entered just when my lute was tuned and lying balanced on my knees."
+                        <cite>Birch, p. 278; tr. Waley</cite>
+                    </blockquote>
+                    <h4>Analysis</h4>
+                    <p>Five lines of perfect refusal. The retired poet does not want news from the capital. The lute is tuned. The visitor brings politics. Bai chooses music over information. This is the recluse ideal in a social situation: the guest has already arrived, so Bai cannot retreat physically. Instead, he retreats mentally, using the lute as a boundary marker. Compare to Wang Wei's "To the Assistant Prefect Chang," where Wang refuses the question of success with fishermen's songs. Same move, same genre, different century. The Tang literatus had a script for saying "I don't care anymore," and Bai Juyi performs it with comic precision.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">題壁</span> The Poem on the Wall <span class="meta">tr. Waley &middot; p. 278</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "My clumsy poem on the inn-wall none cared to see;<br>
+                        With bird-droppings and moss's growth the letters were blotched away.<br>
+                        There came a guest with heart so full, that though a page to the Throne,<br>
+                        He did not grudge with his broidered coat to wipe off the dust, and read."
+                        <cite>Birch, p. 278; tr. Waley</cite>
+                    </blockquote>
+                    <h4>Analysis</h4>
+                    <p>Birch notes that "Y&uuml;an Chen wrote that on his way to exile he had discovered a poem inscribed by Po Ch&uuml;-yi on the wall of the Lo-k'ou Inn" (p. 278). A forgotten poem on an inn wall, covered in bird droppings, and a friend in exile who stops to clean it and read. The "broidered coat" marks Yuan Zhen as an official, yet he stoops. This is the Yuan-Bai friendship in miniature: two poets reading each other across distance and disgrace. The poem also says something about what happens to literature after the writer moves on. Words on walls get covered in moss. It takes an act of love to recover them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">The Plain Style</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Bai Juyi tested his poems on an illiterate servant woman and rewrote anything she could not follow. Li He (who we will read alongside him) wrote "Dew on the secret orchid / Like screaming eyes." Are these opposite poetics, or different responses to the same broken world? What is gained and lost by radical accessibility?</li>
+                        <li>The Red Cockatoo is six lines long and uses no allusions. It is also an indictment of political persecution. Can plain language carry the same weight as Du Fu's "encrusted jewels of compressed esoteric allusion"?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Love, Power, History</div>
+                <div class="card-body">
+                    <ul>
+                        <li>"A Song of Unending Sorrow" retells the An Lushan Rebellion as a love story. Is Bai Juyi sympathizing with Emperor Xuanzong, criticizing him, or both? Does the Daoist ending (the spirit on the enchanted isle) offer real consolation, or does it expose the emperor's fantasy of reunion as a failure to face consequences?</li>
+                        <li>Yang Guifei is strangled on the emperor's orders. The poem mourns her death but never questions the soldiers' demand that she die. Whose side is Bai Juyi on?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Buddhism and Withdrawal</div>
+                <div class="card-body">
+                    <ul>
+                        <li>"The Temple" is a seven-page pilgrimage poem that ends with Bai declaring he will never return to office. He was a friend of Han Yu, the most famous anti-Buddhist polemicist of the Tang. How do you reconcile these positions? Is Bai's Buddhism genuine or strategic?</li>
+                        <li>"On His Baldness" turns aging into Buddhist liberation. "On the Lotuses" turns transplantation into a parable of exile. How does Bai Juyi use natural imagery differently from Wang Wei? (Hint: Wang Wei dissolves into nature. Bai Juyi argues with it.)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I: "Poets of a Generation: Two," pp. 260&ndash;287. Bai Juyi selections pp. 266&ndash;278. Translations by Witter Bynner (Song of Unending Sorrow) and Arthur Waley (The Temple, shorter poems).</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/biography/Bai-Juyi" target="_blank" rel="noopener">Britannica: Bai Juyi</a>
+                <a href="https://www.worldhistory.org/Bai_Juyi/" target="_blank" rel="noopener">World History Encyclopedia: Bai Juyi</a>
+                <a href="https://www.newworldencyclopedia.org/entry/Bai_Juyi" target="_blank" rel="noopener">New World Encyclopedia: Bai Juyi</a>
+                <a href="https://fanti.dugushici.com/ancient_authors/665" target="_blank" rel="noopener">讀古詩詞網: Bai Juyi Poetry Collection</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Pages</h4>
+                <a href="poets-generation-two.html">Poets of a Generation: Two (full reading)</a>
+                <a href="tang-poets.html">Tang Poets (Wang Wei, Li Bai, Du Fu)</a>
+                <a href="prose-essays.html">Tang Prose Essays</a>
+                <a href="recluse-poetry.html">Recluse Poetry</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
