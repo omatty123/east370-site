@@ -481,112 +481,180 @@
     <section class="content-section" id="map">
         <div class="section-label"><span class="chinese">關係圖</span> AUTHOR TIMELINE &amp; RELATIONSHIP MAP</div>
         <div class="map-container">
-            <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="font-family: Inter, -apple-system, sans-serif;">
-                <!-- Background -->
-                <rect width="900" height="520" fill="#fafaf8"/>
-
-                <!-- Timeline axis -->
-                <line x1="60" y1="80" x2="840" y2="80" stroke="#ddd" stroke-width="2"/>
-                <!-- Tick marks and dates -->
-                <line x1="120" y1="75" x2="120" y2="85" stroke="#bbb" stroke-width="1.5"/>
-                <text x="120" y="70" text-anchor="middle" font-size="10" fill="#999">750</text>
-                <line x1="250" y1="75" x2="250" y2="85" stroke="#bbb" stroke-width="1.5"/>
-                <text x="250" y="70" text-anchor="middle" font-size="10" fill="#999">800</text>
-                <line x1="380" y1="75" x2="380" y2="85" stroke="#bbb" stroke-width="1.5"/>
-                <text x="380" y="70" text-anchor="middle" font-size="10" fill="#999">850</text>
-                <line x1="510" y1="75" x2="510" y2="85" stroke="#bbb" stroke-width="1.5"/>
-                <text x="510" y="70" text-anchor="middle" font-size="10" fill="#999">900</text>
-                <line x1="640" y1="75" x2="640" y2="85" stroke="#bbb" stroke-width="1.5"/>
-                <text x="640" y="70" text-anchor="middle" font-size="10" fill="#999">950</text>
-
-                <!-- Dynasty background bar -->
-                <rect x="60" y="85" width="780" height="18" fill="#A03030" opacity="0.08" rx="2"/>
-                <text x="450" y="97" text-anchor="middle" font-size="9" fill="#A03030" font-weight="600" letter-spacing="0.1em">TANG DYNASTY (618 &ndash; 907)</text>
-
-                <!-- Life span bars -->
-                <!-- Bai Juyi: 772-846 -->
-                <rect x="188" y="120" width="192" height="10" rx="3" fill="#b8860b" opacity="0.3"/>
-                <text x="284" y="145" text-anchor="middle" font-size="10" fill="#b8860b" font-weight="600">Bai Juyi 白居易 (772&ndash;846)</text>
-
-                <!-- Yuan Zhen: 779-831 -->
-                <rect x="206" y="165" width="135" height="10" rx="3" fill="#8a3030" opacity="0.5"/>
-                <text x="273" y="190" text-anchor="middle" font-size="10" fill="#8a3030" font-weight="600">Yuan Zhen 元稹 (779&ndash;831)</text>
-
-                <!-- Bo Xingqian: 776-826 -->
-                <rect x="198" y="210" width="130" height="10" rx="3" fill="#2d6b4f" opacity="0.5"/>
-                <text x="263" y="235" text-anchor="middle" font-size="10" fill="#2d6b4f" font-weight="600">Bo Xingqian 白行簡 (c. 776&ndash;826)</text>
-
-                <!-- Du Guangting: 850-933 -->
-                <rect x="386" y="165" width="216" height="10" rx="3" fill="#5b4a8a" opacity="0.5"/>
-                <text x="494" y="190" text-anchor="middle" font-size="10" fill="#5b4a8a" font-weight="600">Du Guangting 杜光庭 (850&ndash;933)</text>
-
-                <!-- Relationship lines -->
-                <!-- Bai Juyi <-> Yuan Zhen: "closest friends" -->
-                <line x1="260" y1="148" x2="260" y2="165" stroke="#b8860b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                <text x="280" y="160" font-size="8" fill="#8a8a8a" font-style="italic">closest friends</text>
-
-                <!-- Bai Juyi <-> Bo Xingqian: "brothers" -->
-                <line x1="240" y1="148" x2="240" y2="210" stroke="#b8860b" stroke-width="1.5"/>
-                <text x="220" y="185" font-size="8" fill="#8a8a8a" font-style="italic" text-anchor="end">brothers</text>
-
-                <!-- Story nodes -->
-                <!-- Yingying: linked to Yuan Zhen -->
-                <rect x="110" y="280" width="200" height="60" rx="6" fill="#fff" stroke="#8a3030" stroke-width="1.5"/>
-                <text x="210" y="300" text-anchor="middle" font-size="10" fill="#8a3030" font-weight="700">Story of Yingying 鶯鶯傳</text>
-                <text x="210" y="314" text-anchor="middle" font-size="8.5" fill="#4a4a4a">Semi-autobiographical romance</text>
-                <text x="210" y="328" text-anchor="middle" font-size="8" fill="#8a8a8a">pp. 290&ndash;299 &middot; trans. Arthur Waley</text>
-                <!-- Link: Yuan Zhen -> Yingying -->
-                <line x1="245" y1="195" x2="210" y2="280" stroke="#8a3030" stroke-width="1" opacity="0.5"/>
-
-                <!-- Miss Li: linked to Bo Xingqian -->
-                <rect x="340" y="280" width="200" height="60" rx="6" fill="#fff" stroke="#2d6b4f" stroke-width="1.5"/>
-                <text x="440" y="300" text-anchor="middle" font-size="10" fill="#2d6b4f" font-weight="700">Story of Miss Li 李娃傳</text>
-                <text x="440" y="314" text-anchor="middle" font-size="8.5" fill="#4a4a4a">Courtesan redemption tale</text>
-                <text x="440" y="328" text-anchor="middle" font-size="8" fill="#8a8a8a">pp. 300&ndash;313 &middot; trans. Arthur Waley</text>
-                <!-- Link: Bo Xingqian -> Miss Li -->
-                <line x1="290" y1="235" x2="440" y2="280" stroke="#2d6b4f" stroke-width="1" opacity="0.5"/>
-
-                <!-- Curly-bearded Hero: linked to Du Guangting -->
-                <rect x="575" y="280" width="220" height="60" rx="6" fill="#fff" stroke="#5b4a8a" stroke-width="1.5"/>
-                <text x="685" y="300" text-anchor="middle" font-size="10" fill="#5b4a8a" font-weight="700">Curly-bearded Hero 虬髯客傳</text>
-                <text x="685" y="314" text-anchor="middle" font-size="8.5" fill="#4a4a4a">Heroic dynastic founding tale</text>
-                <text x="685" y="328" text-anchor="middle" font-size="8" fill="#8a8a8a">pp. 314&ndash;322 &middot; trans. Cyril Birch</text>
-                <!-- Link: Du Guangting -> Curly-bearded -->
-                <line x1="494" y1="195" x2="685" y2="280" stroke="#5b4a8a" stroke-width="1" opacity="0.5"/>
-
-                <!-- Adaptation arrow: Yingying -> West Chamber -->
-                <rect x="60" y="370" width="300" height="50" rx="6" fill="#6D5B2E" opacity="0.08" stroke="#6D5B2E" stroke-width="1"/>
-                <text x="210" y="390" text-anchor="middle" font-size="9.5" fill="#6D5B2E" font-weight="700">Romance of the Western Chamber 西廂記</text>
-                <text x="210" y="404" text-anchor="middle" font-size="8" fill="#8a8a8a">Wang Shifu, Yuan dynasty (13th c.) &middot; Dramatic adaptation</text>
-                <!-- Arrow -->
-                <line x1="210" y1="340" x2="210" y2="370" stroke="#6D5B2E" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-                <text x="230" y="358" font-size="7.5" fill="#6D5B2E" font-style="italic">adapted into</text>
+            <svg viewBox="0 0 960 720" xmlns="http://www.w3.org/2000/svg" style="font-family: Inter, -apple-system, sans-serif;">
                 <defs>
-                    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                        <polygon points="0 0, 8 3, 0 6" fill="#6D5B2E"/>
-                    </marker>
+                    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#8a8a8a"/></marker>
+                    <marker id="arr-gold" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#6D5B2E"/></marker>
+                    <filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
                 </defs>
 
-                <!-- Bai Juyi's "Song of Everlasting Sorrow" connection -->
-                <rect x="400" y="370" width="260" height="50" rx="6" fill="#b8860b" opacity="0.06" stroke="#b8860b" stroke-width="1"/>
-                <text x="530" y="390" text-anchor="middle" font-size="9.5" fill="#b8860b" font-weight="700">Song of Everlasting Sorrow 長恨歌</text>
-                <text x="530" y="404" text-anchor="middle" font-size="8" fill="#8a8a8a">Bai Juyi &middot; Shared theme: desire vs. duty</text>
-                <!-- Arrow from Bai Juyi -->
-                <line x1="310" y1="148" x2="530" y2="370" stroke="#b8860b" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+                <!-- Background -->
+                <rect width="960" height="720" fill="#fafaf8"/>
 
-                <!-- Legend -->
-                <rect x="60" y="445" width="780" height="55" rx="4" fill="#f0ede8"/>
-                <text x="75" y="462" font-size="9" fill="#666" font-weight="600">LEGEND</text>
-                <line x1="75" y1="478" x2="95" y2="478" stroke="#b8860b" stroke-width="1.5"/>
-                <text x="100" y="482" font-size="8" fill="#666">Solid line = family</text>
-                <line x1="200" y1="478" x2="220" y2="478" stroke="#b8860b" stroke-width="1.5" stroke-dasharray="4,2"/>
-                <text x="225" y="482" font-size="8" fill="#666">Dashed = friendship</text>
-                <line x1="350" y1="478" x2="370" y2="478" stroke="#666" stroke-width="1" opacity="0.5"/>
-                <text x="375" y="482" font-size="8" fill="#666">Thin line = author &rarr; story</text>
-                <rect x="500" y="472" width="12" height="12" rx="2" fill="#8a3030" opacity="0.15" stroke="#8a3030" stroke-width="1"/>
-                <text x="517" y="482" font-size="8" fill="#666">Story node</text>
-                <rect x="600" y="472" width="40" height="12" rx="3" fill="#5b4a8a" opacity="0.5"/>
-                <text x="645" y="482" font-size="8" fill="#666">Life span</text>
+                <!-- ===== TIMELINE BAR (top) ===== -->
+                <rect x="40" y="20" width="880" height="44" rx="6" fill="#1a1a1a"/>
+                <text x="60" y="38" font-size="9" fill="#888" font-weight="600" letter-spacing="0.1em">TANG DYNASTY 618 &ndash; 907</text>
+                <!-- Ticks -->
+                <line x1="200" y1="46" x2="200" y2="64" stroke="#ccc" stroke-width="1"/>
+                <text x="200" y="54" text-anchor="middle" font-size="8" fill="#aaa">750</text>
+                <line x1="360" y1="46" x2="360" y2="64" stroke="#ccc" stroke-width="1"/>
+                <text x="360" y="54" text-anchor="middle" font-size="8" fill="#aaa">800</text>
+                <line x1="520" y1="46" x2="520" y2="64" stroke="#ccc" stroke-width="1"/>
+                <text x="520" y="54" text-anchor="middle" font-size="8" fill="#aaa">850</text>
+                <line x1="680" y1="46" x2="680" y2="64" stroke="#ccc" stroke-width="1"/>
+                <text x="680" y="54" text-anchor="middle" font-size="8" fill="#aaa">900</text>
+                <line x1="840" y1="46" x2="840" y2="64" stroke="#ccc" stroke-width="1"/>
+                <text x="840" y="54" text-anchor="middle" font-size="8" fill="#aaa">950</text>
+                <!-- Life bars inside the dark bar -->
+                <rect x="248" y="26" width="188" height="8" rx="4" fill="#b8860b" opacity="0.7"/>
+                <text x="342" y="48" text-anchor="middle" font-size="7.5" fill="#daa520">Bai Juyi 772&ndash;846</text>
+                <rect x="260" y="36" width="132" height="6" rx="3" fill="#8a3030" opacity="0.8"/>
+                <rect x="254" y="44" width="128" height="6" rx="3" fill="#2d6b4f" opacity="0.8"/>
+                <rect x="528" y="30" width="212" height="8" rx="4" fill="#5b4a8a" opacity="0.7"/>
+                <text x="634" y="48" text-anchor="middle" font-size="7.5" fill="#9b8abf">Du Guangting 850&ndash;933</text>
+
+                <!-- ===== TIER 1: PEOPLE (Hub & Spoke) ===== -->
+
+                <!-- Bai Juyi: Central Hub -->
+                <rect x="350" y="110" width="260" height="80" rx="10" fill="#fff" stroke="#b8860b" stroke-width="2.5" filter="url(#shadow)"/>
+                <rect x="350" y="110" width="260" height="28" rx="10" fill="#b8860b"/>
+                <rect x="350" y="128" width="260" height="2" fill="#b8860b"/>
+                <text x="480" y="130" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">白居易  Bai Juyi</text>
+                <text x="480" y="155" text-anchor="middle" font-size="11" fill="#4a4a4a">772&ndash;846 &middot; Poet, Reformer</text>
+                <text x="480" y="172" text-anchor="middle" font-size="10" fill="#8a8a8a">The hub connecting these authors</text>
+
+                <!-- Yuan Zhen: Upper Left -->
+                <rect x="60" y="220" width="240" height="80" rx="10" fill="#fff" stroke="#8a3030" stroke-width="2" filter="url(#shadow)"/>
+                <rect x="60" y="220" width="240" height="26" rx="10" fill="#8a3030"/>
+                <rect x="60" y="236" width="240" height="2" fill="#8a3030"/>
+                <text x="180" y="240" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">元稹  Yuan Zhen</text>
+                <text x="180" y="262" text-anchor="middle" font-size="11" fill="#4a4a4a">779&ndash;831 &middot; Poet, Chief Minister</text>
+                <text x="180" y="279" text-anchor="middle" font-size="10" fill="#8a8a8a">"New Music Bureau" co-founder</text>
+
+                <!-- Bo Xingqian: Upper Right -->
+                <rect x="660" y="220" width="240" height="80" rx="10" fill="#fff" stroke="#2d6b4f" stroke-width="2" filter="url(#shadow)"/>
+                <rect x="660" y="220" width="240" height="26" rx="10" fill="#2d6b4f"/>
+                <rect x="660" y="236" width="240" height="2" fill="#2d6b4f"/>
+                <text x="780" y="240" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">白行簡  Bo Xingqian</text>
+                <text x="780" y="262" text-anchor="middle" font-size="11" fill="#4a4a4a">c. 776&ndash;826 &middot; Fiction Writer</text>
+                <text x="780" y="279" text-anchor="middle" font-size="10" fill="#8a8a8a">Classical prose romances</text>
+
+                <!-- Du Guangting: Far Right, lower -->
+                <rect x="660" y="110" width="240" height="80" rx="10" fill="#fff" stroke="#5b4a8a" stroke-width="2" filter="url(#shadow)"/>
+                <rect x="660" y="110" width="240" height="26" rx="10" fill="#5b4a8a"/>
+                <rect x="660" y="126" width="240" height="2" fill="#5b4a8a"/>
+                <text x="780" y="130" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">杜光庭  Du Guangting</text>
+                <text x="780" y="155" text-anchor="middle" font-size="11" fill="#4a4a4a">850&ndash;933 &middot; Daoist Priest</text>
+                <text x="780" y="172" text-anchor="middle" font-size="10" fill="#8a8a8a">Late Tang, Five Dynasties</text>
+
+                <!-- ===== RELATIONSHIP LINES ===== -->
+
+                <!-- Bai Juyi -> Yuan Zhen: "Closest friends in Chinese literary history" -->
+                <path d="M 350 155 C 300 155, 300 250, 300 260" fill="none" stroke="#b8860b" stroke-width="2.5" stroke-dasharray="8,4"/>
+                <rect x="225" y="170" width="160" height="22" rx="11" fill="#fff" stroke="#b8860b" stroke-width="1"/>
+                <text x="305" y="184" text-anchor="middle" font-size="10" fill="#b8860b" font-weight="600">Closest friends</text>
+
+                <!-- Bai Juyi -> Bo Xingqian: "Brothers" -->
+                <path d="M 610 155 C 660 155, 660 250, 660 260" fill="none" stroke="#b8860b" stroke-width="3"/>
+                <rect x="618" y="170" width="90" height="22" rx="11" fill="#fff" stroke="#b8860b" stroke-width="1"/>
+                <text x="663" y="184" text-anchor="middle" font-size="10" fill="#b8860b" font-weight="600">Brothers</text>
+
+                <!-- Du Guangting: separate (later era) -->
+                <text x="635" y="150" text-anchor="middle" font-size="9" fill="#999" font-style="italic">later era</text>
+                <line x1="610" y1="148" x2="660" y2="148" stroke="#ddd" stroke-width="1" stroke-dasharray="3,3"/>
+
+                <!-- ===== TIER 2: STORIES ===== -->
+
+                <!-- Story of Yingying -->
+                <rect x="30" y="370" width="270" height="90" rx="8" fill="#8a3030" opacity="0.06" stroke="#8a3030" stroke-width="1.5" filter="url(#shadow)"/>
+                <text x="165" y="395" text-anchor="middle" font-size="13" fill="#8a3030" font-weight="700">鶯鶯傳</text>
+                <text x="165" y="412" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">Story of Yingying</text>
+                <text x="165" y="428" text-anchor="middle" font-size="10" fill="#4a4a4a">Romance &amp; betrayal</text>
+                <text x="165" y="445" text-anchor="middle" font-size="9" fill="#8a8a8a">pp. 290&ndash;299 &middot; trans. Arthur Waley</text>
+                <!-- Author -> Story -->
+                <path d="M 180 300 L 165 370" fill="none" stroke="#8a3030" stroke-width="1.5" marker-end="url(#arr)"/>
+                <text x="160" y="340" font-size="9" fill="#8a3030" font-weight="500">wrote</text>
+
+                <!-- Story of Miss Li -->
+                <rect x="345" y="370" width="270" height="90" rx="8" fill="#2d6b4f" opacity="0.06" stroke="#2d6b4f" stroke-width="1.5" filter="url(#shadow)"/>
+                <text x="480" y="395" text-anchor="middle" font-size="13" fill="#2d6b4f" font-weight="700">李娃傳</text>
+                <text x="480" y="412" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">Story of Miss Li</text>
+                <text x="480" y="428" text-anchor="middle" font-size="10" fill="#4a4a4a">Ruin &amp; redemption</text>
+                <text x="480" y="445" text-anchor="middle" font-size="9" fill="#8a8a8a">pp. 300&ndash;313 &middot; trans. Arthur Waley</text>
+                <!-- Author -> Story -->
+                <path d="M 780 300 C 780 340, 500 340, 480 370" fill="none" stroke="#2d6b4f" stroke-width="1.5" marker-end="url(#arr)"/>
+                <text x="640" y="330" font-size="9" fill="#2d6b4f" font-weight="500">wrote</text>
+
+                <!-- Curly-bearded Hero -->
+                <rect x="660" y="370" width="270" height="90" rx="8" fill="#5b4a8a" opacity="0.06" stroke="#5b4a8a" stroke-width="1.5" filter="url(#shadow)"/>
+                <text x="795" y="395" text-anchor="middle" font-size="13" fill="#5b4a8a" font-weight="700">虬髯客傳</text>
+                <text x="795" y="412" text-anchor="middle" font-size="11.5" fill="#1a1a1a" font-weight="600">Curly-bearded Hero</text>
+                <text x="795" y="428" text-anchor="middle" font-size="10" fill="#4a4a4a">Destiny &amp; yielding</text>
+                <text x="795" y="445" text-anchor="middle" font-size="9" fill="#8a8a8a">pp. 314&ndash;322 &middot; trans. Cyril Birch</text>
+                <!-- Author -> Story -->
+                <path d="M 780 190 L 795 370" fill="none" stroke="#5b4a8a" stroke-width="1.5" marker-end="url(#arr)"/>
+                <text x="800" y="290" font-size="9" fill="#5b4a8a" font-weight="500">wrote</text>
+
+                <!-- ===== TIER 3: THEMATIC LINKS & LEGACY ===== -->
+
+                <!-- Shared theme line between Yingying and Miss Li -->
+                <path d="M 300 420 C 330 440, 340 440, 345 420" fill="none" stroke="#b8860b" stroke-width="1" stroke-dasharray="4,3"/>
+                <text x="322" y="452" text-anchor="middle" font-size="8.5" fill="#b8860b" font-style="italic">both explore desire vs. duty</text>
+
+                <!-- Adaptation: Yingying -> West Chamber -->
+                <rect x="30" y="510" width="270" height="65" rx="8" fill="#6D5B2E" opacity="0.08" stroke="#6D5B2E" stroke-width="1.5"/>
+                <text x="165" y="533" text-anchor="middle" font-size="12" fill="#6D5B2E" font-weight="700">西廂記  Romance of the Western Chamber</text>
+                <text x="165" y="550" text-anchor="middle" font-size="10" fill="#4a4a4a">Wang Shifu &middot; Yuan dynasty (13th c.)</text>
+                <text x="165" y="565" text-anchor="middle" font-size="9" fill="#8a8a8a">"Perhaps the most popular love story in Chinese literature"</text>
+                <path d="M 165 460 L 165 510" fill="none" stroke="#6D5B2E" stroke-width="2" marker-end="url(#arr-gold)"/>
+                <rect x="105" y="476" width="120" height="20" rx="10" fill="#fff" stroke="#6D5B2E" stroke-width="1"/>
+                <text x="165" y="490" text-anchor="middle" font-size="9" fill="#6D5B2E" font-weight="600">adapted into</text>
+
+                <!-- Bai Juyi's Song of Everlasting Sorrow -->
+                <rect x="345" y="510" width="270" height="65" rx="8" fill="#b8860b" opacity="0.06" stroke="#b8860b" stroke-width="1"/>
+                <text x="480" y="533" text-anchor="middle" font-size="12" fill="#b8860b" font-weight="700">長恨歌  Song of Everlasting Sorrow</text>
+                <text x="480" y="550" text-anchor="middle" font-size="10" fill="#4a4a4a">Bai Juyi's narrative poem</text>
+                <text x="480" y="565" text-anchor="middle" font-size="9" fill="#8a8a8a">Same milieu: doomed love, political catastrophe</text>
+                <path d="M 480 190 C 480 350, 480 480, 480 510" fill="none" stroke="#b8860b" stroke-width="1" stroke-dasharray="5,3" opacity="0.5"/>
+                <rect x="425" y="480" width="110" height="20" rx="10" fill="#fff" stroke="#b8860b" stroke-width="1"/>
+                <text x="480" y="494" text-anchor="middle" font-size="9" fill="#b8860b" font-weight="600">parallel work</text>
+
+                <!-- Curly-bearded -> Li Shimin / Tang founding -->
+                <rect x="660" y="510" width="270" height="65" rx="8" fill="#A03030" opacity="0.06" stroke="#A03030" stroke-width="1"/>
+                <text x="795" y="533" text-anchor="middle" font-size="12" fill="#A03030" font-weight="700">Tang Founding Myth</text>
+                <text x="795" y="550" text-anchor="middle" font-size="10" fill="#4a4a4a">Li Shimin 李世民 (Emperor Taizong)</text>
+                <text x="795" y="565" text-anchor="middle" font-size="9" fill="#8a8a8a">Mandate of Heaven, Confucian yielding</text>
+                <path d="M 795 460 L 795 510" fill="none" stroke="#A03030" stroke-width="1.5" marker-end="url(#arr)"/>
+                <rect x="740" y="476" width="110" height="20" rx="10" fill="#fff" stroke="#A03030" stroke-width="1"/>
+                <text x="795" y="490" text-anchor="middle" font-size="9" fill="#A03030" font-weight="600">mythologizes</text>
+
+                <!-- ===== GENRE LABEL ===== -->
+                <rect x="345" y="620" width="270" height="40" rx="20" fill="#1a1a1a"/>
+                <text x="480" y="636" text-anchor="middle" font-size="10" fill="#daa520" font-weight="600" letter-spacing="0.05em">TANG CHUANQI 傳奇</text>
+                <text x="480" y="650" text-anchor="middle" font-size="9" fill="#aaa">First conscious fiction in Chinese literature</text>
+                <!-- Lines from stories to genre -->
+                <path d="M 165 460 C 165 570, 410 620, 410 630" fill="none" stroke="#ddd" stroke-width="1"/>
+                <path d="M 480 460 L 480 620" fill="none" stroke="#ddd" stroke-width="1"/>
+                <path d="M 795 460 C 795 570, 550 620, 550 630" fill="none" stroke="#ddd" stroke-width="1"/>
+
+                <!-- ===== LEGEND (bottom) ===== -->
+                <rect x="40" y="678" width="880" height="30" rx="4" fill="#f0ede8"/>
+                <line x1="60" y1="693" x2="80" y2="693" stroke="#b8860b" stroke-width="3"/>
+                <text x="85" y="697" font-size="9" fill="#666">Family</text>
+                <line x1="150" y1="693" x2="170" y2="693" stroke="#b8860b" stroke-width="2.5" stroke-dasharray="8,4"/>
+                <text x="175" y="697" font-size="9" fill="#666">Friendship</text>
+                <line x1="265" y1="693" x2="285" y2="693" stroke="#666" stroke-width="1.5" marker-end="url(#arr)"/>
+                <text x="290" y="697" font-size="9" fill="#666">Wrote</text>
+                <line x1="345" y1="693" x2="365" y2="693" stroke="#6D5B2E" stroke-width="2" marker-end="url(#arr-gold)"/>
+                <text x="370" y="697" font-size="9" fill="#666">Adapted / Legacy</text>
+                <line x1="485" y1="693" x2="505" y2="693" stroke="#b8860b" stroke-width="1" stroke-dasharray="5,3"/>
+                <text x="510" y="697" font-size="9" fill="#666">Thematic parallel</text>
+                <rect x="620" y="687" width="14" height="14" rx="3" fill="#8a3030" opacity="0.06" stroke="#8a3030" stroke-width="1.5"/>
+                <text x="640" y="697" font-size="9" fill="#666">Story</text>
+                <rect x="690" y="687" width="14" height="14" rx="5" fill="#fff" stroke="#b8860b" stroke-width="2.5"/>
+                <text x="710" y="697" font-size="9" fill="#666">Person</text>
+                <rect x="770" y="687" width="14" height="14" rx="3" fill="#6D5B2E" opacity="0.08" stroke="#6D5B2E" stroke-width="1.5"/>
+                <text x="790" y="697" font-size="9" fill="#666">Legacy</text>
             </svg>
         </div>
     </section>
@@ -618,7 +686,7 @@
                         "I have observed that in Nature whatever has perfect beauty is either itself liable to sudden transformations or else is the cause of them in others. If Ying-ying were to marry a rich gentleman and become his pet, she would forever be changing, as the clouds change to rain, or as the scaly dragon turns into the horned dragon."
                         <cite>Birch, p. 298; trans. Arthur Waley</cite>
                     </blockquote>
-                    <p>Chang blames Yingying's beauty for his inability to commit. He compares beautiful women to the concubines who destroyed the Yin and Zhou dynasties. This is one of the most studied passages in Chinese literary history. It is either sincere Confucian self-discipline or breathtaking bad faith.</p>
+                    <p>Chang blames Yingying's beauty for his inability to commit. He compares beautiful women to the concubines who destroyed the Yin and Zhou dynasties. It is either sincere Confucian self-discipline or breathtaking bad faith.</p>
                     <h4>Yingying's Voice</h4>
                     <blockquote>
                         "Those whom a man leads astray, he will in the end abandon. It must be so, and I will not reproach you. You deigned to corrupt me and now you deign to leave me. That is all."
