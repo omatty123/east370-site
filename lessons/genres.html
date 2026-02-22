@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genre Map: From Poetry to Fiction | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            /* Dynasty accent colors */
+            --zhou: #7A6B50;
+            --warring: #5C4A2E;
+            --han: #4A6741;
+            --six-dyn: #5B7080;
+            --tang: #A03030;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre feature card: big genre display */
+        .genre-feature {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0.75rem;
+            align-items: start;
+        }
+        .genre-feature .gf-char {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            line-height: 1;
+            text-align: left;
+        }
+        .genre-feature .gf-body {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+        .genre-feature .gf-body .gf-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
+        }
+        .genre-feature .gf-body .gf-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Dynasty badge inline */
+        .dynasty-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 0.1rem 0.4rem;
+            border-radius: 2px;
+            color: #fff;
+            margin-right: 0.3rem;
+            vertical-align: middle;
+        }
+        .dynasty-badge.zhou { background: var(--zhou); }
+        .dynasty-badge.warring { background: var(--warring); }
+        .dynasty-badge.han { background: var(--han); }
+        .dynasty-badge.six-dyn { background: var(--six-dyn); }
+        .dynasty-badge.tang { background: var(--tang); }
+
+        /* Reading links */
+        .reading-link {
+            display: inline-block;
+            font-size: 0.7rem;
+            color: var(--teal);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--teal);
+            margin-right: 0.3rem;
+        }
+        .reading-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+            .genre-feature { grid-template-columns: 60px 1fr; }
+            .genre-feature .gf-char { font-size: 2.2rem; }
+        }
+
+        /* Print styles for handout */
+        @media print {
+            .nav, .page-header .back, .dynasty-strip-compact { display: none; }
+            .page-header { background: #fff; padding: 0.5rem 0; }
+            .page-title .ch { color: var(--gold); }
+            .page-title .en { color: var(--ink); }
+            .page-title .meta { color: var(--ink-faint); }
+            .content-section, .content-section.alt { padding: 0.5rem 0; background: #fff; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
+            .card-head { background: #f5f5f3; color: var(--ink); }
+            .card-head .chinese { color: var(--gold); }
+            footer { display: none; }
+            body { font-size: 11pt; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">文體</span>
+            <span class="en">Genre Map: From Poetry to Fiction</span>
+            <span class="meta">All genres covered through Tang chuanqi</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block active" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block active" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block active" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block active" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block active" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#shi">Shi (Poetry)</a>
+        <a href="#fu">Fu (Rhapsody)</a>
+        <a href="#zi">Zi (Masters)</a>
+        <a href="#wen">Wen (Prose)</a>
+        <a href="#chuanqi">Chuanqi (Fiction)</a>
+        <a href="#bigpicture">Big Picture</a>
+        <a href="#discussion">Discussion</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概論</span> WHY GENRE MATTERS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">文體</span> Seven Genres in Eight Weeks</div>
+                <div class="card-body">
+                    <p>Since January, we have read texts spanning roughly 1,500 years of Chinese literary production. Each major genre we encountered carried its own rules, its own relationship to truth, and its own answer to the question: <em>What is writing for?</em></p>
+                    <p>This page maps the seven broad genre categories we have studied so far. Some are older than Kongzi. The newest, chuanqi, was invented by poets we've already met. Together they form a literary system where form is never neutral: choosing to write a <em>fu</em> instead of a <em>shi</em> is a statement about what kind of truth you are after.</p>
+                    <div class="genre-grid">
+                        <div class="genre-item" style="border-left-color: var(--zhou);">
+                            <div class="genre-header">
+                                <span class="genre-ch">詩</span>
+                                <span class="genre-name">Poetry</span>
+                                <span class="genre-pinyin">shi</span>
+                            </div>
+                            <div class="genre-desc">Emotion given form</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: var(--warring);">
+                            <div class="genre-header">
+                                <span class="genre-ch">辭</span>
+                                <span class="genre-name">Songs of Chu</span>
+                                <span class="genre-pinyin">ci</span>
+                            </div>
+                            <div class="genre-desc">The ecstatic voice</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: var(--han);">
+                            <div class="genre-header">
+                                <span class="genre-ch">賦</span>
+                                <span class="genre-name">Rhapsody</span>
+                                <span class="genre-pinyin">fu</span>
+                            </div>
+                            <div class="genre-desc">The world made vivid</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: var(--warring);">
+                            <div class="genre-header">
+                                <span class="genre-ch">子</span>
+                                <span class="genre-name">Masters</span>
+                                <span class="genre-pinyin">zi</span>
+                            </div>
+                            <div class="genre-desc">Argument as literature</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: var(--six-dyn);">
+                            <div class="genre-header">
+                                <span class="genre-ch">文</span>
+                                <span class="genre-name">Prose</span>
+                                <span class="genre-pinyin">wen</span>
+                            </div>
+                            <div class="genre-desc">The self on paper</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: var(--tang);">
+                            <div class="genre-header">
+                                <span class="genre-ch">經</span>
+                                <span class="genre-name">Scripture</span>
+                                <span class="genre-pinyin">jing</span>
+                            </div>
+                            <div class="genre-desc">Words beyond the human</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: var(--tang);">
+                            <div class="genre-header">
+                                <span class="genre-ch">傳奇</span>
+                                <span class="genre-name">Fiction</span>
+                                <span class="genre-pinyin">chuanqi</span>
+                            </div>
+                            <div class="genre-desc">Conscious invention</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">演變</span> Genre as Evolution</div>
+                <div class="card-body">
+                    <p>Chinese literary genres did not arrive all at once. They accumulated over centuries, each new form emerging because the existing ones could not say what someone needed to say.</p>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">c. 1000&ndash;600 BCE</div>
+                            <div class="event"><strong>Shi 詩</strong> emerges as ritual song, folk lyric, political complaint. The oldest literary form in our course.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 500&ndash;200 BCE</div>
+                            <div class="event"><strong>Zi 子</strong> (Masters lit.) and <strong>Chu Ci 楚辭</strong> develop simultaneously. Philosophy and ecstatic poetry, both responses to political crisis.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 200 BCE&ndash;200 CE</div>
+                            <div class="event"><strong>Fu 賦</strong> (Rhapsody) becomes the prestige genre of the Han court. Spectacle and verbal excess as imperial display.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 200&ndash;580 CE</div>
+                            <div class="event"><strong>Wen 文</strong> (personal prose) flourishes as the empire fragments. Writers turn inward. Lu Ji theorizes the whole system.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 400&ndash;900 CE</div>
+                            <div class="event"><strong>Jing 經</strong> (Buddhist scripture) enters Chinese literary culture. Radically different assumptions about language and truth.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 750&ndash;900 CE</div>
+                            <div class="event"><strong>Chuanqi 傳奇</strong> (fiction) emerges. For the first time, writers consciously invent stories as literary art.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genre 1: Shi -->
+    <section class="content-section alt" id="shi">
+        <div class="section-label"><span class="chinese">詩</span> POETRY (SHI)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">詩</span> Lyric Poetry <span class="meta">Zhou through Tang</span></div>
+                <div class="card-body">
+                    <div class="genre-feature">
+                        <div class="gf-char">詩</div>
+                        <div class="gf-body">
+                            <div class="gf-title">Shi: The Oldest Genre</div>
+                            <div class="gf-pinyin">shi (shih in Birch)</div>
+                            <p>Poetry is where Chinese literature begins. Lu Ji defined it as "born of pure emotion, gossamer fibre woven into the finest fabric" (Birch, p. 208). From the ritual songs of the <em>Book of Songs</em> through Tang regulated verse, <em>shi</em> remained the core literary form for over 1,500 years.</p>
+                        </div>
+                    </div>
+                    <h4>What makes it shi?</h4>
+                    <ul>
+                        <li><strong>Personal voice:</strong> the poet speaks from felt experience</li>
+                        <li><strong>Compression:</strong> meaning packed into tight lines, often four or five characters per line</li>
+                        <li><strong>Formal structure:</strong> evolves from folk song (irregular) to regulated verse (strict tonal patterns by the Tang)</li>
+                        <li><strong>The "Great Preface":</strong> "Poetry is where the heart-mind goes. In the heart it is intention; expressed in words it is poetry"</li>
+                    </ul>
+                    <h4>What we've read</h4>
+                    <ul>
+                        <li><span class="dynasty-badge warring">Warring States</span> <a href="songs-of-chu-day1.html">Songs of Chu</a> (Qu Yuan's <em>Li Sao</em>, <em>Nine Songs</em>)</li>
+                        <li><span class="dynasty-badge six-dyn">Six Dyn.</span> <a href="recluse-poetry.html">Recluse Poetry</a> (Tao Yuanming, Ruan Ji)</li>
+                        <li><span class="dynasty-badge six-dyn">Six Dyn.</span> <a href="bao-zhao.html">Bao Zhao</a></li>
+                        <li><span class="dynasty-badge tang">Tang</span> <a href="tang-poets.html">Wang Wei, Li Bai, Du Fu</a></li>
+                        <li><span class="dynasty-badge tang">Tang</span> <a href="bai-juyi.html">Bai Juyi</a>, <a href="poets-generation-two.html">Yuan Zhen, Li He</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">楚辭</span> Songs of Chu <span class="meta">A Special Case</span></div>
+                <div class="card-body">
+                    <div class="genre-feature">
+                        <div class="gf-char">辭</div>
+                        <div class="gf-body">
+                            <div class="gf-title">Chu Ci: The Ecstatic Tradition</div>
+                            <div class="gf-pinyin">chu ci (ch'u tz'u in Birch)</div>
+                            <p>The <em>Songs of Chu</em> stand apart from the northern <em>shi</em> tradition. They are longer, wilder, more rhythmically irregular, saturated with southern shamanic imagery. Where <em>shi</em> tends toward restraint, <em>chu ci</em> tends toward excess.</p>
+                        </div>
+                    </div>
+                    <h4>How it differs from shi</h4>
+                    <ul>
+                        <li><strong>Longer lines:</strong> typically six or seven characters, with the exclamatory particle <em>xi</em> (兮) as a rhythmic marker</li>
+                        <li><strong>Shamanic roots:</strong> derived from southern ritual incantations, not northern court music</li>
+                        <li><strong>Cosmic scope:</strong> the poet journeys across heaven and earth, summons spirits, confronts gods</li>
+                        <li><strong>Political allegory:</strong> Qu Yuan's exile becomes the template for all unjustly dismissed ministers</li>
+                    </ul>
+                    <blockquote>
+                        "Long did I sigh and wipe away my tears,<br>
+                        To think how man's life is beset with sorrow."
+                        <cite>Qu Yuan, <em>Li Sao</em>; Birch, p. 54; trans. David Hawkes</cite>
+                    </blockquote>
+                    <h4>Why it matters for the genre map</h4>
+                    <p>The <em>chu ci</em> tradition fed directly into the <em>fu</em>. The verbal extravagance, the long descriptive catalogues, the cosmic scale of ambition: all of these reappear in Han rhyme-prose. Qu Yuan's personal voice also anticipates the recluse poets a millennium later.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genre 2: Fu -->
+    <section class="content-section" id="fu">
+        <div class="section-label"><span class="chinese">賦</span> RHAPSODY (FU)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">賦</span> Rhyme-Prose / Rhapsody <span class="meta">Warring States through Six Dynasties</span></div>
+                <div class="card-body">
+                    <div class="genre-feature">
+                        <div class="gf-char">賦</div>
+                        <div class="gf-body">
+                            <div class="gf-title">Fu: The World Made Vivid</div>
+                            <div class="gf-pinyin">fu</div>
+                            <p>Lu Ji called the <em>fu</em> "being true to the objects, vividness incarnate" (Birch, p. 208). The <em>fu</em> is the display genre: long, elaborate, rhythmic prose-poetry that catalogues the world in overwhelming detail. It was the prestige literary form of the Han dynasty court.</p>
+                        </div>
+                    </div>
+                    <h4>What makes it fu?</h4>
+                    <ul>
+                        <li><strong>Descriptive excess:</strong> the point is to name everything, to make the reader see the scene in total</li>
+                        <li><strong>Mixed form:</strong> alternates between prose and verse, rhymed and unrhymed passages</li>
+                        <li><strong>Spectacle:</strong> imperial hunts, grand parks, capital cities, cosmic journeys</li>
+                        <li><strong>Political subtext:</strong> the display of imperial wealth often conceals a moral warning about excess</li>
+                    </ul>
+                    <h4>What we've read</h4>
+                    <ul>
+                        <li><span class="dynasty-badge warring">Warring States</span> <a href="fu-background.html">Song Yu's "Fu on the Wind"</a></li>
+                        <li><span class="dynasty-badge han">Han</span> <a href="fu-background.html">Jia Yi's "Lament for Qu Yuan" and "Fu on the Owl"</a></li>
+                        <li><span class="dynasty-badge han">Han</span> <a href="shanglin-fu.html">Sima Xiangru's <em>Shanglin Fu</em></a></li>
+                        <li><span class="dynasty-badge six-dyn">Six Dyn.</span> <a href="lu-ji-wen-fu.html">Lu Ji's <em>Wen Fu</em></a> (a fu about writing itself)</li>
+                    </ul>
+                    <blockquote>
+                        "Writing is in itself a joy,<br>
+                        Yet saints and sages have long since held it in awe.<br>
+                        For it is Being, created by tasking the Great Void,<br>
+                        And 'tis sound rung out of Profound Silence."
+                        <cite>Lu Ji, <em>Wen Fu</em>; Birch, p. 207; trans. Shih-hsiang Chen</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">變化</span> How the Fu Evolved</div>
+                <div class="card-body">
+                    <h4>The arc of the fu</h4>
+                    <p>The <em>fu</em> has a fascinating trajectory in our course. It begins as a vehicle for spectacle (Sima Xiangru's vast imperial park), then transforms into a vehicle for <em>ideas</em> (Lu Ji's meditation on literary creation). The form stays recognizable, but the content shifts from external display to internal reflection.</p>
+                    <div class="key-themes">
+                        <h4>Fu evolution in three texts</h4>
+                        <ul>
+                            <li><strong>Song Yu:</strong> nature as political allegory (the wind serves the king but chills the commoner)</li>
+                            <li><strong>Sima Xiangru:</strong> the imperial park as total catalogue of the world's abundance</li>
+                            <li><strong>Lu Ji:</strong> the creative process itself as a worthy subject for literary display</li>
+                        </ul>
+                    </div>
+                    <h4>Fu vs. shi: the core distinction</h4>
+                    <p>If <em>shi</em> is about <em>feeling</em>, the <em>fu</em> is about <em>seeing</em>. <em>Shi</em> compresses; <em>fu</em> expands. <em>Shi</em> says "I felt this"; <em>fu</em> says "look at all of this." This is Lu Ji's point: "The lyric (shi) is born of pure emotion... The exhibitory essay (fu), being true to the objects, is vividness incarnate" (Birch, p. 208). They are complementary tools for different kinds of truth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genre 3: Zi -->
+    <section class="content-section alt" id="zi">
+        <div class="section-label"><span class="chinese">子</span> MASTERS LITERATURE (ZI)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">子</span> Philosophical Prose <span class="meta">Warring States</span></div>
+                <div class="card-body">
+                    <div class="genre-feature">
+                        <div class="gf-char">子</div>
+                        <div class="gf-body">
+                            <div class="gf-title">Zi: Argument as Literature</div>
+                            <div class="gf-pinyin">zi</div>
+                            <p>The great philosophical texts of the Warring States period are not just philosophy. They are literature: carefully crafted, stylistically distinct, and brilliantly varied in their use of narrative, dialogue, parable, and polemic. Each Master has a recognizable literary voice.</p>
+                        </div>
+                    </div>
+                    <h4>Seven voices, seven styles</h4>
+                    <div class="genre-grid">
+                        <div class="genre-item" style="border-left-color: #2D7D7D;">
+                            <div class="genre-header">
+                                <span class="genre-ch">孔</span>
+                                <span class="genre-name">Kongzi</span>
+                            </div>
+                            <div class="genre-desc">Compressed dialogue. The Master speaks in fragments that require interpretation. "The gentleman is not a utensil."</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: #A67C52;">
+                            <div class="genre-header">
+                                <span class="genre-ch">墨</span>
+                                <span class="genre-name">Mozi</span>
+                            </div>
+                            <div class="genre-desc">Logical argument, almost legalistic. Repetitive structure builds an airtight case. The anti-literary philosopher.</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: #2D7D7D;">
+                            <div class="genre-header">
+                                <span class="genre-ch">孟</span>
+                                <span class="genre-name">Mengzi</span>
+                            </div>
+                            <div class="genre-desc">Combative dialogue. Mengzi argues with kings, traps opponents in their own logic, uses vivid analogies (the child at the well).</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: #3D8B4D;">
+                            <div class="genre-header">
+                                <span class="genre-ch">老</span>
+                                <span class="genre-name">Laozi</span>
+                            </div>
+                            <div class="genre-desc">Paradox and aphorism. "The way that can be told is not the constant way." Language that undermines itself.</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: #3D8B4D;">
+                            <div class="genre-header">
+                                <span class="genre-ch">莊</span>
+                                <span class="genre-name">Zhuangzi</span>
+                            </div>
+                            <div class="genre-desc">Wild narrative. Parables, fables, absurdist dialogues, dreams within dreams. The most "literary" philosopher.</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: #2D7D7D;">
+                            <div class="genre-header">
+                                <span class="genre-ch">荀</span>
+                                <span class="genre-name">Xunzi</span>
+                            </div>
+                            <div class="genre-desc">Systematic essay. Extended arguments with clear structure, definitions, evidence. The most rigorous prose stylist.</div>
+                        </div>
+                        <div class="genre-item" style="border-left-color: #B54545;">
+                            <div class="genre-header">
+                                <span class="genre-ch">韓</span>
+                                <span class="genre-name">Han Feizi</span>
+                            </div>
+                            <div class="genre-desc">Historical anecdote as weapon. Uses past examples to prove present points. Stories serve power, not beauty.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">文學</span> Why the Masters Are Literature</div>
+                <div class="card-body">
+                    <h4>The literary question</h4>
+                    <p>Students sometimes wonder: why are we reading philosophy in a literature course? The answer is that in Chinese tradition, these texts were never <em>only</em> philosophy. The <em>Zhuangzi</em> is one of the greatest works of narrative imagination in any language. The <em>Analects</em> invented a literary form (the compressed dialogue) that influenced all subsequent Chinese prose. The <em>Mengzi</em> is a masterclass in rhetorical combat.</p>
+                    <h4>Zhuangzi as proto-fiction</h4>
+                    <p>Zhuangzi matters especially for our genre map. His parables, his talking animals, his dream paradoxes, his fictional dialogues between real historical figures: these are among the earliest examples of deliberate narrative invention in Chinese literature. When Tang writers invented chuanqi a millennium later, they were doing something Zhuangzi had already pioneered in a different register.</p>
+                    <blockquote>
+                        "Once Zhuang Zhou dreamt he was a butterfly, a butterfly flitting and fluttering around, happy with himself and doing as he pleased. He didn't know he was Zhuang Zhou. Suddenly he woke up and there he was, solid and unmistakable Zhuang Zhou. But he didn't know if he was Zhuang Zhou who had dreamt he was a butterfly, or a butterfly dreaming he was Zhuang Zhou."
+                        <cite>Birch, p. 100; trans. Burton Watson</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genre 4: Wen -->
+    <section class="content-section" id="wen">
+        <div class="section-label"><span class="chinese">文</span> PROSE (WEN)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">文</span> Prose Essays and Letters <span class="meta">Six Dynasties through Tang</span></div>
+                <div class="card-body">
+                    <div class="genre-feature">
+                        <div class="gf-char">文</div>
+                        <div class="gf-body">
+                            <div class="gf-title">Wen: The Self on Paper</div>
+                            <div class="gf-pinyin">wen</div>
+                            <p><em>Wen</em> is the broadest term: it can mean "literature," "culture," even "civilization." But as a genre label, it refers to prose writing that is neither poetry nor philosophy nor history. Personal letters, literary essays, polemics, travel writing. The author speaks directly, in their own voice, about their own situation.</p>
+                        </div>
+                    </div>
+                    <h4>Two waves</h4>
+                    <ul>
+                        <li><strong>Six Dynasties prose</strong> <span class="dynasty-badge six-dyn">Six Dyn.</span>: Letters defending the decision to withdraw from public life. Yang Yun, Xi Kang, Tao Yuanming's "Peach Blossom Spring," Kong Zhigui. The genre of reclusion.
+                            <br><a href="on-seclusion.html" class="reading-link">On Seclusion</a>
+                        </li>
+                        <li><strong>Tang prose</strong> <span class="dynasty-badge tang">Tang</span>: Han Yu and Liu Zongyuan revive "ancient-style prose" (guwen, 古文) against the ornate "parallel prose" of the Six Dynasties. Prose as moral argument, political intervention, philosophical statement.
+                            <br><a href="prose-essays.html" class="reading-link">Tang Prose Essays</a>
+                        </li>
+                    </ul>
+                    <blockquote>
+                        "My boat tipped and tossed in the wind and waves, and a feeling of vast loneliness overwhelmed me, as if I were about to make a voyage from which there is no return."
+                        <cite>Tao Yuanming, "The Peach Blossom Spring"; Birch, p. 167; trans. James Robert Hightower</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">經</span> Buddhist Scripture <span class="meta">A Different Kind of Text</span></div>
+                <div class="card-body">
+                    <div class="genre-feature">
+                        <div class="gf-char">經</div>
+                        <div class="gf-body">
+                            <div class="gf-title">Jing: Words Beyond the Human</div>
+                            <div class="gf-pinyin">jing</div>
+                            <p>Buddhist scripture enters Chinese literary culture as translation: Sanskrit and Pali texts rendered into Chinese by teams of translators over centuries. These texts operate under entirely different assumptions about what language can do.</p>
+                        </div>
+                    </div>
+                    <h4>What's different about scripture?</h4>
+                    <ul>
+                        <li><strong>Scale:</strong> the Avatamsaka Sutra dwarfs anything in the Chinese literary tradition. Numbers like "ten to the power of ten to the power of ten" are routine.</li>
+                        <li><strong>Authorship:</strong> not attributed to a human author. These are understood as records of the Buddha's speech.</li>
+                        <li><strong>Purpose:</strong> not aesthetic pleasure or moral instruction but <em>transformation of consciousness</em>.</li>
+                        <li><strong>Logic:</strong> paradox, infinite recursion, simultaneous perspectives. "One is all; all is one."</li>
+                    </ul>
+                    <h4>What we've read</h4>
+                    <ul>
+                        <li><span class="dynasty-badge six-dyn">Six Dyn.</span> <a href="huiyuan.html">Huiyuan's essays</a> on why monks don't bow to the emperor</li>
+                        <li><span class="dynasty-badge tang">Tang</span> <a href="huayan-gandavyuha.html">Huayan Buddhism</a> and the <a href="avatamsaka-cleary.html">Avatamsaka Sutra</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genre 5: Chuanqi -->
+    <section class="content-section alt" id="chuanqi">
+        <div class="section-label"><span class="chinese">傳奇</span> FICTION (CHUANQI)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head" style="background: var(--tang);"><span class="chinese">傳奇</span> Tales of the Marvelous <span class="meta">Tang Dynasty, c. 750&ndash;900</span></div>
+                <div class="card-body">
+                    <div class="genre-feature">
+                        <div class="gf-char">傳奇</div>
+                        <div class="gf-body">
+                            <div class="gf-title">Chuanqi: Conscious Invention</div>
+                            <div class="gf-pinyin">chuanqi (ch'uan-ch'i in Birch)</div>
+                            <p>Lu Xun considered Tang writers "the first consciously to practise the art of fiction" (Birch, p. 288). Before the Tang, narratives existed in histories, anecdotes, and wonder-tales. Nobody set out to write fiction as a literary craft. The chuanqi changed that.</p>
+                        </div>
+                    </div>
+                    <h4>What makes chuanqi new?</h4>
+                    <ul>
+                        <li><strong>Deliberate invention:</strong> the author knowingly creates characters and events. Previous narrative was historical or supernatural. Chuanqi is <em>made up</em> and acknowledged as such.</li>
+                        <li><strong>Psychological depth:</strong> characters have complex motivations. Yingying is not a type; she is a person.</li>
+                        <li><strong>Scholar-authors:</strong> these writers are poets and officials, not professional storytellers. Yuan Zhen was Bai Juyi's closest friend. Bo Xingqian was Bai Juyi's brother.</li>
+                        <li><strong>Classical prose style:</strong> "reminiscent of biographical entries in the standard histories" (Birch, p. 288). Clean, economical, powerful.</li>
+                    </ul>
+                    <h4>The three stories</h4>
+                    <ul>
+                        <li><strong>Yuan Zhen</strong>: <a href="tang-short-stories.html#yingying">"The Story of Ts'ui Ying-ying"</a> (pp. 290&ndash;299). Romance and betrayal.</li>
+                        <li><strong>Bo Xingqian</strong>: <a href="tang-short-stories.html#missli">"The Story of Miss Li"</a> (pp. 300&ndash;313). Ruin and redemption.</li>
+                        <li><strong>Du Guangting</strong>: <a href="tang-short-stories.html#curlybeard">"The Curly-bearded Hero"</a> (pp. 314&ndash;322). Destiny and yielding.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head" style="background: var(--tang);"><span class="chinese">新</span> Why Fiction Was the Last Genre</div>
+                <div class="card-body">
+                    <h4>Everything had to come first</h4>
+                    <p>Fiction requires all the other genres as foundation. It needs:</p>
+                    <ul>
+                        <li><strong>From shi:</strong> the ability to render inner emotional life. Yingying's poems are the heart of her story.</li>
+                        <li><strong>From fu:</strong> descriptive power. The scenes in "Miss Li" are built with a fu writer's eye for vivid detail.</li>
+                        <li><strong>From zi:</strong> narrative invention. Zhuangzi's parables proved that Chinese prose could sustain invented stories.</li>
+                        <li><strong>From wen:</strong> the personal voice. Chuanqi narrators comment, judge, and embed themselves in their tales.</li>
+                        <li><strong>From shi (history):</strong> the biographical prose style. Chuanqi mimics the form of dynastic biographies.</li>
+                    </ul>
+                    <div class="key-themes">
+                        <h4>The key innovation</h4>
+                        <ul>
+                            <li><strong>Before chuanqi:</strong> "this really happened" (history) or "this might have happened" (anecdote) or "the gods did this" (wonder-tale)</li>
+                            <li><strong>Chuanqi:</strong> "I made this up, and it reveals something true about human nature"</li>
+                        </ul>
+                    </div>
+                    <h4>From Zhuangzi to Yuan Zhen</h4>
+                    <p>The distance from Zhuangzi's butterfly dream to Yuan Zhen's Yingying is about 1,000 years. Both are acts of literary imagination. But Zhuangzi embeds his inventions in philosophy; Yuan Zhen writes a standalone story whose purpose is the story itself. That leap from embedded narrative to autonomous fiction is what the chuanqi represents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Big Picture -->
+    <section class="content-section" id="bigpicture">
+        <div class="section-label"><span class="chinese">全貌</span> THE BIG PICTURE</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">系統</span> Lu Ji's Framework: Form Follows Purpose</div>
+                <div class="card-body">
+                    <p>Lu Ji's <em>Wen Fu</em> remains the best single statement of how Chinese genres relate to each other. Writing in the 290s CE, he classified ten literary forms (Birch, pp. 207&ndash;209). His core principle: <strong>genre determines style</strong>. You don't choose a form at random. Each form has its own relationship to truth, emotion, and ornament.</p>
+                    <div class="genre-grid">
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">詩</span>
+                                <span class="genre-name">Lyric</span>
+                            </div>
+                            <div class="genre-desc">"born of pure emotion, is gossamer fibre woven into the finest fabric"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">賦</span>
+                                <span class="genre-name">Exhibitory Essay</span>
+                            </div>
+                            <div class="genre-desc">"being true to the objects, is vividness incarnate"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">論</span>
+                                <span class="genre-name">Expository</span>
+                            </div>
+                            <div class="genre-desc">"must in exactitude and clarity excel"</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">說</span>
+                                <span class="genre-name">Argument</span>
+                            </div>
+                            <div class="genre-desc">"with glowing words and cunning parables persuades"</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 0.5rem;">Lu Ji wrote three centuries before chuanqi existed. He had no category for fiction. That absence is itself revealing: in the third century, deliberate prose fiction was simply not a recognized literary form. When Tang writers invented it 500 years later, they were adding something genuinely new to the system Lu Ji mapped.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">問</span> Three Questions That Cut Across All Genres</div>
+                <div class="card-body">
+                    <h4>1. What is the relationship between form and truth?</h4>
+                    <p>A <em>shi</em> poem and a <em>fu</em> and a <em>chuanqi</em> all claim to convey truth. But they mean different things by "truth." Poetry offers emotional truth. The <em>fu</em> offers perceptual truth (the world as it looks). The <em>zi</em> offer rational truth. The chuanqi offers truth through invented scenarios that never happened but illuminate how people actually behave.</p>
+                    <h4>2. Who speaks?</h4>
+                    <p>In <em>shi</em>, the poet speaks directly. In the <em>fu</em>, a persona describes a scene. In the <em>zi</em>, a Master teaches. In <em>wen</em>, a writer addresses a specific audience. In the chuanqi, a <em>narrator</em> tells someone else's story. The evolution of Chinese literature is partly an evolution of who gets to speak and how.</p>
+                    <h4>3. What is writing for?</h4>
+                    <p>The Confucian answer: moral instruction and political order. The Daoist answer: liberation from fixed categories. The Buddhist answer: transformation of consciousness. The chuanqi answer: to reveal the human heart through stories that never happened. Each genre carries its own answer, and the answer shapes the form.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Genre Boundaries</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Lu Ji's <em>Wen Fu</em> is a <em>fu</em> about writing. The chuanqi "Story of Yingying" contains embedded <em>shi</em> poems. The <em>Zhuangzi</em> contains parables that read like short stories. Are genre boundaries real, or are the best works the ones that cross them?</li>
+                        <li>Pick two genres we have studied. What can one say that the other cannot? Give a specific example from the readings.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">The Fiction Question</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Why did it take until the Tang dynasty (roughly the 8th century) for Chinese writers to produce deliberate fiction? What had to exist first? What changed?</li>
+                        <li>Compare the chuanqi "Story of Yingying" to any passage in the <em>Zhuangzi</em> that tells an invented story. Both are fictional. What's different about how they use fiction?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Your Own Reading</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Which genre have you found most compelling this term? Which has been most difficult to appreciate? What does that tell you about your own assumptions about literature?</li>
+                        <li>If you had to explain one Chinese literary genre to someone who has never encountered Chinese literature, which would you choose and why?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I (Grove Press, 1965).</p>
+                <p>Lu Ji, "On Literature" (Wen Fu), pp. 203&ndash;214. Trans. Shih-hsiang Chen.</p>
+                <p>"Tang Short Stories," pp. 288&ndash;322. Trans. Arthur Waley and Cyril Birch.</p>
+            </div>
+            <div class="source-card">
+                <h4>Genre Studies</h4>
+                <a href="https://www.britannica.com/art/Chinese-literature" target="_blank" rel="noopener">Britannica: Chinese Literature (overview of genres)</a>
+                <a href="https://www.britannica.com/art/fu-Chinese-literature" target="_blank" rel="noopener">Britannica: Fu (Chinese literary form)</a>
+                <a href="https://www.britannica.com/art/chuanqi-Chinese-literature" target="_blank" rel="noopener">Britannica: Chuanqi (Tang fiction)</a>
+                <a href="https://www.britannica.com/art/shi-Chinese-literature" target="_blank" rel="noopener">Britannica: Shi (Chinese poetry)</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Pages</h4>
+                <a href="lu-ji-wen-fu.html">Lu Ji: Wen Fu (Ten Genres taxonomy)</a>
+                <a href="tang-short-stories.html">Tang Short Stories (Chuanqi)</a>
+                <a href="songs-of-chu-day1.html">Songs of Chu</a>
+                <a href="shanglin-fu.html">Shanglin Fu (Sima Xiangru)</a>
+                <a href="tang-poets.html">Tang Poets</a>
+                <a href="on-seclusion.html">On Seclusion (Six Dynasties prose)</a>
+            </div>
+            <div class="source-card">
+                <h4>All Lesson Pages</h4>
+                <a href="../index.html">&larr; Back to EAST 370 main page</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
