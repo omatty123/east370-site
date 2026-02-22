@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tang Short Stories (Chuanqi) | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --tang: #A03030;
+            --tang-light: #c94545;
+            --yuan-zhen: #8a3030;
+            --bo-xingqian: #2d6b4f;
+            --du-guangting: #5b4a8a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-head.tang-accent { background: var(--tang); }
+        .card-head.yuan-accent { background: var(--yuan-zhen); }
+        .card-head.bo-accent { background: var(--bo-xingqian); }
+        .card-head.du-accent { background: var(--du-guangting); }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Author Map */
+        .map-container {
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow: hidden;
+            margin-top: 0.6rem;
+        }
+        .map-container svg { width: 100%; height: auto; display: block; }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Dynasty Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+
+        /* Story summary boxes */
+        .story-summary {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+            margin: 0.5rem 0;
+        }
+        .story-summary .ss-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.15rem;
+        }
+        .story-summary .ss-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .key-themes ul { columns: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">唐傳奇</span>
+            <span class="en">Tang Short Stories</span>
+            <span class="meta">Birch, pp. 288&ndash;322 &middot; Tang Dynasty</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#authors">Authors</a>
+        <a href="#map">Author Map</a>
+        <a href="#yingying">Yingying</a>
+        <a href="#missli">Miss Li</a>
+        <a href="#curlybeard">Curly-bearded Hero</a>
+        <a href="#themes">Themes</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概論</span> OVERVIEW: TANG CHUANQI</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head tang-accent"><span class="chinese">傳奇</span> What is Chuanqi? <span class="meta">A New Kind of Fiction</span></div>
+                <div class="card-body">
+                    <h4>The Birth of Chinese Fiction</h4>
+                    <p>The twentieth-century writer <a href="https://www.britannica.com/biography/Lu-Xun" target="_blank">Lu Xun (魯迅)</a> considered Tang dynasty writers "the first consciously to practise the art of fiction" (Birch, p. 288). Before the Tang, narratives existed in histories, anecdotes, and wonder-tales, but nobody set out to write fiction as a literary craft. The Tang <a href="https://www.britannica.com/art/chuanqi-Chinese-literature" target="_blank"><em>chuanqi</em> (傳奇, "tales of the marvelous")</a> changed that.</p>
+                    <h4>Scholars, Not Entertainers</h4>
+                    <p>These authors were "no mere entertainers but scholars and poets" (Birch, p. 288). Yuan Zhen (Yüan Chen in Birch) was a close friend of Bai Juyi; Bo Xingqian (Po Hsing-chien) was Bai Juyi's brother. They wrote in the classical narrative style, "reminiscent of biographical entries in the standard histories." The prose is plain, "mostly free from rhetorical devices, but capable of a powerful economy" (p. 288).</p>
+                    <h4>Three Stories, Three Modes</h4>
+                    <p>The Birch anthology presents three chuanqi spanning the full range of the genre: a romance of desire and betrayal, a courtesan tale of ruin and redemption, and a heroic adventure about the founding of the Tang dynasty itself.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head tang-accent"><span class="chinese">三篇</span> The Three Stories at a Glance</div>
+                <div class="card-body">
+                    <div class="story-summary" style="border-left-color: var(--yuan-zhen);">
+                        <div class="ss-title">1. "The Story of Ts'ui Ying-ying" (鶯鶯傳)</div>
+                        <div class="ss-desc"><strong>Yuan Zhen</strong> (779&ndash;831) &middot; Trans. Arthur Waley &middot; pp. 290&ndash;299<br>A scholar seduces his cousin and abandons her. Semi-autobiographical. The "most famous of all Chinese love stories" (Birch, p. 288), later adapted into the Yuan dynasty masterpiece <em>Romance of the Western Chamber</em>.</div>
+                    </div>
+                    <div class="story-summary" style="border-left-color: var(--bo-xingqian);">
+                        <div class="ss-title">2. "The Story of Miss Li" (李娃傳)</div>
+                        <div class="ss-desc"><strong>Bo Xingqian</strong> (c. 776&ndash;826) &middot; Trans. Arthur Waley &middot; pp. 300&ndash;313<br>A nobleman's son is ruined by a courtesan's family, descends into destitution, then is saved by the courtesan herself. A story of redemption through a woman's conscience and the power of loyalty.</div>
+                    </div>
+                    <div class="story-summary" style="border-left-color: var(--du-guangting);">
+                        <div class="ss-title">3. "The Curly-bearded Hero" (虬髯客傳)</div>
+                        <div class="ss-desc"><strong>Du Guangting</strong> (850&ndash;933) &middot; Trans. Cyril Birch &middot; pp. 314&ndash;322<br>At the fall of the Sui, a mysterious stranger recognizes the future Tang emperor and cedes his own ambitions. A "cri de coeur" about dynastic destiny and the Confucian virtue of yielding (Birch, p. 289).</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authors -->
+    <section class="content-section alt" id="authors">
+        <div class="section-label"><span class="chinese">作者</span> THE AUTHORS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head yuan-accent"><span class="chinese">元稹</span> Yuan Zhen <span class="meta">779&ndash;831</span></div>
+                <div class="card-body">
+                    <h4>Life</h4>
+                    <p><a href="https://www.britannica.com/biography/Yuan-Zhen" target="_blank">Yuan Zhen</a> was a major mid-Tang poet and official, best known for his lifelong friendship with <a href="https://www.britannica.com/biography/Bai-Juyi" target="_blank">Bai Juyi (白居易)</a>, considered "perhaps the most famous in Chinese history." Together they championed the "New Music Bureau" (xin yuefu) movement, writing socially engaged verse in plain language. Yuan Zhen served as a court official and eventually became chief minister, though political enemies frequently had him exiled.</p>
+                    <h4>The Story</h4>
+                    <p>"The Story of Ts'ui Ying-ying" (Ying-ying chuan, 鶯鶯傳) is widely understood to be semi-autobiographical. The protagonist "Chang" is Yuan Zhen himself. Birch notes that the incidents "are believed to be autobiographical, the author only half hiding his own identity behind the figure of the young student Chang" (p. 288). Yuan Zhen's story <a href="https://www.britannica.com/topic/The-Story-of-the-Western-Wing" target="_blank">later became the basis for Wang Shifu's <em>Romance of the Western Chamber</em> (Xixiang ji, 西廂記)</a>, one of the greatest works of Chinese drama.</p>
+                    <h4>Birch Romanization</h4>
+                    <p>Birch uses "Yüan Chen." We use Pinyin: Yuan Zhen (元稹).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head bo-accent"><span class="chinese">白行簡</span> Bo Xingqian <span class="meta">c. 776&ndash;826</span></div>
+                <div class="card-body">
+                    <h4>Life</h4>
+                    <p><a href="https://www.britannica.com/biography/Bai-Xingjian" target="_blank">Bo Xingqian (Bai Xingjian)</a> was the younger brother of Bai Juyi. He wrote prose romances in the classical style for literati audiences. The Birch introduction follows "the traditional attribution to Po Hsing-chien, the brother of the poet Po Chü-yi" (p. 288). Like his brother and Yuan Zhen, he moved in the leading literary circles of the mid-Tang.</p>
+                    <h4>The Story</h4>
+                    <p>"The Story of Miss Li" (Li Wa chuan, 李娃傳) is <a href="https://prabook.com/web/bai.xingjian/2613851" target="_blank">his most celebrated work</a>. The narrator claims at the end to have heard the story from a colleague and written it down (p. 313), a common framing device in chuanqi. The story was widely adapted for stage in later centuries.</p>
+                    <h4>Birch Romanization</h4>
+                    <p>Birch uses "Po Hsing-chien." We use Pinyin: Bo Xingqian (白行簡).</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head du-accent"><span class="chinese">杜光庭</span> Du Guangting <span class="meta">850&ndash;933</span></div>
+                <div class="card-body">
+                    <h4>Life</h4>
+                    <p><a href="https://www.encyclopedia.com/environment/encyclopedias-almanacs-transcripts-and-maps/du-guangting" target="_blank">Du Guangting</a> was a prominent Daoist scholar-priest who served under multiple emperors during the late Tang and the Five Dynasties period. Trained at Mt. Tiantai, he was eventually <a href="https://en.daoinfo.org/wiki/Du_Guangting" target="_blank">the foremost patriarch of the Daoist liturgical tradition</a>. He wrote prolifically on Daoist ritual, hagiography, and narrative fiction.</p>
+                    <h4>The Story</h4>
+                    <p>"The Curly-bearded Hero" (Qiu ran ke zhuan, 虬髯客傳) "harks back to the years of [the Tang's] founding to depict his ideal hero" (Birch, p. 289). The stranger named Chang "personifies the Confucian virtue of 'yielding'" by recognizing the future emperor Li Shimin and stepping aside. It is a late Tang fantasy about early Tang legitimacy, written when the dynasty was already in decline.</p>
+                    <h4>Birch Romanization</h4>
+                    <p>Birch uses "Tu Kuang-t'ing." We use Pinyin: Du Guangting (杜光庭).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">白居易</span> Bai Juyi: The Connecting Figure <span class="meta">772&ndash;846</span></div>
+                <div class="card-body">
+                    <h4>The Hub of the Network</h4>
+                    <p><a href="https://www.britannica.com/biography/Bai-Juyi" target="_blank">Bai Juyi</a> (Po Chü-yi in Birch) is not himself an author in this section, but he is the crucial link between the first two writers. Yuan Zhen was his closest friend; Bo Xingqian was his younger brother. The Birch introduction mentions him by name as "an outstanding poet of the dynasty" whose literary circle produced the chuanqi (p. 288).</p>
+                    <h4>Why He Matters Here</h4>
+                    <p>Bai Juyi represents the mid-Tang literary world in which these stories emerged. His own poetic masterpiece, "Song of Everlasting Sorrow" (長恨歌), shares the chuanqi's fascination with doomed love, political catastrophe, and the gap between desire and duty. The same sensibility that produced his long narrative poems produced his friends' and brother's prose fiction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Relationship Map -->
+    <section class="content-section" id="map">
+        <div class="section-label"><span class="chinese">關係圖</span> AUTHOR TIMELINE &amp; RELATIONSHIP MAP</div>
+        <div class="map-container">
+            <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="font-family: Inter, -apple-system, sans-serif;">
+                <!-- Background -->
+                <rect width="900" height="520" fill="#fafaf8"/>
+
+                <!-- Timeline axis -->
+                <line x1="60" y1="80" x2="840" y2="80" stroke="#ddd" stroke-width="2"/>
+                <!-- Tick marks and dates -->
+                <line x1="120" y1="75" x2="120" y2="85" stroke="#bbb" stroke-width="1.5"/>
+                <text x="120" y="70" text-anchor="middle" font-size="10" fill="#999">750</text>
+                <line x1="250" y1="75" x2="250" y2="85" stroke="#bbb" stroke-width="1.5"/>
+                <text x="250" y="70" text-anchor="middle" font-size="10" fill="#999">800</text>
+                <line x1="380" y1="75" x2="380" y2="85" stroke="#bbb" stroke-width="1.5"/>
+                <text x="380" y="70" text-anchor="middle" font-size="10" fill="#999">850</text>
+                <line x1="510" y1="75" x2="510" y2="85" stroke="#bbb" stroke-width="1.5"/>
+                <text x="510" y="70" text-anchor="middle" font-size="10" fill="#999">900</text>
+                <line x1="640" y1="75" x2="640" y2="85" stroke="#bbb" stroke-width="1.5"/>
+                <text x="640" y="70" text-anchor="middle" font-size="10" fill="#999">950</text>
+
+                <!-- Dynasty background bar -->
+                <rect x="60" y="85" width="780" height="18" fill="#A03030" opacity="0.08" rx="2"/>
+                <text x="450" y="97" text-anchor="middle" font-size="9" fill="#A03030" font-weight="600" letter-spacing="0.1em">TANG DYNASTY (618 &ndash; 907)</text>
+
+                <!-- Life span bars -->
+                <!-- Bai Juyi: 772-846 -->
+                <rect x="188" y="120" width="192" height="10" rx="3" fill="#b8860b" opacity="0.3"/>
+                <text x="284" y="145" text-anchor="middle" font-size="10" fill="#b8860b" font-weight="600">Bai Juyi 白居易 (772&ndash;846)</text>
+
+                <!-- Yuan Zhen: 779-831 -->
+                <rect x="206" y="165" width="135" height="10" rx="3" fill="#8a3030" opacity="0.5"/>
+                <text x="273" y="190" text-anchor="middle" font-size="10" fill="#8a3030" font-weight="600">Yuan Zhen 元稹 (779&ndash;831)</text>
+
+                <!-- Bo Xingqian: 776-826 -->
+                <rect x="198" y="210" width="130" height="10" rx="3" fill="#2d6b4f" opacity="0.5"/>
+                <text x="263" y="235" text-anchor="middle" font-size="10" fill="#2d6b4f" font-weight="600">Bo Xingqian 白行簡 (c. 776&ndash;826)</text>
+
+                <!-- Du Guangting: 850-933 -->
+                <rect x="386" y="165" width="216" height="10" rx="3" fill="#5b4a8a" opacity="0.5"/>
+                <text x="494" y="190" text-anchor="middle" font-size="10" fill="#5b4a8a" font-weight="600">Du Guangting 杜光庭 (850&ndash;933)</text>
+
+                <!-- Relationship lines -->
+                <!-- Bai Juyi <-> Yuan Zhen: "closest friends" -->
+                <line x1="260" y1="148" x2="260" y2="165" stroke="#b8860b" stroke-width="1.5" stroke-dasharray="4,2"/>
+                <text x="280" y="160" font-size="8" fill="#8a8a8a" font-style="italic">closest friends</text>
+
+                <!-- Bai Juyi <-> Bo Xingqian: "brothers" -->
+                <line x1="240" y1="148" x2="240" y2="210" stroke="#b8860b" stroke-width="1.5"/>
+                <text x="220" y="185" font-size="8" fill="#8a8a8a" font-style="italic" text-anchor="end">brothers</text>
+
+                <!-- Story nodes -->
+                <!-- Yingying: linked to Yuan Zhen -->
+                <rect x="110" y="280" width="200" height="60" rx="6" fill="#fff" stroke="#8a3030" stroke-width="1.5"/>
+                <text x="210" y="300" text-anchor="middle" font-size="10" fill="#8a3030" font-weight="700">Story of Yingying 鶯鶯傳</text>
+                <text x="210" y="314" text-anchor="middle" font-size="8.5" fill="#4a4a4a">Semi-autobiographical romance</text>
+                <text x="210" y="328" text-anchor="middle" font-size="8" fill="#8a8a8a">pp. 290&ndash;299 &middot; trans. Arthur Waley</text>
+                <!-- Link: Yuan Zhen -> Yingying -->
+                <line x1="245" y1="195" x2="210" y2="280" stroke="#8a3030" stroke-width="1" opacity="0.5"/>
+
+                <!-- Miss Li: linked to Bo Xingqian -->
+                <rect x="340" y="280" width="200" height="60" rx="6" fill="#fff" stroke="#2d6b4f" stroke-width="1.5"/>
+                <text x="440" y="300" text-anchor="middle" font-size="10" fill="#2d6b4f" font-weight="700">Story of Miss Li 李娃傳</text>
+                <text x="440" y="314" text-anchor="middle" font-size="8.5" fill="#4a4a4a">Courtesan redemption tale</text>
+                <text x="440" y="328" text-anchor="middle" font-size="8" fill="#8a8a8a">pp. 300&ndash;313 &middot; trans. Arthur Waley</text>
+                <!-- Link: Bo Xingqian -> Miss Li -->
+                <line x1="290" y1="235" x2="440" y2="280" stroke="#2d6b4f" stroke-width="1" opacity="0.5"/>
+
+                <!-- Curly-bearded Hero: linked to Du Guangting -->
+                <rect x="575" y="280" width="220" height="60" rx="6" fill="#fff" stroke="#5b4a8a" stroke-width="1.5"/>
+                <text x="685" y="300" text-anchor="middle" font-size="10" fill="#5b4a8a" font-weight="700">Curly-bearded Hero 虬髯客傳</text>
+                <text x="685" y="314" text-anchor="middle" font-size="8.5" fill="#4a4a4a">Heroic dynastic founding tale</text>
+                <text x="685" y="328" text-anchor="middle" font-size="8" fill="#8a8a8a">pp. 314&ndash;322 &middot; trans. Cyril Birch</text>
+                <!-- Link: Du Guangting -> Curly-bearded -->
+                <line x1="494" y1="195" x2="685" y2="280" stroke="#5b4a8a" stroke-width="1" opacity="0.5"/>
+
+                <!-- Adaptation arrow: Yingying -> West Chamber -->
+                <rect x="60" y="370" width="300" height="50" rx="6" fill="#6D5B2E" opacity="0.08" stroke="#6D5B2E" stroke-width="1"/>
+                <text x="210" y="390" text-anchor="middle" font-size="9.5" fill="#6D5B2E" font-weight="700">Romance of the Western Chamber 西廂記</text>
+                <text x="210" y="404" text-anchor="middle" font-size="8" fill="#8a8a8a">Wang Shifu, Yuan dynasty (13th c.) &middot; Dramatic adaptation</text>
+                <!-- Arrow -->
+                <line x1="210" y1="340" x2="210" y2="370" stroke="#6D5B2E" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+                <text x="230" y="358" font-size="7.5" fill="#6D5B2E" font-style="italic">adapted into</text>
+                <defs>
+                    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" fill="#6D5B2E"/>
+                    </marker>
+                </defs>
+
+                <!-- Bai Juyi's "Song of Everlasting Sorrow" connection -->
+                <rect x="400" y="370" width="260" height="50" rx="6" fill="#b8860b" opacity="0.06" stroke="#b8860b" stroke-width="1"/>
+                <text x="530" y="390" text-anchor="middle" font-size="9.5" fill="#b8860b" font-weight="700">Song of Everlasting Sorrow 長恨歌</text>
+                <text x="530" y="404" text-anchor="middle" font-size="8" fill="#8a8a8a">Bai Juyi &middot; Shared theme: desire vs. duty</text>
+                <!-- Arrow from Bai Juyi -->
+                <line x1="310" y1="148" x2="530" y2="370" stroke="#b8860b" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4"/>
+
+                <!-- Legend -->
+                <rect x="60" y="445" width="780" height="55" rx="4" fill="#f0ede8"/>
+                <text x="75" y="462" font-size="9" fill="#666" font-weight="600">LEGEND</text>
+                <line x1="75" y1="478" x2="95" y2="478" stroke="#b8860b" stroke-width="1.5"/>
+                <text x="100" y="482" font-size="8" fill="#666">Solid line = family</text>
+                <line x1="200" y1="478" x2="220" y2="478" stroke="#b8860b" stroke-width="1.5" stroke-dasharray="4,2"/>
+                <text x="225" y="482" font-size="8" fill="#666">Dashed = friendship</text>
+                <line x1="350" y1="478" x2="370" y2="478" stroke="#666" stroke-width="1" opacity="0.5"/>
+                <text x="375" y="482" font-size="8" fill="#666">Thin line = author &rarr; story</text>
+                <rect x="500" y="472" width="12" height="12" rx="2" fill="#8a3030" opacity="0.15" stroke="#8a3030" stroke-width="1"/>
+                <text x="517" y="482" font-size="8" fill="#666">Story node</text>
+                <rect x="600" y="472" width="40" height="12" rx="3" fill="#5b4a8a" opacity="0.5"/>
+                <text x="645" y="482" font-size="8" fill="#666">Life span</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Story 1: Yingying -->
+    <section class="content-section alt" id="yingying">
+        <div class="section-label"><span class="chinese">鶯鶯傳</span> STORY 1: THE STORY OF TS'UI YING-YING</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head yuan-accent"><span class="chinese">情節</span> Plot Summary <span class="meta">pp. 290&ndash;299</span></div>
+                <div class="card-body">
+                    <h4>Setting</h4>
+                    <p>During the Zhenyuan period (785&ndash;805), a scholar named Chang stays at a temple in Puchow. His cousin, the widow Zheng, is also lodging there with her seventeen-year-old daughter Cui Yingying (Ts'ui Ying-ying in Birch) and young son. When a military mutiny threatens the town, Chang uses his connections to protect the family.</p>
+                    <h4>The Seduction</h4>
+                    <p>At a banquet of gratitude, Chang first sees Yingying and is immediately infatuated. Through her maid Hongniang (Hung-niang), he sends love poems. Yingying initially rebukes him fiercely, calling his letter "a wicked message" and his desire "licentious" (p. 293). But nights later, she comes to him of her own accord. They live together secretly for a month.</p>
+                    <h4>The Abandonment</h4>
+                    <p>Chang leaves for the capital to take the civil service examinations. He fails. He writes to Yingying. She answers with a letter of devastating beauty and heartbreak (pp. 296&ndash;297). Eventually Chang decides to break with her. He tells his friends that beautiful women are inherently destructive. Both marry other people.</p>
+                    <h4>The Ending</h4>
+                    <p>Years later, Chang visits the town where Yingying now lives with her husband. He asks to see her. She refuses. She sends a poem: "It is <em>you</em> who have caused me to lose my beauty, / Yet it is <em>you</em> I am ashamed should see me!" (p. 299). They never meet again.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head yuan-accent"><span class="chinese">分析</span> Analysis <span class="meta">Romance &amp; Betrayal</span></div>
+                <div class="card-body">
+                    <h4>The Autobiographical Problem</h4>
+                    <p>If Chang is Yuan Zhen, then this story is a confession. But it's a strange confession: Chang's friends "praised the skill with which he extricated himself from this entanglement" (p. 299). The narrator doesn't condemn the betrayal. Either Yuan Zhen was genuinely unaware of the moral weight of his actions, or the text is more layered than it first appears, inviting readers to judge what the narrator won't.</p>
+                    <h4>Chang's Self-Justification</h4>
+                    <blockquote>
+                        "I have observed that in Nature whatever has perfect beauty is either itself liable to sudden transformations or else is the cause of them in others. If Ying-ying were to marry a rich gentleman and become his pet, she would forever be changing, as the clouds change to rain, or as the scaly dragon turns into the horned dragon."
+                        <cite>Birch, p. 298; trans. Arthur Waley</cite>
+                    </blockquote>
+                    <p>Chang blames Yingying's beauty for his inability to commit. He compares beautiful women to the concubines who destroyed the Yin and Zhou dynasties. This is one of the most studied passages in Chinese literary history. It is either sincere Confucian self-discipline or breathtaking bad faith.</p>
+                    <h4>Yingying's Voice</h4>
+                    <blockquote>
+                        "Those whom a man leads astray, he will in the end abandon. It must be so, and I will not reproach you. You deigned to corrupt me and now you deign to leave me. That is all."
+                        <cite>Birch, p. 295; trans. Arthur Waley</cite>
+                    </blockquote>
+                    <p>Yingying sees the outcome before Chang does. Her letter (pp. 296&ndash;297) is the emotional center of the story. She is literate, perceptive, and completely powerless within the social system that allows a scholar to use and discard a woman of good family.</p>
+                    <h4>Legacy</h4>
+                    <p><a href="https://www.britannica.com/topic/The-Story-of-the-Western-Wing" target="_blank">Wang Shifu's <em>Romance of the Western Chamber</em></a> (Xixiang ji, 13th century) rewrote this story with a happy ending. That adaptation became "perhaps the most popular love story in Chinese literature." The original Tang version is darker, more honest, and far more interesting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story 2: Miss Li -->
+    <section class="content-section" id="missli">
+        <div class="section-label"><span class="chinese">李娃傳</span> STORY 2: THE STORY OF MISS LI</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head bo-accent"><span class="chinese">情節</span> Plot Summary <span class="meta">pp. 300&ndash;313</span></div>
+                <div class="card-body">
+                    <h4>The Setup</h4>
+                    <p>In the Tianbao era (742&ndash;756), a governor's brilliant twenty-year-old son is sent to Chang'an for the provincial examinations. His father gives him two years' worth of money. Passing a house in the Ming-k'o Bend, he spots Miss Li, a courtesan of "bewitching beauty," and falls instantly in love (p. 301).</p>
+                    <h4>The Ruin</h4>
+                    <p>Miss Li and her "mother" welcome him warmly. He moves in. Within a year his money, property, servants, and horses are gone. Then the women stage an elaborate con: pretending to visit a sick aunt, they lure him to a grand estate, take his horse, and vanish. He arrives at the "aunt's" house to find it belongs to a stranger (pp. 303&ndash;305). He has been completely swindled.</p>
+                    <h4>The Fall</h4>
+                    <p>Destitute, starving, he falls ill. The landlord deposits him at an undertaker's shop. He recovers and becomes a professional mourner, eventually the best in Chang'an. At a public singing competition between rival undertakers, his voice is so extraordinary that the crowd weeps. His father, in the city on business, recognizes his son through a servant. He takes the young man outside and beats him with a horse-whip "till the young man succumbed to the pain and collapsed" (p. 308). He is left for dead.</p>
+                    <h4>The Redemption</h4>
+                    <p>As a beggar in winter, he wails outside a house that happens to be Miss Li's. She recognizes his voice, finds him disfigured by sores, wraps him in her own jacket, and faints, saying "It is my doing that you have been brought to this pass" (p. 309). She pays her own ransom, rents a room, nurses him for a year, buys him books, and makes him study. In three years, he passes the examinations. She insists on leaving him so he can marry a woman of proper rank. He refuses. His father relents. They marry formally. She is eventually ennobled as "the Lady of Chien-kuo" (p. 312).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head bo-accent"><span class="chinese">分析</span> Analysis <span class="meta">Ruin &amp; Redemption</span></div>
+                <div class="card-body">
+                    <h4>The Shape of the Plot</h4>
+                    <p>This is the most structurally ambitious of the three stories. The young man falls from the highest possible social position (governor's heir, exam candidate) to the lowest (beggar, near-corpse), then rises again. It is a complete arc of destruction and renewal, driven by two women: the "mother" who destroys and Miss Li who redeems.</p>
+                    <h4>Miss Li's Speech</h4>
+                    <blockquote>
+                        "Once he rode in grand coaches and wore golden trappings on his coat. But when he came to our house, he soon lost all he had; and then we plotted together and left him destitute. Our conduct has indeed been inhuman! We have ruined his career and robbed him even of his place in the category of human relationships."
+                        <cite>Birch, p. 309; trans. Arthur Waley</cite>
+                    </blockquote>
+                    <p>This is the turning point. Miss Li's conscience reverses everything. She frames their crime in Confucian terms: they destroyed a man's place in the web of human obligations (father-son, husband-wife, ruler-subject). Her redemption is specifically a restoration of those bonds.</p>
+                    <h4>The Father's Violence</h4>
+                    <p>The father beats his son nearly to death for "disgracing the family" (p. 308). This is not an aberration. Within the story's Confucian logic, the son's descent into mourning and begging is not just poverty. It is a violation of filial piety, a rejection of everything his father invested in him. The beating is the system's response to that violation. The story doesn't question it.</p>
+                    <h4>Class and Gender</h4>
+                    <p>Miss Li insists on leaving the young man after he passes the exams: "You must ally yourself with some lady of noble lineage, who will be worthy to carry the sacrificial dishes in your Ancestral Hall" (p. 311). She understands the class system perfectly. A courtesan cannot serve at the family altar. The happy ending (the father overrules her objection, they marry) is almost a fairy tale, which is precisely the point: the narrator remarks on "a degree of constancy rarely equalled even by the heroines of history" (p. 312).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story 3: Curly-bearded Hero -->
+    <section class="content-section alt" id="curlybeard">
+        <div class="section-label"><span class="chinese">虬髯客傳</span> STORY 3: THE CURLY-BEARDED HERO</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head du-accent"><span class="chinese">情節</span> Plot Summary <span class="meta">pp. 314&ndash;322</span></div>
+                <div class="card-body">
+                    <h4>Setting</h4>
+                    <p>The late Sui dynasty. Emperor Yangdi has left the capital, leaving the arrogant Councillor Yang Su in charge of Chang'an. The empire is fragmenting. Li Jing (Li Ching in Birch), a commoner with political vision, visits Yang Su and boldly tells him to stop receiving guests while lounging on a couch: "The whole empire is now in turmoil, as would-be leaders strive for mastery. Your first concern should be to win the respect of men of heroic mettle" (p. 314).</p>
+                    <h4>Red Whisk Girl</h4>
+                    <p>During their meeting, a beautiful concubine holding a red whisk catches Li Jing's eye. That night, she appears at his door: "I have been a long time in the service of the Councillor Yang, and I have seen many of the leading figures of the empire; but none have I seen to equal you" (p. 315). She is Miss Chang, "Red Whisk Girl" (Hong fu nü, 紅拂女). They flee together toward Taiyuan.</p>
+                    <h4>The Stranger</h4>
+                    <p>At an inn, a man with "a ruddy, curling beard" appears. He stares fixedly at Miss Chang while she combs her floor-length hair. Far from being offended, she calmly studies his face, signals Li Jing not to react, and invites the stranger to eat with them. He draws a human head from his leather bag, slices the heart and liver with a dagger, and shares them. "This man was unrivalled throughout the empire for mean ingratitude," he explains. "For ten years I have nursed my feud with him" (p. 317).</p>
+                    <h4>The Recognition</h4>
+                    <p>The stranger asks about a young man in Taiyuan. They arrange a meeting. When the young Li Shimin (the future Emperor Taizong) enters the room, "the whole room seemed filled with a freshness of spirit" (p. 319). The curly-bearded Chang says: "This is the true Son of Heaven." He cedes all his treasure to Li Jing and departs to carve out a kingdom overseas. Years later, reports arrive that "a force of a thousand ships" has conquered a country in the southeast (p. 321).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head du-accent"><span class="chinese">分析</span> Analysis <span class="meta">Destiny &amp; Yielding</span></div>
+                <div class="card-body">
+                    <h4>The Confucian Virtue of Yielding</h4>
+                    <p>Birch's introduction calls this story "a cri de coeur" about the founding of the Tang, centered on the virtue of <em>rang</em> (讓, yielding). The curly-bearded stranger is ambitious enough to compete for the empire. But "at sight of the youth his will had died within him" (p. 289). He recognizes that Li Shimin possesses the Mandate of Heaven. Rather than fight fate, he yields, and finds his own destiny elsewhere. This is the Confucian ideal of the political actor who knows when to step aside.</p>
+                    <h4>Three Heroic Types</h4>
+                    <p>The story presents three archetypes working in concert:</p>
+                    <ul>
+                        <li><strong>Li Jing</strong> (李靖): the loyal minister, the man who knows how to serve. He recognizes talent above his own station and connects the right people.</li>
+                        <li><strong>Miss Chang / Red Whisk Girl</strong> (紅拂女): the woman of discernment. She chooses Li Jing over Yang Su because she can read character. She handles the stranger with complete composure.</li>
+                        <li><strong>The Curly-bearded Stranger</strong> (虬髯客): the hero who yields. He has the ambition and resources for empire but cedes both when he encounters genuine charisma.</li>
+                    </ul>
+                    <h4>Late Tang Nostalgia</h4>
+                    <p>Du Guangting (850&ndash;933) wrote this when the Tang dynasty was collapsing. The story is set at the dynasty's origin, when righteous men recognized the true emperor and rallied to his cause. It is a fantasy of political clarity written in an age of chaos, a backward glance at a founding moment when the system worked as it was supposed to.</p>
+                    <h4>"At Sight of the Youth His Will Had Died Within Him"</h4>
+                    <blockquote>
+                        "The game is over! My position had become impossible. Who could have told?&mdash;but there was no way out."
+                        <cite>The Daoist upon seeing Li Shimin; Birch, p. 319; trans. Cyril Birch</cite>
+                    </blockquote>
+                    <p>The Daoist and the curly-bearded stranger both recognize Li Shimin's mandate instantly. The story treats this as self-evident, not as a matter of debate. Political legitimacy is presented as something the discerning can simply perceive, the way one perceives a quality of light.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes -->
+    <section class="content-section" id="themes">
+        <div class="section-label"><span class="chinese">主題</span> COMPARATIVE THEMES</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">女性</span> Women in the Three Stories</div>
+                <div class="card-body">
+                    <h4>Three Women, Three Degrees of Agency</h4>
+                    <ul>
+                        <li><strong>Cui Yingying</strong>: the most constrained. She is articulate and perceptive, but trapped within the system. She can write devastating letters but cannot prevent her own abandonment. Her final poem is her only weapon.</li>
+                        <li><strong>Miss Li</strong>: begins as a tool of exploitation (the con), then becomes the story's moral center. She pays for the young man's freedom with her own money, directs his education, and tries to exit gracefully when the class system demands it. She has more practical agency than Yingying.</li>
+                        <li><strong>Miss Chang / Red Whisk Girl</strong>: the freest of the three. She chooses her own man, leaves Yang Su's household on her own initiative, reads the curly-bearded stranger's character instantly, and handles a tense confrontation with complete poise. She is the only woman in these stories who acts without asking permission.</li>
+                    </ul>
+                    <div class="key-themes">
+                        <h4>Pattern</h4>
+                        <ul>
+                            <li><strong>Yingying</strong>: woman as victim of male desire</li>
+                            <li><strong>Miss Li</strong>: woman as moral redeemer</li>
+                            <li><strong>Red Whisk</strong>: woman as equal partner in heroic action</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">階級</span> Class, Duty, and Desire</div>
+                <div class="card-body">
+                    <h4>The Examination System</h4>
+                    <p>Two of these stories revolve around the civil service examinations. Chang (in "Yingying") leaves for the exams and fails. The young man in "Miss Li" is sent to the capital for the exams, wastes his resources, and only passes after Miss Li forces him to study. The exam system is the structure that organizes male ambition and the social hierarchy both stories inhabit.</p>
+                    <h4>Desire vs. Social Order</h4>
+                    <p>In each story, desire threatens social order. Chang's passion for Yingying conflicts with his career. The young man's passion for Miss Li destroys his family position. Li Jing's attraction to Red Whisk could get them both killed. Each story resolves the tension differently: suppression and betrayal (Yingying), redemption through a woman's conscience (Miss Li), or integration of desire and duty (Curly-bearded Hero).</p>
+                    <h4>The Confucian Frame</h4>
+                    <p>All three stories operate within a Confucian moral universe. Filial piety, loyalty, the five relationships, the examination system, yielding to legitimate authority. Even when characters violate these norms (Chang's betrayal, Miss Li's con), the narrative frame judges actions by how well they restore or destroy the web of social obligations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Yingying: Sympathy and Judgment</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Chang's friends "praised the skill with which he extricated himself from this entanglement" (p. 299). Is the narrator endorsing this view? Is there any signal that we should read against the narrator?</li>
+                        <li>Compare Yingying's letter (pp. 296&ndash;297) to Chang's speech about beautiful women destroying kingdoms (p. 298). Who is more self-aware? Who is more honest?</li>
+                        <li>If the story is autobiographical, what does it mean that Yuan Zhen published it under a thin disguise? Is it confession, boasting, or something else?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Miss Li: Morality and Class</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Miss Li says "Our conduct has indeed been inhuman! We have ruined his career and robbed him even of his place in the category of human relationships" (p. 309). What exactly has she destroyed? Why does she frame it in Confucian terms?</li>
+                        <li>The father beats his son nearly to death (p. 308). The narrator does not comment. Should we read this as acceptable discipline or as another form of violence that parallels the courtesan's con?</li>
+                        <li>Miss Li insists on leaving after the young man passes the exams (p. 311). Is her self-sacrifice genuine humility, or does she understand the class system better than anyone around her?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Curly-bearded Hero: Power and Legitimacy</div>
+                <div class="card-body">
+                    <ul>
+                        <li>The curly-bearded stranger recognizes Li Shimin's mandate simply by looking at him: "at sight of the youth his will had died within him" (p. 289). What kind of political theory is this? How does it compare to Mengzi's idea of the Mandate of Heaven?</li>
+                        <li>Du Guangting wrote this story when the Tang was already collapsing. What does it mean to write a founding myth for a dynasty that is dying? Who is the intended audience?</li>
+                        <li>Red Whisk Girl chooses Li Jing because "none have I seen to equal you" (p. 315). Compare her agency to Yingying's. What makes the difference?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I (Grove Press, 1965): "Tang Short Stories," pp. 288&ndash;322.</p>
+                <p>"The Story of Ts'ui Ying-ying" (pp. 290&ndash;299) and "The Story of Miss Li" (pp. 300&ndash;313): translated by Arthur Waley.</p>
+                <p>"The Curly-bearded Hero" (pp. 314&ndash;322): translated by Cyril Birch.</p>
+            </div>
+            <div class="source-card">
+                <h4>Author Biographies</h4>
+                <a href="https://www.britannica.com/biography/Yuan-Zhen" target="_blank" rel="noopener">Britannica: Yuan Zhen (元稹)</a>
+                <a href="https://www.britannica.com/biography/Bai-Xingjian" target="_blank" rel="noopener">Britannica: Bai Xingjian (白行簡)</a>
+                <a href="https://www.encyclopedia.com/environment/encyclopedias-almanacs-transcripts-and-maps/du-guangting" target="_blank" rel="noopener">Encyclopedia.com: Du Guangting (杜光庭)</a>
+                <a href="https://www.britannica.com/biography/Bai-Juyi" target="_blank" rel="noopener">Britannica: Bai Juyi (白居易)</a>
+            </div>
+            <div class="source-card">
+                <h4>Genre &amp; Adaptations</h4>
+                <a href="https://www.britannica.com/art/chuanqi-Chinese-literature" target="_blank" rel="noopener">Britannica: Chuanqi (Tang fiction genre)</a>
+                <a href="https://www.britannica.com/topic/The-Story-of-the-Western-Wing" target="_blank" rel="noopener">Britannica: <em>The Story of the Western Wing</em> (Xixiang ji)</a>
+                <a href="https://chiculture.org.hk/en/china-five-thousand-years/1939" target="_blank" rel="noopener">Chinese Culture: Tang Dynasty Chuanqi Overview</a>
+                <a href="https://chiculture.org.hk/en/china-five-thousand-years/2612" target="_blank" rel="noopener">Chinese Culture: From Yingying to <em>Western Chamber</em></a>
+            </div>
+            <div class="source-card">
+                <h4>Translators</h4>
+                <a href="https://www.britannica.com/biography/Arthur-David-Waley" target="_blank" rel="noopener">Britannica: Arthur Waley (1889&ndash;1966)</a>
+                <p>Cyril Birch (1925&ndash;2017), editor of the anthology and translator of "The Curly-bearded Hero."</p>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Texts</h4>
+                <a href="https://www.gutenberg.org/ebooks/23915" target="_blank" rel="noopener">Project Gutenberg: 虬髯客傳 (full Chinese text)</a>
+                <a href="https://en.daoinfo.org/wiki/Du_Guangting" target="_blank" rel="noopener">FYSK Daoist Culture Centre: Du Guangting</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Pages</h4>
+                <a href="tang-poets.html">Tang Poets (Wang Wei, Li Bai, Du Fu)</a>
+                <a href="bai-juyi.html">Bai Juyi 白居易</a>
+                <a href="prose-essays.html">Tang Prose Essays</a>
+                <a href="poets-generation-two.html">Poets of a Generation: Two</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
