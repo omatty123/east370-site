@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birch Anthology: Complete Works Index | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* TOC Tables */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0.5rem 0 0;
+        }
+        .toc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .toc-table thead {
+            background: #2a2a2a;
+            color: #ccc;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+        }
+        .toc-table th {
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            font-weight: 500;
+        }
+        .toc-table td {
+            padding: 0.45rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+        .toc-table tbody tr:hover {
+            background: var(--paper-dark);
+        }
+        .toc-table .zh-col {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+        .toc-table .zh-col a {
+            color: var(--teal);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--teal);
+        }
+        .toc-table .zh-col a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+        .toc-table .birch-col {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            white-space: nowrap;
+        }
+        .section-meta {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            margin: -0.3rem 0 0.5rem;
+        }
+        .section-note {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            font-style: italic;
+            margin: 0.3rem 0 0.5rem;
+            padding: 0.4rem 0.75rem;
+            background: var(--paper-dark);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .audio-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            background: var(--gold);
+            color: #fff;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            margin-left: 0.3rem;
+            vertical-align: middle;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        /* Sources */
+        .sources { background: var(--paper-dark); padding: 1rem 1.5rem 1.5rem; }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.4rem;
+        }
+        .source-card a {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .source-card a:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .toc-table { font-size: 0.75rem; }
+            .toc-table th, .toc-table td { padding: 0.35rem 0.5rem; }
+            .toc-table .zh-col { font-size: 0.85rem; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">目錄</span>
+            <span class="en">Birch Anthology: Complete Works Index</span>
+            <span class="meta">Cyril Birch, ed. <em>Anthology of Chinese Literature</em>, Vol. 1 (Grove Press)</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="#shijing" class="d-block" data-d="zhou">Zhou</a>
+        <a href="#chuci" class="d-block" data-d="warring">Warring States</a>
+        <a href="#simaqian" class="d-block" data-d="qin">Qin</a>
+        <a href="#simaqian" class="d-block" data-d="han">Han</a>
+        <a href="#seclusion" class="d-block" data-d="six-dyn">Six Dyn.</a>
+        <a href="#tang1" class="d-block" data-d="tang">Tang</a>
+        <a href="#songci" class="d-block" data-d="song">Song</a>
+        <a href="#yuan" class="d-block" data-d="yuan">Yuan</a>
+    </div>
+
+    <nav class="nav">
+        <a href="#shijing">Book of Songs</a>
+        <a href="#history">Histories</a>
+        <a href="#chuci">Songs of Chu</a>
+        <a href="#death">On Death</a>
+        <a href="#simaqian">Sima Qian</a>
+        <a href="#fu">Rhyme Prose</a>
+        <a href="#seclusion">Seclusion</a>
+        <a href="#recluse">Recluse Poetry</a>
+        <a href="#baozhao">Bao Zhao</a>
+        <a href="#hanshan">Han Shan</a>
+        <a href="#wenfu">Wen Fu</a>
+        <a href="#tang1">Tang Poets I</a>
+        <a href="#prose">Prose Essays</a>
+        <a href="#tang2">Tang Poets II</a>
+        <a href="#chuanqi">Short Stories</a>
+        <a href="#songci">Song Ci</a>
+        <a href="#songprose">Song Prose</a>
+        <a href="#yuan">Yuan Drama</a>
+        <a href="#shuihu">Water Margin</a>
+    </nav>
+
+    <!-- Introduction -->
+    <section class="content-section">
+        <div class="section-label"><span class="chinese">凡</span> About This Index</div>
+        <p class="section-note">
+            Every individual work from the assigned readings in Birch's <em>Anthology of Chinese Literature</em>, Vol. 1.
+            Chinese titles link to <a href="https://meirishici.com/" target="_blank" rel="noopener" style="color:var(--teal);border-bottom:1px dotted var(--teal)">meirishici.com</a> (每日詩詞), which includes audio recitations <span class="audio-badge">AUDIO</span> for all entries.
+            Author names use Pinyin; Birch's Wade-Giles romanization is preserved in the English titles column to help locate passages in your copy.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ZHOU DYNASTY: Book of Songs                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="shijing">
+        <div class="section-label"><span class="chinese">詩</span> Book of Songs</div>
+        <p class="section-meta">Birch pp. 3&ndash;29 &middot; Zhou Dynasty &middot; Tr. Arthur Waley &amp; Ezra Pound &middot; 33 poems</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Translator</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"She who in the beginning gave birth to the people"</td><td>Waley</td><td>Sh&#275;ng m&#237;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=生民" target="_blank" rel="noopener">生民</a></td><td class="birch-col">5</td></tr>
+                <tr><td>"Plop fall the plums"</td><td>Waley</td><td>Bi&#257;o y&#466;u m&#233;i</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=摽有梅" target="_blank" rel="noopener">摽有梅</a></td><td class="birch-col">7</td></tr>
+                <tr><td>"That the mere glimpse of a plain cap"</td><td>Waley</td><td>Z&#233; b&#275;i</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=澤陂" target="_blank" rel="noopener">澤陂</a></td><td class="birch-col">7</td></tr>
+                <tr><td>"Mid the bind-grass on the plain"</td><td>Pound</td><td>H&#233;ng m&#233;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=衡門" target="_blank" rel="noopener">衡門</a></td><td class="birch-col">8</td></tr>
+                <tr><td>"Lies a dead deer on yonder plain"</td><td>Pound</td><td>Y&#283; y&#466;u s&#464; j&#363;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=野有死麕" target="_blank" rel="noopener">野有死麕</a></td><td class="birch-col">8</td></tr>
+                <tr><td>"How you make free, there on top of the hollow mound"</td><td>Waley</td><td>Qi&#363; zh&#333;ng y&#466;u m&#225;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=丘中有麻" target="_blank" rel="noopener">丘中有麻</a></td><td class="birch-col">9</td></tr>
+                <tr><td>"Of fair girls the loveliest"</td><td>Waley</td><td>J&#236;ng n&#474;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=靜女" target="_blank" rel="noopener">靜女</a></td><td class="birch-col">9</td></tr>
+                <tr><td>"I beg of you, Chung Tzu"</td><td>Waley</td><td>Ji&#257;ng zh&#242;ng z&#464;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=將仲子" target="_blank" rel="noopener">將仲子</a></td><td class="birch-col">10</td></tr>
+                <tr><td>"He's to the war for the duration"</td><td>Pound</td><td>B&#243; x&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=伯兮" target="_blank" rel="noopener">伯兮</a></td><td class="birch-col">10</td></tr>
+                <tr><td>"Yellow, withered all flowers, no day without its march"</td><td>Pound</td><td>H&#233; c&#462;o b&#249; hu&#225;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=何草不黃" target="_blank" rel="noopener">何草不黃</a></td><td class="birch-col">11</td></tr>
+                <tr><td>"Thorn-elm on mountain, white elm on slope"</td><td>Pound</td><td>Sh&#257;n y&#466;u sh&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=山有樞" target="_blank" rel="noopener">山有樞</a></td><td class="birch-col">11</td></tr>
+                <tr><td>"Salt lick! deer on waste sing: grass for the tasting"</td><td>Pound</td><td>L&#249; m&#237;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=鹿鳴" target="_blank" rel="noopener">鹿鳴</a></td><td class="birch-col">12</td></tr>
+                <tr><td>"Thick, all in mass, bring drums, bring drums"</td><td>Pound</td><td>N&#224;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=那" target="_blank" rel="noopener">那</a></td><td class="birch-col">13</td></tr>
+                <tr><td>"By curved bank in South Mount's innerest wood"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">14</td></tr>
+                <tr><td>"A moon rising white is the beauty of my lovely one"</td><td>Waley</td><td>Yu&#232; ch&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=月出" target="_blank" rel="noopener">月出</a></td><td class="birch-col">15</td></tr>
+                <tr><td>"At the great gate to the East, mid crowds"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">15</td></tr>
+                <tr><td>"She: Curl-grass, curl-grass&hellip; He: Pass, pass, up over the pass"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">16</td></tr>
+                <tr><td>"How it tapered, the bamboo rod"</td><td>Waley</td><td>Zh&#250; g&#257;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=竹竿" target="_blank" rel="noopener">竹竿</a></td><td class="birch-col">17</td></tr>
+                <tr><td>"If along the highroad I caught hold of your sleeve"</td><td>Waley</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">17</td></tr>
+                <tr><td>"Tall stands that pear-tree; its leaves are fresh and fair"</td><td>Waley</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">18</td></tr>
+                <tr><td>"Some reeds be found by river's brink"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">18</td></tr>
+                <tr><td>"Tall girl with a profile, broidery neath a simple dress"</td><td>Pound</td><td>Shu&#242; r&#233;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=碩人" target="_blank" rel="noopener">碩人</a></td><td class="birch-col">19</td></tr>
+                <tr><td>"White the marsh flower that white grass bindeth"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">20</td></tr>
+                <tr><td>"Tossed is that cypress boat, wave-tossed it floats"</td><td>Waley</td><td>B&#462;i zh&#333;u</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=柏舟" target="_blank" rel="noopener">柏舟</a></td><td class="birch-col">20</td></tr>
+                <tr><td>"Rabbit goes soft-foot, pheasant's caught"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">22</td></tr>
+                <tr><td>"So have I seen him in his service car"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">22</td></tr>
+                <tr><td>"Shu's to the field, the reins of his double team"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">23</td></tr>
+                <tr><td>"In the seventh month the Fire ebbs"</td><td>Waley</td><td>Q&#299; yu&#232;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=七月" target="_blank" rel="noopener">七月</a></td><td class="birch-col">24&ndash;27</td></tr>
+                <tr><td>"Speed, speed the plow on south slopes now"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">27</td></tr>
+                <tr><td>"Heaven conserve thy course in quietness"</td><td>Pound</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">27</td></tr>
+                <tr><td>"So they appeared before their lord the king"</td><td>Waley</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">28</td></tr>
+                <tr><td>"When he planned to begin a spirit tower"</td><td>Pound</td><td>L&#237;ng t&#225;i</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=靈臺" target="_blank" rel="noopener">靈臺</a></td><td class="birch-col">28</td></tr>
+                <tr><td>"Don't escort the big chariot; you will only make yourself dusty"</td><td>Waley</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">29</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- EARLY HISTORICAL WRITINGS                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="history">
+        <div class="section-label"><span class="chinese">史</span> Early Historical Writings</div>
+        <p class="section-meta">Birch pp. 30&ndash;48 &middot; Zhou &amp; Warring States &middot; Tr. Burton Watson &amp; J.I. Crump</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author / Source</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"The Death of Duke Ching of Chin" (from Tso Commentary)</td><td>Zuozhuan (左傳)</td><td>J&#236;n J&#464;ngg&#333;ng zh&#299; s&#464;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=左傳" target="_blank" rel="noopener">左傳</a></td><td class="birch-col">30</td></tr>
+                <tr><td>"The Downfall of Prince Shen-sheng" (from Conversations from the States)</td><td>Guoyu (國語)</td><td>Sh&#275;nsh&#275;ng zh&#299; hu&#242;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=國語" target="_blank" rel="noopener">國語</a></td><td class="birch-col">35</td></tr>
+                <tr><td>"Ying-hou Warns King Chao of Ch'in" (from Intrigues of the Warring States)</td><td>Zhanguoce (戰國策)</td><td>Zh&#224;ngu&#243; c&#232;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=戰國策" target="_blank" rel="noopener">戰國策</a></td><td class="birch-col">39</td></tr>
+                <tr><td>"Sable Po and T'ien Tan" (from Intrigues)</td><td>Zhanguoce (戰國策)</td><td>Zh&#224;ngu&#243; c&#232;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=戰國策" target="_blank" rel="noopener">戰國策</a></td><td class="birch-col">39</td></tr>
+                <tr><td>"The Queen of Chao and Prince Ch'ang-an" (from Intrigues)</td><td>Zhanguoce (戰國策)</td><td>Zh&#224;ngu&#243; c&#232;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=戰國策" target="_blank" rel="noopener">戰國策</a></td><td class="birch-col">39</td></tr>
+                <tr><td>"The Faults of Ch'in"</td><td>Jia Yi (賈誼)</td><td>Gu&#242; Q&#237;n l&#249;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=過秦論" target="_blank" rel="noopener">過秦論</a></td><td class="birch-col">46</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SONGS OF CHU                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="chuci">
+        <div class="section-label"><span class="chinese">楚</span> Songs of Ch'u</div>
+        <p class="section-meta">Birch pp. 49&ndash;80 &middot; Warring States &middot; Tr. David Hawkes</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Encountering Sorrow" (Li Sao)</td><td>Qu Yuan (屈原)</td><td>L&#237; S&#257;o</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=離騷" target="_blank" rel="noopener">離騷</a></td><td class="birch-col">54&ndash;66</td></tr>
+                <tr><td>"The Princess of the Hsiang" (Nine Songs)</td><td>Qu Yuan</td><td>Xi&#257;ng J&#363;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=湘君" target="_blank" rel="noopener">湘君</a></td><td class="birch-col">67</td></tr>
+                <tr><td>"The Lady of the Hsiang" (Nine Songs)</td><td>Qu Yuan</td><td>Xi&#257;ng F&#363;r&#233;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=湘夫人" target="_blank" rel="noopener">湘夫人</a></td><td class="birch-col">68</td></tr>
+                <tr><td>"The Lord of the East" (Nine Songs)</td><td>Qu Yuan</td><td>D&#333;ng J&#363;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=東君" target="_blank" rel="noopener">東君</a></td><td class="birch-col">69</td></tr>
+                <tr><td>"The Spirits of the Fallen" (Nine Songs)</td><td>Qu Yuan</td><td>Gu&#243; Sh&#257;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=國殤" target="_blank" rel="noopener">國殤</a></td><td class="birch-col">70</td></tr>
+                <tr><td>"The Ritual Cycle" (Nine Songs)</td><td>Qu Yuan</td><td>L&#464; H&#250;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=禮魂" target="_blank" rel="noopener">禮魂</a></td><td class="birch-col">70</td></tr>
+                <tr><td>"A Lament for Ying" (Nine Declarations)</td><td>Qu Yuan</td><td>&#256;i Y&#464;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=哀郢" target="_blank" rel="noopener">哀郢</a></td><td class="birch-col">71</td></tr>
+                <tr><td>"In Praise of the Orange Tree" (Nine Declarations)</td><td>Qu Yuan</td><td>J&#250; S&#242;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=橘頌" target="_blank" rel="noopener">橘頌</a></td><td class="birch-col">72</td></tr>
+                <tr><td>"The Nine Arguments"</td><td>Song Yu (宋玉)</td><td>Ji&#468; Bi&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=九辯" target="_blank" rel="noopener">九辯</a></td><td class="birch-col">73</td></tr>
+                <tr><td>"The Summons of the Soul"</td><td>Qu Yuan / Song Yu</td><td>Zh&#257;o H&#250;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=招魂" target="_blank" rel="noopener">招魂</a></td><td class="birch-col">75</td></tr>
+                <tr><td>"Summons for a Gentleman Who Became a Recluse"</td><td>Liu An (劉安)</td><td>Zh&#257;o Y&#464;nsh&#236;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=招隱士" target="_blank" rel="noopener">招隱士</a></td><td class="birch-col">78</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ZHUANGZI AND OTHERS ON DEATH               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="death">
+        <div class="section-label"><span class="chinese">死</span> Zhuangzi and Others on Death</div>
+        <p class="section-meta">Birch pp. 81&ndash;90 &middot; Warring States to Han</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Three Dialogues" (on death)</td><td>Zhuangzi (莊子)</td><td>Zhu&#257;ngz&#464;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=莊子" target="_blank" rel="noopener">莊子</a></td><td class="birch-col">82</td></tr>
+                <tr><td>"The Testamentary Edict of Emperor Wen"</td><td>Emperor Wen of Han (漢文帝)</td><td>W&#233;nd&#236; y&#237;zh&#224;o</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=文帝遺詔" target="_blank" rel="noopener">文帝遺詔</a></td><td class="birch-col">86</td></tr>
+                <tr><td>"A Discussion of Death"</td><td>Wang Chong (王充)</td><td>L&#249;n s&#464;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=論死" target="_blank" rel="noopener">論死</a></td><td class="birch-col">88</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- BIOGRAPHIES BY SIMA QIAN                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="simaqian">
+        <div class="section-label"><span class="chinese">傳</span> Biographies by Ssu-ma Ch'ien</div>
+        <p class="section-meta">Birch pp. 93&ndash;122 &middot; Han Dynasty &middot; Tr. Burton Watson</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Letter to Jen An (Shao-ch'ing)"</td><td>Sima Qian (司馬遷)</td><td>B&#224;o R&#232;n &#256;n sh&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=報任安書" target="_blank" rel="noopener">報任安書</a></td><td class="birch-col">95</td></tr>
+                <tr><td>"The Biography of Po Yi and Shu Ch'i"</td><td>Sima Qian</td><td>B&#243;y&#237; li&#232;zhu&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=伯夷列傳" target="_blank" rel="noopener">伯夷列傳</a></td><td class="birch-col">103</td></tr>
+                <tr><td>"The Biography of Ching K'o"</td><td>Sima Qian</td><td>J&#299;ng K&#275; li&#232;zhu&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=荊軻列傳" target="_blank" rel="noopener">荊軻列傳</a></td><td class="birch-col">106</td></tr>
+                <tr><td>"The Death of Hsiang Yu"</td><td>Sima Qian</td><td>Xi&#224;ng Y&#468; b&#283;nj&#236;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=項羽本紀" target="_blank" rel="noopener">項羽本紀</a></td><td class="birch-col">119</td></tr>
+                <tr><td>"The Biography of General Li Kuang"</td><td>Sima Qian</td><td>L&#464; ji&#257;ngj&#363;n li&#232;zhu&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=李將軍列傳" target="_blank" rel="noopener">李將軍列傳</a></td><td class="birch-col">123</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- RHYME PROSE (FU)                           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="fu">
+        <div class="section-label"><span class="chinese">賦</span> Rhyme Prose</div>
+        <p class="section-meta">Birch pp. 134&ndash;153 &middot; Han Dynasty</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"The Wind" (Fu on the Wind)</td><td>Song Yu (宋玉)</td><td>F&#275;ng f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=風賦" target="_blank" rel="noopener">風賦</a></td><td class="birch-col">134</td></tr>
+                <tr><td>"The Owl" (Fu on the Owl)</td><td>Jia Yi (賈誼)</td><td>F&#250; ni&#462;o f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=鵩鳥賦" target="_blank" rel="noopener">鵩鳥賦</a></td><td class="birch-col">136</td></tr>
+                <tr><td>"Lament for Ch'u Yuan"</td><td>Jia Yi (賈誼)</td><td>Di&#224;o Q&#363; Yu&#225;n f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=弔屈原賦" target="_blank" rel="noopener">弔屈原賦</a></td><td class="birch-col">139</td></tr>
+                <tr><td>"Rhapsody on the Imperial Park" (Shang-lin fu)</td><td>Sima Xiangru (司馬相如)</td><td>Sh&#224;ngl&#237;n f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=上林賦" target="_blank" rel="noopener">上林賦</a></td><td class="birch-col">142&ndash;153</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- ON SECLUSION                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="seclusion">
+        <div class="section-label"><span class="chinese">隱</span> On Seclusion</div>
+        <p class="section-meta">Birch pp. 157&ndash;169 &middot; Period of Division (220&ndash;589 CE)</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Letter to Sun Hui-tsung"</td><td>Yang Yun (楊惲)</td><td>B&#224;o S&#363;n Hu&#236;z&#333;ng sh&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=報孫會宗書" target="_blank" rel="noopener">報孫會宗書</a></td><td class="birch-col">157&ndash;159</td></tr>
+                <tr><td>"Letter to Shan T'ao"</td><td>Xi Kang (嵇康)</td><td>Y&#468; Sh&#257;n J&#249;yu&#225;n ju&#233; ji&#257;o sh&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=與山巨源絕交書" target="_blank" rel="noopener">與山巨源絕交書</a></td><td class="birch-col">160&ndash;164</td></tr>
+                <tr><td>"Peach Blossom Spring"</td><td>Tao Qian (陶潛)</td><td>T&#225;ohu&#257; yu&#225;n j&#236;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=桃花源記" target="_blank" rel="noopener">桃花源記</a></td><td class="birch-col">167&ndash;168</td></tr>
+                <tr><td>"Proclamation on North Mountain"</td><td>Kong Zhigui (孔稚珪)</td><td>B&#283;ish&#257;n y&#237; w&#233;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=北山移文" target="_blank" rel="noopener">北山移文</a></td><td class="birch-col">168&ndash;169</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- POETRY OF THE RECLUSE                      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="recluse">
+        <div class="section-label"><span class="chinese">隱</span> The Poetry of the Recluse</div>
+        <p class="section-meta">Birch pp. 174&ndash;188 &middot; Period of Division</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"The Bones of Chuang Tzu"</td><td>Zhang Heng (張衡)</td><td>D&#250;l&#243;u f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=髑髏賦" target="_blank" rel="noopener">髑髏賦</a></td><td class="birch-col">176&ndash;178</td></tr>
+                <tr><td>"Poems of My Heart" No. 1: "The Sleepless Night"</td><td>Ruan Ji (阮籍)</td><td>Y&#466;nghu&#225;i sh&#299; q&#237; y&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=詠懷詩" target="_blank" rel="noopener">詠懷詩</a></td><td class="birch-col">179</td></tr>
+                <tr><td>"The Dark Stork" (from Yonghuai cycle)</td><td>Ruan Ji</td><td>Y&#466;nghu&#225;i sh&#299;</td><td class="zh-col">&mdash;</td><td class="birch-col">180</td></tr>
+                <tr><td>"The Long and Fearful Night" (from Yonghuai cycle)</td><td>Ruan Ji</td><td>Y&#466;nghu&#225;i sh&#299;</td><td class="zh-col">&mdash;</td><td class="birch-col">181</td></tr>
+                <tr><td>"Returning to Dwell in the Country, I"</td><td>Tao Yuanming (陶淵明)</td><td>Gu&#299; yu&#225;nti&#225;n j&#363; q&#237; y&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=歸園田居" target="_blank" rel="noopener">歸園田居</a></td><td class="birch-col">182</td></tr>
+                <tr><td>"Returning to Dwell in the Country, IV"</td><td>Tao Yuanming</td><td>Gu&#299; yu&#225;nti&#225;n j&#363; q&#237; s&#236;</td><td class="zh-col">&mdash;</td><td class="birch-col">183</td></tr>
+                <tr><td>"Written While Drunk" (Drinking Wine No. 5)</td><td>Tao Yuanming</td><td>Y&#464;nji&#468; q&#237; w&#468;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=飲酒" target="_blank" rel="noopener">飲酒</a></td><td class="birch-col">184</td></tr>
+                <tr><td>"On Reading the Classic of the Hills and Seas"</td><td>Tao Yuanming</td><td>D&#250; Sh&#257;nh&#462;i j&#299;ng q&#237; y&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=讀山海經" target="_blank" rel="noopener">讀山海經</a></td><td class="birch-col">185</td></tr>
+                <tr><td>"A Song of Poor Scholars"</td><td>Tao Yuanming</td><td>Y&#466;ng p&#237;nsh&#236; q&#237; y&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=詠貧士" target="_blank" rel="noopener">詠貧士</a></td><td class="birch-col">185</td></tr>
+                <tr><td>"Written in Imitation of an Ancient Bearers' Song"</td><td>Tao Yuanming</td><td>N&#464; w&#462;ng&#275; c&#237; q&#237; s&#257;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=擬輓歌辭" target="_blank" rel="noopener">擬輓歌辭</a></td><td class="birch-col">186</td></tr>
+                <tr><td>"Putting the Blame on His Sons"</td><td>Tao Yuanming</td><td>Z&#233; z&#464;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=責子" target="_blank" rel="noopener">責子</a></td><td class="birch-col">187</td></tr>
+                <tr><td>"Written on the Ninth Day of the Ninth Month" (409 CE)</td><td>Tao Yuanming</td><td>J&#464;y&#466;u su&#236; ji&#468;yu&#232; ji&#468;r&#236;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=己酉歲九月九日" target="_blank" rel="noopener">己酉歲九月九日</a></td><td class="birch-col">188</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- BAO ZHAO                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="baozhao">
+        <div class="section-label"><span class="chinese">鮑</span> Bao Zhao</div>
+        <p class="section-meta">Birch pp. 189&ndash;193 &middot; Period of Division</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Tedious Ways," Poem 1: "The Nightjar"</td><td>Bao Zhao (鮑照)</td><td>X&#237;ng l&#249; n&#225;n q&#237; y&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=行路難" target="_blank" rel="noopener">行路難</a></td><td class="birch-col">189</td></tr>
+                <tr><td>"Tedious Ways," Poem 2: "The Lonely Mistress"</td><td>Bao Zhao</td><td>X&#237;ng l&#249; n&#225;n q&#237; &#232;r</td><td class="zh-col">&mdash;</td><td class="birch-col">189</td></tr>
+                <tr><td>"Tedious Ways," Poem 3: "Do You Not See"</td><td>Bao Zhao</td><td>X&#237;ng l&#249; n&#225;n q&#237; s&#257;n</td><td class="zh-col">&mdash;</td><td class="birch-col">190</td></tr>
+                <tr><td>"The Ruined City" (fu)</td><td>Bao Zhao</td><td>W&#250; ch&#233;ng f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=蕪城賦" target="_blank" rel="noopener">蕪城賦</a></td><td class="birch-col">190&ndash;193</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- HAN SHAN                                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="hanshan">
+        <div class="section-label"><span class="chinese">寒</span> Han Shan (Cold Mountain Poems)</div>
+        <p class="section-meta">Birch pp. 194&ndash;202 &middot; Period of Division / Tang &middot; Tr. Burton Watson</p>
+        <p class="section-note">Han Shan's poems are numbered, not individually titled. The anthology includes a selection of Cold Mountain poems (寒山詩), meditations on mountain solitude, impermanence, and Buddhist awakening.</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>Cold Mountain Poems (selection)</td><td>Han Shan (寒山)</td><td>H&#225;nsh&#257;n sh&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=寒山詩" target="_blank" rel="noopener">寒山詩</a></td><td class="birch-col">194&ndash;202</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- WEN FU                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="wenfu">
+        <div class="section-label"><span class="chinese">文</span> On Literature</div>
+        <p class="section-meta">Birch pp. 204&ndash;214 &middot; Period of Division &middot; Tr. Shih-hsiang Chen</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Essay on Literature" (Wen Fu)</td><td>Lu Ji (陸機)</td><td>W&#233;n f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=文賦" target="_blank" rel="noopener">文賦</a></td><td class="birch-col">204&ndash;214</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TANG: POETS OF A GENERATION: ONE           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="tang1">
+        <div class="section-label"><span class="chinese">唐</span> Poets of a Generation: One</div>
+        <p class="section-meta">Birch pp. 217&ndash;241 &middot; High Tang</p>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin-bottom:0.3rem;font-weight:600;">WANG WEI (王維) &middot; pp. 219&ndash;224</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Letter to the Bachelor of Arts P'ei Ti"</td><td>Sh&#257;nzh&#333;ng y&#468; P&#233;i Xi&#249;c&#225;i D&#237; sh&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=山中與裴秀才迪書" target="_blank" rel="noopener">山中與裴秀才迪書</a></td><td class="birch-col">219</td></tr>
+                <tr><td>"The Hill of Hua-Tzu" (Poems of the River Wang)</td><td>Hu&#225;z&#464; g&#257;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=華子崗" target="_blank" rel="noopener">華子崗</a></td><td class="birch-col">220</td></tr>
+                <tr><td>"The Deer Enclosure" (Poems of the River Wang)</td><td>L&#249; zh&#224;i</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=鹿柴" target="_blank" rel="noopener">鹿柴</a></td><td class="birch-col">220</td></tr>
+                <tr><td>"The Path of the Ash Trees" (Poems of the River Wang)</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">221</td></tr>
+                <tr><td>"The Pavilion of the Lake" (Poems of the River Wang)</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">221</td></tr>
+                <tr><td>"The Stream at the House of the Luans" (Poems of the River Wang)</td><td>Lu&#225;nji&#257; l&#224;i</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=欒家瀨" target="_blank" rel="noopener">欒家瀨</a></td><td class="birch-col">222</td></tr>
+                <tr><td>"The Cove of the Wall of Meng" (Poems of the River Wang)</td><td>M&#232;ngch&#233;ng &#224;o</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=孟城坳" target="_blank" rel="noopener">孟城坳</a></td><td class="birch-col">223</td></tr>
+                <tr><td>"Seeing Master Yuan Off on His Mission to Kucha"</td><td>S&#242;ng Yu&#225;n &#200;r sh&#464; &#256;nx&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=送元二使安西" target="_blank" rel="noopener">送元二使安西</a></td><td class="birch-col">224</td></tr>
+                <tr><td>"To the Assistant Prefect Chang"</td><td>Ch&#243;u Zh&#257;ng Sh&#462;of&#468;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=酬張少府" target="_blank" rel="noopener">酬張少府</a></td><td class="birch-col">224</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">LI BAI (李白) &middot; pp. 225&ndash;234</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"On the Mountain: Question and Answer"</td><td>Sh&#257;nzh&#333;ng w&#232;nd&#225;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=山中問答" target="_blank" rel="noopener">山中問答</a></td><td class="birch-col">225</td></tr>
+                <tr><td>"Spring Thoughts"</td><td>Ch&#363;n s&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=春思 李白" target="_blank" rel="noopener">春思</a></td><td class="birch-col">225</td></tr>
+                <tr><td>"To Someone Far Away"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">226</td></tr>
+                <tr><td>"Night Mooring at Cow's Creek"</td><td>Y&#232; b&#243; Ni&#250;zh&#468; hu&#225;ig&#468;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=夜泊牛渚懷古" target="_blank" rel="noopener">夜泊牛渚懷古</a></td><td class="birch-col">226</td></tr>
+                <tr><td>"Visiting Han-tan: The Dancers at the Southern Pavilion"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">227</td></tr>
+                <tr><td>"To Yuan Tan-ch'iu"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">227</td></tr>
+                <tr><td>"To His Old Friend Hsin"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">228</td></tr>
+                <tr><td>"Fighting South of the Ramparts"</td><td>Zh&#224;n ch&#233;ng n&#225;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=戰城南" target="_blank" rel="noopener">戰城南</a></td><td class="birch-col">228</td></tr>
+                <tr><td>"Four Poems on Wine," No. 1</td><td>Yu&#232; xi&#224; d&#250; zhu&#243;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=月下獨酌" target="_blank" rel="noopener">月下獨酌</a></td><td class="birch-col">230</td></tr>
+                <tr><td>"Four Poems on Wine," No. 2</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">231</td></tr>
+                <tr><td>"Four Poems on Wine," No. 3</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">231</td></tr>
+                <tr><td>"Four Poems on Wine," No. 4</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">232</td></tr>
+                <tr><td>"Letter to Han Ching-chou"</td><td>Y&#468; H&#225;n J&#299;ngzh&#333;u sh&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=與韓荊州書" target="_blank" rel="noopener">與韓荊州書</a></td><td class="birch-col">233</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">DU FU (杜甫) &middot; pp. 235&ndash;236</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Autumn Meditation," No. 1</td><td>Qi&#363; x&#299;ng b&#257; sh&#466;u q&#237; y&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=秋興八首" target="_blank" rel="noopener">秋興八首</a></td><td class="birch-col">235</td></tr>
+                <tr><td>"Autumn Meditation," No. 2</td><td>q&#237; &#232;r</td><td class="zh-col">&mdash;</td><td class="birch-col">235</td></tr>
+                <tr><td>"Autumn Meditation," No. 3</td><td>q&#237; s&#257;n</td><td class="zh-col">&mdash;</td><td class="birch-col">236</td></tr>
+                <tr><td>"Autumn Meditation," No. 4</td><td>q&#237; s&#236;</td><td class="zh-col">&mdash;</td><td class="birch-col">236</td></tr>
+                <tr><td>"Autumn Meditation," No. 5</td><td>q&#237; w&#468;</td><td class="zh-col">&mdash;</td><td class="birch-col">236</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TANG PROSE ESSAYS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="prose">
+        <div class="section-label"><span class="chinese">文</span> Prose Essays</div>
+        <p class="section-meta">Birch pp. 242&ndash;259 &middot; Tang Dynasty</p>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin-bottom:0.3rem;font-weight:600;">HAN YU (韓愈) &middot; pp. 244&ndash;257</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Farewell to Poverty"</td><td>S&#242;ng qi&#243;ng w&#233;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=送窮文" target="_blank" rel="noopener">送窮文</a></td><td class="birch-col">244</td></tr>
+                <tr><td>"Lament for His Nephew Shih-erh Lang"</td><td>J&#236; sh&#237;'&#232;r l&#225;ng w&#233;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=祭十二郎文" target="_blank" rel="noopener">祭十二郎文</a></td><td class="birch-col">246</td></tr>
+                <tr><td>"Against the God of the Wind"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">250</td></tr>
+                <tr><td>"Memorial on the Bone of Buddha"</td><td>L&#249;n f&#243;g&#468; bi&#462;o</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=論佛骨表" target="_blank" rel="noopener">論佛骨表</a></td><td class="birch-col">250</td></tr>
+                <tr><td>"Proclamation to the Crocodile"</td><td>J&#236; &#232;y&#250; w&#233;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=祭鱷魚文" target="_blank" rel="noopener">祭鱷魚文</a></td><td class="birch-col">253</td></tr>
+                <tr><td>"An Enquiry Into Slander"</td><td>Yu&#225;n hu&#464;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=原毀" target="_blank" rel="noopener">原毀</a></td><td class="birch-col">255</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">LIU ZONGYUAN (柳宗元) &middot; pp. 258&ndash;259</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Camel Kuo the Gardener"</td><td>Zh&#242;ngsh&#249; Gu&#333; Tu&#243;tuo zhu&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=種樹郭橐駝傳" target="_blank" rel="noopener">種樹郭橐駝傳</a></td><td class="birch-col">258</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TANG: POETS OF A GENERATION: TWO           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="tang2">
+        <div class="section-label"><span class="chinese">唐</span> Poets of a Generation: Two</div>
+        <p class="section-meta">Birch pp. 260&ndash;287 &middot; Mid-Tang</p>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin-bottom:0.3rem;font-weight:600;">HAN YU AS POET (韓愈) &middot; pp. 262&ndash;264</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"The Withered Tree"</td><td>K&#363; sh&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=枯樹 韓愈" target="_blank" rel="noopener">枯樹</a></td><td class="birch-col">262</td></tr>
+                <tr><td>"A Poem on the Stone Drums"</td><td>Sh&#237;g&#468; g&#275;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=石鼓歌" target="_blank" rel="noopener">石鼓歌</a></td><td class="birch-col">262</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">LINKED VERSE &middot; p. 265</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Authors</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"A Garland of Roses" (collaborative)</td><td>Liu Yuxi, Pei Du, Bai Juyi, Zhang Ji</td><td>Qi&#225;ngw&#275;i hu&#257; li&#225;nj&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=薔薇花聯句" target="_blank" rel="noopener">薔薇花聯句</a></td><td class="birch-col">265</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">BAI JUYI (白居易) &middot; pp. 266&ndash;278</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"A Song of Unending Sorrow"</td><td>Ch&#225;ng h&#232;n g&#275;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=長恨歌" target="_blank" rel="noopener">長恨歌</a></td><td class="birch-col">266</td></tr>
+                <tr><td>"On the Lotuses"</td><td>Y&#237; g&#275;n li&#225;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=移根蓮" target="_blank" rel="noopener">移根蓮</a></td><td class="birch-col">269</td></tr>
+                <tr><td>"The Temple"</td><td>Y&#243;u W&#249;zh&#275;n s&#236; sh&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=遊悟真寺" target="_blank" rel="noopener">遊悟真寺詩</a></td><td class="birch-col">270</td></tr>
+                <tr><td>"The Red Cockatoo"</td><td>H&#243;ng y&#299;ngw&#468;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=紅鸚鵡 白居易" target="_blank" rel="noopener">紅鸚鵡</a></td><td class="birch-col">277</td></tr>
+                <tr><td>"On His Baldness"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">278</td></tr>
+                <tr><td>"To a Talkative Guest"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">278</td></tr>
+                <tr><td>"The Poem on the Wall"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">278</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">YUAN ZHEN (元稹) &middot; pp. 279&ndash;280</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Temporary Palace"</td><td>X&#237;ng g&#333;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=行宮 元稹" target="_blank" rel="noopener">行宮</a></td><td class="birch-col">279</td></tr>
+                <tr><td>"The Pitcher"</td><td>M&#232;ng j&#464;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=夢井" target="_blank" rel="noopener">夢井</a></td><td class="birch-col">279</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">LI HE (李賀) &middot; pp. 281&ndash;284</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"The Grave of Little Su"</td><td>S&#363; Xi&#462;oxi&#462;o m&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=蘇小小墓" target="_blank" rel="noopener">蘇小小墓</a></td><td class="birch-col">281</td></tr>
+                <tr><td>"The Northern Cold"</td><td>K&#468; h&#225;n x&#237;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=苦寒行 李賀" target="_blank" rel="noopener">苦寒行</a></td><td class="birch-col">281</td></tr>
+                <tr><td>"Don't Go Out of the Door"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">282</td></tr>
+                <tr><td>"Ancient Arrowhead"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">282</td></tr>
+                <tr><td>"The Bronze Bird Platform"</td><td>T&#243;ngqu&#232; t&#225;i</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=銅雀臺" target="_blank" rel="noopener">銅雀臺</a></td><td class="birch-col">283</td></tr>
+                <tr><td>"Magic String"</td><td>&mdash;</td><td class="zh-col">&mdash;</td><td class="birch-col">283</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">LU TONG (盧仝) &middot; pp. 285&ndash;287</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Two Extracts from 'The Eclipse of the Moon'"</td><td>Yu&#232;sh&#237; sh&#299;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=月蝕詩" target="_blank" rel="noopener">月蝕詩</a></td><td class="birch-col">285</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TANG SHORT STORIES (CHUANQI)               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="chuanqi">
+        <div class="section-label"><span class="chinese">傳</span> Tang Short Stories (Chuanqi)</div>
+        <p class="section-meta">Birch pp. 288&ndash;322 &middot; Tang Dynasty</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"The Story of Ts'ui Ying-ying"</td><td>Yuan Zhen (元稹)</td><td>Y&#299;ngy&#299;ng zhu&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=鶯鶯傳" target="_blank" rel="noopener">鶯鶯傳</a></td><td class="birch-col">290&ndash;299</td></tr>
+                <tr><td>"The Story of Miss Li"</td><td>Bo Xingqian (白行簡)</td><td>L&#464; W&#225; zhu&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=李娃傳" target="_blank" rel="noopener">李娃傳</a></td><td class="birch-col">300&ndash;313</td></tr>
+                <tr><td>"The Curly-bearded Hero"</td><td>Du Guangting (杜光庭)</td><td>Qi&#250;r&#225;n k&#232; zhu&#224;n</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=虬髯客傳" target="_blank" rel="noopener">虬髯客傳</a></td><td class="birch-col">314&ndash;322</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SONG CI                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="songci">
+        <div class="section-label"><span class="chinese">詞</span> Poems in Irregular Metre (Ci)</div>
+        <p class="section-meta">Birch pp. 333&ndash;363 &middot; Song Dynasty</p>
+        <p class="section-note">Individual poems partially verified from library catalogs. Major poets and representative ci forms listed below.</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>Poet</th><th>Pinyin</th><th>Representative Ci Tune</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>Wen T'ing-yun (溫庭筠)</td><td>W&#275;n T&#237;ngy&#250;n</td><td>Five poems to "Strangers in Saint's Coif" (Pusa man)</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=菩薩蠻 溫庭筠" target="_blank" rel="noopener">菩薩蠻</a></td><td class="birch-col">335</td></tr>
+                <tr><td>Wen T'ing-yun</td><td>&mdash;</td><td>Three poems to the "Water-clock" tune (Geng lou zi)</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=更漏子 溫庭筠" target="_blank" rel="noopener">更漏子</a></td><td class="birch-col">337</td></tr>
+                <tr><td>Wei Chuang (韋莊)</td><td>W&#233;i Zhu&#257;ng</td><td>Four poems to "Strangers in Saint's Coif"</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=菩薩蠻 韋莊" target="_blank" rel="noopener">菩薩蠻</a></td><td class="birch-col">339</td></tr>
+                <tr><td>Li Yu (李煜)</td><td>L&#464; Y&#249;</td><td>"Joy of Eternal Union" (Yu meiren)</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=虞美人 李煜" target="_blank" rel="noopener">虞美人</a></td><td class="birch-col">341</td></tr>
+                <tr><td>Fan Chung-yen (范仲淹)</td><td>F&#224;n Zh&#242;ngy&#257;n</td><td>"Su mu zhe"</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=蘇幕遮 范仲淹" target="_blank" rel="noopener">蘇幕遮</a></td><td class="birch-col">345</td></tr>
+                <tr><td>Liu Yung (柳永)</td><td>Li&#468; Y&#466;ng</td><td>"Rain-Soaked Bell" (Yu lin ling)</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=雨霖鈴 柳永" target="_blank" rel="noopener">雨霖鈴</a></td><td class="birch-col">347</td></tr>
+                <tr><td>Ou-yang Hsiu (歐陽修)</td><td>&#332;uy&#225;ng Xi&#363;</td><td>Ci poems</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=歐陽修 詞" target="_blank" rel="noopener">歐陽修 詞</a></td><td class="birch-col">349</td></tr>
+                <tr><td>Su Shih (蘇軾)</td><td>S&#363; Sh&#236;</td><td>"The Charms of Nien-nu" (Nian nu jiao)</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=念奴嬌 蘇軾" target="_blank" rel="noopener">念奴嬌</a></td><td class="birch-col">352</td></tr>
+                <tr><td>Su Shih</td><td>&mdash;</td><td>"Water Music Prelude" (Shui diao ge tou)</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=水調歌頭 蘇軾" target="_blank" rel="noopener">水調歌頭</a></td><td class="birch-col">353</td></tr>
+                <tr><td>Li Ch'ing-chao (李清照)</td><td>L&#464; Q&#299;ngzh&#224;o</td><td>Ci poems</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=李清照 詞" target="_blank" rel="noopener">李清照 詞</a></td><td class="birch-col">355</td></tr>
+                <tr><td>Lu Yu (陸游)</td><td>L&#249; Y&#243;u</td><td>Ci poems</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=陸游 詞" target="_blank" rel="noopener">陸游 詞</a></td><td class="birch-col">358</td></tr>
+                <tr><td>Hsin Ch'i-chi (辛棄疾)</td><td>X&#299;n Q&#236;j&#237;</td><td>"Joy of Eternal Union" (Yong yu le)</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=永遇樂 辛棄疾" target="_blank" rel="noopener">永遇樂</a></td><td class="birch-col">360</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- TWO PROSE MASTERS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="songprose">
+        <div class="section-label"><span class="chinese">宋</span> Two Prose Masters of the Sung Dynasty</div>
+        <p class="section-meta">Birch pp. 364&ndash;384 &middot; Song Dynasty</p>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin-bottom:0.3rem;font-weight:600;">OUYANG XIU (歐陽修) &middot; pp. 364&ndash;371</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Preface to the Collected Poems of the Priest Pi-yen"</td><td>Sh&#236; B&#236;y&#462;n sh&#299;j&#237; x&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=釋秘演詩集序" target="_blank" rel="noopener">釋秘演詩集序</a></td><td class="birch-col">364</td></tr>
+                <tr><td>"The Sound of Autumn"</td><td>Qi&#363; sh&#275;ng f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=秋聲賦" target="_blank" rel="noopener">秋聲賦</a></td><td class="birch-col">367</td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--ink-faint);margin:0.8rem 0 0.3rem;font-weight:600;">SU SHI (蘇軾) &middot; pp. 372&ndash;384</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Letter to the Emperor Shen-tsung"</td><td>Sh&#224;ng Sh&#233;nz&#333;ng Hu&#225;ngd&#236; sh&#363;</td><td class="zh-col">&mdash;</td><td class="birch-col">372</td></tr>
+                <tr><td>"The Red Cliff, I"</td><td>Qi&#225;n Ch&#236;b&#236; f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=前赤壁賦" target="_blank" rel="noopener">前赤壁賦</a></td><td class="birch-col">377</td></tr>
+                <tr><td>"The Red Cliff, II"</td><td>H&#242;u Ch&#236;b&#236; f&#249;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=後赤壁賦" target="_blank" rel="noopener">後赤壁賦</a></td><td class="birch-col">381</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- YUAN DYNASTY                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section" id="yuan">
+        <div class="section-label"><span class="chinese">元</span> Two Yuan Plays</div>
+        <p class="section-meta">Birch pp. 391&ndash;448 &middot; Yuan Dynasty</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"Li K'uei Carries Thorns"</td><td>Kang Jinzhi (康進之)</td><td>L&#464; Ku&#237; f&#249; j&#299;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=李逵負荊" target="_blank" rel="noopener">李逵負荊</a></td><td class="birch-col">391</td></tr>
+                <tr><td>"Autumn in the Palace of Han"</td><td>Ma Zhiyuan (馬致遠)</td><td>H&#224;ng&#333;ng qi&#363;</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=漢宮秋" target="_blank" rel="noopener">漢宮秋</a></td><td class="birch-col">420</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- MEN OF THE MARSHES                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="content-section alt" id="shuihu">
+        <div class="section-label"><span class="chinese">水</span> Men of the Marshes</div>
+        <p class="section-meta">Birch pp. 449+ &middot; Yuan / Ming</p>
+        <div class="table-wrap">
+        <table class="toc-table">
+            <thead><tr><th>English Title (Birch)</th><th>Author</th><th>Pinyin</th><th class="zh-col">原文</th><th class="birch-col">Page</th></tr></thead>
+            <tbody>
+                <tr><td>"The Plot Against the Birthday Convoy" (from <em>The Men of the Marshes</em>)</td><td>Shi Nai'an (施耐庵)</td><td>Shu&#464;h&#468; zhu&#224;n: Zh&#236; q&#468; sh&#275;ngch&#233;n g&#257;ng</td><td class="zh-col"><a href="https://meirishici.com/poetry/search?query=水滸傳" target="_blank" rel="noopener">水滸傳</a></td><td class="birch-col">449</td></tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SOURCES                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Tools</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <a href="https://groveatlantic.com/book/anthology-of-chinese-literature-vol-1/" target="_blank" rel="noopener">Birch, Cyril, ed. <em>Anthology of Chinese Literature</em>, Vol. 1. Grove Press, 1965.</a>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Originals &amp; Audio</h4>
+                <a href="https://meirishici.com/" target="_blank" rel="noopener">每日詩詞 (meirishici.com) &mdash; classical poetry with audio recitation</a>
+                <a href="https://ctext.org/" target="_blank" rel="noopener">Chinese Text Project (ctext.org) &mdash; pre-modern Chinese texts</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
