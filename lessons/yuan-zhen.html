@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuan Zhen 元稹 | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --yuan: #8a3030;
+            --yuan-light: #a54545;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Serif SC', serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            border-left: 3px solid var(--yuan);
+        }
+        .card-head .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--yuan);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(138,48,48,0.08) 0%, rgba(184,134,11,0.05) 100%);
+            border: 1px solid rgba(138,48,48,0.15);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--yuan);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul { margin: 0; padding-left: 1.2rem; }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Bio layout */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-top: 0.6rem;
+        }
+        .bio-text p {
+            font-size: 0.82rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+        .bio-text p:last-child { margin-bottom: 0; }
+        .bio-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .bio-stat {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid var(--paper-dark);
+        }
+        .bio-stat-label {
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--yuan);
+        }
+        .bio-stat-val {
+            font-size: 0.78rem;
+            color: var(--ink-light);
+            line-height: 1.4;
+            margin-top: 0.15rem;
+        }
+
+        /* Timeline */
+        .mini-timeline { margin-top: 0.5rem; }
+        .timeline-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
+        }
+        .timeline-item:last-child { border-bottom: none; }
+        .tl-date {
+            font-weight: 700;
+            color: var(--yuan);
+            min-width: 55px;
+            font-size: 0.75rem;
+        }
+        .tl-desc { color: var(--ink-light); line-height: 1.5; }
+
+        /* Audio player */
+        .audio-box {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            margin-top: 0.5rem;
+        }
+        .audio-box .audio-label {
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--yuan);
+            margin-bottom: 0.3rem;
+        }
+        .audio-box audio { width: 100%; height: 32px; }
+        .audio-box .audio-src {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            margin-top: 0.2rem;
+        }
+        .audio-box .audio-src a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Dynasty Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .bio-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">元稹</span>
+            <span class="en">Yuan Zhen</span>
+            <span class="meta">779&ndash;831 &middot; Birch, pp. 279&ndash;280, 288&ndash;299 &middot; Tang Dynasty</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#biography">Biography</a>
+        <a href="#poetry">Poetry</a>
+        <a href="#yingying">Yingying</a>
+        <a href="#friendship">Bai Juyi</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+        <a href="tang-short-stories.html" style="color:var(--yuan-light)">Tang Stories &rarr;</a>
+        <a href="poets-generation-two.html#yuan-zhen" style="color:var(--yuan-light)">Poets Gen. II &rarr;</a>
+    </nav>
+
+    <!-- Biography -->
+    <section class="content-section" id="biography">
+        <div class="section-label"><span class="chinese">生平</span> BIOGRAPHY</div>
+        <div class="bio-grid">
+            <div class="bio-text">
+                <p><a href="https://www.britannica.com/biography/Yuan-Zhen" target="_blank">Yuan Zhen</a> (元稹, courtesy name Weizhi 微之, 779&ndash;831) was a major mid-Tang poet, prose writer, and statesman. He descended from the Northern Wei imperial Tuoba clan (renamed Yuan in 496), though the family had long since lost its status. His father died when he was seven. His mother, Lady Zheng, raised and educated him alone.</p>
+                <p>Yuan Zhen passed the examination for two Confucian classics at fourteen, an exceptional achievement. In 806 he passed a special palace examination under Emperor Xianzong, ranked first among eighteen candidates. <a href="bai-juyi.html">Bai Juyi</a> was among the other successful candidates. Their lifelong friendship began here.</p>
+                <p>He married <strong>Wei Cong</strong> (韋叢), daughter of the mayor of Chang'an, around 802. She died in 809 at twenty-seven, after seven years of marriage spent largely in poverty. Yuan Zhen's grief poetry for her, the "Dispelling Sorrow" (遣悲懷) series, is among the most devastating spousal mourning verse in Chinese literature.</p>
+                <p>His political career was turbulent. As an imperial censor, he aggressively pursued corruption and was repeatedly exiled for overstepping. He served as governor of various provinces, briefly became <strong>Chief Minister</strong> under Emperor Muzong in 822 (lasting fewer than four months before factional enemies removed him), and spent his final years as a regional military governor. He died suddenly of illness in Wuchang in 831, age fifty-two.</p>
+            </div>
+        </div>
+        <div class="bio-stats">
+            <div class="bio-stat">
+                <div class="bio-stat-label">Surviving Poems</div>
+                <div class="bio-stat-val">~830 poems. Co-leader of the New Music Bureau (xin yuefu) movement with Bai Juyi.</div>
+            </div>
+            <div class="bio-stat">
+                <div class="bio-stat-label">Key Relationship</div>
+                <div class="bio-stat-val"><a href="bai-juyi.html">Bai Juyi (白居易)</a>. ~900 poems exchanged. "Perhaps the most famous friendship in Chinese literary history."</div>
+            </div>
+            <div class="bio-stat">
+                <div class="bio-stat-label">Prose Masterpiece</div>
+                <div class="bio-stat-val"><a href="tang-short-stories.html#yingying">"The Story of Ts'ui Ying-ying" (鶯鶯傳)</a>. Semi-autobiographical. Later adapted into <em>Romance of the Western Chamber</em>.</div>
+            </div>
+            <div class="bio-stat">
+                <div class="bio-stat-label">Wife</div>
+                <div class="bio-stat-val">Wei Cong (韋叢, d. 809, age 27). Subject of the "Dispelling Sorrow" (遣悲懷) grief poems.</div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 0.75rem;">
+            <div class="card-head"><span class="chinese">年表</span> Timeline</div>
+            <div class="card-body">
+                <div class="mini-timeline">
+                    <div class="timeline-item"><div class="tl-date">779</div><div class="tl-desc">Born in Luoyang, Henan. Father dies when Yuan Zhen is seven.</div></div>
+                    <div class="timeline-item"><div class="tl-date">793</div><div class="tl-desc">Passes examination for two Confucian classics at age fourteen.</div></div>
+                    <div class="timeline-item"><div class="tl-date">~802</div><div class="tl-desc">Marries Wei Cong (韋叢), daughter of the mayor of Chang'an.</div></div>
+                    <div class="timeline-item"><div class="tl-date">806</div><div class="tl-desc">Passes special palace examination, ranked first. Meets Bai Juyi. Their friendship begins.</div></div>
+                    <div class="timeline-item"><div class="tl-date">809</div><div class="tl-desc">Wei Cong dies at age 27. Yuan Zhen writes the "Dispelling Sorrow" (遣悲懷) grief poems.</div></div>
+                    <div class="timeline-item"><div class="tl-date">810</div><div class="tl-desc">Exiled to Jiangling (江陵, modern Hubei) for clashing with powerful eunuchs.</div></div>
+                    <div class="timeline-item"><div class="tl-date">~811</div><div class="tl-desc">Meets the poet-courtesan Xue Tao (薛涛) in Chengdu.</div></div>
+                    <div class="timeline-item"><div class="tl-date">813</div><div class="tl-desc">Writes a grave inscription for Du Fu, containing some of the earliest critical praise of Du Fu's poetry.</div></div>
+                    <div class="timeline-item"><div class="tl-date">815</div><div class="tl-desc">Further exile to Tongzhou (通州, modern Sichuan).</div></div>
+                    <div class="timeline-item"><div class="tl-date">822</div><div class="tl-desc">Appointed Chief Minister under Emperor Muzong. Removed after fewer than four months by factional rivals.</div></div>
+                    <div class="timeline-item"><div class="tl-date">831</div><div class="tl-desc">Dies of sudden illness in Wuchang (武昌), age 52. Buried at Xianyang on the Wei River.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poetry -->
+    <section class="content-section alt" id="poetry">
+        <div class="section-label"><span class="chinese">詩</span> POETRY</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">行宮</span> Temporary Palace <span class="meta">tr. Cyril Birch &middot; p. 279</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "Palace of a few days' visit, long years crumbling,<br>
+                        The gardens blossom red into the silence.<br>
+                        And here a palace maiden, white-haired now,<br>
+                        Takes her ease and tells her tales of the emperor."
+                        <cite>Birch, p. 279; tr. Cyril Birch</cite>
+                    </blockquote>
+                    <p>Four lines. An abandoned imperial lodge, a garden still blooming, and an old woman who was once a palace maid, now telling stories about an emperor no one else remembers. The poem rhymes with Bai Juyi's "Song of Unending Sorrow" in miniature: the same ruins, the same faded glory, compressed to a single image. Where <a href="bai-juyi.html">Bai Juyi</a> takes 120 lines, Yuan Zhen needs four.</p>
+                    <h4>Why Four Lines Is Enough</h4>
+                    <p>The poem works by juxtaposition. Red blossoms against ruins. White hair against old memories. The woman "takes her ease," which means she has made peace with the disappearance of the world she served. The emperor is gone; the flowers are indifferent; and the only audience for the old stories is silence. This is elegy without self-pity.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">夢井</span> The Pitcher <span class="meta">tr. Arthur Waley &middot; pp. 279&ndash;280</span></div>
+                <div class="card-body">
+                    <blockquote>
+                        "I dreamt I climbed to a high, high plain;<br>
+                        And on the plain I found a deep well.<br>
+                        My throat was dry with climbing and I longed to drink,<br>
+                        And my eyes were eager to look into the cool shaft."
+                        <cite>Birch, p. 279; tr. Arthur Waley</cite>
+                    </blockquote>
+                    <p>A dream poem (<em>Meng jing</em> 夢井). The dreamer climbs a plain, finds a well, sees a pitcher sinking into it, and runs from village to village in panic trying to save it. The men are gone. Dogs snarl. He comes back weeping. Then: "Till my own sobbing suddenly woke me up; / My room was silent, no one in the house stirred."</p>
+                    <p>The plain in the dream is the graveyard at Chang'an. The pitcher is his dead wife. "And to-night my love who died long ago / Came into my dream as the pitcher sunk in the well." Wei Cong died young after years of shared poverty. This poem belongs to the same body of mourning verse as the "Dispelling Sorrow" series. The gap between the dream's urgency and the waking room's silence is the poem's cruelest moment.</p>
+                    <div class="audio-box">
+                        <div class="audio-label">Chinese Recitation 朗讀</div>
+                        <audio controls preload="metadata">
+                            <source src="audio/yuan-zhen-pitcher.mp3" type="audio/mpeg">
+                        </audio>
+                        <div class="audio-src">Source: <a href="https://meirishici.com/poetry/q6F" target="_blank" rel="noopener">每日詩詞 (meirishici.com)</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head"><span class="chinese">遣悲懷</span> The Grief Poetry</div>
+                <div class="card-body">
+                    <h4>"Dispelling Sorrow" (遣悲懷) Series</h4>
+                    <p>The three "Dispelling Sorrow" poems, written after Wei Cong's death in 809, are among the most celebrated mourning poems in Chinese. They move from shared poverty ("We were too poor to keep a servant; you cooked the meals yourself"), to the cruelty of surviving ("Now that I have money, what use is it?"), to the impossibility of adequate grief. They are not in the Birch anthology, but they form the emotional center of Yuan Zhen's reputation as a poet.</p>
+                    <h4>The New Music Bureau Movement</h4>
+                    <p>Together with Bai Juyi, Yuan Zhen championed the "New Music Bureau" (xin yuefu 新樂府) movement: poetry that used plain language, addressed social injustice, and could be understood by ordinary people. They believed poetry should serve a moral and political purpose. The movement defined mid-Tang literary culture and shaped Chinese poetics for centuries.</p>
+                    <p style="font-size:0.75rem;color:var(--ink-faint);margin-top:0.3rem;">For Yuan Zhen's poems in the context of Birch's reading assignment, see <a href="poets-generation-two.html#yuan-zhen">Poets of a Generation: Two</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yingying -->
+    <section class="content-section" id="yingying">
+        <div class="section-label"><span class="chinese">鶯鶯傳</span> THE STORY OF YINGYING</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">傳奇</span> The Most Famous Tang Romance <span class="meta">pp. 290&ndash;299</span></div>
+                <div class="card-body">
+                    <h4>Semi-Autobiography</h4>
+                    <p>"The Story of Ts'ui Ying-ying" (鶯鶯傳, <em>Yingying zhuan</em>) is widely understood to be semi-autobiographical. The protagonist "Chang" is Yuan Zhen himself. Birch notes that the incidents "are believed to be autobiographical, the author only half hiding his own identity behind the figure of the young student Chang" (p. 288). A scholar seduces his cousin at a temple, lives with her secretly for a month, then leaves for the capital. He fails the exams. He writes to her. She answers with a letter of devastating beauty and heartbreak (pp. 296&ndash;297). He decides to break with her. Both marry other people.</p>
+                    <h4>Chang's Self-Justification</h4>
+                    <blockquote>
+                        "I have observed that in Nature whatever has perfect beauty is either itself liable to sudden transformations or else is the cause of them in others."
+                        <cite>Birch, p. 298; trans. Arthur Waley</cite>
+                    </blockquote>
+                    <p>This speech has generated centuries of scholarly debate. James Hightower's landmark study "<a href="https://www.jstor.org/stable/2718886" target="_blank">Yuan Chen and 'The Story of Ying-ying'</a>" (<em>Harvard Journal of Asiatic Studies</em> 33, 1973) established the modern critical framework, reading the passage as self-serving rationalization. <a href="https://www.britannica.com/art/chuanqi-Chinese-literature" target="_blank">Britannica</a> notes that the story "set a new standard for the genre of the tale in Chinese literature."</p>
+                    <h4>Yingying's Voice</h4>
+                    <blockquote>
+                        "Those whom a man leads astray, he will in the end abandon. It must be so, and I will not reproach you. You deigned to corrupt me and now you deign to leave me. That is all."
+                        <cite>Birch, p. 295; trans. Arthur Waley</cite>
+                    </blockquote>
+                    <p>Yingying sees the outcome before Chang does. Her letter (pp. 296&ndash;297) is the emotional center of the story. She is literate, perceptive, and completely powerless within the social system that allows a scholar to use and discard a woman of good family.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">遺產</span> Legacy <span class="meta">From Tang to Yuan</span></div>
+                <div class="card-body">
+                    <h4>Romance of the Western Chamber</h4>
+                    <p><a href="https://www.britannica.com/topic/The-Story-of-the-Western-Wing" target="_blank">Wang Shifu's <em>Romance of the Western Chamber</em></a> (Xixiang ji, 西廂記, 13th century) rewrote this story with a happy ending. That adaptation became "perhaps the most popular love story in Chinese literature." The original Tang version is darker, more honest, and far more interesting.</p>
+                    <h4>The Poet as Fiction Writer</h4>
+                    <p>What makes Yuan Zhen unusual is that he was both a major poet and a major fiction writer. Most Tang chuanqi authors are known only for their stories. Yuan Zhen's poetry and his fiction illuminate each other: the grief poems mourn a wife he genuinely loved; the Yingying story confesses (or boasts about) a woman he abandoned. The same man wrote both. That tension is what makes him one of the most psychologically complex figures in Tang literature.</p>
+                    <div class="key-themes">
+                        <h4>The Two Yuan Zhens</h4>
+                        <ul>
+                            <li><strong>The Poet</strong>: grieves his dead wife with devastating sincerity. "Dispelling Sorrow" is among the most honest mourning poetry in Chinese.</li>
+                            <li><strong>The Fiction Writer</strong>: publishes a thinly veiled confession of seducing and abandoning a woman, then has his friends praise his "skill" in extricating himself.</li>
+                            <li><strong>The Question</strong>: is the grief real and the betrayal a youthful mistake? Or does the fiction reveal the poet more honestly than the poetry does?</li>
+                        </ul>
+                    </div>
+                    <p style="font-size:0.75rem;color:var(--ink-faint);margin-top:0.3rem;">For the full story analysis with all three chuanqi, see <a href="tang-short-stories.html#yingying">Tang Short Stories</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Friendship with Bai Juyi -->
+    <section class="content-section alt" id="friendship">
+        <div class="section-label"><span class="chinese">友情</span> THE YUAN-BAI FRIENDSHIP</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">元白</span> "Yuan-Bai" <span class="meta">The Most Famous Friendship</span></div>
+                <div class="card-body">
+                    <h4>How They Met</h4>
+                    <p>Yuan Zhen and <a href="bai-juyi.html">Bai Juyi</a> met at the 806 palace examination. Both passed. Both were idealistic young officials who believed literature should serve the public good. Their friendship became the defining literary relationship of the mid-Tang, known simply as "Yuan-Bai" (元白). They exchanged roughly 900 poems over twenty-five years, many written during periods of mutual exile when they could not see each other.</p>
+                    <h4>Shared Exile, Shared Aesthetic</h4>
+                    <p>Both men were exiled for political outspokenness. When separated, they wrote to each other constantly. Bai Juyi once received a letter from Yuan Zhen and wept so hard that his daughter asked what was wrong. Their poems to each other are not literary exercises; they are genuine communication between two people who needed each other's company and couldn't have it.</p>
+                    <h4>The New Music Bureau</h4>
+                    <p>Together they led the "New Music Bureau" (xin yuefu) movement: poetry in plain language about real social problems. Bai Juyi's "Song of the Charcoal Seller" and Yuan Zhen's satirical verse both emerged from this shared commitment. They argued that if an old woman couldn't understand a poem, it wasn't good enough.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">詩友</span> Poetry as Friendship <span class="meta">~900 Poems Exchanged</span></div>
+                <div class="card-body">
+                    <h4>The Poem on the Wall</h4>
+                    <p>One of the most famous anecdotes: traveling to a posting, Bai Juyi stopped at an inn and found a poem Yuan Zhen had written on the wall during a previous visit, now covered in bird droppings. He cleaned it off and wrote a poem in response. Poetry was how they stayed present in each other's lives across distances of exile.</p>
+                    <h4>After Death</h4>
+                    <p>When Yuan Zhen died in 831, Bai Juyi was devastated. He wrote the epitaph for Yuan Zhen's tomb. He also edited and preserved Yuan Zhen's collected works. Without Bai Juyi's editorial labor, much of Yuan Zhen's poetry might have been lost.</p>
+                    <h4>Why It Matters for This Course</h4>
+                    <p>In the Birch reading, the two chuanqi authors (Yuan Zhen and Bo Xingqian) are connected through Bai Juyi: Yuan Zhen was his closest friend, Bo Xingqian was his brother. The Tang literary world was a network of personal relationships, and Bai Juyi was its hub. Understanding the Yuan-Bai friendship is essential context for reading both the poetry and the fiction in this section of the course.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Poetry vs. Fiction</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Yuan Zhen grieves his dead wife Wei Cong with devastating sincerity in the "Dispelling Sorrow" poems. He also published a thinly veiled confession of seducing and abandoning another woman. How do you reconcile these two bodies of work? Is one more "honest" than the other?</li>
+                        <li>Compare "The Pitcher" (a dream of the dead wife) with Yingying's final poem (p. 299: "It is <em>you</em> who have caused me to lose my beauty"). Both are about loss. How does the emotional register differ when the poet is the one who was left versus the one who left?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Friendship and Literature</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Yuan Zhen and Bai Juyi exchanged ~900 poems. What does it mean for literature to function as personal correspondence? Is a poem written for one specific reader different from a poem written for a public audience?</li>
+                        <li>Bai Juyi preserved Yuan Zhen's collected works after his death. Without this editorial labor, much of Yuan Zhen might be lost. How does literary survival depend on friendship and chance?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Power and Self-Knowledge</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Yuan Zhen rose to Chief Minister and was removed after four months. He was exiled repeatedly for political outspokenness. Does his political career (idealism followed by failure) mirror the pattern of his fiction (passion followed by betrayal)?</li>
+                        <li>Chang's friends "praised the skill with which he extricated himself" from Yingying (p. 299). If Yuan Zhen IS Chang, what does it mean that he published this story? Is it confession, self-justification, or something more complicated?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I (Grove Press, 1965).</p>
+                <p>"Temporary Palace" and "The Pitcher": pp. 279&ndash;280.</p>
+                <p>"The Story of Ts'ui Ying-ying": pp. 290&ndash;299 (trans. Arthur Waley).</p>
+            </div>
+            <div class="source-card">
+                <h4>Biography &amp; Reference</h4>
+                <a href="https://www.britannica.com/biography/Yuan-Zhen" target="_blank" rel="noopener">Britannica: Yuan Zhen (元稹)</a>
+                <a href="https://www.cuhk.edu.hk/rct/renditions/authors/yuanzhen.html" target="_blank" rel="noopener">CUHK Renditions: Yuan Zhen Author Page</a>
+                <a href="https://www.britannica.com/biography/Bai-Juyi" target="_blank" rel="noopener">Britannica: Bai Juyi (白居易)</a>
+            </div>
+            <div class="source-card">
+                <h4>Scholarly Studies</h4>
+                <a href="https://www.jstor.org/stable/2718886" target="_blank" rel="noopener">Hightower, "Yuan Chen and 'The Story of Ying-ying'" (<em>HJAS</em> 33, 1973)</a>
+                <a href="https://www.academia.edu/1971335/Defining_Experience_The_Poems_of_Seductive_Allure_Yanshi_of_the_Mid_Tang_Poet_Yuan_Zhen_779_831_" target="_blank" rel="noopener">Shields, "Defining Experience: The 'Poems of Seductive Allure'" (<em>JAOS</em>, 2002)</a>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Texts &amp; Audio</h4>
+                <a href="https://meirishici.com/poetry/q6F" target="_blank" rel="noopener">每日詩詞: 夢井 (The Pitcher) with audio recitation</a>
+                <a href="https://www.gutenberg.org/ebooks/52267" target="_blank" rel="noopener">Project Gutenberg: 鶯鶯傳 (Yingying zhuan, full Chinese text)</a>
+                <a href="https://www.britannica.com/art/chuanqi-Chinese-literature" target="_blank" rel="noopener">Britannica: Chuanqi (Tang fiction genre)</a>
+            </div>
+            <div class="source-card">
+                <h4>Adaptations</h4>
+                <a href="https://www.britannica.com/topic/The-Story-of-the-Western-Wing" target="_blank" rel="noopener">Britannica: <em>The Story of the Western Wing</em> (Xixiang ji)</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Pages</h4>
+                <a href="tang-short-stories.html">Tang Short Stories (Chuanqi)</a>
+                <a href="poets-generation-two.html#yuan-zhen">Poets of a Generation: Two</a>
+                <a href="bai-juyi.html">Bai Juyi 白居易</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
