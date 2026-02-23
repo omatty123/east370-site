@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zongmi: On Humanity | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --zongmi: #6B5B3E;
+            --zongmi-light: #8B7B5E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--zongmi);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--zongmi);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(107, 91, 62, 0.1) 0%, rgba(139, 123, 94, 0.05) 100%);
+            border: 1px solid rgba(107, 91, 62, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--zongmi);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Hierarchy visual */
+        .hierarchy {
+            margin: 0.5rem 0;
+        }
+        .hierarchy-level {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 0.25rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .hierarchy-level .h-rank {
+            font-weight: 700;
+            font-size: 0.6rem;
+            color: #fff;
+            background: var(--zongmi);
+            border-radius: 3px;
+            padding: 0.15rem 0.4rem;
+            min-width: 1.8rem;
+            text-align: center;
+        }
+        .hierarchy-level .h-name { font-weight: 600; color: var(--ink); }
+        .hierarchy-level .h-desc { color: var(--ink-light); font-size: 0.73rem; }
+        .hierarchy-level:nth-child(1) { background: rgba(107,91,62,0.04); padding-left: 0.6rem; }
+        .hierarchy-level:nth-child(2) { background: rgba(107,91,62,0.07); padding-left: 1.2rem; }
+        .hierarchy-level:nth-child(3) { background: rgba(107,91,62,0.10); padding-left: 1.8rem; }
+        .hierarchy-level:nth-child(4) { background: rgba(107,91,62,0.14); padding-left: 2.4rem; }
+        .hierarchy-level:nth-child(5) { background: rgba(107,91,62,0.18); padding-left: 3.0rem; }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .key-themes ul { columns: 1; }
+            .structure-list { grid-template-columns: 1fr; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 var(--zongmi);color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">原人論</span>
+            <span class="en">Zongmi: On Humanity</span>
+            <span class="meta">780&ndash;841 CE &middot; Tiwald &amp; Van Norden, pp. 98&ndash;106</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#confucianism-daoism">Confucianism &amp; Daoism</a>
+        <a href="#hinayana">Hinayana</a>
+        <a href="#one-vehicle">The One Vehicle</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概要</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">宗密</span> Guifeng Zongmi <span class="meta">780&ndash;841 CE</span></div>
+                <div class="card-body">
+                    <h4>The Synthesizer</h4>
+                    <p><a href="https://www.newworldencyclopedia.org/entry/Zongmi" target="_blank" rel="noopener">Guifeng Zongmi</a> (圭峰宗密, 780&ndash;841) was a Tang dynasty Buddhist monk who held a unique dual position: he was recognized as the <a href="https://plato.stanford.edu/entries/buddhism-huayan/" target="_blank" rel="noopener">fifth patriarch of the Huayan school</a> and a lineage holder in the Heze school of Chan Buddhism. This made him a rare figure who could bridge the doctrinal and meditative traditions.</p>
+                    <h4>A Polemicist</h4>
+                    <p><em>On Humanity</em> (Yuanren lun 原人論) is not a neutral survey. It is a <a href="https://buddhanature.tsadra.org/index.php/Texts/Yuanren_lun" target="_blank" rel="noopener">polemical work</a> arguing for the superiority of Zongmi's brand of Buddhism over Confucianism, Daoism, and rival Buddhist sects. The title itself may be a deliberate rebuttal to <a href="https://www.newworldencyclopedia.org/entry/Han_Yu" target="_blank" rel="noopener">Han Yu's</a> anti-Buddhist essay "On the Way" (Yuandao 原道).</p>
+                    <h4>The Structure: A Hierarchy of Truths</h4>
+                    <p>Zongmi acknowledges that Confucianism and Daoism "both have some value" but argues that each contains only partial truths. He then ranks Buddhist teachings from lowest (Hinayana) to highest (the Huayan/Chan synthesis). This is the <em>panjiao</em> (判教) method: a ranked classification of all teachings.</p>
+                    <div class="hierarchy">
+                        <div class="hierarchy-level">
+                            <span class="h-rank">5</span>
+                            <span class="h-name">Confucianism &amp; Daoism</span>
+                            <span class="h-desc">Partial truths; conditional explanations only</span>
+                        </div>
+                        <div class="hierarchy-level">
+                            <span class="h-rank">4</span>
+                            <span class="h-name">Hinayana</span>
+                            <span class="h-desc">No-self doctrine; cycle of karma; no permanent "I"</span>
+                        </div>
+                        <div class="hierarchy-level">
+                            <span class="h-rank">3</span>
+                            <span class="h-name">Mahayana (basic)</span>
+                            <span class="h-desc">Emptiness of all dharmas; critique of Hinayana</span>
+                        </div>
+                        <div class="hierarchy-level">
+                            <span class="h-rank">2</span>
+                            <span class="h-name">Consciousness-Only &amp; Three Treatise</span>
+                            <span class="h-desc">Deeper analysis of mind; still incomplete</span>
+                        </div>
+                        <div class="hierarchy-level">
+                            <span class="h-rank">1</span>
+                            <span class="h-name">The One Vehicle (Huayan/Chan)</span>
+                            <span class="h-desc">Buddha-nature; Storehouse Consciousness; the true mind</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">背景</span> Why This Text Matters <span class="meta">Context</span></div>
+                <div class="card-body">
+                    <h4>Buddhism on Trial</h4>
+                    <p>Zongmi wrote at the peak of Buddhist influence in Tang China, but also at a moment of intense pushback. Confucian intellectuals like <a href="https://www.newworldencyclopedia.org/entry/Han_Yu" target="_blank" rel="noopener">Han Yu</a> (768&ndash;824) attacked Buddhism as a foreign religion that corrupted Chinese society. Han Yu's famous "Memorial on Bone-relics of the Buddha" (819 CE) urged the emperor to reject Buddhist relics and ban the religion.</p>
+                    <h4>The Defense Strategy</h4>
+                    <p>Zongmi's response is clever. He does not dismiss Confucianism and Daoism outright. He acknowledges their value, then shows their limitations. His message: you don't have to <em>reject</em> Chinese tradition to accept Buddhism. Buddhism simply goes deeper. Kongzi, Laozi, and Shakyamuni were all sages who "established their teachings along different paths in accordance with their eras" (p. 100). But only Buddhism provides both conditional and full explanations.</p>
+                    <h4>Three Teachings in Dialogue</h4>
+                    <p>This text is one of the clearest expressions of the "Three Teachings" (sanjiao 三教) framework that shaped Chinese intellectual life for over a millennium. Confucianism handles social ethics. Daoism handles cosmology. Buddhism handles the mind, suffering, and ultimate reality. Zongmi's innovation is ranking them, with Buddhism on top.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confucianism and Daoism -->
+    <section class="content-section alt" id="confucianism-daoism">
+        <div class="section-label"><span class="chinese">儒道</span> CONFUCIANISM &amp; DAOISM (pp. 99&ndash;102)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">道</span> What They Teach <span class="meta">pp. 99&ndash;100</span></div>
+                <div class="card-body">
+                    <h4>The Confucian-Daoist Account</h4>
+                    <p>Zongmi summarizes the shared cosmology of Confucianism and Daoism: the primordial chaos divides into yin and yang, which generate Heaven, Earth, and humans. The myriad things have <em>qi</em> (氣) as their foundation. Therefore "ignorance and wisdom, prestige and lowliness, poverty and wealth, suffering and happiness are all endowed by Heaven, according to fate" (p. 100).</p>
+                    <h4>A Common Buddhist Strategy</h4>
+                    <p>Zongmi acknowledges that these teachings have value. Kongzi, Laozi, and Shakyamuni were all sages. But he insists that Confucianism and Daoism only offer "conditional" explanations, while Buddhism provides "full" ones. The two Chinese traditions "each really contains only partial truths whose value is limited to particular contexts" (p. 99).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">破</span> Zongmi's Critique <span class="meta">pp. 100&ndash;102</span></div>
+                <div class="card-body">
+                    <h4>Four Devastating Problems</h4>
+                    <p>Zongmi levels a series of sharp philosophical objections against the Confucian-Daoist worldview:</p>
+                    <ul>
+                        <li><strong>The spontaneity problem:</strong> If things are "spontaneously generated and transformed," then rocks should sometimes generate humans and grass should sometimes generate animals. Why the orderly succession of species? (p. 101)</li>
+                        <li><strong>The teacher problem:</strong> If everything naturally develops through <em>qi</em>, why did Laozi and Kongzi bother to teach? Why establish standards if the Way operates spontaneously? (p. 101)</li>
+                        <li><strong>The awareness problem:</strong> If humans are endowed with <em>qi</em> that lacks awareness, how can awareness suddenly arise? Grass and trees have the same <em>qi</em>. Why don't they have awareness? (p. 101)</li>
+                        <li><strong>The justice problem:</strong> If everything is fated by Heaven, why do the virtuous often suffer while the wicked prosper? "Why is Heaven so unfair?" If Heaven assigns all fates, then there is no moral accountability at all. (pp. 101&ndash;102)</li>
+                    </ul>
+                    <blockquote>
+                        "If the allotments are up to Heaven, why is Heaven so unfair? Moreover, there are those who do wrong but get prestige, those who do right but are impoverished, those who lack Virtue but are wealthy, those who have Virtue but are poor."
+                        <cite>p. 102; trans. Bryan W. Van Norden</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hinayana -->
+    <section class="content-section" id="hinayana">
+        <div class="section-label"><span class="chinese">小乘</span> HINAYANA: THE DOCTRINE OF NO-SELF (pp. 102&ndash;104)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">無我</span> There Is No "I" <span class="meta">pp. 102&ndash;103</span></div>
+                <div class="card-body">
+                    <h4>The Body-Mind Analysis</h4>
+                    <p>Zongmi explains the Hinayana (early Buddhist) teaching: the body and thoughts of the mind are born and perish every instant, in a never-ending succession, "like the flowing of a stream or the flickering of a lamp" (p. 102). Body and mind contingently combine, seeming to be a unity and seeming to be constant. But the "I" is an illusion.</p>
+                    <h4>Dissolving the Self</h4>
+                    <p>The analysis is thorough. The body has Four Elements (earth, water, fire, wind) and Four Aggregates of mind (sensation, perception, volition, consciousness). If each of these were the "I," there would be eight selves. Within the element of earth alone there are 360 bones, each distinct. The activities of the mind are not the same: "seeing is not hearing, delight is not anger" (p. 103). Which one is the "I"?</p>
+                    <blockquote>
+                        "No matter how much one reflects and reasons about it, the 'I' cannot be found. Only then does one come to the insight that this body is simply a phenomenon that results from the contingent coming together [of the Four Elements of bodily form and the Four Aggregates of mind]. Ultimately, there is no 'I.'"
+                        <cite>p. 103; trans. Bryan W. Van Norden</cite>
+                    </blockquote>
+                    <h4>The Three Poisons</h4>
+                    <p>Valuing the false "I" gives rise to the three poisons: <strong>craving</strong> (for fame and profit), <strong>anger</strong> (at what threatens the "I"), and <strong>delusion</strong> (fantasies contrary to the Pattern). These stir up actions and speech that create karmic consequences, trapping beings in the cycle of the Five Destinies: rebirth in Heaven, as a human, as a hungry ghost, as an animal, or in Hell (p. 103).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">批</span> Why Hinayana Is Not Enough <span class="meta">pp. 103&ndash;104</span></div>
+                <div class="card-body">
+                    <h4>Better Than Confucianism, But Still Incomplete</h4>
+                    <p>Zongmi acknowledges that "even Hinayana, the most shallow teaching in Buddhism, already surpasses the deepest explanation of other doctrines" (p. 103). It explains what Daoism cannot: that <em>qi</em> has gone through countless millions of sequences of formation, continuation, destruction, and emptiness before this world even formed.</p>
+                    <h4>Two Remaining Problems</h4>
+                    <p>But Hinayana has its own limits. Zongmi raises two objections:</p>
+                    <ul>
+                        <li><strong>Consciousness requires a foundation:</strong> The Five Sense Experiences do not arise without causes. There are times when consciousness is not active (sleep, meditation, extinction). How are these bodies supported without interruption? (p. 104)</li>
+                        <li><strong>The bodily form problem:</strong> The teaching of Hinayana cannot explain the ultimate origin of the bodily form that persists through countless rebirths. If karmic consequences require a <em>prior</em> bodily form, what explains the origin of <em>that</em> form? (p. 104)</li>
+                    </ul>
+                    <p>These gaps lead Zongmi to his highest teaching: the One Vehicle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The One Vehicle -->
+    <section class="content-section alt" id="one-vehicle">
+        <div class="section-label"><span class="chinese">一乘</span> THE ONE VEHICLE (pp. 104&ndash;106)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">真心</span> The True Mind <span class="meta">pp. 104&ndash;105</span></div>
+                <div class="card-body">
+                    <h4>Buddha-Nature</h4>
+                    <p>According to the Teaching of the One Vehicle that Reveals the Nature, everything that has feelings has a fundamentally conscious true mind. "Without any beginning, it has always remained pure, shining without shadow, always completely knowing" (p. 104). This is also called "Buddha nature," the "Storehouse of the Thus-Come," or simply the true mind.</p>
+                    <h4>How Delusion Arises</h4>
+                    <p>Misguided thoughts have covered the true mind, so people do not recognize it. They only see the everyday world and become entangled in karmic consequences and the bitterness of birth and death. The Buddha revealed that everything is empty of a separate self, and that "the conscious true mind of purity is one with all the Buddhas" (p. 104).</p>
+                    <h4>The <a href="https://www.britannica.com/topic/alaya-vijnana" target="_blank" rel="noopener">Storehouse Consciousness</a></h4>
+                    <p>The true mind, which is neither generated nor extinguished, is combined with deluded thoughts, which generate and are extinguished. This combination is called the <a href="https://tricycle.org/magazine/storehouse-consciousness-yogacara/" target="_blank" rel="noopener">Storehouse Consciousness</a> (alaya-vijnana). It has the twin significance of awareness and non-awareness. Thoughts are first stimulated because of non-awareness, then transform into the consciousness that perceives, then into "clinging to things" and the formation of the "I" (p. 105).</p>
+                    <blockquote>
+                        "Because one clings to such things, one sees a distinction between oneself and other things, and from this is formed the clinging to the 'I.' Similarly, one craves the objects that accord with one's feelings, desiring to satisfy this 'I.' From this point, ignorant feelings transform and get worse and worse."
+                        <cite>p. 105; trans. Bryan W. Van Norden</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">合</span> The Grand Synthesis <span class="meta">pp. 105&ndash;106</span></div>
+                <div class="card-body">
+                    <h4>Solving the Justice Problem</h4>
+                    <p>Zongmi now answers his own critique of Confucianism. Why do the virtuous suffer and the wicked prosper? Because karmic consequences from <em>previous lives</em> determine one's current fortune. "These are all determined by the detailed karmic consequences of actions in previous lives. This is what accounts for the differences between what happens 'spontaneously' in one's current lifetime" (p. 105).</p>
+                    <h4>Confucius and Daoists Cannot See This</h4>
+                    <p>"Scholars of other schools do not know about previous existences, but only rely on what is currently visible to them, so they advocate only spontaneity" (p. 105). They see the effects without knowing the causes. Buddhism alone can trace the full chain of causation across lifetimes.</p>
+                    <h4>The Final Argument</h4>
+                    <p>The <em>qi</em> with which we are endowed, when inferred all the way back to its foundation, is the primordial <em>qi</em> of the undifferentiated chaos. But the mind that arises, when investigated to its source, "is the spiritual mind of genuine unity" (p. 105). Even the primordial <em>qi</em> is a transformation of the mind. It belongs to the transformation of consciousness, which is part of the Storehouse Consciousness.</p>
+                    <div class="key-themes">
+                        <h4>Zongmi's Hierarchy of Truths</h4>
+                        <ul>
+                            <li><strong>Confucianism/Daoism:</strong> Explain the physical world (<em>qi</em>) but cannot explain awareness, justice, or previous lives</li>
+                            <li><strong>Hinayana:</strong> Explains no-self and karma but cannot explain the origin of consciousness or bodily form</li>
+                            <li><strong>Mahayana (basic):</strong> Explains emptiness but may fall into nihilism</li>
+                            <li><strong>The One Vehicle:</strong> Explains the true mind, Storehouse Consciousness, and the full chain of delusion and liberation</li>
+                            <li><strong>The strategy:</strong> Each lower teaching is not <em>wrong</em>, just incomplete. Buddhism subsumes and perfects them all.</li>
+                            <li><strong>The political claim:</strong> Buddhism is not foreign. It is the completion of what Chinese sages only partially grasped.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">The Critique</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Zongmi argues that Confucianism and Daoism cannot explain why the virtuous suffer (pp. 101&ndash;102). Is this a fair critique? Could a Confucian respond? (Think about what Mengzi or Xunzi might say.)</li>
+                        <li>Zongmi asks: if <em>qi</em> lacks awareness, how can awareness suddenly arise from it? (p. 101) Is this a strong objection, or does it assume that awareness requires a different kind of origin?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">The Ranking</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Zongmi ranks teachings from Confucianism (lowest) to the One Vehicle (highest). Is this respectful inclusion or intellectual imperialism? Can you acknowledge another tradition's value while claiming your own is superior?</li>
+                        <li>Zongmi says Kongzi, Laozi, and Shakyamuni were all sages who taught different paths for different eras (p. 100). How would Han Yu respond to this claim?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Connections</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Compare Zongmi's account of the "three poisons" (craving, anger, delusion) with Xunzi's analysis of human desires. Both thinkers identify desire as a source of disorder. Do they agree on the solution?</li>
+                        <li>Zongmi's "Storehouse Consciousness" holds karmic seeds from previous lives. How does this compare to Mengzi's "four sprouts" (si duan)? Both posit innate tendencies. Are they analogous?</li>
+                        <li>How does Zongmi's defense of Buddhism compare to Fazang's approach? Fazang teaches philosophy through metaphor (the rafter, the golden lion). Zongmi argues polemically, ranking rival traditions. Which strategy is more persuasive?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Justin Tiwald &amp; Bryan W. Van Norden, eds., <em>Readings in Later Chinese Philosophy: Han Dynasty to the 20th Century</em> (Hackett, 2014).</p>
+                <p>Selection 17: Zongmi, <em>On Humanity</em>, pp. 98&ndash;106. Trans. Bryan W. Van Norden.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.newworldencyclopedia.org/entry/Zongmi" target="_blank" rel="noopener">New World Encyclopedia: Zongmi</a>
+                <a href="https://www.encyclopedia.com/environment/encyclopedias-almanacs-transcripts-and-maps/zongmi" target="_blank" rel="noopener">Encyclopedia.com: Zongmi</a>
+                <a href="https://plato.stanford.edu/entries/buddhism-huayan/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy: Huayan Buddhism</a>
+                <a href="https://buddhanature.tsadra.org/index.php/Texts/Yuanren_lun" target="_blank" rel="noopener">Tsadra Foundation: Yuanren lun</a>
+                <a href="https://buddhanature.tsadra.org/index.php/Books/Inquiry_into_the_Origin_of_Humanity" target="_blank" rel="noopener">Peter N. Gregory, <em>Inquiry into the Origin of Humanity</em> (U of Hawai'i Press, 1995)</a>
+            </div>
+            <div class="source-card">
+                <h4>Key Concepts</h4>
+                <a href="https://www.britannica.com/topic/alaya-vijnana" target="_blank" rel="noopener">Britannica: Alaya-vijnana (Storehouse Consciousness)</a>
+                <a href="https://tricycle.org/magazine/storehouse-consciousness-yogacara/" target="_blank" rel="noopener">Tricycle: Storehouse Consciousness and Yogacara</a>
+                <a href="https://www.newworldencyclopedia.org/entry/Han_Yu" target="_blank" rel="noopener">New World Encyclopedia: Han Yu</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="fazang.html">Fazang 法藏: Huayan Philosophy</a>
+                <a href="huineng.html">Huineng 慧能: Platform Sutra</a>
+                <a href="huayan-gandavyuha.html">Huayan Buddhism: The Gandavyuha</a>
+                <a href="kongzi.html">Kongzi: Analects</a>
+                <a href="mengzi.html">Mengzi</a>
+                <a href="xunzi.html">Xunzi</a>
+                <a href="laozi.html">Laozi: Daodejing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>

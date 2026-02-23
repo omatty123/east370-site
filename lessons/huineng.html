@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huineng: Platform Sutra | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --chan: #5A7A5A;
+            --chan-light: #7A9A7A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--chan);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+
+        /* Poem comparison */
+        .poem-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .poem-box {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.7rem 0.9rem;
+        }
+        .poem-box.shenxiu { border-left: 3px solid var(--ink-faint); }
+        .poem-box.huineng { border-left: 3px solid var(--chan); }
+        .poem-box .poem-author {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.3rem;
+        }
+        .poem-box.shenxiu .poem-author { color: var(--ink-faint); }
+        .poem-box.huineng .poem-author { color: var(--chan); }
+        .poem-box .poem-lines {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            color: var(--ink-light);
+            font-style: italic;
+        }
+        .poem-box .poem-cite {
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+            margin-top: 0.3rem;
+        }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--chan);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--chan);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--chan); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid for concepts */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--chan);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--chan);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(90, 122, 90, 0.1) 0%, rgba(122, 154, 122, 0.05) 100%);
+            border: 1px solid rgba(90, 122, 90, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--chan);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+            .poem-pair { grid-template-columns: 1fr; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 var(--chan);color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">六祖壇經</span>
+            <span class="en">Huineng: Platform Sutra</span>
+            <span class="meta">638&ndash;713 CE &middot; Tiwald &amp; Van Norden, pp. 91&ndash;98</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#poems">The Poems</a>
+        <a href="#teachings">Teachings</a>
+        <a href="#concepts">Key Concepts</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概要</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">慧能</span> Huineng <span class="meta">638&ndash;713 CE</span></div>
+                <div class="card-body">
+                    <h4>The Sixth Patriarch</h4>
+                    <p><a href="https://www.britannica.com/biography/Hui-neng" target="_blank" rel="noopener">Huineng</a> (慧能, 638&ndash;713) is widely regarded as the founder of the Southern School of <a href="https://plato.stanford.edu/entries/buddhism-chan/" target="_blank" rel="noopener">Chan Buddhism</a>, better known in the modern West by its Japanese name, Zen. Perhaps more than any other spiritual leader, Huineng put a distinctively Chinese stamp on the Buddhist tradition, combining Chinese and especially Daoist views about agency and mental discipline with originally Indian Buddhist ideas about enlightenment and salvation.</p>
+                    <h4>An Illiterate Woodcutter</h4>
+                    <p>The <em>Platform Sutra</em> emphasizes that Huineng was uneducated and illiterate. This is not incidental. It is a philosophical claim: insight is wholly innate, not acquired through learning. A woodcutter from the southern frontier can surpass the head monk of an entire monastery, not despite his lack of education but because enlightenment has nothing to do with book-learning.</p>
+                    <h4>Timeline</h4>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">638 CE</div>
+                            <div class="event">Born in Lingnan (modern Guangdong), southern China</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 661 CE</div>
+                            <div class="event">Arrives at Hongren's (Fifth Patriarch) monastery as a menial laborer</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 661 CE</div>
+                            <div class="event">Composes the famous poem; secretly confirmed as Sixth Patriarch</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 676 CE</div>
+                            <div class="event">Begins public teaching at Baolin Temple, Caoxi</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">713 CE</div>
+                            <div class="event">Dies; Southern School of Chan eventually dominates all of Chinese Buddhism</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">壇經</span> The Platform Sutra <span class="meta">Selection 16</span></div>
+                <div class="card-body">
+                    <h4>What Is It?</h4>
+                    <p>The <a href="https://www.britannica.com/topic/Platform-Sutra" target="_blank" rel="noopener"><em>Platform Sutra of the Sixth Patriarch</em></a> (Liuzu Tanjing 六祖壇經) purports to be a written transcription of Huineng's lectures. It is one of the classics of Chinese Buddhism. The translation here by Philip J. Ivanhoe is based on the <a href="https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/platform-sutra-sixth-patriarch-liuzu-tan-jing" target="_blank" rel="noopener">Dunhuang manuscript version</a>.</p>
+                    <h4>What Makes It Radical</h4>
+                    <p>The <em>Platform Sutra</em> begins with Huineng's rise from menial laborer to standard-bearer for the Chan tradition. It then proceeds to elucidate several of his core views on Buddhist wisdom and practice. The text draws from both the biographical and expositional portions of the sutra.</p>
+                    <p>Three claims make this text revolutionary:</p>
+                    <ul>
+                        <li><strong>Insight is innate:</strong> Every person already possesses perfect understanding and Buddha-nature. Enlightenment is not gained; it is uncovered.</li>
+                        <li><strong>Sudden, not gradual:</strong> Enlightenment happens in a flash of recognition, not through incremental stages of cultivation.</li>
+                        <li><strong>Practice is life itself:</strong> "Sitting meditation" does not mean sitting motionless. It means maintaining a straightforward mind in all activities, at all times.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Poems -->
+    <section class="content-section alt" id="poems">
+        <div class="section-label"><span class="chinese">偈頌</span> THE POEM CONTEST (SECTIONS 4, 6, 8)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">傳法</span> The Fifth Patriarch's Challenge <span class="meta">pp. 92&ndash;93</span></div>
+                <div class="card-body">
+                    <h4>Write a Poem, Win the Dharma</h4>
+                    <p>The Fifth Patriarch Hongren gathers his disciples and issues a challenge: each should compose a poem demonstrating their understanding of enlightenment. Whoever shows the deepest insight will receive the robe and the <em>dharma</em>, becoming the Sixth Patriarch.</p>
+                    <blockquote>
+                        "I say to you that birth and death are great affairs for the people of the world. You disciples practice self-cultivation all day long, but all you seek is [rebirth in] blessed realms. You do not seek to escape from the bitter sea of birth and death."
+                        <cite>p. 92; trans. Philip J. Ivanhoe</cite>
+                    </blockquote>
+                    <p>The head monk <a href="https://buddhanature.tsadra.org/index.php/People/Shenxiu" target="_blank" rel="noopener">Shenxiu</a> writes his poem secretly on the wall at midnight. The illiterate Huineng hears it read aloud, recognizes its limitation, and composes his own counter-poem.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">對照</span> Two Poems, Two Philosophies</div>
+                <div class="card-body">
+                    <div class="poem-pair">
+                        <div class="poem-box shenxiu">
+                            <div class="poem-author">Shenxiu (Head Monk)</div>
+                            <div class="poem-lines">
+                                The body is the tree of insight (<em>prajn&#257;</em>);<br>
+                                The mind is like a clear mirror.<br>
+                                Always clean and polish it;<br>
+                                Never allow dirt or dust!
+                            </div>
+                            <div class="poem-cite">p. 93</div>
+                        </div>
+                        <div class="poem-box huineng">
+                            <div class="poem-author">Huineng (Illiterate Laborer)</div>
+                            <div class="poem-lines">
+                                Insight fundamentally has no tree;<br>
+                                The bright mirror has no stand.<br>
+                                Buddha-nature is always pure and clean;<br>
+                                How could there ever be dirt or dust?
+                            </div>
+                            <div class="poem-cite">p. 93</div>
+                        </div>
+                    </div>
+                    <div class="key-themes">
+                        <h4>What's the Difference?</h4>
+                        <ul>
+                            <li><strong>Shenxiu:</strong> The mind exists and must be actively maintained. Enlightenment requires constant effort, like polishing a mirror.</li>
+                            <li><strong>Huineng:</strong> There is no mirror to polish. Buddha-nature is already perfectly pure. The very idea that you need to "clean" it is the delusion.</li>
+                            <li><strong>Gradual vs. sudden:</strong> Shenxiu implies gradual cultivation. Huineng negates the framework entirely.</li>
+                            <li><strong>The deeper claim:</strong> If insight "has no tree," then the body/mind duality itself is an illusion. There is nothing to clean, nothing to be cleaned.</li>
+                        </ul>
+                    </div>
+                    <p>The Fifth Patriarch publicly dismisses Huineng's poem but secretly summons him at night, confirms him as the true heir, and gives him the robe and dharma. Huineng flees south to avoid the jealousy of the other monks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Teachings -->
+    <section class="content-section" id="teachings">
+        <div class="section-label"><span class="chinese">教義</span> CORE TEACHINGS (SECTIONS 12&ndash;19)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">定慧</span> Stability and Insight <span class="meta">Sections 13&ndash;15</span></div>
+                <div class="card-body">
+                    <h4>One Substance, Not Two</h4>
+                    <p>Huineng insists that stability (ding 定) and insight (hui 慧) are not two separate things. Stability is the Substance of insight; insight is the Function of stability. They relate like a lamp and its light: where there is a lamp, there is light, and without the lamp there is no light. You cannot have one without the other.</p>
+                    <blockquote>
+                        "Stability and insight are one Substance, not two. Stability is the Substance of insight; insight is the Function of stability. Where there is insight, stability is within the insight. Where there is stability, insight is within the stability."
+                        <cite>p. 94; trans. Philip J. Ivanhoe</cite>
+                    </blockquote>
+                    <h4>Against False Meditation</h4>
+                    <p>This unity has a sharp practical consequence. Do not say that stability precedes insight or insight precedes stability. Those who treat them as separate "profess a dualistic teaching" (p. 94). The practice of enlightenment "does not lie in verbal arguments."</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">坐禪</span> What Meditation Really Means <span class="meta">Sections 14, 18&ndash;19</span></div>
+                <div class="card-body">
+                    <h4>Not Sitting Motionless</h4>
+                    <p>Huineng launches a direct attack on a common form of Chan practice: sitting motionless, eliminating delusions, and not allowing thoughts to arise. He considers this a <em>grave mistake</em> that has driven practitioners insane.</p>
+                    <blockquote>
+                        "I have seen those who teach people to sit viewing the mind and viewing purity, to remain motionless and to not allow thoughts to arise. Exerting themselves in this manner, deluded individuals fail to become enlightened, and clinging to this [method] can even cause them to go insane."
+                        <cite>p. 95; trans. Philip J. Ivanhoe</cite>
+                    </blockquote>
+                    <h4>A Straightforward Mind</h4>
+                    <p>"Universal stability is to act with a straightforward mind at all times: in motion or at rest, sitting or lying down" (p. 95). The <em>Vimalakirti Sutra</em> says: "A straightforward mind is the field of the Way." Meditation is not a special posture. It is how you carry yourself through every moment of life. If the mind does not abide in phenomena, the Way flows freely.</p>
+                    <h4>What Real Sitting Meditation Is</h4>
+                    <p>In Section 19, Huineng defines his terms. Externally, "not to allow thoughts to go out to any environment is 'to sit.'" Internally, "to see one's fundamental nature and maintain one's composure is 'to meditate.'" Externally, to separate from phenomena is meditation. Internally, to maintain one's composure is stability. If externally there is some phenomenon, internally one's nature remains composed (p. 98).</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">無念</span> The Three Cardinal Doctrines <span class="meta">Section 17</span></div>
+                <div class="card-body">
+                    <p>Huineng names three principles that define his teaching. These are not separate doctrines but three angles on one insight.</p>
+                    <div class="genre-grid">
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">無念</span>
+                                <span class="genre-name">No-thought (wunian)</span>
+                            </div>
+                            <div class="genre-desc">The cardinal doctrine. "To be among phenomena yet separate from them, to have thoughts yet not think them." Not the absence of thought, but non-attachment to thought.</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">無相</span>
+                                <span class="genre-name">No-phenomena (wuxiang)</span>
+                            </div>
+                            <div class="genre-desc">The Substance. "To be able to separate from all phenomena and the Substance of your nature will remain clean and pure." Separate from the phenomenal world while being in it.</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">無住</span>
+                                <span class="genre-name">Non-abiding (wuzhu)</span>
+                            </div>
+                            <div class="genre-desc">The foundation. "Successive thoughts should not abide." Past, present, and future thoughts should succeed one another without being cut off and without clinging to any one dharma.</div>
+                        </div>
+                    </div>
+                    <blockquote>
+                        "If even a single thought is cut off, the Dharma Body separates from the physical body. If a single thought abides, then successive thoughts will abide. This is called being fettered."
+                        <cite>p. 96; trans. Philip J. Ivanhoe</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">頓漸</span> Sudden vs. Gradual <span class="meta">Section 16</span></div>
+                <div class="card-body">
+                    <h4>No Difference in the Dharma</h4>
+                    <p>Huineng addresses the central debate of Chinese Buddhism directly: is enlightenment sudden or gradual?</p>
+                    <blockquote>
+                        "In the <em>dharma</em> there is no such thing as sudden or gradual. [However,] among people there are those with sharp and those with dull spiritual capacity. Deluded individuals pursue the gradual [method]. Enlightened individuals follow sudden cultivation."
+                        <cite>p. 96; trans. Philip J. Ivanhoe</cite>
+                    </blockquote>
+                    <p>The dharma itself is neither sudden nor gradual. Those are descriptions of <em>people</em>, not of truth. To realize one's fundamental mind is to see one's fundamental nature. "Those who are enlightened realize that from the very start there is not the slightest difference" (p. 96).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Concepts -->
+    <section class="content-section alt" id="concepts">
+        <div class="section-label"><span class="chinese">要義</span> KEY CONCEPTS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">佛性</span> Buddha-Nature <span class="meta">Throughout</span></div>
+                <div class="card-body">
+                    <p>The <em>Platform Sutra</em>'s most fundamental claim: every sentient being already possesses perfect Buddha-nature. It has "always remained pure, shining without shadow, always completely knowing" (p. 104). Misguided thoughts have covered it, so people only recognize the qualities of the everyday world and become entangled in karmic consequences.</p>
+                    <p>This is a radical democratization of enlightenment. The illiterate woodcutter and the learned head monk have identical Buddha-nature. Education, status, and years of study count for nothing if the fundamental insight is missing.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">禪</span> Chan as Chinese Buddhism <span class="meta">Connections</span></div>
+                <div class="card-body">
+                    <h4>Daoist Echoes</h4>
+                    <p>Huineng's language borrows heavily from Daoism. "The Way must be allowed to flow freely" echoes the <em>Daodejing</em>. "A straightforward mind is the field of the Way" resonates with Daoist wu wei (non-action). Chan is what happens when Indian Buddhism meets Chinese spontaneity.</p>
+                    <h4>Against the Indian Tradition</h4>
+                    <p>Traditional Indian Buddhism emphasized meditation as a seated, controlled practice. The <em>Platform Sutra</em> redefines meditation as a quality of mind available in any posture and any activity. Huineng even mocks the idea that Vimalakirti should have scolded Shariputra for sitting in the forest (p. 95), referencing an Indian sutra to undermine the Indian meditation tradition.</p>
+                    <div class="key-themes">
+                        <h4>Connections to Other Readings</h4>
+                        <ul>
+                            <li><strong>Fazang:</strong> Both use Substance/Function (ti/yong). For Fazang, gold is Substance, lion is Function. For Huineng, stability is Substance, insight is Function.</li>
+                            <li><strong>Laozi:</strong> "The Way flows freely" and non-attachment echo <em>Daodejing</em> themes. But Huineng locates freedom in the mind, not in nature.</li>
+                            <li><strong>Zhuangzi:</strong> The "fundamental mind" (benxin) echoes Mengzi 6A10, which Chan Buddhists borrowed. Spontaneity links to Zhuangzi's skill stories.</li>
+                            <li><strong>Mengzi:</strong> "Fundamental mind" (benxin) was first used in <em>Mengzi</em> 6A10 for innate moral sensibilities. Huineng repurposes it for innate Buddha-nature.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">The Poems</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Shenxiu says the mind is "like a clear mirror" that must be constantly polished. Huineng says the mirror "has no stand." Who is right? Can you identify a modern analogy for each position?</li>
+                        <li>Is Huineng's poem actually better, or is it only better <em>given Chan assumptions</em>? If you were a student of Shenxiu's, how would you defend his poem?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Practice and Paradox</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Huineng says that sitting motionless and eliminating thoughts is a "grave mistake" that can drive people insane (p. 95). What does he propose instead? Is his alternative practical, or is it a paradox (how do you practice non-practice)?</li>
+                        <li>"No-thought" is not the absence of thought but non-attachment to thought. How is this different from ordinary thinking? Can you actually do this?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Tradition and Authority</div>
+                <div class="card-body">
+                    <ul>
+                        <li>The <em>Platform Sutra</em> insists Huineng was illiterate. Why does the text make this claim so prominently? What philosophical work does Huineng's illiteracy do?</li>
+                        <li>How does the <em>Platform Sutra</em>'s concept of Buddha-nature compare to Mengzi's innate moral sprouts? Both say goodness/wisdom is innate. Are they making the same argument?</li>
+                        <li>Huineng's teaching "put a distinctively Chinese stamp on the Buddhist tradition" (editorial intro, p. 91). What specifically is Chinese about it, as opposed to Indian Buddhist?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Justin Tiwald &amp; Bryan W. Van Norden, eds., <em>Readings in Later Chinese Philosophy: Han Dynasty to the 20th Century</em> (Hackett, 2014).</p>
+                <p>Selection 16: Huineng, <em>Platform Sutra</em>, pp. 91&ndash;98. Trans. Philip J. Ivanhoe.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/biography/Hui-neng" target="_blank" rel="noopener">Britannica: Huineng</a>
+                <a href="https://iep.utm.edu/huineng/" target="_blank" rel="noopener">Internet Encyclopedia of Philosophy: Huineng</a>
+                <a href="https://plato.stanford.edu/entries/buddhism-chan/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy: Chan Buddhism</a>
+                <a href="https://www.britannica.com/topic/Platform-Sutra" target="_blank" rel="noopener">Britannica: Platform Sutra</a>
+                <a href="https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/platform-sutra-sixth-patriarch-liuzu-tan-jing" target="_blank" rel="noopener">Encyclopedia.com: Platform Sutra of the Sixth Patriarch</a>
+                <a href="https://encyclopediaofbuddhism.org/wiki/Huineng" target="_blank" rel="noopener">Encyclopedia of Buddhism: Huineng</a>
+            </div>
+            <div class="source-card">
+                <h4>Scholarly Resources</h4>
+                <a href="https://tricycle.org/article/slow-motion-satori/" target="_blank" rel="noopener">Tricycle: "Slow-Motion Satori" on Sudden Enlightenment</a>
+                <a href="https://buddhanature.tsadra.org/index.php/People/Shenxiu" target="_blank" rel="noopener">Tsadra Foundation: Shenxiu</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="fazang.html">Fazang 法藏: Huayan Philosophy</a>
+                <a href="zongmi.html">Zongmi 宗密: On Humanity</a>
+                <a href="huayan-gandavyuha.html">Huayan Buddhism: The Gandavyuha</a>
+                <a href="laozi.html">Laozi: Daodejing</a>
+                <a href="mengzi.html">Mengzi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
