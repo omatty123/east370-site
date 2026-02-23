@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ci Poetry: Poems in Irregular Metre | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --ci: #2D5A7A;
+            --ci-light: #4A7A9A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--ci);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ci);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+
+        /* Chinese original collapsible */
+        .chinese-original { margin: 0.5rem 0; }
+        .chinese-original summary {
+            font-size: 0.75rem;
+            color: var(--ci);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .chinese-original summary:hover { color: var(--gold); }
+        .chinese-original .ch-label {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.8rem;
+        }
+        .chinese-original .original-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: var(--ink);
+            padding: 0.5rem 0;
+        }
+        .chinese-original .source-link {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+        .chinese-original .source-link a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">詞</span>
+            <span class="en">Poems in Irregular Metre</span>
+            <span class="meta">Birch, pp. 333&ndash;363 &middot; Late Tang through Song</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block" data-d="tang" style="box-shadow:inset 0 -2px 0 rgba(218,165,32,0.5);color:rgba(255,255,255,0.9);">Tang</a>
+        <a href="timeline.html" class="d-block active" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#huajianji">Hua Jian Ji</a>
+        <a href="#liyu">Li Yu</a>
+        <a href="#sushi">Su Shi</a>
+        <a href="#liqingzhao">Li Qingzhao</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> WHAT IS CI?</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">詞</span> The Ci Form <span class="meta">Birch, p. 333</span></div>
+                <div class="card-body">
+                    <h4>A New Kind of Poetry</h4>
+                    <p>Ci (詞, tz'u in Birch) is a poetic form that emerged from the encounter between Chinese literature and Central Asian music. Unlike shi (詩) poetry with its uniform line lengths, ci required the poet to fit words into pre-existing musical tune patterns (<em>cipai</em> 詞牌) that had "come into existence as words were fitted to new tunes of the popular 'foreign music' brought into T'ang China from Central Asia" (Birch, p. 333).</p>
+                    <h4>How Ci Works</h4>
+                    <p>The poet selects a tune pattern. That pattern dictates everything: the number of lines, the length of each line (which varies within the poem), the tonal sequence, and the rhyme scheme. The resulting poem "will still bear the name of the song with which it originated" even when no longer sung. The tune title (cipai) functions like a poetic form with fixed rules, not a description of subject matter.</p>
+                    <blockquote>
+                        "The tz'u form is a striking departure from that staple of Chinese poetry, the shih with its absolutely uniform length of line. But the very irregularity of the tz'u is still rigidly prescribed."
+                        <cite>Birch, p. 333</cite>
+                    </blockquote>
+                    <h4>Colloquial Diction</h4>
+                    <p>The process of "filling in" (填詞) words to musical patterns gave ci poets more freedom in diction than the strict rules of regulated shi allowed. Birch notes that this process "gave scope for the incorporation of more colloquial elements of diction than are found in shih" (p. 333). This accessibility is part of what made ci so popular.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">花間集</span> The Anthology and its World <span class="meta">Birch, pp. 333&ndash;334</span></div>
+                <div class="card-body">
+                    <h4>The Hua Jian Ji (花間集)</h4>
+                    <p>The earliest major ci collection is the <em>Hua jian ji</em> (花間集, Hua chien chi in Birch), a tenth-century anthology. Birch's translator Glen W. Baxter describes its contents bluntly: "the songs were mostly about girls of one kind or another. The anthology title might best be freely rendered The Flowerbeds of Love" (p. 333).</p>
+                    <h4>Subject Matter: The Boudoir</h4>
+                    <p>Early ci is overwhelmingly focused on women's inner lives: longing for absent lovers, the passage of seasons, beauty rituals, solitary nights. This is not accidental. Ci grew out of the entertainment quarters where singing girls performed these songs. The poetic voice is almost always feminine, even when the author is male. The emotional register is intimate, melancholic, and sensuous.</p>
+                    <h4>Three Giants</h4>
+                    <p>Birch highlights three major figures in this reading. <strong>Li Yu</strong> (Li Yü, 937&ndash;978), the captive last ruler of the Southern Tang, whose ci are "almost an autobiography, lyrical and passionate, of this unhappy king" (p. 334). <strong>Su Shi</strong> (Su Shih, 1037&ndash;1101), who expanded ci beyond boudoir themes into philosophy and history. And <strong>Li Qingzhao</strong> (Li Ch'ing-chao, 1081&ndash;c. 1149), "the most highly regarded" of China's women poets, whose work is "eloquent again of that languid melancholy which is at the heart of the tz'u" (p. 334).</p>
+                    <div class="key-themes">
+                        <h4>Tune Patterns in This Reading</h4>
+                        <ul>
+                            <li><strong>Pusa man (菩薩蠻):</strong> "Strangers in Saint's Coif," the most common tune in this selection</li>
+                            <li><strong>Genglou zi (更漏子):</strong> "Water-clock Tune," used by Wen Tingyun</li>
+                            <li><strong>Yu meiren (虞美人):</strong> "The Beautiful Lady Yu," Li Yu's most famous ci</li>
+                            <li><strong>Niannu jiao (念奴嬌):</strong> "The Charms of Nien-nu," Su Shi's Red Cliff meditation</li>
+                            <li><strong>Shui diao ge tou (水調歌頭):</strong> "Water Music Prelude," Su Shi's Mid-Autumn poem</li>
+                            <li><strong>Sheng sheng man (聲聲慢):</strong> "Endless Union," Li Qingzhao's famous opening</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hua Jian Ji Poets -->
+    <section class="content-section alt" id="huajianji">
+        <div class="section-label"><span class="chinese">花間</span> THE HUA JIAN JI POETS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">溫庭筠</span> Wen Tingyun <span class="meta">fl. 859 &middot; pp. 336&ndash;338</span></div>
+                <div class="card-body">
+                    <h4>The Founder of Ci</h4>
+                    <p>Wen Tingyun (溫庭筠, Wen T'ing-yün in Birch) is considered the founding master of ci poetry. Active during the late Tang, he established the genre's characteristic voice: a woman alone, surrounded by luxurious objects, consumed by longing. His poems are dense with sensory imagery: golden panels, moth-eyebrows, embroidered jackets, partridges in gold.</p>
+                    <h4>Five Poems to the P'u-sa man Tune</h4>
+                    <blockquote>
+                        "On the bedscreen's folding panels, gold glimmers and fades.<br>
+                        Clouds of hair verge upon the fragrant snow of cheeks.<br>
+                        Languorous she rises, pencils the moth-eyebrows,<br>
+                        Dawdles over her toilet, slowly washing, combing."
+                        <cite>Birch, p. 336; trans. Glen W. Baxter</cite>
+                    </blockquote>
+                    <p>The first poem exemplifies Wen Tingyun's technique: a morning scene built entirely from visual fragments. The woman is known through the objects that surround her. Her interiority is implied, not stated.</p>
+                    <h4>Three Poems to the Geng-lou tzu Tune</h4>
+                    <blockquote>
+                        "The stars grow few<br>
+                        The night-drums cease<br>
+                        Orioles call beyond the blind as the moon sinks into dawn:<br>
+                        Dew heavy on the orchises<br>
+                        Wind aslant the willows<br>
+                        And all the courtyard heaped with fallen flowers."
+                        <cite>Birch, p. 337; trans. Glen W. Baxter</cite>
+                    </blockquote>
+                    <p>The "Water-clock" poems show Wen Tingyun's skill with shorter lines. The compressed syntax creates an almost cinematic sequence of images: stars fading, drums stopping, birds calling, dawn arriving.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">韋莊</span> Wei Zhuang &amp; Other Poets <span class="meta">pp. 339&ndash;347</span></div>
+                <div class="card-body">
+                    <h4>Wei Zhuang (韋莊, ?858&ndash;910)</h4>
+                    <p>Wei Zhuang (Wei Chuang in Birch) offers a striking contrast to Wen Tingyun. Where Wen is all surface imagery, Wei writes with directness and narrative sweep. His four P'u-sa man poems are miniature stories of exile, nostalgia, and the pleasures of the South.</p>
+                    <blockquote>
+                        "Every one's always saying how fine it is in the South,<br>
+                        How the best thing for the wanderer is to stay the rest of his days.<br>
+                        In spring the waters are bluer than the skies;<br>
+                        You drowse in your painted boat to the rain's murmur."
+                        <cite>Birch, p. 339; trans. Glen W. Baxter</cite>
+                    </blockquote>
+                    <p>Wei Zhuang also writes convincingly in the female voice. His "Little Ch'ung-shan" (Xiao Chongshan) imagines a palace woman "shut out of Chao-yang Palace while springs come and go" (p. 341), her soul dissolved in longing for a king who has forgotten her.</p>
+
+                    <h4>The Minor Hua Jian Ji Poets</h4>
+                    <p>Birch includes single poems from six other Hua jian ji contributors, each displaying a different facet of the tradition:</p>
+                    <ul>
+                        <li><strong>Xie Chaoyun (謝朝雲)</strong>, 10th c.: "The Taoist Priestess" (p. 342). A woman who has left the world for religious life, serving "at Heaven's altar" beneath mountain pines.</li>
+                        <li><strong>Gu Xiong (顧敻)</strong>, fl. 928: "The Willow Branch" (p. 343). A woman listening to rain on plantain leaves, her lover "off roaming far and wide."</li>
+                        <li><strong>Sun Guangxian (孫光憲)</strong>, d. 968: "Free and Easy" (p. 344). A fleeting encounter at dusk: "She gleamed in the shadow beneath the painted blind; / Then without word / Or sign, / Slowly trailing her silken sleeves, withdrew."</li>
+                        <li><strong>Lu Qianyi (魯虔一)</strong>, fl. 931: "The Fairy by the River" (p. 345). A poem of political ruin: "The misty moon, all unaware of change in men's affairs, / Still shines in the dead of night on the inner palace."</li>
+                        <li><strong>Yan Xuan (閻選)</strong>, fl. 932: "River Tales" (p. 346). Rain and absence: "How many times he promised, 'When the wild geese come&mdash;' / He broke the date; / The geese came back, he didn't."</li>
+                        <li><strong>Mao Xizhen (毛熙震)</strong>, fl. 947: "Conquering Tibet" and "The Flowers of the Rear Courts" (p. 347), trans. Glen W. Baxter.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Li Yu -->
+    <section class="content-section" id="liyu">
+        <div class="section-label"><span class="chinese">李煜</span> LI YU: THE CAPTIVE KING</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">南唐後主</span> Last Ruler of Southern Tang <span class="meta">937&ndash;978 &middot; pp. 348&ndash;352</span></div>
+                <div class="card-body">
+                    <h4>A King Who Wrote Poetry</h4>
+                    <p>Li Yu (李煜, Li Yü in Birch) is the single most important figure in this reading. He was the last ruler of the Southern Tang dynasty, a small kingdom with its capital at Nanjing (Nanking). Birch calls him "one individual genius whose surviving works consist mostly of tz'u" (p. 333).</p>
+                    <h4>The Fall</h4>
+                    <p>In 975 CE, the Song dynasty conquered Southern Tang. Li Yu's capital at Nanjing fell, and he was "seized by the first Sung emperor, Li himself dethroned and taken captive into exile at Pien-liang (Kaifeng) in the north" (pp. 333&ndash;334). He spent his final years as a prisoner, writing ci poems that transformed personal catastrophe into universal art.</p>
+                    <h4>Two Periods</h4>
+                    <p>Li Yu's ci divide into two distinct periods. His early poems, written as king, are sensuous and courtly: beauties in Painted Halls, dreams of mandarin ducks, the last flowers of spring. His captivity poems are devastating: raw grief for a lost kingdom, dreams of palaces he can never revisit, the relentless cruelty of moonlight that doesn't know its viewer is no longer free.</p>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">937 CE</div>
+                            <div class="event">Born into the Southern Tang royal house</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">961 CE</div>
+                            <div class="event">Becomes last ruler of Southern Tang</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">975 CE</div>
+                            <div class="event">Song dynasty conquers Southern Tang; Li Yu taken captive to Kaifeng</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">978 CE</div>
+                            <div class="event">Dies in captivity (reportedly poisoned)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">虞美人</span> The Captive's Voice <span class="meta">Featured Poems</span></div>
+                <div class="card-body">
+                    <h4>"The Beautiful Lady Yu" (虞美人)</h4>
+                    <p>Li Yu's most famous ci, and one of the most celebrated poems in the Chinese language. Written in captivity, it asks when the torment of memory will end.</p>
+                    <blockquote>
+                        "When will the last flower fall, the last moon fade?<br>
+                        So many sorrows lie behind.<br>
+                        Again last night the east wind filled my room&mdash;<br>
+                        O gaze not on the lost kingdom under this bright moon.<br><br>
+                        Still in her light my palace gleams as jade<br>
+                        (Only from bright cheeks beauty dies).<br>
+                        To know the sum of human suffering<br>
+                        Look at this river rolling eastward in the spring."
+                        <cite>Birch, p. 352; trans. Cyril Birch</cite>
+                    </blockquote>
+                    <p>The final image is devastating in its simplicity. How much sorrow is there? As much as a river. The poem reportedly so angered the Song emperor that he had Li Yu poisoned.</p>
+
+                    <h4>"Happiness of Meeting" (相見歡)</h4>
+                    <blockquote>
+                        "Wordless, alone, I go upstairs to the western chamber.<br>
+                        The moon is like a sickle.<br>
+                        The lonely trees in the courtyard are locked up there with the autumn night.<br>
+                        Scissors do not sever,<br>
+                        Nor reason unravel,<br>
+                        The pain of separation.<br>
+                        It lodges in the heart with a taste of its own."
+                        <cite>Birch, p. 350; trans. Sam Houston Brock</cite>
+                    </blockquote>
+                    <p>"Scissors do not sever, / Nor reason unravel" is one of the most quoted lines in Chinese poetry. Grief is figured as a tangled thread that resists both physical cutting and logical analysis. It has "a taste of its own," irreducible to any other experience.</p>
+
+                    <h4>"Gazing to the South" (望江南)</h4>
+                    <blockquote>
+                        "Immeasurable pain!<br>
+                        My dreaming soul last night was king again.<br>
+                        As in past days<br>
+                        I wandered through the Palace of Delight,<br>
+                        And in my dream<br>
+                        Down grassy garden ways<br>
+                        Glided my chariot, smoother than a summer stream."
+                        <cite>Birch, p. 351; trans. Arthur Waley</cite>
+                    </blockquote>
+                    <p>In sleep, Li Yu is king again. The dream is unbearably vivid: gardens, moonlight, blossoming trees. Waking means returning to captivity. Arthur Waley's translation captures the dreamlike quality of lines that drift between past splendor and present desolation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Su Shi -->
+    <section class="content-section alt" id="sushi">
+        <div class="section-label"><span class="chinese">蘇軾</span> SU SHI: EXPANDING THE FORM</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">蘇東坡</span> Su Shi (Su Dongpo) <span class="meta">1037&ndash;1101 &middot; pp. 355&ndash;357</span></div>
+                <div class="card-body">
+                    <h4>Beyond the Boudoir</h4>
+                    <p>Su Shi (蘇軾, Su Shih in Birch), also known as Su Dongpo (蘇東坡), was the Song dynasty's most versatile literary genius: poet, essayist, calligrapher, painter, statesman, and gastronome. Birch notes that with Su Shi, "later poets extended the range of subject matter, though there is almost invariably a romantic, even sentimental chord struck at the close" (p. 333).</p>
+                    <p>Su Shi broke ci out of its narrow thematic range. Where earlier ci poets wrote almost exclusively about women, love, and longing, Su Shi used the form for philosophical meditation, historical reflection, and personal grief. His three ci in this selection span all three registers.</p>
+
+                    <h4>"The Charms of Nien-nu" (念奴嬌) &mdash; Grief for His Wife</h4>
+                    <blockquote>
+                        "For ten years the living and the dead have been far severed;<br>
+                        Though not thinking of you,<br>
+                        Naturally I cannot forget.<br>
+                        Your lonely grave is a thousand miles away,<br>
+                        Nowhere to tell my grief."
+                        <cite>Birch, p. 355; trans. Ch'u Ta-kao</cite>
+                    </blockquote>
+                    <p>Written in memory of his first wife, who died before reaching thirty. The opening is devastating in its honesty: he doesn't think of her constantly, but the forgetting is impossible. The poem ends with a dream of reunion: "We looked at each other in silence and melted into tears" (p. 355).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">赤壁</span> The Red Cliff and the Moon <span class="meta">Featured Poems</span></div>
+                <div class="card-body">
+                    <h4>"Water Music Prelude" (水調歌頭) &mdash; To His Brother</h4>
+                    <blockquote>
+                        "When did the moon begin to shine?<br>
+                        Lifting my cup I ask of Heaven.<br>
+                        I wonder in the heavenly palaces and castles<br>
+                        What season it is tonight.<br>
+                        I wish to go up there on the wind<br>
+                        But am afraid the crystal domes and jade halls<br>
+                        Would be too cold on high."
+                        <cite>Birch, pp. 355&ndash;356; trans. Ch'u Ta-kao</cite>
+                    </blockquote>
+                    <p>Written during the Mid-Autumn Festival while separated from his younger brother Su Zhe (Tzu-yu in Birch). The poem moves from cosmic questioning to earthly consolation: "I only wish that you and I may be ever well and hale, / That both of us may watch the fair moon, even a thousand miles apart" (p. 356). These closing lines are among the most quoted in the Chinese language.</p>
+
+                    <h4>"The Charms of Nien-nu" (念奴嬌) &mdash; Red Cliff</h4>
+                    <blockquote>
+                        "The waves of the mighty river flowing eastward<br>
+                        Have swept away the brilliant figures of a thousand generations.<br>
+                        West of the old fortress,<br>
+                        So people say, is Lord Chou's Red Cliff of the time of the Three Kingdoms."
+                        <cite>Birch, p. 356; trans. Ch'u Ta-kao</cite>
+                    </blockquote>
+                    <p>Su Shi's Red Cliff ci is the boldest experiment in this reading. He uses a love-song form to meditate on military history: Zhou Yu's victory over Cao Cao at the Battle of Red Cliff (208 CE). The contrast between ancient heroism and his own aging is deliberate: "Romantic persons might smile at my early grey hair. / Ah! life is but like a dream; / With a cup of wine, let me yet pour a libation to the moon on the River" (p. 357).</p>
+
+                    <div class="key-themes">
+                        <h4>Su Shi's Revolution</h4>
+                        <ul>
+                            <li><strong>Personal grief:</strong> The wife elegy uses ci for private mourning, not courtly love</li>
+                            <li><strong>Philosophy:</strong> The moon poem asks cosmic questions within a song form</li>
+                            <li><strong>History:</strong> The Red Cliff poem turns ci into historical meditation</li>
+                            <li><strong>Self-consciousness:</strong> Su Shi knows he's stretching the form and makes that awareness part of the poem</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Li Qingzhao -->
+    <section class="content-section" id="liqingzhao">
+        <div class="section-label"><span class="chinese">李清照</span> LI QINGZHAO: THE GREATEST WOMAN POET</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">易安居士</span> Li Qingzhao <span class="meta">1081&ndash;c. 1149 &middot; pp. 358&ndash;363</span></div>
+                <div class="card-body">
+                    <h4>A Life in Two Halves</h4>
+                    <p>Li Qingzhao (李清照, Li Ch'ing-chao in Birch) is, as Birch states, "the most highly regarded" among China's women poets (p. 334). Her life divides sharply in two. Before 1127, she was a privileged scholar's wife in the Northern Song capital, writing playful, sensuous ci about flowers, wine, and her husband's absence. After the Jurchen invasion of 1127 destroyed the Northern Song, she became a refugee, lost her husband, lost her priceless art collection, and spent her remaining decades in grief and displacement.</p>
+                    <h4>Early Poems: Joy and Playfulness</h4>
+                    <blockquote>
+                        "Ride in the swing<br>
+                        &emsp;&emsp;&emsp;over<br>
+                        she stands up<br>
+                        &emsp;&emsp;&emsp;languid<br>
+                        &emsp;&emsp;&emsp;flexing delicate hands<br>
+                        Multitudinous dew<br>
+                        &emsp;&emsp;&emsp;on thin flower<br>
+                        a mist of sweat<br>
+                        &emsp;&emsp;&emsp;dampens<br>
+                        &emsp;&emsp;&emsp;her light dress through"
+                        <cite>Birch, p. 358, "Crimson Lips Adorned"; trans. C.H. Kw&ouml;ck &amp; Vincent McHugh</cite>
+                    </blockquote>
+                    <p>The Kw&ouml;ck and McHugh translations use spatial layout on the page to mirror the irregular line lengths of ci. The scattered placement of words creates a visual music. This early poem captures a young woman surprised by a stranger while swinging in a garden. She runs, then "leaning against the door jamb / looks back / lingering / to sniff at a green plum" (p. 358). The final gesture is perfect: she wants to look at the stranger but uses the plum as pretext.</p>
+                    <h4>Dream Song (如夢令)</h4>
+                    <blockquote>
+                        "Often remembered is the evening on the creek<br>
+                        &emsp;&emsp;When wine flowed in the arbor and we lost our way.<br>
+                        It was late; our boat returning after a happy day<br>
+                        &emsp;&emsp;Entered by mistake a patch of clustering lotus.<br>
+                        As we hurried to get through,<br>
+                        &emsp;&emsp;&emsp;&emsp;Hurried to get through,<br>
+                        A flock of herons, startled, rose to the sky."
+                        <cite>Birch, p. 363; trans. K.Y. Hs&uuml;</cite>
+                    </blockquote>
+                    <p>A memory of youth: getting drunk, getting lost, scattering herons. The repeated "Hurried to get through" mimics the frantic paddling. This is widely considered one of the most charming short poems in the Chinese tradition.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">聲聲慢</span> The Late Poems <span class="meta">After 1127</span></div>
+                <div class="card-body">
+                    <h4>"Spring at Wu-ling" (武陵春)</h4>
+                    <blockquote>
+                        "Wind stopped<br>
+                        &emsp;&emsp;&emsp;earth<br>
+                        &emsp;&emsp;&emsp;&emsp;smelling of fallen blossoms<br>
+                        Day almost over<br>
+                        &emsp;&emsp;&emsp;Too weary to comb my hair<br>
+                        His belongings here<br>
+                        &emsp;&emsp;&emsp;&emsp;He here no longer<br>
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Everything useless<br>
+                        Before I can say a word<br>
+                        &emsp;&emsp;&emsp;tears flow first"
+                        <cite>Birch, pp. 361&ndash;362; trans. C.H. Kw&ouml;ck &amp; Vincent McHugh</cite>
+                    </blockquote>
+                    <p>After her husband's death and the fall of the North. "His belongings here / He here no longer" is one of the most crushing lines in Chinese poetry. The poem ends: "I too / would like to go rowing in a light boat / but I'm afraid / that little boat on Twin Stream / would not carry / so much sorrow!" (p. 362). Sorrow is so heavy it would sink a boat.</p>
+
+                    <h4>"Endless Union" (聲聲慢 / 永遇樂)</h4>
+                    <blockquote>
+                        "Sunset<br>
+                        &emsp;&emsp;&emsp;molten bronze<br>
+                        evening clouds<br>
+                        &emsp;&emsp;&emsp;&emsp;marbled white jade<br>
+                        &emsp;&emsp;<em>Where is he?</em><br>
+                        A mist of light<br>
+                        &emsp;&emsp;&emsp;&emsp;stains the willows<br>
+                        Plum blowing<br>
+                        &emsp;&emsp;&emsp;&emsp;A flute's wail"
+                        <cite>Birch, p. 360; trans. C.H. Kw&ouml;ck &amp; Vincent McHugh</cite>
+                    </blockquote>
+                    <p>The "Endless Union" poem captures the agony of festivals after loss. She recalls New Year's Eves when she wore green-feather headdresses and sashes "worked with gold thread." Now: "I / haggard now / wind-tangled locks / hair / frosted white / at the temple / Too diffident / to venture among flowers / I loiter / under the window screen / eavesdropping / on the talk / and laughter / of others" (p. 361).</p>
+
+                    <h4>"The Approach of Bliss" (好事近)</h4>
+                    <blockquote>
+                        "The wind dies and fallen petals pile deep&mdash;<br>
+                        &emsp;&emsp;Masses of red and snow beyond the curtain.<br>
+                        Long remembered is the season after crabapple has bloomed&mdash;<br>
+                        &emsp;&emsp;A time to mourn the vanished spring."
+                        <cite>Birch, p. 363; trans. K.Y. Hs&uuml;</cite>
+                    </blockquote>
+                    <p>Even in the more conventional K.Y. Hs&uuml; translation, the weight of loss is unmistakable: "My thought already cannot bear this quiet grief / And yet there should come a cuckoo's call" (p. 363). The cuckoo in Chinese poetry is a symbol of unending sorrow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Voices -->
+    <section class="content-section alt" id="other">
+        <div class="section-label"><span class="chinese">餘聲</span> OTHER VOICES IN THE READING</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">無名</span> Anonymous Woman Poet &amp; Li Cunxu <span class="meta">pp. 353&ndash;354</span></div>
+                <div class="card-body">
+                    <h4>Anonymous Woman Poet (10th century)</h4>
+                    <p>"The Drunken Young Lord" (醉公子, Tsui kung-tzu) is one of the most vivid poems in the collection. Unlike the stylized boudoir poems by male authors, this poem's female voice feels startlingly direct:</p>
+                    <blockquote>
+                        "Outside my door<br>
+                        &emsp;&emsp;&emsp;the dog barking<br>
+                        I know what it is<br>
+                        &emsp;&emsp;&emsp;My lover's here<br>
+                        Off with my stockings<br>
+                        &emsp;&emsp;&emsp;down<br>
+                        &emsp;&emsp;&emsp;&emsp;perfumed stairs<br>
+                        My good-for-nothing lover<br>
+                        &emsp;&emsp;&emsp;&emsp;is drunk tonight"
+                        <cite>Birch, p. 353</cite>
+                    </blockquote>
+                    <p>The poem ends: "Milord is drunk / and drunk let him be / Better that / than sleeping alone" (p. 353). No other poem in this section has this level of physical immediacy. The anonymous attribution is itself telling: women's voices were preserved when they fit the tradition's aesthetic, but the names behind them were often lost.</p>
+
+                    <h4>Li Cunxu (李存勖, 885&ndash;926)</h4>
+                    <p>Li Cunxu (Li Ts'un-hs&uuml; in Birch) was a military ruler of the Later Tang, one of the Five Dynasties. His single poem "Memories of Fairy Grace" (p. 354) is translated by C.H. Kw&ouml;ck and Vincent McHugh in their characteristic spatial style: "Feasted once / in deep peach glades / one song / phoenix to phoenix / danced and sang." The poem moves from memory of pleasure to the desolation of farewell: "like a dream / like a dream / faded moon / fallen blossoms / thick mist / over all" (p. 354).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">譯者</span> The Translators <span class="meta">Seven Voices</span></div>
+                <div class="card-body">
+                    <h4>A Reading with Many Translators</h4>
+                    <p>One distinctive feature of this section is the variety of translators. Each brings a different approach to the problem of rendering ci in English:</p>
+                    <ul>
+                        <li><strong>Glen W. Baxter</strong> (pp. 336&ndash;338, 347): Translates the Hua jian ji poems in flowing, literary English. Preserves the ornate imagery faithfully.</li>
+                        <li><strong>Sam Houston Brock</strong> (pp. 348&ndash;351): Translates most of Li Yu's poems. His style is spare and direct, matching Li Yu's emotional intensity.</li>
+                        <li><strong>Arthur Waley</strong> (p. 351): The great translator contributes one Li Yu poem, "Gazing to the South," with characteristic elegance and restraint.</li>
+                        <li><strong>Cyril Birch</strong> (pp. 335, 352): The anthology editor translates Li Bai's lone ci and Li Yu's devastating "The Beautiful Lady Y&uuml;."</li>
+                        <li><strong>Ch'u Ta-kao</strong> (pp. 355&ndash;357): Translates Su Shi's three poems in a classical, dignified register appropriate to Su Shi's philosophical ambitions.</li>
+                        <li><strong>C.H. Kw&ouml;ck &amp; Vincent McHugh</strong> (pp. 354, 358&ndash;362): The most radical translators in the selection. Their spatial layouts scatter words across the page, using white space to create rhythm. This captures the irregular line lengths of ci better than conventional formatting.</li>
+                        <li><strong>K.Y. Hs&uuml;</strong> (pp. 362&ndash;363): Translates Li Qingzhao's last two poems in a more traditional format, providing useful contrast with the Kw&ouml;ck &amp; McHugh approach.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Form and Freedom</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Birch says ci's irregularity "is still rigidly prescribed" (p. 333). How does a form that is both irregular and rigid differ from the regulated shi poetry we read earlier? What kinds of expression does each form enable or constrain?</li>
+                        <li>Compare the Kw&ouml;ck &amp; McHugh spatial translations of Li Qingzhao with K.Y. Hs&uuml;'s more conventional versions of the same poet. Which approach better captures the "irregular metre" of ci? What does each translation sacrifice?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Gender and Voice</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Most Hua jian ji poets are men writing in women's voices about women's longing. The Anonymous Woman Poet's "Drunken Young Lord" (p. 353) is strikingly different in tone. What specifically distinguishes a woman writing about desire from a man writing about women's desire? Point to specific lines.</li>
+                        <li>Li Qingzhao's late poems are devastating personal documents of grief. How does her experience as a woman refugee differ from Li Yu's experience as a captive king? Both lost everything. Does the poetry read differently?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Loss and Memory</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Li Yu dreams he is king again: "My dreaming soul last night was king again" (p. 351). Li Qingzhao remembers "another New Year's Eve / how I put on / the green-feather headdress" (p. 361). How do these two poets use memory differently? Is memory a consolation or a torment?</li>
+                        <li>Su Shi's Red Cliff ci (p. 356) uses history as its occasion for reflection: "life is but like a dream" (p. 357). Compare this philosophical resignation with Li Yu's raw grief. Is Su Shi's acceptance a deeper wisdom, or a comfortable distance from real suffering?</li>
+                        <li>Li Qingzhao says her sorrow would sink a boat (p. 362). Li Yu says separation "lodges in the heart with a taste of its own" (p. 350). Su Shi says "the living and the dead have been far severed" (p. 355). Which metaphor for grief is most effective, and why?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Cyril Birch, ed., <em>Anthology of Chinese Literature</em>, Vol. I: "Poems in Irregular Metre," pp. 333&ndash;363.</p>
+                <p>Translators: Glen W. Baxter, Sam Houston Brock, Arthur Waley, Cyril Birch, Ch'u Ta-kao, C.H. Kw&ouml;ck &amp; Vincent McHugh, K.Y. Hs&uuml;.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/art/ci" target="_blank" rel="noopener">Encyclopaedia Britannica: Ci (Chinese poetry)</a>
+                <a href="https://www.britannica.com/biography/Li-Yu-Chinese-poet-and-ruler" target="_blank" rel="noopener">Encyclopaedia Britannica: Li Yu (Southern Tang)</a>
+                <a href="https://www.britannica.com/biography/Su-Shi" target="_blank" rel="noopener">Encyclopaedia Britannica: Su Shi</a>
+                <a href="https://www.britannica.com/biography/Li-Qingzhao" target="_blank" rel="noopener">Encyclopaedia Britannica: Li Qingzhao</a>
+                <a href="https://www.britannica.com/biography/Wen-Tingyun" target="_blank" rel="noopener">Encyclopaedia Britannica: Wen Tingyun</a>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Originals</h4>
+                <a href="https://fanti.dugushici.com/ancient_proses/70229" target="_blank" rel="noopener">虞美人 (Yu Meiren) &mdash; Li Yu, dugushici.com</a>
+                <a href="https://fanti.dugushici.com/ancient_proses/48982" target="_blank" rel="noopener">念奴嬌&middot;赤壁懷古 (Red Cliff) &mdash; Su Shi, dugushici.com</a>
+                <a href="https://fanti.dugushici.com/ancient_proses/48974" target="_blank" rel="noopener">水調歌頭 (Water Music Prelude) &mdash; Su Shi, dugushici.com</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="tang-poets.html">Tang Poets (Wang Wei, Li Bai, Du Fu)</a>
+                <a href="bai-juyi.html">Bai Juyi 白居易</a>
+                <a href="birch-toc.html">Birch Works Index</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
