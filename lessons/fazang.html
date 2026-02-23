@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazang: The Rafter Dialogue &amp; Essay on the Golden Lion | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --huayan: #7B5EA7;
+            --huayan-light: #9B7EC7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--huayan);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--huayan);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--huayan);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--huayan); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--huayan);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--huayan);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(123, 94, 167, 0.1) 0%, rgba(155, 126, 199, 0.05) 100%);
+            border: 1px solid rgba(123, 94, 167, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--huayan);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--huayan);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 var(--huayan);color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">法藏</span>
+            <span class="en">Fazang: Huayan Philosophy</span>
+            <span class="meta">643&ndash;712 CE &middot; Tiwald &amp; Van Norden, pp. 80&ndash;91</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#rafter">Rafter Dialogue</a>
+        <a href="#golden-lion">Golden Lion</a>
+        <a href="#concepts">Key Concepts</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概要</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">法藏</span> Fazang <span class="meta">643&ndash;712 CE</span></div>
+                <div class="card-body">
+                    <h4>The Third Patriarch</h4>
+                    <p><a href="https://www.britannica.com/biography/Fazang" target="_blank" rel="noopener">Fazang</a> (法藏, 643&ndash;712) is traditionally considered the third patriarch of the <a href="https://plato.stanford.edu/entries/buddhism-huayan/" target="_blank" rel="noopener">Huayan (華嚴)</a> school of Mahayana Buddhism, which developed in China based on the <em>Flower Garland Sutra</em> (Huayan jing 華嚴經). He was a prolific writer, authoring commentaries on major Buddhist texts and original works that elucidated Huayan teachings.</p>
+                    <h4>Master of Metaphor</h4>
+                    <p>Fazang's genius was pedagogical. He could take the Huayan school's most abstract doctrines and make them concrete through vivid, physical analogies. A building and its rafters. A golden lion statue. These were not mere illustrations but philosophically precise models for understanding how all phenomena relate to each other.</p>
+                    <h4>Timeline</h4>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">643 CE</div>
+                            <div class="event">Born, likely of Sogdian Central Asian ancestry</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">670s CE</div>
+                            <div class="event">Ordained as a Buddhist monk; studies the <em>Avatamsaka Sutra</em></div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">c. 695&ndash;699 CE</div>
+                            <div class="event">Assists Siksananda in retranslating the <em>Avatamsaka Sutra</em></div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">704 CE</div>
+                            <div class="event">Explains Huayan philosophy to <a href="https://www.ebsco.com/research-starters/biography/wu-zetian" target="_blank" rel="noopener">Empress Wu Zetian</a> using a golden lion statue</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">712 CE</div>
+                            <div class="event">Dies, leaving behind over 100 works</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">華嚴</span> Huayan Buddhism <span class="meta">The Philosophy</span></div>
+                <div class="card-body">
+                    <h4>The Core Insight</h4>
+                    <p>According to the <a href="https://plato.stanford.edu/entries/buddhism-huayan/" target="_blank" rel="noopener">Huayan school</a>, all phenomena lack an essence that defines what they are independently of other things. All distinctions between phenomena are conventional. Any attempt at defining a particular phenomenon involves relating it to other phenomena. Huayan philosophy then understands these relations as mutually constituting: each thing defines every other thing, and every other thing defines it.</p>
+                    <h4>The Doctrine of Emptiness</h4>
+                    <p>This builds on the Buddhist doctrine of <em>emptiness</em> (kong 空). All phenomena are empty of independent self-nature. They exist only through dependent arising: each thing comes into being through a web of conditions. Remove any condition and the thing changes. This is not nihilism (saying nothing exists) but rather a claim about <em>how</em> things exist: relationally, not independently.</p>
+                    <h4>Why Two Texts?</h4>
+                    <p>The readings present the same core philosophy through two different extended metaphors. "The Rafter Dialogue" (Selection 14) uses a building and its rafters to explore the six characteristics of interpenetration. "Essay on the Golden Lion" (Selection 15) uses a golden lion statue to explain dependent arising, emptiness, and the ten mysteries. Together they give two angles on one vision: that everything interpenetrates everything else.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Rafter Dialogue -->
+    <section class="content-section alt" id="rafter">
+        <div class="section-label"><span class="chinese">椽子</span> THE RAFTER DIALOGUE (SELECTION 14)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">喻</span> The Central Metaphor <span class="meta">pp. 80&ndash;82</span></div>
+                <div class="card-body">
+                    <h4>From <em>Paragraphs on the Doctrine of Difference and Identity of the One Vehicle of Huayan</em></h4>
+                    <p>Translated by David Elstein. The text uses a building (the whole) and a rafter (a part) to explain how parts and wholes relate. The building cannot exist without the rafter; the rafter is only called a "rafter" because it functions within the building. Neither exists independently.</p>
+                    <h4>The Building Metaphor</h4>
+                    <p>Think of a building. It is composed of rafters, planks, roof tiles, and other materials. Now focus on one rafter. In Huayan philosophy, that single rafter <em>is</em> the building, because without it the building would be different (or not exist). And the building <em>is</em> the rafter, because the rafter only has its identity through its function in the whole. This relationship holds simultaneously for every part.</p>
+                    <h4>The Middle Way</h4>
+                    <p>Fazang repeatedly warns against two errors. <strong>Annihilationism</strong> denies that phenomena exist at all. <strong>Eternalism</strong> posits things that exist without causes, independently and permanently. Buddhism charts a "Middle Way" between these: it acknowledges the conditional existence of phenomena while denying that they are uncaused, independent, or eternal.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">六相</span> The Six Characteristics <span class="meta">pp. 82&ndash;86</span></div>
+                <div class="card-body">
+                    <p>Fazang describes six characteristics, or six ways of understanding the relationship between part and whole. These are not sequential stages but simultaneous perspectives, "any of which is available at any time, much as we can see a tree as an individual or part of the largest forest at the same time" (p. 81).</p>
+                    <div class="structure-list">
+                        <div class="structure-item">
+                            <span class="structure-num">一</span>
+                            <div class="structure-text">
+                                <div class="s-title">Wholeness (zong 總)</div>
+                                <div class="s-desc">The rafter is just the various conditions, including the rafter. The rafter is the building. Apart from the rafter, there can be no building.</div>
+                                <div class="s-page">p. 82</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">二</span>
+                            <div class="structure-text">
+                                <div class="s-title">Particularity (bie 別)</div>
+                                <div class="s-desc">The rafter and other conditions are different from the whole. If they were not different, there are no parts, so there is no whole. The whole is composed of parts.</div>
+                                <div class="s-page">pp. 82&ndash;83</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">三</span>
+                            <div class="structure-text">
+                                <div class="s-title">Identity (tong 同)</div>
+                                <div class="s-desc">The rafter and other conditions join together with no separation between them. They are all called conditions of the building. They do not make some other thing.</div>
+                                <div class="s-page">p. 84</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">四</span>
+                            <div class="structure-text">
+                                <div class="s-title">Difference (yi 異)</div>
+                                <div class="s-desc">The rafter and other conditions appear different from each other according to their distinct shapes. They are identical only because they are different.</div>
+                                <div class="s-page">p. 84</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">五</span>
+                            <div class="structure-text">
+                                <div class="s-title">Integration (cheng 成)</div>
+                                <div class="s-desc">The building is formed by means of the various conditions. The rafter, etc. are called conditions because they form the building. Each completes the other.</div>
+                                <div class="s-page">p. 85</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">六</span>
+                            <div class="structure-text">
+                                <div class="s-title">Disintegration (huai 壞)</div>
+                                <div class="s-desc">The rafter and other conditions each maintain their own character and do not constitute the building. Yet each maintains its character in making the building.</div>
+                                <div class="s-page">pp. 85&ndash;86</div>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote>
+                        "To recap, wholeness is the building; particularity is [building and conditions] not opposing each other. Identity is they are conditions; difference is each condition considered separately. Integration is the result of the various conditions. Disintegration is each maintaining its own character."
+                        <cite>p. 86; trans. David Elstein</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Essay on the Golden Lion -->
+    <section class="content-section" id="golden-lion">
+        <div class="section-label"><span class="chinese">金獅子</span> ESSAY ON THE GOLDEN LION (SELECTION 15)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">緣起</span> The Story and the Metaphor <span class="meta">pp. 86&ndash;87</span></div>
+                <div class="card-body">
+                    <h4>Teaching an Empress</h4>
+                    <p>Translated by Bryan W. Van Norden. In 704 CE, <a href="https://www.ebsco.com/research-starters/biography/wu-zetian" target="_blank" rel="noopener">Empress Wu Zetian</a>, China's only female emperor and a devoted patron of Buddhism, invited Fazang to the palace to explain Huayan philosophy. When the empress had difficulty understanding, Fazang pointed to a nearby golden lion statue and used it as a metaphor.</p>
+                    <h4>Gold and Lion</h4>
+                    <p>The gold of the statue represents the unified, underlying Pattern of relationships (li 理). The appearance of the statue as a lion represents our illusory perception of things as independent individuals. There is really only gold; there is no lion. Yet it is useful to speak as if there were independent, persistent individuals (the gold really does appear to be a lion).</p>
+                    <blockquote>
+                        "The gold of the statue is a metaphor for the unified, underlying Pattern of relationships, while the appearance of the statue as a lion is a metaphor for our illusory perception of things as independent individuals. We must recognize that the only thing that ultimately exists is the Pattern of relationships among momentary events."
+                        <cite>p. 87; trans. Bryan W. Van Norden</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">十玄</span> The Ten Sections <span class="meta">pp. 87&ndash;91</span></div>
+                <div class="card-body">
+                    <div class="structure-list">
+                        <div class="structure-item">
+                            <span class="structure-num">一</span>
+                            <div class="structure-text">
+                                <div class="s-title">Explaining Dependent Arising</div>
+                                <div class="s-desc">The gold lacks any individual nature. The characteristic of the lion arises only due to the causation of the craftsman. This is "dependent arising."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">二</span>
+                            <div class="structure-text">
+                                <div class="s-title">Explaining the Emptiness of Appearances</div>
+                                <div class="s-desc">The characteristic of the lion is empty. There is really only gold. There is no lion present. The Substance of the gold is never absent.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">三</span>
+                            <div class="structure-text">
+                                <div class="s-title">Delineating the Three Natures</div>
+                                <div class="s-desc">(i) "Pure imagination" (the lion as our feeling), (ii) "dependence on others" (the lion seems to exist), (iii) "perfection" (the gold does not change).</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">四</span>
+                            <div class="structure-text">
+                                <div class="s-title">Making Evident the Non-existence of Characteristics</div>
+                                <div class="s-desc">The gold encompasses the lion completely. Beyond the gold there is no further characteristic of the lion to be found.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">五</span>
+                            <div class="structure-text">
+                                <div class="s-title">Explaining the Non-existence of Generation</div>
+                                <div class="s-desc">When we correctly view the generation of the lion, it is only gold that is generating. The Substance of the gold fundamentally neither increases nor decreases.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">六</span>
+                            <div class="structure-text">
+                                <div class="s-title">Categorizing the Five Teachings</div>
+                                <div class="s-desc">Five levels of Buddhist teaching, from Hinayana through Chan/Zen enlightenment, each representing a deeper understanding of the lion-gold relationship.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">七</span>
+                            <div class="structure-text">
+                                <div class="s-title">Mastering the Ten Mysteries</div>
+                                <div class="s-desc">Ten ways gold and lion interpenetrate: simultaneous completeness, mutual encompassing, hidden and manifest, "the realm of Lord Indra's Net."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">八</span>
+                            <div class="structure-text">
+                                <div class="s-title">Embracing the Six Characteristics</div>
+                                <div class="s-desc">Connects back to the Rafter Dialogue: wholeness, particularity, identity, difference, integration, disintegration, as seen in the lion.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">九</span>
+                            <div class="structure-text">
+                                <div class="s-title">Achieving Bodhi</div>
+                                <div class="s-desc">When one sees that all created dharmas, even before they decay, are already in a state of calm extinction. Leaving behind attachment leads to the Ocean of Omniscience.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <span class="structure-num">十</span>
+                            <div class="structure-text">
+                                <div class="s-title">Entering Nirvana</div>
+                                <div class="s-desc">Both the lion and the gold are extinguished, without engendering any perturbations. "Our heart is as calm as the sea. Deluded thoughts are extinguished and there are no more cravings."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Concepts -->
+    <section class="content-section alt" id="concepts">
+        <div class="section-label"><span class="chinese">要義</span> KEY CONCEPTS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">因陀羅網</span> Indra's Net <span class="meta">p. 90</span></div>
+                <div class="card-body">
+                    <p>In Section 7 of the Golden Lion essay, Fazang introduces one of Huayan Buddhism's most famous images: <a href="https://www.learnreligions.com/indras-jewel-net-449827" target="_blank" rel="noopener">Indra's Net</a>. The Hindu god Indra has a net with a jewel at every intersection of every two strands. Each jewel is so bright it reflects every other jewel in the net. This becomes a Huayan metaphor for the Pattern: every aspect of existence is connected to, defined by, and reflects every other.</p>
+                    <blockquote>
+                        "In every one of the lion's eyes, ears, limbs, and joints, and in each and every hair, there is a golden lion. Moreover, the golden lion in each and every hair simultaneously enters into any one hair. In this manner it is repeated inexhaustibly, like the jewels in Lord Indra's Net."
+                        <cite>p. 90; trans. Bryan W. Van Norden</cite>
+                    </blockquote>
+                    <p>This is not an abstract proposition. It is a model of reality. Every event contains every other event. Every part mirrors the whole. The eye of the lion is gold, and the whole lion is nothing but gold, so the eye encompasses all there is to the whole lion.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">中道</span> The Middle Way <span class="meta">Across Both Texts</span></div>
+                <div class="card-body">
+                    <h4>Between Annihilationism and Eternalism</h4>
+                    <p>Both texts insist on avoiding two philosophical errors:</p>
+                    <ul>
+                        <li><strong>Annihilationism (duanjian 斷見):</strong> Denying that phenomena exist at all. If the rafter has no raferness and the building has no buildingness, then nothing exists. This is nihilism.</li>
+                        <li><strong>Eternalism (changjian 常見):</strong> Positing something that exists without a cause, independently and permanently. If the building exists even when its rafters are removed, that is eternalism.</li>
+                    </ul>
+                    <p>Buddhism charts a middle path: phenomena have conditional existence. They arise through causes and conditions. They are real in the sense that they function, but empty in the sense that they lack fixed, independent self-nature.</p>
+                    <h4>Substance and Function</h4>
+                    <p>"Substance" (ti 體) and "Function" (yong 用) are key technical terms. In the Golden Lion essay: water is Substance, a wave is Function; a lamp is Substance, its light is Function. Gold is Substance, the lion is Function. The Substance never changes; the Function is how it manifests (p. 87).</p>
+                    <div class="key-themes">
+                        <h4>Connecting the Two Texts</h4>
+                        <ul>
+                            <li><strong>Rafter Dialogue:</strong> Part/whole relationship explored through six characteristics</li>
+                            <li><strong>Golden Lion:</strong> Substance/appearance relationship explored through ten sections</li>
+                            <li><strong>Both:</strong> Everything interpenetrates everything else; no independent existence</li>
+                            <li><strong>Both:</strong> Avoid annihilationism and eternalism; chart the Middle Way</li>
+                            <li><strong>Section 8</strong> of the Golden Lion explicitly recaps the six characteristics from the Rafter Dialogue</li>
+                            <li><strong>Practical aim:</strong> Understanding interpenetration leads to compassion and, ultimately, nirvana</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">問題</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">The Metaphors</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Compare the rafter/building metaphor with the gold/lion metaphor. What does each reveal that the other doesn't? Why might Fazang need both?</li>
+                        <li>Fazang says the rafter "totally forms the building" and the building "entirely depends on the rafter" (p. 82). Can you think of a modern analogy that captures the same relationship? (Consider: cells and a body? Pixels and an image? Code and a program?)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Philosophy and Debate</div>
+                <div class="card-body">
+                    <ul>
+                        <li>The Rafter Dialogue uses an Objection/Reply format. What is the strongest objection the imagined interlocutor raises against Fazang? Does Fazang's reply successfully address it?</li>
+                        <li>Fazang claims that "everything is identical because each phenomenon relates to and thus defines every other phenomenon" (p. 81). Is this persuasive? Could you object that a rafter and a roof tile are obviously <em>not</em> the same thing?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Connections</div>
+                <div class="card-body">
+                    <ul>
+                        <li>How does Fazang's concept of emptiness compare to Laozi's in the <em>Daodejing</em>? Both traditions value "emptiness," but do they mean the same thing by it?</li>
+                        <li>Fazang ranks five levels of Buddhist teaching (p. 88), from Hinayana to Huayan. What does this hierarchy reveal about how Chinese Buddhists understood their relationship to other Buddhist schools?</li>
+                        <li>The Golden Lion essay was composed for Empress Wu Zetian. How does the political context shape the text? Is this philosophy or persuasion?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Justin Tiwald &amp; Bryan W. Van Norden, eds., <em>Readings in Later Chinese Philosophy: Han Dynasty to the 20th Century</em> (Hackett, 2014).</p>
+                <p>Selection 14: Fazang, "The Rafter Dialogue," pp. 80&ndash;86. Trans. David Elstein.</p>
+                <p>Selection 15: Fazang, "Essay on the Golden Lion," pp. 86&ndash;91. Trans. Bryan W. Van Norden.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://www.britannica.com/biography/Fazang" target="_blank" rel="noopener">Britannica: Fazang</a>
+                <a href="https://plato.stanford.edu/entries/buddhism-huayan/" target="_blank" rel="noopener">Stanford Encyclopedia of Philosophy: Huayan Buddhism</a>
+                <a href="https://www.britannica.com/topic/Essay-on-the-Golden-Lion" target="_blank" rel="noopener">Britannica: Essay on the Golden Lion</a>
+                <a href="https://iep.utm.edu/fazang/" target="_blank" rel="noopener">Internet Encyclopedia of Philosophy: Fazang</a>
+                <a href="https://encyclopediaofbuddhism.org/wiki/Fazang" target="_blank" rel="noopener">Encyclopedia of Buddhism: Fazang</a>
+            </div>
+            <div class="source-card">
+                <h4>Key Concepts</h4>
+                <a href="https://www.learnreligions.com/indras-jewel-net-449827" target="_blank" rel="noopener">Indra's Jewel Net: A Metaphor for Interbeing</a>
+                <a href="https://cbetaonline.dila.edu.tw/en/" target="_blank" rel="noopener">CBETA: Chinese Buddhist Electronic Text Association</a>
+                <a href="https://www.ebsco.com/research-starters/biography/wu-zetian" target="_blank" rel="noopener">EBSCO: Empress Wu Zetian</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="huayan-gandavyuha.html">Huayan Buddhism: The Gandavyuha</a>
+                <a href="avatamsaka-cleary.html">Avatamsaka: Cosmic Numbers &amp; Infinite Teachers</a>
+                <a href="avatamsaka-pilgrimage.html">Avatamsaka: Sudhana's Pilgrimage</a>
+                <a href="huiyuan.html">Huiyuan 慧遠</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
