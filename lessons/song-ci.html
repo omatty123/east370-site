@@ -381,6 +381,30 @@
             .key-themes ul { columns: 1; }
         }
 
+        /* Page Gallery */
+        .page-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+        .page-gallery figure { margin: 0; }
+        .page-gallery a { display: block; }
+        .page-gallery img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: box-shadow 0.2s;
+        }
+        .page-gallery img:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+        .page-gallery figcaption {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            margin-top: 0.3rem;
+            line-height: 1.4;
+        }
+        .page-gallery figcaption strong { color: var(--ink-light); }
+
         /* Micro Timeline Strip */
         .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
         .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
@@ -573,6 +597,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="section-label" style="margin-top: 1rem;"><span class="chinese">原文</span> FROM THE SCHOLARSHIP</div>
+        <p style="font-size: 0.75rem; color: var(--ink-faint); margin-bottom: 0.5rem;">Click any page to view full size. From Zong-Qi Cai (ed.), <em>How to Read Chinese Poetry</em> (Columbia UP, 2008).</p>
+        <div class="page-gallery">
+            <figure>
+                <a href="../images/cai-p245.png" target="_blank"><img src="../images/cai-p245.png" alt="Cai p. 245: Ch. 12 opening — origins of ci, the feminine connection" loading="lazy"></a>
+                <figcaption><strong>p. 245</strong> &mdash; Ch. 12: Origins of ci, the "feminine connection," tune patterns and <em>tian ci</em></figcaption>
+            </figure>
+            <figure>
+                <a href="../images/cai-p257.png" target="_blank"><img src="../images/cai-p257.png" alt="Cai p. 257: shi yan zhi vs. ci yan qing" loading="lazy"></a>
+                <figcaption><strong>p. 257</strong> &mdash; The key distinction: <em>shi yan zhi</em> (poetry expresses intent) vs. <em>ci yan qing</em> (ci gives voice to emotion)</figcaption>
+            </figure>
+            <figure>
+                <a href="../images/cai-p263.png" target="_blank"><img src="../images/cai-p263.png" alt="Cai p. 263: Su Shi treating ci as shi, Li Qingzhao's critique" loading="lazy"></a>
+                <figcaption><strong>p. 263</strong> &mdash; <em>Lingzi</em> (leading words), Su Shi "treating ci as shi," and Li Qingzhao's famous critique</figcaption>
+            </figure>
+            <figure>
+                <a href="../images/cai-p276.png" target="_blank"><img src="../images/cai-p276.png" alt="Cai p. 276: Li Qingzhao's sound design, haofang and wanyue" loading="lazy"></a>
+                <figcaption><strong>p. 276</strong> &mdash; Li Qingzhao's sound beyond "sorrow," Xin Qiji's <em>haofang</em>, the two schools of ci</figcaption>
+            </figure>
         </div>
     </section>
 
