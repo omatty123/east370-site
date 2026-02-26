@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pattern (理): From Huayan Buddhism to Neo-Confucian Metaphysics | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --li: #5A4A8A;
+            --li-light: #7B6AAA;
+            --buddhist: #7B5EA7;
+            --confucian: #2D5A7A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-head .accent {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+            margin-right: 0.2rem;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--li);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote .q-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            font-style: normal;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--li);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--li);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--li); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+        .timeline-item.buddhist::before { background: var(--buddhist); }
+        .timeline-item.buddhist .year { color: var(--buddhist); }
+        .timeline-item.confucian::before { background: var(--confucian); }
+        .timeline-item.confucian .year { color: var(--confucian); }
+        .timeline-item.disruption::before { background: #c62828; }
+        .timeline-item.disruption .year { color: #c62828; }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--li);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--li);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .genre-item.highlight {
+            border-left-color: var(--gold);
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.08) 0%, rgba(218, 165, 32, 0.03) 100%);
+        }
+        .genre-item.highlight .genre-ch { color: var(--gold); }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(90, 74, 138, 0.1) 0%, rgba(123, 106, 170, 0.05) 100%);
+            border: 1px solid rgba(90, 74, 138, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--li);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Note Box */
+        .note-box {
+            background: #fff;
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            border-radius: 0 4px 4px 0;
+        }
+        .note-box strong { color: var(--gold); }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .comparison-table th {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: #2a2a2a;
+            color: #fff;
+            padding: 0.5rem 0.6rem;
+            text-align: left;
+        }
+        .comparison-table td {
+            padding: 0.5rem 0.6rem;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover td { background: rgba(184,134,11,0.03); }
+        .comparison-table .dim-label {
+            font-weight: 600;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+        .comparison-table .dim-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.8rem;
+            color: var(--ink-faint);
+        }
+
+        /* Question items */
+        .q-item {
+            padding: 0.15rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .q-item:last-child { border-bottom: none; }
+        .q-item .q-num {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+        .q-item p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* Text card links */
+        .text-link {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--li);
+            text-decoration: none;
+            border: 1px solid var(--li);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            margin-top: 0.4rem;
+            transition: all 0.2s;
+        }
+        .text-link:hover { background: var(--li); color: #fff; }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid.three-col { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+            .comparison-table { font-size: 0.65rem; }
+            .comparison-table th,
+            .comparison-table td { padding: 0.4rem; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block[data-d="ming"]{background:#4A6B4A;flex:1.0}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 var(--li);color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">理</span>
+            <span class="en">The Pattern: From Huayan Buddhism to Neo-Confucian Metaphysics</span>
+            <span class="meta">Thematic Study &middot; Tang through Ming</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block active" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+        <a href="timeline.html" class="d-block active" data-d="ming">Ming</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#intro">Introduction</a>
+        <a href="#fazang-li">Li in Fazang</a>
+        <a href="#four-realms">Four Dharmadhatus</a>
+        <a href="#bridge">The Bridge</a>
+        <a href="#song-li">Song Li-Xue</a>
+        <a href="#transformation">Transformation</a>
+        <a href="#yangming">Wang Yangming</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Section 1: Introduction -->
+    <section class="content-section" id="intro">
+        <div class="section-label"><span class="chinese">導論</span> INTRODUCTION</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">理</span> Why "Pattern" and Not "Principle"</div>
+                <div class="card-body">
+                    <h4>The Translation Problem</h4>
+                    <p>The character 理 (li) originally described the veins running through jade, the grain visible in wood, the natural markings in stone. It names a structure that is <em>in</em> the material, not imposed on it from outside. You see it by looking closely at what is already there.</p>
+                    <p>Bryan Van Norden deliberately translates 理 as "Pattern" rather than "Principle" in <em>Readings in Later Chinese Philosophy</em>. The choice matters. "Principle" in Western philosophy carries rationalist baggage: an abstract rule that governs from above, like a law of logic or a Platonic Form. That is not what 理 means in either the Buddhist or Neo-Confucian tradition.</p>
+                    <div class="note-box">
+                        <strong>Translation note:</strong> "Pattern" captures the Chinese sense: an immanent structure visible in the grain of things. Like seeing veins in marble, the order is IN the material. Both Fazang and Zhu Xi would agree on this point, even as they disagree on almost everything else about what the Pattern contains.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">傳</span> A Concept That Crossed Traditions</div>
+                <div class="card-body">
+                    <h4>The Journey</h4>
+                    <p>This page traces how the concept of 理 traveled from Tang dynasty Huayan Buddhism into Song dynasty Neo-Confucianism and was fundamentally transformed in the process. The same word, the same character, came to mean something radically different.</p>
+                    <h4>Buddhist Li (Fazang, Tang)</h4>
+                    <p>For <a href="fazang.html">Fazang</a> (法藏, 643&ndash;712), 理 is the relational structure of dependent arising: the Pattern by which all phenomena interpenetrate, grounded in emptiness. It has no moral content. It is not a force. It is not a substance.</p>
+                    <h4>Neo-Confucian Li (Zhu Xi, Song)</h4>
+                    <p>For <a href="https://plato.stanford.edu/entries/zhu-xi/" target="_blank" rel="noopener">Zhu Xi</a> (朱熹, 1130&ndash;1200), 理 is the moral order inherent in all things: the reason things are as they are AND the reason they ought to be as they are. It is grounded in Heaven (天), not emptiness. It has full moral content.</p>
+                    <h4>The Central Transformation</h4>
+                    <p>Same word. Same character. Different universe. Understanding how the transformation happened, and what was gained and lost in the process, is the purpose of this page.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Li in Fazang -->
+    <section class="content-section alt" id="fazang-li">
+        <div class="section-label"><span class="chinese">法藏</span> LI IN FAZANG</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--buddhist)"></span><span class="chinese">金獅子</span> Gold = Li, Lion = Shi <span class="meta">pp. 86&ndash;91</span></div>
+                <div class="card-body">
+                    <h4>The Golden Lion Metaphor</h4>
+                    <p>In his <a href="fazang.html#golden-lion">Essay on the Golden Lion</a>, Fazang explains Huayan philosophy to Empress Wu Zetian using a golden lion statue. The gold of the statue represents 理 (the Pattern); the lion-shape represents 事 (shi, phenomena).</p>
+                    <blockquote>
+                        "The gold of the statue is a metaphor for the unified, underlying Pattern of relationships, while the appearance of the statue as a lion is a metaphor for our illusory perception of things as independent individuals."
+                        <cite>Tiwald &amp; Van Norden, p. 87; trans. Bryan W. Van Norden</cite>
+                    </blockquote>
+                    <h4>Gold Has No Fixed Form</h4>
+                    <p>Gold could be a lion, a bowl, a ring. It takes any shape. The point: 理 is the formless ground from which all appearances arise. The lion-shape is real (the gold really does appear as a lion), but it is not independently real (there is no lion apart from the gold).</p>
+                    <a href="fazang.html" class="text-link">Full Fazang Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--buddhist)"></span><span class="chinese">空</span> What Li Meant for Fazang</div>
+                <div class="card-body">
+                    <h4>Three Things Li Is NOT (for Fazang)</h4>
+                    <ul>
+                        <li><strong>Li is NOT a substance.</strong> It is grounded in emptiness (kong 空). Gold has no fixed form of its own; the "Pattern" is not a thing that exists independently.</li>
+                        <li><strong>Li is NOT a force.</strong> It does not cause phenomena to arise. Phenomena arise through dependent arising (yuanqi 緣起): the craftsman shapes the gold, conditions produce events.</li>
+                        <li><strong>Li is NOT moral.</strong> It has no content about right and wrong. The Pattern of relationships among phenomena is ethically neutral. It describes how things interrelate, not what they ought to be.</li>
+                    </ul>
+                    <h4>What Li IS (for Fazang)</h4>
+                    <ul>
+                        <li><strong>The relational structure of dependent arising.</strong> The pattern by which all phenomena mutually constitute each other.</li>
+                        <li><strong>The ground of interpenetration.</strong> Because all things are empty of self-nature, each thing reflects and contains every other.</li>
+                    </ul>
+                    <div class="key-themes">
+                        <h4>Why This Matters</h4>
+                        <ul>
+                            <li>Neo-Confucians will change <strong>all three</strong> characteristics</li>
+                            <li>Li will become a <strong>substance</strong> (logically prior to material force)</li>
+                            <li>Li will become a <strong>cause</strong> (the reason things are as they are)</li>
+                            <li>Li will become <strong>moral</strong> (containing the full ethical order)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: The Four Dharmadhatus -->
+    <section class="content-section" id="four-realms">
+        <div class="section-label"><span class="chinese">四法界</span> THE FOUR DHARMADHATUS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--buddhist)"></span><span class="chinese">華嚴</span> Four Levels of Reality</div>
+                <div class="card-body">
+                    <p><a href="https://plato.stanford.edu/entries/buddhism-huayan/" target="_blank" rel="noopener">Huayan Buddhism</a> describes four progressively deeper ways of understanding reality. Each dharmadhatu (法界, "realm of dharmas") represents a level of insight.</p>
+                    <div class="genre-grid">
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">事法界</span>
+                                <span class="genre-name">Shi Fajie</span>
+                            </div>
+                            <div class="genre-pinyin">Realm of Phenomena</div>
+                            <div class="genre-desc">Everyday experience. We see distinct, individual things: this table, that person, this moment. The conventional level of reality.</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">理法界</span>
+                                <span class="genre-name">Li Fajie</span>
+                            </div>
+                            <div class="genre-pinyin">Realm of Pattern</div>
+                            <div class="genre-desc">The underlying emptiness/suchness common to all things. Beyond individual appearances, there is the unified Pattern. Like seeing only the gold, not the lion.</div>
+                        </div>
+                        <div class="genre-item highlight">
+                            <div class="genre-header">
+                                <span class="genre-ch">理事無礙法界</span>
+                                <span class="genre-name">Li-Shi Wu Ai Fajie</span>
+                            </div>
+                            <div class="genre-pinyin">Interpenetration of Pattern &amp; Phenomena</div>
+                            <div class="genre-desc">Pattern and phenomena are non-obstructing. Each contains the other. The gold IS the lion; the lion IS the gold. <strong>This is the level Neo-Confucians adopted.</strong></div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">事事無礙法界</span>
+                                <span class="genre-name">Shi-Shi Wu Ai Fajie</span>
+                            </div>
+                            <div class="genre-pinyin">Interpenetration of Phenomena &amp; Phenomena</div>
+                            <div class="genre-desc">Every phenomenon contains every other phenomenon. Indra's Net: each jewel reflects every other jewel. The highest Huayan insight. <strong>Neo-Confucians rejected this.</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">取捨</span> What They Took and What They Left</div>
+                <div class="card-body">
+                    <h4>Adopted: The Li-Shi Framework</h4>
+                    <p>Song Neo-Confucians adopted the basic architecture of the third dharmadhatu: the idea that Pattern (li) and phenomena (shi) interpenetrate, that Pattern is present in all things, and that understanding Pattern is the goal of philosophical inquiry. This framework gave them something classical Confucianism never had: a metaphysics.</p>
+                    <h4>Rejected: Three Core Elements</h4>
+                    <ul>
+                        <li><strong>The emptiness foundation.</strong> For Fazang, li is grounded in emptiness (kong 空). Neo-Confucians replaced this with a positive ground: Heaven (tian 天). Li is not empty; it is full of moral content.</li>
+                        <li><strong>The fourth dharmadhatu.</strong> The radical Huayan claim that every phenomenon interpenetrates every other phenomenon (Indra's Net) had no place in Neo-Confucian thought. Each thing has its own portion of li, but a horse does not contain a plum blossom.</li>
+                        <li><strong>The soteriological goal.</strong> Fazang's entire system aims at liberation from samsara. Neo-Confucians replaced this with moral cultivation: becoming a sage in this world, not escaping it.</li>
+                    </ul>
+                    <div class="key-themes">
+                        <h4>The Narrowing</h4>
+                        <ul>
+                            <li><strong>Kept:</strong> li/shi distinction, Pattern present in all things</li>
+                            <li><strong>Dropped:</strong> Emptiness, interpenetration of phenomena, liberation</li>
+                            <li><strong>Added:</strong> Moral content, qi (material force), sagehood</li>
+                            <li>The result was a significantly <strong>narrower</strong> concept but one with immense ethical power</li>
+                        </ul>
+                    </div>
+                    <a href="huayan-gandavyuha.html" class="text-link">Huayan Buddhism Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: The Bridge: Zongmi -->
+    <section class="content-section alt" id="bridge">
+        <div class="section-label"><span class="chinese">宗密</span> THE BRIDGE: ZONGMI</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--buddhist)"></span><span class="chinese">宗密</span> Buddhist Who Engaged Confucianism</div>
+                <div class="card-body">
+                    <h4>A Double Position</h4>
+                    <p><a href="zongmi.html">Zongmi</a> (宗密, 780&ndash;841) held a unique position in Chinese intellectual history. He was recognized as the fifth patriarch of the Huayan school AND held a Chan (Zen) lineage. This dual authority gave him credibility across Buddhist schools.</p>
+                    <h4>Engaging Chinese Philosophy</h4>
+                    <p>In his <em>Inquiry into the Origin of Humanity</em> (原人論, Yuan ren lun), Zongmi did something no major Buddhist thinker before him had attempted systematically: he ranked Confucianism and Daoism alongside Buddhist schools in a classification of teachings (panjiao 判教). He placed them lowest in his hierarchy, but the act of ranking them at all acknowledged them as serious philosophical positions worth engaging.</p>
+                    <h4>The True Mind</h4>
+                    <p>Zongmi taught that all beings possess a "true mind" (zhenxin 真心) that is originally enlightened. This concept would echo centuries later in Wang Yangming's "innate knowing" (liangzhi 良知), though the two thinkers would have understood its content very differently.</p>
+                    <a href="zongmi.html" class="text-link">Full Zongmi Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">橋</span> Preparing the Ground</div>
+                <div class="card-body">
+                    <p>The journey from Buddhist li to Neo-Confucian li was not a straight line. It required a 200-year gap, the near-destruction of institutional Buddhism, and a Confucian intellectual renaissance.</p>
+                    <div class="mini-timeline">
+                        <div class="timeline-item buddhist">
+                            <div class="year">643&ndash;712</div>
+                            <div class="event"><strong>Fazang</strong> (法藏): develops Huayan philosophy; gold/lion metaphor for li/shi</div>
+                        </div>
+                        <div class="timeline-item buddhist">
+                            <div class="year">780&ndash;841</div>
+                            <div class="event"><strong>Zongmi</strong> (宗密): fifth Huayan patriarch; engages Confucian philosophy; "true mind" teaching</div>
+                        </div>
+                        <div class="timeline-item disruption">
+                            <div class="year">819</div>
+                            <div class="event"><strong>Han Yu's memorial:</strong> anti-Buddhist polemic demanding suppression of Buddhism</div>
+                        </div>
+                        <div class="timeline-item disruption">
+                            <div class="year">845</div>
+                            <div class="event"><strong>Huichang Suppression:</strong> Emperor Wuzong destroys Buddhist temples, forces monks to return to lay life</div>
+                        </div>
+                        <div class="timeline-item confucian">
+                            <div class="year">1017&ndash;1073</div>
+                            <div class="event"><strong>Zhou Dunyi</strong> (周敦頤): early Neo-Confucian cosmology; <em>Taijitu shuo</em></div>
+                        </div>
+                        <div class="timeline-item confucian">
+                            <div class="year">1033&ndash;1107</div>
+                            <div class="event"><strong>Cheng Yi</strong> (程頤): "The Pattern is one, its manifestations many" (理一分殊)</div>
+                        </div>
+                        <div class="timeline-item confucian">
+                            <div class="year">1130&ndash;1200</div>
+                            <div class="event"><strong>Zhu Xi</strong> (朱熹): synthesizes li-qi metaphysics; systematizes Neo-Confucianism</div>
+                        </div>
+                        <div class="timeline-item confucian">
+                            <div class="year">1472&ndash;1529</div>
+                            <div class="event"><strong>Wang Yangming</strong> (王陽明): "The mind is li" (心即理); returns to inner-mind approach</div>
+                        </div>
+                    </div>
+                    <div class="note-box">
+                        <strong>The 200-year gap:</strong> The Huichang Suppression of 845 devastated institutional Buddhism in China. But it could not erase Buddhist philosophical influence. Song Confucians grew up in a world shaped by Buddhist concepts even as they rejected Buddhist institutions and soteriology.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Song Neo-Confucian Li -->
+    <section class="content-section" id="song-li">
+        <div class="section-label"><span class="chinese">理學</span> SONG NEO-CONFUCIAN LI</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--confucian)"></span><span class="chinese">程頤</span> Cheng Yi: Li Yi Fen Shu <span class="meta">1033&ndash;1107</span></div>
+                <div class="card-body">
+                    <h4>"The Pattern Is One, Its Manifestations Many"</h4>
+                    <p><a href="https://www.britannica.com/biography/Cheng-Yi" target="_blank" rel="noopener">Cheng Yi</a> (程頤) formulated what became the foundational principle of the li-xue (理學, "Study of Pattern") school: 理一分殊 (li yi fen shu). There is one universal Pattern, but it manifests differently in each thing. Every blade of grass, every human relationship, every natural process contains its own portion of the single, unified li.</p>
+                    <h4>Li as Moral Order</h4>
+                    <p>For Cheng Yi, li is not ethically neutral. It tells you what things <em>ought</em> to be. The li of a ruler includes the Pattern of proper rulership. The li of a son includes the Pattern of filial piety. Understanding li means understanding both what things are and what they should be.</p>
+                    <h4>Gewu: Investigation of Things</h4>
+                    <p>How do you access li? Through gewu (格物), the investigation of things. Study individual things carefully, and you will come to understand the Pattern they embody. Read widely, observe closely, and the unified li behind all manifestations will become clear. This is an incremental, outward-facing method: look at the world to find the Pattern in it.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--confucian)"></span><span class="chinese">朱熹</span> Zhu Xi: Li-Qi Metaphysics <span class="meta">1130&ndash;1200</span></div>
+                <div class="card-body">
+                    <h4>Li + Qi</h4>
+                    <p><a href="https://plato.stanford.edu/entries/zhu-xi/" target="_blank" rel="noopener">Zhu Xi</a> (朱熹) synthesized Cheng Yi's insights into the most comprehensive metaphysical system in Chinese philosophy. His framework pairs li (理, Pattern) with qi (氣, material force). Li is formless and immaterial; qi gives form and substance. Together they constitute all things. There has never been any qi without li, or any li without qi, but li is logically prior.</p>
+                    <h4>Tianli: Heaven's Pattern</h4>
+                    <p>Zhu Xi's concept of tianli (天理, Heaven's Pattern) represents the full moral order. This is not the amoral, relational li of Fazang. Tianli includes the principles of proper human relationships (the five relationships), the foundations of virtue, and the cosmic order that makes moral cultivation possible and necessary.</p>
+                    <h4>Xing Ji Li: Human Nature IS Li</h4>
+                    <p>Zhu Xi's most consequential claim: xing ji li (性即理), human nature IS the Pattern. Your nature is not separate from the universal moral order. When you cultivate yourself, you are not importing moral rules from outside. You are recovering the Pattern that is already your nature, but obscured by impure qi.</p>
+                    <div class="key-themes">
+                        <h4>The Complete Reversal</h4>
+                        <ul>
+                            <li>Fazang: li is <strong>empty</strong> of content; Zhu Xi: li is <strong>full</strong> of moral content</li>
+                            <li>Fazang: li describes how things <strong>relate</strong>; Zhu Xi: li prescribes what things <strong>ought</strong> to be</li>
+                            <li>Fazang: the self is an <strong>illusion</strong>; Zhu Xi: human nature IS the Pattern</li>
+                            <li>Fazang: understanding li leads to <strong>liberation</strong>; Zhu Xi: understanding li leads to <strong>sagehood</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: The Critical Transformation -->
+    <section class="content-section alt" id="transformation">
+        <div class="section-label"><span class="chinese">轉化</span> THE CRITICAL TRANSFORMATION</div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Dimension</th>
+                    <th><span class="accent" style="background:var(--buddhist);vertical-align:middle"></span> Buddhist Li (Fazang)</th>
+                    <th><span class="accent" style="background:var(--confucian);vertical-align:middle"></span> Neo-Confucian Li (Zhu Xi)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="dim-label">Ground <span class="dim-ch">根基</span></td>
+                    <td>Emptiness (kong 空)</td>
+                    <td>Heaven (tian 天)</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Content <span class="dim-ch">內容</span></td>
+                    <td>No moral content; ethically neutral</td>
+                    <td>Full moral order (tianli 天理)</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Paired with <span class="dim-ch">對應</span></td>
+                    <td>Shi 事 (phenomena/appearances)</td>
+                    <td>Qi 氣 (material force)</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Metaphor <span class="dim-ch">喻</span></td>
+                    <td>Gold and lion; rafter and building</td>
+                    <td>Pattern inherent in all things</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Goal <span class="dim-ch">目標</span></td>
+                    <td>Liberation from samsara</td>
+                    <td>Moral cultivation; sagehood in this world</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Presence in things <span class="dim-ch">萬物</span></td>
+                    <td>All things interpenetrate each other</td>
+                    <td>Each thing has its own portion of li</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Human nature <span class="dim-ch">性</span></td>
+                    <td>No-self (wu wo 無我)</td>
+                    <td>Human nature IS li (xing ji li 性即理)</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Method <span class="dim-ch">方法</span></td>
+                    <td>Meditation; seeing emptiness</td>
+                    <td>Gewu 格物 (investigation of things)</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">三變</span> Three Fundamental Shifts</div>
+                <div class="card-body">
+                    <h4>1. Emptiness to Moral Content</h4>
+                    <p>For Fazang, li is grounded in emptiness (kong 空). It describes a relational structure without ethical content. For Zhu Xi, li is the moral order of the universe. The Pattern tells you not just how things are but how they should be. Emptiness was replaced by fullness.</p>
+                    <h4>2. Liberation to Cultivation</h4>
+                    <p>Fazang's entire philosophical system aims at liberation from samsara: escape from the cycle of birth and death. Neo-Confucians replaced this with the goal of becoming a sage (shengren 聖人) within the social world. You don't leave the world; you perfect your participation in it.</p>
+                    <h4>3. No-Self to Human Nature</h4>
+                    <p>Buddhism denies a permanent, independent self (wu wo 無我). Zhu Xi's most radical move was to claim that human nature IS li (xing ji li 性即理). Far from denying the self, he made the self the very location of the cosmic moral order. Your nature is not something to see through; it is something to cultivate.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">借鑒</span> Why This Is Not Mere Borrowing</div>
+                <div class="card-body">
+                    <h4>The Problem Buddhism Solved</h4>
+                    <p>Classical Confucianism (Kongzi, Mengzi, Xunzi) had a rich ethical tradition but no metaphysics. It could tell you to be virtuous but could not explain WHY the moral order exists, what grounds it, or how it relates to the structure of reality itself. Buddhism, with centuries of sophisticated metaphysical thinking, provided the conceptual tools.</p>
+                    <h4>Architecture vs. Building</h4>
+                    <p>The Neo-Confucians borrowed Buddhist architectural techniques: how to build a metaphysical system, how to think about the relationship between the formless and the formed, how to connect cosmology to ethics. But the building they constructed was Confucian through and through: it housed social ethics, political order, human relationships, and moral cultivation.</p>
+                    <h4>The Critics' Charge</h4>
+                    <p>This is why contemporary critics sometimes called the Neo-Confucians "Confucians on the outside, Buddhists on the inside" (外儒內佛, wai ru nei fo). The charge was not entirely unfair. But it also missed the point: the content of Neo-Confucian li is as far from Buddhist emptiness as a concept can travel while keeping the same name.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Wang Yangming -->
+    <section class="content-section" id="yangming">
+        <div class="section-label"><span class="chinese">王陽明</span> WANG YANGMING</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="accent" style="background:var(--confucian)"></span><span class="chinese">心即理</span> The Mind Is Li <span class="meta">1472&ndash;1529</span></div>
+                <div class="card-body">
+                    <h4>The Bamboo Anecdote</h4>
+                    <p>As a young man, <a href="https://plato.stanford.edu/entries/wang-yangming/" target="_blank" rel="noopener">Wang Yangming</a> (王陽明, 1472&ndash;1529) tried Zhu Xi's method of gewu (格物, investigation of things). He sat in front of bamboo for seven days, trying to "investigate" its li. He got sick. He found nothing. He concluded the method was wrong.</p>
+                    <h4>Xin Ji Li: The Mind IS the Pattern</h4>
+                    <p>Wang Yangming's alternative was radical: xin ji li (心即理), the mind itself IS li. You do not need to investigate external things to find the Pattern. Li is already complete in your mind. The moral order is not something you discover by looking outward; it is something you already possess inward.</p>
+                    <h4>Liangzhi: Innate Knowing</h4>
+                    <p>Wang Yangming called this innate moral knowledge liangzhi (良知). Everyone possesses it. The sage and the ordinary person have the same liangzhi. The difference is that the sage acts on it directly, while the ordinary person's liangzhi is obscured by selfish desires. Moral cultivation is not accumulation of knowledge but removal of what blocks the knowledge you already have.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">輪迴</span> The Circle Closes</div>
+                <div class="card-body">
+                    <h4>A Structural Parallel</h4>
+                    <p>Consider the parallel between Wang Yangming's liangzhi (良知, innate knowing) and Zongmi's zhenxin (真心, true mind). Both locate the essential truth inside the mind rather than in external things. Both claim this inner knowledge is innate and complete. Both say the task is to remove obstructions, not to acquire new information.</p>
+                    <h4>The Loop</h4>
+                    <p>The concept of li traveled in something like a circle:</p>
+                    <ul>
+                        <li><strong>Fazang</strong> (Buddhist): li is the pattern of emptiness, understood through meditation</li>
+                        <li><strong>Cheng Yi &amp; Zhu Xi</strong> (Neo-Confucian): li is the moral order, understood through external investigation</li>
+                        <li><strong>Wang Yangming</strong> (Neo-Confucian): li is in the mind, understood through inner knowing</li>
+                    </ul>
+                    <p>The endpoint (inner knowing) structurally resembles the starting point (inner realization of emptiness), even though the <em>content</em> of what is known is completely different.</p>
+                    <h4>Crypto-Buddhist?</h4>
+                    <p>Ming dynasty Confucians who followed Wang Yangming were frequently accused of being crypto-Buddhists. The charge had structural logic: returning li to the mind looked suspiciously like the Buddhist move Zhu Xi had worked so hard to escape. But Wang Yangming's liangzhi is moral knowledge, not awareness of emptiness. The architecture may echo Zongmi, but the building remains Confucian.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Discussion Questions -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">Translation</div>
+                <div class="card-body">
+                    <div class="q-item">
+                        <div class="q-num">Question 1</div>
+                        <p>Should we translate 理 the same way for Fazang and Zhu Xi? Van Norden uses "Pattern" for both. Is this helpful (showing continuity) or misleading (hiding a fundamental transformation)?</p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 2</div>
+                        <p>The character 理 originally described the veins running through jade. How does this etymology shape what both traditions mean by the concept? Does the image of "veins in jade" fit Buddhist emptiness, Confucian moral order, or both?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Transformation</div>
+                <div class="card-body">
+                    <div class="q-item">
+                        <div class="q-num">Question 3</div>
+                        <p>Compare Fazang's golden lion metaphor with Zhu Xi's li-qi framework. Both explain how the formless (li) relates to the formed (shi/qi). What changes when you replace "gold/lion" with "li/qi"? What is gained, and what is lost?</p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 4</div>
+                        <p>Zongmi ranked Confucianism below Buddhism in his classification of teachings. Song Neo-Confucians reversed this ranking, treating Buddhism as a deviation from the true Way. What does each ranking reveal about the tradition that produced it?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">Legacy</div>
+                <div class="card-body">
+                    <div class="q-item">
+                        <div class="q-num">Question 5</div>
+                        <p>Critics called Neo-Confucians "Confucians on the outside, Buddhists on the inside" (外儒內佛). Based on the comparison table above, is this charge fair? Where exactly is the line between "borrowing a framework" and "being influenced at the core"?</p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 6</div>
+                        <p>Wang Yangming's "the mind is li" (心即理) structurally resembles Zongmi's "true mind" (真心). Does the similarity of structure matter if the content is completely different? Can the same conceptual architecture carry radically different philosophical buildings?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Course Text</h4>
+                <p>Justin Tiwald &amp; Bryan W. Van Norden, eds., <em>Readings in Later Chinese Philosophy: Han Dynasty to the 20th Century</em> (Hackett, 2014).</p>
+                <p>Selection 15: Fazang, "Essay on the Golden Lion," pp. 86&ndash;91. Trans. Bryan W. Van Norden.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference Works</h4>
+                <a href="https://plato.stanford.edu/entries/buddhism-huayan/" target="_blank" rel="noopener">SEP: Huayan Buddhism</a>
+                <a href="https://plato.stanford.edu/entries/song-ming-confucianism/" target="_blank" rel="noopener">SEP: Song-Ming Confucianism</a>
+                <a href="https://plato.stanford.edu/entries/zhu-xi/" target="_blank" rel="noopener">SEP: Zhu Xi</a>
+                <a href="https://plato.stanford.edu/entries/wang-yangming/" target="_blank" rel="noopener">SEP: Wang Yangming</a>
+                <a href="https://www.britannica.com/biography/Fazang" target="_blank" rel="noopener">Britannica: Fazang</a>
+                <a href="https://www.britannica.com/biography/Cheng-Yi" target="_blank" rel="noopener">Britannica: Cheng Yi</a>
+                <a href="https://www.britannica.com/biography/Zhu-Xi" target="_blank" rel="noopener">Britannica: Zhu Xi</a>
+                <a href="https://www.britannica.com/biography/Wang-Yangming" target="_blank" rel="noopener">Britannica: Wang Yangming</a>
+            </div>
+            <div class="source-card">
+                <h4>Scholarly Context</h4>
+                <p>Peter N. Gregory, <em>Tsung-mi and the Sinification of Buddhism</em> (University of Hawai'i Press, 2002).</p>
+                <p>Wing-tsit Chan, trans., <em>Instructions for Practical Living and Other Neo-Confucian Writings by Wang Yang-ming</em> (Columbia University Press, 1963).</p>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Materials</h4>
+                <a href="fazang.html">Fazang: The Rafter Dialogue &amp; Golden Lion</a>
+                <a href="huayan-gandavyuha.html">Huayan Buddhism: The Gandavyuha</a>
+                <a href="zongmi.html">Zongmi: Inquiry into the Origin of Humanity</a>
+                <a href="tian-heaven.html">Heaven (Tian) Across Six Texts</a>
+                <a href="kongzi.html">Kongzi (Confucius)</a>
+                <a href="mengzi.html">Mengzi (Mencius)</a>
+                <a href="xunzi.html">Xunzi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
