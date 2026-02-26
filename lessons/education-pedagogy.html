@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education &amp; Pedagogy in the Masters | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --ru: #2D7D7D;
+            --dao: #3D8B4D;
+            --mo: #A67C52;
+            --fa: #B54545;
+            --edu: #4a5a7a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: var(--paper-dark); }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .alt .card { background: #fff; }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta { font-size: 0.6rem; color: #888; margin-left: auto; }
+        .card-head.ru { border-left: 3px solid var(--ru); }
+        .card-head.dao { border-left: 3px solid var(--dao); }
+        .card-head.mo-head { border-left: 3px solid var(--mo); }
+        .card-head.fa-head { border-left: 3px solid var(--fa); }
+        .card-head.lit { border-left: 3px solid var(--edu); }
+
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote.school-ru { border-left-color: var(--ru); }
+        blockquote.school-dao { border-left-color: var(--dao); }
+        blockquote.school-mo { border-left-color: var(--mo); }
+        blockquote.school-fa { border-left-color: var(--fa); }
+
+        /* Saying inline */
+        .saying-inline {
+            background: #fff;
+            border-left: 3px solid var(--edu);
+            padding: 0.6rem 1rem;
+            margin-top: 0.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+        .saying-inline .saying-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--edu);
+            margin-bottom: 0.2rem;
+        }
+        .saying-inline .saying-meaning {
+            font-size: 0.8rem;
+            color: var(--ink);
+            font-style: italic;
+            margin-bottom: 0.15rem;
+        }
+        .saying-inline .saying-note {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 0.6rem;
+            font-size: 0.8rem;
+        }
+        .comparison-table th {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: #2a2a2a;
+            color: #fff;
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+        }
+        .comparison-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table td strong { color: var(--ink); }
+        .comparison-table .school-tag {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #fff;
+            padding: 0.1rem 0.35rem;
+            border-radius: 2px;
+            margin-right: 0.3rem;
+            vertical-align: middle;
+        }
+        .school-tag.ru { background: var(--ru); }
+        .school-tag.dao { background: var(--dao); }
+        .school-tag.mo { background: var(--mo); }
+        .school-tag.fa { background: var(--fa); }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* Questions grid */
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+        }
+        .q-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 0.6rem 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .q-card .q-num {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--edu);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .q-card p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.55;
+        }
+
+        /* Sources */
+        .sources { background: var(--paper-dark); padding: 1rem 1.5rem 1.5rem; }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .questions-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .comparison-table { font-size: 0.7rem; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">教學</span>
+            <span class="en">Education &amp; Pedagogy in the Masters</span>
+            <span class="meta">Cross-Period Study<span>&middot;</span>Ivanhoe &amp; Birch</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block active" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#kongzi">Kongzi</a>
+        <a href="#mengzi">Mengzi</a>
+        <a href="#xunzi">Xunzi</a>
+        <a href="#daoist">Daoist Critique</a>
+        <a href="#mozi">Mozi</a>
+        <a href="#hanfeizi">Han Feizi</a>
+        <a href="#gardener">The Gardener</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#questions">Questions</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">教</span> The Central Question</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">問</span> Can People Be Taught to Be Good?</div>
+                <div class="card-body">
+                    <p>Every school of Warring States philosophy is, at bottom, a theory of education. The political chaos of the era forced each thinker to answer the same question: how do you produce good people?</p>
+                    <p>Their answers split along a fault line that still structures debates about education today. The Confucians said learning transforms character. The Daoists said learning deforms it. The Mohists said learning needs objective standards. The Legalists said learning is irrelevant.</p>
+                    <p>What follows traces that fault line through each thinker's voice, then lets a Tang dynasty gardener have the last word.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">學</span> Two Models of Learning</div>
+                <div class="card-body">
+                    <div class="key-themes">
+                        <h4>The Cultivation Model (Confucian)</h4>
+                        <p>Humans have moral potential that needs nurturing. Education draws out what is already there (Mengzi) or shapes raw material into something better (Xunzi). The teacher matters.</p>
+                    </div>
+                    <div class="key-themes" style="margin-top:0.5rem;">
+                        <h4>The Subtraction Model (Daoist)</h4>
+                        <p>Humans are naturally whole. Education adds unnecessary complexity, carving the "uncarved block" into artificial shapes. The best teacher does nothing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kongzi -->
+    <section class="content-section alt" id="kongzi">
+        <div class="section-label"><span class="chinese">孔子</span> Kongzi: The Teacher as Model</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head ru"><span class="chinese">學</span> Learning as Pleasure <span class="meta"><a href="kongzi.html" style="color:#888;text-decoration:none;">Full page &rarr;</a></span></div>
+                <div class="card-body">
+                    <p>Kongzi opens the <em>Analects</em> not with a doctrine but with an invitation. Learning is presented as something intrinsically enjoyable, not a burden imposed from outside. The student who studies and practices what he has learned experiences genuine pleasure.</p>
+                    <p>Kongzi is clear that he is not a prodigy. He claims no innate knowledge. His method is love of the past and relentless effort. This matters pedagogically: if even the Master had to work at it, then learning is available to everyone willing to put in the time.</p>
+                    <blockquote class="school-ru">
+                        "Is it not a pleasure to study and practice what you have learned? Is it not a joy to have friends come from afar?"
+                        <cite>Analects 1.1</cite>
+                    </blockquote>
+                    <h4>The Teacher's Method</h4>
+                    <p>Kongzi refuses to spoon-feed. He will not open a door for someone who is not already struggling to get through it. He expects the student to arrive at the threshold of understanding first, then he provides the final push. This is a pedagogy of readiness, not force.</p>
+                    <blockquote class="school-ru">
+                        "I do not open up the truth to one who is not eager to get knowledge, nor do I help one who is not anxious to explain himself."
+                        <cite>Analects 7.8</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head ru"><span class="chinese">禮</span> Ritual as Curriculum</div>
+                <div class="card-body">
+                    <p>For Kongzi, education is not primarily about acquiring information. It is about forming character through the practice of ritual propriety (li 禮). You learn to be good by doing good things, repeatedly, until they become second nature.</p>
+                    <p>This is education as habituation. The Six Arts (ritual, music, archery, chariot-driving, calligraphy, mathematics) train the whole person, not just the intellect. Music and ritual work on the emotions directly, shaping feeling before it becomes thought.</p>
+                    <blockquote class="school-ru">
+                        "I am not one who was born with knowledge. I am one who loves the past and is diligent in seeking it."
+                        <cite>Analects 7.20</cite>
+                    </blockquote>
+                    <h4>Universal Access</h4>
+                    <p>The most radical claim: education should be available to everyone, regardless of social origin. In an aristocratic society where knowledge was a class privilege, this was genuinely subversive.</p>
+                    <blockquote class="school-ru">
+                        "In teaching, there should be no class distinction."
+                        <cite>Analects 15.39 (有教無類)</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div class="saying-inline" style="margin-top:0.75rem; border-left-color: var(--ru);">
+            <div class="saying-chinese" style="color:var(--ru);">學而不思則罔，思而不學則殆</div>
+            <div class="saying-meaning">"Learning without thinking is useless; thinking without learning is dangerous."</div>
+            <div class="saying-note">Analects 2.15</div>
+        </div>
+    </section>
+
+    <!-- Mengzi -->
+    <section class="content-section" id="mengzi">
+        <div class="section-label"><span class="chinese">孟子</span> Mengzi: Nurturing What Is Already There</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head ru"><span class="chinese">四端</span> Sprouts, Not Seeds <span class="meta"><a href="mengzi.html" style="color:#888;text-decoration:none;">Full page &rarr;</a></span></div>
+                <div class="card-body">
+                    <p>Mengzi's theory of the Four Sprouts (si duan 四端) reframes education entirely. If human nature is already good, the teacher's job is not to implant virtue but to nurture what is already growing. Compassion, disdain for shame, deference, and moral discernment are present from birth. They need cultivation, not creation.</p>
+                    <p>The sprout metaphor is precise: a sprout is real but fragile. It can grow into a tree or wither and die. Education is the process of providing the right conditions for growth.</p>
+                    <blockquote class="school-ru">
+                        "What people can do without studying is 'best capability'; what they know without pondering is 'best knowledge.' Infants love their parents; as they grow, they respect their elders."
+                        <cite>Mengzi 7A15</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head ru"><span class="chinese">牛山</span> Ox Mountain and the Pulled Seedlings</div>
+                <div class="card-body">
+                    <p><strong>The Ox Mountain parable (6A8)</strong> is Mengzi's most devastating image of failed education. The mountain was once forested. Axes stripped the trees. Cattle grazed the new shoots. Now people see the barren slope and conclude it was always barren. The same happens to human moral nature under constant assault from a corrupt environment.</p>
+                    <p><strong>The pulled seedlings (2A2)</strong> warn against the opposite error: forcing growth. A farmer of Song, anxious to see his crops grow faster, pulled them up by the roots. They all died. Moral development cannot be rushed. The teacher who pushes too hard destroys what they are trying to cultivate.</p>
+                    <blockquote class="school-ru">
+                        "There must be activity, but do not correct it; let the mind not forget, but do not help it to grow. Do not be like the man from Song."
+                        <cite>Mengzi 2A2</cite>
+                    </blockquote>
+                    <h4>Pedagogical Implication</h4>
+                    <p>The good teacher creates conditions for growth without interfering with the process itself. Provide the right environment, remove obstacles, but do not pull on the shoots.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Xunzi -->
+    <section class="content-section alt" id="xunzi">
+        <div class="section-label"><span class="chinese">荀子</span> Xunzi: Learning as Transformation</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head ru"><span class="chinese">勸學</span> Encouraging Learning <span class="meta"><a href="xunzi.html" style="color:#888;text-decoration:none;">Full page &rarr;</a></span></div>
+                <div class="card-body">
+                    <p>Xunzi opens his text with "Encouraging Learning" (Quan xue 勸學), placing education at the very foundation of his philosophy. Where Mengzi sees moral sprouts to nurture, Xunzi sees crooked wood that needs straightening. Human nature is problematic (xing e 性惡). Without deliberate effort (wei 偽), people follow their desires toward conflict.</p>
+                    <p>This makes education not optional but essential. The process of learning is not drawing out what is inside (Mengzi) but adding what is missing. Ritual, music, and the teachings of the sages are the tools that reshape raw human nature into something civilized.</p>
+                    <blockquote class="school-ru">
+                        "Learning should never cease. Blue comes from the indigo plant but is bluer than the plant itself. Ice is made of water but is colder than water ever is."
+                        <cite>Xunzi, "Encouraging Learning"</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head ru"><span class="chinese">偽</span> Deliberate Effort</div>
+                <div class="card-body">
+                    <p>The character 偽 (wei) is Xunzi's key concept: it means deliberate, conscious effort applied to self-transformation. The word contains 人 (person) and 為 (to act). It is what distinguishes the educated person from the raw one.</p>
+                    <p>The crooked wood analogy drives the point home: wood does not become straight by itself. It must be steamed and pressed against a frame. Once straightened, it stays straight even after the frame is removed. So too with human nature: once shaped by ritual and learning, the shape holds.</p>
+                    <blockquote class="school-ru">
+                        "A piece of wood as straight as an ink-line may be bent into a circle as true as a compass. Even after it dries it will not straighten out again, for the bending has made it that way. Similarly, wood that is warped can be steamed and forced straight."
+                        <cite>Xunzi, "Encouraging Learning"</cite>
+                    </blockquote>
+                    <h4>The Xunzi-Mengzi Debate</h4>
+                    <p>Where Mengzi says "don't pull up seedlings," Xunzi says there are no seedlings to pull. The gardener must plant before anything will grow. This is the central pedagogical disagreement in the Confucian tradition: is education cultivation or construction?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daoist Critique -->
+    <section class="content-section" id="daoist">
+        <div class="section-label"><span class="chinese">道家</span> The Daoist Critique: Against Learning</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head dao"><span class="chinese">老子</span> Laozi: Unlearn Everything <span class="meta"><a href="laozi.html" style="color:#888;text-decoration:none;">Full page &rarr;</a></span></div>
+                <div class="card-body">
+                    <p>The <em>Daodejing</em> inverts the entire Confucian educational project. Where Kongzi says study the ancients, Laozi says abandon sageness. Where Mengzi says cultivate your sprouts, Laozi says return to the uncarved block. The Confucian virtues are not solutions. They are symptoms of the disease they claim to treat.</p>
+                    <blockquote class="school-dao">
+                        "When the great Dao is abandoned, benevolence and righteousness appear. When wisdom and cleverness emerge, there is great hypocrisy."
+                        <cite>Daodejing, Chapter 18</cite>
+                    </blockquote>
+                    <p>Chapter 48 makes the anti-pedagogical stance explicit: the pursuit of the Dao requires doing less, not more. This is not anti-intellectualism for its own sake. It is the claim that accumulated knowledge creates a screen between the person and reality.</p>
+                    <blockquote class="school-dao">
+                        "In pursuit of learning, one knows more every day. In pursuit of the Way, one does less every day. One does less and less until one does nothing. One does nothing, yet nothing is left undone."
+                        <cite>Daodejing, Chapter 48</cite>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head dao"><span class="chinese">莊子</span> Zhuangzi: Mastery Beyond Teaching <span class="meta"><a href="zhuangzi.html" style="color:#888;text-decoration:none;">Full page &rarr;</a></span></div>
+                <div class="card-body">
+                    <p>Zhuangzi does not reject learning outright. He rejects the idea that what matters most can be taught in words. Cook Ding's mastery of butchery transcends anything his teacher could have told him. He meets the ox "with his spirit, not his eyes." The knife finds the joints by itself. This is learning that has passed beyond conscious knowledge into embodied practice.</p>
+                    <blockquote class="school-dao">
+                        "What I love is the Way, which goes beyond skill. When I first began cutting up oxen, all I could see was the ox itself. After three years I no longer saw the whole ox. And now I meet it with my spirit and don't look with my eyes."
+                        <cite>Zhuangzi, Chapter 3 (Cook Ding)</cite>
+                    </blockquote>
+                    <p>The fish-trap metaphor in Chapter 26 goes further: words and teachings are tools for arriving at understanding. Once you arrive, the tools are useless. Holding onto the teachings after grasping the meaning is like carrying the trap after catching the fish.</p>
+                    <blockquote class="school-dao">
+                        "Words exist because of meaning; once you've gotten the meaning, you can forget the words. Where can I find a man who has forgotten words so I can have a word with him?"
+                        <cite>Zhuangzi, Chapter 26</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mozi -->
+    <section class="content-section alt" id="mozi">
+        <div class="section-label"><span class="chinese">墨子</span> Mozi: Standards Over Intuition</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head mo-head"><span class="chinese">法</span> The Craftsman's Model <span class="meta"><a href="mozi.html" style="color:#888;text-decoration:none;">Full page &rarr;</a></span></div>
+                <div class="card-body">
+                    <p>Mozi's critique of Confucian pedagogy is methodological. Confucians educate through immersion in ritual and personal example: the student observes the teacher, absorbs the tradition, develops moral intuition. Mozi objects: intuition varies from person to person. What you need is a compass and square. What you need is an explicit, objective standard (fa 法).</p>
+                    <p>A carpenter does not rely on his "feeling" for straightness. He uses an ink-line. Ethics needs the same precision. The Three Standards (san biao 三表) provide it: historical precedent, empirical evidence, and practical results.</p>
+                    <blockquote class="school-mo">
+                        "A blind person can say 'what is bright is white and what is dark is black,' and even the keen-sighted would agree. But mix black and white and ask a blind person to pick them out, and he cannot. It is not that he does not know white from black; he cannot apply his knowledge."
+                        <cite>Mozi, "Condemning Fatalism"</cite>
+                    </blockquote>
+                    <h4>Meritocracy as Pedagogy</h4>
+                    <p>Mozi's doctrine of "Promoting the Worthy" (shang xian 尚賢) is itself a pedagogical claim: competence should determine who teaches and who leads, not birth or social standing. Even farmers and artisans can rise to office if they demonstrate ability. This parallels Kongzi's "no class distinction" in teaching, but grounds it in outcomes rather than moral formation.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head mo-head"><span class="chinese">非樂</span> Against the Arts as Education</div>
+                <div class="card-body">
+                    <p>Where Kongzi sees music and ritual as essential tools of moral education, Mozi sees waste. Court ceremonies with bells and drums produce nothing useful. The resources spent on elaborate performances could feed the hungry. Education should be practical, oriented toward measurable benefit.</p>
+                    <p>This is a genuine clash of educational philosophies. For Kongzi, the arts shape the inner life. For Mozi, the inner life is irrelevant if people are starving. The debate anticipates modern arguments about "soft skills" versus vocational training, liberal arts versus STEM.</p>
+                    <blockquote class="school-mo">
+                        "If people regarded others' states as they regard their own, who would attack others' states? ... If people regarded others' families as they regard their own, who would bring disorder to others' families?"
+                        <cite>Mozi, "Inclusive Care"</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Han Feizi -->
+    <section class="content-section" id="hanfeizi">
+        <div class="section-label"><span class="chinese">韓非子</span> Han Feizi: Education Is Irrelevant</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head fa-head"><span class="chinese">法</span> Systems Replace Teachers <span class="meta"><a href="hanfeizi.html" style="color:#888;text-decoration:none;">Full page &rarr;</a></span></div>
+                <div class="card-body">
+                    <p>Han Feizi, reputedly Xunzi's student, takes his teacher's premises to their logical extreme. Xunzi said human nature is problematic and needs shaping. Han Feizi agrees. But where Xunzi trusted ritual and education to do the shaping, Han Feizi trusts only law (fa 法), technique (shu 術), and positional power (shi 勢).</p>
+                    <p>The pivot is a loss of faith in teachers. Moral education depends on finding exceptional teachers, and exceptional people are rare. Laws work regardless of who enforces them. A good system does not require good people.</p>
+                    <blockquote class="school-fa">
+                        "A ruler must not reveal his desires, for if he does so, his ministers will carve and polish themselves accordingly."
+                        <cite>Han Feizi, Chapter 5</cite>
+                    </blockquote>
+                    <h4>The Irony</h4>
+                    <p>Han Feizi himself was killed by Li Si, a fellow student of Xunzi, in the Qin court that adopted Legalist principles. The system that replaced moral education with bureaucratic control consumed the very thinker who designed it. There is something pedagogical in that outcome, even if Han Feizi would not have appreciated the lesson.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head fa-head"><span class="chinese">五蠹</span> Against Confucian Teachers</div>
+                <div class="card-body">
+                    <p>In "The Five Vermin" (wu du 五蠹), Han Feizi identifies Confucian scholars as parasites on the state. They "use literature to subvert the law." They promote personal virtue over institutional discipline. Their students become people who argue cleverly but produce nothing.</p>
+                    <p>The Legalist state does not need educators producing morally cultivated individuals. It needs a system of rewards and punishments that channels self-interest toward socially useful behavior. Character is irrelevant; compliance is everything.</p>
+                    <blockquote class="school-fa">
+                        "As for what the law confers, even the wise cannot shirk from it and even the brave do not dare to dispute it. Punishments for transgressions do not bypass great ministers, while rewards for goodness do not leave the common people behind."
+                        <cite>Han Feizi, Chapter 6</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Literary Voice: Camel Kuo the Gardener -->
+    <section class="content-section alt" id="gardener">
+        <div class="section-label"><span class="chinese">種樹</span> The Literary Voice: Camel Kuo the Gardener</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head lit"><span class="chinese">柳宗元</span> Liu Zongyuan: "Camel Kuo the Gardener" <span class="meta">Birch p. 258</span></div>
+                <div class="card-body">
+                    <p>Liu Zongyuan (773-819 CE), one of the "Eight Great Prose Masters of Tang and Song," wrote this short fictional biography (zhuan 傳) that reads like a philosophical parable wearing the clothes of literary prose. It synthesizes the pedagogical debates of the masters into a single image: a hunchbacked gardener who grows the best trees in the capital.</p>
+                    <p>Guo Tuotuo, nicknamed "Camel" for his hunched back, is famous because his trees flourish while other gardeners' trees wither and die. When asked his secret, he insists there is none. He simply plants trees according to their nature: roots spread out, soil packed firm, then he leaves them alone.</p>
+                    <h4>What Other Gardeners Do Wrong</h4>
+                    <p>Other gardeners cannot leave their trees alone. They over-water, over-prune, dig up the roots to check whether they've taken hold, scratch the bark to see if the tree is alive. "They love them too much and worry about them too much." Their anxiety produces the very failure they fear.</p>
+                    <h4>The Political Application</h4>
+                    <p>Asked whether his method can be applied to governing people, Camel Kuo deflects, then admits the parallel. Officials who constantly interfere with the people, issuing decree after decree "for their benefit," are like gardeners who pull up seedlings. Drums and gongs summon people morning and night. The harvest suffers because the farmers spend their time answering bureaucratic demands.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head lit"><span class="chinese">教</span> The Gardener and the Masters</div>
+                <div class="card-body">
+                    <p>Liu Zongyuan's essay is not a simple restatement of Daoist wu wei. It draws on the entire tradition, and in doing so, it becomes the most complete literary treatment of pedagogy in the Birch anthology.</p>
+                    <h4>Echoing Mengzi</h4>
+                    <p>The pulled seedlings of Mengzi 2A2 reappear as the gardeners who dig up roots. The pedagogical lesson is identical: forcing growth kills what you are trying to cultivate. The good teacher, like the good gardener, creates conditions and steps back.</p>
+                    <h4>Echoing Laozi</h4>
+                    <p>The best ruler in the <em>Daodejing</em> is one "whose existence the people barely know." Camel Kuo embodies this principle at the level of craft: his mastery is invisible. He plants the tree correctly, then does nothing. His inaction is not laziness. It is the product of deep understanding.</p>
+                    <h4>Echoing Zhuangzi</h4>
+                    <p>Like Cook Ding, Camel Kuo has passed beyond technique into effortless mastery. He does not consult a manual on arboriculture. He meets each tree on its own terms, with a kind of embodied knowledge that cannot be reduced to rules.</p>
+                    <h4>Against Xunzi</h4>
+                    <p>Xunzi's steamed and pressed wood, forced straight against a frame, stands in direct contrast. Where Xunzi says you must actively reshape nature, Liu Zongyuan's gardener says you must understand nature and align yourself with it. The frame produces a straight board; the gardener produces a living tree.</p>
+                    <h4>Against Han Feizi</h4>
+                    <p>The bureaucratic meddling that Camel Kuo criticizes is precisely the Legalist system of surveillance and control. Constant inspection, constant regulation, constant interference. The Legalist state is the gardener who scratches the bark every morning to check whether the tree is alive.</p>
+                </div>
+            </div>
+        </div>
+        <div class="saying-inline" style="margin-top:0.75rem;">
+            <div class="saying-chinese">順木之天以致其性</div>
+            <div class="saying-meaning">"Follow the nature of the tree to realize its potential."</div>
+            <div class="saying-note">Liu Zongyuan, "Camel Kuo the Gardener" (種樹郭橐駝傳), Birch p. 258</div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="content-section" id="comparison">
+        <div class="section-label"><span class="chinese">比較</span> Seven Voices on Education</div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Thinker</th>
+                    <th>Human Nature</th>
+                    <th>Role of Education</th>
+                    <th>Teacher's Method</th>
+                    <th>Key Metaphor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong><span class="school-tag ru">RU</span> Kongzi</strong></td>
+                    <td>Malleable, shaped by practice</td>
+                    <td>Transform character through ritual</td>
+                    <td>Personal example, guided practice</td>
+                    <td>The Six Arts (ritual, music, archery...)</td>
+                </tr>
+                <tr>
+                    <td><strong><span class="school-tag ru">RU</span> Mengzi</strong></td>
+                    <td>Good (innate sprouts)</td>
+                    <td>Nurture what is already growing</td>
+                    <td>Create conditions, do not force</td>
+                    <td>Pulled seedlings; Ox Mountain</td>
+                </tr>
+                <tr>
+                    <td><strong><span class="school-tag ru">RU</span> Xunzi</strong></td>
+                    <td>Problematic (xing e)</td>
+                    <td>Reshape nature through deliberate effort</td>
+                    <td>Active molding via ritual and learning</td>
+                    <td>Steaming crooked wood straight</td>
+                </tr>
+                <tr>
+                    <td><strong><span class="school-tag dao">DAO</span> Laozi</strong></td>
+                    <td>Naturally whole</td>
+                    <td>Unlearn, return to simplicity</td>
+                    <td>Do nothing; teach without words</td>
+                    <td>The uncarved block (pu 樸)</td>
+                </tr>
+                <tr>
+                    <td><strong><span class="school-tag dao">DAO</span> Zhuangzi</strong></td>
+                    <td>Fluid, perspectival</td>
+                    <td>Transcend conceptual knowledge</td>
+                    <td>Embody mastery; forget the words</td>
+                    <td>Cook Ding; the fish trap</td>
+                </tr>
+                <tr>
+                    <td><strong><span class="school-tag mo">MO</span> Mozi</strong></td>
+                    <td>Responsive to incentives</td>
+                    <td>Establish objective standards</td>
+                    <td>Explicit criteria, not moral intuition</td>
+                    <td>Carpenter's square and compass</td>
+                </tr>
+                <tr>
+                    <td><strong><span class="school-tag fa">FA</span> Han Feizi</strong></td>
+                    <td>Self-interested</td>
+                    <td>Irrelevant; use law instead</td>
+                    <td>Systems replace teachers</td>
+                    <td>Tiger's claws and fangs</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="questions">
+        <div class="section-label"><span class="chinese">問</span> Discussion Questions</div>
+        <div class="questions-grid">
+            <div class="q-card">
+                <div class="q-num">Question 1</div>
+                <p>Mengzi says moral sprouts are innate. Xunzi says human nature is problematic. Both are Confucians. Can you construct an educational philosophy that takes both positions seriously, or are they irreconcilable?</p>
+            </div>
+            <div class="q-card">
+                <div class="q-num">Question 2</div>
+                <p>Laozi's Chapter 48 says the pursuit of the Way requires doing less every day. Is there a version of this that makes sense in an actual classroom? What would "teaching by subtraction" look like in practice?</p>
+            </div>
+            <div class="q-card">
+                <div class="q-num">Question 3</div>
+                <p>Liu Zongyuan's gardener says over-intervention kills growth. But some students <em>do</em> need active intervention. Where is the line between nurturing and neglect? Between shaping and forcing?</p>
+            </div>
+            <div class="q-card">
+                <div class="q-num">Question 4</div>
+                <p>Mozi wants objective standards for evaluating doctrines. Confucians rely on cultivated moral intuition. In your own education, which approach has been more effective? Which do you trust more?</p>
+            </div>
+            <div class="q-card">
+                <div class="q-num">Question 5</div>
+                <p>Han Feizi says good systems don't need good people. Modern institutions (standardized testing, rubrics, compliance training) echo this logic. Does education still need a personal relationship between teacher and student?</p>
+            </div>
+            <div class="q-card">
+                <div class="q-num">Question 6</div>
+                <p>Zhuangzi's Cook Ding learned his art through years of practice, not from a book. Can the most important things you know actually be taught in words, or did you learn them through experience? What does this imply about the limits of formal education?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Texts</h4>
+                <p>Ivanhoe &amp; Van Norden, <em>Readings in Classical Chinese Philosophy</em>, 2nd ed.</p>
+                <p>Birch, <em>Anthology of Chinese Literature</em>, Vol. 1 (Grove Press), p. 258</p>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Text Project</h4>
+                <a href="https://ctext.org/analects" target="_blank" rel="noopener">Analects (論語)</a>
+                <a href="https://ctext.org/xunzi/quan-xue" target="_blank" rel="noopener">Xunzi: "Encouraging Learning" (勸學)</a>
+                <a href="https://ctext.org/dao-de-jing" target="_blank" rel="noopener">Daodejing (道德經)</a>
+            </div>
+            <div class="source-card">
+                <h4>Stanford Encyclopedia</h4>
+                <a href="https://plato.stanford.edu/entries/mencius/" target="_blank" rel="noopener">SEP: Mencius</a>
+                <a href="https://plato.stanford.edu/entries/xunzi/" target="_blank" rel="noopener">SEP: Xunzi</a>
+                <a href="https://plato.stanford.edu/entries/confucius/" target="_blank" rel="noopener">SEP: Confucius</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Pages</h4>
+                <a href="kongzi.html">Kongzi (Analects)</a>
+                <a href="mengzi.html">Mengzi</a>
+                <a href="xunzi.html">Xunzi</a>
+                <a href="laozi.html">Laozi (Daodejing)</a>
+                <a href="zhuangzi.html">Zhuangzi</a>
+                <a href="mozi.html">Mozi</a>
+                <a href="hanfeizi.html">Han Feizi</a>
+                <a href="prose-essays.html">Tang Prose Essays</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
