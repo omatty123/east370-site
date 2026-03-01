@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanshan: Cold Mountain Poems | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --wu: #2d7d7d;
+            --jin: #8a6a30;
+            --mountain: #5B7080;
+            --pine: #4a6741;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Serif SC', serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Poetry blockquote variant */
+        blockquote.poem {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-style: normal;
+            white-space: pre-line;
+            line-height: 1.8;
+            border-left-color: var(--mountain);
+        }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Map embed */
+        .map-wrapper {
+            margin-top: 0.6rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .map-frame {
+            width: 100%;
+            height: 420px;
+            border: none;
+        }
+        .map-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .map-link:hover { color: var(--gold-light); }
+
+        /* Section structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">寒山詩</span>
+            <span class="en">Hanshan: Cold Mountain Poems</span>
+            <span class="meta">Birch pp. 194&ndash;202 &middot; Tang Dynasty</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block active" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#preface">Preface</a>
+        <a href="#poems">The Poems</a>
+        <a href="#themes">Themes</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">寒山</span> Who Is Hanshan? <span class="meta">Dates unknown</span></div>
+                <div class="card-body">
+                    <h4>The Mystery Figure</h4>
+                    <p>Hanshan (寒山, Han-shan in Birch) is one of the most enigmatic figures in Chinese literary history. <a href="https://www.newworldencyclopedia.org/entry/Hanshan" target="_blank" rel="noopener">Nobody knows when he was born, when he died, or whether he was a single person at all.</a> His name simply means "Cold Mountain," the place where he lived, and the poems attributed to him may span centuries of the Tang dynasty (618&ndash;907 CE). What the tradition preserves is a figure: a ragged hermit on a mountainside, writing poems on rocks and trees, laughing at the world below.</p>
+                    <h4>The Place</h4>
+                    <p>Hanshan lived on Tiantai (天台, T'ien-t'ai in Birch), a mountain range in modern Zhejiang province famous as the seat of the Tiantai Buddhist school. He frequented Guoqing Temple (國清寺, Kuo-ch'ing in Birch), where his companion Shide (拾得, Shih-te in Birch) worked scraping dishes in the dining hall. Over 300 poems were eventually collected from writings found on bamboo, wood, stones, cliff faces, and house walls.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">譯</span> Gary Snyder's Translations <span class="meta">1950s, Berkeley</span></div>
+                <div class="card-body">
+                    <h4>The Translator</h4>
+                    <p><a href="https://www.britannica.com/biography/Gary-Snyder" target="_blank" rel="noopener">Gary Snyder</a> (b. 1930) began translating Hanshan in 1953 as a graduate student in Asian languages at UC Berkeley. His professor suggested the poet, sensing an affinity between Snyder and the mountain hermit. The suite of 24 poems was first published in <em>The Evergreen Review</em> in 1958, and later collected in Birch's anthology. They launched one of the most important poetic careers in postwar America.</p>
+                    <h4>Why These Translations Matter</h4>
+                    <p>Snyder's translations are not ornate scholarly renderings. They are spare, direct, muscular. He wrote them as a working mountaineer and aspiring Zen student, and the English carries the weight of real physical experience in the mountains. Jack Kerouac was so taken with the poems that he <a href="https://thechinaproject.com/2019/01/16/hanshan-investigating-the-life-of-chinese-literatures-most-mysterious-poet/" target="_blank" rel="noopener">dedicated <em>The Dharma Bums</em> (1958) to Hanshan.</a> Through the Beat generation, these 24 poems became one of the most widely read works of Chinese poetry in English.</p>
+                    <h4>Scope of the Selection</h4>
+                    <p>Birch includes 24 of the more than 300 poems attributed to Hanshan. The selection ranges across landscape descriptions, autobiographical reflections, Buddhist meditations, and sharp social critiques. All translations in this reading are by Gary Snyder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Preface -->
+    <section class="content-section alt" id="preface">
+        <div class="section-label"><span class="chinese">序</span> THE PREFACE</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">閭丘胤</span> The Governor's Account <span class="meta">pp. 194&ndash;196</span></div>
+                <div class="card-body">
+                    <h4>A Hidden Bodhisattva</h4>
+                    <p>The preface to the Hanshan poems was written by L&uuml; Qiuyin (閭丘胤, L&uuml;-ch'iu Yin in Birch), Governor of Tai prefecture. It frames the entire collection with a remarkable claim: that this ragged tramp was no ordinary madman, but a hidden incarnation of <a href="https://www.britannica.com/topic/Manjusri" target="_blank" rel="noopener">Manjusri</a> (文殊, the bodhisattva of wisdom), and that his companion Shide was an incarnation of <a href="https://www.britannica.com/topic/Samantabhadra" target="_blank" rel="noopener">Samantabhadra</a> (普賢, the bodhisattva of compassion and action).</p>
+                    <h4>The Encounter</h4>
+                    <p>L&uuml; Qiuyin recounts that a Buddhist master named Fenggan (豐干, Feng-kan in Birch) told him to seek out these two figures at Guoqing Temple. When the governor arrived and asked after them, he found them in the temple kitchen. Their response was not reverence or courtesy:</p>
+                    <blockquote>
+                        "The two men looked at each other and laughed. 'Feng-kan talking, talking,' they said. Then they joined hands and ran out of the temple."
+                        <cite>p. 195; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>L&uuml; Qiuyin sent a messenger after them, but they retreated to Cold Mountain. Hanshan entered a cave in the cliff face. The rock closed behind him. They were never seen again.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">詩集</span> The Discovery of the Poems <span class="meta">pp. 195&ndash;196</span></div>
+                <div class="card-body">
+                    <h4>Poems as Found Objects</h4>
+                    <p>The preface describes how the poems were not composed in a study or circulated at court. They were scratched onto the surfaces of the natural and built world:</p>
+                    <blockquote>
+                        "I ordered a search through the woods and hills, on bamboo, wood, stones, and cliffs&mdash;also in the villages, on the walls of houses, where they'd been written by people who had them by heart. There were more than three hundred."
+                        <cite>p. 196; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>This is poetry as inscription, not publication. The poems existed as part of the landscape before they were gathered into a collection. Shide also wrote short verses (<em>gatha</em>) on the wall of the Earth shrine at Guoqing Temple.</p>
+                    <h4>The Figure of Hanshan</h4>
+                    <p>The preface paints an unforgettable portrait. Hanshan looked like a tramp: birch-bark hat, ragged clothes, wooden shoes. He wandered the temple corridors talking and laughing to himself. The kitchen workers chased him with ladles. Old villagers remembered him as "a poor man, a crazy character" who haunted the Cold Mountain cliffs. The preface insists this wildness concealed profound spiritual attainment.</p>
+                    <blockquote>
+                        "He looked like a tramp. His body and face were old and beat. Yet in every word he breathed was a meaning in line with the subtle principles of things."
+                        <cite>p. 194; trans. Gary Snyder</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Poems -->
+    <section class="content-section" id="poems">
+        <div class="section-label"><span class="chinese">詩</span> THE POEMS</div>
+
+        <!-- Poem Group: Mountain Landscape -->
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">山水</span> Mountain Landscape <span class="meta">Poems 1, 3, 8, 9, 14</span></div>
+                <div class="card-body">
+                    <h4>Poem 1: The Path to Cold Mountain</h4>
+                    <p>The opening poem is an invitation and a warning. The path to Cold Mountain is "laughable" in its difficulty. No path at all, really. The landscape resists the visitor. But the poem also demonstrates Snyder's gift: plain American English carrying the weight of Chinese mountain poetry.</p>
+                    <blockquote class="poem">The path to Han-shan's place is laughable,
+A path, but no sign of cart or horse.
+Converging gorges&mdash;hard to trace their twists
+Jumbled cliffs&mdash;Loss of original form
+A thousand grasses bend with dew,
+A hill of pines hums in the wind.
+And now I've lost the shortcut home,
+Body asking shadow, how do you keep up?
+                        <cite>p. 196; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>The final line turns the landscape poem into something stranger. The body addresses its own shadow. The journey up the mountain has become a confrontation with the self.</p>
+
+                    <h4>Poem 8: Clambering Up</h4>
+                    <blockquote class="poem">Clambering up the Cold Mountain path,
+The Cold Mountain trail goes on and on:
+The long gorge choked with scree and boulders,
+The wide creek, the mist-blurred grass.
+The moss is slippery, though there's been no rain
+The pine sings, but there's no wind.
+Who can leap the world's ties
+And sit with me among the white clouds?
+                        <cite>p. 198; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>The first six lines are precise landscape description. Then the final couplet pivots: "Who can leap the world's ties / And sit with me among the white clouds?" Landscape becomes spiritual challenge. The invitation to join Hanshan on the mountain is also an invitation to abandon worldly attachments.</p>
+
+                    <h4>Poem 9: The Trail in Winter</h4>
+                    <blockquote class="poem">Rough and dark&mdash;the Cold Mountain trail,
+Sharp cobbles&mdash;the icy creek bank.
+Yammering, chirping&mdash;always birds
+Bleak, alone, not even a lone hiker.
+Whip, whip&mdash;the wind slaps my face
+Whirled and tumbled&mdash;snow piles on my back.
+Morning after morning I don't see the sun
+Year after year, not a sign of spring.
+                        <cite>p. 198; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>Harsh, percussive, immediate. The poem's sounds ("yammering, chirping," "whip, whip") do physical work. This is not a pastoral retreat. Cold Mountain strips away comfort.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">佛道</span> Buddhist and Philosophical Poems <span class="meta">Poems 6, 11, 15, 16, 22, 23</span></div>
+                <div class="card-body">
+                    <h4>Poem 6: The Way to Cold Mountain</h4>
+                    <p>Perhaps the most famous of all Hanshan's poems. It works on two levels simultaneously: Cold Mountain is a physical place you cannot find on a map, and it is a state of mind you cannot reach by following directions.</p>
+                    <blockquote class="poem">Men ask the way to Cold Mountain
+Cold Mountain: there's no through trail.
+In summer, ice doesn't melt
+The sun comes out, mist and fog drop.
+How'd someone like me get here?
+My heart's not the same as yours.
+If your heart was like mine
+You'd get it and be right here.
+                        <cite>p. 197; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>"If your heart was like mine / You'd get it and be right here." The poem rejects explanation. Understanding is not a matter of directions or information. It is a matter of transformation.</p>
+
+                    <h4>Poem 16: Cold Mountain as Cosmic Dwelling</h4>
+                    <blockquote class="poem">Cold Mountain is a house
+Without beams or walls.
+The six doors left and right are open
+The hall is blue sky.
+The rooms all vacant and vague
+The east wall beats on the west wall
+At the center nothing.
+
+Borrowers don't bother me
+In the cold I build a little fire
+When I'm hungry I boil up some greens.
+I've got no use for the kulak
+With his oxcart full of manure
+He possesses much, yet it keeps him from the Way;
+In a thatched hut I barely keep alive,
+Just let go the strange and start getting used to it.
+                        <cite>p. 200; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>Cold Mountain is not a dwelling but the absence of one. No walls, no beams. "The hall is blue sky." This is Buddhist emptiness (<em>sunyata</em>) rendered as architecture. The "house" of Cold Mountain is the universe itself, and its "rooms" are vacant because attachment has been abandoned.</p>
+
+                    <h4>Poem 11: Silent Knowledge</h4>
+                    <blockquote class="poem">Spring-water in the green creek is clear
+Moonlight on Cold Mountain is white
+Silent knowledge&mdash;the spirit is enlightened of itself
+Contemplate the void: this world exceeds stillness.
+                        <cite>p. 199; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>Four lines. Clear water, white moonlight, then two lines of direct Buddhist statement. "The spirit is enlightened of itself." No teacher required, no doctrine needed. Enlightenment is not acquired from outside. It is the nature of the mind when the mind is still.</p>
+
+                    <h4>Poems 22 and 23: Buddha-Nature</h4>
+                    <blockquote class="poem">On top of Cold Mountain the lone round moon
+Lights the whole clear cloudless sky.
+Honor this priceless natural treasure
+Hidden in the five heaps, deep in the body.
+                        <cite>Poem 22, p. 201; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <blockquote class="poem">My home was at Cold Mountain from the start,
+Rambling among the hills, far from trouble.
+Gone, and a million things leave no trace
+Loosed, and it flows through the galaxies
+A fountain of light, into the very mind&mdash;
+Not a thing, and yet it appears before me:
+Now I know the pearl of the Buddha-nature
+Know its use: a boundless perfect sphere.
+                        <cite>Poem 23, p. 202; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>These two poems make the Buddhist teaching explicit. Poem 22 describes Buddha-nature as a "priceless natural treasure" hidden within the body (the "five heaps," or <em>skandhas</em>, of Buddhist psychology). Poem 23 records the moment of recognition: "Now I know the pearl of the Buddha-nature." The imagery of light flowing through galaxies is startling for a Tang-era poem. Snyder's English makes it feel contemporary.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Poem Group: Autobiographical and Social -->
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">自述</span> Autobiographical Poems <span class="meta">Poems 7, 10, 12, 21</span></div>
+                <div class="card-body">
+                    <h4>Poem 12: A Life Compressed</h4>
+                    <blockquote class="poem">In my first thirty years of life
+I roamed hundreds and thousands of miles.
+Walked by rivers through deep green grass
+Entered cities of boiling red dust.
+Tried pharmacy, but failed to become an Immortal
+Read books and wrote poems on history.
+Today I'm back at Cold Mountain:
+I'll sleep by the creek and purify my ears.
+                        <cite>p. 199; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>A whole biography in eight lines. The first six describe a worldly life: travel, study, ambition, failure. Then the pivot: "Today I'm back at Cold Mountain." The last line alludes to the legend of Xu You (許由), who washed his ears after hearing a polluting offer of political office. Retreat to the mountain is not defeat. It is purification.</p>
+
+                    <h4>Poem 10: Thirty Years at Cold Mountain</h4>
+                    <blockquote class="poem">I have lived at Cold Mountain
+These thirty long years.
+Yesterday I called on friends and family:
+More than half had gone to the Yellow Springs.
+Slowly consumed, like fire down a candle
+Forever flowing, like a passing river.
+Now, morning, I face my lone shadow:
+Suddenly my eyes are bleared with tears.
+                        <cite>p. 199; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>This is the most emotionally direct poem in the selection. The hermit who has left the world discovers that time has done the leaving for him. His friends and family have died ("gone to the Yellow Springs," the Chinese underworld). The final image is devastating: facing his own shadow, weeping. Even the mountain recluse cannot escape mortality.</p>
+
+                    <h4>Poem 7: Contentment</h4>
+                    <blockquote class="poem">I settled at Cold Mountain long ago,
+Already it seems like years and years.
+Freely drifting, I prowl the woods and streams
+And linger watching things themselves.
+Men don't get this far into the mountains,
+White clouds gather and billow.
+Thin grass does for a mattress,
+The blue sky makes a good quilt.
+Happy with a stone underhead
+Let heaven and earth go about their changes.
+                        <cite>p. 197; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>"Let heaven and earth go about their changes." This is the voice of a person who has stopped struggling. The sky for a quilt, a stone for a pillow. Contentment not as luxury but as radical simplicity.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">世評</span> Social Critique <span class="meta">Poems 4, 17, 20, 24</span></div>
+                <div class="card-body">
+                    <h4>Poem 4: Mortality</h4>
+                    <blockquote class="poem">I spur my horse through the wrecked town,
+The wrecked town sinks my spirit.
+High, low, old parapet-Loss of the original form
+Large, small, the old grave-Loss of the old shape
+Unmoored shadow-Loss of the reflecting pool
+Where the Tao abides, the spirit long ago left.
+What can we do about it, friend?
+Weep for us in the barren fields.
+                        <cite>p. 197; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>A poem of ruins. Everything has lost its "original form." Town, walls, graves, reflections. The repeated structure ("Loss of...") creates a litany of disappearance. This is vanitas poetry, Chinese style. Where is the Tao in a wrecked town? The poem offers no consolation, only the instruction to weep.</p>
+
+                    <h4>Poem 24: The Final Word</h4>
+                    <blockquote class="poem">When men see Han-shan
+They all say he's crazy
+And not much to look at&mdash;
+Dressed in rags and hides.
+They don't get what I say
+&amp; I don't talk their language.
+All I can say to those I meet:
+"Try and make it to Cold Mountain."
+                        <cite>p. 202; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>The collection's closing poem. Hanshan knows how he looks to the world: crazy, ragged, incomprehensible. He does not argue. He does not explain. He simply repeats the invitation: "Try and make it to Cold Mountain." The poem is also a perfect summary of the entire collection. These poems are not arguments. They are invitations.</p>
+
+                    <h4>Poem 20: Defense of His Poetry</h4>
+                    <blockquote class="poem">Some critic tried to put me down&mdash;
+"Your poems lack the spirit of the times."
+I don't try to fit the modern mode,
+What I write is unrelated to fashion.
+Some day people will look at this
+And find in it a pearl.
+                        <cite>p. 201; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>Hanshan's response to literary criticism is magnificent indifference. He writes outside "the modern mode." His poems are "unrelated to fashion." The confidence is absolute: "Some day people will look at this / And find in it a pearl." Given that we are reading the poem more than a thousand years later, he was right.</p>
+
+                    <h4>Poem 15: The Naked Bug</h4>
+                    <blockquote class="poem">There's a naked bug at Cold Mountain
+With a white body and a green head.
+His hand holds two old scrolls,
+One the Way and one its Power.
+His shack's got no pot or oven,
+He goes around without clothes.
+But he always carries the sword of wisdom:
+He means to cut down senseless craving.
+                        <cite>p. 200; trans. Gary Snyder</cite>
+                    </blockquote>
+                    <p>The "naked bug" is Hanshan himself, or a figure like him. The two scrolls are the <em>Dao de jing</em> (one half the Way, one half its Power). But he also carries "the sword of wisdom," a Buddhist image associated with Manjusri. The poem fuses Daoist and Buddhist identities. The purpose of both traditions, as Hanshan sees it, is the same: to cut down craving.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-themes">
+            <h4>Remaining Poems in the Selection</h4>
+            <ul>
+                <li><strong>Poem 2</strong> (p. 196): Choosing solitude in a tangle of cliffs. Gibbons howling, tigers nearby.</li>
+                <li><strong>Poem 3</strong> (p. 196): Harsh mountain cold. "Always it's cold" at Cold Mountain.</li>
+                <li><strong>Poem 5</strong> (p. 197): Settling at Cold Mountain. Reading Huang (Book of the Yellow Emperor) and Lao (Dao de jing).</li>
+                <li><strong>Poem 13</strong> (p. 199): Nature at Cold Mountain. Bird songs, pines, cascading springs.</li>
+                <li><strong>Poem 14</strong> (p. 200): "Cold Mountain has many hidden wonders." Cloud, stream, rock.</li>
+                <li><strong>Poem 17</strong> (p. 200): Hiding out at Cold Mountain. Karma and impermanence.</li>
+                <li><strong>Poem 18</strong> (p. 200): "Most T'ien-t'ai men / Don't know Han-shan." Four lines on obscurity.</li>
+                <li><strong>Poem 19</strong> (p. 201): At Cold Mountain, troubles cease. "I idly scribble poems on the rock-cliff."</li>
+                <li><strong>Poem 21</strong> (p. 201): How many autumns at Cold Mountain. Solitary contentment.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Themes -->
+    <section class="content-section alt" id="themes">
+        <div class="section-label"><span class="chinese">主題</span> THEMES</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">隱</span> The Recluse Tradition <span class="meta">Eremitism in Chinese Poetry</span></div>
+                <div class="card-body">
+                    <h4>Hanshan and His Predecessors</h4>
+                    <p>Hanshan belongs to a long tradition of Chinese recluse poets, but he differs from his predecessors in important ways. Tao Yuanming (陶淵明, 365&ndash;427) withdrew from political life to farm. Ruan Ji (阮籍, 210&ndash;263) retreated into wine and eccentricity as a protest against a corrupt court. Their withdrawal was political in origin, even when it became philosophical in expression.</p>
+                    <p>Hanshan's retreat is different. There is no court he has abandoned, no office he has resigned. He may never have held one. His mountain is not an alternative to politics. It is an alternative to the entire structure of worldly life. The poems rarely mention government, rank, or duty. They are concerned with the relationship between the self and the mountain, the self and emptiness.</p>
+                    <h4>Cold Mountain as Both Place and State</h4>
+                    <p>"Cold Mountain" operates on two registers throughout the collection. It is a real place: Tiantai mountain, with its gorges, pines, snow, and mist. And it is a metaphor for an enlightened state of mind. Poem 6 makes this explicit: "Cold Mountain: there's no through trail." You cannot walk there. You can only become the kind of person who is already there. The landscape poems and the Buddhist poems are not separate categories. They are the same poem seen from different angles.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">佛</span> Buddhist Thought in the Poems <span class="meta">Chan and Tiantai</span></div>
+                <div class="card-body">
+                    <h4>Key Buddhist Concepts</h4>
+                    <p>The poems draw on several strands of Buddhist thought, though never in a systematic or doctrinal way. Hanshan teaches by image, not by argument.</p>
+                    <ul>
+                        <li><strong>Buddha-nature</strong> (佛性): Poems 22 and 23 present the idea that enlightenment is not something acquired from outside. It is already present within, a "priceless natural treasure" hidden in the body, a "pearl" waiting to be recognized.</li>
+                        <li><strong>Emptiness</strong> (空): Poem 16's "house without beams or walls" is a vivid image of <em>sunyata</em>. Cold Mountain is a dwelling made of nothing, which is to say, a dwelling made of everything.</li>
+                        <li><strong>Cutting craving</strong>: Poem 15's "sword of wisdom" is the weapon against "senseless craving." This image echoes the iconography of Manjusri, the bodhisattva of wisdom, who carries a sword to cut through ignorance.</li>
+                        <li><strong>Karma and impermanence</strong>: Poem 17 touches on karmic consequence. Poem 10 confronts impermanence directly: friends have died, time has passed, the hermit weeps at his own shadow.</li>
+                    </ul>
+                    <h4>Hanshan as Manjusri?</h4>
+                    <p>L&uuml; Qiuyin's preface identifies Hanshan as an incarnation of Manjusri and Shide as Samantabhadra. This is a staggering claim. <a href="https://www.britannica.com/topic/Manjusri" target="_blank" rel="noopener">Manjusri is the bodhisattva of supreme wisdom</a> in Mahayana Buddhism. The identification transforms Hanshan from an eccentric poet into a hidden sage, a buddha in rags. Whether the poems themselves support this reading is a productive question for discussion.</p>
+                    <h4>Daoism and Buddhism Together</h4>
+                    <p>Hanshan does not choose between traditions. Poem 5 describes reading the <em>Dao de jing</em> and the <em>Book of the Yellow Emperor</em>, both Daoist texts. Poem 15 shows a figure holding "the Way and its Power" (the two halves of the <em>Dao de jing</em>) while also carrying Manjusri's sword of wisdom. For Hanshan, the mountain is big enough for both.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> The Preface and the Poems</div>
+                <div class="card-body">
+                    <p><strong>1.</strong> L&uuml; Qiuyin's preface claims Hanshan is an incarnation of the bodhisattva Manjusri (p. 195). How does this framing change the way you read the poems themselves? Would the poems mean something different without the preface?</p>
+                    <p><strong>2.</strong> When L&uuml; Qiuyin finds Hanshan and Shide in the temple kitchen, they laugh, shout, and run away (p. 195). What does this response tell us about the relationship between spiritual authority and institutional power?</p>
+                    <p><strong>3.</strong> The poems were collected from rocks, trees, cliffs, and walls (p. 196). How does this mode of "publication" shape the poems' meaning? Compare this to the court poetry tradition, where poems circulated among literate officials.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">二</span> Cold Mountain as Place and Metaphor</div>
+                <div class="card-body">
+                    <p><strong>4.</strong> In Poem 6 (p. 197), Hanshan says "If your heart was like mine / You'd get it and be right here." Is Cold Mountain a physical location or a state of mind? Can it be both? What is Hanshan saying about the relationship between place and understanding?</p>
+                    <p><strong>5.</strong> Poem 16 (p. 200) describes Cold Mountain as "a house / Without beams or walls." How does this image work as a description of Buddhist emptiness? Compare this to Poem 7 (p. 197), where "the blue sky makes a good quilt." What kind of shelter does the mountain actually provide?</p>
+                    <p><strong>6.</strong> Compare Hanshan's mountain retreat with Tao Yuanming's return to farming (which we read earlier in the course). Both poets reject worldly life. What is different about what they retreat <em>to</em>?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">三</span> Snyder's Translation and Legacy</div>
+                <div class="card-body">
+                    <p><strong>7.</strong> Gary Snyder translates Hanshan in plain, colloquial American English. Look at Poem 24 (p. 202): "They don't get what I say / &amp; I don't talk their language." How does Snyder's style as a translator mirror Hanshan's position as an outsider? What would be lost if these poems were translated in a more formal, literary register?</p>
+                    <p><strong>8.</strong> Poem 10 (p. 199) ends with Hanshan weeping at his own shadow after learning his friends have died. How does this poem complicate the image of the serene, enlightened recluse? Is grief compatible with Buddhist detachment?</p>
+                    <p><strong>9.</strong> Poem 20 (p. 201) addresses a literary critic: "Some day people will look at this / And find in it a pearl." What does this poem suggest about Hanshan's understanding of his own audience? Who were these poems written for?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Birch, Cyril, ed. <em>Anthology of Chinese Literature</em> (Grove Press, 1965), pp. 194&ndash;202. Translated by Gary Snyder.</p>
+            </div>
+            <div class="source-card">
+                <h4>About the Poet</h4>
+                <a href="https://www.newworldencyclopedia.org/entry/Hanshan" target="_blank" rel="noopener">New World Encyclopedia: Hanshan</a>
+                <a href="https://thechinaproject.com/2019/01/16/hanshan-investigating-the-life-of-chinese-literatures-most-mysterious-poet/" target="_blank" rel="noopener">The China Project: Investigating Hanshan</a>
+                <a href="https://terebess.hu/zen/chang/hanshan.html" target="_blank" rel="noopener">Terebess Collection: Hanshan (extensive resources)</a>
+            </div>
+            <div class="source-card">
+                <h4>About the Translator</h4>
+                <a href="https://www.britannica.com/biography/Gary-Snyder" target="_blank" rel="noopener">Britannica: Gary Snyder</a>
+                <a href="https://poets.org/poet/gary-snyder" target="_blank" rel="noopener">Academy of American Poets: Gary Snyder</a>
+            </div>
+            <div class="source-card">
+                <h4>Further Translations</h4>
+                <a href="https://www.coppercanyonpress.org/books/the-collected-songs-of-cold-mountain-by-han-shan-cold-mountain-tr-bill-porter-red-pine/" target="_blank" rel="noopener">Red Pine, <em>The Collected Songs of Cold Mountain</em> (Copper Canyon Press, 2000)</a>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Original</h4>
+                <a href="https://ctext.org/wiki.pl?chapter=604097&if=en" target="_blank" rel="noopener">Chinese Text Project: 寒山子詩集 (Hanshan Poetry Collection)</a>
+            </div>
+            <div class="source-card">
+                <h4>Buddhist Context</h4>
+                <a href="https://www.britannica.com/topic/Manjusri" target="_blank" rel="noopener">Britannica: Manjusri (bodhisattva of wisdom)</a>
+                <a href="https://www.britannica.com/topic/Samantabhadra" target="_blank" rel="noopener">Britannica: Samantabhadra (bodhisattva of action)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>

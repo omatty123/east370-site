@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Prose Masters of the Song Dynasty | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --wu: #2d7d7d;
+            --jin: #8a6a30;
+            --song: #2D5A7A;
+            --su: #4a6a8a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Map embed */
+        .map-wrapper {
+            margin-top: 0.6rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .map-frame {
+            width: 100%;
+            height: 420px;
+            border: none;
+        }
+        .map-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .map-link:hover { color: var(--gold-light); }
+
+        /* Section structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">宋代散文</span>
+            <span class="en">Two Prose Masters of the Song Dynasty</span>
+            <span class="meta">Birch pp. 364&ndash;383 &middot; Song Dynasty (960&ndash;1279)</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block active" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#ouyang-xiu">Ouyang Xiu</a>
+        <a href="#su-shi">Su Shi</a>
+        <a href="#red-cliff">Red Cliff</a>
+        <a href="#themes">Themes</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">古文</span> The Song Prose Revival <span class="meta">guwen movement</span></div>
+                <div class="card-body">
+                    <p>The <a href="https://www.britannica.com/art/guwen-Chinese-literature" target="_blank">guwen (古文, "ancient prose") movement</a> was one of the most consequential literary reforms in Chinese history. Launched during the Tang dynasty by Han Yu (韓愈), it sought to replace the ornate parallelism of pianwen (駢文) with a simpler, more direct prose style modeled on pre-Han writers. By the Song dynasty, the movement had its most powerful champion in <a href="https://www.britannica.com/biography/Ouyang-Xiu" target="_blank">Ouyang Xiu (歐陽修)</a>, who used his position as chief examiner to enforce the ancient style on an entire generation of scholars.</p>
+                    <p>Su Shi (蘇軾) was Ouyang Xiu's greatest student. Together they stand among the "Eight Great Masters of Tang and Song Prose" (唐宋八大家). Birch introduces the section by noting that for Song literati, "all belles lettres were merely a preparatory exercise" for the serious work of governance and moral argument (p. 364). Prose was not decoration. It was action.</p>
+                    <p>The form of the fu (賦) also evolved in their hands. Originally the "rhyme prose" or "rhapsody" of the Han dynasty, by the Song it had loosened into something closer to a prose poem, retaining rhythmic intensity without strict rhyme schemes. Both Ouyang Xiu's "Sound of Autumn" and Su Shi's Red Cliff pieces exemplify this transformation.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">篇目</span> The Texts <span class="meta">pp. 364&ndash;383</span></div>
+                <div class="card-body">
+                    <h4>Ouyang Xiu (Ou-yang Hsiu in Birch)</h4>
+                    <ul>
+                        <li><strong>"Preface to the Collected Poems of the Priest Piyen"</strong> (pp. 366&ndash;367). Translated by Cyril Birch. A meditation on friendship, aging, and the purpose of poetry.</li>
+                        <li><strong>"The Sound of Autumn"</strong> (pp. 368&ndash;369). Translated by A. C. Graham. A prose-poem on hearing autumn's voice at night, with a cosmological meditation on decline and human anxiety.</li>
+                    </ul>
+                    <h4>Su Shi (Su Shih in Birch)</h4>
+                    <ul>
+                        <li><strong>"Letter to the Emperor Shenzong"</strong> (pp. 370&ndash;380). Translated by J. K. Rideout. A bold political letter opposing Wang Anshi's New Policies reforms.</li>
+                        <li><strong>"The Red Cliff, I"</strong> (pp. 381&ndash;382). A moonlit boat excursion and philosophical dialogue on impermanence.</li>
+                        <li><strong>"The Red Cliff, II"</strong> (pp. 383&ndash;384). A winter return to the cliff, ending with a crane and a Daoist dream.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ouyang Xiu -->
+    <section class="content-section alt" id="ouyang-xiu">
+        <div class="section-label"><span class="chinese">歐陽修</span> OUYANG XIU</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">歐陽修</span> The Writer <span class="meta">1007&ndash;1072</span></div>
+                <div class="card-body">
+                    <p><a href="https://www.britannica.com/biography/Ouyang-Xiu" target="_blank">Ouyang Xiu (歐陽修)</a> was the dominant literary figure of the Northern Song. As poet, historian, statesman, and reformer, he wielded enormous influence over eleventh-century intellectual life. His most lasting intervention was institutional: as chief examiner in 1057, he systematically failed candidates who wrote in the florid pianwen style and passed those who composed in guwen. Among the men he elevated was the young <a href="https://www.britannica.com/biography/Su-Shi" target="_blank">Su Shi</a>.</p>
+                    <p>Birch calls Ouyang Xiu the heir to Han Yu as "leader of the Ancient Style movement" (p. 365). Like Han Yu, Ouyang insisted that prose should serve moral argument and clear thinking, not merely display verbal virtuosity. His own writing exemplified the principle: lucid, economical, emotionally restrained yet capable of sudden depth.</p>
+                    <p>He is counted among the <a href="https://www.newworldencyclopedia.org/entry/Ouyang_Xiu" target="_blank">"Eight Great Masters of Tang and Song"</a> and was also the principal compiler of the <em>New History of the Tang Dynasty</em> and the <em>Historical Records of the Five Dynasties</em>.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">詩序</span> "Preface to the Collected Poems of the Priest Piyen" <span class="meta">pp. 366&ndash;367</span></div>
+                <div class="card-body">
+                    <h4>Friendship and Hidden Virtue</h4>
+                    <p>This short preface is structured around a chain of friendships. Ouyang Xiu recalls befriending Shi Manqing (Shih Man-ch'ing in Birch), a man of broad vision who "caroused with commoners" despite his learning. Manqing's oldest friend was the Buddhist priest Piyen (Pi-yen), and Ouyang Xiu traces how two unconventional men chose different paths of refuge: one in wine, the other in religion.</p>
+                    <blockquote>"Man-ch'ing was a man of broad vision and outstanding talents. His name was known in the world, yet he behaved as though he were unconscious of the fact."<cite>-- Birch, p. 366 (tr. Cyril Birch)</cite></blockquote>
+                    <h4>Poetry and the Unconventional Life</h4>
+                    <p>The essay's pivot comes when Piyen, after years of wandering, opens his bundle and reveals 300 to 400 poems. Ouyang Xiu uses this moment to reflect on the relationship between life and art. Piyen's poems are not professional exercises; they are the record of an irregular, unsettled existence. The preface suggests that poetry of genuine feeling requires a life lived outside conventional success.</p>
+                    <blockquote>"Pi-yen from his youth has been a man free and easy in his way of life, and has roamed about the world for more than thirty years."<cite>-- p. 367 (tr. Cyril Birch)</cite></blockquote>
+                    <p>Beneath the surface, the essay is also a meditation on aging. Manqing is dead. Piyen is old. Ouyang Xiu himself writes from the position of a man who has outlived his friends and must now account for what their lives meant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Sound of Autumn -->
+    <section class="content-section" id="sound-of-autumn">
+        <div class="section-label"><span class="chinese">秋聲賦</span> THE SOUND OF AUTUMN</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">秋聲</span> The Sound <span class="meta">pp. 368&ndash;369 &middot; tr. A. C. Graham</span></div>
+                <div class="card-body">
+                    <h4>A Nighttime Soundscape</h4>
+                    <p>Ouyang Xiu's "Sound of Autumn" (Qiu Sheng Fu, 秋聲賦) is one of the most celebrated fu in Chinese literature. It opens with the narrator reading at night when a mysterious sound arrives from the southwest. The description is extraordinary in its sensory precision:</p>
+                    <blockquote>"At first like the pattering of drops, a rustling among leaves. Suddenly it was the rush of a stampede, hooves and waves on a shore, as though wind and rain had burst out of the night."<cite>-- p. 368 (tr. A. C. Graham)</cite></blockquote>
+                    <p>The narrator sends his boy to investigate. The boy reports that "the moon and stars gleam white and pure, the bright river is in the sky" (p. 368). There is nothing visible. The sound comes from the trees themselves, responding to the season.</p>
+                    <h4>The Original Chinese</h4>
+                    <details class="chinese-original" style="margin-top: 0.5rem;">
+                        <summary style="font-size: 0.75rem; color: var(--gold); cursor: pointer;">Chinese Original <span style="font-family: 'Noto Sans SC', sans-serif;">原文</span></summary>
+                        <div style="font-family: 'Noto Serif SC', serif; font-size: 0.85rem; line-height: 1.8; color: var(--ink-light); margin-top: 0.5rem; padding: 0.5rem; background: var(--paper-dark); border-radius: 4px;">
+                            歐陽子方夜讀書，聞有聲自西南來者，悚然而聽之，曰：「異哉！」初淅瀝以蕭颯，忽奔騰而砰湃，如波濤夜驚，風雨驟至。其觸於物也，鏦鏦錚錚，金鐵皆鳴；又如赴敵之兵，銜枚疾走，不聞號令，但聞人馬之行聲。
+                        </div>
+                        <span style="font-size: 0.65rem; color: var(--ink-faint);">Source: <a href="https://fanti.dugushici.com/ancient_proses/47519" target="_blank" style="color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal);">讀古詩詞網</a></span>
+                    </details>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">秋思</span> The Meditation <span class="meta">cosmology of decline</span></div>
+                <div class="card-body">
+                    <h4>Autumn's Cosmological Meaning</h4>
+                    <p>The essay's second half shifts from description to cosmological argument. In the traditional Chinese correlative system, autumn is aligned with a dense web of associations: the Yin phase, the direction west, the element metal, the musical note Shang (商), the pitch-tube Yi-tse (夷則), and the season of punishment and execution. Birch's footnote explains the qi (ch'i) cosmological system underlying the passage (p. 369, n. 1).</p>
+                    <blockquote>"Autumn is an executioner, and its mood is one of severity. It is the atmosphere of heaven, and its function is to deal with the guilty. In the scale it is the Shang note, and in the pitch-tubes it is Yi-tse."<cite>-- p. 369 (tr. A. C. Graham)</cite></blockquote>
+                    <h4>The Human Parallel</h4>
+                    <p>The philosophical turn comes when Ouyang Xiu draws the analogy between natural and human decline. "Mankind has consciousness, the noblest of all intelligences," yet this very consciousness ensures that worry and grief consume us from within (p. 369). Trees lose their leaves to autumn wind; humans lose their vitality to anxiety, ambition, and regret. Nature declines according to season; we decline because we think too much.</p>
+                    <h4>The Sleeping Boy</h4>
+                    <p>The essay ends with a quiet, devastating image: the boy has fallen asleep. The narrator's philosophical anguish has unfolded in front of an audience of one, who slept through it. Only the insects continue chirping. The boy's unconscious peace is both reproach and consolation. Philosophy is a late-night anxiety that the young and the unselfconscious are spared.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Su Shi -->
+    <section class="content-section alt" id="su-shi">
+        <div class="section-label"><span class="chinese">蘇軾</span> SU SHI</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">蘇軾</span> The Writer <span class="meta">1037&ndash;1101</span></div>
+                <div class="card-body">
+                    <p><a href="https://www.britannica.com/biography/Su-Shi" target="_blank">Su Shi (蘇軾)</a>, also known as Su Dongpo (蘇東坡, "Master of the Eastern Slope"), is one of the most versatile figures in Chinese literary history. Lin Yutang called him "The Gay Genius" (p. 364). He was a supreme poet in both the shi (詩) and ci (詞) forms, a master essayist, a celebrated calligrapher and painter, an innovative governor of Hangzhou (杭州), and an inveterate political exile. Few writers in any tradition have combined such range with such depth.</p>
+                    <p>Birch introduces him as a man whose letter to Emperor Shenzong (Shen-tsung in Birch) was "celebrated" and who was "ranked among the greatest poets and essayists" of China (p. 364). He studied under Ouyang Xiu, passed the civil service examinations with distinction, and entered a career that would alternate between high office and remote banishment for the rest of his life.</p>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">1037</div>
+                            <div class="event">Born in Meishan (眉山), Sichuan</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1057</div>
+                            <div class="event">Passes civil service exams under Ouyang Xiu</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1071</div>
+                            <div class="event">Opposes Wang Anshi's New Policies; leaves capital</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1079</div>
+                            <div class="event">Arrested in the "Crow Terrace Poetry Trial"; imprisoned</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1080&ndash;84</div>
+                            <div class="event">Exile in Huangzhou; writes the Red Cliff fu (1082)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1094</div>
+                            <div class="event">Second exile: banished to Huizhou, then Hainan Island</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1101</div>
+                            <div class="event">Dies at Changzhou on his return from exile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">新法</span> Political Context <span class="meta">Wang Anshi's reforms</span></div>
+                <div class="card-body">
+                    <h4>Wang Anshi and the New Policies</h4>
+                    <p>The political backdrop to Su Shi's career was the factional struggle over <a href="https://www.britannica.com/biography/Wang-Anshi" target="_blank">Wang Anshi's (王安石)</a> New Policies (新法, xinfa). Beginning in 1069, Wang Anshi implemented sweeping economic and administrative reforms under Emperor Shenzong (神宗, r. 1067&ndash;1085): government loans to farmers, state trading monopolies, militia reforms, and a restructured examination system. The reforms aimed to strengthen the Song state against its northern rivals.</p>
+                    <h4>The Conservative Opposition</h4>
+                    <p>Ouyang Xiu, Sima Guang (司馬光), and Su Shi all opposed the reforms, though for different reasons. Su Shi's objections were partly practical (the reforms were poorly implemented and caused hardship) and partly constitutional (Wang Anshi had concentrated too much power, silenced critics, and promoted unqualified loyalists). His letter to Emperor Shenzong is one of the most direct expressions of this opposition.</p>
+                    <h4>Consequences for Su Shi</h4>
+                    <p>Su Shi's outspokenness cost him dearly. He was repeatedly demoted and exiled. The "Crow Terrace Poetry Trial" of 1079 nearly ended in his execution: political enemies accused him of sedition based on satirical poems. He survived, but spent his most productive years in provincial exile. The Red Cliff masterpieces were written during his banishment to Huangzhou (黃州), where he farmed a plot of land on the "Eastern Slope" that gave him his literary name.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter to Emperor Shenzong -->
+    <section class="content-section" id="letter">
+        <div class="section-label"><span class="chinese">上書</span> LETTER TO THE EMPEROR SHENZONG</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">三請</span> The Argument <span class="meta">pp. 370&ndash;380 &middot; tr. J. K. Rideout</span></div>
+                <div class="card-body">
+                    <h4>Three Requests</h4>
+                    <p>Su Shi structures his letter around three demands: win the allegiance of the people, raise standards in public life, and maintain discipline in government. The structure is classical Confucian remonstrance, moving from general principles to specific policy critiques.</p>
+                    <p>His central analogy is striking in its directness. Popular allegiance is as necessary to the ruler as root is to tree, water to fish, oil to lamp:</p>
+                    <blockquote>"The allegiance of the people is as necessary to the ruler as the root to the tree, water to the fish, or oil to the lamp. Without roots the tree falls; without water the fish die; without oil the lamp goes out."<cite>-- p. 371 (tr. J. K. Rideout)</cite></blockquote>
+                    <h4>Policy Critique</h4>
+                    <p>The letter moves from analogy to concrete accusation. Su Shi argues that the New Policies have produced rapid promotion of unqualified officials, dangerous concentration of power in Wang Anshi's hands, and systematic suppression of the censorate, the institution that traditionally checked imperial overreach. Birch notes that a "detailed enumeration of abuses is omitted for space" (p. 372, n. 1), and directs readers to de Bary's <em>Sources of Chinese Tradition</em> (pp. 481&ndash;86) for the full indictment.</p>
+                    <p>Su Shi bolsters his arguments with precedents from the classics and from history. He quotes Confucius, the <em>Book of Documents</em> (書經), and draws cautionary examples from the Han, Tang, and Five Dynasties periods. The technique is characteristic of guwen remonstrance: contemporary politics framed as a deviation from ancient models.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">勇氣</span> The Courage <span class="meta">Confucian remonstrance</span></div>
+                <div class="card-body">
+                    <h4>Risking Death</h4>
+                    <p>What elevates this letter above routine political criticism is its self-awareness. Su Shi openly acknowledges that he may be executed for speaking out. This is not rhetorical posturing. The Song court had real mechanisms for punishing critics, and Su Shi would later face imprisonment for exactly this kind of candor.</p>
+                    <blockquote>"Your servant knows that in saying these things he risks his life. But to remain silent when the state is in danger would be a greater crime."<cite>-- p. 375 (tr. J. K. Rideout)</cite></blockquote>
+                    <h4>The Remonstrance Tradition</h4>
+                    <p>Su Shi's letter belongs to a long tradition of Confucian moral courage. The role of the loyal minister (忠臣) was not to flatter the ruler but to speak uncomfortable truths, even at personal risk. The tradition stretches back to the <em>Analects</em>, where Confucius praised those who "remonstrate" with their superiors rather than merely obey. Qu Yuan's (屈原) exile for speaking truth to the King of Chu is its archetypal tragedy.</p>
+                    <p>The letter's opening pages (pp. 370&ndash;371) offer carefully calibrated flattery of the emperor's intentions before pivoting to blunt policy analysis (pp. 372&ndash;376). This rhetorical structure is itself a Confucian convention: praise the ruler's virtue to create space for criticizing his advisors. Su Shi blames Wang Anshi, not Shenzong. The emperor is misled, not malicious. This distinction allowed the critic to survive, at least sometimes.</p>
+                    <div class="key-themes">
+                        <h4>Key Rhetorical Strategies</h4>
+                        <ul>
+                            <li><strong>Classical precedent:</strong> Every critique grounded in historical example</li>
+                            <li><strong>Blame the minister, spare the ruler:</strong> Wang Anshi at fault, not the emperor</li>
+                            <li><strong>Self-sacrifice rhetoric:</strong> "I know I risk death" establishes moral authority</li>
+                            <li><strong>Three-part structure:</strong> People's allegiance, public standards, government discipline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Red Cliff -->
+    <section class="content-section alt" id="red-cliff">
+        <div class="section-label"><span class="chinese">赤壁賦</span> THE RED CLIFF</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">前赤壁賦</span> Red Cliff I <span class="meta">pp. 381&ndash;382</span></div>
+                <div class="card-body">
+                    <h4>The Moonlit Excursion</h4>
+                    <p>In the autumn of the jen-hsu year (1082), on the sixteenth day of the seventh month, Su Shi takes a boat with guests beneath the Red Cliff. The setting is luminous:</p>
+                    <blockquote>"Cinnamon oars in front, magnolia oars behind, beat the transparent brightness, thrust upstream against flooding light."<cite>-- p. 381</cite></blockquote>
+                    <p>A guest plays mournful music on the flute, quoting Cao Cao's (曹操) poem: "Full moon, stars few / Rooks and magpies fly south..." (p. 381). The reference to Cao Cao's campaign at the original Red Cliff in 208 CE sets up the dialogue's central question: what becomes of greatness?</p>
+                    <h4>The Dialogue on Impermanence</h4>
+                    <p>The guest's grief is that Cao Cao "was a hero, but where is he now?" (p. 381). We are mayflies, infinitesimal grains, wishing to embrace the moon and fly with the immortals but knowing we cannot. The guest's position is Buddhist in its recognition of universal transience, Daoist in its longing for transcendence.</p>
+                    <h4>Su Shi's Response</h4>
+                    <p>Su Shi's counter-argument is the philosophical core of the piece. He offers a perspectival resolution to the problem of impermanence:</p>
+                    <blockquote>"The one streams past so swiftly yet is never gone; the other for ever waxes and wanes yet finally has never grown nor diminished."<cite>-- p. 382</cite></blockquote>
+                    <p>From one perspective (the water flowing past), everything changes. From another (the water itself), nothing does. The moon waxes and wanes but is always the same moon. Su Shi then draws the practical conclusion. If nothing truly belongs to us, then the wind and moonlight are free for anyone to claim:</p>
+                    <blockquote>"The cool wind on the river... the full moon in the mountains... no one forbids me to make it mine."<cite>-- p. 382</cite></blockquote>
+                    <p>This is the "inexhaustible treasury of the creator of things" (p. 382). They drink until dawn, the anxiety resolved into acceptance.</p>
+                    <details class="chinese-original" style="margin-top: 0.5rem;">
+                        <summary style="font-size: 0.75rem; color: var(--gold); cursor: pointer;">Chinese Original <span style="font-family: 'Noto Sans SC', sans-serif;">原文</span></summary>
+                        <div style="font-family: 'Noto Serif SC', serif; font-size: 0.85rem; line-height: 1.8; color: var(--ink-light); margin-top: 0.5rem; padding: 0.5rem; background: var(--paper-dark); border-radius: 4px;">
+                            壬戌之秋，七月既望，蘇子與客泛舟遊於赤壁之下。清風徐來，水波不興。舉酒屬客，誦明月之詩，歌窈窕之章。少焉，月出於東山之上，徘徊於斗牛之間。白露橫江，水光接天。縱一葦之所如，凌萬頃之茫然。浩浩乎如馮虛御風，而不知其所止；飄飄乎如遺世獨立，羽化而登仙。
+                        </div>
+                        <span style="font-size: 0.65rem; color: var(--ink-faint);">Source: <a href="https://ctext.org/wiki.pl?if=en&chapter=971224" target="_blank" style="color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal);">Chinese Text Project</a></span>
+                    </details>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">後赤壁賦</span> Red Cliff II <span class="meta">pp. 383&ndash;384</span></div>
+                <div class="card-body">
+                    <h4>The Return in Winter</h4>
+                    <p>Three months later, on the fifteenth of the tenth month, Su Shi returns to the Red Cliff. The season and the tone have shifted. He walks on foot from Snow Hall (雪堂) to Lin-kao with two guests. The landscape is stripped bare:</p>
+                    <blockquote>"Frost and dew had fallen, the trees had shed all their leaves. Our shadows lay on the ground, and looking up we saw the bright moon."<cite>-- p. 383</cite></blockquote>
+                    <p>His wife finds hidden wine for them. They return to the cliff by boat, but the atmosphere is wilder and more solitary than before.</p>
+                    <h4>The Solitary Climb</h4>
+                    <p>Su Shi leaves his guests and climbs the cliff alone. The terrain is frightening. He "squatted on stones shaped like tigers and leopards, climbed twisted pines like undulating dragons" (p. 383). This is a different register from the first fu, more physical, more dangerous, more lonely. The first visit was communal and philosophical; this one is individual and mystical.</p>
+                    <h4>The Crane and the Dream</h4>
+                    <p>At midnight, a solitary crane appears, crossing the river:</p>
+                    <blockquote>"Its wings turning like cartwheels, white jacketed and black underneath."<cite>-- p. 383</cite></blockquote>
+                    <p>That night Su Shi dreams of a Daoist priest who asks, "Did you enjoy your excursion to the Red Cliff?" He realizes the priest was the crane. The ending is deliberately ambiguous. Is this a genuine mystical encounter? A literary conceit? The boundary between waking and dreaming, human and animal, Confucian and Daoist has dissolved.</p>
+                    <h4>Comparing the Two Fu</h4>
+                    <div class="key-themes">
+                        <h4>Red Cliff I vs. Red Cliff II</h4>
+                        <ul>
+                            <li><strong>Season:</strong> Autumn (I) vs. early winter (II)</li>
+                            <li><strong>Mode:</strong> Boat excursion (I) vs. walking, then boat (II)</li>
+                            <li><strong>Company:</strong> Communal dialogue (I) vs. solitary climb (II)</li>
+                            <li><strong>Resolution:</strong> Philosophical argument (I) vs. mystical dream (II)</li>
+                            <li><strong>Tradition:</strong> Buddhist/Confucian logic (I) vs. Daoist transformation (II)</li>
+                            <li><strong>Ending:</strong> Drinking until dawn (I) vs. the crane's visit (II)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes -->
+    <section class="content-section" id="themes">
+        <div class="section-label"><span class="chinese">主題</span> THEMES</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">文以載道</span> Literature as Political Action</div>
+                <div class="card-body">
+                    <h4>Prose as Governance</h4>
+                    <p>Birch frames the entire reading with a striking claim: for Song literati, "all belles lettres were merely a preparatory exercise" (p. 364). Literature was not an end in itself. It was training for the real work of governing, remonstrating, and moral argument. This view shaped both the guwen movement and the career of every writer in this reading.</p>
+                    <p>Ouyang Xiu enforced this principle institutionally. By reforming the civil service exams, he ensured that clear prose became the gateway to political power. Su Shi's letter to Shenzong is the logical product of that system: a piece of writing that is simultaneously literary art and political action, risking the writer's life in pursuit of policy change.</p>
+                    <h4>The Confucian Remonstrance Tradition</h4>
+                    <p>The tradition holds that the highest duty of a scholar-official is not obedience but truth-telling. Su Shi's letter explicitly invokes this obligation. Ouyang Xiu's quiet preface about the priest Piyen makes a subtler version of the same argument: genuine literature comes from genuine life, not from institutional success. The priest and the drunkard produce truer poetry than the careerist.</p>
+                    <blockquote>"All belles lettres were merely a preparatory exercise."<cite>-- Birch, p. 364</cite></blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">無常</span> Impermanence and Consolation</div>
+                <div class="card-body">
+                    <h4>Three Responses to Mortality</h4>
+                    <p>The three fu in this reading, Ouyang Xiu's "Sound of Autumn" and Su Shi's two Red Cliff pieces, all confront impermanence. But each offers a different response.</p>
+                    <p><strong>Ouyang Xiu</strong> describes the problem without resolving it. Autumn is the season of execution; human consciousness guarantees suffering; the boy sleeps through it all. There is no consolation, only the bleak recognition that awareness itself is the source of grief.</p>
+                    <p><strong>Su Shi in Red Cliff I</strong> offers a philosophical resolution. Change and permanence are a matter of perspective. The water flows past, but water itself endures. The moon waxes and wanes but never truly grows or diminishes. If we shift our frame of reference, impermanence dissolves into a different kind of permanence. The "inexhaustible treasury" of wind and moonlight belongs to everyone.</p>
+                    <p><strong>Su Shi in Red Cliff II</strong> abandons argument for experience. The crane, the dream, the Daoist priest: the second fu suggests that the boundary between self and world, human and animal, waking and sleeping may not be as firm as we assume. Where Red Cliff I resolves anxiety through logic, Red Cliff II dissolves it through transformation.</p>
+                    <h4>The Sleeping Boy</h4>
+                    <p>Ouyang Xiu's sleeping boy at the end of "The Sound of Autumn" stands as a quiet rebuke to all philosophical systems. The narrator has constructed an elaborate cosmological framework for understanding decline. The boy has simply fallen asleep. Sometimes the deepest response to impermanence is not philosophy but unconsciousness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> Impermanence and Perspective</div>
+                <div class="card-body">
+                    <p>In "The Red Cliff, I," Su Shi argues that from one perspective nothing changes, from another everything does: "The one streams past so swiftly yet is never gone; the other for ever waxes and wanes yet finally has never grown nor diminished" (p. 382). How does this philosophical move console the grieving guest? Is it genuinely persuasive, or is it a rhetorical sleight of hand? Compare Su Shi's argument to Buddhist concepts of emptiness (sunyata) or to the Daoist notion that the sage accepts transformation without grief.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">二</span> Rhetoric of Remonstrance</div>
+                <div class="card-body">
+                    <p>Su Shi's letter to Emperor Shenzong risks his life to criticize the emperor's reforms. Compare the opening flattery (pp. 370&ndash;371) with the blunt policy analysis (pp. 372&ndash;376). What rhetorical strategies does Su Shi use to soften the blow while maintaining his critique? Why does he blame Wang Anshi rather than the emperor directly? How does this compare to the remonstrance tradition we have seen in earlier readings, such as Qu Yuan's relationship to the King of Chu?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">三</span> The Sleeping Boy</div>
+                <div class="card-body">
+                    <p>What is the function of the sleeping boy at the end of Ouyang Xiu's "Sound of Autumn" (p. 369)? The narrator has just completed an elaborate meditation on decline, consciousness, and the cosmological meaning of the season. The boy has slept through all of it. How does his unconsciousness comment on the narrator's philosophical anxiety? Is this ending comic, tragic, or something else entirely?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">四</span> Two Red Cliffs</div>
+                <div class="card-body">
+                    <p>Compare the endings of "The Red Cliff, I" and "The Red Cliff, II." The first ends with communal drinking until dawn, the anxiety resolved through philosophical dialogue. The second ends with a solitary crane, a dream, and a vanished Daoist priest. Why does Su Shi write two visits to the same place? What does the second fu accomplish that the first does not? Consider how the shift from autumn to winter, from community to solitude, and from argument to vision changes the nature of consolation.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">五</span> Hidden Virtue and Poetry</div>
+                <div class="card-body">
+                    <p>In Ouyang Xiu's preface (pp. 366&ndash;367), the priest Piyen has lived an unconventional life for thirty years and accumulated hundreds of poems in a bundle. Ouyang Xiu suggests that this irregular existence produced more genuine poetry than a conventional career would have. What is the relationship between life experience and literary value in this text? Does the argument hold for Su Shi, whose greatest works were written in exile rather than in power?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">六</span> Prose as Action</div>
+                <div class="card-body">
+                    <p>Birch claims that for Song literati "all belles lettres were merely a preparatory exercise" (p. 364). Test this claim against the five texts in this reading. Which of these pieces functions as political action (the letter)? Which as philosophical meditation (the fu)? Which as personal reflection (the preface)? Is the guwen movement's insistence on utility compatible with the literary beauty of Su Shi's Red Cliff prose poems, or do these pieces succeed precisely because they exceed their utilitarian mandate?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Birch, Cyril, ed. <em>Anthology of Chinese Literature</em> (Grove Press, 1965), pp. 364&ndash;383.</p>
+                <p>Translators: Cyril Birch (Ouyang Xiu preface), A. C. Graham ("Sound of Autumn"), J. K. Rideout ("Letter to Shenzong")</p>
+            </div>
+            <div class="source-card">
+                <h4>Biographical References</h4>
+                <a href="https://www.britannica.com/biography/Su-Shi" target="_blank">Britannica: Su Shi (Su Dongpo)</a>
+                <a href="https://www.britannica.com/biography/Ouyang-Xiu" target="_blank">Britannica: Ouyang Xiu</a>
+                <a href="https://www.britannica.com/biography/Wang-Anshi" target="_blank">Britannica: Wang Anshi</a>
+                <a href="https://www.newworldencyclopedia.org/entry/Ouyang_Xiu" target="_blank">New World Encyclopedia: Ouyang Xiu</a>
+            </div>
+            <div class="source-card">
+                <h4>Literary Context</h4>
+                <a href="https://www.britannica.com/art/guwen-Chinese-literature" target="_blank">Britannica: Guwen (Ancient Prose)</a>
+                <a href="https://afe.easia.columbia.edu/ps/china/sushi_redcliff.pdf" target="_blank">Columbia AFE: Su Shi, "The Red Cliff, Part I" (PDF)</a>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Originals</h4>
+                <a href="https://ctext.org/wiki.pl?if=en&chapter=971224" target="_blank">Chinese Text Project: 前赤壁賦 / 後赤壁賦</a>
+                <a href="https://fanti.dugushici.com/ancient_proses/47519" target="_blank">讀古詩詞網: 秋聲賦 (Ouyang Xiu)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+</html>
