@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daxue & Zhongyong: The Great Learning & The Doctrine of the Mean | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --ru: #2d7d7d;
+            --song: #2D5A7A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Section structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">大學 &middot; 中庸</span>
+            <span class="en">The Great Learning &amp; The Doctrine of the Mean</span>
+            <span class="meta">Confucian Canon &middot; c. 3rd century BCE</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block active" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#context">Context</a>
+        <a href="#daxue">Daxue</a>
+        <a href="#zhongyong">Zhongyong</a>
+        <a href="#concepts">Key Concepts</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> Overview</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">大學</span> The Great Learning <span class="meta">Daxue</span></div>
+                <div class="card-body">
+                    <p><em>The Great Learning</em> (Daxue 大學) is a beginner's handbook for ethical self-perfection and political transformation. It lays out a program of <strong>Three Guidelines</strong> and <strong>Eight Stages</strong> that connect personal moral cultivation to the ordering of the state and the world. It presents what Confucianism does best: a practical roadmap from inner virtue to social order.</p>
+                    <h4>Core Message</h4>
+                    <p>You already know how to be moral. All you need to learn is how to turn that knowledge into action. The text builds on the Mencian claim that all people share an innate moral sense, then provides a step-by-step training regimen to activate it.</p>
+                    <h4>Scale</h4>
+                    <p>Only about 1,750 Chinese characters. Short enough to memorize. Dense enough to spend a lifetime unpacking.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">中庸</span> The Doctrine of the Mean <span class="meta">Zhongyong</span></div>
+                <div class="card-body">
+                    <p><em>The Doctrine of the Mean</em> (Zhongyong 中庸) is significantly longer and more philosophically ambitious. Where the <em>Daxue</em> is a practical how-to manual, the <em>Zhongyong</em> builds toward a cosmic vision: the perfectly genuine person who forms a triad with heaven and earth.</p>
+                    <h4>Core Message</h4>
+                    <p>The title may mean "the central ordinary-practice" or "bring centered in ordinary practice." Morality is not esoteric. It is a characteristic feature of everyday spontaneity. Our ordinary experience is the raw substance of the Dao.</p>
+                    <h4>Scale</h4>
+                    <p>About 3,500 Chinese characters, divided by Zhu Xi into 33 chapters. Eno organizes it into seven sections plus a coda, tracing its argument from Confucius's quotes on the mean, through governance, to the cosmic power of perfect genuineness (<em>cheng</em> 誠).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historical Context -->
+    <section class="content-section alt" id="context">
+        <div class="section-label"><span class="chinese">背景</span> Historical Context</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">禮記</span> Origins in the Liji <span class="meta">Book of Rites</span></div>
+                <div class="card-body">
+                    <p>Both texts were originally anonymous chapters in the <em>Liji</em> 禮記 (Book of Rites), a sprawling anthology of texts about ritual assembled during the second century BCE. The <em>Daxue</em> was chapter 42; the <em>Zhongyong</em> was chapter 31. Neither was initially singled out for special note.</p>
+                    <h4>Traditional Authorship</h4>
+                    <p>Over time, the <em>Daxue</em> came to be attributed to <strong>Zengzi</strong> 曾參 (Zeng Shen, c. 505&ndash;436 BCE), a prominent junior disciple of Confucius. The <em>Zhongyong</em> was attributed to <strong>Zisi</strong> 子思 (c. 483&ndash;402 BCE), Confucius's grandson. Modern scholars generally view these attributions as later inventions devised to justify the texts' prestige.</p>
+                    <h4>Actual Dating</h4>
+                    <p>Both texts reflect the mature development of Confucian thought through the third century BCE. Internal evidence points to composition after the Qin unification (221 BCE): the <em>Daxue</em> quotes the "Oath of Qin" and celebrates radical renewal; the <em>Zhongyong</em> references standardized carts, writing, and conduct, all Qin-era policies.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">四書</span> Elevation to the Four Books <span class="meta">Song Dynasty</span></div>
+                <div class="card-body">
+                    <h4>Tang Dynasty Pioneers</h4>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">768&ndash;824 CE</div>
+                            <div class="event">Han Yu 韓愈 cites <em>The Great Learning</em> as an authoritative tradition</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">774&ndash;836 CE</div>
+                            <div class="event">Li Ao 李翱 writes on <em>The Doctrine of the Mean</em></div>
+                        </div>
+                    </div>
+                    <h4>Song Neo-Confucians</h4>
+                    <div class="mini-timeline">
+                        <div class="timeline-item">
+                            <div class="year">1032&ndash;1085</div>
+                            <div class="event">Cheng Hao 程顥 begins critical editing of both texts</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1033&ndash;1107</div>
+                            <div class="event">Cheng Yi 程頤 develops a theory of the <em>Daxue</em>'s internal logic</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">1130&ndash;1200</div>
+                            <div class="event">Zhu Xi 朱熹 combines both texts with the <em>Analects</em> and <em>Mencius</em> to create the "Four Books" (四書 <em>Sishu</em>)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="year">14th c.</div>
+                            <div class="event">Yuan Dynasty endorses Zhu Xi's editions as the basis of the civil service examinations. The Four Books become the gateway to office for the next 500 years.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Great Learning -->
+    <section class="content-section" id="daxue">
+        <div class="section-label"><span class="chinese">大學</span> The Great Learning</div>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">三綱領</span> The Three Guidelines <span class="meta">Section I.A</span></div>
+                <div class="card-body">
+                    <blockquote>"The Dao of Great Learning lies in making bright virtue brilliant; in making the people new; in coming to rest at the limit of the good."<cite>— Eno, p. 11</cite></blockquote>
+                    <p>These three phrases are cryptic on their own. The Commentary (Section II.A) fleshes them out through citations from authoritative texts: the <em>Book of Documents</em>, the <em>Book of Poetry</em>, and sayings of Confucius.</p>
+                    <div class="genre-grid">
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">明</span>
+                                <span class="genre-name">Making bright virtue brilliant</span>
+                            </div>
+                            <div class="genre-desc">Activating the innate moral brilliance endowed by Tian. "In all of these, brilliance was spontaneous."</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">新</span>
+                                <span class="genre-name">Making the people new</span>
+                            </div>
+                            <div class="genre-desc">"Truly new each day. New each and every day. Again, new each day." Constant moral renewal, drawn from the Basin Inscription of Tang (Shang founder).</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">止</span>
+                                <span class="genre-name">Coming to rest in the highest good</span>
+                            </div>
+                            <div class="genre-desc">Confucius asks: orioles know where to rest, "Can we believe that human beings are not so good as birds?"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">八條目</span> The Eight Stages <span class="meta">Section I.B</span></div>
+                <div class="card-body">
+                    <p>The Eight Stages describe the path from inner cultivation to world transformation. They are presented in a <em>sorites</em> (chain syllogism): "If A then B; if B then C..." Supremely well suited for memorization.</p>
+                    <div class="structure-list">
+                        <div class="structure-item">
+                            <div class="structure-num">一</div>
+                            <div class="structure-text">
+                                <div class="s-title">Aligning affairs (格物 <em>ge wu</em>)</div>
+                                <div class="s-desc">The most contested phrase in the text. Zhu Xi read it as "investigating things." Wang Yangming read it as "aligning the world through moral will." Eno's translation follows the latter.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">二</div>
+                            <div class="structure-text">
+                                <div class="s-title">Extending understanding (致知)</div>
+                                <div class="s-desc">Developing one's moral knowledge through engagement with affairs.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">三</div>
+                            <div class="structure-text">
+                                <div class="s-title">Making intentions genuine (誠意)</div>
+                                <div class="s-desc">Being without self-deceit. "The same as when we hate a bad odor or like a beautiful color" (Eno, p. 14).</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">四</div>
+                            <div class="structure-text">
+                                <div class="s-title">Balancing the mind (正心)</div>
+                                <div class="s-desc">When anger, fear, delight, or anxiety take hold, the mind loses balance. "When the mind is not focused one does not see what one is looking at."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">五</div>
+                            <div class="structure-text">
+                                <div class="s-title">Refining one's person (修身)</div>
+                                <div class="s-desc">Overcoming partiality. "It is rare to find in the world one who can love, but know the bad points of those he loves."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">六</div>
+                            <div class="structure-text">
+                                <div class="s-title">Aligning one's household (齊家)</div>
+                                <div class="s-desc">Family mastery as the foundation of public leadership. "There are none who cannot instruct their households but can instruct others."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">七</div>
+                            <div class="structure-text">
+                                <div class="s-title">Ordering the state (治國)</div>
+                                <div class="s-desc">The reciprocity principle applied to governance. "The Dao of the carpenter's square": do not impose on others what you detest.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">八</div>
+                            <div class="structure-text">
+                                <div class="s-title">Setting the world at peace (平天下)</div>
+                                <div class="s-desc">"A state does not take profit as profit; it takes righteousness as profit." Virtue, not wealth, is the root of political power.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-head"><span class="chinese">結構</span> Structure of the Text</div>
+                <div class="card-body">
+                    <p>Zhu Xi divided the <em>Daxue</em> into two parts: a brief <strong>"Text"</strong> (<em>jing</em> 經, literally "classic") followed by ten sections of <strong>"Commentary"</strong> (<em>zhuan</em> 傳). The "Text" (Sections I.A and I.B) introduces the Three Guidelines and Eight Stages using the <em>sorites</em> form. The brilliance of the work emerges in the Commentary, where each Stage receives a practical, often vivid interpretation.</p>
+                    <p>The commentary on Stages 1&ndash;2 is textually corrupt, with fragments and possible duplications. Stages 3&ndash;6 form the powerful core: concrete, psychologically acute, grounded in everyday experience. Stages 7&ndash;8 shift to political formulas and authoritative citations. Eno notes that the closing sections "lack the focus of the core sections of the text, and there are reasons to believe that the closing portions of the original text have been lost."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Doctrine of the Mean -->
+    <section class="content-section alt" id="zhongyong">
+        <div class="section-label"><span class="chinese">中庸</span> The Doctrine of the Mean</div>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">主題</span> Theme: The Source of the Center <span class="meta">Chapter 1</span></div>
+                <div class="card-body">
+                    <blockquote>"That which is ordained by Tian is called our nature; to lead by our nature is called the Dao; to cultivate the Dao is called the teaching."<cite>— Eno, p. 26</cite></blockquote>
+                    <p>The opening chapter links human morality to its cosmic source. Tian ordains our nature (<em>xing</em> 性), which provides direct knowledge of the Dao. Key terms introduced here: <strong>Tian</strong> 天 (the cosmic force), <strong>xing</strong> 性 (human nature), <strong>Dao</strong> 道 (the Way), <strong>junzi</strong> 君子 (the moral exemplar), and <strong>zhong</strong> 中 (centrality, the mean).</p>
+                    <blockquote>"Pleasure and anger, sorrow and joy: before they emerge they are called centered; emerging by the proper rhythms they are called harmonious. <em>Centered</em>: this is the great root of the world. <em>Harmonious</em>: this is the ultimate Dao of the world."<cite>— Eno, p. 26</cite></blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">結構</span> Structure of the Text <span class="meta">33 Chapters</span></div>
+                <div class="card-body">
+                    <p>Eno's translation organizes the <em>Zhongyong</em> into seven sections plus a coda, each marking a shift in topic and tone. The text builds from Confucius's sayings toward a cosmic crescendo.</p>
+                    <div class="structure-list">
+                        <div class="structure-item">
+                            <div class="structure-num">I</div>
+                            <div class="structure-text">
+                                <div class="s-title">Cleaving to the central mean</div>
+                                <div class="s-page">Chapters 2&ndash;11</div>
+                                <div class="s-desc">Quotes from Confucius on the difficulty of staying on the Dao. The obstacle is not knowing it, but persisting.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">II</div>
+                            <div class="structure-text">
+                                <div class="s-title">The common basis of the Dao</div>
+                                <div class="s-page">Chapters 12&ndash;16</div>
+                                <div class="s-desc">The Dao is present in ordinary practice, accessible to every person. "Any husband or wife may partake in knowledge of it."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">III</div>
+                            <div class="structure-text">
+                                <div class="s-title">Confucius on the sages and filial perfection</div>
+                                <div class="s-page">Chapters 17&ndash;19</div>
+                                <div class="s-desc">The sage kings Shun, King Wen, and King Wu are reframed as ultimate filial sons. Political greatness is an extension of family devotion.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">IV</div>
+                            <div class="structure-text">
+                                <div class="s-title">On government</div>
+                                <div class="s-page">Chapter 20 (a)&ndash;(b)</div>
+                                <div class="s-desc">Duke Ai asks about governance. Confucius outlines nine canons for ruling, rooted in self-refinement.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">V</div>
+                            <div class="structure-text">
+                                <div class="s-title">Perfect genuineness (<em>cheng</em> 誠)</div>
+                                <div class="s-page">Chapters 20 (c)&ndash;26</div>
+                                <div class="s-desc">The climax. "Perfect genuineness is the Dao of Tian. Making things perfectly genuine is the Dao of humankind." The sage who exhausts his nature can form a triad with heaven and earth.</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">VI</div>
+                            <div class="structure-text">
+                                <div class="s-title">Ruling by the Dao of Nature and <em>li</em></div>
+                                <div class="s-page">Chapters 27&ndash;29</div>
+                                <div class="s-desc">The sage's ritual innovations as expressions of the cosmic order. "How great is the Dao of the sage! Brimming, it nurtures the things of the world."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">VII</div>
+                            <div class="structure-text">
+                                <div class="s-title">The sage's power of virtue</div>
+                                <div class="s-page">Chapters 30&ndash;32</div>
+                                <div class="s-desc">"As arching vastness, as depthless springs." The sage as cosmic actor whose fame reaches "wherever boats or carts travel or human labor reaches."</div>
+                            </div>
+                        </div>
+                        <div class="structure-item">
+                            <div class="structure-num">終</div>
+                            <div class="structure-text">
+                                <div class="s-title">Coda: The invisibility of ultimate greatness</div>
+                                <div class="s-page">Chapter 33</div>
+                                <div class="s-desc">A poetic string of <em>Poetry</em> citations closing on silence. "The revolutions of heaven above / Possess neither sound nor smell." Virtue beyond perception.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Concepts -->
+    <section class="content-section" id="concepts">
+        <div class="section-label"><span class="chinese">術語</span> Key Concepts</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">誠</span> Genuineness (cheng) <span class="meta">Central to both texts</span></div>
+                <div class="card-body">
+                    <p><em>Cheng</em> 誠 is perhaps the central concept of the <em>Zhongyong</em>, and some scholars believe it is equally the pivot of the <em>Daxue</em>. It describes "a process of perfect inner correspondence": the alignment between our innate moral dispositions, our awareness of them, our judgments about affairs, and our expression of those judgments in action.</p>
+                    <blockquote>"Perfect genuineness is the Dao of Tian. Making things perfectly genuine is the Dao of humankind. One who is perfectly genuine hits the mark without effort, succeeds without forethought. To keep to the center of the Dao at perfect ease is to be a sage."<cite>— Eno, p. 34 (Zhongyong Ch. 20e)</cite></blockquote>
+                    <p>The person who achieves <em>cheng</em> responds to the world with spontaneous moral clarity, liking and disliking in perfect alignment with what is good. This became a foundational concept in Neo-Confucian thought from the eleventh century onward.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">天</span> Tian and Human Nature <span class="meta">Shared framework</span></div>
+                <div class="card-body">
+                    <h4>Tian 天</h4>
+                    <p>Tian was the high deity of Zhou state religion. In both texts it functions as the cosmic source that endows human beings with moral dispositions. "That which is ordained by Tian is called our nature." Tian is not quite a personal god here, nor quite an impersonal force. It is the origin of our moral capacity and the standard against which the sage is measured.</p>
+                    <h4>Xing 性 (Human Nature)</h4>
+                    <p>Both texts adopt the Mencian position that human nature is innately endowed with moral dispositions and is thus the seat of goodness. This is axiomatic, not argued. The <em>Daxue</em> builds its training program on this assumption; the <em>Zhongyong</em> traces its cosmic implications.</p>
+                    <h4>Junzi 君子</h4>
+                    <p>Originally "ruler's son" or "prince," the term came to denote an ideal of human moral excellence. In these texts, the <em>junzi</em> can serve as an equivalent for "sage." Both texts stress that the <em>junzi</em> is "cautious of his solitude" (<em>shen qi du</em> 慎其獨), a phrase also found in the <em>Wuxing</em> (Five Forms of Conduct).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-themes" style="margin-top: 0.75rem;">
+            <h4>Connections to Other Course Readings</h4>
+            <ul>
+                <li><strong>Analects:</strong> Both texts quote Confucius extensively. The <em>Zhongyong</em> Ch. 13 echoes <em>Analects</em> 4.15 (devotion and reciprocity) and 15.24 (the Golden Rule).</li>
+                <li><strong>Mencius:</strong> The Mencian theory of innate goodness is the foundation of both texts. <em>Zhongyong</em> Ch. 20(d)&ndash;(e) closely parallels <em>Mencius</em> 4A.12.</li>
+                <li><strong>Xunzi:</strong> The <em>Zhongyong</em> draws on Xunzian themes too, particularly the cosmic triad of heaven, earth, and humanity, and the role of ritual (<em>li</em>) in Sections VI&ndash;VII.</li>
+                <li><strong>Zhuangzi:</strong> Eno notes a "significant area of convergence" between the Daoist <em>Zhuangzi</em> and the <em>Zhongyong</em> on the topic of ordinary practice and union with the creative flow of Nature.</li>
+                <li><strong>Laozi:</strong> The phrase "taking no action" (<em>wuwei</em>) appears in <em>Zhongyong</em> Ch. 26, a targeted co-optation of Daoist language.</li>
+                <li><strong>Neo-Confucianism:</strong> Zhu Xi's elevation of these texts into the Four Books made them the foundation of Chinese education for centuries. Compare the <a href="li-pattern.html">Li (Pattern)</a> lesson on Neo-Confucian metaphysics.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Key Passages -->
+    <section class="content-section alt" id="passages">
+        <div class="section-label"><span class="chinese">名句</span> Key Passages</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">大學</span> From the Daxue</div>
+                <div class="card-body">
+                    <h4>The Chain Syllogism (I.B)</h4>
+                    <blockquote>"In ancient times, those who wished to make bright virtue brilliant in the world first ordered their states; those who wished to order their states first aligned their households; those who wished to align their households first refined their persons; those who wished to refine their persons first balanced their minds..."<cite>— Eno, p. 11</cite></blockquote>
+
+                    <h4>On Self-Deception (II.B.3)</h4>
+                    <blockquote>"Making the intentions perfectly genuine means being without self-deceit. It is the same as when we hate a bad odor or like a beautiful color. It describes a process of perfect inner correspondence."<cite>— Eno, p. 14</cite></blockquote>
+
+                    <h4>On Partiality (II.B.5)</h4>
+                    <blockquote>"When people come to those for whom they hold kinlike affection they are partial. When they come to those whom they view as base and evil they are partial... Thus it is rare to find in the world one who can love, but know the bad points of those he loves, hate, but know the good points of those he hates."<cite>— Eno, p. 15</cite></blockquote>
+
+                    <h4>Righteousness Over Profit (II.B.7&ndash;8)</h4>
+                    <blockquote>"If one has virtue, one has men. If one has men, one has land. If one has land, one has goods... Virtue is the root, goods are the branches."<cite>— Eno, p. 18</cite></blockquote>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">中庸</span> From the Zhongyong</div>
+                <div class="card-body">
+                    <h4>Cleaving to the Mean (Ch. 9)</h4>
+                    <blockquote>"One may level all the states of the world, decline high rank and salary, tread upon naked blades, and yet be unable to cleave to the mean in ordinary practice."<cite>— Eno, p. 27</cite></blockquote>
+
+                    <h4>The Dao in Ordinary Life (Ch. 12)</h4>
+                    <blockquote>"The Dao of the <em>junzi</em> is broad yet hidden. Any husband or wife may partake in knowledge of it, yet reaching to its ultimate nature, there is that which even the sage does not know of it."<cite>— Eno, p. 28</cite></blockquote>
+
+                    <h4>Exhausting One's Nature (Ch. 22)</h4>
+                    <blockquote>"Only those in the world who are perfectly genuine to the utmost can exhaust their natures. Those who can exhaust their natures can exhaust others' natures. Those who can exhaust others' natures can exhaust the natures of things. Those who can exhaust the natures of things can participate in the nurturing transformations of Tian. Those who can participate in the nurturing transformations of Tian can form a triad with heaven and earth."<cite>— Eno, p. 34</cite></blockquote>
+
+                    <h4>The Invisibility of Virtue (Ch. 33, Coda)</h4>
+                    <blockquote>"The Dao of the <em>junzi</em> is hidden dark and grows brighter every day. The Dao of the small man strikes the eye but fades every day... Virtue light as a hair. Yet there remain things comparable to a hair. The revolutions of heaven above / Possess neither sound nor smell. That is the ultimate!"<cite>— Eno, pp. 39&ndash;40</cite></blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion Questions -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> Discussion Questions</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> Self-Cultivation and Politics</div>
+                <div class="card-body">
+                    <p>The <em>Daxue</em>'s Eight Stages link personal moral refinement directly to ordering the state and setting the world at peace. Is this chain plausible? Where might it break? Consider the Commentary on Stage 5 ("Refining one's person"), which focuses on overcoming bias. Is overcoming personal bias really the key to political competence?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">二</span> Genuineness vs. Effort</div>
+                <div class="card-body">
+                    <p>The <em>Zhongyong</em> says: "One who is perfectly genuine hits the mark without effort, succeeds without forethought" (Ch. 20e). But it also says: "When others can do one, demand that you do one hundred; when others can do ten, demand that you do one thousand" (Ch. 20f). How do these reconcile? Is <em>cheng</em> a natural state or the product of grinding effort?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">三</span> The Ordinary and the Cosmic</div>
+                <div class="card-body">
+                    <p>The <em>Zhongyong</em> starts with common morality ("any husband or wife may partake") and ends with the sage as a cosmic force equal to heaven and earth. Trace the argument through Sections II and V. How does the text get from everyday practice to cosmic co-creation? Is this a leap or a logical progression?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">四</span> The Daxue as Self-Help</div>
+                <div class="card-body">
+                    <p>Eno calls the <em>Daxue</em> "a self-help manual for the aspiring ethical actor." Its Commentary on Stage 3 uses the examples of hating a bad smell and loving a beautiful color to explain "making intentions genuine." Compare this to the Mencian sprouts of virtue (<em>Mencius</em> 2A.6). Is the <em>Daxue</em> making a psychological claim about moral intuition, or a prescriptive claim about what we should do?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">五</span> <em>Ge wu</em> 格物: The Great Debate</div>
+                <div class="card-body">
+                    <p>The phrase <em>ge wu</em> (Stage 1) has been translated as "investigating things" (Zhu Xi) and "aligning affairs" (Eno, following Wang Yangming). Zhu Xi's reading launched a tradition of empirical inquiry: study everything to grasp the principles of the cosmos. Wang Yangming countered that moral knowledge is innate and the phrase means perfecting your moral will through action. What are the practical consequences of each reading? Which produces a more viable path of self-cultivation?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Robert Eno, <em>The Great Learning and The Doctrine of the Mean: An Online Teaching Translation</em> (2016)</p>
+                <a href="http://hdl.handle.net/2022/23422" target="_blank">Open Access Translation (Indiana University)</a>
+            </div>
+            <div class="source-card">
+                <h4>Chinese Originals</h4>
+                <a href="https://ctext.org/liji/da-xue" target="_blank">Daxue 大學 (Chinese Text Project)</a>
+                <a href="https://ctext.org/liji/zhong-yong" target="_blank">Zhongyong 中庸 (Chinese Text Project)</a>
+            </div>
+            <div class="source-card">
+                <h4>Philosophical Context</h4>
+                <a href="https://plato.stanford.edu/entries/confucius/" target="_blank">SEP: Confucius</a>
+                <a href="https://plato.stanford.edu/entries/mencius/" target="_blank">SEP: Mencius</a>
+                <a href="https://plato.stanford.edu/entries/zhu-xi/" target="_blank">SEP: Zhu Xi</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Lesson Pages</h4>
+                <a href="kongzi.html">Kongzi 孔子</a>
+                <a href="mengzi.html">Mengzi 孟子</a>
+                <a href="xunzi.html">Xunzi 荀子</a>
+                <a href="li-pattern.html">Neo-Confucianism: Li (Pattern)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
