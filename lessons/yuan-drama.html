@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Yuan Plays: Zaju Drama | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --yuan: #6D5B2E;
+            --yuan-light: #8B7640;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">元雜劇</span>
+            <span class="en">Two Yuan Plays</span>
+            <span class="meta">Birch, pp. 391&ndash;411 &middot; Yuan Dynasty</span>
+        </div>
+    </header>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#form">The Zaju Form</a>
+        <a href="#li-kuei">Li Kui Carries Thorns</a>
+        <a href="#act-by-act">Act by Act</a>
+        <a href="#themes">Themes</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概述</span> Overview</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">元</span> Yuan Dynasty Drama <span class="meta">1271&ndash;1368</span></div>
+                <div class="card-body">
+                    <p>Yuan (元) was the dynastic title taken by the Mongols, who ruled China for about a century. Their regime inflicted a severe shock on the established pattern of life of the scholar-official. With the civil service examination system suspended for long periods, educated men found themselves cut off from their traditional path to status and power.</p>
+                    <p>The most notable repercussion in the world of letters was the emergence of more popular modes of writing. Of stage entertainment, only rudimentary kinds seem to have survived from earlier generations. But with the Yuan, a particular style of drama called the zaju (雜劇, tsa-ch&uuml; in Birch) came to its full flowering and for the first time engaged the talents of leading writers.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">戲</span> Two Contrasting Plays <span class="meta">pp. 391&ndash;392</span></div>
+                <div class="card-body">
+                    <p>Birch pairs two Yuan plays that could not be more different. <strong>Autumn in the Palace of Han</strong> (漢宮秋) by Ma Zhiyuan (Ma Chih-y&uuml;an) is a tragedy, justly famed for its closing scenes of autumnal loneliness as an emperor mourns a lost consort. It is lyrical, melancholic, and stately.</p>
+                    <p><strong>Li Kui Carries Thorns</strong> (李逵負荊, Li K'uei fu ching in Birch) by Kang Jinzhi (K'ang Chin-chih, fl. 1279) provides a complete contrast. Drawn from the <em>Water Margin</em> (Shuihu zhuan 水滸傳) bandit cycle, it recaptures the lusty comedy of the original: slapstick, verbal wit, and the incongruities arising from a bloodthirsty outlaw assuming the role of moral enforcer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Zaju Form -->
+    <section class="content-section alt" id="form">
+        <div class="section-label"><span class="chinese">雜劇</span> The Zaju Form</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">曲</span> Structure and Song</div>
+                <div class="card-body">
+                    <p>The Yuan zaju has a distinctive structure. Properly, only one character has a singing role (Li Kui in this play, the emperor in <em>Autumn in the Palace of Han</em>). This marks an evolution from the Song-period "recitation" of songs interspersed with prose narrative sections.</p>
+                    <h4>Musical Architecture</h4>
+                    <p>Each act consists of a sequence of song patterns (arias) set to a given key. The sections for singing carry a kind of poetry that traces its ancestry back to the ci (詞) form, via the longer and looser sanqu (散曲) song form. Dialogue is largely functional, bearing forward the action and establishing dramatic situations. The real poetry lives in the arias, where moods are painted, word-pictures defined, and the inner feelings of the central figure vividly expressed.</p>
+                    <h4>Verse Types</h4>
+                    <ul>
+                        <li><strong>Arias (sung):</strong> The poetic heart of the play. Only the lead role sings them. Set to specific tune patterns within each act's musical key.</li>
+                        <li><strong>Recited verse:</strong> Regular-metre verses spoken by various characters. Translator J.I. Crump rhymes these spoken verses for deliberate doggerel effect.</li>
+                        <li><strong>Soliloquies:</strong> Characters identify themselves on each appearance, recapping the action for the audience.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">體</span> Genre Connections</div>
+                <div class="card-body">
+                    <div class="genre-grid">
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">詞</span>
+                                <span class="genre-name">Ci</span>
+                            </div>
+                            <div class="genre-desc">Song lyrics from the Tang and Song, written to existing musical patterns. The distant ancestor of zaju arias.</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">散曲</span>
+                                <span class="genre-name">Sanqu</span>
+                            </div>
+                            <div class="genre-desc">The "looser song form" that bridges ci and zaju. Longer, freer in diction, using colloquial language and humor.</div>
+                        </div>
+                        <div class="genre-item">
+                            <div class="genre-header">
+                                <span class="genre-ch">雜劇</span>
+                                <span class="genre-name">Zaju</span>
+                            </div>
+                            <div class="genre-desc">The full dramatic form: arias + dialogue + stage action. Typically four acts, one singing role, song sequences in a given key per act.</div>
+                        </div>
+                    </div>
+                    <h4>Why Yuan?</h4>
+                    <p>The Mongol conquest disrupted the examination system that had channeled literati ambition for centuries. With the traditional path to office closed, educated writers turned their talents to popular entertainment. The result was an explosion of dramatic writing that brought literary sophistication to a form previously considered beneath serious attention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Li Kui Carries Thorns -->
+    <section class="content-section" id="li-kuei">
+        <div class="section-label"><span class="chinese">李逵負荊</span> Li Kui Carries Thorns</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">康</span> Kang Jinzhi (fl. 1279) <span class="meta">pp. 393&ndash;411</span></div>
+                <div class="card-body">
+                    <p>Kang Jinzhi (康進之, K'ang Chin-chih in Birch) is known almost exclusively through this play. It belongs to a large cycle of plays built on incidents from the legends about Song Jiang (宋江, Sung Chiang in Birch) and his twelfth-century bandit brotherhood, legends that eventually took form as the novel <em>Water Margin</em> (Shuihu zhuan 水滸傳).</p>
+                    <p>This play about Li Kui is the only surviving piece that tallies exactly with incidents in the novel itself. Crump's translation captures the lusty comedy of the original: the fun of slapstick, the play of verbal wit, and the incongruities of a bloodthirsty knight-errant who also styles himself a champion of justice.</p>
+                    <h4>Translator</h4>
+                    <p>J.I. Crump. Like Donald Keene, Crump bases his translation of the arias on blank verse and rhymes the spoken verses for a deliberate doggerel effect, distinguishing the two registers.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">人物</span> Characters</div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Li Kui 李逵</strong> (Li K'uei): Called "the Black Whirlwind" (黑旋風) for his dark skin and violent temperament. The sole singing role. A bandit with a terrifying reputation who turns out to have a rough moral compass.</li>
+                        <li><strong>Song Jiang 宋江</strong> (Sung Chiang): "Herald of Justice," leader of the Liangshan (梁山) bandits. Also known as Song Gongming (宋公明). A former clerk turned outlaw chieftain.</li>
+                        <li><strong>Lu Zhishen 魯智深</strong> (Lu Chih-shen): A Buddhist monk-turned-bandit. Li Kui mocks him relentlessly as "Gay Monk" and "Tripitaka."</li>
+                        <li><strong>Wu Xuejiu 吳學究</strong> (Wu Hs&uuml;eh-chiu): "The Schoolteacher." An advisor in Song Jiang's band.</li>
+                        <li><strong>Wang Lin 王林</strong>: An elderly wine-shop owner in Xinghua Village (杏花村, Hsing-hua Village). His eighteen-year-old daughter Mantang Qiao (滿堂嬌, Man-t'ang Ch'iao) is kidnapped.</li>
+                        <li><strong>Song Kang / Lu Zhien</strong> (Sung Kang / Lu Chih-en): Two impostors who impersonate Song Jiang and Lu Zhishen to kidnap Wang Lin's daughter.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Act by Act -->
+    <section class="content-section alt" id="act-by-act">
+        <div class="section-label"><span class="chinese">折</span> Act by Act</div>
+        <div class="structure-list">
+            <div class="structure-item">
+                <div class="structure-num">一</div>
+                <div class="structure-text">
+                    <div class="s-title">The Setup: Impostors at the Wine Shop</div>
+                    <div class="s-desc">Song Jiang gives his men three days' leave for Qingming (清明) festival. Two imposters, Song Kang and Lu Zhien, arrive at old Wang Lin's wine shop posing as "Sung Chiang" and "Lu Chih-shen." They trick Wang Lin into presenting his daughter Mantang Qiao to serve wine, then declare the cups were a betrothal and the red sash a wedding gift. They carry the girl off to the mountain.</div>
+                    <div class="s-page">pp. 393&ndash;396</div>
+                </div>
+            </div>
+            <div class="structure-item">
+                <div class="structure-num">二</div>
+                <div class="structure-text">
+                    <div class="s-title">Li Kui's Discovery and the Wager</div>
+                    <div class="s-desc">Li Kui arrives drunk at the wine shop, demands wine, and gradually draws out Wang Lin's story. Enraged that his leader Song Jiang has apparently kidnapped a girl, Li Kui storms to the mountain fortress, confronts Song Jiang with the red sash as proof, and nearly chops down the yellow banner. Song Jiang proposes a wager: if Li Kui is wrong, he loses his head; if right, Song Jiang forfeits his.</div>
+                    <div class="s-page">pp. 396&ndash;407</div>
+                </div>
+            </div>
+            <div class="structure-item">
+                <div class="structure-num">三</div>
+                <div class="structure-text">
+                    <div class="s-title">Confrontation at Xinghua Village</div>
+                    <div class="s-desc">Wang Lin weeps, waiting for news. Song Jiang, Lu Zhishen, and Li Kui arrive together. Song Jiang instructs the group to let Wang Lin identify the culprits himself. Li Kui calls Wang Lin out, claiming to have brought his daughter back. Wang Lin opens the door, embraces Li Kui in the dark, and cries "My Man-t'ang Ch'iao!" before realizing his mistake.</div>
+                    <div class="s-page">pp. 408&ndash;410</div>
+                </div>
+            </div>
+            <div class="structure-item">
+                <div class="structure-num">四</div>
+                <div class="structure-text">
+                    <div class="s-title">Resolution</div>
+                    <div class="s-desc">Wang Lin identifies Song Jiang and Lu Zhishen as NOT the men who took his daughter. Li Kui realizes his error: impostors used the bandits' names. Ashamed, Li Kui "carries thorns" (負荊) on his back as a traditional gesture of contrition, echoing the famous story of Lian Po apologizing to Lin Xiangru. The real villains are caught and the girl restored.</div>
+                    <div class="s-page">pp. 410&ndash;411</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes -->
+    <section class="content-section" id="themes">
+        <div class="section-label"><span class="chinese">主題</span> Key Themes</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">義</span> Righteousness and Brotherhood</div>
+                <div class="card-body">
+                    <p>The play's central tension is between loyalty to one's sworn brothers and a sense of justice for the common people. Li Kui is willing to destroy Song Jiang over the kidnapping because he believes bandits should protect, not prey upon, ordinary people. The wager of heads makes the stakes as high as they can go.</p>
+                    <blockquote>"Taking your pleasure you have done a grievous wrong. / I swear, though spilt water is water lost, yet I'll / Have reasons from you, not rubbish."<cite>— Li K'uei, p. 401</cite></blockquote>
+                    <p>Li Kui's fury is genuine. He stakes his own life on the accusation. This is not mere posturing; the Liangshan brotherhood depends on the principle that its leaders answer to a moral code. When that code appears violated, the whole enterprise is threatened.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">笑</span> Comedy and the Outlaw Figure</div>
+                <div class="card-body">
+                    <p>The humor comes from incongruity. Li Kui, the "Black Whirlwind," is a man whose solution to every problem is his broad-axe. Yet here he plays moral detective, marriage counselor, and champion of a weeping old wine-seller. His threats of violence are absurdly disproportionate to the situation.</p>
+                    <blockquote>"Who says we have no scenery at Liang-shan P'o? ... I'll knock his teeth out!"<cite>— Li K'uei, p. 397</cite></blockquote>
+                    <p>The play also generates comedy from mistaken identity at multiple levels: the impostors impersonate the bandits; Li Kui impersonates a righteous judge; and in the climactic scene, Wang Lin mistakes Li Kui for his daughter in the dark. Each layer of misrecognition deepens the comedy while advancing the plot toward its resolution.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head"><span class="chinese">歌</span> Arias as Inner Monologue</div>
+                <div class="card-body">
+                    <p>In the zaju form, arias carry the emotional weight. Birch's introduction notes that dialogue bears forward the action, "but it is largely functional in the service of the poetry of the arias. In these, word-pictures are painted, moods defined and the inner feelings of the central figure vividly expressed" (p. 391).</p>
+                    <p>Li Kui's arias in Act II are the play's emotional peak. When he describes old Wang Lin's grief to Song Jiang, the singing shifts from comic bluster to something unexpectedly tender:</p>
+                    <blockquote>"Sometimes the old man weakly weeps in his thatched shop... / He looks toward our mountain, crying his hatred for Sung Chiang, / Then whimpers with wrath outside his wicker door, / Crying, 'Oh, Man-t'ang Ch'iao;' / And sighingly sobs his suffering."<cite>— Li K'uei, p. 405</cite></blockquote>
+                    <p>Li Kui channels Wang Lin's pain through song, giving the old man an emotional voice the prose dialogue alone could not provide. The aria form transforms a crude outlaw into an empathetic narrator.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">負荊</span> Carrying Thorns</div>
+                <div class="card-body">
+                    <p>The title refers to the ancient gesture of penitence: carrying thorny branches on one's bare back to show contrition. The allusion is to the <em>Shiji</em> story of the Warring States general Lian Po (廉頗), who carried thorns to apologize to the minister Lin Xiangru (藺相如) after realizing that Lin's apparent cowardice was actually self-restraint for the good of the state.</p>
+                    <p>Li Kui's version of this ritual is both sincere and comic. The same man who moments earlier threatened to split Song Jiang's skull with a broad-axe now humbles himself completely. The gesture works precisely because it comes from someone so violent: the greater the pride, the more meaningful the apology.</p>
+                    <h4>The Pattern</h4>
+                    <p>The play follows a three-beat rhythm found throughout Chinese narrative: accusation (Act II), investigation (Act III), and reconciliation (Act IV). Li Kui moves from righteous anger to humiliation to penitence. The comedy depends on each stage being taken to its extreme.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussion -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> Discussion Questions</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head">1</div>
+                <div class="card-body">
+                    <p>Li Kui stakes his own head on the accusation against Song Jiang (p. 406). What does this wager reveal about the moral economy of the Liangshan brotherhood? Is there a difference between the loyalty the bandits owe each other and the justice they owe to commoners like Wang Lin?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">2</div>
+                <div class="card-body">
+                    <p>Birch notes that the arias are the poetic heart of the zaju, while dialogue is "largely functional" (p. 391). Compare Li Kui's spoken threats with his sung descriptions of Wang Lin's grief (p. 405). How does the shift between speaking and singing change our sense of Li Kui's character?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">3</div>
+                <div class="card-body">
+                    <p>The play's title alludes to Lian Po's famous apology from the <em>Shiji</em>. But Lian Po was a general humbling himself before a statesman. Li Kui is an outlaw humbling himself before another outlaw. How does the context of the bandit world transform the meaning of this classical allusion?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Birch, Cyril (ed.), <em>Anthology of Chinese Literature</em> (Grove Press, 1965), pp. 391&ndash;411. "Li K'uei Carries Thorns" trans. J.I. Crump.</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference</h4>
+                <a href="https://www.britannica.com/art/zaju" target="_blank" rel="noopener">Britannica: Zaju (Yuan Drama Form)</a>
+                <a href="https://www.britannica.com/topic/Water-Margin" target="_blank" rel="noopener">Britannica: Water Margin</a>
+                <a href="https://www.britannica.com/biography/Ma-Zhiyuan" target="_blank" rel="noopener">Britannica: Ma Zhiyuan</a>
+                <a href="https://www.newworldencyclopedia.org/entry/Water_Margin" target="_blank" rel="noopener">New World Encyclopedia: Water Margin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
