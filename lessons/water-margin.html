@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuihu zhuan: Men of the Marshes | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --yuan: #6D5B2E;
+            --marsh: #3a5a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Verse Portrait */
+        .verse-portrait {
+            background: #f8f6f0;
+            border-left: 3px solid var(--yuan);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.8;
+        }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--gold); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Structure list */
+        .structure-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .structure-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .structure-num {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            min-width: 1.5rem;
+            line-height: 1.3;
+        }
+        .structure-text .s-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.1rem;
+        }
+        .structure-text .s-desc {
+            font-size: 0.73rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+        .structure-text .s-page {
+            font-size: 0.65rem;
+            color: var(--ink-faint);
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Micro Timeline Strip */
+        .dynasty-strip-compact{display:flex;align-items:stretch;border-radius:4px;overflow:hidden;height:32px;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin:0}
+        .dynasty-strip-compact .d-block{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.8);font-size:0.5rem;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;border-right:1px solid rgba(255,255,255,0.15);transition:filter 0.15s}
+        .dynasty-strip-compact .d-block:last-child{border-right:none}
+        .dynasty-strip-compact .d-block:hover{filter:brightness(1.3)!important;color:#fff!important;opacity:1!important}
+        .dynasty-strip-compact .d-block[data-d="zhou"]{background:#7A6B50;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="warring"]{background:#5C4A2E;flex:2}
+        .dynasty-strip-compact .d-block[data-d="qin"]{background:#8B3A3A;flex:0.7}
+        .dynasty-strip-compact .d-block[data-d="han"]{background:#4A6741;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="six-dyn"]{background:#5B7080;flex:1.5}
+        .dynasty-strip-compact .d-block[data-d="tang"]{background:#A03030;flex:1.4}
+        .dynasty-strip-compact .d-block[data-d="song"]{background:#2D5A7A;flex:1.2}
+        .dynasty-strip-compact .d-block[data-d="yuan"]{background:#6D5B2E;flex:0.8}
+        .dynasty-strip-compact .d-block.active{box-shadow:inset 0 -3px 0 #daa520;color:#fff;font-weight:700}
+        .dynasty-strip-compact .d-block.dimmed{filter:brightness(0.55);opacity:0.6}
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .structure-list { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">水滸傳</span>
+            <span class="en">Men of the Marshes</span>
+            <span class="meta">Shi Nai'an &amp; Luo Guanzhong &middot; Birch, pp. 449&ndash;468</span>
+        </div>
+    </header>
+
+    <div class="dynasty-strip-compact">
+        <a href="timeline.html" class="d-block dimmed" data-d="zhou">Zhou</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="warring">Warring States</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="qin">Qin</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="han">Han</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="six-dyn">Six Dyn.</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="tang">Tang</a>
+        <a href="timeline.html" class="d-block dimmed" data-d="song">Song</a>
+        <a href="timeline.html" class="d-block active" data-d="yuan">Yuan</a>
+    </div>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#plot">The Plot</a>
+        <a href="#characters">Characters</a>
+        <a href="#themes">Themes</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="content-section" id="overview">
+        <div class="section-label"><span class="chinese">概覽</span> OVERVIEW</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">水滸傳</span> The Novel <span class="meta">c. 1368</span></div>
+                <div class="card-body">
+                    <h4>What Is It?</h4>
+                    <p><em>Shuihu zhuan</em> (水滸傳), known in English as <em>Water Margin</em>, <em>Outlaws of the Marsh</em>, or Pearl S. Buck's <em>All Men Are Brothers</em>, is <a href="https://www.britannica.com/topic/Water-Margin" target="_blank">one of the Four Great Classical Novels of Chinese literature</a>. It tells the story of 108 outlaws who gather at Mount Liang (梁山, Liangshan) in the marshlands of Shandong, driven outside the law by government corruption.</p>
+                    <h4>Origins</h4>
+                    <p>The novel took shape around 1368, during the transition from the Yuan to the Ming dynasty. It drew on two centuries of oral storytelling about the historical bandit <a href="https://www.newworldencyclopedia.org/entry/Water_Margin" target="_blank">Song Jiang (宋江) and his thirty-six companions</a>, who operated in the Huai River region around 1119 CE. Storytellers expanded the band to 108, added elaborate backstories, and wove in themes of loyalty, corruption, and rebellion.</p>
+                    <h4>Authorship</h4>
+                    <p>Birch names two putative authors: Shi Nai'an (施耐庵, Shih Nai-an in Birch) and Luo Guanzhong (羅貫中, Lo Kuan-chung in Birch), though as Britannica notes, the text is so complex that "its authors cannot be identified" with certainty. The extract comes from chapters 14 to 16 of the 120-chapter version.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">好漢</span> The World of the Novel</div>
+                <div class="card-body">
+                    <h4>Haohan: Men Outside the Law</h4>
+                    <p>The heroes of <em>Shuihu zhuan</em> are <em>haohan</em> (好漢), a term Birch translates as "bravos." They range from sneak-thieves to murderers, but the novel presents them as men of goodwill and generous heart, driven outside the law by the injustices of those in power.</p>
+                    <blockquote>
+                        "These, from sneak-thieves to murderers, are presented as men of goodwill and generous heart driven outside the law by the injustices of the men in power over the land."
+                        <cite>Birch, p. 449</cite>
+                    </blockquote>
+                    <h4>First Full Chinese Novel</h4>
+                    <p>Birch's introduction makes a strong claim for the novel's place in literary history. Though it was often dismissed for its "vulgar" colloquial language and "dangerous" message, modern Chinese scholars recognize it as the first full masterpiece in the tradition that would eventually produce <em>Dream of the Red Chamber</em> and <em>Journey to the West</em>.</p>
+                    <blockquote>
+                        "Chinese scholars of modern times have recognized in it the first full masterpiece in that long line of novels which began with mass entertainment and progressed to include some of the finest literary products of later ages."
+                        <cite>Birch, p. 450</cite>
+                    </blockquote>
+                    <h4>The Extract</h4>
+                    <p>Our reading covers "The Plot Against the Birthday Convoy" (chapters XIV&ndash;XVI): a conspiracy to intercept a corrupt governor's birthday tribute. It introduces seven men who will become key figures at Liangshan, and showcases the novel's vivid dialogue, verse character portraits, and episodic storytelling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Plot -->
+    <section class="content-section alt" id="plot">
+        <div class="section-label"><span class="chinese">情節</span> THE PLOT AGAINST THE BIRTHDAY CONVOY</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">密謀</span> The Conspiracy Takes Shape <span class="meta">pp. 451&ndash;453</span></div>
+                <div class="card-body">
+                    <h4>The Intelligence</h4>
+                    <p>The extract opens at the home of Chao Gai (晁蓋, Ch'ao Kai in Birch), the "Pagoda-lifting God," a village alderman in East Creek Village. Liu Tang (劉唐), a bravo of river and lake, has been seized by local runners while carrying intelligence: Governor Liang of Daming (大名) is sending a fortune in gold, jewels, and a hundred thousand strings of cash to the eastern capital as a birthday present for his father-in-law, Grand Tutor Cai Jing (蔡京, Ts'ai Ching in Birch).</p>
+                    <h4>The Strategist Arrives</h4>
+                    <p>Wu Yong (吳用, Wu Yung in Birch), known as "Schoolmaster Wu" and later the "Star of Wisdom," devises the plan. He sees the problem immediately: three men are not enough, and too many would be unmanageable. They need exactly seven or eight, to match the seven stars of the Big Dipper that Chao Gai dreamed descended onto his roof.</p>
+                    <h4>Wu Yong's Mission</h4>
+                    <p>Wu Yong volunteers to recruit the three Ruan (阮, Juan in Birch) brothers, fishermen living by Liangshan Marsh in Stone Tablet Village. He sets out on foot, arriving by midday to find a landscape of emerald hills, mulberry groves, and fishing skiffs in the willows' shade.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">計策</span> The Recruitment <span class="meta">pp. 453&ndash;468</span></div>
+                <div class="card-body">
+                    <h4>The Ruan Brothers</h4>
+                    <p>Wu Yong's recruitment of the three brothers is one of the novel's great manipulation scenes. He arrives with a cover story about needing large fish for a banquet, but his real purpose is to sound out the brothers' willingness for a dangerous job. Over wine and freshly caught fish, he gradually steers the conversation toward the bandits who control Liangshan Marsh and the brothers' grievances against them.</p>
+                    <h4>The Reveal</h4>
+                    <p>Wu Yong doesn't rush. He waits until the brothers have expressed their frustrations, their envy of the bandits' wealth, and their willingness to risk everything for one day of riches. Only then does he reveal the real scheme: intercepting the birthday convoy. The brothers swear an oath and join.</p>
+                    <blockquote>
+                        "Books, not riches, are Schoolmaster Wu's concern,<br>
+                        But the brothers Juan have forgotten the joys of fishing!<br>
+                        Why now this gathering of the brave and true?<br>
+                        &mdash;To take a treasure gotten through injustice!"
+                        <cite>p. 464</cite>
+                    </blockquote>
+                    <h4>The Seventh Man</h4>
+                    <p>Back at Chao Gai's estate, the six conspirators are feasting when a Taoist master, Gongsun Sheng (公孫勝, Kung-sun Sheng in Birch), the "Clear-through Master" or "Cloud-soaring Dragon," arrives independently with the same intelligence and the same plan. He too wishes to seize the birthday convoy. Wu Yong, overhearing from the next room, bursts in to make introductions. The seven are assembled.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="structure-list" style="margin-top: 0.75rem;">
+            <div class="structure-item">
+                <span class="structure-num">一</span>
+                <div class="structure-text">
+                    <div class="s-title">The Setup</div>
+                    <div class="s-desc">Liu Tang brings intelligence about the birthday convoy. Wu Yong devises a plan requiring seven men.</div>
+                    <div class="s-page">pp. 451&ndash;453</div>
+                </div>
+            </div>
+            <div class="structure-item">
+                <span class="structure-num">二</span>
+                <div class="structure-text">
+                    <div class="s-title">The Journey</div>
+                    <div class="s-desc">Wu Yong travels to Stone Tablet Village to recruit the Ruan brothers. Landscape poetry marks the transition.</div>
+                    <div class="s-page">pp. 453&ndash;454</div>
+                </div>
+            </div>
+            <div class="structure-item">
+                <span class="structure-num">三</span>
+                <div class="structure-text">
+                    <div class="s-title">Meeting the Brothers</div>
+                    <div class="s-desc">Each brother gets a verse portrait. Boats, a lakeside tavern, wine, and freshly caught fish.</div>
+                    <div class="s-page">pp. 454&ndash;458</div>
+                </div>
+            </div>
+            <div class="structure-item">
+                <span class="structure-num">四</span>
+                <div class="structure-text">
+                    <div class="s-title">The Manipulation</div>
+                    <div class="s-desc">Wu Yong steers conversation from fish to bandits to grievances to the scheme. The brothers swear an oath.</div>
+                    <div class="s-page">pp. 458&ndash;465</div>
+                </div>
+            </div>
+            <div class="structure-item">
+                <span class="structure-num">五</span>
+                <div class="structure-text">
+                    <div class="s-title">The Seventh Man</div>
+                    <div class="s-desc">Gongsun Sheng arrives at Chao Gai's estate with the same plan. The seven conspirators unite.</div>
+                    <div class="s-page">pp. 465&ndash;468</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Characters -->
+    <section class="content-section" id="characters">
+        <div class="section-label"><span class="chinese">人物</span> THE SEVEN CONSPIRATORS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">首領</span> The Leaders</div>
+                <div class="card-body">
+                    <h4>Chao Gai 晁蓋 (Ch'ao Kai)</h4>
+                    <p><strong>"Pagoda-lifting God"</strong> (托塔天王). Village alderman of East Creek Village in Yuncheng County. A man of wealth and standing who commands local respect. He hosts the conspiracy at his estate, provides the resources, and takes the oath first. His nickname suggests superhuman strength drawn from folk religion.</p>
+
+                    <h4>Wu Yong 吳用 (Wu Yung)</h4>
+                    <p><strong>"Star of Wisdom"</strong> (智多星). A village schoolmaster, and the brains of the operation. Wu Yong is the most fascinating character in our extract. He designs the plan, personally recruits the Ruan brothers through a masterful sequence of manipulation, and manages the group dynamics. In the broader novel, he becomes the chief strategist of the Liangshan band.</p>
+
+                    <h4>Liu Tang 劉唐 (Liu T'ang)</h4>
+                    <p><strong>"Red-haired Devil"</strong>. A bravo of Eastern Luchou, "a bravo of river and lake." He brings the initial intelligence about the birthday convoy. His seizure by local runners and rescue by Chao Gai sets the plot in motion.</p>
+
+                    <h4>Gongsun Sheng 公孫勝 (Kung-sun Sheng)</h4>
+                    <p><strong>"Clear-through Master" / "Cloud-soaring Dragon"</strong> (入雲龍). A Taoist adept from Chichou who claims to summon wind and rain and ride the clouds. He arrives independently with the same intelligence and plan, completing the group of seven. His dramatic entrance, beating villagers who deny him access to Chao Gai, provides comic energy.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">阮氏三雄</span> The Ruan Brothers <span class="meta">Stone Tablet Village</span></div>
+                <div class="card-body">
+                    <p>The three Ruan brothers (阮氏三雄, "Three Heroes of the Ruan Clan") are fishermen by trade living near Liangshan Marsh. They are blood brothers, "true and upright, good fellows all." Each gets an elaborate verse portrait on introduction, a signature technique of the novel.</p>
+
+                    <h4>Ruan Number Two 阮小二 (Juan Number Two)</h4>
+                    <p><strong>"Earthly Jupiter"</strong> (立地太歲). The eldest brother, the one Wu Yong contacts first.</p>
+                    <div class="verse-portrait">
+                        Craggy features<br>
+                        Brows steep-slanting<br>
+                        Lantern-jaw<br>
+                        Curly whiskers<br>
+                        Brown hair tangled on his chest<br>
+                        Mighty shoulders jutting square<br>
+                        Arms of strength to lift ten hundredweight<br>
+                        Eyes with glint of ice-cold steel&mdash;<br>
+                        Call me this no village fisherman,<br>
+                        Truly a Jupiter come on earth!
+                    </div>
+                    <cite style="font-size: 0.7rem; color: var(--ink-faint);">p. 454</cite>
+
+                    <h4>Ruan Number Five 阮小五 (Juan Number Five)</h4>
+                    <p><strong>"Ill-starred Demon Erlang"</strong> (短命二郎). A gambler with an indigo leopard tattooed on his chest. His mother complains he takes her hair ornaments to gamble.</p>
+                    <div class="verse-portrait">
+                        Pair of hands like iron clubs<br>
+                        Two eyes like round bronze bells<br>
+                        The smiling curves of his cheeks<br>
+                        Hide not the ferocious brow.<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Distributor of disaster<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Cause of calamities fell,<br>
+                        Before his fists the lion quails<br>
+                        Where his kick lands the snake despairs.
+                    </div>
+                    <cite style="font-size: 0.7rem; color: var(--ink-faint);">p. 456</cite>
+
+                    <h4>Ruan Number Seven 阮小七 (Juan Number Seven)</h4>
+                    <p><strong>"Living Pluto"</strong> (活閻羅). The youngest, described with grotesque physicality. He wears a black coolie-hat and an apron of unbleached cloth. "Seventh Brother was always the hasty one," Wu Yong observes.</p>
+                    <div class="verse-portrait">
+                        Mottled face bursting with boils<br>
+                        Veined eyes popping from their sockets<br>
+                        Rusty hairs sprout from his cheeks<br>
+                        Black spots jostle for space on his skin.<br>
+                        Was he beaten out of iron<br>
+                        Or cast whole from molten bronze?<br>
+                        Surely a being from the netherworld&mdash;<br>
+                        Known to the villagers as "Living Pluto."
+                    </div>
+                    <cite style="font-size: 0.7rem; color: var(--ink-faint);">p. 455</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes -->
+    <section class="content-section alt" id="themes">
+        <div class="section-label"><span class="chinese">主題</span> THEMES &amp; LITERARY TECHNIQUES</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">江湖</span> The Jianghu World</div>
+                <div class="card-body">
+                    <h4>Rivers and Lakes (Jianghu 江湖)</h4>
+                    <p>The characters inhabit the <em>jianghu</em>, literally "rivers and lakes," a term for the informal world of itinerant warriors, bandits, and outlaws outside the Confucian social order. The text is saturated with jianghu language: men are introduced by reputation across vast distances, loyalty is the supreme virtue, and oaths sealed with wine bind tighter than any legal contract.</p>
+                    <h4>Yi: Righteousness Among Outlaws</h4>
+                    <p>The novel inverts Confucian morality. The "righteous" (<em>yi</em> 義) figures are not scholar-officials serving the court, but bandits plotting theft. Their target is "ill-gotten wealth," a birthday tribute built on government corruption. The oath scene (p. 465) explicitly frames the robbery as righteous: the treasure is "the fruit of his misdeeds and extortions against the common people."</p>
+                    <h4>Corruption as Cause</h4>
+                    <p>Every character in the extract has been pushed toward outlawry by government failure. The Ruan brothers cannot fish because bandits control the waterways, while government thief-catchers "daren't go near the villages." Number Five's bitter summary of the state captures the novel's political critique: officials "eat up innocent people's pigs and lambs and chickens and geese, and then they won't leave again until they've collected their 'travelling expenses'" (p. 461).</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">文法</span> Narrative Techniques</div>
+                <div class="card-body">
+                    <h4>Verse Character Portraits</h4>
+                    <p>Each major character is introduced with a formal verse portrait. This is a distinctive convention inherited from oral storytelling: the narrator pauses the action to "freeze" a character for the audience, translating visual appearance into rhythmic verse. The portraits serve as literary ID cards. They establish each figure's physical type (martial, grotesque, noble) and hint at their role in the narrative.</p>
+                    <h4>Landscape Poetry</h4>
+                    <p>Transitions between scenes are marked by landscape verse. When Wu Yong arrives at Stone Tablet Village, the text pauses for a pastoral poem: "Emerald hills cresting the purple haze, / Clouds resting on green groves of mulberry" (p. 453). When the four men reach the lakeside tavern, another poem establishes the setting. These verses slow the pace and signal a new narrative unit, a technique from the oral storytelling tradition where performers would recite verse to give listeners a mental picture.</p>
+                    <h4>Episodic Structure</h4>
+                    <p>The extract showcases the novel's episodic construction. Birch notes that the novel is "rich in incident" with an episodic structure that tightens once Song Jiang assembles all 108 chiefs. Our chapters read like a self-contained short story, the heist-planning genre in miniature: intelligence, recruitment, oath, assembly. Each episode introduces characters who will matter later.</p>
+                    <h4>Dialogue-Driven Narrative</h4>
+                    <p>Nearly the entire extract advances through dialogue. Wu Yong's recruitment of the Ruan brothers unfolds over pages of conversation with almost no narrator commentary. The reader watches Wu Yong manipulate the brothers in real time, a technique that builds suspense and reveals character through speech rather than description.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-themes">
+            <h4>Key Concepts for Discussion</h4>
+            <ul>
+                <li><strong>Haohan (好漢)</strong> "Bravo" or "good fellow." The outlaw-hero archetype.</li>
+                <li><strong>Jianghu (江湖)</strong> "Rivers and lakes." The world outside official society.</li>
+                <li><strong>Yi (義)</strong> Righteousness, loyalty. The bond between sworn brothers.</li>
+                <li><strong>Liangshan (梁山)</strong> Mount Liang, the marshland stronghold.</li>
+                <li><strong>Shengchen gang (生辰綱)</strong> "Birthday convoy." The corrupt tribute.</li>
+                <li><strong>Huaben (話本)</strong> "Story-root." The oral storytelling tradition behind the novel.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Discussion -->
+    <section class="content-section" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid three-col">
+            <div class="card">
+                <div class="card-head"><span class="chinese">一</span> Manipulation &amp; Character</div>
+                <div class="card-body">
+                    <p><strong>1.</strong> Wu Yong's recruitment of the Ruan brothers takes nearly half the extract (pp. 453&ndash;464). He never directly asks them to join. Instead, he steers the conversation through fish, bandits, grievances, and envy before revealing the plan. What does this tell us about how power and persuasion work in the <em>jianghu</em>? Why can't he just ask?</p>
+                    <p><strong>2.</strong> Compare Wu Yong's manipulation to the kind of persuasion we've seen in earlier readings (Mengzi advising rulers, Han Feizi's parables for the king). How does the social context change the rhetoric? Wu Yong is recruiting outlaws, not counseling a sovereign.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">二</span> Justice &amp; Corruption</div>
+                <div class="card-body">
+                    <p><strong>3.</strong> The conspirators frame the robbery as righteous: the birthday tribute is "the fruit of his misdeeds and extortions against the common people" (p. 465). Is this genuine moral reasoning, or a convenient justification? Does the novel want us to take the claim seriously?</p>
+                    <p><strong>4.</strong> Number Five describes government officials who "eat up innocent people's pigs and lambs" and thief-catchers too scared to do their jobs (pp. 460&ndash;461). How does the novel use the Ruan brothers' complaints to build its case that the outlaws are more legitimate than the state?</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">三</span> Form &amp; Tradition</div>
+                <div class="card-body">
+                    <p><strong>5.</strong> Each brother is introduced with a verse portrait (pp. 454&ndash;456). Ruan Number Two is all "craggy features" and "ice-cold steel," while Number Seven is "mottled face bursting with boils." What work do these portraits do that prose description cannot? Why does the novel pause the action for verse?</p>
+                    <p><strong>6.</strong> Birch notes that <em>Shuihu zhuan</em> was "often not taken seriously as a work of literature" because of its "popular origins, 'vulgar' colloquial language and dangerous message" (p. 450). What makes this reading feel different from the literary Chinese texts we've encountered this term? Is "vulgar" language a weakness, or a source of the novel's power?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Primary Text</h4>
+                <p>Birch, Cyril, ed. <em>Anthology of Chinese Literature</em> (Grove Press, 1965), pp. 449&ndash;468. "A Yuan Novel: From 'The Men of the Marshes.'"</p>
+            </div>
+            <div class="source-card">
+                <h4>Reference</h4>
+                <a href="https://www.britannica.com/topic/Water-Margin" target="_blank">Britannica: Water Margin</a>
+                <a href="https://www.newworldencyclopedia.org/entry/Water_Margin" target="_blank">New World Encyclopedia: Water Margin</a>
+                <a href="https://ctext.org/datawiki.pl?if=en&res=978847" target="_blank">Chinese Text Project: 水滸傳</a>
+            </div>
+            <div class="source-card">
+                <h4>Translations</h4>
+                <p>Buck, Pearl S. <em>All Men Are Brothers</em> (1933). 70-chapter version.</p>
+                <p>Shapiro, Sidney. <em>Outlaws of the Marsh</em> (1981). 100-chapter abridgement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
