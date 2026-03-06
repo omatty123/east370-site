@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ti-Yong (體用): Substance and Function Across Chinese Thought | EAST 370</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-faint: #8a8a8a;
+            --paper: #fafaf8;
+            --paper-dark: #f0ede8;
+            --gold: #b8860b;
+            --gold-light: #daa520;
+            --teal: #2d5a5a;
+            --tiyong: #3D5A80;
+            --tiyong-light: #5B7FA5;
+            --ru: #2D7D7D;
+            --dao: #3D8B4D;
+            --mo: #A67C52;
+            --fa: #B54545;
+            --fo: #7B5EA7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .page-header .back { font-size: 0.7rem; color: #888; text-decoration: none; }
+        .page-header .back:hover { color: var(--gold-light); }
+        .page-title { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .page-title .ch { font-family: 'Noto Sans SC', sans-serif; font-size: 1.2rem; color: var(--gold-light); }
+        .page-title .en { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        .page-title .meta { font-size: 0.7rem; color: #888; }
+
+        /* Sticky Nav */
+        .nav {
+            background: var(--ink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav a { font-size: 0.7rem; color: #aaa; text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav a:hover { color: var(--gold-light); }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #999;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .section-label .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Content Sections */
+        .content-section { padding: 1rem 1.5rem 1.5rem; }
+        .content-section.alt { background: #f5f5f3; }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .content-grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .card-head {
+            background: #2a2a2a;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .card-head .chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+        .card-head .meta {
+            font-size: 0.6rem;
+            color: #888;
+            margin-left: auto;
+        }
+        .card-body { padding: 0.75rem; }
+        .card-body p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            margin-bottom: 0.5rem;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-body h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            margin: 0.75rem 0 0.4rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--paper-dark);
+        }
+        .card-body h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .card-body ul { font-size: 0.8rem; color: var(--ink-light); padding-left: 1.2rem; }
+        .card-body li { margin-bottom: 0.3rem; line-height: 1.5; }
+        .card-body li strong { color: var(--ink); }
+        .card-body a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        .card-body a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* School accent stripe on cards */
+        .card-head.ru-head { border-left: 4px solid var(--ru); }
+        .card-head.dao-head { border-left: 4px solid var(--dao); }
+        .card-head.mo-head { border-left: 4px solid var(--mo); }
+        .card-head.fa-head { border-left: 4px solid var(--fa); }
+        .card-head.fo-head { border-left: 4px solid var(--fo); }
+
+        /* Blockquotes */
+        blockquote {
+            background: var(--paper-dark);
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+        }
+        blockquote cite a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+        blockquote cite a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+        /* Timeline */
+        .mini-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .mini-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--tiyong);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 0.4rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--tiyong);
+            border-radius: 50%;
+        }
+        .timeline-item .year { font-size: 0.7rem; font-weight: 600; color: var(--tiyong); }
+        .timeline-item .event { font-size: 0.75rem; color: var(--ink-light); }
+
+        /* Genre Grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        .genre-item {
+            background: var(--paper-dark);
+            border-radius: 4px;
+            padding: 0.5rem 0.7rem;
+            border-left: 3px solid var(--gold);
+        }
+        .genre-item .genre-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.15rem;
+        }
+        .genre-item .genre-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .genre-item .genre-name {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--ink);
+        }
+        .genre-item .genre-pinyin {
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-style: italic;
+        }
+        .genre-item .genre-desc {
+            font-size: 0.75rem;
+            color: var(--ink-light);
+            line-height: 1.45;
+        }
+
+        /* Key Themes */
+        .key-themes {
+            background: linear-gradient(135deg, rgba(61, 90, 128, 0.1) 0%, rgba(91, 127, 165, 0.05) 100%);
+            border: 1px solid rgba(61, 90, 128, 0.2);
+            border-radius: 4px;
+            padding: 0.6rem 0.75rem;
+            margin: 0.5rem 0;
+        }
+        .key-themes h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--tiyong);
+            margin-bottom: 0.4rem;
+            border: none;
+            padding: 0;
+        }
+        .key-themes ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            columns: 2;
+            column-gap: 1.5rem;
+        }
+        .key-themes li {
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            break-inside: avoid;
+            line-height: 1.5;
+        }
+        .key-themes li strong { color: var(--ink); }
+
+        /* Note Box */
+        .note-box {
+            background: #fff;
+            border-left: 3px solid var(--gold);
+            padding: 0.6rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+            border-radius: 0 4px 4px 0;
+        }
+        .note-box strong { color: var(--gold); }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .comparison-table th {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: #2a2a2a;
+            color: #fff;
+            padding: 0.5rem 0.6rem;
+            text-align: left;
+        }
+        .comparison-table td {
+            padding: 0.5rem 0.6rem;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover td { background: rgba(184,134,11,0.03); }
+        .comparison-table .dim-label {
+            font-weight: 600;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+        .comparison-table .dim-ch {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.8rem;
+            color: var(--ink-faint);
+        }
+
+        /* Text card links */
+        .text-link {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--tiyong);
+            text-decoration: none;
+            border: 1px solid var(--tiyong);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            margin-top: 0.4rem;
+            transition: all 0.2s;
+        }
+        .text-link:hover { background: var(--tiyong); color: #fff; }
+
+        /* Question items */
+        .q-item {
+            padding: 0.15rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .q-item:last-child { border-bottom: none; }
+        .q-item .q-num {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+        .q-item p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+            line-height: 1.65;
+        }
+
+        /* Ti-Yong Diagram */
+        .ty-pair {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .ty-ti, .ty-yong {
+            flex: 1;
+            padding: 0.6rem 0.75rem;
+        }
+        .ty-ti {
+            background: var(--tiyong);
+            color: #fff;
+        }
+        .ty-yong {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-left: none;
+        }
+        .ty-ti .ty-label, .ty-yong .ty-label {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.7;
+            margin-bottom: 0.2rem;
+        }
+        .ty-yong .ty-label { color: var(--ink-faint); }
+        .ty-ti .ty-char, .ty-yong .ty-char {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .ty-yong .ty-char { color: var(--tiyong); }
+        .ty-ti .ty-desc, .ty-yong .ty-desc {
+            font-size: 0.75rem;
+            line-height: 1.45;
+            margin-top: 0.2rem;
+        }
+        .ty-yong .ty-desc { color: var(--ink-light); }
+        .ty-ti .ty-desc { opacity: 0.9; }
+
+        /* Sources */
+        .sources {
+            background: var(--paper-dark);
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+        .source-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+        }
+        .source-card h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .source-card a, .source-card p {
+            display: block;
+            font-size: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+        .source-card a:last-child, .source-card p:last-child { border-bottom: none; }
+        .source-card a:hover { color: var(--gold); }
+
+        /* Footer */
+        footer {
+            background: var(--ink);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        footer .foot-chinese {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            margin-bottom: 0.2rem;
+        }
+        footer .foot-title { font-size: 0.7rem; color: #aaa; margin-bottom: 0.3rem; }
+        footer .foot-term {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .content-grid.three-col { grid-template-columns: 1fr; }
+            .sources-grid { grid-template-columns: 1fr; }
+            .nav { gap: 1rem; }
+            .genre-grid { grid-template-columns: 1fr; }
+            .key-themes ul { columns: 1; }
+            .comparison-table { font-size: 0.65rem; }
+            .comparison-table th,
+            .comparison-table td { padding: 0.4rem; }
+            .ty-pair { flex-direction: column; }
+            .ty-yong { border-left: 1px solid #e0e0e0; border-top: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="../index.html" class="back">&larr; EAST 370</a>
+        <div class="page-title">
+            <span class="ch">體用</span>
+            <span class="en">Ti-Yong: Substance and Function Across Chinese Thought</span>
+            <span class="meta">Thematic Study &middot; All Periods</span>
+        </div>
+    </header>
+
+    <!-- Sticky Nav -->
+    <nav class="nav">
+        <a href="#intro">The Framework</a>
+        <a href="#ru">Ru (Confucian)</a>
+        <a href="#dao">Dao (Daoist)</a>
+        <a href="#mo-fa">Mo &amp; Fa</a>
+        <a href="#fo">Buddhist</a>
+        <a href="#neo">Neo-Confucian</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#sources">Sources</a>
+    </nav>
+
+    <!-- Section 1: The Framework -->
+    <section class="content-section" id="intro">
+        <div class="section-label"><span class="chinese">導論</span> THE FRAMEWORK</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">體用</span> What Is Ti-Yong?</div>
+                <div class="card-body">
+                    <h4>The Core Pair</h4>
+                    <p><strong>Ti</strong> (體) originally meant "body" or "organized form." <strong>Yong</strong> (用) meant "use" or "function." Together they ask: what is something in itself, and how does it act in the world?</p>
+                    <p>Think of a piece of wood. The wood itself is the ti. Its uses, to fuel a fire, to build a house, to carve a bowl, are its yong. One substance, many functions. Ti is singular; yong is plural.</p>
+                    <h4>Not Quite "Substance"</h4>
+                    <p>Translating ti as "substance" is convenient but misleading. In Western philosophy, "substance" implies a static, inert thing underlying changing properties. Ti in Chinese thought is rarely inert. It is the organized reality of something, which naturally generates its functions. Ti and yong are not two different things; they are two ways of looking at the same reality.</p>
+                    <div class="note-box">
+                        <strong>The crucial point:</strong> Ti and yong are contextual labels, not fixed categories. The same thing can be ti in one context and yong in another. Ren (仁) is the ti of Confucian ethics, but ren itself is the yong of human nature (xing 性). There is no absolute bottom.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">歷史</span> Why This Framework Matters</div>
+                <div class="card-body">
+                    <h4>A Lens for the Whole Course</h4>
+                    <p>Ti-yong became an explicit philosophical framework only in Buddhist and Neo-Confucian thought (roughly Tang dynasty onward). But the <em>logic</em> of the ti-yong relationship, asking what is fundamental and how it manifests, runs through every school we have studied this term.</p>
+                    <p>Every philosopher we have read answers two questions: What is the deep reality? And how does that reality show up in human life? Those are the ti-yong questions, even when the thinker never uses the terms.</p>
+                    <h4>Reading Backwards, Carefully</h4>
+                    <p>Applying ti-yong to pre-Buddhist thinkers (Kongzi, Laozi, Mozi) is anachronistic. They did not think in these categories. But used as an analytical lens rather than a historical claim, it reveals structural parallels across traditions that are otherwise hard to see.</p>
+                    <div class="key-themes">
+                        <h4>What to Watch For</h4>
+                        <ul>
+                            <li><strong>One or many?</strong> Is ti singular for each thinker?</li>
+                            <li><strong>Moral or neutral?</strong> Does ti carry ethical content?</li>
+                            <li><strong>Gap or no gap?</strong> Is yong an automatic expression of ti, or does it require effort?</li>
+                            <li><strong>Who bridges?</strong> What connects ti to yong (ritual, cultivation, law, emptiness)?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Ru (Confucian) -->
+    <section class="content-section alt" id="ru">
+        <div class="section-label"><span class="chinese">儒</span> RU (CONFUCIAN)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head ru-head"><span class="chinese">孔子</span> Kongzi: Ren as Substance</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">仁</div>
+                            <div class="ty-desc">Ren: humaneness, the inner orientation toward others</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">禮</div>
+                            <div class="ty-desc">Li: ritual propriety, the external forms through which ren becomes visible</div>
+                        </div>
+                    </div>
+                    <h4>The Relationship</h4>
+                    <p>For Kongzi, ritual without humaneness is empty performance. A person who observes every ritual form but lacks ren is just going through the motions. Equally, ren without li has no vehicle for expression. The inner reality (ti) requires external forms (yong) to become actual in the world.</p>
+                    <blockquote>
+                        "A man who is not humane, what has he to do with ritual? A man who is not humane, what has he to do with music?"
+                        <cite>Analerta 3.3; trans. D.C. Lau</cite>
+                    </blockquote>
+                    <h4>The Gap</h4>
+                    <p>Kongzi never claims ren automatically produces correct ritual behavior. The gap between inner virtue and outer practice is bridged by <strong>xue</strong> (學, learning) and sustained effort. This is why the <em>Analects</em> begins with learning, not with virtue. The function does not flow automatically from the substance; it must be cultivated.</p>
+                    <a href="kongzi.html" class="text-link">Full Kongzi Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head ru-head"><span class="chinese">孟子</span> Mengzi: Nature as Substance</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">性善</div>
+                            <div class="ty-desc">Xing shan: innately good human nature, the four moral sprouts (siduan 四端)</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">推</div>
+                            <div class="ty-desc">Tui: extension of the sprouts into full virtues and benevolent governance</div>
+                        </div>
+                    </div>
+                    <h4>The Relationship</h4>
+                    <p>Mengzi moves the ti one level deeper than Kongzi. The substance is not ren as a cultivated disposition but <em>human nature itself</em>, which already contains the seeds of all virtue. The four sprouts (compassion, shame, deference, moral discernment) are innate. Every person has them, just as every person has four limbs.</p>
+                    <p>The yong is <strong>extension</strong> (tui 推): the act of taking the compassion you naturally feel for a child about to fall into a well and extending it outward to strangers, to governance, to the whole world.</p>
+                    <h4>The Gap</h4>
+                    <p>Smaller than Kongzi's gap. The sprouts are already moral. The work is not to acquire virtue but to stop blocking what is already there. Mengzi's metaphor: water flows downhill naturally. You do not need to push it. You only need to stop damming it.</p>
+                    <a href="mengzi.html" class="text-link">Full Mengzi Page</a>
+                </div>
+            </div>
+        </div>
+        <div class="content-grid" style="margin-top: 0.75rem;">
+            <div class="card">
+                <div class="card-head ru-head"><span class="chinese">荀子</span> Xunzi: Ritual as Substance</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">禮</div>
+                            <div class="ty-desc">Li: the accumulated ritual wisdom of the sage-kings, the cultural order</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">偽</div>
+                            <div class="ty-desc">Wei: deliberate effort, the transformative power of education and practice</div>
+                        </div>
+                    </div>
+                    <h4>The Inversion</h4>
+                    <p>Xunzi inverts Kongzi's ti-yong pair. Where Kongzi treats ren (inner virtue) as substance and li (ritual) as function, Xunzi makes li the substance. Human nature is not the foundation of morality; it is the <em>problem</em> morality solves. The deep reality is not what we are born with but the cultural order that shapes us.</p>
+                    <h4>The Gap</h4>
+                    <p>Enormous. Human nature is "problematic" (e 惡). Bridging the gap between raw nature and civilized behavior requires sustained, deliberate effort (wei 偽). Without the cultural machinery of ritual, music, and education, people remain crude. The function (transformation) is hard-won, never automatic.</p>
+                    <div class="note-box">
+                        <strong>Compare Mengzi:</strong> For Mengzi, virtue flows from nature like water flows downhill. For Xunzi, virtue is constructed like a craftsman steaming and bending a warped piece of wood. Same goal, opposite mechanics.
+                    </div>
+                    <a href="xunzi.html" class="text-link">Full Xunzi Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head ru-head"><span class="chinese">大學</span> Daxue: The Eight Steps</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">格物致知</div>
+                            <div class="ty-desc">Gewu zhizhi: investigating things and extending knowledge, inner cultivation</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">治國平天下</div>
+                            <div class="ty-desc">Zhiguo ping tianxia: governing the state and bringing peace to the world</div>
+                        </div>
+                    </div>
+                    <h4>The Eight-Step Ladder</h4>
+                    <p>The <em>Daxue</em> (大學, Great Learning) is the most explicit ti-yong structure in pre-Buddhist Chinese thought. Its eight steps trace an unbroken chain from inner substance to outer function: investigating things → extending knowledge → making intentions sincere → rectifying the mind → cultivating the self → ordering the family → governing the state → bringing peace to the world.</p>
+                    <p>The first four steps are ti (inner cultivation). The last four are yong (outer governance). The pivot is <strong>self-cultivation</strong> (xiushen 修身), which stands at the junction of inner and outer.</p>
+                    <h4>No Gap</h4>
+                    <p>The <em>Daxue</em> presents the chain as sequential and necessary. Get the inner work right and the outer results follow. This is the most optimistic ti-yong relationship in the Confucian tradition: substance generates function reliably, step by step.</p>
+                    <a href="daxue-zhongyong.html" class="text-link">Full Daxue &amp; Zhongyong Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Dao (Daoist) -->
+    <section class="content-section" id="dao">
+        <div class="section-label"><span class="chinese">道</span> DAO (DAOIST)</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head dao-head"><span class="chinese">老子</span> Laozi: Dao as Substance</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">道</div>
+                            <div class="ty-desc">Dao: the nameless, formless source of all things</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">無為</div>
+                            <div class="ty-desc">Wu wei: non-action, effortless action, the Dao's natural way of operating</div>
+                        </div>
+                    </div>
+                    <h4>The Paradox</h4>
+                    <p>Laozi's ti-yong is paradoxical. The Dao is the substance of everything, but it is not a "thing." It has no form, no name, no qualities. It is the emptiness at the center of the wheel that makes the wheel useful. How does a formless, nameless substance produce function? Through <em>not-doing</em>.</p>
+                    <p>Wu wei is not inaction. It is action that does not impose, that follows the grain of things rather than forcing against it. The sage-ruler governs so subtly that the people say "we did it ourselves." The function of the Dao is to operate without being noticed.</p>
+                    <h4>The Anti-Gap</h4>
+                    <p>For Laozi, the gap between ti and yong is created by human interference. The Dao already acts perfectly. Ritual, law, morality, and education (the yong of the Confucians and Legalists) are symptoms of the gap, not solutions to it. The Confucian bridging mechanisms are precisely what broke the bridge.</p>
+                    <a href="laozi.html" class="text-link">Full Laozi Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head dao-head"><span class="chinese">莊子</span> Zhuangzi: Transformation as Function</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">化</div>
+                            <div class="ty-desc">Hua: ceaseless transformation, the ground of all being</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">遊</div>
+                            <div class="ty-desc">You: carefree wandering, spontaneous skill, effortless mastery</div>
+                        </div>
+                    </div>
+                    <h4>Dissolving the Distinction</h4>
+                    <p>Zhuangzi goes further than Laozi by questioning whether ti and yong can be separated at all. In the butterfly dream, Zhuangzi cannot tell whether he is a man dreaming of being a butterfly or a butterfly dreaming of being a man. The "substance" (who he really is) and the "function" (what he appears as) are no longer stable categories.</p>
+                    <h4>Cook Ding</h4>
+                    <p>The most vivid illustration. Cook Ding's knife has not needed sharpening in nineteen years because he cuts along the natural structure (li 理, the same character Neo-Confucians will later make central). His skill is so complete that there is no gap between what he knows (ti) and what he does (yong). The Dao flows through the blade. This is the disappearance of the ti-yong distinction through perfect mastery.</p>
+                    <div class="note-box">
+                        <strong>Compare Kongzi:</strong> Both value skill and mastery, but Kongzi's mastery is achieved through decades of disciplined learning (xue). Zhuangzi's mastery transcends conscious learning entirely. Cook Ding says he follows the Dao, not techniques.
+                    </div>
+                    <a href="zhuangzi.html" class="text-link">Full Zhuangzi Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Mo & Fa -->
+    <section class="content-section alt" id="mo-fa">
+        <div class="section-label"><span class="chinese">墨法</span> MO &amp; FA</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head mo-head"><span class="chinese">墨子</span> Mozi: Heaven's Will as Substance</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">天志</div>
+                            <div class="ty-desc">Tian zhi: Heaven's will, the objective moral standard</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">兼愛</div>
+                            <div class="ty-desc">Jian'ai: inclusive care for all people, equally and without distinction</div>
+                        </div>
+                    </div>
+                    <h4>The Most Personal Ti</h4>
+                    <p>Mozi's substance is the most personal of any thinker in our course. Heaven (Tian 天) is not an impersonal principle or a natural pattern. It is a moral agent that actively wills the welfare of all people, punishes the unjust, and rewards the benevolent. This is not the inscrutable Heaven of Kongzi or the naturalistic Heaven of Xunzi.</p>
+                    <h4>Measurement as Bridge</h4>
+                    <p>Mozi bridges ti and yong through his three standards (sanbiao 三表): historical precedent, empirical observation, and practical results. Heaven's will is known not through mystical insight but through measurable outcomes. Does a policy benefit the people? Then it accords with Heaven. This is the most utilitarian ti-yong structure in classical Chinese thought.</p>
+                    <a href="mozi.html" class="text-link">Full Mozi Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head fa-head"><span class="chinese">韓非子</span> Han Feizi: Law as Substance</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">法勢</div>
+                            <div class="ty-desc">Fa + shi: law (objective standards) and positional power (structural authority)</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">術</div>
+                            <div class="ty-desc">Shu: techniques of rulership, the two handles (punishment and reward)</div>
+                        </div>
+                    </div>
+                    <h4>The Amoral Ti</h4>
+                    <p>Han Feizi strips morality out of the substance entirely. Law (fa 法) is not a moral order; it is an objective standard applied equally to everyone, like a carpenter's line or a compass. Positional power (shi 勢) is structural, not personal. It belongs to the throne, not to the person sitting on it. A mediocre ruler with good systems will outperform a virtuous ruler with bad ones.</p>
+                    <h4>The Gap as Feature</h4>
+                    <p>For Han Feizi, the gap between ti and yong is <em>deliberate</em>. The ruler must remain inscrutable, hidden behind the machinery of law. If people can read the ruler's intentions, they will game the system. The function (governance outcomes) works precisely because the substance (the ruler's mind) is invisible. This is Laozi's wu wei weaponized for statecraft.</p>
+                    <a href="hanfeizi.html" class="text-link">Full Han Feizi Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Buddhist -->
+    <section class="content-section" id="fo">
+        <div class="section-label"><span class="chinese">佛</span> BUDDHIST</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head fo-head"><span class="chinese">法藏</span> Fazang: Li-Shi as Ti-Yong</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">理</div>
+                            <div class="ty-desc">Li: the Pattern, the relational structure of dependent arising, grounded in emptiness</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">事</div>
+                            <div class="ty-desc">Shi: phenomena, the individual things and events of the world</div>
+                        </div>
+                    </div>
+                    <h4>Where Ti-Yong Becomes Explicit</h4>
+                    <p>Fazang's Huayan Buddhism is where the ti-yong framework first becomes a fully articulated philosophical tool. His golden lion metaphor makes it concrete: the gold is li (ti), the lion-shape is shi (yong). The gold could take any form. The lion has no reality apart from the gold. But the gold is only visible <em>as</em> the lion.</p>
+                    <h4>No Gap, No Separation</h4>
+                    <p>In Huayan, the relationship between ti and yong is one of total interpenetration. Li is not "behind" or "under" shi. Li <em>is</em> shi, and shi <em>is</em> li. They are two ways of describing the same reality. This is the Four Dharmadhatus framework: the realm of li, the realm of shi, the realm where li and shi interpenetrate, and the realm where all shi interpenetrate with each other.</p>
+                    <h4>Crucially: Li Is NOT Moral</h4>
+                    <p>For Fazang, li is ethically neutral. It is the pattern of dependent arising, grounded in emptiness (kong 空). It does not tell you what to do. It describes how things relate. The Neo-Confucians will change this completely.</p>
+                    <a href="fazang.html" class="text-link">Full Fazang Page</a>
+                    <a href="li-pattern.html" class="text-link" style="margin-left: 0.3rem;">Li: The Pattern</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head fo-head"><span class="chinese">慧能</span> Huineng: Mind as Substance</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">心</div>
+                            <div class="ty-desc">Xin: original mind, Buddha-nature, inherently pure awareness</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">悟</div>
+                            <div class="ty-desc">Wu: sudden awakening, seeing one's own nature directly</div>
+                        </div>
+                    </div>
+                    <h4>Mengzi's Logic, Buddhist Content</h4>
+                    <p>Huineng's <em>Platform Sutra</em> uses a ti-yong structure strikingly parallel to Mengzi's. The substance (original mind) is already complete, already pure. It does not need to be constructed or earned. The function (awakening) is not adding something new but removing the obscurations that prevent you from seeing what was always there.</p>
+                    <p>Shenxiu's verse (wiping the mirror to keep it clean) treats awakening as gradual effort: the gap between ti and yong must be crossed step by step. Huineng's verse (there is no mirror, where can dust collect?) denies the gap exists at all. The substance is the function, right now, if you stop looking elsewhere.</p>
+                    <div class="key-themes">
+                        <h4>Cross-Tradition Parallel</h4>
+                        <ul>
+                            <li><strong>Mengzi:</strong> Nature is already good. Extend the sprouts.</li>
+                            <li><strong>Huineng:</strong> Mind is already pure. Stop obscuring it.</li>
+                            <li><strong>Xunzi:</strong> Nature is problematic. Construct virtue through effort.</li>
+                            <li><strong>Shenxiu:</strong> Mind is dusty. Polish it through practice.</li>
+                        </ul>
+                    </div>
+                    <a href="huineng.html" class="text-link">Full Huineng Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Neo-Confucian -->
+    <section class="content-section alt" id="neo">
+        <div class="section-label"><span class="chinese">理學</span> NEO-CONFUCIAN SYNTHESIS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head ru-head"><span class="chinese">朱熹</span> Zhu Xi: Li-Qi as Ti-Yong</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">理</div>
+                            <div class="ty-desc">Li: the Pattern, now understood as the moral order inherent in all things</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">氣</div>
+                            <div class="ty-desc">Qi: material force, the stuff through which li manifests in concrete things</div>
+                        </div>
+                    </div>
+                    <h4>The Great Transformation</h4>
+                    <p>Zhu Xi (朱熹, 1130&ndash;1200) takes Fazang's li-shi framework and fundamentally transforms it. He keeps the structure but changes the content in three ways:</p>
+                    <ul>
+                        <li><strong>Li becomes a substance.</strong> For Fazang, li was grounded in emptiness. For Zhu Xi, li is logically prior to qi: it exists "before" material force, even though they are never actually separated.</li>
+                        <li><strong>Li becomes moral.</strong> For Fazang, li was ethically neutral. For Zhu Xi, li contains the full ethical order: the reason things are as they are AND the reason they ought to be as they are.</li>
+                        <li><strong>Li becomes a cause.</strong> For Fazang, phenomena arose through dependent arising. For Zhu Xi, li is the reason (suoyiran 所以然) things exist and behave as they do.</li>
+                    </ul>
+                    <h4>The Gap Returns</h4>
+                    <p>Because qi can be turbid or clear, li does not manifest perfectly in every person. This reintroduces a gap. Bridging it requires <strong>gewu</strong> (格物, investigating things): studying the li in each thing until one achieves comprehensive understanding. This is the intellectual discipline the <em>Daxue</em> prescribes as the first step.</p>
+                    <a href="li-pattern.html" class="text-link">Full Li-Pattern Page</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head ru-head"><span class="chinese">王陽明</span> Wang Yangming: Collapsing the Gap</div>
+                <div class="card-body">
+                    <div class="ty-pair">
+                        <div class="ty-ti">
+                            <div class="ty-label">Ti (Substance)</div>
+                            <div class="ty-char">良知</div>
+                            <div class="ty-desc">Liangzhi: innate moral knowing, the mind's original clarity</div>
+                        </div>
+                        <div class="ty-yong">
+                            <div class="ty-label">Yong (Function)</div>
+                            <div class="ty-char">知行合一</div>
+                            <div class="ty-desc">Zhi xing heyi: the unity of knowing and acting</div>
+                        </div>
+                    </div>
+                    <h4>Against Zhu Xi</h4>
+                    <p>Wang Yangming (王陽明, 1472&ndash;1529) rejected Zhu Xi's gap. If li is "out there" in things, waiting to be investigated, then moral knowledge becomes an academic exercise: you study before you act. Yangming argued this gets the relationship backwards. You do not need to investigate ten thousand things to know that filial piety is good. You already know it. The problem is not ignorance but failure to act on what you know.</p>
+                    <h4>Unity of Knowing and Acting</h4>
+                    <p>Yangming's most radical claim: genuine knowing <em>is</em> acting. If you truly know that something is right and do not do it, you do not truly know it. Ti and yong collapse into each other. There is no substance apart from its function. This echoes both Mengzi (the sprouts are already moral) and Huineng (the mind is already awakened).</p>
+                    <div class="note-box">
+                        <strong>The full circle:</strong> Yangming returns to a position structurally identical to Mengzi's, but now articulated through the ti-yong vocabulary that Buddhism brought into Chinese philosophy. The Confucian tradition borrowed the Buddhist analytical framework, then used it to reach a Confucian conclusion.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Comparison Table -->
+    <section class="content-section" id="comparison">
+        <div class="section-label"><span class="chinese">比較</span> COMPARISON TABLE</div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Thinker</th>
+                    <th>Ti <span class="dim-ch">體</span> (Substance)</th>
+                    <th>Yong <span class="dim-ch">用</span> (Function)</th>
+                    <th>Bridge</th>
+                    <th>Gap?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="dim-label">Kongzi 孔子</td>
+                    <td>Ren 仁 (humaneness)</td>
+                    <td>Li 禮 (ritual propriety)</td>
+                    <td>Xue 學 (learning)</td>
+                    <td>Moderate: requires sustained effort</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Mengzi 孟子</td>
+                    <td>Xing 性 (innately good nature)</td>
+                    <td>Tui 推 (extension of sprouts)</td>
+                    <td>Remove obstructions</td>
+                    <td>Small: nature already moral</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Xunzi 荀子</td>
+                    <td>Li 禮 (ritual/cultural order)</td>
+                    <td>Wei 偽 (deliberate effort)</td>
+                    <td>Education, music, practice</td>
+                    <td>Enormous: nature is the problem</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Daxue 大學</td>
+                    <td>Gewu zhizhi (investigate things)</td>
+                    <td>Zhiguo ping tianxia (govern/pacify)</td>
+                    <td>Eight sequential steps</td>
+                    <td>None: steps follow necessarily</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Laozi 老子</td>
+                    <td>Dao 道 (the nameless Way)</td>
+                    <td>Wu wei 無為 (non-action)</td>
+                    <td>Stop interfering</td>
+                    <td>Reversed: effort creates the gap</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Zhuangzi 莊子</td>
+                    <td>Hua 化 (transformation)</td>
+                    <td>You 遊 (carefree wandering)</td>
+                    <td>Forget distinctions</td>
+                    <td>Dissolved: ti and yong are one</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Mozi 墨子</td>
+                    <td>Tian zhi 天志 (Heaven's will)</td>
+                    <td>Jian'ai 兼愛 (inclusive care)</td>
+                    <td>Three standards (sanbiao)</td>
+                    <td>Minimal: Heaven's will is clear</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Han Feizi 韓非子</td>
+                    <td>Fa + Shi 法勢 (law + power)</td>
+                    <td>Shu 術 (techniques)</td>
+                    <td>Institutional design</td>
+                    <td>Deliberate: ruler stays hidden</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Fazang 法藏</td>
+                    <td>Li 理 (pattern, emptiness-based)</td>
+                    <td>Shi 事 (phenomena)</td>
+                    <td>Interpenetration</td>
+                    <td>None: li IS shi</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Huineng 慧能</td>
+                    <td>Xin 心 (original mind)</td>
+                    <td>Wu 悟 (sudden awakening)</td>
+                    <td>Direct seeing</td>
+                    <td>Illusory: nothing to cross</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Zhu Xi 朱熹</td>
+                    <td>Li 理 (pattern, moralized)</td>
+                    <td>Qi 氣 (material force)</td>
+                    <td>Gewu 格物 (investigation)</td>
+                    <td>Moderate: qi can be turbid</td>
+                </tr>
+                <tr>
+                    <td class="dim-label">Wang Yangming</td>
+                    <td>Liangzhi 良知 (innate knowing)</td>
+                    <td>Zhi-xing heyi (unity of knowing/acting)</td>
+                    <td>Act on what you know</td>
+                    <td>None: knowing IS acting</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Section 8: Discussion -->
+    <section class="content-section alt" id="discussion">
+        <div class="section-label"><span class="chinese">討論</span> DISCUSSION QUESTIONS</div>
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-head"><span class="chinese">問</span> Questions for Reflection</div>
+                <div class="card-body">
+                    <div class="q-item">
+                        <div class="q-num">Question 1</div>
+                        <p>Mengzi and Huineng both argue that the substance is already complete and does not need to be constructed. Xunzi and Shenxiu both argue that sustained effort is necessary. What are the practical consequences of each position? If virtue (or awakening) is innate, does that make moral failure harder or easier to explain?</p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 2</div>
+                        <p>Laozi claims that Confucian rituals and Legalist laws are symptoms of a broken ti-yong relationship, not solutions. The very act of bridge-building proves the bridge has already collapsed. Is there a way for Kongzi or Han Feizi to respond to this critique? Or does it land?</p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 3</div>
+                        <p>Zhu Xi took Fazang's li-shi framework and moralized it. Fazang's li was ethically neutral; Zhu Xi's li contains the full moral order. What is gained by adding moral content to the underlying pattern of reality? What is lost? Consider whether an amoral metaphysics can support ethical practice.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head"><span class="chinese">問</span> Deeper Comparisons</div>
+                <div class="card-body">
+                    <div class="q-item">
+                        <div class="q-num">Question 4</div>
+                        <p>Cook Ding's knife work represents the dissolution of the ti-yong gap through perfect mastery: his knowledge and his action have become indistinguishable. Wang Yangming makes a similar claim philosophically ("knowing and acting are one"). Are these the same insight expressed differently, or are there important differences between Zhuangzi's spontaneous skill and Yangming's moral certainty?</p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 5</div>
+                        <p>Han Feizi's ti-yong structure is unique: the gap between substance and function is not a problem to solve but a feature to exploit. The ruler's inscrutability is what makes governance work. Does this make Han Feizi the most realistic thinker in our course, or does his rejection of moral substance make his system brittle?</p>
+                    </div>
+                    <div class="q-item">
+                        <div class="q-num">Question 6</div>
+                        <p>Look at the "Bridge" column in the comparison table. Kongzi says learning; Xunzi says education; Mengzi says remove obstructions; Laozi says stop interfering; Mozi says measure results. What does each thinker's bridge mechanism reveal about their view of human nature? Is the bridge always determined by how you understand the substance?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources" id="sources">
+        <div class="section-label">Sources &amp; Further Reading</div>
+        <div class="sources-grid">
+            <div class="source-card">
+                <h4>Encyclopedia Articles</h4>
+                <a href="https://plato.stanford.edu/entries/chinese-metaphysics/" target="_blank" rel="noopener">SEP: Metaphysics in Chinese Philosophy (covers ti-yong in sections 5 &amp; 7)</a>
+                <a href="https://www.britannica.com/topic/ti-Chinese-philosophy" target="_blank" rel="noopener">Britannica: Ti (Chinese Philosophy)</a>
+            </div>
+            <div class="source-card">
+                <h4>Scholarship</h4>
+                <a href="https://academic.oup.com/book/9022/chapter/155531897" target="_blank" rel="noopener">Ziporyn, "The Ti-Yong Model and Its Discontents" in <em>The Buddhist Roots of Zhu Xi's Philosophical Thought</em></a>
+                <a href="http://www.acmuller.net/articles/2016-06-tiyong-critical-review.pdf" target="_blank" rel="noopener">A. Charles Muller, "The Emergence of Essence-Function (ti-yong) 體用" (critical review)</a>
+            </div>
+            <div class="source-card">
+                <h4>Related Course Pages</h4>
+                <a href="li-pattern.html">理 The Pattern: From Huayan to Neo-Confucianism</a>
+                <a href="tian-heaven.html">天 Heaven Across Six Texts</a>
+                <a href="kongzi.html">Kongzi (Analects)</a>
+                <a href="mengzi.html">Mengzi</a>
+                <a href="xunzi.html">Xunzi</a>
+                <a href="laozi.html">Laozi (Daodejing)</a>
+                <a href="zhuangzi.html">Zhuangzi</a>
+                <a href="mozi.html">Mozi</a>
+                <a href="hanfeizi.html">Han Feizi</a>
+                <a href="fazang.html">Fazang: Huayan Philosophy</a>
+                <a href="huineng.html">Huineng: Platform Sutra</a>
+                <a href="daxue-zhongyong.html">Daxue &amp; Zhongyong</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="foot-chinese">中國文學與思想</div>
+        <div class="foot-title">EAST 370 &middot; Chinese Traditional Literature and Thought</div>
+        <div class="foot-term">WINTER 2026</div>
+    </footer>
+
+</body>
+
+</html>
